@@ -4,7 +4,7 @@ Theme URI:         https://semrs.com/
 Author:            SEMRS
 Author URI:        https://semrs.com/
 Description:       Lightweight, SEO-first theme for businesses, agencies and blogs. Drag-and-drop header and footer builder with top bar, sticky and transparent header, header search and a mobile menu panel. Seven section patterns, sidebar layouts, blog grid or list, reading progress bar, author box, related posts and per-page header, footer and sidebar options. No jQuery: one stylesheet and one small script.
-Version:           1.3.3
+Version:           1.3.4
 Requires at least: 6.5
 Tested up to:      7.1
 Requires PHP:      7.4
@@ -173,6 +173,17 @@ th { background: var(--sp-surface); }
 	.main-navigation .sp-mobile-cta { display: block; margin-top: 1rem; }
 }
 @media (min-width: 922px) { .main-navigation .sp-mobile-cta { display: none; } }
+/* Quick contact bar on phones (Header builder setting). */
+.sp-action-bar { display: none; }
+@media (max-width: 781px) {
+	.sp-action-bar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 998; gap: .5rem; padding: .5rem .5rem calc(.5rem + env(safe-area-inset-bottom)); background: #fff; border-top: 1px solid #e3e7ee; box-shadow: 0 -2px 12px rgba(11, 31, 58, .08); }
+	.sp-action-bar a { flex: 1 1 0; display: flex; align-items: center; justify-content: center; gap: .35rem; min-height: 48px; font-size: .875rem; font-weight: 700; color: var(--sp-primary, #0b1f3a); text-decoration: none; border: 1px solid #e3e7ee; border-radius: 8px; }
+	.sp-action-bar a.sp-action-bar__primary { flex: 2 1 0; background: var(--sp-accent, #d4a72c); border-color: var(--sp-accent, #d4a72c); color: var(--sp-on-accent, #0b1f3a); }
+	body.sp-has-action-bar { padding-bottom: 72px; }
+	body.sp-has-action-bar .sp-to-top { bottom: 84px; }
+}
+html[data-theme="dark"] .sp-action-bar { background: var(--sp-card, #132036); border-color: #263652; }
+html[data-theme="dark"] .sp-action-bar a:not(.sp-action-bar__primary) { color: #fff; border-color: #33476a; }
 
 /* ---------- 5. Buttons & forms ---------- */
 .sp-button, .wp-block-button__link, .wp-element-button, button[type="submit"], input[type="submit"], .wpcf7-submit {

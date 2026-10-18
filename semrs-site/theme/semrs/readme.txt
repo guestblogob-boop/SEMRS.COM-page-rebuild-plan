@@ -4,7 +4,7 @@ Tags: blog, portfolio, grid-layout, full-width-template, block-patterns
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +19,7 @@ SEMRS is fast by design: one stylesheet, one small script, no jQuery, no icon or
 * Elements: logo, primary menu, secondary menu, two buttons, search, social icons, phone & email, two text/HTML areas.
 * Sticky header with optional shrink, transparent header (front page or all pages, light text option), top bar colours, header background.
 * Phones: logo and menu icon with a full-width menu panel; optional header button and top bar.
+* Quick contact bar on phones: Call, WhatsApp and your header button in a bar at the bottom of the screen (off by default).
 * Footer builder: copyright, social icons, footer menu, phone & email and a text area in the bottom bar; up to 4 widget columns above it.
 
 = Per-page options =
@@ -51,6 +52,10 @@ Appearance → Customize → SEMRS Theme → Header builder.
 Edit the page, open "Page options" in the sidebar and set Transparent header to On.
 
 == Changelog ==
+
+= 1.3.4 =
+* New: quick contact bar on phones (Call, WhatsApp, header button), off by default; turn it on in Customizer > SEMRS Theme > Header builder
+* Theme screenshot shows only features included in the theme
 
 = 1.3.3 =
 * Theme screenshot: taller view with the keyword tool strip and the phone action bar

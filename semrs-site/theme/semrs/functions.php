@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEMRS_THEME_VERSION', '1.3.3' );
+define( 'SEMRS_THEME_VERSION', '1.3.4' );
 define( 'SEMRS_THEME_DIR', get_template_directory() );
 define( 'SEMRS_THEME_URI', get_template_directory_uri() );
 
@@ -105,6 +105,7 @@ require SEMRS_THEME_DIR . '/inc/header-builder.php';
 require SEMRS_THEME_DIR . '/inc/features.php';
 require SEMRS_THEME_DIR . '/inc/performance.php';
 require SEMRS_THEME_DIR . '/inc/page-options.php';
+require SEMRS_THEME_DIR . '/inc/action-bar.php';
 
 // Updates from semrs.com (WordPress "Update available" notices). Not present in WordPress.org builds.
 if ( file_exists( SEMRS_THEME_DIR . '/inc/semrs-updater.php' ) ) {

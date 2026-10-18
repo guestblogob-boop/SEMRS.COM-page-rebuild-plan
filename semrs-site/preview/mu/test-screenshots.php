@@ -46,3 +46,6 @@ if ( ! empty( $_GET['semrs_dark'] ) ) { // phpcs:ignore WordPress.Security.Nonce
 		}
 	);
 }
+
+// Theme screenshots: show the parent theme's quick contact bar on phones (a Customizer setting).
+add_filter( 'theme_mod_semrs_theme_action_bar', '__return_true' );
