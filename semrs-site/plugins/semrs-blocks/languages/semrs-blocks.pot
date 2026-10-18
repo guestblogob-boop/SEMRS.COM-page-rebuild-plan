@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SEMRS Blocks\n"
 "Report-Msgid-Bugs-To: https://semrs.com/support/\n"
-"POT-Creation-Date: 2026-10-17 18:14+0000\n"
+"POT-Creation-Date: 2026-10-18 03:49+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -111,11 +111,11 @@ msgstr ""
 msgid "3D models with rotate, zoom and AR on phones."
 msgstr ""
 
-#: includes/admin.php:74 includes/templates.php:580 includes/templates.php:812
+#: includes/admin.php:74 includes/templates.php:595 includes/templates.php:827
 msgid "You are not allowed to do this."
 msgstr ""
 
-#: includes/admin.php:111 includes/blocks-free.php:75 includes/blocks-free.php:83 includes/blocks-layout.php:30 includes/blocks-layout.php:120
+#: includes/admin.php:111 includes/blocks-free.php:75 includes/blocks-free.php:83 includes/blocks-layout.php:30 includes/blocks-layout.php:120 includes/blocks-product.php:389
 msgid "Layout"
 msgstr ""
 
@@ -127,7 +127,7 @@ msgstr ""
 msgid "Posts"
 msgstr ""
 
-#: includes/admin.php:114 includes/templates.php:723
+#: includes/admin.php:114 includes/templates.php:738
 msgid "Marketing"
 msgstr ""
 
@@ -163,19 +163,19 @@ msgstr ""
 msgid "Search blocks…"
 msgstr ""
 
-#: includes/admin.php:154 includes/templates.php:722
+#: includes/admin.php:154 includes/templates.php:737
 msgid "Filter"
 msgstr ""
 
-#: includes/admin.php:155 includes/templates.php:723
+#: includes/admin.php:155 includes/templates.php:738
 msgid "All"
 msgstr ""
 
-#: includes/admin.php:156 includes/blocks-showcase.php:47 includes/blocks-showcase.php:99 includes/templates.php:627 includes/templates.php:723
+#: includes/admin.php:156 includes/blocks-showcase.php:47 includes/blocks-showcase.php:99 includes/templates.php:642 includes/templates.php:738
 msgid "Free"
 msgstr ""
 
-#: includes/admin.php:157 includes/blocks-showcase.php:47 includes/blocks-showcase.php:99 includes/templates.php:627 includes/templates.php:723
+#: includes/admin.php:157 includes/blocks-showcase.php:47 includes/blocks-showcase.php:99 includes/templates.php:642 includes/templates.php:738
 msgid "Pro"
 msgstr ""
 
@@ -197,7 +197,7 @@ msgstr ""
 msgid "Turn %s on or off"
 msgstr ""
 
-#: includes/admin.php:185 includes/templates.php:635 includes/templates.php:698
+#: includes/admin.php:185 includes/templates.php:650 includes/templates.php:713
 msgid "Unlock with Pro"
 msgstr ""
 
@@ -517,7 +517,7 @@ msgstr ""
 msgid "Small text above price (e.g. From)"
 msgstr ""
 
-#: includes/blocks-free.php:123
+#: includes/blocks-free.php:123 includes/blocks-product.php:394
 msgid "Short description"
 msgstr ""
 
@@ -525,7 +525,7 @@ msgstr ""
 msgid "Features (one per line; start with - for not included)"
 msgstr ""
 
-#: includes/blocks-free.php:125 includes/contact.php:43
+#: includes/blocks-free.php:125 includes/blocks-product.php:404 includes/contact.php:43
 msgid "Button text"
 msgstr ""
 
@@ -937,7 +937,7 @@ msgstr ""
 msgid "Lines"
 msgstr ""
 
-#: includes/blocks-layout.php:95 includes/templates.php:758
+#: includes/blocks-layout.php:95 includes/templates.php:773
 msgid "Minimal"
 msgstr ""
 
@@ -1041,7 +1041,7 @@ msgstr ""
 msgid "Link to the original review (e.g. Google)"
 msgstr ""
 
-#: includes/blocks-layout.php:143 includes/templates.php:774
+#: includes/blocks-layout.php:143 includes/templates.php:789
 msgid "Centred"
 msgstr ""
 
@@ -1089,6 +1089,234 @@ msgstr ""
 
 #: includes/blocks-layout.php:453
 msgid "Add headings (H2, H3) to this page; they appear here automatically."
+msgstr ""
+
+#: includes/blocks-product.php:234
+msgid "Buy now"
+msgstr ""
+
+#: includes/blocks-product.php:236
+msgid "Not available yet"
+msgstr ""
+
+#: includes/blocks-product.php:237
+msgid "Add to your order"
+msgstr ""
+
+#. translators: %s: amount
+#: includes/blocks-product.php:281
+#, php-format
+msgid "You save %s"
+msgstr ""
+
+#. translators: %s: amount */ 'save' => __( 'You save %s', 'semrs-blocks' ), /* translators: %s: amount
+#: includes/blocks-product.php:283
+#, php-format
+msgid "%s each"
+msgstr ""
+
+#. translators: %s: amount */ 'save' => __( 'You save %s', 'semrs-blocks' ), /* translators: %s: amount */ 'each' => __( '%s each', 'semrs-blocks' ), /* translators: %s: percent
+#: includes/blocks-product.php:285
+#, php-format
+msgid "Save %s%%"
+msgstr ""
+
+#: includes/blocks-product.php:307
+msgid "(required)"
+msgstr ""
+
+#: includes/blocks-product.php:314 includes/blocks-product.php:324
+msgid "sold out"
+msgstr ""
+
+#: includes/blocks-product.php:338
+msgid "Quantity"
+msgstr ""
+
+#: includes/blocks-product.php:338
+msgid "Decrease quantity"
+msgstr ""
+
+#: includes/blocks-product.php:338
+msgid "Increase quantity"
+msgstr ""
+
+#: includes/blocks-product.php:340
+msgid "Buy more, save more"
+msgstr ""
+
+#. translators: %d: quantity
+#: includes/blocks-product.php:343
+#, php-format
+msgid "%d or more"
+msgstr ""
+
+#: includes/blocks-product.php:357
+msgid "Please fill in the required personalisation first."
+msgstr ""
+
+#: includes/blocks-product.php:358
+msgid "Total"
+msgstr ""
+
+#: includes/blocks-product.php:383
+msgid "Product"
+msgstr ""
+
+#: includes/blocks-product.php:384
+msgid "Product with colour swatches, size buttons, quantity and bulk discounts, bundles, live price and a checkout link. Use \"Card\" in grids."
+msgstr ""
+
+#: includes/blocks-product.php:389
+msgid "Product page (image and buy box)"
+msgstr ""
+
+#: includes/blocks-product.php:389
+msgid "Buy box only"
+msgstr ""
+
+#: includes/blocks-product.php:389
+msgid "Card (for shop grids)"
+msgstr ""
+
+#: includes/blocks-product.php:390
+msgid "Image"
+msgstr ""
+
+#: includes/blocks-product.php:391
+msgid "Image URL (when not chosen from the Media Library)"
+msgstr ""
+
+#: includes/blocks-product.php:392
+msgid "Product name"
+msgstr ""
+
+#: includes/blocks-product.php:393
+msgid "Badge (e.g. New, Sale)"
+msgstr ""
+
+#: includes/blocks-product.php:395
+msgid "Price (number)"
+msgstr ""
+
+#: includes/blocks-product.php:396
+msgid "Regular price, crossed out (optional, only for a real reduction)"
+msgstr ""
+
+#: includes/blocks-product.php:397
+msgid "Currency (USD, EUR, GBP…)"
+msgstr ""
+
+#: includes/blocks-product.php:398
+msgid "Text after price (e.g. / month)"
+msgstr ""
+
+#: includes/blocks-product.php:399
+msgid "Options, one group per line. Color: Navy #0b1f3a, White #ffffff · Size: S, M, L +2 · \"(sold out)\" disables a value"
+msgstr ""
+
+#: includes/blocks-product.php:400
+msgid "Show quantity"
+msgstr ""
+
+#: includes/blocks-product.php:401
+msgid "Maximum quantity"
+msgstr ""
+
+#: includes/blocks-product.php:402
+msgid "Bulk discounts: quantity | % off (one per line, e.g. 3 | 10)"
+msgstr ""
+
+#: includes/blocks-product.php:403
+msgid "Bundle add-ons: name | price | regular price (optional)"
+msgstr ""
+
+#: includes/blocks-product.php:405
+msgid "Checkout or product link (choices are added as ?color=…&size=…&quantity=…)"
+msgstr ""
+
+#: includes/blocks-product.php:406
+msgid "Card layout: product page link"
+msgstr ""
+
+#: includes/blocks-product.php:407
+msgid "Availability (for search results)"
+msgstr ""
+
+#: includes/blocks-product.php:407
+msgid "In stock"
+msgstr ""
+
+#: includes/blocks-product.php:407
+msgid "Out of stock"
+msgstr ""
+
+#: includes/blocks-product.php:407
+msgid "Pre-order"
+msgstr ""
+
+#: includes/blocks-product.php:408
+msgid "Add Product schema (price and availability only)"
+msgstr ""
+
+#: includes/blocks-product.php:456
+msgid "From"
+msgstr ""
+
+#: includes/blocks-product.php:465
+msgid "Choose options"
+msgstr ""
+
+#: includes/blocks-product.php:465
+msgid "View product"
+msgstr ""
+
+#: includes/blocks-product.php:481
+msgid "Add to cart"
+msgstr ""
+
+#: includes/blocks-product.php:531
+msgid "SEMRS store"
+msgstr ""
+
+#: includes/blocks-product.php:571
+msgid "Shop grid"
+msgstr ""
+
+#: includes/blocks-product.php:572
+msgid "Section heading and four product cards with colour dots and prices."
+msgstr ""
+
+#: includes/blocks-product.php:576
+msgid "Product page"
+msgstr ""
+
+#: includes/blocks-product.php:577
+msgid "Product image and buy box with colour, size and quantity, then details accordions and related products."
+msgstr ""
+
+#: includes/blocks-product.php:585
+msgid "Bundle offer"
+msgstr ""
+
+#: includes/blocks-product.php:586
+msgid "Buy box with \"Add to your order\" bundle items and their regular prices."
+msgstr ""
+
+#: includes/blocks-product.php:592
+msgid "Bulk and wholesale pricing"
+msgstr ""
+
+#: includes/blocks-product.php:593
+msgid "Buy box with quantity steps and a \"Buy more, save more\" table."
+msgstr ""
+
+#: includes/blocks-product.php:599
+msgid "Store promises bar"
+msgstr ""
+
+#: includes/blocks-product.php:600
+msgid "Four short promises (shipping, returns, payment, support) to edit with your real policies."
 msgstr ""
 
 #: includes/blocks-showcase.php:21
@@ -1181,15 +1409,15 @@ msgstr ""
 msgid "Choose a desktop preview image"
 msgstr ""
 
-#: includes/blocks-showcase.php:101 includes/templates.php:625
+#: includes/blocks-showcase.php:101 includes/templates.php:640
 msgid "Preview size"
 msgstr ""
 
-#: includes/blocks-showcase.php:101 includes/templates.php:625
+#: includes/blocks-showcase.php:101 includes/templates.php:640
 msgid "Desktop"
 msgstr ""
 
-#: includes/blocks-showcase.php:101 includes/templates.php:625
+#: includes/blocks-showcase.php:101 includes/templates.php:640
 msgid "Mobile"
 msgstr ""
 
@@ -1281,7 +1509,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: includes/contact.php:106 includes/contact.php:268 includes/templates.php:681
+#: includes/contact.php:106 includes/contact.php:268 includes/templates.php:696
 msgid "Phone"
 msgstr ""
 
@@ -1433,353 +1661,353 @@ msgstr ""
 msgid "All categories"
 msgstr ""
 
-#: includes/templates.php:314
+#: includes/templates.php:324
 msgid "SEMRS full pages"
 msgstr ""
 
-#: includes/templates.php:315
+#: includes/templates.php:325
 msgid "SEMRS sections"
 msgstr ""
 
 #. translators: 1: starter site, 2: page
-#: includes/templates.php:330
+#: includes/templates.php:340
 #, php-format
 msgid "%1$s: %2$s page"
 msgstr ""
 
-#: includes/templates.php:342
+#: includes/templates.php:352
 msgid "Hero with image"
 msgstr ""
 
-#: includes/templates.php:343
+#: includes/templates.php:353
 msgid "Services (3 cards)"
 msgstr ""
 
-#: includes/templates.php:344
+#: includes/templates.php:354
 msgid "Services (6 cards)"
 msgstr ""
 
-#: includes/templates.php:345
+#: includes/templates.php:355
 msgid "About with image and checklist"
 msgstr ""
 
-#: includes/templates.php:346
+#: includes/templates.php:356
 msgid "How it works (3 steps)"
 msgstr ""
 
-#: includes/templates.php:347
+#: includes/templates.php:357
 msgid "Pricing (3 plans)"
 msgstr ""
 
-#: includes/templates.php:348
+#: includes/templates.php:358
 msgid "FAQ accordion"
 msgstr ""
 
-#: includes/templates.php:349
+#: includes/templates.php:359
 msgid "Call to action band"
 msgstr ""
 
-#: includes/templates.php:350
+#: includes/templates.php:360
 msgid "Contact details and form"
 msgstr ""
 
-#: includes/templates.php:351
+#: includes/templates.php:361
 msgid "Opening hours and areas"
 msgstr ""
 
-#: includes/templates.php:352
+#: includes/templates.php:362
 msgid "Latest posts grid"
 msgstr ""
 
-#: includes/templates.php:353
+#: includes/templates.php:363
 msgid "Page header"
 msgstr ""
 
 #. translators: %s: section name
-#: includes/templates.php:362
+#: includes/templates.php:372
 #, php-format
 msgid "SEMRS: %s"
 msgstr ""
 
-#: includes/templates.php:421
+#: includes/templates.php:431
 msgid "Unknown starter site."
 msgstr ""
 
-#: includes/templates.php:425
+#: includes/templates.php:435
 msgid "This starter site is part of SEMRS Pro."
 msgstr ""
 
-#: includes/templates.php:534 includes/templates.php:652
+#: includes/templates.php:549 includes/templates.php:667
 msgid "Templates & Starter Sites"
 msgstr ""
 
-#: includes/templates.php:534
+#: includes/templates.php:549
 msgid "Templates"
 msgstr ""
 
-#: includes/templates.php:637
+#: includes/templates.php:652
 msgid "Import"
 msgstr ""
 
-#: includes/templates.php:639
+#: includes/templates.php:654
 msgid "Full preview"
 msgstr ""
 
-#: includes/templates.php:652
+#: includes/templates.php:667
 msgid "Import a complete website in one click, or insert single pages and sections from the editor (Patterns → SEMRS full pages / SEMRS sections). Everything is included in the plugin; nothing is downloaded."
 msgstr ""
 
-#: includes/templates.php:655
+#: includes/templates.php:670
 msgid "Import finished."
 msgstr ""
 
 #. translators: 1: created pages, 2: skipped pages
-#: includes/templates.php:657
+#: includes/templates.php:672
 #, php-format
 msgid "%1$d pages created, %2$d skipped because a page with the same address already exists."
 msgstr ""
 
-#: includes/templates.php:659
+#: includes/templates.php:674
 msgid "view"
 msgstr ""
 
-#: includes/templates.php:661
+#: includes/templates.php:676
 msgid "Next: replace the example prices, opening hours and areas with your own, add your real photos, and check each page before publishing."
 msgstr ""
 
-#: includes/templates.php:668
+#: includes/templates.php:683
 msgid "All templates"
 msgstr ""
 
 #. translators: %s: site name
-#: includes/templates.php:674
+#: includes/templates.php:689
 #, php-format
 msgid "Import \"%s\""
 msgstr ""
 
-#: includes/templates.php:680
+#: includes/templates.php:695
 msgid "Business or site name"
 msgstr ""
 
-#: includes/templates.php:682
+#: includes/templates.php:697
 msgid "Email (also receives contact form messages)"
 msgstr ""
 
-#: includes/templates.php:683
+#: includes/templates.php:698
 msgid "City or area"
 msgstr ""
 
-#: includes/templates.php:684
+#: includes/templates.php:699
 msgid "Country code for phone numbers (e.g. US, GB, PK)"
 msgstr ""
 
-#: includes/templates.php:685
+#: includes/templates.php:700
 msgid "Pages"
 msgstr ""
 
-#: includes/templates.php:688
+#: includes/templates.php:703
 msgid "exists, will be skipped"
 msgstr ""
 
-#: includes/templates.php:690
+#: includes/templates.php:705
 msgid "Create as drafts (recommended: review, then publish)"
 msgstr ""
 
-#: includes/templates.php:690
+#: includes/templates.php:705
 msgid "Publish now"
 msgstr ""
 
-#: includes/templates.php:691
+#: includes/templates.php:706
 msgid "Set the home page (and blog page)"
 msgstr ""
 
-#: includes/templates.php:692
+#: includes/templates.php:707
 msgid "Create the main menu"
 msgstr ""
 
-#: includes/templates.php:694
+#: includes/templates.php:709
 msgid "Apply the header layout, button and contact details (SEMRS theme)"
 msgstr ""
 
-#: includes/templates.php:700
+#: includes/templates.php:715
 msgid "Import starter site"
 msgstr ""
 
-#: includes/templates.php:702
+#: includes/templates.php:717
 msgid "Existing pages, posts and settings are never deleted. Example prices, hours and areas are placeholders: change them before publishing."
 msgstr ""
 
-#: includes/templates.php:708
+#: includes/templates.php:723
 msgid "Starter sites"
 msgstr ""
 
-#: includes/templates.php:708
+#: includes/templates.php:723
 msgid "Headers & footers"
 msgstr ""
 
-#: includes/templates.php:708
+#: includes/templates.php:723
 msgid "Pages & sections"
 msgstr ""
 
-#: includes/templates.php:722
+#: includes/templates.php:737
 msgid "Search templates"
 msgstr ""
 
-#: includes/templates.php:722
+#: includes/templates.php:737
 msgid "Search starter sites…"
 msgstr ""
 
-#: includes/templates.php:723
+#: includes/templates.php:738
 msgid "Business"
 msgstr ""
 
-#: includes/templates.php:723
+#: includes/templates.php:738
 msgid "Home services"
 msgstr ""
 
-#: includes/templates.php:723
+#: includes/templates.php:738
 msgid "Health"
 msgstr ""
 
-#: includes/templates.php:723
+#: includes/templates.php:738
 msgid "Travel"
 msgstr ""
 
-#: includes/templates.php:723
+#: includes/templates.php:738
 msgid "Education"
 msgstr ""
 
-#: includes/templates.php:723
+#: includes/templates.php:738
 msgid "Technology"
 msgstr ""
 
-#: includes/templates.php:723
+#: includes/templates.php:738
 msgid "Blog"
 msgstr ""
 
-#: includes/templates.php:737
+#: includes/templates.php:752
 msgid "No starter sites match your search."
 msgstr ""
 
-#: includes/templates.php:754
+#: includes/templates.php:769
 msgid "Classic"
 msgstr ""
 
-#: includes/templates.php:754
+#: includes/templates.php:769
 msgid "Logo left; menu, button and search right."
 msgstr ""
 
-#: includes/templates.php:755
+#: includes/templates.php:770
 msgid "Top bar + classic"
 msgstr ""
 
-#: includes/templates.php:755
+#: includes/templates.php:770
 msgid "Phone and email above the header, social icons on the right."
 msgstr ""
 
-#: includes/templates.php:756
+#: includes/templates.php:771
 msgid "Centred logo"
 msgstr ""
 
-#: includes/templates.php:756
+#: includes/templates.php:771
 msgid "Menu left, logo in the middle, button right."
 msgstr ""
 
-#: includes/templates.php:757
+#: includes/templates.php:772
 msgid "Two rows"
 msgstr ""
 
-#: includes/templates.php:757
+#: includes/templates.php:772
 msgid "Logo and contact on top, full menu on a second row."
 msgstr ""
 
-#: includes/templates.php:758
+#: includes/templates.php:773
 msgid "Just the logo and menu: ideal for blogs."
 msgstr ""
 
-#: includes/templates.php:759
+#: includes/templates.php:774
 msgid "Transparent hero"
 msgstr ""
 
-#: includes/templates.php:759
+#: includes/templates.php:774
 msgid "Classic layout floating over the first section on the home page."
 msgstr ""
 
-#: includes/templates.php:773
+#: includes/templates.php:788
 msgid "Simple"
 msgstr ""
 
-#: includes/templates.php:773
+#: includes/templates.php:788
 msgid "Copyright left, social icons centre, footer menu right."
 msgstr ""
 
-#: includes/templates.php:774
+#: includes/templates.php:789
 msgid "Everything stacked in the middle."
 msgstr ""
 
-#: includes/templates.php:775
+#: includes/templates.php:790
 msgid "Contact"
 msgstr ""
 
-#: includes/templates.php:775
+#: includes/templates.php:790
 msgid "Phone and email left, copyright centre, social right."
 msgstr ""
 
-#: includes/templates.php:837
+#: includes/templates.php:852
 msgid "Header and footer presets work with the free SEMRS theme and its header/footer builder. Activate the SEMRS theme to use them."
 msgstr ""
 
-#: includes/templates.php:841
+#: includes/templates.php:856
 msgid "Preset applied. Fine-tune it in Appearance → Customize → SEMRS Theme → Header builder / Footer builder."
 msgstr ""
 
-#: includes/templates.php:841
+#: includes/templates.php:856
 msgid "View site"
 msgstr ""
 
-#: includes/templates.php:847
+#: includes/templates.php:862
 msgid "Headers"
 msgstr ""
 
-#: includes/templates.php:847
+#: includes/templates.php:862
 msgid "Footers"
 msgstr ""
 
-#: includes/templates.php:854
+#: includes/templates.php:869
 msgid "In use"
 msgstr ""
 
-#: includes/templates.php:858
+#: includes/templates.php:873
 msgid "Apply"
 msgstr ""
 
-#: includes/templates.php:879
+#: includes/templates.php:894
 msgid "Insert single pages and sections from the editor"
 msgstr ""
 
 #. translators: %d: number of page templates
-#: includes/templates.php:881
+#: includes/templates.php:896
 #, php-format
 msgid "%d full-page templates and 12 sections are ready in the block editor."
 msgstr ""
 
-#: includes/templates.php:882
+#: includes/templates.php:897
 msgid "Open any page in the editor (or create a new one)."
 msgstr ""
 
-#: includes/templates.php:883
+#: includes/templates.php:898
 msgid "Click the + button (top left) → Patterns."
 msgstr ""
 
-#: includes/templates.php:884
+#: includes/templates.php:899
 msgid "Choose \"SEMRS full pages\" for a complete page (home, about, services, contact, admissions…) or \"SEMRS sections\" for single blocks (hero, services, pricing, FAQ, contact, opening hours…)."
 msgstr ""
 
-#: includes/templates.php:885
+#: includes/templates.php:900
 msgid "Click a design to insert it, then replace the example text and images with your own."
 msgstr ""
 
-#: includes/templates.php:886
+#: includes/templates.php:901
 msgid "Create a page"
 msgstr ""
 

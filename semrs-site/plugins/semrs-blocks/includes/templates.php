@@ -176,6 +176,16 @@ function semrs_blocks_template_section_dirs() {
  * @return string
  */
 function semrs_blocks_template_section( $id ) {
+	/**
+	 * Built-in dynamic sections (e.g. the digital shop). Return markup to handle an ID.
+	 *
+	 * @param string $html '' unless handled.
+	 * @param string $id   Section ID.
+	 */
+	$dynamic = (string) apply_filters( 'semrs_blocks_template_section_html', '', $id );
+	if ( '' !== $dynamic ) {
+		return $dynamic;
+	}
 	foreach ( array_reverse( semrs_blocks_template_section_dirs() ) as $dir ) {
 		$file = $dir . sanitize_file_name( $id ) . '.html';
 		if ( file_exists( $file ) ) {
@@ -490,7 +500,12 @@ function semrs_blocks_template_import( $sid, $opts ) {
 		$menu      = wp_get_nav_menu_object( $menu_name );
 		$menu_id   = $menu ? (int) $menu->term_id : (int) wp_create_nav_menu( $menu_name );
 		if ( $menu_id && ! $menu ) {
-			foreach ( $site['pages'] as $pid => $page ) {
+			// Sites with many pages (shops) list their menu pages; others use every page.
+			$order = isset( $site['menu'] ) ? array_intersect_key( $site['pages'], array_flip( (array) $site['menu'] ) ) : $site['pages'];
+			if ( isset( $site['menu'] ) ) {
+				$order = array_merge( array_flip( array_intersect( (array) $site['menu'], array_keys( $order ) ) ), $order ); // Menu order, not page order.
+			}
+			foreach ( $order as $pid => $page ) {
 				if ( ! empty( $ids[ $pid ] ) && empty( $page['front'] ) ) {
 					wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-object-id' => $ids[ $pid ], 'menu-item-object' => 'page', 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish' ) );
 				}

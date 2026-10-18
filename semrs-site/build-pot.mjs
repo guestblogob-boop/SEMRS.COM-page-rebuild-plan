@@ -11,6 +11,7 @@ const PACKAGES = [
 	{ dir: 'plugins/semrs-core', domain: 'semrs-core', name: 'SEMRS Core', header: 'semrs-core.php' },
 	{ dir: 'plugins/semrs-blocks', domain: 'semrs-blocks', name: 'SEMRS Blocks', header: 'semrs-blocks.php' },
 	{ dir: 'plugins/semrs-tools', domain: 'semrs-tools', name: 'SEMRS Tools', header: 'semrs-tools.php' },
+	{ dir: 'plugins/semrs-shops', domain: 'semrs-shops', name: 'SEMRS Shops', header: 'semrs-shops.php' },
 	{ dir: 'plugins/semrs-pro', domain: 'semrs-pro', name: 'SEMRS Pro', header: 'semrs-pro.php' },
 ];
 

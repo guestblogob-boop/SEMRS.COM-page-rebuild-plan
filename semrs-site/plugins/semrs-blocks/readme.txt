@@ -24,6 +24,14 @@ Every block is rendered on the server, so pages stay fast and search engines see
 * Contact Form: phone with a country picker (flags and dialling codes), WhatsApp opt-in, company, website, service and budget choices, project requirements, consent. Leads are saved under Leads and emailed to you. Built-in spam protection (honeypot, time check, rate limit, link limit). Sends the GA4 generate_lead event.
 * Free Media Sites: a directory of free photo, video, illustration, icon, animation and 3D sites, with a licence note for each.
 
+= Product block =
+* Product page, buy box or shop-grid card layouts.
+* Colour swatches, size buttons, dropdowns and plan cards from a simple text format ("Color: Navy #1e3a66, Sand #d8c7a3", "Size: S, M, L +2", "(sold out)").
+* Personalisation fields (names, dates) with character limits, quantity with bulk discounts, bundle add-ons, live price, savings and total.
+* The button opens your own checkout (WooCommerce, Shopify, Stripe Payment Links…) with the choices as URL parameters; chosen options are kept in the page address for sharing.
+* Optional Product schema with price and availability only. Store patterns: shop grid, product page, bundle offer, bulk pricing and store promises.
+* Ready-made shops (digital downloads, crochet patterns) are in the separate SEMRS Shops plugin.
+
 = Layout blocks =
 * Container: section, row or grid (1–6 columns) with background colour, gradient or image and overlay, padding, minimum height, width and HTML element. Holds any blocks.
 * Tabs: any blocks in each tab; underline, pills, boxed or vertical; keyboard accessible; all content visible to search engines.

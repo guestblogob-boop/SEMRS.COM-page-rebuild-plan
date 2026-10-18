@@ -1,0 +1,1059 @@
+{
+	"categories": {
+		"amigurumi": "Amigurumi",
+		"pets": "Pets & pet accessories",
+		"blankets": "Blankets & throws",
+		"wearables": "Wearables",
+		"home-decor": "Home decor",
+		"seasonal": "Christmas & seasonal",
+		"bags": "Bags",
+		"car": "Car accessories",
+		"learn": "Learn & bundles"
+	},
+	"site": {
+		"id": "crochet-shop",
+		"title": "Crochet Pattern Shop",
+		"description": "Complete shop for crochet pattern designers: 36 pattern pages (amigurumi animals and birds, pet accessories, blankets, wearables, home decor, seasonal, bags, car accessories), US/UK terms and video options, bundles, a crochet help page with stitch terms and hook sizes, FAQ and contact.",
+		"hero_title": "Crochet patterns you will love to make",
+		"hero_text": "Clear, photo-rich PDF patterns for amigurumi, blankets, wearables and home decor, in US and UK terms. Download instantly and start tonight.",
+		"hero_image": "amigurumi-bear",
+		"buttons": [
+			[
+				"Shop all patterns",
+				"/shop/"
+			],
+			[
+				"New to crochet?",
+				"/crochet-help/"
+			]
+		],
+		"trending_title": "Popular right now",
+		"trending_text": "Granny squares, temperature blankets, bucket hats and cuddly amigurumi.",
+		"featured": [
+			"granny-square-bag",
+			"amigurumi-chicken",
+			"car-mirror-charm",
+			"dog-sweater",
+			"temperature-blanket",
+			"amigurumi-cat",
+			"bucket-hat",
+			"pattern-bundle"
+		],
+		"shop_title": "All crochet patterns",
+		"shop_intro": "PDF patterns with step photos, charts and US and UK terms.",
+		"cat_pages": {
+			"amigurumi": [
+				"Amigurumi patterns",
+				"Cuddly toys with step photos for every round."
+			],
+			"blankets": [
+				"Blanket & throw patterns",
+				"From weekend chunky throws to heirloom granny squares."
+			],
+			"wearables": [
+				"Wearable patterns",
+				"Beanies, cardigans, scarves and hats in many sizes."
+			],
+			"car": [
+				"Car crochet patterns",
+				"Mirror charms, steering wheel covers, seat belt covers and cup holder coasters."
+			],
+			"pets": [
+				"Pet crochet patterns",
+				"Dog sweaters, bandanas, cat toys and cosy pet beds."
+			]
+		},
+		"menu": [
+			"shop",
+			"amigurumi",
+			"pets",
+			"blankets",
+			"wearables",
+			"car",
+			"crochet-help",
+			"contact"
+		],
+		"promises": [
+			[
+				"download",
+				"Instant PDF download",
+				"Your pattern arrives right after checkout. Edit to match your checkout."
+			],
+			[
+				"layers",
+				"US and UK terms",
+				"Choose your terms at checkout; charts are included where useful."
+			],
+			[
+				"camera",
+				"Step-by-step photos",
+				"Photos for the tricky parts, plus video options on many patterns."
+			],
+			[
+				"chat",
+				"Pattern help",
+				"Stuck on a row? Tell customers how to reach you."
+			]
+		],
+		"faq": {
+			"How do I get my pattern?": "Right after checkout you receive a download link by email and on the order page. Edit this to match your checkout provider.",
+			"US or UK terms?": "Most patterns come in both. Choose your terms in the options, or see the Crochet help page for a conversion chart.",
+			"Can I sell items I make from your patterns?": "Yes, you may sell finished items you make by hand; please credit the designer. Sharing, reselling or translating the pattern itself is not allowed.",
+			"I am stuck on a row. Can you help?": "Yes. Send the pattern name and the row number through the contact page. Write your real reply time here.",
+			"What is your refund policy?": "Write your refund policy for digital patterns here.",
+			"Is this a physical product?": "No. These are PDF patterns. Yarn and hooks are not included."
+		},
+		"help": {
+			"terms": [
+				[
+					"ch – chain",
+					"ch – chain"
+				],
+				[
+					"sl st – slip stitch",
+					"ss – slip stitch"
+				],
+				[
+					"sc – single crochet",
+					"dc – double crochet"
+				],
+				[
+					"hdc – half double crochet",
+					"htr – half treble crochet"
+				],
+				[
+					"dc – double crochet",
+					"tr – treble crochet"
+				],
+				[
+					"tr – treble crochet",
+					"dtr – double treble crochet"
+				],
+				[
+					"sc2tog – single crochet decrease",
+					"dc2tog – double crochet decrease"
+				],
+				[
+					"skip",
+					"miss"
+				],
+				[
+					"gauge",
+					"tension"
+				]
+			],
+			"hooks": [
+				[
+					"B-1",
+					"2.25 mm"
+				],
+				[
+					"C-2",
+					"2.75 mm"
+				],
+				[
+					"D-3",
+					"3.25 mm"
+				],
+				[
+					"E-4",
+					"3.5 mm"
+				],
+				[
+					"F-5",
+					"3.75 mm"
+				],
+				[
+					"G-6",
+					"4 mm"
+				],
+				[
+					"7",
+					"4.5 mm"
+				],
+				[
+					"H-8",
+					"5 mm"
+				],
+				[
+					"I-9",
+					"5.5 mm"
+				],
+				[
+					"J-10",
+					"6 mm"
+				],
+				[
+					"K-10½",
+					"6.5 mm"
+				],
+				[
+					"L-11",
+					"8 mm"
+				],
+				[
+					"M/N-13",
+					"9 mm"
+				],
+				[
+					"N/P-15",
+					"10 mm"
+				]
+			],
+			"levels": [
+				[
+					"Beginner",
+					"Basic stitches only: chains, single crochet and simple shaping. Good first projects."
+				],
+				[
+					"Easy",
+					"Basic stitches, repeated patterns, simple colour changes and shaping."
+				],
+				[
+					"Intermediate",
+					"A variety of stitches and techniques, such as lace, simple colourwork and working in the round."
+				],
+				[
+					"Experienced",
+					"Complex stitches and techniques, detailed shaping and refined finishing."
+				]
+			]
+		},
+		"help_page": [
+			"crochet-help",
+			"Crochet help",
+			"Stitch terms in US and UK, hook sizes and skill levels in one place."
+		]
+	},
+	"products": [
+		{
+			"key": "amigurumi-bear",
+			"cat": "amigurumi",
+			"title": "Cuddly Bear Amigurumi Pattern",
+			"badge": "Beginner friendly",
+			"price": "5.99",
+			"options": "select Terms: US crochet terms, UK crochet terms\nselect Format: PDF pattern, PDF + video tutorial +3",
+			"bundles": "Bear outfits add-on (scarf, hat, dress) | 3 | 4.50",
+			"text": "A huggable teddy bear worked in the round, with safety eyes and an embroidered nose. Every round has a photo.",
+			"included": [
+				"PDF pattern with 50+ step photos",
+				"Finished height about 25 cm / 10 in with DK yarn",
+				"Skill level: easy",
+				"Instant download"
+			],
+			"license": "Sell finished toys you make by hand; credit the designer. Do not share or resell the pattern.",
+			"art": {
+				"motif": "bear",
+				"bg": "#f6ece1",
+				"accent": "#9a6b45",
+				"label": "AMIGURUMI"
+			}
+		},
+		{
+			"key": "amigurumi-bunny",
+			"cat": "amigurumi",
+			"title": "Sleepy Bunny Amigurumi Pattern",
+			"badge": "",
+			"price": "5.99",
+			"options": "select Terms: US crochet terms, UK crochet terms\nselect Format: PDF pattern, PDF + video tutorial +3",
+			"bundles": "Matching carrot rattle pattern | 2 | 3",
+			"text": "A floppy-eared bunny with a sleepy face: a sweet baby-shower and Easter gift.",
+			"included": [
+				"PDF pattern with step photos",
+				"Finished height about 30 cm / 12 in",
+				"Skill level: easy",
+				"Instant download"
+			],
+			"license": "Sell finished toys; credit the designer.",
+			"art": {
+				"motif": "bunny",
+				"bg": "#fbeef2",
+				"accent": "#c25b7b",
+				"label": "AMIGURUMI"
+			}
+		},
+		{
+			"key": "amigurumi-dinosaur",
+			"cat": "amigurumi",
+			"title": "Baby Dinosaur Amigurumi Pattern",
+			"badge": "",
+			"price": "6.49",
+			"options": "select Terms: US crochet terms, UK crochet terms\nselect Format: PDF pattern, PDF + video tutorial +3",
+			"bundles": "",
+			"text": "A chunky little dinosaur with spikes and a curly tail, worked in one colour or rainbow stripes.",
+			"included": [
+				"PDF pattern with step photos and colour ideas",
+				"Finished length about 28 cm / 11 in",
+				"Skill level: intermediate",
+				"Instant download"
+			],
+			"license": "Sell finished toys; credit the designer.",
+			"art": {
+				"motif": "dino",
+				"bg": "#e9f5ea",
+				"accent": "#3f8f4f",
+				"label": "AMIGURUMI"
+			}
+		},
+		{
+			"key": "amigurumi-reindeer",
+			"cat": "amigurumi",
+			"title": "Christmas Reindeer Amigurumi Pattern",
+			"badge": "",
+			"price": "5.49",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "Christmas amigurumi set (5 more patterns) | 15 | 25",
+			"text": "A festive reindeer with felt-free antlers and a little scarf, ready for gifting.",
+			"included": [
+				"PDF pattern with step photos",
+				"Finished height about 20 cm / 8 in",
+				"Skill level: easy",
+				"Instant download"
+			],
+			"license": "Sell finished toys; credit the designer.",
+			"art": {
+				"motif": "bear",
+				"bg": "#f3e9e4",
+				"accent": "#8a3b2f",
+				"label": "REINDEER"
+			}
+		},
+		{
+			"key": "amigurumi-cat",
+			"cat": "amigurumi",
+			"title": "Lazy Cat Amigurumi Pattern",
+			"badge": "",
+			"price": "5.99",
+			"options": "select Terms: US crochet terms, UK crochet terms\nselect Format: PDF pattern, PDF + video tutorial +3",
+			"bundles": "Yarn ball and fish toy add-on | 2 | 3",
+			"text": "A sleepy, chunky cat with stripe options for tabby, ginger, black or calico colours.",
+			"included": [
+				"PDF pattern with step photos and colour charts",
+				"Finished length about 25 cm / 10 in",
+				"Skill level: easy",
+				"Instant download"
+			],
+			"license": "Sell finished items you make by hand; credit the designer. Do not share or resell the pattern.",
+			"art": {
+				"motif": "cat",
+				"bg": "#fdf0e6",
+				"accent": "#c2410c",
+				"label": "CAT AMIGURUMI"
+			}
+		},
+		{
+			"key": "amigurumi-puppy",
+			"cat": "amigurumi",
+			"title": "Puppy Amigurumi Pattern",
+			"badge": "",
+			"price": "6.49",
+			"options": "select Terms: US crochet terms, UK crochet terms\nselect Breed: Labrador, Dachshund, Corgi, Pug, Poodle",
+			"bundles": "Add the other four breeds | 14.99 | 25.96",
+			"text": "A cuddly puppy with breed-specific ears, tails and colours. Choose your breed, or add the other four for less.",
+			"included": [
+				"PDF pattern for your chosen breed",
+				"Finished height about 18 cm / 7 in",
+				"Skill level: intermediate",
+				"Instant download"
+			],
+			"license": "Sell finished items you make by hand; credit the designer. Do not share or resell the pattern.",
+			"art": {
+				"motif": "dog",
+				"bg": "#f6ede3",
+				"accent": "#8b5e34",
+				"label": "PUPPY"
+			}
+		},
+		{
+			"key": "amigurumi-owl",
+			"cat": "amigurumi",
+			"title": "Little Owl Amigurumi Pattern",
+			"badge": "Quick make",
+			"price": "4.49",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "Owl keychain mini pattern | 2 | 3",
+			"text": "A round little owl with big eyes and wings: quick to make and perfect for keychains or shelf decor.",
+			"included": [
+				"PDF pattern with step photos",
+				"Regular and keychain sizes",
+				"Skill level: beginner",
+				"Instant download"
+			],
+			"license": "Sell finished items you make by hand; credit the designer. Do not share or resell the pattern.",
+			"art": {
+				"motif": "owl",
+				"bg": "#f3efe6",
+				"accent": "#7c6a46",
+				"label": "OWL"
+			}
+		},
+		{
+			"key": "amigurumi-parrot",
+			"cat": "amigurumi",
+			"title": "Parrot & Songbird Amigurumi Patterns",
+			"badge": "",
+			"price": "6.49",
+			"options": "select Terms: US crochet terms, UK crochet terms\nselect Bird: Parrot, Robin, Blue tit, Budgie",
+			"bundles": "Hanging bird mobile instructions | 3",
+			"text": "Colourful birds with wire-free perching feet: a parrot plus three garden songbirds.",
+			"included": [
+				"PDF patterns for four birds",
+				"Colour guides for each bird",
+				"Skill level: easy",
+				"Instant download"
+			],
+			"license": "Sell finished items you make by hand; credit the designer. Do not share or resell the pattern.",
+			"art": {
+				"motif": "bird",
+				"bg": "#eaf5f2",
+				"accent": "#2f7d6a",
+				"label": "BIRDS"
+			}
+		},
+		{
+			"key": "amigurumi-chicken",
+			"cat": "amigurumi",
+			"title": "Chunky Chicken Amigurumi Pattern",
+			"badge": "Trending",
+			"price": "5.49",
+			"options": "select Terms: US crochet terms, UK crochet terms\nselect Format: PDF pattern, PDF + video tutorial +3",
+			"bundles": "Baby chicks mini pattern | 2 | 3",
+			"text": "A plump, squishy chicken in chenille or regular yarn: the farmhouse favourite at craft fairs.",
+			"included": [
+				"PDF pattern with step photos",
+				"Chenille and worsted yarn versions",
+				"Skill level: easy",
+				"Instant download"
+			],
+			"license": "Sell finished items you make by hand; credit the designer. Do not share or resell the pattern.",
+			"art": {
+				"motif": "chicken",
+				"bg": "#fff7da",
+				"accent": "#c48a00",
+				"label": "CHICKEN"
+			}
+		},
+		{
+			"key": "dog-sweater",
+			"cat": "pets",
+			"title": "Dog Sweater Pattern (XS–XL)",
+			"badge": "",
+			"price": "6.49",
+			"options": "select Terms: US crochet terms, UK crochet terms\nselect Format: PDF pattern, PDF + video tutorial +3",
+			"bundles": "Matching dog bandana pattern | 2 | 3",
+			"text": "A cosy ribbed sweater with a measuring guide for chest and length, from tiny breeds to large dogs.",
+			"included": [
+				"PDF pattern, sizes XS to XL",
+				"Measuring guide and size chart",
+				"Skill level: intermediate",
+				"Instant download"
+			],
+			"license": "Sell finished items you make by hand; credit the designer. Do not share or resell the pattern.",
+			"art": {
+				"motif": "sweater",
+				"bg": "#eef2f7",
+				"accent": "#3b5b7a",
+				"label": "DOG SWEATER"
+			}
+		},
+		{
+			"key": "dog-bandana",
+			"cat": "pets",
+			"title": "Dog Bandana Pattern",
+			"badge": "Quick make",
+			"price": "3.49",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "",
+			"text": "A quick triangle bandana with a snap or tie closure, in five sizes, with seasonal edge options.",
+			"included": [
+				"PDF pattern, five sizes",
+				"Christmas and Halloween edge ideas",
+				"Skill level: beginner",
+				"Instant download"
+			],
+			"license": "Sell finished items you make by hand; credit the designer. Do not share or resell the pattern.",
+			"art": {
+				"motif": "bone",
+				"bg": "#fdf2f2",
+				"accent": "#b91c1c",
+				"label": "DOG BANDANA"
+			}
+		},
+		{
+			"key": "cat-toys",
+			"cat": "pets",
+			"title": "Cat Toy Set Pattern (Mice, Fish, Balls)",
+			"badge": "",
+			"price": "3.99",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "",
+			"text": "Small toys with a pocket for catnip: mice, fish and jingle balls, perfect for using up scraps.",
+			"included": [
+				"PDF pattern for 6 toys",
+				"Catnip pocket option",
+				"Skill level: beginner",
+				"Instant download"
+			],
+			"license": "Sell finished items you make by hand; credit the designer. Do not share or resell the pattern.",
+			"art": {
+				"motif": "mouse",
+				"bg": "#f1eefb",
+				"accent": "#5f4bb6",
+				"label": "CAT TOYS"
+			}
+		},
+		{
+			"key": "pet-bed",
+			"cat": "pets",
+			"title": "Chunky Pet Bed Pattern",
+			"badge": "",
+			"price": "6.49",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "Matching pet blanket pattern | 3 | 4",
+			"text": "A sturdy round bed with raised sides in super-bulky yarn, in small, medium and large.",
+			"included": [
+				"PDF pattern for three sizes",
+				"Yarn amounts for each size",
+				"Skill level: easy",
+				"Instant download"
+			],
+			"license": "Sell finished items you make by hand; credit the designer. Do not share or resell the pattern.",
+			"art": {
+				"motif": "petbed",
+				"bg": "#f6ede3",
+				"accent": "#9a6b45",
+				"label": "PET BED"
+			}
+		},
+		{
+			"key": "chunky-blanket",
+			"cat": "blankets",
+			"title": "Chunky Weekend Blanket Pattern",
+			"badge": "Quick make",
+			"price": "6.99",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "Matching chunky pillow pattern | 3 | 5.50",
+			"text": "A squishy throw in super-bulky yarn that you can finish in a weekend.",
+			"included": [
+				"PDF pattern with photos and stitch chart",
+				"Three sizes: baby, throw and queen",
+				"Yarn amounts for each size",
+				"Instant download"
+			],
+			"license": "Sell finished blankets; credit the designer.",
+			"art": {
+				"motif": "blanket",
+				"bg": "#fdf1e6",
+				"accent": "#d97736",
+				"label": "BLANKET"
+			}
+		},
+		{
+			"key": "granny-square-blanket",
+			"cat": "blankets",
+			"title": "Modern Granny Square Blanket Pattern",
+			"badge": "Trending",
+			"price": "7.49",
+			"options": "select Terms: US crochet terms, UK crochet terms\nselect Format: PDF pattern, PDF + video tutorial +4",
+			"bundles": "Granny square colour planner (printable) | 2 | 3",
+			"text": "Classic granny squares with a modern colour plan and an invisible join, in four blanket sizes.",
+			"included": [
+				"PDF pattern with square chart and joining guide",
+				"Colour planner and layout diagrams",
+				"Four sizes from baby to king",
+				"Instant download"
+			],
+			"license": "Sell finished blankets; credit the designer.",
+			"art": {
+				"motif": "granny",
+				"bg": "#fff4e0",
+				"accent": "#e0a100",
+				"label": "GRANNY SQUARE"
+			}
+		},
+		{
+			"key": "temperature-blanket",
+			"cat": "blankets",
+			"title": "Temperature Blanket Pattern & Tracker",
+			"badge": "Trending",
+			"price": "7.99",
+			"options": "select Terms: US crochet terms, UK crochet terms\nselect Temperature: Fahrenheit, Celsius",
+			"bundles": "Printable 12-month colour tracker | 2",
+			"text": "Crochet one row a day in the colour of the day's temperature and end the year with a unique blanket.",
+			"included": [
+				"PDF pattern for rows, squares or circles",
+				"Fillable and printable colour tracker",
+				"Colour palette ideas",
+				"Instant download"
+			],
+			"license": "Sell finished blankets; credit the designer.",
+			"art": {
+				"motif": "stripes",
+				"bg": "#eaf2fb",
+				"accent": "#2f6db3",
+				"label": "TEMPERATURE"
+			}
+		},
+		{
+			"key": "baby-blanket",
+			"cat": "blankets",
+			"title": "Soft Ripple Baby Blanket Pattern",
+			"badge": "",
+			"price": "5.99",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "Matching baby booties pattern | 3 | 4.50",
+			"text": "A gentle ripple blanket in soft yarn: a classic baby-shower gift in pastels or brights.",
+			"included": [
+				"PDF pattern with photos and chart",
+				"Pram and cot sizes",
+				"Skill level: easy",
+				"Instant download"
+			],
+			"license": "Sell finished blankets; credit the designer.",
+			"art": {
+				"motif": "stripes",
+				"bg": "#f3f0fb",
+				"accent": "#7a64c9",
+				"label": "BABY BLANKET"
+			}
+		},
+		{
+			"key": "beanie",
+			"cat": "wearables",
+			"title": "Ribbed Beanie Pattern (All Sizes)",
+			"badge": "Beginner friendly",
+			"price": "4.99",
+			"options": "select Terms: US crochet terms, UK crochet terms\nselect Format: PDF pattern, PDF + video tutorial +3",
+			"bundles": "Matching scarf pattern | 3 | 4.50",
+			"text": "A stretchy ribbed beanie with optional pom-pom, sized from baby to large adult.",
+			"included": [
+				"PDF pattern for 6 sizes, baby to large adult",
+				"Size and gauge guide",
+				"Skill level: beginner",
+				"Instant download"
+			],
+			"license": "Sell finished hats; credit the designer.",
+			"art": {
+				"motif": "beanie",
+				"bg": "#e8f1f6",
+				"accent": "#2c6e8f",
+				"label": "BEANIE"
+			}
+		},
+		{
+			"key": "cardigan",
+			"cat": "wearables",
+			"title": "Oversized Granny Cardigan Pattern",
+			"badge": "Trending",
+			"price": "9.49",
+			"options": "select Terms: US crochet terms, UK crochet terms\nselect Format: PDF pattern, PDF + video tutorial +5",
+			"bundles": "",
+			"text": "A cosy, oversized cardigan made from granny squares, sized XS to 5XL with a fit guide.",
+			"included": [
+				"PDF pattern, sizes XS to 5XL",
+				"Schematic, fit guide and assembly diagram",
+				"Skill level: intermediate",
+				"Instant download"
+			],
+			"license": "Sell finished garments; credit the designer.",
+			"art": {
+				"motif": "sweater",
+				"bg": "#f7ece6",
+				"accent": "#b5543a",
+				"label": "CARDIGAN"
+			}
+		},
+		{
+			"key": "chunky-scarf",
+			"cat": "wearables",
+			"title": "Chunky Textured Scarf Pattern",
+			"badge": "",
+			"price": "4.49",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "Matching beanie pattern | 3 | 4.50",
+			"text": "A thick, reversible scarf with a beautiful texture that works up fast in bulky yarn.",
+			"included": [
+				"PDF pattern with stitch photos",
+				"Scarf and infinity-cowl versions",
+				"Skill level: easy",
+				"Instant download"
+			],
+			"license": "Sell finished scarves; credit the designer.",
+			"art": {
+				"motif": "scarf",
+				"bg": "#eef4ec",
+				"accent": "#5a7f4f",
+				"label": "SCARF"
+			}
+		},
+		{
+			"key": "bucket-hat",
+			"cat": "wearables",
+			"title": "Granny Square Bucket Hat Pattern",
+			"badge": "Trending",
+			"price": "5.49",
+			"options": "select Terms: US crochet terms, UK crochet terms\nselect Format: PDF pattern, PDF + video tutorial +3",
+			"bundles": "",
+			"text": "The festival favourite: a bucket hat made from granny squares, in child and adult sizes.",
+			"included": [
+				"PDF pattern for child and adult sizes",
+				"Square chart and assembly photos",
+				"Skill level: easy",
+				"Instant download"
+			],
+			"license": "Sell finished hats; credit the designer.",
+			"art": {
+				"motif": "hat",
+				"bg": "#fdeef0",
+				"accent": "#d24a62",
+				"label": "BUCKET HAT"
+			}
+		},
+		{
+			"key": "baby-booties",
+			"cat": "wearables",
+			"title": "Baby Booties Pattern (0–12 Months)",
+			"badge": "",
+			"price": "4.49",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "Matching baby beanie pattern | 3 | 4.50",
+			"text": "Snug booties with an ankle strap that stays on little feet, in three baby sizes.",
+			"included": [
+				"PDF pattern, sizes 0–3, 3–6 and 6–12 months",
+				"Step photos",
+				"Skill level: easy",
+				"Instant download"
+			],
+			"license": "Sell finished booties; credit the designer.",
+			"art": {
+				"motif": "bootie",
+				"bg": "#eaf6f6",
+				"accent": "#2a8a8a",
+				"label": "BOOTIES"
+			}
+		},
+		{
+			"key": "wall-hanging",
+			"cat": "home-decor",
+			"title": "Boho Crochet Wall Hanging Pattern",
+			"badge": "",
+			"price": "6.99",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "Mini wall hanging pattern | 3 | 4",
+			"text": "Boho wall art for your home: a crochet wall hanging with fringe and a wooden dowel.",
+			"included": [
+				"PDF pattern with chart and photos",
+				"Colour planning sheet",
+				"Finishing and hanging guide",
+				"Instant download"
+			],
+			"license": "Sell finished pieces; credit the designer.",
+			"art": {
+				"motif": "hanging",
+				"bg": "#f1ede4",
+				"accent": "#7c8a5a",
+				"label": "WALL HANGING"
+			}
+		},
+		{
+			"key": "storage-basket",
+			"cat": "home-decor",
+			"title": "Sturdy Storage Basket Pattern",
+			"badge": "",
+			"price": "5.49",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "",
+			"text": "Firm, stylish baskets in three sizes with leather-look handles: perfect for shelves and nurseries.",
+			"included": [
+				"PDF pattern for small, medium and large",
+				"Yarn and T-shirt yarn options",
+				"Skill level: easy",
+				"Instant download"
+			],
+			"license": "Sell finished baskets; credit the designer.",
+			"art": {
+				"motif": "basket",
+				"bg": "#f4ede3",
+				"accent": "#a0703e",
+				"label": "BASKET"
+			}
+		},
+		{
+			"key": "coaster-set",
+			"cat": "home-decor",
+			"title": "Flower Coaster Set Pattern",
+			"badge": "Quick make",
+			"price": "3.99",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "Matching placemat pattern | 3 | 4",
+			"text": "Pretty flower coasters you can make in an evening: a great stash-buster and market best-seller for makers.",
+			"included": [
+				"PDF pattern for 4 flower designs",
+				"Chart and photos",
+				"Skill level: beginner",
+				"Instant download"
+			],
+			"license": "Sell finished coasters; credit the designer.",
+			"art": {
+				"motif": "flower",
+				"bg": "#fdf2e9",
+				"accent": "#e2711d",
+				"label": "COASTERS"
+			}
+		},
+		{
+			"key": "christmas-ornaments",
+			"cat": "seasonal",
+			"title": "Christmas Ornaments Pattern Set (12)",
+			"badge": "Seasonal",
+			"price": "6.99",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "Christmas stocking pattern | 4 | 5",
+			"text": "Twelve quick ornaments, from baubles and stars to tiny gnomes, for your tree or gift toppers.",
+			"included": [
+				"PDF with 12 ornament patterns",
+				"Step photos for each",
+				"Skill level: easy",
+				"Instant download"
+			],
+			"license": "Sell finished ornaments; credit the designer.",
+			"art": {
+				"motif": "ornament",
+				"bg": "#fbe9e7",
+				"accent": "#b42318",
+				"label": "ORNAMENTS"
+			}
+		},
+		{
+			"key": "christmas-stocking",
+			"cat": "seasonal",
+			"title": "Classic Christmas Stocking Pattern",
+			"badge": "",
+			"price": "5.49",
+			"options": "select Terms: US crochet terms, UK crochet terms\ntext Name to add to the cuff chart (optional): 12",
+			"bundles": "Christmas ornaments pattern set | 5 | 7",
+			"text": "A traditional stocking with a cosy cuff, plus an alphabet chart to add a name.",
+			"included": [
+				"PDF pattern with alphabet chart",
+				"Two sizes",
+				"Skill level: intermediate",
+				"Instant download"
+			],
+			"license": "Sell finished stockings; credit the designer.",
+			"art": {
+				"motif": "stocking",
+				"bg": "#eef5ee",
+				"accent": "#2f5d50",
+				"label": "STOCKING"
+			}
+		},
+		{
+			"key": "pumpkin-pattern",
+			"cat": "seasonal",
+			"title": "Cosy Pumpkins Pattern (3 Sizes)",
+			"badge": "Seasonal",
+			"price": "4.49",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "",
+			"text": "Squishy ribbed pumpkins for autumn decor, in three sizes with a stem and leaf.",
+			"included": [
+				"PDF pattern for three sizes",
+				"Step photos",
+				"Skill level: beginner",
+				"Instant download"
+			],
+			"license": "Sell finished pumpkins; credit the designer.",
+			"art": {
+				"motif": "pumpkin",
+				"bg": "#fdeee3",
+				"accent": "#d9480f",
+				"label": "PUMPKINS"
+			}
+		},
+		{
+			"key": "granny-square-bag",
+			"cat": "bags",
+			"title": "Granny Square Tote Bag Pattern",
+			"badge": "Trending",
+			"price": "5.99",
+			"options": "select Terms: US crochet terms, UK crochet terms\nselect Format: PDF pattern, PDF + video tutorial +3",
+			"bundles": "Lining sewing guide | 2",
+			"text": "A roomy tote made from granny squares with sturdy straps: the bag everyone asks about.",
+			"included": [
+				"PDF pattern with square chart",
+				"Assembly diagram and strap options",
+				"Skill level: easy",
+				"Instant download"
+			],
+			"license": "Sell finished bags; credit the designer.",
+			"art": {
+				"motif": "bag",
+				"bg": "#f3eefb",
+				"accent": "#7048e8",
+				"label": "TOTE BAG"
+			}
+		},
+		{
+			"key": "market-bag",
+			"cat": "bags",
+			"title": "Mesh Market Bag Pattern",
+			"badge": "",
+			"price": "4.49",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "",
+			"text": "A stretchy mesh shopping bag in cotton: light, washable and plastic-free.",
+			"included": [
+				"PDF pattern with photos",
+				"Two sizes",
+				"Skill level: beginner",
+				"Instant download"
+			],
+			"license": "Sell finished bags; credit the designer.",
+			"art": {
+				"motif": "bag",
+				"bg": "#e8f5ee",
+				"accent": "#15803d",
+				"label": "MARKET BAG"
+			}
+		},
+		{
+			"key": "car-mirror-charm",
+			"cat": "car",
+			"title": "Car Mirror Hanging Charm Pattern",
+			"badge": "Trending",
+			"price": "4.49",
+			"options": "select Terms: US crochet terms, UK crochet terms\nselect Design: Daisy, Mushroom, Little ghost, Strawberry",
+			"bundles": "All four charm designs | 6 | 8",
+			"text": "Cute rear-view mirror charms with a beaded hanging cord: quick to make and popular at craft markets.",
+			"included": [
+				"PDF pattern with step photos",
+				"Beaded cord instructions",
+				"Skill level: easy",
+				"Instant download"
+			],
+			"license": "Sell finished items you make by hand; credit the designer. Do not share or resell the pattern.",
+			"art": {
+				"motif": "charm",
+				"bg": "#fdf2f6",
+				"accent": "#be4b7a",
+				"label": "MIRROR CHARM"
+			}
+		},
+		{
+			"key": "steering-wheel-cover",
+			"cat": "car",
+			"title": "Steering Wheel Cover Pattern",
+			"badge": "",
+			"price": "6.49",
+			"options": "select Terms: US crochet terms, UK crochet terms\nselect Style: Daisy, Granny stripes, Plain textured",
+			"bundles": "Matching seat belt covers pattern | 3 | 3.50",
+			"text": "A snug, washable steering wheel cover with a measuring guide for standard wheels.",
+			"included": [
+				"PDF pattern with measuring guide",
+				"Fits standard 37–39 cm (14.5–15.5 in) wheels",
+				"Skill level: intermediate",
+				"Instant download"
+			],
+			"license": "Sell finished items you make by hand; credit the designer. Do not share or resell the pattern.",
+			"art": {
+				"motif": "wheel",
+				"bg": "#eef4ec",
+				"accent": "#4d7c3a",
+				"label": "WHEEL COVER"
+			}
+		},
+		{
+			"key": "seat-belt-covers",
+			"cat": "car",
+			"title": "Seat Belt Cover Pattern",
+			"badge": "",
+			"price": "3.99",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "",
+			"text": "Soft seat belt covers that stop shoulder rub, in plain, striped and flower versions.",
+			"included": [
+				"PDF pattern for three styles",
+				"Hook-and-loop or button closure options",
+				"Skill level: beginner",
+				"Instant download"
+			],
+			"license": "Sell finished items you make by hand; credit the designer. Do not share or resell the pattern.",
+			"art": {
+				"motif": "belt",
+				"bg": "#f2f0fb",
+				"accent": "#5b4bb7",
+				"label": "SEAT BELT"
+			}
+		},
+		{
+			"key": "car-coasters",
+			"cat": "car",
+			"title": "Car Cup Holder Coasters Pattern",
+			"badge": "Quick make",
+			"price": "3.49",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "Flower coaster set pattern | 2.50 | 3.50",
+			"text": "Little coasters that sit in your car cup holders and catch drips, in flower and granny designs.",
+			"included": [
+				"PDF pattern for 3 designs",
+				"Size guide for cup holders",
+				"Skill level: beginner",
+				"Instant download"
+			],
+			"license": "Sell finished items you make by hand; credit the designer. Do not share or resell the pattern.",
+			"art": {
+				"motif": "flower",
+				"bg": "#fff4e0",
+				"accent": "#d97706",
+				"label": "CAR COASTERS"
+			}
+		},
+		{
+			"key": "beginner-guide",
+			"cat": "learn",
+			"title": "Learn to Crochet: Beginner's Guide (eBook)",
+			"badge": "Start here",
+			"price": "9.99",
+			"options": "select Format: PDF eBook, PDF + video lessons +6",
+			"bundles": "Three beginner patterns | 6 | 10",
+			"text": "Everything a total beginner needs: holding the hook, basic stitches, reading patterns and your first three projects.",
+			"included": [
+				"60-page illustrated PDF guide",
+				"US and UK terms side by side",
+				"Practice swatches and first projects",
+				"Instant download"
+			],
+			"license": "Personal use; one copy per person.",
+			"art": {
+				"motif": "book",
+				"bg": "#efeaf9",
+				"accent": "#6d4fc2",
+				"label": "BEGINNER GUIDE"
+			}
+		},
+		{
+			"key": "pattern-bundle",
+			"cat": "learn",
+			"title": "Amigurumi Pattern Bundle (4 Patterns)",
+			"badge": "Bundle",
+			"price": "17.99",
+			"compare": "23.96",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "",
+			"text": "The bear, bunny, dinosaur and reindeer patterns together, for less than buying them one by one.",
+			"included": [
+				"4 PDF amigurumi patterns",
+				"All step photos",
+				"US and UK terms",
+				"Instant download"
+			],
+			"license": "Sell finished toys; credit the designer.",
+			"art": {
+				"motif": "yarn",
+				"bg": "#fdf1e6",
+				"accent": "#c2410c",
+				"label": "BUNDLE"
+			}
+		}
+	]
+}

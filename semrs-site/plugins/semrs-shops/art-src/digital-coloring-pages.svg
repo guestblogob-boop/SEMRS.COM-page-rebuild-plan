@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640">
+<defs>
+	<pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="2" fill="#e0a100" opacity=".12"/></pattern>
+	<filter id="sh" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#0b1f3a" flood-opacity=".18"/></filter>
+</defs>
+<rect width="640" height="640" fill="#fff7da"/>
+<rect width="640" height="640" fill="url(#dots)"/>
+<g transform="translate(50.8 70.8) scale(1.6)" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" opacity=".9"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/></g><g transform="translate(545.6 105.6) scale(1.2)" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" opacity=".9"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/></g><g transform="translate(498.4 518.4) scale(1.8)" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" opacity=".9"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/></g><g transform="translate(74.4 504.4) scale(1.3)" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" opacity=".9"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/></g><g transform="translate(288 38) scale(1)" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" opacity=".9"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/></g><g transform="translate(586.8 316.8) scale(1.1)" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" opacity=".9"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/></g>
+<g transform="rotate(-4 320 330)" filter="url(#sh)"><rect x="150" y="120" width="340" height="420" rx="18" fill="#ffffff"/></g>
+<g transform="rotate(3 320 320)"><rect x="170" y="110" width="300" height="400" rx="16" fill="#ffffff" stroke="#e0a100" stroke-opacity=".25" stroke-width="2"/>
+	<rect x="200" y="140" width="240" height="220" rx="12" fill="#e0a100" opacity=".1"/>
+	<g transform="translate(248 178) scale(6)" fill="none" stroke="#e0a100" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l3-1 12-12-2-2L5 17z"/><path d="M15 5l4 4"/><path d="M4 20l1-3"/></g>
+	<text x="320" y="410" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="2" fill="#e0a100">COLORING</text>
+	<rect x="236" y="432" width="168" height="8" rx="4" fill="#e0a100" opacity=".25"/>
+	<rect x="262" y="452" width="116" height="8" rx="4" fill="#e0a100" opacity=".15"/>
+</g>
+<g><rect x="402" y="560" width="210" height="44" rx="22" fill="#0b1f3a"/><text x="507" y="589" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">DIGITAL DOWNLOAD</text></g>
+</svg>

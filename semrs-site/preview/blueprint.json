@@ -21,6 +21,10 @@
 		},
 		{
 			"step": "activatePlugin",
+			"pluginPath": "semrs-shops/semrs-shops.php"
+		},
+		{
+			"step": "activatePlugin",
 			"pluginPath": "semrs-pro/semrs-pro.php"
 		},
 		{

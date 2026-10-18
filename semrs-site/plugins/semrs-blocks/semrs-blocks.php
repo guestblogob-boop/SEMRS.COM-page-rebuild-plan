@@ -25,6 +25,7 @@ require SEMRS_BLOCKS_DIR . 'includes/framework.php';
 require SEMRS_BLOCKS_DIR . 'includes/blocks-free.php';
 require SEMRS_BLOCKS_DIR . 'includes/blocks-layout.php';
 require SEMRS_BLOCKS_DIR . 'includes/blocks-showcase.php';
+require SEMRS_BLOCKS_DIR . 'includes/blocks-product.php';
 require SEMRS_BLOCKS_DIR . 'includes/visibility.php';
 require SEMRS_BLOCKS_DIR . 'includes/contact.php';
 require SEMRS_BLOCKS_DIR . 'includes/templates.php';

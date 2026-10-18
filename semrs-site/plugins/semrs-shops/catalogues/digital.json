@@ -1,0 +1,915 @@
+{
+	"categories": {
+		"christmas": "Christmas",
+		"crochet": "Crochet & crafts",
+		"custom": "Custom portraits & prints",
+		"animals": "Pets & animals",
+		"printables": "Printables & wall art",
+		"planners": "Planners & workbooks",
+		"designs": "SVG & print designs",
+		"kids": "Kids & classroom",
+		"templates": "Templates"
+	},
+	"products": [
+		{
+			"key": "christmas-svg-bundle",
+			"cat": "christmas",
+			"title": "Christmas SVG Bundle – 40 Cut Files",
+			"badge": "40 designs",
+			"price": "4.99",
+			"options": "plan License: Personal use =4.99, Commercial (up to 500 items) =9.99, Unlimited commercial =19.99",
+			"bundles": "Matching Christmas PNG clipart | 4 | 6",
+			"text": "40 festive cut files for Cricut, Silhouette and laser machines: ornaments, trees, quotes and gnomes.",
+			"included": [
+				"40 designs in SVG, PNG (300 DPI, transparent), DXF and EPS",
+				"Layered files ready for vinyl, HTV and sublimation",
+				"Works with Cricut Design Space, Silhouette Studio and Glowforge",
+				"Instant download as one ZIP file"
+			],
+			"license": "Personal use: make items for yourself and gifts. Business licences let you sell finished physical items. Reselling or sharing the digital files is never allowed.",
+			"art": {
+				"motif": "tree",
+				"bg": "#e7f3ec",
+				"accent": "#2f7d4f",
+				"label": "SVG BUNDLE"
+			}
+		},
+		{
+			"key": "christmas-printables",
+			"cat": "christmas",
+			"title": "Christmas Printable Party Pack",
+			"badge": "Instant download",
+			"price": "6.99",
+			"options": "Color: Classic red #b42318, Nordic green #2f5d50, Gold & cream #d4a72c",
+			"bundles": "Christmas games add-on (6 games) | 4 | 6",
+			"text": "Everything for a festive party at home: banners, food labels, place cards, invitations and table signs.",
+			"included": [
+				"24 printable pages, US Letter and A4",
+				"Editable invitation and place cards (free Canva link)",
+				"High-resolution PDF and JPG files",
+				"Print at home or at a print shop"
+			],
+			"license": "For personal use and your own events. Not for resale.",
+			"art": {
+				"motif": "ornament",
+				"bg": "#fbe9e7",
+				"accent": "#b42318",
+				"label": "PRINTABLE"
+			}
+		},
+		{
+			"key": "christmas-gift-tags",
+			"cat": "christmas",
+			"title": "Printable Christmas Gift Tags",
+			"badge": "",
+			"price": "2.99",
+			"options": "Color: Red & green #b42318, Kraft #c8a27a, Black & gold #1f2937\nselect Size: 2 × 3 in, 3 × 4 in\ntext To / From names (optional): 40",
+			"bundles": "Matching wrapping-paper print | 3 | 5",
+			"text": "Charming gift tags in three colourways. Print, cut and tie: or add your family names and we set them for you.",
+			"included": [
+				"12 tag designs on US Letter and A4 sheets",
+				"Editable PDF to type your own names",
+				"Cut lines included",
+				"Instant download"
+			],
+			"license": "Personal use. Not for resale.",
+			"art": {
+				"motif": "tag",
+				"bg": "#f6efe4",
+				"accent": "#a8732e",
+				"label": "GIFT TAGS"
+			}
+		},
+		{
+			"key": "christmas-cards",
+			"cat": "christmas",
+			"title": "Printable Christmas Card Designs",
+			"badge": "",
+			"price": "4.99",
+			"options": "Color: Red #b42318, Green #2f5d50, Navy #1e3a66\nselect Size: 5 × 7 in, A5, A6\ntext Names inside the card (optional): 40",
+			"bundles": "Matching envelope liners | 2 | 3",
+			"text": "Five modern Christmas card designs you can print at home, with optional personalised names inside.",
+			"included": [
+				"5 card designs (front and inside)",
+				"Print-ready PDF with crop marks",
+				"Envelope size guide",
+				"Instant download"
+			],
+			"license": "Personal use: print as many cards as you like for your own greetings.",
+			"art": {
+				"motif": "card",
+				"bg": "#e8edf7",
+				"accent": "#1e3a66",
+				"label": "CARDS"
+			}
+		},
+		{
+			"key": "christmas-wall-art",
+			"cat": "custom",
+			"title": "Personalized Christmas Family Wall Art",
+			"badge": "Personalized",
+			"price": "9.99",
+			"options": "plan Size: 8 × 10 in =9.99, 11 × 14 in =12.99, 16 × 20 in =15.99\nColor: Red & cream #b42318, Pine green #2f5d50, Navy & gold #1e3a66\ntext* Family name: 25\ntext Established year (optional): 4",
+			"bundles": "Matching gift tag with your name | 3",
+			"text": "A festive family name print, personalised with your surname and year. Delivered as a print-ready file.",
+			"included": [
+				"High-resolution printable file (PDF and JPG)",
+				"Your family name and year added for you",
+				"One free proof before the final file",
+				"Delivered by email"
+			],
+			"license": "Personal use. Print as many copies as you like for your family.",
+			"made": true,
+			"art": {
+				"motif": "frame",
+				"bg": "#f3ecf7",
+				"accent": "#7a4b9a",
+				"label": "WALL ART"
+			}
+		},
+		{
+			"key": "crochet-blanket-pattern",
+			"cat": "crochet",
+			"title": "Chunky Crochet Blanket Pattern (PDF)",
+			"badge": "Easy",
+			"price": "6.99",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "Matching pillow pattern | 3 | 5.50",
+			"text": "A cosy chunky blanket you can finish in a weekend. Clear row-by-row instructions with photos and a stitch chart.",
+			"included": [
+				"12-page PDF pattern with step photos",
+				"Stitch chart and abbreviations",
+				"Three sizes: baby, throw and queen",
+				"Yarn and hook guide"
+			],
+			"license": "You may sell items you make from this pattern; please credit the designer. Do not share or resell the pattern.",
+			"art": {
+				"motif": "yarn",
+				"bg": "#fdf1e6",
+				"accent": "#d97736",
+				"label": "PATTERN"
+			}
+		},
+		{
+			"key": "amigurumi-pattern",
+			"cat": "crochet",
+			"title": "Amigurumi Reindeer Crochet Pattern",
+			"badge": "",
+			"price": "5.99",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "Christmas amigurumi set (5 more patterns) | 15 | 25",
+			"text": "A cuddly reindeer to crochet for the holidays, with step photos for every round.",
+			"included": [
+				"PDF pattern with 40+ step photos",
+				"Finished size about 20 cm / 8 in",
+				"Beginner-friendly techniques",
+				"Instant download"
+			],
+			"license": "Sell finished toys made from this pattern; do not share the pattern itself.",
+			"art": {
+				"motif": "yarn",
+				"bg": "#efe7dd",
+				"accent": "#8a5a3c",
+				"label": "AMIGURUMI"
+			}
+		},
+		{
+			"key": "crochet-wall-art",
+			"cat": "crochet",
+			"title": "Crochet Wall Hanging Art Pattern",
+			"badge": "",
+			"price": "6.99",
+			"options": "select Terms: US crochet terms, UK crochet terms",
+			"bundles": "",
+			"text": "Boho wall art for your home: a crochet wall hanging pattern with fringe and wooden dowel finishing.",
+			"included": [
+				"PDF pattern with chart and photos",
+				"Colour planning sheet",
+				"Finishing and hanging guide",
+				"Instant download"
+			],
+			"license": "Sell finished pieces made from this pattern; credit the designer.",
+			"art": {
+				"motif": "hanging",
+				"bg": "#f1ede4",
+				"accent": "#7c8a5a",
+				"label": "CROCHET ART"
+			}
+		},
+		{
+			"key": "family-portrait",
+			"cat": "custom",
+			"title": "Custom Family Portrait Illustration",
+			"badge": "Made for you",
+			"price": "34.99",
+			"options": "plan People: 1 person =34.99, 2 people =44.99, 3 people =54.99, 4 people =64.99, 5 or more =74.99\nselect Background: Plain colour, Christmas living room +8, Snowy outdoor scene +8\ntext Names or caption (optional): 40",
+			"bundles": "Add a pet to the portrait | 10\nPrintable Christmas card version | 6",
+			"text": "A custom illustrated portrait of your family from your photos: a heartfelt gift for Christmas, anniversaries and new homes.",
+			"included": [
+				"Digital portrait file (JPG and PNG, print-ready)",
+				"One revision round after the first proof",
+				"Send your photos after checkout by email",
+				"Delivery time: write your real turnaround here"
+			],
+			"license": "Personal use: print, frame and share it. Commercial use needs written permission.",
+			"made": true,
+			"art": {
+				"motif": "portrait",
+				"bg": "#fdecef",
+				"accent": "#c2416b",
+				"label": "CUSTOM PORTRAIT"
+			}
+		},
+		{
+			"key": "pet-portrait",
+			"cat": "custom",
+			"title": "Custom Pet Portrait",
+			"badge": "Made for you",
+			"price": "24.99",
+			"options": "plan Pets: 1 pet =24.99, 2 pets =39.99, 3 pets =54.99\nselect Style: Watercolour, Line art, Cartoon\nColor: Cream #f4ede1, Sage #9bb39a, Blush #e8b4b8, Navy #1e3a66\ntext Pet names (optional): 30",
+			"bundles": "Matching phone wallpaper | 5",
+			"text": "Your pet as a custom portrait in watercolour, line art or cartoon style, on the background colour you choose.",
+			"included": [
+				"Digital portrait file, print-ready",
+				"One revision round",
+				"Send your pet photos after checkout",
+				"Delivery time: write your real turnaround here"
+			],
+			"license": "Personal use: print, frame and share.",
+			"made": true,
+			"art": {
+				"motif": "paw",
+				"bg": "#fff3e6",
+				"accent": "#e07b24",
+				"label": "PET PORTRAIT"
+			}
+		},
+		{
+			"key": "custom-name-print",
+			"cat": "custom",
+			"title": "Custom Name Print",
+			"badge": "Personalized",
+			"price": "7.99",
+			"options": "text* Name: 20\nselect Font: Script, Modern, Playful\nColor: Blush #e8b4b8, Sage #9bb39a, Sky #9cc3e6, Charcoal #374151\nplan Size: 5 × 7 in =7.99, 8 × 10 in =9.99, A4 =9.99",
+			"bundles": "Name meaning add-on | 3",
+			"text": "A personalised name print for nurseries, kids' rooms and gifts, in your choice of font and colour.",
+			"included": [
+				"Printable file (PDF and JPG)",
+				"Your name set in the chosen font",
+				"Free proof before delivery",
+				"Delivered by email"
+			],
+			"license": "Personal use.",
+			"made": true,
+			"art": {
+				"motif": "letters",
+				"bg": "#eef5ee",
+				"accent": "#4f7f5c",
+				"label": "NAME PRINT"
+			}
+		},
+		{
+			"key": "tshirt-designs",
+			"cat": "designs",
+			"title": "Christmas T-Shirt Designs (PNG, Sublimation)",
+			"badge": "",
+			"price": "4.99",
+			"options": "plan License: Personal use =4.99, Commercial (up to 500 items) =12.99\nselect Pack: 5 designs, 15 designs +5",
+			"bundles": "Matching mug wrap designs | 3 | 5",
+			"text": "Ready-to-print shirt designs for sublimation, DTF and screen printing: funny, cosy and family Christmas themes.",
+			"included": [
+				"PNG files, 300 DPI, transparent background",
+				"Sized for adult and kids shirts",
+				"Mock-up preview images",
+				"Instant download"
+			],
+			"license": "Commercial licences allow selling finished shirts, not the files.",
+			"art": {
+				"motif": "shirt",
+				"bg": "#eaf1fb",
+				"accent": "#2563eb",
+				"label": "T-SHIRT DESIGN"
+			}
+		},
+		{
+			"key": "mug-cap-designs",
+			"cat": "designs",
+			"title": "Mug Wrap Designs (11 oz & 15 oz)",
+			"badge": "",
+			"price": "3.99",
+			"options": "select Template: 11 oz mug wrap, 15 oz mug wrap +1\nplan License: Personal use =3.99, Commercial (up to 500 items) =9.99",
+			"bundles": "Tumbler wrap designs | 4 | 6",
+			"text": "Full-wrap mug designs sized for common sublimation mug blanks, with a placement guide.",
+			"included": [
+				"PNG and PDF wraps at print size",
+				"11 oz and 15 oz templates",
+				"Placement guide",
+				"Instant download"
+			],
+			"license": "Commercial licences allow selling finished items, not the files.",
+			"art": {
+				"motif": "mug",
+				"bg": "#fdf6e3",
+				"accent": "#b7791f",
+				"label": "MUG WRAP"
+			}
+		},
+		{
+			"key": "family-shirt-designs",
+			"cat": "christmas",
+			"title": "Personalized Family Christmas Shirt Designs",
+			"badge": "Personalized",
+			"price": "6.99",
+			"options": "text* Family name: 20\nselect Design: Matching pyjama style, Reindeer crew, Christmas lights\nplan Members: Up to 4 =6.99, Up to 8 =9.99",
+			"bundles": "Matching mug wrap design | 3 | 5",
+			"text": "Matching Christmas shirt designs with your family name, for sublimation, DTF or iron-on vinyl.",
+			"included": [
+				"PNG files with your family name, 300 DPI",
+				"Adult, kids and baby sizes",
+				"One free proof",
+				"Delivered by email"
+			],
+			"license": "Personal use for your family.",
+			"made": true,
+			"art": {
+				"motif": "shirt",
+				"bg": "#fbe9e7",
+				"accent": "#b42318",
+				"label": "FAMILY SHIRTS"
+			}
+		},
+		{
+			"key": "car-decal-svg",
+			"cat": "designs",
+			"title": "Car Decal SVG Bundle",
+			"badge": "",
+			"price": "4.99",
+			"options": "select Pack: 20 designs, 50 designs +5\nplan License: Personal use =4.99, Commercial (up to 500 items) =11.99",
+			"bundles": "Bumper sticker printable PNGs | 3 | 5",
+			"text": "Car window and bumper decal designs (family stickers, funny quotes, mountains, paws) for permanent outdoor vinyl.",
+			"included": [
+				"SVG, DXF and PNG files",
+				"Size guide for rear windows and bumpers",
+				"Single-layer, easy-weed designs",
+				"Instant download"
+			],
+			"license": "Personal use: make items for yourself and gifts. Commercial licences let you sell finished physical items (up to the stated number). Reselling or sharing the files is never allowed.",
+			"art": {
+				"motif": "car",
+				"bg": "#eaf0fb",
+				"accent": "#1d4ed8",
+				"label": "CAR DECAL"
+			}
+		},
+		{
+			"key": "wall-decal-svg",
+			"cat": "designs",
+			"title": "Wall Decal SVG Quotes & Designs",
+			"badge": "",
+			"price": "4.49",
+			"options": "select Pack: 10 designs, 30 designs +5\nplan License: Personal use =4.49, Commercial (up to 500 items) =10.99",
+			"bundles": "Nursery wall decal set | 4 | 6",
+			"text": "Vinyl wall decal designs for living rooms, nurseries and offices: quotes, botanicals and kids' room shapes.",
+			"included": [
+				"SVG, DXF and PNG files",
+				"Size guide for walls and doors",
+				"Weeding-friendly, single-layer designs",
+				"Instant download"
+			],
+			"license": "Personal use: make items for yourself and gifts. Commercial licences let you sell finished physical items (up to the stated number). Reselling or sharing the files is never allowed.",
+			"art": {
+				"motif": "walldecal",
+				"bg": "#f4f0ea",
+				"accent": "#7a5c3e",
+				"label": "WALL DECAL"
+			}
+		},
+		{
+			"key": "tumbler-cup-designs",
+			"cat": "designs",
+			"title": "Tumbler & Cup Wrap Designs",
+			"badge": "Trending",
+			"price": "3.99",
+			"options": "select Template: 20 oz skinny tumbler, 30 oz tumbler +1, 16 oz glass can +1, 40 oz tumbler with handle +2\nplan License: Personal use =3.99, Commercial (up to 500 items) =9.99",
+			"bundles": "Matching straw-topper charm design | 2",
+			"text": "Seamless wraps for skinny tumblers, glass cans and 40 oz tumblers, for sublimation, UV DTF or vinyl.",
+			"included": [
+				"Seamless PNG wraps at exact print size",
+				"Templates for 20 oz, 30 oz, 40 oz and 16 oz glass can",
+				"Mock-up previews",
+				"Instant download"
+			],
+			"license": "Personal use: make items for yourself and gifts. Commercial licences let you sell finished physical items (up to the stated number). Reselling or sharing the files is never allowed.",
+			"art": {
+				"motif": "tumbler",
+				"bg": "#e9f6f4",
+				"accent": "#0f766e",
+				"label": "TUMBLER WRAP"
+			}
+		},
+		{
+			"key": "cap-hat-designs",
+			"cat": "designs",
+			"title": "Cap & Trucker Hat Designs (PNG + Embroidery)",
+			"badge": "",
+			"price": "4.99",
+			"options": "select Format: PNG for print and patches, Machine embroidery files (DST, PES, JEF) +4\nplan License: Personal use =4.99, Commercial (up to 500 items) =12.99",
+			"bundles": "Matching shirt design | 3 | 5",
+			"text": "Front-panel designs for caps, trucker hats and beanies: ready for heat-transfer patches or machine embroidery.",
+			"included": [
+				"PNG files, 300 DPI, transparent background",
+				"Optional embroidery files in DST, PES and JEF",
+				"Sizes for front panels and patches",
+				"Instant download"
+			],
+			"license": "Personal use: make items for yourself and gifts. Commercial licences let you sell finished physical items (up to the stated number). Reselling or sharing the files is never allowed.",
+			"art": {
+				"motif": "cap2",
+				"bg": "#eef2f7",
+				"accent": "#334e68",
+				"label": "HAT DESIGN"
+			}
+		},
+		{
+			"key": "coloring-pages",
+			"cat": "kids",
+			"title": "Christmas Coloring Pages for Kids",
+			"badge": "",
+			"price": "3.49",
+			"options": "plan Pages: 10 pages =3.49, 25 pages =6.99, 50 pages =9.99",
+			"bundles": "Christmas activity sheets (mazes, word search) | 3 | 5",
+			"text": "Fun, bold-line Christmas colouring pages for kids: Santa, reindeer, snowmen and cosy winter scenes.",
+			"included": [
+				"Printable PDF, US Letter and A4",
+				"Thick lines that are easy for little hands",
+				"Print as many times as you like at home",
+				"Instant download"
+			],
+			"license": "Personal and single-classroom use.",
+			"art": {
+				"motif": "crayon",
+				"bg": "#fff7da",
+				"accent": "#e0a100",
+				"label": "COLORING"
+			}
+		},
+		{
+			"key": "kids-worksheets",
+			"cat": "kids",
+			"title": "Kindergarten Math Worksheets",
+			"badge": "",
+			"price": "5.99",
+			"options": "plan Pack: 30 pages =5.99, 100 pages =12.99",
+			"bulk": "5 | 10\n15 | 20",
+			"qty": true,
+			"text": "Counting, number tracing and simple adding worksheets for ages 4–6. Buy classroom licences in bulk for your team.",
+			"included": [
+				"Printable PDF with answer keys",
+				"Black-and-white, printer friendly",
+				"Each licence covers one teacher or family",
+				"Instant download"
+			],
+			"license": "One licence per teacher or family; buy more for colleagues (bulk prices apply).",
+			"art": {
+				"motif": "numbers",
+				"bg": "#e9f6fb",
+				"accent": "#0e7490",
+				"label": "WORKSHEETS"
+			}
+		},
+		{
+			"key": "digital-workbook",
+			"cat": "planners",
+			"title": "Small Business Digital Workbook",
+			"badge": "",
+			"price": "9.99",
+			"options": "select Format: Printable PDF (A4 + US Letter), Fillable PDF for tablets +3, GoodNotes / Notability (hyperlinked) +5",
+			"bundles": "Matching budget spreadsheet | 6 | 9",
+			"text": "A guided workbook to plan your offer, prices, marketing and first 90 days: fill it in on a tablet or print it.",
+			"included": [
+				"60-page workbook with prompts and worksheets",
+				"Fillable fields for tablets (fillable format)",
+				"Goal and progress trackers",
+				"Instant download"
+			],
+			"license": "Personal use; one licence per person.",
+			"art": {
+				"motif": "book",
+				"bg": "#efeaf9",
+				"accent": "#6d4fc2",
+				"label": "WORKBOOK"
+			}
+		},
+		{
+			"key": "digital-planner",
+			"cat": "planners",
+			"title": "2027 ADHD-Friendly Digital Planner",
+			"badge": "Trending",
+			"price": "8.99",
+			"options": "Color: Sage #9bb39a, Blush #e8b4b8, Sand #d8c7a3, Night #1f2937\nselect Start day: Monday, Sunday\nselect App: GoodNotes, Notability, Any PDF app",
+			"bundles": "Digital sticker pack (500 stickers) | 5 | 8",
+			"text": "A calm, hyperlinked planner with daily brain-dump pages, time blocking and habit trackers, made for tablets.",
+			"included": [
+				"Hyperlinked PDF: yearly, monthly, weekly and daily pages",
+				"Brain-dump, focus and habit pages",
+				"Works with GoodNotes, Notability and other PDF apps",
+				"Instant download"
+			],
+			"license": "Personal use; one licence per person.",
+			"art": {
+				"motif": "planner",
+				"bg": "#edf4ef",
+				"accent": "#5b8a6a",
+				"label": "PLANNER"
+			}
+		},
+		{
+			"key": "budget-spreadsheet",
+			"cat": "planners",
+			"title": "Budget Spreadsheet (Google Sheets & Excel)",
+			"badge": "",
+			"price": "7.99",
+			"options": "select Platform: Google Sheets, Microsoft Excel, Both +3",
+			"bundles": "Debt payoff tracker | 4 | 6",
+			"text": "Plan your money in minutes: monthly budget, expense tracker, savings goals and automatic charts.",
+			"included": [
+				"Spreadsheet template with automatic formulas",
+				"Monthly and yearly dashboards",
+				"Video walkthrough link",
+				"Instant download"
+			],
+			"license": "Personal use.",
+			"art": {
+				"motif": "sheet",
+				"bg": "#e8f5ee",
+				"accent": "#15803d",
+				"label": "SPREADSHEET"
+			}
+		},
+		{
+			"key": "dog-breed-svg",
+			"cat": "animals",
+			"title": "Dog Breed SVG Bundle (60 Breeds)",
+			"badge": "60 breeds",
+			"price": "5.99",
+			"options": "plan License: Personal use =5.99, Commercial (up to 500 items) =12.99\nselect Style: Silhouette, Line art, Face portrait +3",
+			"bundles": "Dog quotes SVG set | 3 | 5",
+			"text": "Sixty dog breeds as clean cut files for shirts, mugs, decals and gifts for dog lovers.",
+			"included": [
+				"60 designs in SVG, PNG, DXF and EPS",
+				"Works with Cricut and Silhouette",
+				"Single-layer, easy-weed files",
+				"Instant download"
+			],
+			"license": "Personal use: make items for yourself and gifts. Commercial licences let you sell finished physical items (up to the stated number). Reselling or sharing the files is never allowed.",
+			"art": {
+				"motif": "dog",
+				"bg": "#f6ede3",
+				"accent": "#8b5e34",
+				"label": "DOG BREEDS"
+			}
+		},
+		{
+			"key": "cat-svg-bundle",
+			"cat": "animals",
+			"title": "Cat SVG Bundle – 40 Designs",
+			"badge": "",
+			"price": "4.99",
+			"options": "plan License: Personal use =4.99, Commercial (up to 500 items) =11.99",
+			"bundles": "Cat quotes add-on | 3 | 5",
+			"text": "Playful cats, cat faces and funny cat quotes for shirts, tote bags, decals and mugs.",
+			"included": [
+				"40 designs in SVG, PNG, DXF and EPS",
+				"Works with Cricut and Silhouette",
+				"Instant download"
+			],
+			"license": "Personal use: make items for yourself and gifts. Commercial licences let you sell finished physical items (up to the stated number). Reselling or sharing the files is never allowed.",
+			"art": {
+				"motif": "cat",
+				"bg": "#f1eefb",
+				"accent": "#5f4bb6",
+				"label": "CAT SVG"
+			}
+		},
+		{
+			"key": "watercolor-birds-clipart",
+			"cat": "animals",
+			"title": "Watercolour Birds Clipart (PNG)",
+			"badge": "",
+			"price": "5.99",
+			"options": "plan License: Personal use =5.99, Commercial =12.99\nselect Pack: Garden birds (25), Garden + tropical birds (50) +4",
+			"bundles": "Matching botanical clipart | 4 | 6",
+			"text": "Hand-painted style garden and tropical birds with transparent backgrounds, for cards, invitations, prints and stickers.",
+			"included": [
+				"High-resolution PNG files, transparent background",
+				"Robins, finches, owls, parrots and more",
+				"Ready for print, sticker and digital use",
+				"Instant download"
+			],
+			"license": "Personal and commercial use in your own designs (with a commercial licence); do not resell the clipart itself.",
+			"art": {
+				"motif": "bird",
+				"bg": "#eaf5f2",
+				"accent": "#2f7d6a",
+				"label": "BIRD CLIPART"
+			}
+		},
+		{
+			"key": "pet-memorial-print",
+			"cat": "animals",
+			"title": "Personalized Pet Memorial Print",
+			"badge": "Personalized",
+			"price": "11.99",
+			"options": "text* Pet name: 20\ntext Dates (optional): 25\nselect Animal: Dog, Cat, Rabbit, Bird, Horse\nColor: Cream #f4ede1, Sage #9bb39a, Sky #9cc3e6\nplan Size: 8 × 10 in =11.99, 11 × 14 in =14.99",
+			"bundles": "Matching keepsake card | 4",
+			"text": "A gentle keepsake print with your pet's name, dates and a short line of remembrance.",
+			"included": [
+				"Printable file (PDF and JPG)",
+				"Your pet's name and dates added for you",
+				"One free proof",
+				"Delivered by email"
+			],
+			"license": "Personal use.",
+			"made": true,
+			"art": {
+				"motif": "heart2",
+				"bg": "#fbf0f0",
+				"accent": "#b4596b",
+				"label": "PET MEMORIAL"
+			}
+		},
+		{
+			"key": "farm-animal-coloring",
+			"cat": "kids",
+			"title": "Farm Animal Coloring Pages",
+			"badge": "",
+			"price": "3.49",
+			"options": "plan Pages: 20 pages =3.49, 40 pages =5.99",
+			"bundles": "Animal tracing worksheets | 3 | 5",
+			"text": "Cows, pigs, chickens, horses and sheep with bold, easy-to-colour lines for little hands.",
+			"included": [
+				"Printable PDF, US Letter and A4",
+				"Thick lines for young children",
+				"Print as often as you like at home",
+				"Instant download"
+			],
+			"license": "Personal and single-classroom use.",
+			"art": {
+				"motif": "chicken",
+				"bg": "#fff7da",
+				"accent": "#c48a00",
+				"label": "FARM ANIMALS"
+			}
+		},
+		{
+			"key": "pet-birthday-printables",
+			"cat": "animals",
+			"title": "Dog & Cat Birthday Party Printables",
+			"badge": "",
+			"price": "5.99",
+			"options": "text Pet name for the banner (optional): 15\nColor: Blue #3b82f6, Pink #ec4899, Mint #10b981",
+			"bundles": "Pet party hat template | 2",
+			"text": "A \"pawty\" kit: banner, cupcake toppers, invitation and photo props for your pet's birthday.",
+			"included": [
+				"Banner letters and cupcake toppers",
+				"Editable invitation (free Canva link)",
+				"Photo props",
+				"Instant download"
+			],
+			"license": "Personal use.",
+			"art": {
+				"motif": "paw",
+				"bg": "#eaf2fe",
+				"accent": "#2563eb",
+				"label": "PET PARTY"
+			}
+		},
+		{
+			"key": "holiday-printables-bundle",
+			"cat": "printables",
+			"title": "Holiday Printables Bundle",
+			"badge": "Seasonal",
+			"price": "5.99",
+			"options": "plan Bundle: One holiday =5.99, All five holidays =19.99\nselect Holiday (single bundle): Valentine's Day, Easter, Halloween, Thanksgiving, Christmas",
+			"bundles": "",
+			"text": "Decor, cards and activity pages for every big holiday of the year: buy one season or the whole year at once.",
+			"included": [
+				"Decor signs, cards, tags and kids' activity pages",
+				"US Letter and A4",
+				"Print at home",
+				"Instant download"
+			],
+			"license": "Personal use.",
+			"art": {
+				"motif": "calendar",
+				"bg": "#fdeee8",
+				"accent": "#d9480f",
+				"label": "HOLIDAYS"
+			}
+		},
+		{
+			"key": "nursery-wall-art",
+			"cat": "printables",
+			"title": "Nursery Wall Art – Set of 3 Prints",
+			"badge": "Trending",
+			"price": "8.99",
+			"options": "Color: Sage #9bb39a, Blush #e8b4b8, Neutral #d8c7a3\nplan Size: 8 × 10 in =8.99, 11 × 14 in =11.99, A3 =11.99",
+			"bundles": "Matching name print | 6 | 8",
+			"text": "A soft, coordinated set of three nursery prints in a calm palette, ready to print and frame.",
+			"included": [
+				"3 high-resolution prints (JPG and PDF)",
+				"Multiple frame ratios included",
+				"Print at home or at a print shop",
+				"Instant download"
+			],
+			"license": "Personal use.",
+			"art": {
+				"motif": "rainbow",
+				"bg": "#fbf0ec",
+				"accent": "#c9786a",
+				"label": "WALL ART"
+			}
+		},
+		{
+			"key": "wedding-invitation",
+			"cat": "templates",
+			"title": "Editable Wedding Invitation Suite",
+			"badge": "",
+			"price": "12.99",
+			"options": "Color: Ivory & gold #d4a72c, Sage #9bb39a, Dusty blue #8aa6c1\nselect Edit in: Canva, Templett\ntext Couple names (for the preview): 40",
+			"bundles": "Matching RSVP and details cards | 6 | 9",
+			"text": "An elegant invitation suite you edit yourself in Canva or Templett: invitation, RSVP, details and thank-you cards.",
+			"included": [
+				"Invitation, RSVP, details and thank-you templates",
+				"Edit text, fonts and colours online",
+				"Print at home, at a print shop or send digitally",
+				"Instant access link"
+			],
+			"license": "Personal use for your own event.",
+			"art": {
+				"motif": "rings",
+				"bg": "#f7f2e8",
+				"accent": "#b8892d",
+				"label": "INVITATION"
+			}
+		},
+		{
+			"key": "canva-social-templates",
+			"cat": "templates",
+			"title": "Canva Social Media Templates",
+			"badge": "",
+			"price": "14.99",
+			"options": "plan Pack: 30 templates =14.99, 90 templates =27.99\nselect Style: Minimal, Bold, Boho",
+			"bundles": "Instagram highlight covers | 4 | 6",
+			"text": "On-brand posts, stories and carousels for Instagram, Facebook and Pinterest: change colours and text in Canva in minutes.",
+			"included": [
+				"Editable Canva templates (free Canva account works)",
+				"Posts, stories and carousel layouts",
+				"Quick-start video",
+				"Instant access link"
+			],
+			"license": "Use for your own business and clients' accounts; do not resell the templates.",
+			"art": {
+				"motif": "phone",
+				"bg": "#fdecf3",
+				"accent": "#d6336c",
+				"label": "CANVA"
+			}
+		},
+		{
+			"key": "notion-template",
+			"cat": "templates",
+			"title": "Notion Life Planner Template",
+			"badge": "",
+			"price": "14.99",
+			"options": "select Version: Personal, Student",
+			"bundles": "",
+			"text": "Organise goals, habits, tasks, reading and finances in one Notion dashboard you duplicate in one click.",
+			"included": [
+				"Duplicate-ready Notion template link",
+				"Goals, habits, tasks and finance pages",
+				"Setup guide",
+				"Instant access"
+			],
+			"license": "Personal use.",
+			"art": {
+				"motif": "blocks",
+				"bg": "#f1f1f1",
+				"accent": "#374151",
+				"label": "NOTION"
+			}
+		},
+		{
+			"key": "planner-stickers",
+			"cat": "designs",
+			"title": "Digital Planner Stickers (GoodNotes)",
+			"badge": "",
+			"price": "3.99",
+			"options": "plan Pack: 250 stickers =3.99, 1,000 stickers =8.99",
+			"bundles": "",
+			"text": "Pre-cropped digital stickers for GoodNotes and Notability: seasonal, functional and decorative sets.",
+			"included": [
+				"PNG stickers, transparent and pre-cropped",
+				"GoodNotes sticker book file",
+				"Seasonal Christmas set included",
+				"Instant download"
+			],
+			"license": "Personal use.",
+			"art": {
+				"motif": "sticker",
+				"bg": "#f3f0fc",
+				"accent": "#7048e8",
+				"label": "STICKERS"
+			}
+		}
+	],
+	"site": {
+		"id": "digital-shop",
+		"title": "Digital Downloads Shop",
+		"description": "Etsy-style shop for printables, SVGs, pet and animal designs, shirt, hat, cup, wall and car decal designs, crochet patterns, planners, templates and custom portraits: 35 product pages with colour, size and licence options, personalisation and bundles.",
+		"hero_title": "Digital downloads and personalised gifts for every season",
+		"hero_text": "Christmas SVGs, printables, crochet patterns, planners and custom portraits. Download instantly or have it made just for you.",
+		"hero_image": "christmas-wall-art",
+		"buttons": [
+			[
+				"Shop Christmas",
+				"/christmas/"
+			],
+			[
+				"Custom portraits",
+				"/custom/"
+			]
+		],
+		"trending_title": "Trending this season",
+		"trending_text": "Planners, wall art, SVG bundles and personalised gifts.",
+		"featured": [
+			"christmas-svg-bundle",
+			"tumbler-cup-designs",
+			"pet-portrait",
+			"digital-planner",
+			"family-shirt-designs",
+			"car-decal-svg",
+			"nursery-wall-art",
+			"christmas-gift-tags"
+		],
+		"shop_title": "Shop all digital downloads",
+		"shop_intro": "Printables, SVGs, patterns, planners, templates and personalised gifts.",
+		"cat_pages": {
+			"christmas": [
+				"Christmas shop",
+				"SVG bundles, printables, gift tags and cards for a cosy, handmade Christmas."
+			],
+			"custom": [
+				"Custom portraits & personalised prints",
+				"Family and pet portraits, name prints and wall art made just for you."
+			],
+			"designs": [
+				"Shirt, hat, cup & decal designs",
+				"T-shirt, cap, tumbler, mug, wall and car decal designs for sublimation, vinyl and embroidery."
+			],
+			"animals": [
+				"Pets & animals",
+				"Dog and cat SVGs, bird clipart, pet memorial prints and pet party printables."
+			]
+		},
+		"menu": [
+			"shop",
+			"christmas",
+			"custom",
+			"animals",
+			"designs",
+			"faq",
+			"contact"
+		],
+		"promises": [
+			[
+				"download",
+				"Instant download",
+				"Files arrive by email and on the order page right after checkout. Edit to match your checkout."
+			],
+			[
+				"pen",
+				"Personalised for you",
+				"Names, dates and colours set for you, with a proof before the final file."
+			],
+			[
+				"shield",
+				"Clear licences",
+				"Every listing says what you can and cannot do with the files."
+			],
+			[
+				"chat",
+				"Friendly support",
+				"Tell customers how and when you answer messages."
+			]
+		],
+		"faq": {
+			"How do I get my files?": "Right after checkout you receive a download link by email and on the order page. Edit this to match your checkout provider.",
+			"Will I receive a physical item?": "No. Everything in this shop is a digital file you print or use yourself, unless a listing says otherwise.",
+			"How do custom portraits work?": "Choose your options, check out, then email your photos. You receive a proof, can ask for one revision, and then get the final files.",
+			"Can I sell items I make with your files?": "It depends on the licence in each listing. Personal licences cover your own use and gifts; business licences allow selling finished physical items. Reselling the files is never allowed.",
+			"What is your refund policy?": "Write your refund policy for digital files and custom orders here.",
+			"Do you use AI to make your designs?": "Describe how your designs are made. If you use AI tools, say so here and in each listing."
+		}
+	}
+}

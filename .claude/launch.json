@@ -19,6 +19,7 @@
         "--mount=./semrs-site/preview/mu:/wordpress/wp-content/mu-plugins",
         "--mount=./semrs-site/plugins/semrs-tools:/wordpress/wp-content/plugins/semrs-tools",
         "--mount=./semrs-site/plugins/semrs-blocks:/wordpress/wp-content/plugins/semrs-blocks",
+        "--mount=./semrs-site/plugins/semrs-shops:/wordpress/wp-content/plugins/semrs-shops",
         "--mount=./semrs-site/plugins/semrs-site:/wordpress/wp-content/plugins/semrs-site",
         "--mount=./semrs-site/theme:/wordpress/semrs-preview"
       ],
@@ -42,6 +43,20 @@
         "--mount=./semrs-site/dist/.check/themes/semrs-child-seo:/wordpress/wp-content/themes/semrs-child-seo"
       ],
       "port": 9401
+    },
+    {
+      "name": "semrs-upgrade",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "-y",
+        "@wp-playground/cli@latest",
+        "server",
+        "--port=9402",
+        "--workers=1",
+        "--blueprint=./semrs-site/dist/.upgrade/blueprint.json",
+        "--mount=./semrs-site/dist/releases:/zips"
+      ],
+      "port": 9402
     }
   ]
 }

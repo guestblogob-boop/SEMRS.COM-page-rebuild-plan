@@ -43,6 +43,15 @@ function semrs_us_routes() {
 	);
 	register_rest_route(
 		'semrs-updates/v1',
+		'/free',
+		array(
+			'methods'             => 'GET',
+			'permission_callback' => '__return_true',
+			'callback'            => 'semrs_us_free_download',
+		)
+	);
+	register_rest_route(
+		'semrs-updates/v1',
 		'/download',
 		array(
 			'methods'             => 'GET',
@@ -136,6 +145,32 @@ function semrs_us_download( $req ) {
 	$file = semrs_us_dir() . basename( $all[ $slug ][ $version ]['file'] );
 	if ( ! file_exists( $file ) ) {
 		return new WP_Error( 'semrs_missing', 'Release file missing.', array( 'status' => 404 ) );
+	}
+	nocache_headers();
+	header( 'Content-Type: application/zip' );
+	header( 'Content-Disposition: attachment; filename="' . $slug . '.zip"' );
+	header( 'Content-Length: ' . filesize( $file ) );
+	readfile( $file ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	exit;
+}
+
+/**
+ * Public download of the latest release of a FREE product (store buttons).
+ * Paid products are never served here; they need a signed update link.
+ *
+ * @param WP_REST_Request $req Request (slug).
+ * @return WP_Error|void
+ */
+function semrs_us_free_download( $req ) {
+	$slug     = sanitize_key( (string) $req->get_param( 'slug' ) );
+	$products = semrs_us_products();
+	if ( ! isset( $products[ $slug ] ) || ! empty( $products[ $slug ][2] ) ) {
+		return new WP_Error( 'semrs_not_free', 'This product is not a free download.', array( 'status' => 404 ) );
+	}
+	$latest = semrs_us_latest( $slug );
+	$file   = $latest && ! empty( $latest['file'] ) ? semrs_us_dir() . basename( $latest['file'] ) : '';
+	if ( ! $file || ! file_exists( $file ) ) {
+		return new WP_Error( 'semrs_missing', 'Release not found.', array( 'status' => 404 ) );
 	}
 	nocache_headers();
 	header( 'Content-Type: application/zip' );

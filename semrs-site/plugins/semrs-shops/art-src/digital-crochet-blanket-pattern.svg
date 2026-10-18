@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640">
+<defs>
+	<pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="2" fill="#d97736" opacity=".12"/></pattern>
+	<filter id="sh" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#0b1f3a" flood-opacity=".18"/></filter>
+</defs>
+<rect width="640" height="640" fill="#fdf1e6"/>
+<rect width="640" height="640" fill="url(#dots)"/>
+<circle cx="80" cy="100" r="10" fill="#d97736" opacity=".18"/><circle cx="560" cy="110" r="10" fill="#d97736" opacity=".18"/><circle cx="540" cy="540" r="10" fill="#d97736" opacity=".18"/><circle cx="100" cy="530" r="10" fill="#d97736" opacity=".18"/>
+<g transform="rotate(-4 320 330)" filter="url(#sh)"><rect x="150" y="120" width="340" height="420" rx="18" fill="#ffffff"/></g>
+<g transform="rotate(3 320 320)"><rect x="170" y="110" width="300" height="400" rx="16" fill="#ffffff" stroke="#d97736" stroke-opacity=".25" stroke-width="2"/>
+	<rect x="200" y="140" width="240" height="220" rx="12" fill="#d97736" opacity=".1"/>
+	<g transform="translate(248 178) scale(6)" fill="none" stroke="#d97736" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="12" r="7"/><path d="M5 9c4 1 9 5 11 9"/><path d="M7 5c3 3 6 9 6 14"/><path d="M13 5c-1 3-1 9 2 13"/><path d="M17 17l5 3"/></g>
+	<text x="320" y="410" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="2" fill="#d97736">PATTERN</text>
+	<rect x="236" y="432" width="168" height="8" rx="4" fill="#d97736" opacity=".25"/>
+	<rect x="262" y="452" width="116" height="8" rx="4" fill="#d97736" opacity=".15"/>
+</g>
+<g><rect x="402" y="560" width="210" height="44" rx="22" fill="#0b1f3a"/><text x="507" y="589" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">DIGITAL DOWNLOAD</text></g>
+</svg>

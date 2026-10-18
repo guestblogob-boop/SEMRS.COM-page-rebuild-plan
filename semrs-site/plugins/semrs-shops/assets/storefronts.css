@@ -1,0 +1,64 @@
+/* SEMRS Shops: storefront styles (Shopify / Etsy / eBay / Amazon-like). Loaded only on pages built with a storefront style. */
+
+/* Shared */
+.semrs-sf-crumbs { font-size: .88rem; color: var(--sp-muted, #5b6575); margin: 0 0 12px; }
+.semrs-sf-cols { gap: 32px; }
+.semrs-sf-side { position: relative; }
+@media (min-width: 782px) { .semrs-sf-side > * { position: sticky; top: calc(var(--sp-header-h, 76px) + 16px); } }
+.semrs-sf-nav { list-style: none; padding: 0; margin: 0; display: grid; gap: 2px; }
+.semrs-sf-nav a { display: block; padding: 8px 10px; border-radius: 8px; text-decoration: none; color: inherit; }
+.semrs-sf-nav a:hover { background: var(--sp-surface, #f6f7f9); }
+.semrs-sf-avatar img { width: 120px; height: 120px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 16px rgba(15, 23, 42, .15); }
+@media (max-width: 781px) { .semrs-sf-cols { flex-direction: column; } .semrs-sf-side { flex-basis: auto !important; } .semrs-sf-nav { display: flex; overflow-x: auto; gap: 6px; } .semrs-sf-nav a { white-space: nowrap; border: 1px solid var(--sp-line, #e3e7ee); border-radius: 999px; } }
+
+/* Etsy-like: warm, rounded, maker feel */
+.semrs-sf-etsy { --sf-accent: #f1641e; }
+.semrs-sf-banner { min-height: 160px; }
+.semrs-sf-shophead { align-items: center; }
+.semrs-sf-etsy .semrs-sf-shophead { margin-top: -64px; }
+.semrs-sf-etsy .semrs-sf-avatar img { border: 4px solid #fff; border-radius: 16px; }
+.semrs-sf-meta { color: var(--sp-muted, #5b6575); font-size: .92rem; }
+.semrs-sf-announce { background: #fdf6ee; border: 1px solid #f3e1cc; border-radius: 12px; padding: 16px 20px; margin-top: 16px; }
+.semrs-sf-announce h3 { margin: 0 0 4px; font-size: 1rem; }
+.semrs-sf-etsy .semrs-product--card { border-radius: 10px; border-color: transparent; }
+.semrs-sf-etsy .semrs-product--card .semrs-product__media { border-radius: 10px; }
+.semrs-sf-etsy .semrs-product__price strong { font-size: 1.1rem; }
+.semrs-sf-etsy .semrs-buy__btn { background: #222; color: #fff; border-radius: 999px; }
+.semrs-sf-etsy .semrs-buy__btn:hover { color: #fff; }
+.semrs-sf-etsy .semrs-product__badge { background: #fdebd2; color: #7a3d00; }
+.semrs-sf-etsy .wp-block-button__link { border-radius: 999px; }
+
+/* eBay-like: crisp, list rows, grey panels */
+.semrs-sf-ebay { --sf-accent: #3665f3; }
+.semrs-sf-storehead h1 { margin: 0; font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); }
+.semrs-sf-ebay .wp-block-button__link { border-radius: 999px; background: #3665f3; color: #fff; }
+.semrs-sf-ebay .is-style-outline .wp-block-button__link { background: transparent; color: #3665f3; border-color: #3665f3; }
+.semrs-sf-list .semrs-product--card { flex-direction: row; border-radius: 6px; }
+.semrs-sf-list .semrs-product--card .semrs-product__media { flex: 0 0 160px; aspect-ratio: 1 / 1; }
+.semrs-sf-list .semrs-product__body { justify-content: center; }
+.semrs-sf-list .semrs-product__price strong { font-size: 1.3rem; }
+.semrs-sf-list .semrs-product__price::after { content: "Digital delivery"; display: block; font-size: .82rem; color: var(--sp-muted, #5b6575); margin-top: 2px; }
+@media (max-width: 520px) { .semrs-sf-list .semrs-product--card .semrs-product__media { flex-basis: 110px; } }
+.semrs-sf-ebay .semrs-buy { background: #f7f7f7; border-radius: 12px; padding: 18px; }
+.semrs-sf-ebay .semrs-buy__btn { background: #3665f3; color: #fff; border-radius: 999px; }
+.semrs-sf-ebay .semrs-buy__btn:hover { color: #fff; }
+
+/* Amazon-like: brand store, category bar, buy card */
+.semrs-sf-amazon { --sf-accent: #ffd814; }
+.semrs-sf-catbar { list-style: none; margin: 0 0 24px; padding: 10px 14px; display: flex; gap: 6px 18px; flex-wrap: wrap; background: #232f3e; border-radius: 8px; }
+.semrs-sf-catbar a { color: #fff; text-decoration: none; font-weight: 600; font-size: .95rem; }
+.semrs-sf-catbar a:hover { text-decoration: underline; }
+.semrs-sf-amazon .semrs-product--card { border-radius: 4px; }
+.semrs-sf-amazon .semrs-product__price strong { font-size: 1.25rem; }
+.semrs-sf-amazon .semrs-product__more { color: #007185; }
+.semrs-sf-amazon .semrs-product--full .semrs-buy { border: 1px solid #d5d9d9; border-radius: 8px; padding: 18px; }
+.semrs-sf-amazon .semrs-buy__btn { background: #ffd814; color: #0f1111; border-radius: 999px; font-weight: 600; }
+.semrs-sf-amazon .semrs-buy__btn:hover { color: #0f1111; background: #f7ca00; }
+.semrs-sf-amazon .wp-block-button__link { background: #ffd814; color: #0f1111; border-radius: 999px; }
+.semrs-sf-amazon .semrs-product__badge { background: #cc0c39; color: #fff; border-radius: 4px; }
+
+/* Shopify-like: clean brand storefront (default product styles) */
+.semrs-sf-shopify .semrs-product--card { border-radius: 14px; }
+
+/* No checkout link yet: keep the neutral "not available" look in every style. */
+.semrs-sf .semrs-buy__btn.is-soon { background: transparent; color: inherit; border: 2px solid var(--sp-line, #e3e7ee); }

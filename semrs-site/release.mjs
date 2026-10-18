@@ -20,6 +20,7 @@ const PACKAGES = [
 	{ slug: 'semrs-core', type: 'plugin', dir: 'plugins/semrs-core', main: 'semrs-core.php', updater: 'includes/semrs-updater.php', readme: 'readme.txt', constant: 'SEMRS_CORE_VERSION', constFile: 'semrs-core.php', free: true },
 	{ slug: 'semrs-tools', type: 'plugin', dir: 'plugins/semrs-tools', main: 'semrs-tools.php', updater: 'includes/semrs-updater.php', readme: 'readme.txt', constant: 'SEMRS_TOOLS_VERSION', constFile: 'semrs-tools.php', free: true },
 	{ slug: 'semrs-blocks', type: 'plugin', dir: 'plugins/semrs-blocks', main: 'semrs-blocks.php', updater: 'includes/semrs-updater.php', readme: 'readme.txt', constant: 'SEMRS_BLOCKS_VERSION', constFile: 'semrs-blocks.php', free: true },
+	{ slug: 'semrs-shops', type: 'plugin', dir: 'plugins/semrs-shops', main: 'semrs-shops.php', updater: 'includes/semrs-updater.php', readme: 'readme.txt', constant: 'SEMRS_SHOPS_VERSION', constFile: 'semrs-shops.php', free: true },
 	{ slug: 'semrs-pro', type: 'plugin', dir: 'plugins/semrs-pro', main: 'semrs-pro.php', updater: 'includes/semrs-updater.php', readme: 'readme.txt', constant: 'SEMRS_PRO_VERSION', constFile: 'semrs-pro.php', free: false },
 ];
 const TAR = 'C:/Windows/System32/tar.exe'; // Writes real zip files (Git Bash tar does not).

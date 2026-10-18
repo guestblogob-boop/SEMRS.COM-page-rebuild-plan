@@ -9,6 +9,7 @@ const pk = [
 	['plugins/semrs-core', 'plugins', 'includes/semrs-updater.php', 'semrs-core.php'],
 	['plugins/semrs-blocks', 'plugins', 'includes/semrs-updater.php', 'semrs-blocks.php'],
 	['plugins/semrs-tools', 'plugins', 'includes/semrs-updater.php', 'semrs-tools.php'],
+	['plugins/semrs-shops', 'plugins', 'includes/semrs-updater.php', 'semrs-shops.php'],
 	['plugins/semrs-pro', 'plugins', null, null], // Not for WordPress.org: checked for code quality only.
 ];
 fs.rmSync(out, { recursive: true, force: true });

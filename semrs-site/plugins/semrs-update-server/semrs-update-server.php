@@ -32,6 +32,7 @@ function semrs_us_products() {
 			'semrs-core'      => array( 'SEMRS Core', 'plugin', false ),
 			'semrs-tools'     => array( 'SEMRS Tools', 'plugin', false ),
 			'semrs-blocks'    => array( 'SEMRS Blocks', 'plugin', false ),
+			'semrs-shops'     => array( 'SEMRS Shops', 'plugin', false ),
 			'semrs-pro'       => array( 'SEMRS Pro', 'plugin', true ),
 		)
 	);

@@ -69,3 +69,16 @@ Every page of every starter site you can use is also available as a pattern, plu
 ## Images and licences
 
 All illustrations are original artwork made for SEMRS and are GPL-licensed, so you can use them on any site. They are copied into your Media Library on the first import.
+
+## Ready-made shops (SEMRS Shops plugin)
+
+Install the free **SEMRS Shops** plugin (it needs SEMRS Blocks) to add two complete shops to SEMRS → Templates, each in four storefront styles:
+
+| Shop | Products | Styles |
+|---|---|---|
+| Digital Downloads Shop | 35: Christmas SVGs and printables, gift tags, cards, personalised family shirts, shirt, hat, tumbler, mug, wall and car decal designs, dog and cat SVGs, bird clipart, pet memorial prints, custom family and pet portraits, name prints, planners, workbooks, coloring pages, Canva and Notion templates | Shopify, Etsy, eBay and Amazon style |
+| Crochet Pattern Shop | 36: amigurumi animals and birds, pet accessories, blankets, wearables, home decor, seasonal, bags, car accessories, beginner guide and bundle, plus a Crochet help page | Shopify, Etsy, eBay and Amazon style |
+
+Every product page uses the **Product** block: colour swatches, sizes, formats and licences, personalisation fields, bundle add-ons and bulk prices, with a live total. Add your checkout link (WooCommerce, Shopify, Stripe Payment Links, Lemon Squeezy, Gumroad) to each product; until then the button says "Not available yet".
+
+**Tools → Shop exports** downloads each catalogue as a Shopify product CSV and an Etsy listing sheet. Example prices follow 2026 marketplace medians; review them, and replace the delivery, refund and licence placeholders with your real policies before publishing.
