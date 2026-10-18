@@ -20,8 +20,8 @@
   </g>
 
   <!-- Performance gain card -->
-  <g filter="url(#sh)"><rect x="4" y="444" width="150" height="110" rx="18" fill="#fff"/></g>
-  <g transform="translate(4 440)" font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+  <g filter="url(#sh)"><rect x="0" y="474" width="150" height="110" rx="18" fill="#fff"/></g>
+  <g transform="translate(0 470)" font-family="system-ui, -apple-system, Segoe UI, sans-serif">
     <text x="16" y="28" font-size="14" font-weight="700" fill="#0b1f3a">Performance</text>
     <rect x="18" y="72" width="18" height="28" rx="4" fill="#c3cede"/>
     <rect x="44" y="60" width="18" height="40" rx="4" fill="#8aa0c0"/>
