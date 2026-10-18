@@ -3,7 +3,7 @@ Contributors: semrs
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 Images: screenshot.png is original artwork by SEMRS, GPLv2 or later.
 
 == Changelog ==
+
+= 1.2.1 =
+* New theme screenshot with the SEMRS photo
 
 = 1.2.0 =
 * SEO: 0–100 SEO score with readability checks, Re-check and internal link ideas; SEO Audit screen; llms.txt; reads Yoast and AIOSEO data

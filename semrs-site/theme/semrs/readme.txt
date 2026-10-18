@@ -4,7 +4,7 @@ Tags: blog, portfolio, grid-layout, full-width-template, block-patterns
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,10 @@ Edit the page, open "Page options" in the sidebar and set Transparent header to 
 
 == Changelog ==
 
+= 1.3.1 =
+* Hero with cover image pattern now uses a photo in an arch frame
+* New theme screenshot
+
 = 1.3.0 =
 * SEO: 0–100 SEO score with readability checks, Re-check and internal link ideas; SEO Audit screen; llms.txt; reads Yoast and AIOSEO data
 * Speed: page cache, per-block and non-blocking CSS, hover prefetch, database cleanup and speed check
@@ -83,7 +87,8 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 == Resources ==
 
-* assets/images/hero-illustration.svg: original artwork by SEMRS, GPLv2 or later.
+* assets/images/hero-illustration.svg, hero-cover.svg, hero-cover-2.svg: original artwork by SEMRS, GPLv2 or later.
+* assets/images/hero-photo.jpg: photo owned by SEMRS (AI-generated for this theme), GPLv2 or later.
 * Social network marks in inc/customizer.php: simplified shapes drawn for this theme; the names and logos are trademarks of their owners and are used only to link to the site owner's profiles.
 * UI icons (search, phone, email): original artwork by SEMRS, GPLv2 or later.
 * screenshot.png: screenshot of this theme with its own patterns and artwork, GPLv2 or later.

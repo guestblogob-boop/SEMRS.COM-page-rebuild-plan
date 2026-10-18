@@ -38,8 +38,8 @@ defined( 'ABSPATH' ) || exit;
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"bottom","width":"48%","className":"semrs-hero-cover__media"} -->
-<div class="wp-block-column is-vertically-aligned-bottom semrs-hero-cover__media" style="flex-basis:48%"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"semrs-hero-cover__img"} -->
-<figure class="wp-block-image size-full semrs-hero-cover__img"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/hero-cover.svg' ); ?>" alt="SEO specialist with a rising traffic trend and ranking icons" width="600" height="560"/></figure>
+<div class="wp-block-column is-vertically-aligned-bottom semrs-hero-cover__media" style="flex-basis:48%"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"semrs-hero-cover__img semrs-hero-cover__photo"} -->
+<figure class="wp-block-image size-full semrs-hero-cover__img semrs-hero-cover__photo"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/hero-photo.jpg' ); ?>" alt="SEO specialist smiling and holding a tablet" width="800" height="1000" fetchpriority="high"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
