@@ -40,7 +40,8 @@
         "--mount=./semrs-site/dist/.check/plugins/semrs-tools:/wordpress/wp-content/plugins/semrs-tools",
         "--mount=./semrs-site/dist/.check/plugins/semrs-pro:/wordpress/wp-content/plugins/semrs-pro",
         "--mount=./semrs-site/dist/.check/themes/semrs:/wordpress/wp-content/themes/semrs",
-        "--mount=./semrs-site/dist/.check/themes/semrs-child-seo:/wordpress/wp-content/themes/semrs-child-seo"
+        "--mount=./semrs-site/dist/.check/themes/semrs-child-seo:/wordpress/wp-content/themes/semrs-child-seo",
+        "--mount=./semrs-site/dist/.check/plugins/semrs-shops:/wordpress/wp-content/plugins/semrs-shops"
       ],
       "port": 9401
     },

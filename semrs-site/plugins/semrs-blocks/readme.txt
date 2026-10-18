@@ -4,7 +4,7 @@ Tags: blocks, icons, pricing table, contact form, post grid
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 
 Free blocks for any block theme or classic theme: SEMRS, Astra, GeneratePress, Kadence, Twenty Twenty-Five.
@@ -56,6 +56,11 @@ SEMRS → Blocks (or SEMRS Blocks in the menu when SEMRS Core is not installed) 
 Pro blocks appear with a PRO label until SEMRS Pro is installed. They print nothing on your site, and you can hide them from the inserter on the same screen.
 
 == Changelog ==
+
+= 1.2.0 =
+* Product block: colour swatches, sizes, plan cards, personalisation fields, quantity with bulk discounts, bundles, live total and checkout link
+* Store patterns: shop grid, product page, bundle offer, bulk pricing, store promises
+* Ready-made shops (digital downloads, crochet patterns) are now in the separate free SEMRS Shops plugin, keeping SEMRS Blocks light
 
 = 1.1.0 =
 * SEO: 0–100 SEO score with readability checks, Re-check and internal link ideas; SEO Audit screen; llms.txt; reads Yoast and AIOSEO data

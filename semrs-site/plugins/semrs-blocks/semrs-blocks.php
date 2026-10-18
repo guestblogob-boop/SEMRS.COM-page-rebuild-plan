@@ -3,7 +3,7 @@
  * Plugin Name:       SEMRS Blocks
  * Plugin URI:        https://semrs.com/
  * Description:       Free blocks for any theme (SEMRS, Astra, GeneratePress, Kadence…): SVG icons, icon lists, fancy headings, post grids and lists, countdown timer, pricing and service cards, contact form with country picker, and a free-media sites directory. SEMRS Pro adds sliders, carousels, 3D models, counters, scroll animations and more.
- * Version:           1.1.0
+ * Version:           1.2.0
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-blocks
@@ -16,7 +16,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEMRS_BLOCKS_VERSION', '1.1.0' );
+define( 'SEMRS_BLOCKS_VERSION', '1.2.0' );
 define( 'SEMRS_BLOCKS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_BLOCKS_URL', plugin_dir_url( __FILE__ ) );
 

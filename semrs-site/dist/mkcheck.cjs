@@ -26,4 +26,6 @@ const src = process.argv[2];
 if (process.argv[2]) for (const p of ['plugin-check', 'theme-check']) {
 	fs.cpSync(path.join(src, 'x-' + p, p), path.join(out, 'checkers', p), { recursive: true });
 }
+// The checks site installs Plugin Check and Theme Check from WordPress.org (see check-blueprint.json).
+fs.copyFileSync('dist/check-blueprint.json', path.join(out, 'blueprint.json'));
 console.log('ready:', fs.readdirSync(path.join(out, 'plugins')).join(', '), '|', fs.readdirSync(path.join(out, 'themes')).join(', '));

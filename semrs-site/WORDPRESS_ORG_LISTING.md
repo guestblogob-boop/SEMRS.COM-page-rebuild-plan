@@ -11,8 +11,9 @@ What is ready, what to do yourself, and the honest open points before you submit
 | SEMRS Core | Yes | `dist/wporg/semrs-core.zip` | Plugin review |
 | SEMRS Blocks | Yes | `dist/wporg/semrs-blocks.zip` | Plugin review |
 | SEMRS Tools | Yes | `dist/wporg/semrs-tools.zip` | Plugin review |
+| SEMRS Shops | Yes, after SEMRS Blocks is approved | `dist/wporg/semrs-shops.zip` | Requires SEMRS Blocks ("Requires Plugins"); Plugin Check is clean apart from that dependency note until Blocks is listed |
 | SEMRS Pro | **No** (paid) | `dist/releases/semrs-pro-x.y.z.zip` | Sold from semrs.com; updates from your update server |
-| SEMRS Site | **No** (semrs.com only) | – | Keyword Ideas Generator, photo hero, AI photo |
+| SEMRS Site | **No** (semrs.com only) | – | Store, SEMRS Pro sales page, Keyword Ideas Generator, photo hero, AI photo |
 | SEMRS Update Server | **No** | `dist/server/…` | Runs only on semrs.com |
 
 `node release.mjs` builds the `dist/wporg/` zips without the semrs.com updater and without the `Update URI` header, as WordPress.org requires.

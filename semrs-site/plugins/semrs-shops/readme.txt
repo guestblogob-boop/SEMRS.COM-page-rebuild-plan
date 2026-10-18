@@ -52,4 +52,6 @@ Shop home, all-products page, category pages, FAQ and contact are included. All 
 == Changelog ==
 
 = 1.0.0 =
-* First release: Digital Downloads Shop (35 products) and Crochet Pattern Shop (36 patterns), each in Shopify, Etsy, eBay and Amazon storefront styles; Shopify CSV and Etsy listing-sheet exports.
+* First release: Digital Downloads Shop (35 products) and Crochet Pattern Shop (36 patterns), each in Shopify, Etsy, eBay and Amazon storefront styles (8 starter sites).
+* Tools > Shop exports: Shopify product CSV and Etsy listing sheet.
+* Prices based on 2026 marketplace medians (estimates to review).

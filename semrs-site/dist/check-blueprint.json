@@ -1,0 +1,32 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"preferredVersions": {
+		"php": "8.3",
+		"wp": "latest"
+	},
+	"login": true,
+	"steps": [
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "plugin-check"
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "theme-check"
+			}
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php foreach (array('/wordpress/wp-content/plugins/plugin-check/vendor/squizlabs/php_codesniffer/src/Reporter.php','/wordpress/wp-content/plugins/plugin-check/vendor/squizlabs/php_codesniffer/src/Util/Cache.php') as $f) { if (file_exists($f)) { file_put_contents($f, str_replace(array('FILE_APPEND | LOCK_EX', '| LOCK_EX', 'LOCK_EX'), array('FILE_APPEND', '', '0'), file_get_contents($f))); } }"
+		},
+		{
+			"step": "activateTheme",
+			"themeFolderName": "semrs"
+		}
+	]
+}
