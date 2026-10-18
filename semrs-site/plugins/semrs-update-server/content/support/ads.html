@@ -1,0 +1,181 @@
+<!-- wp:paragraph -->
+<p>The Ads manager is part of the free SEMRS Core plugin. It places your ad codes in safe positions and keeps them away from pages where ads break Google's rules or hurt conversions.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">1. Set up</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li><strong>SEMRS → Features</strong> → switch on <strong>Ads Manager</strong> → <strong>Settings</strong> (or <strong>SEMRS → Ads</strong>).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Enter your AdSense publisher ID (<code>ca-pub-…</code>). Leave "Load the AdSense script" on unless another plugin already loads it.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>For each position choose the network (AdSense or custom code), paste the ad slot ID or the full code, pick the format and the devices.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Switch on <strong>Enable ads</strong> and save.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Optional: switch on <strong>Manage ads.txt</strong> and paste the lines your networks give you. Check that <code>yoursite.com/ads.txt</code> opens.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">2. Positions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table -->
+<figure class="wp-block-table"><table><thead><tr><th>Position</th><th>Where it appears</th></tr></thead><tbody><tr><td>Before content</td><td>Under the post title</td></tr><tr><td>After paragraph N</td><td>After the paragraph number you choose (default 2)</td></tr><tr><td>Middle of content</td><td>Halfway through long articles</td></tr><tr><td>End of content</td><td>After the article</td></tr><tr><td>Shortcodes</td><td><code>[semrs_ad slot="tool"]</code>, <code>[semrs_ad slot="sidebar"]</code> and <code>[semrs_ad slot="manual"]</code> anywhere you place them</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>In-content ads are inserted only between normal paragraphs, never inside tables, lists, headings or blocks, and only on posts with at least 300 words (you can change this). A maximum number of in-content ads and a minimum gap between them stop overcrowding.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">3. Built-in safety</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>No ads on conversion and legal pages</strong> by default: services, pricing, contact, quote, thank-you, about, privacy, terms, cookie and disclosure pages, plus the front page and search results. Edit the list in Excluded paths.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Turn ads off for one post</strong> in the editor's SEMRS Ads box.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Labelled:</strong> every slot shows a small "Advertisement" label (you can change the text).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>No layout shift:</strong> space is reserved for each ad so content does not jump (good for Core Web Vitals).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Lazy loading</strong> for ads below the screen, and ads hidden for logged-in admins so you do not click your own ads by mistake.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">4. AdSense policy checklist</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Google's <a href="https://support.google.com/adsense/answer/48182" target="_blank" rel="noopener">AdSense Program policies</a> apply to every site. In short:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Never click your own ads or ask anyone to click them. No "click here" or arrows pointing at ads.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Do not place ads where they can be mistaken for menus, downloads or buttons, or where they cover content.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>No ads on pages without real content: empty pages, thank-you pages, login pages, error pages, or pages that are mostly ads.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Content must follow the <a href="https://support.google.com/adsense/answer/10502938" target="_blank" rel="noopener">Google Publisher Policies</a>: no adult, violent, hateful, dangerous or copyrighted content you do not own.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Have a privacy policy that explains cookies and advertising, and use a Google-certified consent tool (CMP) for visitors in the EEA, UK and Switzerland.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Do not use pop-ups or redirects that force visitors to see ads.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Add <code>ads.txt</code> and keep it up to date.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>SEMRS defaults follow these rules, but you are responsible for your content and placements. Google can change its policies at any time; check the official pages linked above.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">5. Ad Manager (AdX) and other networks</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Choose <strong>Custom code</strong> for a position and paste the full tag from Google Ad Manager or your network. Put header scripts (for example GPT) in <strong>Head code</strong>. Use only networks you have an account with and add their lines to ads.txt.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">6. SEMRS Pro ad features</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>With SEMRS Pro active, a <strong>SEMRS Pro</strong> section appears on <strong>SEMRS → Ads</strong>, and two extra rows appear in the positions table.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>More placements</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Pro: repeat in content:</strong> another ad every N paragraphs after the first one. Your "Maximum in-content ads per page" and "Minimum paragraphs between ads" still apply, so long articles never get crowded.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Pro: between posts on blog and category pages:</strong> an ad after every N posts in lists, at most 1–5 per page.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>Targeting and A/B rotation (per position)</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Only in categories / Never in categories:</strong> for example, show a finance ad unit only in your money articles.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Older than N days:</strong> keep new posts ad-free while they collect links and shares, then start earning.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>From / Until:</strong> run a position between two dates, for example a seasonal sponsor.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Hide for logged-in users:</strong> members or customers see fewer ads.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Variant B:</strong> a second AdSense slot ID or custom code. Each page view shows A or B at random; compare the two ad units in your AdSense reports and keep the better one.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>Click protection</strong> (on by default with Pro): if a visitor clicks ads 3 times within 24 hours (you can change both numbers), that visitor gets no ads for 7 days. Ad requests are paused for them, including Auto ads. This protects your AdSense account from accidental or deliberate invalid clicks. The count is kept only in the visitor's browser.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Ad-blocker message</strong> (off by default): a small, dismissible note asking ad-blocker users to support the site. It never blocks or hides content, and once closed it stays away for 7 days.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Per-page position switches:</strong> in the post editor, the <strong>Ad positions on this page</strong> box lets you turn single positions off for that page, for example keep the sidebar ad but drop in-content ads on a sensitive article. The free <strong>Disable ads on this page</strong> switch still turns everything off.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>SEMRS Pro never refreshes ads, never hides ads after they load, and never places ads in popups, which keeps these features within AdSense policies.</p>
+<!-- /wp:paragraph -->

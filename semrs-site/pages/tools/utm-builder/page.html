@@ -1,0 +1,195 @@
+<!-- wp:paragraph -->
+<p>Build tracked campaign links in seconds. Add your landing page, pick a preset such as Google Ads, Facebook ads, newsletter or QR code, name your campaign and copy a clean URL with UTM parameters. Bulk mode tags a whole list of URLs at once and exports them as CSV.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:shortcode -->
+[semrs_tool id="utm-builder"]
+<!-- /wp:shortcode -->
+
+<!-- wp:shortcode -->
+[semrs_ad slot="tool"]
+<!-- /wp:shortcode -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What UTM parameters are</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>UTM parameters are short tags added to the end of a URL that tell analytics tools such as Google Analytics 4 where a visitor came from. When someone clicks <code>https://example.com/offer/?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=spring_sale</code>, your analytics records that visit as coming from the spring sale email, not just as "direct" or "referral" traffic.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Without UTM tags, a lot of marketing traffic is mislabelled. Clicks from email apps, PDFs, text messages, QR codes and some social apps often arrive with no referrer at all and show up as direct traffic. Tagging your links is the simplest way to see which campaigns actually bring visitors, leads and sales.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The parameters explained</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>utm_source</strong> (required): where the traffic comes from, such as <code>google</code>, <code>facebook</code>, <code>newsletter</code> or <code>qr</code>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>utm_medium</strong> (required): the type of channel, such as <code>cpc</code> for paid search, <code>paid_social</code>, <code>social</code>, <code>email</code>, <code>referral</code> or <code>offline</code>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>utm_campaign</strong> (required): the campaign name, such as <code>spring_sale_2026</code> or <code>webinar_march</code>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>utm_term</strong> (optional): the paid keyword, mainly used for search ads.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>utm_content</strong> (optional): which ad, banner or link was clicked, useful for A/B tests.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>utm_id</strong> (optional): a campaign ID that can link your data to ad platform or cost data.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to use the UTM builder</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Paste the full URL of the page you want people to land on.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Choose a <strong>preset</strong> to fill source and medium, or type your own.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Enter a clear <strong>campaign name</strong>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Add term, content or campaign ID if you need them.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Leave <strong>lowercase and underscores</strong> ticked. UTM values are case-sensitive in analytics, so "Facebook" and "facebook" would be counted separately.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Copy your tracked link.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>For many links, paste one URL per line into <strong>Bulk URLs</strong>. The same parameters are added to each, invalid lines are flagged, and you can copy them all or download a CSV.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">A simple naming convention</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Consistency matters more than any particular scheme. Agree a short set of rules and write them down:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Always lowercase, with underscores instead of spaces.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>A fixed list of mediums: <code>cpc</code>, <code>paid_social</code>, <code>social</code>, <code>email</code>, <code>referral</code>, <code>affiliate</code>, <code>offline</code>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Sources named after the platform: <code>google</code>, <code>bing</code>, <code>facebook</code>, <code>instagram</code>, <code>linkedin</code>, <code>tiktok</code>, <code>newsletter</code>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Campaign names that include the topic and date: <code>black_friday_2026</code>, <code>boiler_service_autumn</code>.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Worked example</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A garden centre in Vancouver runs a spring promotion across three channels. For its email newsletter it uses source <code>newsletter</code>, medium <code>email</code>, campaign <code>spring_planting_2026</code>. For Facebook ads it uses <code>facebook</code> / <code>paid_social</code> with the same campaign name, and <code>utm_content</code> values <code>carousel</code> and <code>video</code> to compare the two ad formats. For flyers it prints a QR code from a link tagged <code>qr</code> / <code>offline</code>. A month later, GA4 shows exactly how many visits and online orders came from each channel and which ad format worked better.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Best practices</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Tag every link you control outside your website: emails, ads, social posts, partner sites, QR codes, PDFs and SMS.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Never use UTM tags on links between pages of your own site. They overwrite the original source and break your reports.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Keep campaign names short and readable.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Check the link before sending: click it and confirm the page loads.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Use a link shortener or QR code for printed material, but build the tagged URL first.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Remember that Google Ads can add tracking automatically with auto-tagging; follow your ad account's settings.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Common mistakes</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Mixing capitals and spelling ("Email", "email", "e-mail"), which splits one channel into several rows.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Putting the channel type in the source field, such as <code>utm_source=email</code>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Tagging internal links or navigation.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Forgetting the required source, medium or campaign values.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Reusing an old campaign name, which mixes old and new results.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Tips for local businesses</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Local businesses in the US, UK, Canada and Australia often market offline as well as online: flyers, vans, local newspapers, radio, events and shop windows. Give each one its own tagged link and QR code, for example source <code>flyer_eastside</code> and medium <code>offline</code>, so you can finally see which local promotion brings website visits. Your Google Business Profile website link can also be tagged (for example source <code>google</code>, medium <code>organic_gbp</code>) so you can measure visits from your profile separately from normal search traffic.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Frequently asked questions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:group {"className":"semrs-faq","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-faq"><!-- wp:details -->
+<details class="wp-block-details"><summary>Do UTM parameters affect SEO?</summary><!-- wp:paragraph -->
+<p>No, as long as you only use them on external links such as ads, emails and social posts. Do not add them to internal links. Your pages should also have a canonical tag pointing to the clean URL.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Where do I see UTM data in Google Analytics 4?</summary><!-- wp:paragraph -->
+<p>In the traffic acquisition reports, using dimensions such as session source, session medium and session campaign.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Are UTM parameters case-sensitive?</summary><!-- wp:paragraph -->
+<p>Yes. "Facebook" and "facebook" are treated as different sources, which is why the builder can lowercase everything for you.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Should I tag my Google Business Profile link?</summary><!-- wp:paragraph -->
+<p>Many businesses do, so profile visits can be measured separately. Use a consistent source and medium, and keep the link pointing to the right page.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>What is the difference between utm_campaign and utm_id?</summary><!-- wp:paragraph -->
+<p>The campaign is a readable name. The ID is a code that can connect your analytics data to cost or campaign data imported from ad platforms.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details --></div>
+<!-- /wp:group -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Related free tools</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="/tools/redirect-checker/">Redirect Checker</a>: make sure tagged links do not lose their parameters in redirects.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="/tools/seo-roi-calculator/">SEO ROI Calculator</a>: put a value on your organic traffic.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="/tools/google-review-link-generator/">Google Review Link Generator</a>: turn campaign customers into reviews.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:group {"className":"semrs-service-cta","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-service-cta"><!-- wp:paragraph -->
+<p>Want campaigns that are tracked, measured and improved every month? <a href="/services/paid-ads/">See SEMRS Paid Ads Management →</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

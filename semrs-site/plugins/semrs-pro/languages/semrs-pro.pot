@@ -1,0 +1,1398 @@
+# Copyright (C) 2026 SEMRS
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: SEMRS Pro\n"
+"Report-Msgid-Bugs-To: https://semrs.com/support/\n"
+"POT-Creation-Date: 2026-10-17 18:14+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Domain: semrs-pro\n"
+
+#. Name of the plugin
+#: semrs-pro.php modules/ads-pro.php:349 modules/speed-pro.php:85
+msgid "SEMRS Pro"
+msgstr ""
+
+#. Description of the plugin
+#: semrs-pro.php
+msgid "Premium add-on for the SEMRS theme and SEMRS Core: sticky/transparent header, mega menu, table of contents, author box, related posts, extra section patterns, white label; redirects + 404 log, multi-location local SEO, IndexNow, image SEO; ads manager; site layouts; case studies, portfolio and testimonials; lead tracking."
+msgstr ""
+
+#. URI of the plugin
+#: semrs-pro.php
+msgid "https://semrs.com/"
+msgstr ""
+
+#. Author of the plugin
+#: semrs-pro.php
+msgid "SEMRS"
+msgstr ""
+
+#: includes/license.php:18 includes/license.php:154
+msgid "SEMRS Pro License"
+msgstr ""
+
+#: includes/license.php:18
+msgid "License"
+msgstr ""
+
+#: includes/license.php:58
+msgid "The license server did not answer correctly. Try again in a few minutes."
+msgstr ""
+
+#: includes/license.php:68 modules/redirects.php:129
+msgid "Not allowed."
+msgstr ""
+
+#: includes/license.php:91
+msgid "Removed from this site. The server could not be reached, so the slot will free itself after 30 days without checks."
+msgstr ""
+
+#: includes/license.php:126
+msgid "Activate your SEMRS Pro license to get automatic updates and support."
+msgstr ""
+
+#: includes/license.php:128 includes/license.php:174
+msgid "Activate license"
+msgstr ""
+
+#: includes/license.php:144
+msgid "Active"
+msgstr ""
+
+#: includes/license.php:145
+msgid "Expired"
+msgstr ""
+
+#: includes/license.php:146
+msgid "Invalid"
+msgstr ""
+
+#: includes/license.php:147
+msgid "Site limit reached"
+msgstr ""
+
+#: includes/license.php:148
+msgid "Not checked yet"
+msgstr ""
+
+#: includes/license.php:149
+msgid "Not activated"
+msgstr ""
+
+#: includes/license.php:159
+msgid "Status:"
+msgstr ""
+
+#. translators: %s: date
+#: includes/license.php:162
+#, php-format
+msgid "Updates and support until %s"
+msgstr ""
+
+#: includes/license.php:170
+msgid "Deactivate license"
+msgstr ""
+
+#: includes/license.php:171
+msgid "Deactivate before moving SEMRS Pro to another site, so the slot is freed."
+msgstr ""
+
+#: includes/license.php:176
+msgid "Remove key"
+msgstr ""
+
+#: includes/license.php:178
+msgid "Your key is in your purchase email. Local and staging sites do not use a site slot."
+msgstr ""
+
+#: includes/license.php:181
+msgid "Pro features never switch off when a license expires; the license controls updates and support."
+msgstr ""
+
+#: modules/ads-pro.php:79
+msgid "Pro: repeat in content every N paragraphs"
+msgstr ""
+
+#: modules/ads-pro.php:80
+msgid "Pro: between posts on blog and category pages"
+msgstr ""
+
+#: modules/ads-pro.php:243 modules/ads-pro.php:361
+msgid "It looks like you use an ad blocker. Ads keep this site free; please consider allowing them here. Thank you!"
+msgstr ""
+
+#: modules/ads-pro.php:245 modules/popups.php:236
+msgid "Close"
+msgstr ""
+
+#: modules/ads-pro.php:352
+msgid "Repeat in content"
+msgstr ""
+
+#: modules/ads-pro.php:352
+msgid "Every"
+msgstr ""
+
+#: modules/ads-pro.php:352
+msgid "paragraphs after the first ad"
+msgstr ""
+
+#: modules/ads-pro.php:352
+msgid "Switch on \"Pro: repeat in content\" in the positions table. \"Maximum in-content ads\" and \"Minimum paragraphs between ads\" still apply."
+msgstr ""
+
+#: modules/ads-pro.php:353
+msgid "Between posts in lists"
+msgstr ""
+
+#: modules/ads-pro.php:353
+msgid "After every"
+msgstr ""
+
+#: modules/ads-pro.php:353
+msgid "posts, at most"
+msgstr ""
+
+#: modules/ads-pro.php:353
+msgid "per page"
+msgstr ""
+
+#: modules/ads-pro.php:354
+msgid "Click protection"
+msgstr ""
+
+#: modules/ads-pro.php:355
+msgid "Stop showing ads to a visitor who clicks ads too often"
+msgstr ""
+
+#: modules/ads-pro.php:356
+msgid "clicks within"
+msgstr ""
+
+#: modules/ads-pro.php:356
+msgid "hours → no ads for"
+msgstr ""
+
+#: modules/ads-pro.php:356 modules/ads-pro.php:386
+msgid "days"
+msgstr ""
+
+#: modules/ads-pro.php:357
+msgid "Protects your AdSense account from accidental or deliberate invalid clicks. Ad requests are paused for that visitor (Auto ads too). Stored only in the visitor's browser."
+msgstr ""
+
+#: modules/ads-pro.php:359
+msgid "Ad-blocker message"
+msgstr ""
+
+#: modules/ads-pro.php:360
+msgid "Show a polite, dismissible note to visitors with an ad blocker"
+msgstr ""
+
+#: modules/ads-pro.php:362
+msgid "Content is never blocked. Once closed, it stays hidden for 7 days."
+msgstr ""
+
+#: modules/ads-pro.php:366
+msgid "Targeting and A/B rotation per position"
+msgstr ""
+
+#: modules/ads-pro.php:367
+msgid "Leave everything empty to show a position everywhere ads are allowed. Variant B: a second AdSense slot ID or custom code; each page view shows A or B at random. Compare the two units in your AdSense reports."
+msgstr ""
+
+#: modules/ads-pro.php:369 modules/layouts.php:136
+msgid "Position"
+msgstr ""
+
+#: modules/ads-pro.php:369
+msgid "Only in categories"
+msgstr ""
+
+#: modules/ads-pro.php:369
+msgid "Never in categories"
+msgstr ""
+
+#: modules/ads-pro.php:369
+msgid "Post age and dates"
+msgstr ""
+
+#: modules/ads-pro.php:369
+msgid "Variant B"
+msgstr ""
+
+#: modules/ads-pro.php:377
+msgid "Hide for logged-in users"
+msgstr ""
+
+#: modules/ads-pro.php:386
+msgid "Older than"
+msgstr ""
+
+#: modules/ads-pro.php:387 modules/redirects.php:228
+msgid "From"
+msgstr ""
+
+#: modules/ads-pro.php:388
+msgid "Until"
+msgstr ""
+
+#: modules/ads-pro.php:390
+msgid "AdSense slot ID"
+msgstr ""
+
+#: modules/ads-pro.php:390
+msgid "or custom code"
+msgstr ""
+
+#: modules/ads-pro.php:404
+msgid "Ad positions on this page"
+msgstr ""
+
+#: modules/ads-pro.php:418
+msgid "Untick a position to turn it off on this page only."
+msgstr ""
+
+#: modules/blocks-pro.php:17
+msgid "SEMRS Pro blocks need the free SEMRS Blocks plugin. Install and activate it to use sliders, counters, 3D models and scroll animations."
+msgstr ""
+
+#: modules/blocks-pro.php:32
+msgid "Slider / Carousel (Pro)"
+msgstr ""
+
+#: modules/blocks-pro.php:38
+msgid "Content"
+msgstr ""
+
+#: modules/blocks-pro.php:39
+msgid "Display"
+msgstr ""
+
+#: modules/blocks-pro.php:40
+msgid "Motion"
+msgstr ""
+
+#: modules/blocks-pro.php:43
+msgid "Slides from"
+msgstr ""
+
+#: modules/blocks-pro.php:43 modules/blocks-pro.php:44
+msgid "Images"
+msgstr ""
+
+#: modules/blocks-pro.php:43
+msgid "Posts (carousel)"
+msgstr ""
+
+#: modules/blocks-pro.php:45
+msgid "Post type"
+msgstr ""
+
+#: modules/blocks-pro.php:46
+msgid "Category"
+msgstr ""
+
+#: modules/blocks-pro.php:47
+msgid "Number of posts"
+msgstr ""
+
+#: modules/blocks-pro.php:48
+msgid "Slides visible (desktop)"
+msgstr ""
+
+#: modules/blocks-pro.php:49
+msgid "Height (px, 0 = auto)"
+msgstr ""
+
+#: modules/blocks-pro.php:50
+msgid "Show captions / titles"
+msgstr ""
+
+#: modules/blocks-pro.php:51
+msgid "Arrows"
+msgstr ""
+
+#: modules/blocks-pro.php:52
+msgid "Dots"
+msgstr ""
+
+#: modules/blocks-pro.php:53
+msgid "Autoplay (pauses on hover and focus)"
+msgstr ""
+
+#: modules/blocks-pro.php:54
+msgid "Seconds per slide"
+msgstr ""
+
+#: modules/blocks-pro.php:55
+msgid "Loop back to the first slide"
+msgstr ""
+
+#: modules/blocks-pro.php:60
+msgid "Animated Counter (Pro)"
+msgstr ""
+
+#: modules/blocks-pro.php:66
+msgid "Number"
+msgstr ""
+
+#: modules/blocks-pro.php:67
+msgid "Before (e.g. $)"
+msgstr ""
+
+#: modules/blocks-pro.php:68
+msgid "After (e.g. + or %)"
+msgstr ""
+
+#: modules/blocks-pro.php:69
+msgid "Label"
+msgstr ""
+
+#: modules/blocks-pro.php:70
+msgid "Icon"
+msgstr ""
+
+#: modules/blocks-pro.php:71
+msgid "Animation length (seconds)"
+msgstr ""
+
+#: modules/blocks-pro.php:72
+msgid "Number colour"
+msgstr ""
+
+#: modules/blocks-pro.php:77
+msgid "3D Model Viewer (Pro)"
+msgstr ""
+
+#: modules/blocks-pro.php:83
+msgid "3D model file URL (.glb or .gltf)"
+msgstr ""
+
+#: modules/blocks-pro.php:84
+msgid "Poster image (shown while loading)"
+msgstr ""
+
+#: modules/blocks-pro.php:85
+msgid "Description (for screen readers)"
+msgstr ""
+
+#: modules/blocks-pro.php:86
+msgid "Height (px)"
+msgstr ""
+
+#: modules/blocks-pro.php:87
+msgid "Auto-rotate"
+msgstr ""
+
+#: modules/blocks-pro.php:88
+msgid "Let visitors rotate and zoom"
+msgstr ""
+
+#: modules/blocks-pro.php:89
+msgid "View in your room (AR on phones)"
+msgstr ""
+
+#: modules/blocks-pro.php:90
+msgid "Background"
+msgstr ""
+
+#: modules/blocks-pro.php:159
+msgid "Add images or choose posts for the slider."
+msgstr ""
+
+#. translators: 1: slide number, 2: total
+#: modules/blocks-pro.php:166
+#, php-format
+msgid "%1$d of %2$d"
+msgstr ""
+
+#: modules/blocks-pro.php:170
+msgid "Slider"
+msgstr ""
+
+#: modules/blocks-pro.php:177
+msgid "Previous slide"
+msgstr ""
+
+#: modules/blocks-pro.php:177
+msgid "Next slide"
+msgstr ""
+
+#: modules/blocks-pro.php:178
+msgid "Choose slide"
+msgstr ""
+
+#: modules/blocks-pro.php:213
+msgid "Add the URL of a .glb or .gltf file (upload it to the Media Library or use a free model, e.g. from Poly Haven)."
+msgstr ""
+
+#: modules/conditions.php:23
+msgid "Front page"
+msgstr ""
+
+#: modules/conditions.php:24
+msgid "Single posts"
+msgstr ""
+
+#: modules/conditions.php:25
+msgid "Pages"
+msgstr ""
+
+#: modules/conditions.php:26
+msgid "Blog, category and tag archives"
+msgstr ""
+
+#: modules/conditions.php:27
+msgid "Search results"
+msgstr ""
+
+#: modules/conditions.php:28
+msgid "404 page"
+msgstr ""
+
+#: modules/dark-mode.php:25
+msgid "Dark mode switch (Pro): add the \"Dark / light switch\" element to a header row"
+msgstr ""
+
+#: modules/dark-mode.php:28
+msgid "Off"
+msgstr ""
+
+#: modules/dark-mode.php:29
+msgid "Switch, starts light"
+msgstr ""
+
+#: modules/dark-mode.php:30
+msgid "Switch, starts with the visitor's device setting"
+msgstr ""
+
+#: modules/dark-mode.php:53
+msgid "Dark / light switch (Pro)"
+msgstr ""
+
+#: modules/dark-mode.php:67
+msgid "Dark mode"
+msgstr ""
+
+#: modules/indexnow.php:110 modules/indexnow.php:124 semrs-pro.php:68
+msgid "IndexNow"
+msgstr ""
+
+#: modules/indexnow.php:125
+msgid "New, updated and deleted posts and pages are submitted automatically to IndexNow search engines (Bing, Yandex, Seznam, Naver and others). Google does not use IndexNow; it reads your XML sitemap."
+msgstr ""
+
+#: modules/indexnow.php:126
+msgid "Key file:"
+msgstr ""
+
+#: modules/indexnow.php:128
+msgid "This looks like a local or staging site, so submissions are paused. They start automatically on your live site."
+msgstr ""
+
+#: modules/indexnow.php:130
+msgid "Recent submissions"
+msgstr ""
+
+#: modules/indexnow.php:133
+msgid "Nothing submitted yet."
+msgstr ""
+
+#: modules/languages.php:112 modules/languages.php:152 semrs-pro.php:76
+msgid "Languages"
+msgstr ""
+
+#. translators: %s: plugin name
+#: modules/languages.php:157
+#, php-format
+msgid "%s is active: the SEMRS language switcher shows its languages and SEMRS does not add hreflang tags."
+msgstr ""
+
+#: modules/languages.php:164
+msgid "Site languages"
+msgstr ""
+
+#: modules/languages.php:166
+msgid "One per line: language code | name, e.g. \"fr | Français\". Use ISO codes (en, fr, de, es, ar, ur…); add a region when needed (en-GB). The first line is your main language."
+msgstr ""
+
+#: modules/languages.php:168
+msgid "Switcher"
+msgstr ""
+
+#: modules/languages.php:169
+msgid "Dropdown"
+msgstr ""
+
+#: modules/languages.php:169
+msgid "Inline list"
+msgstr ""
+
+#: modules/languages.php:170
+msgid "Show codes (EN, FR)"
+msgstr ""
+
+#: modules/languages.php:170
+msgid "Show names (English, Français)"
+msgstr ""
+
+#: modules/languages.php:171
+msgid "Add it with Customize → SEMRS Theme → Header builder → \"Language switcher\", or anywhere with the [semrs_languages] shortcode."
+msgstr ""
+
+#: modules/languages.php:173
+msgid "Machine translation"
+msgstr ""
+
+#: modules/languages.php:174
+msgid "For a language without a translation of the current page, link to Google Translate"
+msgstr ""
+
+#: modules/languages.php:175
+msgid "Shown with a \"machine translation\" note and nofollow, so search engines only index your real translations. Works on public sites (not on localhost)."
+msgstr ""
+
+#: modules/languages.php:180
+msgid "How to add a translation"
+msgstr ""
+
+#: modules/languages.php:182
+msgid "Create a new page (or post) and write the translated text, title and SEO description."
+msgstr ""
+
+#: modules/languages.php:183
+msgid "In \"Language & translations\" choose its language and pick the original page; save. Both pages are now linked both ways."
+msgstr ""
+
+#: modules/languages.php:184
+msgid "Tip: give translations a clear address, e.g. a parent page \"fr\" so the URL becomes /fr/your-page/."
+msgstr ""
+
+#: modules/languages.php:201
+msgid "Language & translations"
+msgstr ""
+
+#: modules/languages.php:219
+msgid "Language of this page"
+msgstr ""
+
+#: modules/languages.php:223
+msgid "Translations"
+msgstr ""
+
+#: modules/languages.php:225
+msgid "— none —"
+msgstr ""
+
+#: modules/languages.php:403
+msgid "(machine translation)"
+msgstr ""
+
+#: modules/languages.php:408 modules/languages.php:412
+msgid "Language"
+msgstr ""
+
+#: modules/languages.php:414
+msgid "Change language"
+msgstr ""
+
+#: modules/languages.php:441
+msgid "Language switcher (Pro)"
+msgstr ""
+
+#: modules/layouts.php:18
+msgid "Top of page (before header)"
+msgstr ""
+
+#: modules/layouts.php:19
+msgid "After header"
+msgstr ""
+
+#: modules/layouts.php:20
+msgid "Top of content area"
+msgstr ""
+
+#: modules/layouts.php:21
+msgid "Before post/page content"
+msgstr ""
+
+#: modules/layouts.php:22
+msgid "After post/page content"
+msgstr ""
+
+#: modules/layouts.php:23
+msgid "Bottom of content area"
+msgstr ""
+
+#: modules/layouts.php:24
+msgid "Before footer"
+msgstr ""
+
+#: modules/layouts.php:25
+msgid "After footer"
+msgstr ""
+
+#: modules/layouts.php:67
+msgid "Entire site"
+msgstr ""
+
+#: modules/layouts.php:68
+msgid "Front page only"
+msgstr ""
+
+#: modules/layouts.php:69
+msgid "All blog posts"
+msgstr ""
+
+#: modules/layouts.php:70
+msgid "All pages"
+msgstr ""
+
+#: modules/layouts.php:71
+msgid "Blog, archives and search"
+msgstr ""
+
+#: modules/layouts.php:72
+msgid "Pages under /tools/"
+msgstr ""
+
+#: modules/layouts.php:73
+msgid "Pages under /services/"
+msgstr ""
+
+#: modules/layouts.php:74
+msgid "Only the IDs listed below"
+msgstr ""
+
+#: modules/layouts.php:86 semrs-pro.php:70
+msgid "Site Layouts"
+msgstr ""
+
+#: modules/layouts.php:87
+msgid "Site Layout"
+msgstr ""
+
+#: modules/layouts.php:88
+msgid "Add site layout"
+msgstr ""
+
+#: modules/layouts.php:104
+msgid "Where to show"
+msgstr ""
+
+#: modules/layouts.php:138 modules/popups.php:130
+msgid "Show on"
+msgstr ""
+
+#: modules/layouts.php:144
+msgid "Page/post IDs (for \"Only the IDs\")"
+msgstr ""
+
+#: modules/layouts.php:146
+msgid "Never show on IDs"
+msgstr ""
+
+#: modules/layouts.php:148
+msgid "Order (lower runs first)"
+msgstr ""
+
+#: modules/leads.php:27
+msgid "Thank-you page path (after form submit)"
+msgstr ""
+
+#: modules/leads.php:32
+msgid "Leave empty to stay on the form page. Fires GA4 \"generate_lead\" either way."
+msgstr ""
+
+#: modules/local-seo.php:28
+msgid "Business type"
+msgstr ""
+
+#: modules/local-seo.php:29
+msgid "Street address"
+msgstr ""
+
+#: modules/local-seo.php:30
+msgid "City"
+msgstr ""
+
+#: modules/local-seo.php:31
+msgid "State / province / county"
+msgstr ""
+
+#: modules/local-seo.php:32
+msgid "ZIP / postal code"
+msgstr ""
+
+#: modules/local-seo.php:33
+msgid "Country code (US, GB, CA, AU, NZ, IE…)"
+msgstr ""
+
+#: modules/local-seo.php:34
+msgid "Phone (international format)"
+msgstr ""
+
+#: modules/local-seo.php:35
+msgid "Email"
+msgstr ""
+
+#: modules/local-seo.php:36
+msgid "Latitude"
+msgstr ""
+
+#: modules/local-seo.php:37
+msgid "Longitude"
+msgstr ""
+
+#: modules/local-seo.php:38
+msgid "Areas served (comma-separated)"
+msgstr ""
+
+#: modules/local-seo.php:39
+msgid "Google Business Profile URL"
+msgstr ""
+
+#: modules/local-seo.php:40
+msgid "Price range (e.g. $$)"
+msgstr ""
+
+#: modules/local-seo.php:61
+msgid "Locations"
+msgstr ""
+
+#: modules/local-seo.php:62
+msgid "Location"
+msgstr ""
+
+#: modules/local-seo.php:63
+msgid "Add location"
+msgstr ""
+
+#: modules/local-seo.php:98
+msgid "Location details (NAP, hours, map)"
+msgstr ""
+
+#: modules/local-seo.php:110
+msgid "Use the exact name, address and phone number shown on this location’s Google Business Profile. Real addresses only."
+msgstr ""
+
+#: modules/local-seo.php:124
+msgid "Opening hours"
+msgstr ""
+
+#: modules/local-seo.php:135
+msgid "Leave both times empty for closed days."
+msgstr ""
+
+#: modules/local-seo.php:204
+msgid "Closed"
+msgstr ""
+
+#: modules/local-seo.php:209
+msgid "Directions"
+msgstr ""
+
+#: modules/local-seo.php:212
+msgid "Google reviews"
+msgstr ""
+
+#: modules/local-seo.php:218
+msgid "Areas served:"
+msgstr ""
+
+#: modules/patterns.php:18
+msgid "SEMRS Pro: Service cards (3 columns)"
+msgstr ""
+
+#: modules/patterns.php:19
+msgid "SEMRS Pro: 6-step process with approval step"
+msgstr ""
+
+#: modules/patterns.php:20
+msgid "SEMRS Pro: Pricing cards (3 plans)"
+msgstr ""
+
+#: modules/patterns.php:21
+msgid "SEMRS Pro: Free tool + service CTA + ad slot"
+msgstr ""
+
+#: modules/patterns.php:22
+msgid "SEMRS Pro: Contact form section"
+msgstr ""
+
+#: modules/popups.php:28 modules/popups.php:32 semrs-pro.php:75
+msgid "Popups"
+msgstr ""
+
+#: modules/popups.php:29
+msgid "Popup"
+msgstr ""
+
+#: modules/popups.php:30
+msgid "Add popup"
+msgstr ""
+
+#: modules/popups.php:31
+msgid "Edit popup"
+msgstr ""
+
+#: modules/popups.php:79
+msgid "Popup settings"
+msgstr ""
+
+#: modules/popups.php:100
+msgid "Style"
+msgstr ""
+
+#: modules/popups.php:101
+msgid "Centred box (bottom sheet on phones)"
+msgstr ""
+
+#: modules/popups.php:101
+msgid "Bottom bar"
+msgstr ""
+
+#: modules/popups.php:101
+msgid "Slide-in, bottom right"
+msgstr ""
+
+#: modules/popups.php:102
+msgid "Width (px)"
+msgstr ""
+
+#: modules/popups.php:103
+msgid "Dark overlay behind (centred only)"
+msgstr ""
+
+#: modules/popups.php:105
+msgid "Open"
+msgstr ""
+
+#: modules/popups.php:106
+msgid "After a delay"
+msgstr ""
+
+#: modules/popups.php:106
+msgid "After scrolling"
+msgstr ""
+
+#: modules/popups.php:106
+msgid "When leaving (exit intent, desktop)"
+msgstr ""
+
+#: modules/popups.php:106
+msgid "Only when a link is clicked"
+msgstr ""
+
+#: modules/popups.php:107
+msgid "Delay (s)"
+msgstr ""
+
+#: modules/popups.php:108
+msgid "Scroll (%)"
+msgstr ""
+
+#. translators: %s: link example
+#: modules/popups.php:112
+#, php-format
+msgid "Any link to %s also opens this popup."
+msgstr ""
+
+#: modules/popups.php:116
+msgid "How often"
+msgstr ""
+
+#: modules/popups.php:117
+msgid "Every page view"
+msgstr ""
+
+#: modules/popups.php:117
+msgid "Once per visit"
+msgstr ""
+
+#: modules/popups.php:117
+msgid "Once every N days"
+msgstr ""
+
+#: modules/popups.php:119
+msgid "Remembered in the visitor's browser (local storage); no cookie is set."
+msgstr ""
+
+#: modules/popups.php:121
+msgid "Devices"
+msgstr ""
+
+#: modules/popups.php:122
+msgid "Desktop"
+msgstr ""
+
+#: modules/popups.php:122
+msgid "Tablet"
+msgstr ""
+
+#: modules/popups.php:122
+msgid "Phone"
+msgstr ""
+
+#: modules/popups.php:125
+msgid "Google may rank pages lower on phones when a popup covers the content as soon as the page opens. Prefer the bottom bar, a scroll trigger or a click trigger on phones."
+msgstr ""
+
+#: modules/popups.php:127
+msgid "Show to"
+msgstr ""
+
+#: modules/popups.php:128
+msgid "Everyone"
+msgstr ""
+
+#: modules/popups.php:128
+msgid "Logged-out visitors"
+msgstr ""
+
+#: modules/popups.php:128
+msgid "Logged-in visitors"
+msgstr ""
+
+#: modules/popups.php:134
+msgid "Or only these page/post IDs:"
+msgstr ""
+
+#: modules/popups.php:135
+msgid "Never on IDs:"
+msgstr ""
+
+#: modules/popups.php:136
+msgid "Nothing ticked and no IDs = every page."
+msgstr ""
+
+#: modules/proof.php:22
+msgid "Case Studies"
+msgstr ""
+
+#: modules/proof.php:23
+msgid "Case Study"
+msgstr ""
+
+#: modules/proof.php:24
+msgid "Add case study"
+msgstr ""
+
+#: modules/proof.php:39
+msgid "Portfolio"
+msgstr ""
+
+#: modules/proof.php:40
+msgid "Portfolio Item"
+msgstr ""
+
+#: modules/proof.php:41
+msgid "Add portfolio item"
+msgstr ""
+
+#: modules/proof.php:56
+msgid "Testimonials"
+msgstr ""
+
+#: modules/proof.php:57
+msgid "Testimonial"
+msgstr ""
+
+#: modules/proof.php:58
+msgid "Add testimonial"
+msgstr ""
+
+#: modules/proof.php:79 modules/proof.php:85
+msgid "Client name"
+msgstr ""
+
+#: modules/proof.php:80
+msgid "Industry"
+msgstr ""
+
+#: modules/proof.php:81
+msgid "Country"
+msgstr ""
+
+#: modules/proof.php:82
+msgid "Evidence link (GSC/GA4 screenshot folder, report)"
+msgstr ""
+
+#: modules/proof.php:86
+msgid "Live site URL"
+msgstr ""
+
+#: modules/proof.php:87
+msgid "Services delivered"
+msgstr ""
+
+#: modules/proof.php:90
+msgid "Person name"
+msgstr ""
+
+#: modules/proof.php:91
+msgid "Company / role"
+msgstr ""
+
+#: modules/proof.php:92
+msgid "Source link (Google review, LinkedIn, email on file)"
+msgstr ""
+
+#: modules/proof.php:102
+msgid "Proof & permission"
+msgstr ""
+
+#: modules/proof.php:126
+msgid "Written client permission is on file"
+msgstr ""
+
+#: modules/proof.php:127
+msgid "Required before this can be published or shown. Brand rule: no proof without permission."
+msgstr ""
+
+#: modules/proof.php:170
+msgid "Saved as draft: tick \"Written client permission is on file\" before publishing."
+msgstr ""
+
+#: modules/proof.php:206
+msgid "View source"
+msgstr ""
+
+#: modules/redirects.php:62
+msgid "This page has been permanently removed."
+msgstr ""
+
+#: modules/redirects.php:62
+msgid "Gone"
+msgstr ""
+
+#: modules/redirects.php:120 modules/redirects.php:209
+msgid "Redirects"
+msgstr ""
+
+#. translators: %d: count
+#: modules/redirects.php:211
+#, php-format
+msgid "Imported %d redirects from Rank Math."
+msgstr ""
+
+#. translators: %d: count
+#: modules/redirects.php:211
+msgid "Saved."
+msgstr ""
+
+#. translators: %d: count */ __( 'Imported %d redirects from Rank Math.', 'semrs-pro' ), (int) substr( $msg, 9 ) ) : __( 'Saved.', 'semrs-pro' ) ); ?></p></div> <?php endif; ?> <?php if ( ! semrs_seo_active() ) : ?> <div class="notice notice-warning inline"><p><?php echo esc_html( sprintf( /* translators: %s: plugin
+#: modules/redirects.php:214
+#, php-format
+msgid "%s is active, so these redirects are paused. Import its redirects now; they start working when you deactivate it."
+msgstr ""
+
+#: modules/redirects.php:217
+msgid "Add redirect"
+msgstr ""
+
+#: modules/redirects.php:224
+msgid "Add"
+msgstr ""
+
+#: modules/redirects.php:227
+msgid "Active redirects"
+msgstr ""
+
+#: modules/redirects.php:228
+msgid "To"
+msgstr ""
+
+#: modules/redirects.php:228
+msgid "Type"
+msgstr ""
+
+#: modules/redirects.php:230
+msgid "Delete"
+msgstr ""
+
+#: modules/redirects.php:232
+msgid "No redirects yet."
+msgstr ""
+
+#: modules/redirects.php:234
+msgid "Import active redirects from Rank Math"
+msgstr ""
+
+#: modules/redirects.php:236
+msgid "404 log"
+msgstr ""
+
+#: modules/redirects.php:237
+msgid "Recent \"not found\" URLs. Redirect the ones that had real content or real links; ignore random junk."
+msgstr ""
+
+#: modules/redirects.php:238
+msgid "URL"
+msgstr ""
+
+#: modules/redirects.php:238
+msgid "Hits"
+msgstr ""
+
+#: modules/redirects.php:238
+msgid "Last seen"
+msgstr ""
+
+#: modules/redirects.php:252
+msgid "ago"
+msgstr ""
+
+#: modules/redirects.php:254
+msgid "Redirect"
+msgstr ""
+
+#: modules/redirects.php:258
+msgid "No 404s logged."
+msgstr ""
+
+#: modules/redirects.php:262
+msgid "Clear 404 log"
+msgstr ""
+
+#: modules/seo-bulk.php:18 modules/seo-bulk.php:82 semrs-pro.php:78
+msgid "Bulk SEO editor"
+msgstr ""
+
+#: modules/seo-bulk.php:18
+msgid "Bulk SEO"
+msgstr ""
+
+#: modules/seo-bulk.php:29 modules/seo-bulk.php:84
+msgid "Switch on the SEO module in SEMRS → Features first."
+msgstr ""
+
+#. translators: %d: posts
+#: modules/seo-bulk.php:114
+#, php-format
+msgid "%d post updated."
+msgid_plural "%d posts updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: modules/seo-bulk.php:130
+msgid "Search titles"
+msgstr ""
+
+#: modules/seo-bulk.php:131
+msgid "Only posts without their own meta description"
+msgstr ""
+
+#: modules/seo-bulk.php:132
+msgid "Filter"
+msgstr ""
+
+#: modules/seo-bulk.php:139
+msgid "Post"
+msgstr ""
+
+#: modules/seo-bulk.php:139
+msgid "Focus keyword"
+msgstr ""
+
+#: modules/seo-bulk.php:139
+msgid "SEO title"
+msgstr ""
+
+#: modules/seo-bulk.php:139
+msgid "Meta description"
+msgstr ""
+
+#: modules/seo-bulk.php:139 modules/seo-bulk.php:160
+msgid "Noindex"
+msgstr ""
+
+#: modules/seo-bulk.php:142
+msgid "Nothing found."
+msgstr ""
+
+#: modules/seo-bulk.php:154
+msgid "(no title)"
+msgstr ""
+
+#: modules/seo-bulk.php:165
+msgid "Grey text is what is used now (from the title template or data imported from Rank Math, Yoast or AIOSEO). Leave a field empty to keep using it. Scores update when you save."
+msgstr ""
+
+#: modules/seo-bulk.php:166
+msgid "Save changes"
+msgstr ""
+
+#: modules/speed-pro.php:86
+msgid "Delay JavaScript until the visitor interacts"
+msgstr ""
+
+#: modules/speed-pro.php:87
+msgid "On"
+msgstr ""
+
+#: modules/speed-pro.php:88
+msgid "Matching scripts wait until the first scroll, tap, mouse move or key press, then run in their original order. Ad scripts such as AdSense are never delayed."
+msgstr ""
+
+#: modules/speed-pro.php:90
+msgid "One pattern per line, matched against the script address or its inline code."
+msgstr ""
+
+#: modules/speed-pro.php:91
+msgid "Also run them after"
+msgstr ""
+
+#: modules/speed-pro.php:91
+msgid "seconds without interaction (0 = only on interaction)"
+msgstr ""
+
+#: modules/speed-pro.php:93
+msgid "Cache preload"
+msgstr ""
+
+#: modules/speed-pro.php:94
+msgid "Rebuild the page cache in the background after it clears"
+msgstr ""
+
+#: modules/speed-pro.php:95
+msgid "Visits the homepage and your 200 newest pages, a few at a time, for phones and computers. Needs the page cache to be on."
+msgstr ""
+
+#: modules/speed-pro.php:97
+msgid "CDN address"
+msgstr ""
+
+#: modules/speed-pro.php:99
+msgid "Images, CSS, JavaScript and fonts from wp-content and wp-includes are loaded from this address. Leave empty if you do not use a pull CDN (Cloudflare does not need this)."
+msgstr ""
+
+#: modules/theme-pro.php:27
+msgid "Table of contents on posts, 3+ headings (Pro)"
+msgstr ""
+
+#: modules/theme-pro.php:28
+msgid "White label: theme name shown in Appearance → Themes (Pro)"
+msgstr ""
+
+#: modules/theme-pro.php:117
+msgid "On this page"
+msgstr ""
+
+#: semrs-pro.php:65
+msgid "Theme Pro"
+msgstr ""
+
+#: semrs-pro.php:65
+msgid "Mega menu, dark mode switch, automatic table of contents, extra section patterns and white label (needs the SEMRS theme; the header builder, sticky header, author box and related posts are free in the theme)."
+msgstr ""
+
+#: semrs-pro.php:66
+msgid "Redirects & 404 log"
+msgstr ""
+
+#: semrs-pro.php:66
+msgid "301/302/307/410 redirects with wildcards, loop protection, 404 log with one-click redirect, Rank Math redirect import."
+msgstr ""
+
+#: semrs-pro.php:67
+msgid "Local SEO (multi-location)"
+msgstr ""
+
+#: semrs-pro.php:67
+msgid "Locations with address, phone, hours, map and service areas; LocalBusiness schema per location; [semrs_locations] directory and [semrs_location] card shortcodes."
+msgstr ""
+
+#: semrs-pro.php:68
+msgid "Notifies Bing, Yandex, Seznam and other IndexNow search engines instantly when you publish, update or delete content."
+msgstr ""
+
+#: semrs-pro.php:69
+msgid "Image SEO"
+msgstr ""
+
+#: semrs-pro.php:69
+msgid "Fills missing alt text and titles from clean file names on upload, and adds missing alt text to images in content."
+msgstr ""
+
+#: semrs-pro.php:70
+msgid "Show any block content at a theme position with display rules (custom hooks)."
+msgstr ""
+
+#: semrs-pro.php:71
+msgid "Proof"
+msgstr ""
+
+#: semrs-pro.php:71
+msgid "Case Studies, Portfolio and Testimonials with permission gates."
+msgstr ""
+
+#: semrs-pro.php:72
+msgid "Lead tracking"
+msgstr ""
+
+#: semrs-pro.php:72
+msgid "Contact Form 7 → GA4 generate_lead → thank-you page."
+msgstr ""
+
+#: semrs-pro.php:73
+msgid "Pro Blocks"
+msgstr ""
+
+#: semrs-pro.php:73
+msgid "Slider / carousel, animated counter, 3D model viewer and scroll animations on every block (needs the free SEMRS Blocks plugin)."
+msgstr ""
+
+#: semrs-pro.php:74
+msgid "Display conditions"
+msgstr ""
+
+#: semrs-pro.php:74
+msgid "Show any block only to logged-in or logged-out visitors, certain roles, between dates or on certain pages."
+msgstr ""
+
+#: semrs-pro.php:75
+msgid "Popups built with the block editor: centred, bottom bar or slide-in; delay, scroll, exit-intent or click triggers; frequency and page targeting. Phone-friendly and ad-free by design."
+msgstr ""
+
+#: semrs-pro.php:76
+msgid "Language switcher with linked translations, hreflang tags and the right html lang; optional Google Translate for untranslated pages. Works with Polylang and WPML."
+msgstr ""
+
+#: semrs-pro.php:77
+msgid "Pro starter sites"
+msgstr ""
+
+#: semrs-pro.php:77
+msgid "Extra starter sites for the SEMRS templates library (Consultant, Clinic) with Pro sections: services in tabs and a latest-articles slider."
+msgstr ""
+
+#: semrs-pro.php:78
+msgid "Edit SEO titles, meta descriptions, focus keywords and noindex for many posts on one screen, with length counters and filters (needs the SEO module)."
+msgstr ""
+
+#: semrs-pro.php:79
+msgid "Speed Pro"
+msgstr ""
+
+#: semrs-pro.php:79
+msgid "Delay analytics, pixel and chat scripts until the visitor interacts, preload the page cache in the background, and serve files from a CDN (needs the Speed module)."
+msgstr ""
+
+#: semrs-pro.php:80
+msgid "Ads Pro"
+msgstr ""
+
+#: semrs-pro.php:80
+msgid "More placements (repeat in content, between posts in lists), targeting by category, post age and dates, A/B rotation, click protection, a polite ad-blocker message and per-page position switches (needs the Ads module)."
+msgstr ""
+
+#: semrs-pro.php:95
+msgid "SEMRS Pro needs the free SEMRS Core plugin. Please install and activate it."
+msgstr ""
+

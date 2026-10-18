@@ -1,0 +1,68 @@
+/*
+Theme Name:   SEMRS Child SEO
+Theme URI:    https://semrs.com/
+Description:  SEMRS brand layer for the SEMRS theme: navy/gold brand tokens, sticky mobile CTA bar and WhatsApp button. Rebrand by editing the tokens at the top.
+Author:       SEMRS
+Author URI:   https://semrs.com/
+Template:     semrs
+Version:      1.2.0
+Requires at least: 6.5
+Tested up to: 7.1
+Requires PHP: 7.4
+Update URI:   https://semrs.com/updates/semrs-child-seo
+License:      GPL-2.0-or-later
+License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:  semrs-child-seo
+*/
+
+/* =========================================================
+   1. Brand tokens → mapped onto SEMRS theme variables
+   WCAG AA checked: see README.md
+   ========================================================= */
+:root {
+	--semrs-navy-900: #0b1f3a;
+	--semrs-navy-700: #1e3a66;
+	--semrs-navy-100: #e8eef7;
+	--semrs-gold-500: #d4a72c;
+	--semrs-gold-700: #8c6a0e;
+	--semrs-gold-100: #fbf4e0;
+	--semrs-ink: #1f2937;
+	--semrs-muted: #5b6575;
+	--semrs-line: #e3e7ee;
+	--semrs-surface: #f6f7f9;
+	--semrs-success: #0f7b4d;
+	--semrs-error: #b42318;
+	--semrs-radius: 12px;
+	--semrs-radius-sm: 8px;
+	--semrs-shadow: 0 1px 2px rgba(11, 31, 58, .06), 0 8px 24px rgba(11, 31, 58, .06);
+	--semrs-max: 1200px;
+	--semrs-read: 720px;
+	--semrs-space: clamp(3rem, 2rem + 4vw, 6rem);
+
+	--sp-primary: var(--semrs-navy-900);
+	--sp-accent: var(--semrs-gold-500);
+	--sp-on-accent: var(--semrs-navy-900);
+	--sp-text: var(--semrs-ink);
+	--sp-muted: var(--semrs-muted);
+	--sp-link: var(--semrs-navy-700);
+	--sp-surface: var(--semrs-surface);
+	--sp-line: var(--semrs-line);
+	--sp-radius: var(--semrs-radius);
+}
+
+/* =========================================================
+   10. Sticky mobile CTA bar + WhatsApp button
+   ========================================================= */
+.semrs-mobile-cta { display: none; }
+@media (max-width: 921px) {
+	.semrs-mobile-cta { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 998; gap: .5rem; padding: .5rem .5rem calc(.5rem + env(safe-area-inset-bottom)); background: #fff; border-top: 1px solid var(--semrs-line); box-shadow: 0 -2px 12px rgba(11, 31, 58, .08); }
+	.semrs-mobile-cta a { flex: 1 1 0; display: flex; align-items: center; justify-content: center; gap: .35rem; min-height: 48px; font-size: .875rem; font-weight: 700; color: var(--semrs-navy-900); text-decoration: none; border: 1px solid var(--semrs-line); border-radius: var(--semrs-radius-sm); }
+	.semrs-mobile-cta a.semrs-mobile-cta__primary { flex: 2 1 0; background: var(--semrs-gold-500); border-color: var(--semrs-gold-500); }
+	body.semrs-has-mobile-cta { padding-bottom: 72px; }
+	body.semrs-has-mobile-cta .sp-to-top { bottom: 84px; }
+	.semrs-whatsapp { display: none !important; }
+}
+.semrs-whatsapp { position: fixed; right: 16px; bottom: 72px; z-index: 997; width: 56px; height: 56px; display: grid; place-items: center; color: #fff; background: #128c4b; border-radius: 50%; box-shadow: var(--semrs-shadow); }
+.semrs-whatsapp svg { width: 28px; height: 28px; }
+/* Keep footer social icons clear of the floating WhatsApp button */
+@media (min-width: 922px) { body.semrs-has-whatsapp .footer-bottom { padding-right: 96px; } }

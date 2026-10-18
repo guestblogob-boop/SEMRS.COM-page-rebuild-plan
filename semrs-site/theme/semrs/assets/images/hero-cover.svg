@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 560" role="img" aria-labelledby="t">
+  <title id="t">SEO specialist with a rising traffic trend and ranking icons</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fdeee9"/><stop offset="1" stop-color="#f6d9a6"/></linearGradient>
+    <linearGradient id="suit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e3a66"/><stop offset="1" stop-color="#0b1f3a"/></linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1c4a1"/><stop offset="1" stop-color="#e2a982"/></linearGradient>
+    <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2418"/><stop offset="1" stop-color="#1f130c"/></linearGradient>
+    <linearGradient id="trend" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f7b4d" stop-opacity=".28"/><stop offset="1" stop-color="#0f7b4d" stop-opacity="0"/></linearGradient>
+    <clipPath id="disc"><circle cx="320" cy="290" r="232"/><rect x="88" y="290" width="464" height="270"/></clipPath>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0b1f3a" flood-opacity=".18"/></filter>
+  </defs>
+
+  <!-- Backdrop disc and rings -->
+  <circle cx="320" cy="290" r="232" fill="url(#bg)"/>
+  <circle cx="320" cy="290" r="262" fill="none" stroke="#0b1f3a" stroke-width="3" stroke-dasharray="2 14" stroke-linecap="round" opacity=".35"/>
+  <path d="M110 230 A222 222 0 0 1 290 70" fill="none" stroke="#e05a47" stroke-width="16" stroke-linecap="round"/>
+  <path d="M530 360 A222 222 0 0 1 420 490" fill="none" stroke="#0b1f3a" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="290" cy="70" r="9" fill="#0b1f3a"/>
+
+  <!-- Person (bust) -->
+  <g clip-path="url(#disc)">
+    <!-- Hair behind -->
+    <path d="M240 250 C232 170 276 132 322 132 C370 132 410 168 404 252 C402 300 414 360 432 420 L212 420 C232 360 242 300 240 250 Z" fill="url(#hair)"/>
+    <!-- Blazer -->
+    <path d="M140 560 C150 452 192 408 254 394 L320 430 L386 394 C448 408 490 452 500 560 Z" fill="url(#suit)"/>
+    <!-- Top -->
+    <path d="M280 398 L320 470 L360 398 L340 392 L320 404 L300 392 Z" fill="#fdf2ec"/>
+    <!-- Lapels -->
+    <path d="M254 394 L298 390 L320 470 L282 436 L290 422 Z" fill="#16305a"/>
+    <path d="M386 394 L342 390 L320 470 L358 436 L350 422 Z" fill="#16305a"/>
+    <!-- Necklace -->
+    <path d="M300 398 C306 418 334 418 340 398" fill="none" stroke="#d4a72c" stroke-width="2.5"/>
+    <circle cx="320" cy="416" r="5" fill="#d4a72c"/>
+    <!-- Neck -->
+    <path d="M300 320 L340 320 L342 392 L320 404 L298 392 Z" fill="url(#skin)"/>
+    <path d="M300 338 C312 350 328 350 340 338 L340 356 C328 366 312 366 300 356 Z" fill="#d49470" opacity=".5"/>
+    <!-- Ears and earrings -->
+    <ellipse cx="262" cy="262" rx="11" ry="17" fill="#e2a982"/>
+    <ellipse cx="378" cy="262" rx="11" ry="17" fill="#e2a982"/>
+    <circle cx="262" cy="284" r="5" fill="#d4a72c"/>
+    <circle cx="378" cy="284" r="5" fill="#d4a72c"/>
+    <!-- Face -->
+    <path d="M264 238 C264 186 292 166 320 166 C348 166 376 186 376 238 L376 274 C376 314 350 340 320 340 C290 340 264 314 264 274 Z" fill="url(#skin)"/>
+    <!-- Hair front (side part, framing the face) -->
+    <path d="M258 262 C250 186 284 150 324 150 C366 150 394 184 384 258 C380 222 368 200 344 188 C318 212 286 222 262 226 C260 236 259 248 258 262 Z" fill="url(#hair)"/>
+    <path d="M384 258 C392 300 394 340 384 380 C398 340 404 300 396 252 Z" fill="#2b1a11"/>
+    <path d="M300 168 C318 160 346 162 362 176 C344 172 322 174 306 182 Z" fill="#5a3a28" opacity=".8"/>
+    <!-- Eyebrows -->
+    <path d="M284 236 C292 230 304 230 312 235" fill="none" stroke="#2b1a11" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M330 235 C338 230 350 230 358 236" fill="none" stroke="#2b1a11" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Eyes with lashes -->
+    <ellipse cx="298" cy="254" rx="6" ry="7" fill="#2b1a11"/>
+    <ellipse cx="344" cy="254" rx="6" ry="7" fill="#2b1a11"/>
+    <circle cx="300" cy="252" r="1.8" fill="#fff"/>
+    <circle cx="346" cy="252" r="1.8" fill="#fff"/>
+    <path d="M289 248 C294 243 302 243 307 247 M290 247 L286 243 M335 247 C340 243 348 243 353 248 M352 247 L356 243" fill="none" stroke="#2b1a11" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Nose, smile, cheeks -->
+    <path d="M321 262 C318 274 317 280 324 283" fill="none" stroke="#c98762" stroke-width="3" stroke-linecap="round"/>
+    <path d="M302 298 C312 312 330 312 340 298 C330 304 312 304 302 298 Z" fill="#c4505a"/>
+    <path d="M304 299 C314 306 328 306 338 299" fill="none" stroke="#a63d48" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="286" cy="282" rx="11" ry="6" fill="#ec8f86" opacity=".45"/>
+    <ellipse cx="356" cy="282" rx="11" ry="6" fill="#ec8f86" opacity=".45"/>
+  </g>
+
+  <!-- SEO trend card (rising traffic) -->
+  <g filter="url(#sh)">
+    <rect x="430" y="132" width="156" height="118" rx="16" fill="#ffffff"/>
+  </g>
+  <g transform="translate(430 132)">
+    <text x="16" y="26" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#0b1f3a">SEO trend</text>
+    <path d="M122 24 L136 10 M126 10 L136 10 L136 20" fill="none" stroke="#0f7b4d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16 96 L44 84 L66 88 L92 62 L116 54 L140 30 L140 100 L16 100 Z" fill="url(#trend)"/>
+    <path d="M16 96 L44 84 L66 88 L92 62 L116 54 L140 30" fill="none" stroke="#0f7b4d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="140" cy="30" r="5" fill="#0f7b4d" stroke="#fff" stroke-width="2"/>
+    <line x1="16" y1="100" x2="140" y2="100" stroke="#e3e7ee" stroke-width="2"/>
+  </g>
+
+  <!-- Performance gain bars -->
+  <g filter="url(#sh)">
+    <rect x="40" y="300" width="128" height="100" rx="16" fill="#ffffff"/>
+  </g>
+  <g transform="translate(40 300)">
+    <text x="14" y="24" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="700" fill="#0b1f3a">Performance</text>
+    <rect x="16" y="62" width="16" height="22" rx="3" fill="#c3cede"/>
+    <rect x="40" y="52" width="16" height="32" rx="3" fill="#8aa0c0"/>
+    <rect x="64" y="42" width="16" height="42" rx="3" fill="#1e3a66"/>
+    <rect x="88" y="32" width="16" height="52" rx="3" fill="#d4a72c"/>
+    <path d="M100 30 L110 20 M110 20 L102 20 M110 20 L110 28" fill="none" stroke="#0f7b4d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Rank badge -->
+  <g filter="url(#sh)">
+    <rect x="456" y="404" width="118" height="60" rx="30" fill="#0b1f3a"/>
+  </g>
+  <g transform="translate(488 434)" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round">
+    <circle cx="0" cy="0" r="11"/>
+    <path d="M8 8 L16 16"/>
+  </g>
+  <text x="534" y="440" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="17" font-weight="800" fill="#d4a72c" text-anchor="middle">#1</text>
+
+  <!-- Medal -->
+  <g filter="url(#sh)">
+    <circle cx="160" cy="146" r="34" fill="#ffffff"/>
+  </g>
+  <g transform="translate(160 146)" stroke="#0b1f3a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M-8 -20 L-3 -5 M8 -20 L3 -5"/>
+    <circle cx="0" cy="7" r="11" fill="#d4a72c"/>
+    <path d="M0 1 L2 5 L6.5 5.5 L3.2 8.4 L4 13 L0 10.6 L-4 13 L-3.2 8.4 L-6.5 5.5 L-2 5 Z" fill="#ffffff" stroke="none"/>
+  </g>
+
+  <!-- Sparkles -->
+  <path d="M540 84 l5 12 12 5 -12 5 -5 12 -5 -12 -12 -5 12 -5 z" fill="#d4a72c"/>
+  <path d="M100 470 l4 9 9 4 -9 4 -4 9 -4 -9 -9 -4 9 -4 z" fill="#e05a47" opacity=".6"/>
+</svg>

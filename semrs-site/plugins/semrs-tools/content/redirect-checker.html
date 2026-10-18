@@ -1,0 +1,185 @@
+<!-- wp:paragraph -->
+<p>Enter any public URL to trace exactly what happens when a browser or search engine requests it. You will see every redirect hop, the status code at each step, the response time and the final destination, plus plain-English advice on what to fix.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:shortcode -->
+[semrs_tool id="redirect-checker"]
+<!-- /wp:shortcode -->
+
+<!-- wp:shortcode -->
+[semrs_ad slot="tool"]
+<!-- /wp:shortcode -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What a redirect is</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A redirect tells browsers and search engines that a page has moved and where to find it. When someone visits the old address, the server answers with a 3xx status code and a new location, and the browser follows it automatically. Redirects are essential when you change URLs, move to HTTPS, merge pages or switch domains. Done well, they keep visitors, links and rankings. Done badly, they slow pages down, waste crawl time and can lose search traffic.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Status codes you will see</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>301 Moved Permanently</strong> and <strong>308 Permanent Redirect</strong>: the page has moved for good. Search engines transfer signals to the new URL. Use these for most site changes.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>302 Found</strong> and <strong>307 Temporary Redirect</strong>: the move is temporary. Use them only for short-term situations such as a seasonal campaign or maintenance.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>200 OK</strong>: the final page loaded successfully. This is what you want at the end of the chain.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>404 Not Found</strong> and <strong>410 Gone</strong>: the page does not exist. A redirect that ends here sends visitors to a dead end.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>5xx errors</strong>: the server failed. These need urgent attention, especially on important pages.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to use the redirect checker</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Paste the full URL you want to test, such as an old blog post address or your domain without "www".</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Click <strong>Check redirects</strong>. The tool follows up to 10 hops, the same practical limit Google documents for its crawler.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Read the hop table: each row shows the URL requested, the status code returned and how long it took.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Review the findings below the table. Green items are fine; amber items are worth reviewing; red items should be fixed.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Click <strong>Copy report</strong> to share the result with your developer or web host.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Checks are limited to public websites, and results for the same URL are briefly cached to keep the tool fast for everyone.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Worked example</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A bakery in Melbourne moved its website to HTTPS and later renamed its "menu" page. Testing the old address <code>http://bakery.example/menu</code> shows three hops:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li><code>http://bakery.example/menu</code> returns <strong>301</strong> to the HTTPS version.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><code>https://bakery.example/menu</code> returns <strong>302</strong> to <code>https://www.bakery.example/menu</code>.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><code>https://www.bakery.example/menu</code> returns <strong>301</strong> to <code>https://www.bakery.example/our-menu/</code>, which returns <strong>200</strong>.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Two problems stand out. The chain has three redirects where one would do, adding delay on every visit. One hop is a temporary 302 even though the move is permanent. The fix is a single 301 rule sending every old variation straight to <code>https://www.bakery.example/our-menu/</code>, and updating internal links to point there directly.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Best practices</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Redirect each old URL to the most relevant new page, not to the homepage.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Use one hop wherever possible. Update rules so old URLs point straight at the final destination.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Use 301 or 308 for permanent changes.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Update internal links, menus and sitemaps to the final URLs so visitors do not need the redirect at all.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Keep redirects in place long term. Old links on other websites keep sending visitors for years.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>After a site migration, test a sample of your most visited and most linked old URLs.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Common problems the tool finds</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Redirect chains:</strong> several hops, often caused by layering new rules on top of old ones.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Redirect loops:</strong> A redirects to B and B redirects back to A, so the page never loads.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Temporary redirects used permanently,</strong> which can delay search engines moving signals to the new URL.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Redirects ending in a 404,</strong> usually after a second round of URL changes.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Mixed versions:</strong> HTTP and HTTPS, or www and non-www, not all pointing to one preferred version.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Unexpected noindex headers</strong> (X-Robots-Tag) on the final URL, which keep it out of search results.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Tips for local businesses</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>When a local business in the US, UK, Canada or Australia changes its website, the URL on its Google Business Profile, local directories (such as Yelp, Yell or Yellow Pages) and social profiles often still points to the old address. Test those exact links with this tool. If they go through several hops or end at an error, update the link at the source and fix the redirect. Also check that your domain with and without "www", and with "http", all land on the same final page in one step.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Frequently asked questions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:group {"className":"semrs-faq","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-faq"><!-- wp:details -->
+<details class="wp-block-details"><summary>Do redirects hurt SEO?</summary><!-- wp:paragraph -->
+<p>A single, well-chosen permanent redirect passes visitors and search signals to the new page with little or no loss. Problems start with long chains, loops, redirects to irrelevant pages and temporary redirects used for permanent moves.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>How many redirects in a chain are too many?</summary><!-- wp:paragraph -->
+<p>Aim for one. Google follows up to 10 hops, but each extra hop slows the page and adds risk. Clean up chains whenever you find them.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>What is the difference between 301 and 308?</summary><!-- wp:paragraph -->
+<p>Both are permanent. A 308 also guarantees the request method stays the same, which matters for forms and APIs. For normal web pages, either works.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Should I redirect deleted pages to my homepage?</summary><!-- wp:paragraph -->
+<p>Only if there is no closer match. Redirect to the most relevant replacement page. If nothing is relevant, a 410 or a helpful 404 page is better than an irrelevant redirect.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Why does the tool show a different result from my browser?</summary><!-- wp:paragraph -->
+<p>Browsers cache redirects, especially 301s, so your browser may skip steps it remembers. The checker makes a fresh request each time and shows exactly what the server sends today.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details --></div>
+<!-- /wp:group -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Related free tools</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="/tools/robots-txt-generator/">Robots.txt Generator</a>: make sure crawlers can reach your new URLs.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="/tools/serp-snippet-preview/">SERP Snippet Preview</a>: check how your new pages will look in Google.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="/tools/utm-builder/">UTM Builder</a>: track campaign links so redirects do not hide your traffic sources.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:group {"className":"semrs-service-cta","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-service-cta"><!-- wp:paragraph -->
+<p>Planning a redesign or migration? We map and test every redirect. <a href="/services/technical-seo/">See SEMRS Technical SEO →</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

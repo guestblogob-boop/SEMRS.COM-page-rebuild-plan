@@ -1,0 +1,54 @@
+/* SEMRS admin UI (Features screen; SEMRS Blocks uses the same classes). */
+.semrs-ui { max-width: 1200px; }
+.semrs-head { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; margin: 16px 0; padding: 20px 24px; color: #fff; background: linear-gradient(135deg, #0b1f3a, #1e3a66); border-radius: 12px; }
+.semrs-head h1 { margin: 0 0 4px; padding: 0; color: #fff; font-size: 24px; }
+.semrs-head p { margin: 0; color: #dbe4f0; }
+.semrs-ver { margin-left: 6px; padding: 2px 8px; font-size: 12px; font-weight: 500; vertical-align: middle; background: rgba(255, 255, 255, .14); border-radius: 20px; }
+.semrs-head__links { display: flex; gap: 8px; }
+.semrs-head .button:not(.button-primary) { color: #0b1f3a; }
+.semrs-toolbar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin: 0 0 16px; }
+.semrs-toolbar input[type="search"] { min-width: 260px; min-height: 36px; padding: 0 12px; border-radius: 8px; }
+.semrs-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.semrs-chip { min-height: 32px; padding: 0 12px; color: #1d2327; background: #fff; border: 1px solid #c3c4c7; border-radius: 20px; cursor: pointer; }
+.semrs-chip:hover { border-color: #0b1f3a; }
+.semrs-chip.is-active { color: #fff; background: #0b1f3a; border-color: #0b1f3a; }
+.semrs-chip:focus-visible, .semrs-switch input:focus-visible + .semrs-switch__ui { outline: 2px solid #2271b1; outline-offset: 2px; }
+.semrs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.semrs-card { display: flex; flex-direction: column; padding: 16px; background: #fff; border: 1px solid #dcdcde; border-radius: 12px; transition: border-color .15s, box-shadow .15s; }
+.semrs-card.is-on { border-color: #9ec2e6; box-shadow: 0 1px 0 #9ec2e6; }
+.semrs-card.is-locked { background: #fbfbfc; }
+.semrs-card.is-locked h3, .semrs-card.is-locked p { color: #50575e; }
+.semrs-card[hidden] { display: none; }
+.semrs-card__top { display: flex; align-items: center; gap: 8px; }
+.semrs-card__top .dashicons { width: 36px; height: 36px; font-size: 22px; line-height: 36px; text-align: center; color: #1e3a66; background: #eef3f9; border-radius: 8px; }
+.semrs-card h3 { margin: 12px 0 6px; font-size: 15px; }
+.semrs-card p { flex: 1; margin: 0 0 12px; color: #3c434a; }
+.semrs-card__foot { display: flex; gap: 8px; min-height: 30px; }
+.semrs-badge { padding: 2px 8px; font-size: 11px; font-weight: 700; letter-spacing: .04em; border-radius: 20px; }
+.semrs-badge--free { color: #0a5c36; background: #e6f4ea; }
+.semrs-badge--pro { color: #fff; background: linear-gradient(135deg, #b8860b, #d4a72c); }
+.semrs-lock { margin-left: auto; color: #8c6a0e; }
+.semrs-switch { position: relative; display: inline-flex; margin-left: auto; cursor: pointer; }
+.semrs-switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.semrs-switch__ui { width: 40px; height: 22px; background: #c3c4c7; border-radius: 22px; transition: background .15s; }
+.semrs-switch__ui::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; background: #fff; border-radius: 50%; transition: transform .15s; }
+.semrs-switch input:checked + .semrs-switch__ui { background: #0f7b4d; }
+.semrs-switch input:checked + .semrs-switch__ui::after { transform: translateX(18px); }
+.semrs-savebar { position: sticky; bottom: 0; z-index: 5; margin-top: 16px; padding: 12px 0; background: #f0f0f1; }
+.semrs-empty-msg { padding: 24px; text-align: center; color: #50575e; }
+@media (max-width: 600px) { .semrs-toolbar input[type="search"] { min-width: 0; width: 100%; } }
+.semrs-ui .wp-header-end { margin: 0; border: 0; }
+.semrs-ui .semrs-show.semrs-card { padding: 0; } .semrs-ui .semrs-show.semrs-card[hidden] { display: none; } .semrs-ui .semrs-show__btns .button { min-height: 36px; }
+
+/* Header / footer preset wireframes */
+.semrs-wf { display: grid; gap: 4px; margin-bottom: 10px; padding: 8px; background: #f6f7f9; border-radius: 8px; }
+.semrs-wf__row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 6px; min-height: 30px; padding: 4px 8px; background: #fff; border: 1px solid #e3e7ee; border-radius: 6px; }
+.semrs-wf__row--top { min-height: 20px; color: #fff; background: #0b1f3a; border-color: #0b1f3a; }
+.semrs-wf--footer .semrs-wf__row { color: #dbe4f0; background: #0b1f3a; border-color: #0b1f3a; }
+.semrs-wf__zone { display: flex; gap: 4px; flex-wrap: wrap; }
+.semrs-wf__zone--center { justify-content: center; }
+.semrs-wf__zone--right { justify-content: flex-end; }
+.semrs-wf__el { padding: 1px 6px; font-size: 10px; font-style: normal; border-radius: 4px; background: #eef3f9; color: #1e3a66; white-space: nowrap; }
+.semrs-wf__row--top .semrs-wf__el, .semrs-wf--footer .semrs-wf__el { background: rgba(255,255,255,.14); color: #fff; }
+.semrs-wf__el--logo { font-weight: 700; background: #0b1f3a; color: #d4a72c; }
+.semrs-wf__el--button { background: #d4a72c; color: #0b1f3a; font-weight: 700; }

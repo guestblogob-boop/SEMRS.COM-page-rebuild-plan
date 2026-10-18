@@ -1,0 +1,191 @@
+<!-- wp:paragraph -->
+<p>Build a correct robots.txt file in seconds. Choose WordPress-friendly defaults, block private paths, add your sitemap and decide how AI crawlers such as GPTBot, ClaudeBot and PerplexityBot may use your site. Then copy or download the file.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:shortcode -->
+[semrs_tool id="robots-txt-generator"]
+<!-- /wp:shortcode -->
+
+<!-- wp:shortcode -->
+[semrs_ad slot="tool"]
+<!-- /wp:shortcode -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What robots.txt does (and what it does not do)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Robots.txt is a small text file at the root of your domain, for example <code>https://example.com/robots.txt</code>. Well-behaved crawlers read it before visiting your site to learn which areas they may crawl. It is one of the first files Googlebot requests, so a mistake here can affect your whole site.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Two points cause most of the confusion:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Robots.txt controls crawling, not indexing.</strong> Blocking a URL stops compliant crawlers fetching it, but Google can still index the URL without its content if other pages link to it. To keep a page out of search results, let it be crawled and use a <code>noindex</code> meta tag instead.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Robots.txt is not security.</strong> The file is public and only polite bots follow it. Never rely on it to hide private files; use passwords or server rules for that.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How the generator works</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Default rule.</strong> Choose "Allow all crawlers" for a normal public website. "Block all crawlers" is only for staging or private sites, because it stops Google crawling everything.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>WordPress site.</strong> Tick this to block the admin area while still allowing <code>admin-ajax.php</code>, which some themes and plugins need on the public site.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Internal search.</strong> Blocking internal search result URLs stops crawlers wasting time on endless combinations of search pages.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Extra paths.</strong> Add any folders that should not be crawled, such as cart or account pages. Each path starts with a slash.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Sitemaps.</strong> Paste the full URL of your XML sitemap so crawlers can find every page you want indexed.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>AI crawlers.</strong> Decide whether AI companies may crawl your content. You can allow everything, allow AI search and browsing bots while blocking AI training bots, block them all, or choose bot by bot.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The generator warns you about risky rules, such as blocking CSS or JavaScript files that Google needs to render your pages.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Understanding the AI crawler options</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>AI companies use different crawlers for different jobs. Training crawlers collect content to train models. Search and browsing crawlers fetch pages to answer a user's question, often with a link back to the source. Blocking training crawlers keeps your content out of future training data from companies that respect robots.txt. Blocking search crawlers can also stop your site being cited in AI answers, which may cost you visibility. For most businesses that want to be found, "allow AI search, block AI training" is a sensible middle ground. Google-Extended controls use of your content for Google's Gemini models and does not affect Google Search rankings.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Worked example</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A small online shop on WordPress wants Google to crawl products and categories, but not the basket, checkout, account pages or internal search. It also wants to stay visible in AI search answers while opting out of AI training. The generated file:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>allows everything by default,</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>blocks <code>/wp-admin/</code> but allows <code>admin-ajax.php</code>,</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>blocks <code>/cart/</code>, <code>/checkout/</code>, <code>/my-account/</code> and internal search,</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>lists the training crawlers in their own group with <code>Disallow: /</code>,</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>ends with the sitemap URL.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The owner uploads it to the site root and checks it in Google Search Console's robots.txt report.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Best practices</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Keep the file short and readable. Every rule should have a clear reason.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Always list your sitemap.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Never block CSS, JavaScript or image folders that your pages need to display.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>After any change, check the robots.txt report in Google Search Console.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Use <code>noindex</code> (not robots.txt) for pages that should stay out of search results, such as thank-you pages.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Review the file whenever you change platform, theme or URL structure.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Common mistakes</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Leaving <code>Disallow: /</code> live after launching a site that was built on a staging server. This blocks the whole site.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Blocking a page in robots.txt and adding <code>noindex</code> to it. Google cannot see the noindex tag on a page it is not allowed to crawl.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Adding <code>Crawl-delay</code>. Google ignores it; manage crawl rate in Search Console instead.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Uploading the file to a sub-folder. It must sit at the root of the domain or subdomain.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Using robots.txt to hide sensitive files. The file itself tells everyone where they are.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Tips for local businesses</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Most small local business websites in the US, UK, Canada and Australia need a very simple robots.txt: allow everything, block the admin area and internal search, and list the sitemap. Make sure your location, service and contact pages are never blocked, because Google uses them to understand where you operate. If you use a booking or quote system on a separate subdomain, that subdomain needs its own robots.txt.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Frequently asked questions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:group {"className":"semrs-faq","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-faq"><!-- wp:details -->
+<details class="wp-block-details"><summary>Where do I put the robots.txt file?</summary><!-- wp:paragraph -->
+<p>In the root folder of your website so it opens at yourdomain.com/robots.txt. On WordPress you can upload it by FTP or your host's file manager, or manage it with an SEO plugin.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Does every website need a robots.txt file?</summary><!-- wp:paragraph -->
+<p>It is not required, but it is good practice. Without one, crawlers assume they may crawl everything. A simple file with your sitemap URL helps them find your pages.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Will blocking AI crawlers hurt my Google rankings?</summary><!-- wp:paragraph -->
+<p>Blocking AI training crawlers, including Google-Extended, does not affect Google Search rankings. Blocking AI search crawlers may reduce how often AI assistants cite and link to your site.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>How do I check that my robots.txt works?</summary><!-- wp:paragraph -->
+<p>Open the file in your browser, then use the robots.txt report in Google Search Console to see the version Google fetched and any errors.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Do all bots obey robots.txt?</summary><!-- wp:paragraph -->
+<p>Reputable search engines and many AI companies do. Malicious bots ignore it, so use server-level protection for anything private.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details --></div>
+<!-- /wp:group -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Related free tools</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="/tools/redirect-checker/">Redirect Checker</a>: make sure old URLs reach the right pages.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="/tools/llms-txt-generator/">llms.txt Generator</a>: point AI tools to your most useful pages.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="/tools/schema-markup-generator/">Schema Markup Generator</a>: help search engines understand your content.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:group {"className":"semrs-service-cta","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-service-cta"><!-- wp:paragraph -->
+<p>Want a full crawl and indexing check of your website? <a href="/services/technical-seo/">See SEMRS Technical SEO →</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

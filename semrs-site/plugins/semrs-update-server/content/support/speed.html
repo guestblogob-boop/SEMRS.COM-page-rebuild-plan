@@ -1,0 +1,151 @@
+<!-- wp:paragraph -->
+<p>The Speed module is part of the free SEMRS Core plugin. Switch it on in <strong>SEMRS → Features</strong>, then open <strong>SEMRS → Speed</strong>. The screen has four tabs: <strong>Optimize</strong>, <strong>Page cache</strong>, <strong>Database</strong> and <strong>Speed check</strong>. Each option has a short explanation; the safe ones are on by default.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">1. Optimize</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table -->
+<figure class="wp-block-table"><table><thead><tr><th>Option</th><th>Default</th><th>What it does</th></tr></thead><tbody><tr><td>Remove emoji scripts</td><td>On</td><td>Browsers show emoji themselves; saves a script and styles on every page</td></tr><tr><td>Remove oEmbed discovery</td><td>On</td><td>Removes the embed script; your own YouTube and other embeds keep working</td></tr><tr><td>Dashicons only for logged-in users</td><td>On</td><td>Visitors never need the admin icon font</td></tr><tr><td>Remove jQuery Migrate</td><td>On</td><td>Turn off if an old plugin breaks</td></tr><tr><td>Clean the head</td><td>On</td><td>Removes RSD, Windows Live Writer, generator and shortlink tags</td></tr><tr><td>Slow the Heartbeat API</td><td>On</td><td>Every 60 seconds; lowers server load, autosave still works</td></tr><tr><td>Limit revisions</td><td>On</td><td>Keeps at most 10 revisions per post</td></tr><tr><td>YouTube click-to-play</td><td>On</td><td>Shows the thumbnail and loads the player only when clicked</td></tr><tr><td>Preload the featured image</td><td>On</td><td>Helps Largest Contentful Paint</td></tr><tr><td>Preconnect hints</td><td>On</td><td>Only when ads or Google tags are active</td></tr><tr><td>Block styles only for blocks on the page</td><td>On</td><td>Each page gets only the CSS of the blocks it uses</td></tr><tr><td>Inline small stylesheets</td><td>Off</td><td>CSS files under 10 KB go straight into the page, saving requests. Best with the page cache</td></tr><tr><td>Load chosen stylesheets without blocking</td><td>Off</td><td>For plugin CSS that is not needed at the top of the page. List the style handles</td></tr><tr><td>Prefetch pages on hover</td><td>Off</td><td>The next page starts loading when a visitor points at a link, so it opens almost instantly</td></tr><tr><td>Disable XML-RPC</td><td>Off</td><td>Leave off if you use Jetpack or the WordPress mobile app</td></tr><tr><td>Defer front-end scripts</td><td>Off</td><td>Test your site after switching on; add any script that breaks to the exclusions</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p><strong>Finding a style handle:</strong> right-click your page → View Source, find the <code>&lt;link rel='stylesheet' id='contact-form-7-css'&gt;</code> tag, and use the id without <code>-css</code> (here: <code>contact-form-7</code>). Never list the theme's main stylesheet.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">2. Page cache</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The page cache saves each finished page as a file and sends that file to the next visitors, so WordPress does not build the page again. It is <strong>off by default</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Open <strong>SEMRS → Speed → Page cache</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Tick <strong>Cache pages for visitors who are not logged in</strong> and click <strong>Save Changes</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Open your site in a private window. The first visit builds the cached copy; later visits are served from it.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>Never cached:</strong> logged-in users, visitors who left a comment, shoppers with items in a WooCommerce or Easy Digital Downloads cart, search results, 404 pages, previews, feeds, sitemaps, password-protected pages, cart, checkout and account pages, form submissions, and URLs with a query string (tracking tags such as <code>utm_source</code>, <code>gclid</code> and <code>fbclid</code> are ignored, so ad and email traffic still gets the fast page).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Clearing:</strong> the whole cache clears automatically when you publish or update content, change menus, widgets, the Customizer, theme or SEMRS settings, or when comments are approved. You can also click <strong>Clear cache</strong> in the admin bar. Cached copies are kept for up to 10 hours, so forms on cached pages keep working.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Phones and computers</strong> get separate copies, so plugins that show different content on phones stay correct.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Another cache plugin?</strong> If WP Rocket, LiteSpeed Cache, W3 Total Cache, WP Super Cache, WP Fastest Cache, SiteGround Optimizer or a similar plugin is active, the SEMRS page cache pauses itself. Use one page cache only. Host caches (for example on managed WordPress hosting) work alongside SEMRS; if your host already caches pages, you can leave the SEMRS cache off.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>For developers:</strong> <code>define( 'DONOTCACHEPAGE', true );</code> stops one page from being cached; <code>define( 'SEMRS_CACHE_OFF', true );</code> in wp-config.php switches the cache off. Cached files live in <code>wp-content/cache/semrs/</code> and are deleted when SEMRS Core is deactivated.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">3. Database</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Shows how many old revisions (older than 30 days), old auto-drafts, trashed posts, spam and trashed comments, expired transients and orphaned post meta your database holds. Click <strong>Clean</strong> next to an item to remove up to 500 at a time. Back up first if your host does not do it for you; cleaned items cannot be restored.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">4. Speed check</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Click <strong>Run speed check</strong>. SEMRS loads your homepage twice from your own server and reports:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>server response time and whether the page cache served the page</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>compression (Gzip or Brotli), page size, render-blocking scripts and stylesheets</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>images without width and height (these make the page jump while loading)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>scripts loaded from other sites, oversized image uploads</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>PHP version, object cache, autoloaded options and debug mode</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Each finding has a plain-language fix. Use <strong>Open PageSpeed Insights</strong> for Google's real-world phone scores. Some hosts block a site from loading itself; the check then says so.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">5. SEMRS Pro speed extras</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Delay JavaScript until interaction:</strong> analytics, pixel, chat and heatmap scripts wait for the first scroll, tap or key press, then run in their original order. A list of common services is filled in for you. Ad scripts such as AdSense are never delayed.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Cache preload:</strong> after the cache clears, the homepage and your 200 newest pages are rebuilt in the background for phones and computers.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>CDN:</strong> images, CSS, JavaScript and fonts load from your CDN address.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>These settings appear at the bottom of the Optimize tab when SEMRS Pro is active.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to test</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Open your page in <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener">PageSpeed Insights</a> and note the mobile scores.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Change one setting at a time and test again.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>If something stops working, switch the last change off. For deferred scripts, add the script's handle to the exclusion list instead.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Avoid switching on the same feature (for example "defer JavaScript") in two plugins at once.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Theme tips</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The SEMRS theme already loads one stylesheet and one small script, loads core block CSS only for blocks on the page, and gives the first featured image high priority. Use WebP images and keep pages focused.</p>
+<!-- /wp:paragraph -->

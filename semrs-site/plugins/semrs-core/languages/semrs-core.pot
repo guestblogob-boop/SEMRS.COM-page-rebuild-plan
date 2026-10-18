@@ -1,0 +1,1910 @@
+# Copyright (C) 2026 SEMRS
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: SEMRS Core\n"
+"Report-Msgid-Bugs-To: https://semrs.com/support/\n"
+"POT-Creation-Date: 2026-10-17 18:14+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Domain: semrs-core\n"
+
+#. Name of the plugin
+#: semrs-core.php
+msgid "SEMRS Core"
+msgstr ""
+
+#. Description of the plugin
+#: semrs-core.php
+msgid "Free SEO, speed optimization and ads manager for any WordPress site: titles, meta, schema, sitemaps, SEO score and site audit, llms.txt (reads Rank Math, Yoast and AIOSEO data); page cache, CSS and script optimization, prefetch, database cleanup, speed check; AdSense/AdX/ad network code with policy-safe placement and ads.txt. SEMRS Pro adds Pro modules."
+msgstr ""
+
+#. URI of the plugin
+#: semrs-core.php
+msgid "https://semrs.com/"
+msgstr ""
+
+#. Author of the plugin
+#: semrs-core.php admin/dashboard.php:26 admin/dashboard.php:213
+msgid "SEMRS"
+msgstr ""
+
+#: admin/dashboard.php:27
+msgid "SEMRS Features"
+msgstr ""
+
+#: admin/dashboard.php:27
+msgid "Features"
+msgstr ""
+
+#: admin/dashboard.php:111
+msgid "Redirects & 404 monitor"
+msgstr ""
+
+#: admin/dashboard.php:111
+msgid "301/302/307/410 redirects with wildcards, a 404 log and one-click fixes. Imports Rank Math redirects."
+msgstr ""
+
+#: admin/dashboard.php:112
+msgid "Multi-location Local SEO"
+msgstr ""
+
+#: admin/dashboard.php:112
+msgid "Locations with address, hours, map link and service areas; LocalBusiness schema for each one."
+msgstr ""
+
+#: admin/dashboard.php:113
+msgid "IndexNow instant indexing"
+msgstr ""
+
+#: admin/dashboard.php:113
+msgid "Tells Bing, Yandex and others about new and updated pages the moment you publish."
+msgstr ""
+
+#: admin/dashboard.php:114
+msgid "Bulk SEO editor"
+msgstr ""
+
+#: admin/dashboard.php:114
+msgid "Edit SEO titles, meta descriptions, focus keywords and noindex for many posts on one screen, with length counters."
+msgstr ""
+
+#: admin/dashboard.php:115
+msgid "Speed Pro"
+msgstr ""
+
+#: admin/dashboard.php:115
+msgid "Delay analytics, pixel and chat scripts until the visitor interacts, preload the page cache in the background, and serve files from a CDN."
+msgstr ""
+
+#: admin/dashboard.php:116
+msgid "Ads Pro"
+msgstr ""
+
+#: admin/dashboard.php:116
+msgid "More placements, targeting by category, post age and dates, A/B rotation, click protection and a polite ad-blocker message."
+msgstr ""
+
+#: admin/dashboard.php:117
+msgid "Image SEO"
+msgstr ""
+
+#: admin/dashboard.php:117
+msgid "Fills missing alt text and titles automatically from clean file names."
+msgstr ""
+
+#: admin/dashboard.php:118
+msgid "Pro Blocks"
+msgstr ""
+
+#: admin/dashboard.php:118
+msgid "Slider and carousel, animated counter, 3D model viewer and scroll animations on every block."
+msgstr ""
+
+#: admin/dashboard.php:119
+msgid "Theme Pro"
+msgstr ""
+
+#: admin/dashboard.php:119
+msgid "Dark mode switch, mega menu, automatic table of contents, extra section patterns and white label for the SEMRS theme."
+msgstr ""
+
+#: admin/dashboard.php:120
+msgid "Site Layouts (custom hooks)"
+msgstr ""
+
+#: admin/dashboard.php:120
+msgid "Show any block content at a theme position with display rules."
+msgstr ""
+
+#: admin/dashboard.php:121
+msgid "Case studies & portfolio"
+msgstr ""
+
+#: admin/dashboard.php:121
+msgid "Case Studies, Portfolio and Testimonials with permission checks."
+msgstr ""
+
+#: admin/dashboard.php:122
+msgid "Pro starter sites"
+msgstr ""
+
+#: admin/dashboard.php:122
+msgid "Extra one-click starter sites (Consultant, Clinic) with Pro sections."
+msgstr ""
+
+#: admin/dashboard.php:123
+msgid "Languages & switcher"
+msgstr ""
+
+#: admin/dashboard.php:123
+msgid "Language switcher with linked translations and hreflang tags, plus optional Google Translate for untranslated pages."
+msgstr ""
+
+#: admin/dashboard.php:124
+msgid "Popups"
+msgstr ""
+
+#: admin/dashboard.php:124
+msgid "Popups built with the block editor: centred, bottom bar or slide-in, with delay, scroll, exit-intent or click triggers and page targeting."
+msgstr ""
+
+#: admin/dashboard.php:125
+msgid "Display conditions"
+msgstr ""
+
+#: admin/dashboard.php:125
+msgid "Show any block only to logged-in visitors, certain roles, between dates or on certain pages."
+msgstr ""
+
+#: admin/dashboard.php:126
+msgid "Lead tracking"
+msgstr ""
+
+#: admin/dashboard.php:126
+msgid "Form submissions sent to Google Analytics 4 as generate_lead, then a thank-you page."
+msgstr ""
+
+#: admin/dashboard.php:137 modules/seo/admin.php:14 modules/seo/analysis.php:363 semrs-core.php:50
+msgid "SEO"
+msgstr ""
+
+#: admin/dashboard.php:138 modules/speed/admin.php:13
+msgid "Speed"
+msgstr ""
+
+#: admin/dashboard.php:139 modules/ads/admin.php:14 modules/ads/admin.php:191
+msgid "Ads"
+msgstr ""
+
+#: admin/dashboard.php:140
+msgid "Design"
+msgstr ""
+
+#: admin/dashboard.php:141
+msgid "Leads"
+msgstr ""
+
+#: admin/dashboard.php:180
+msgid "PRO"
+msgstr ""
+
+#: admin/dashboard.php:180
+msgid "FREE"
+msgstr ""
+
+#: admin/dashboard.php:182
+msgid "Included in SEMRS Pro"
+msgstr ""
+
+#. translators: %s: feature name
+#: admin/dashboard.php:189
+#, php-format
+msgid "Turn %s on or off"
+msgstr ""
+
+#: admin/dashboard.php:196 modules/ads/admin.php:180 modules/speed/admin.php:134
+msgid "Unlock with Pro"
+msgstr ""
+
+#: admin/dashboard.php:198 modules/ads/admin.php:234
+msgid "Settings"
+msgstr ""
+
+#: admin/dashboard.php:214
+msgid "Every SEMRS feature in one place. Switch on only what you use: a switched-off feature loads no code at all."
+msgstr ""
+
+#: admin/dashboard.php:217
+msgid "User manual"
+msgstr ""
+
+#: admin/dashboard.php:219
+msgid "Get SEMRS Pro"
+msgstr ""
+
+#. translators: %s: plugin name
+#: admin/dashboard.php:229
+#, php-format
+msgid "%s is active, so SEMRS SEO output is paused to avoid duplicate tags. Your existing titles and descriptions are read automatically. When ready: deactivate it, then check a few pages with View Source."
+msgstr ""
+
+#: admin/dashboard.php:235
+msgid "Search features"
+msgstr ""
+
+#: admin/dashboard.php:236
+msgid "Search features…"
+msgstr ""
+
+#: admin/dashboard.php:237
+msgid "Filter"
+msgstr ""
+
+#: admin/dashboard.php:238 modules/ads/admin.php:139
+msgid "All"
+msgstr ""
+
+#: admin/dashboard.php:239
+msgid "Free"
+msgstr ""
+
+#: admin/dashboard.php:240
+msgid "Pro"
+msgstr ""
+
+#: admin/dashboard.php:261
+msgid "No features match your search."
+msgstr ""
+
+#: admin/dashboard.php:262
+msgid "Save changes"
+msgstr ""
+
+#: modules/ads/admin.php:14 modules/ads/admin.php:92
+msgid "SEMRS Ads"
+msgstr ""
+
+#: modules/ads/admin.php:93
+msgid "Policy-safe ad placement. Conversion, legal, noindex and thin pages never show ads. Administrators don't see ads by default, which prevents accidental self-clicks."
+msgstr ""
+
+#: modules/ads/admin.php:96
+msgid "General"
+msgstr ""
+
+#: modules/ads/admin.php:98
+msgid "Status"
+msgstr ""
+
+#: modules/ads/admin.php:98
+msgid "Show ads"
+msgstr ""
+
+#: modules/ads/admin.php:99
+msgid "AdSense publisher ID"
+msgstr ""
+
+#: modules/ads/admin.php:100
+msgid "AdSense tag"
+msgstr ""
+
+#: modules/ads/admin.php:100
+msgid "Load the AdSense tag on allowed pages (also runs Auto ads if they are on in AdSense)"
+msgstr ""
+
+#: modules/ads/admin.php:100
+msgid "Remove any other AdSense tag (Site Kit \"Place AdSense code\", Ad Inserter, header plugins) so the tag loads once."
+msgstr ""
+
+#: modules/ads/admin.php:101
+msgid "Partner header code"
+msgstr ""
+
+#: modules/ads/admin.php:101
+msgid "Optional: Google Ad Manager / Ezoic / Raptive / Mediavine header script. Loaded only on pages where ads are allowed."
+msgstr ""
+
+#: modules/ads/admin.php:102
+msgid "Behaviour"
+msgstr ""
+
+#: modules/ads/admin.php:102
+msgid "Lazy-load units just before they scroll into view (better viewability and speed)"
+msgstr ""
+
+#: modules/ads/admin.php:102
+msgid "Hide ads for administrators"
+msgstr ""
+
+#: modules/ads/admin.php:103
+msgid "Label above ads"
+msgstr ""
+
+#: modules/ads/admin.php:106
+msgid "Density and content rules"
+msgstr ""
+
+#: modules/ads/admin.php:108
+msgid "First in-content ad after paragraph"
+msgstr ""
+
+#: modules/ads/admin.php:109
+msgid "Minimum words for in-content ads"
+msgstr ""
+
+#: modules/ads/admin.php:110
+msgid "Maximum in-content ads per page"
+msgstr ""
+
+#: modules/ads/admin.php:111
+msgid "Minimum paragraphs between ads"
+msgstr ""
+
+#: modules/ads/admin.php:114
+msgid "Where ads never show"
+msgstr ""
+
+#: modules/ads/admin.php:116 modules/seo/llms.php:70
+msgid "Pages"
+msgstr ""
+
+#: modules/ads/admin.php:116
+msgid "Front page"
+msgstr ""
+
+#: modules/ads/admin.php:116
+msgid "Search results"
+msgstr ""
+
+#: modules/ads/admin.php:116
+msgid "Always excluded: 404, attachments, password-protected, noindex (Rank Math), pages with \"Disable ads\" ticked."
+msgstr ""
+
+#: modules/ads/admin.php:117
+msgid "Excluded paths (one per line)"
+msgstr ""
+
+#: modules/ads/admin.php:118
+msgid "Excluded IDs (comma-separated)"
+msgstr ""
+
+#: modules/ads/admin.php:119
+msgid "Post types with ads"
+msgstr ""
+
+#: modules/ads/admin.php:126
+msgid "Ad positions"
+msgstr ""
+
+#: modules/ads/admin.php:127
+msgid "AdSense: create a Display (auto) or In-article ad unit in AdSense → Ads → By ad unit, then paste only its numeric data-ad-slot here. Other networks: choose \"Custom code\" and paste their unit code."
+msgstr ""
+
+#: modules/ads/admin.php:129
+msgid "Position"
+msgstr ""
+
+#: modules/ads/admin.php:129 modules/speed/admin.php:115
+msgid "On"
+msgstr ""
+
+#: modules/ads/admin.php:129
+msgid "Network"
+msgstr ""
+
+#: modules/ads/admin.php:129
+msgid "AdSense slot ID / format"
+msgstr ""
+
+#: modules/ads/admin.php:129 modules/ads/admin.php:135
+msgid "Custom code"
+msgstr ""
+
+#: modules/ads/admin.php:129
+msgid "Device"
+msgstr ""
+
+#: modules/ads/admin.php:136
+msgid "Display (responsive)"
+msgstr ""
+
+#: modules/ads/admin.php:136
+msgid "In-article"
+msgstr ""
+
+#: modules/ads/admin.php:139
+msgid "Mobile + tablet (<922px)"
+msgstr ""
+
+#: modules/ads/admin.php:139
+msgid "Desktop (≥922px)"
+msgstr ""
+
+#: modules/ads/admin.php:139
+msgid "Wide (≥1200px)"
+msgstr ""
+
+#: modules/ads/admin.php:157
+msgid "Manage ads.txt"
+msgstr ""
+
+#: modules/ads/admin.php:157
+msgid "Serve /ads.txt from this plugin"
+msgstr ""
+
+#: modules/ads/admin.php:158
+msgid "A physical ads.txt file exists in the site root. It takes priority, so keep editing that file (or delete it to use this setting)."
+msgstr ""
+
+#: modules/ads/admin.php:158
+msgid "No physical ads.txt found. The Google line is added automatically from your publisher ID."
+msgstr ""
+
+#: modules/ads/admin.php:159
+msgid "Extra lines (other networks)"
+msgstr ""
+
+#: modules/ads/admin.php:164 modules/speed/admin.php:130
+msgid "More with SEMRS Pro"
+msgstr ""
+
+#: modules/ads/admin.php:168
+msgid "More placements"
+msgstr ""
+
+#: modules/ads/admin.php:168
+msgid "Repeat in-content ads every few paragraphs (within your density cap) and show ads between posts on blog and category pages."
+msgstr ""
+
+#: modules/ads/admin.php:169
+msgid "Targeting"
+msgstr ""
+
+#: modules/ads/admin.php:169
+msgid "Show each position only in chosen categories, on posts older than N days, between two dates, or not to logged-in members."
+msgstr ""
+
+#: modules/ads/admin.php:170
+msgid "A/B rotation"
+msgstr ""
+
+#: modules/ads/admin.php:170
+msgid "Add a second ad code to a position; each page view shows one of them."
+msgstr ""
+
+#: modules/ads/admin.php:171
+msgid "Click protection"
+msgstr ""
+
+#: modules/ads/admin.php:171
+msgid "Stops showing ads to a visitor who clicks ads too often, which protects your AdSense account from invalid clicks."
+msgstr ""
+
+#: modules/ads/admin.php:172
+msgid "Ad-blocker message"
+msgstr ""
+
+#: modules/ads/admin.php:172
+msgid "A polite, dismissible note asking ad-blocker users to support the site. Content is never blocked."
+msgstr ""
+
+#: modules/ads/admin.php:173
+msgid "Per-page position switches"
+msgstr ""
+
+#: modules/ads/admin.php:173
+msgid "Turn single positions off on a page, for example keep the sidebar ad but drop in-content ads."
+msgstr ""
+
+#: modules/ads/admin.php:206
+msgid "Disable ads on this page"
+msgstr ""
+
+#: modules/ads/ads.php:25
+msgid "Before content (below the title)"
+msgstr ""
+
+#: modules/ads/ads.php:26
+msgid "After paragraph N"
+msgstr ""
+
+#: modules/ads/ads.php:27
+msgid "Middle of content"
+msgstr ""
+
+#: modules/ads/ads.php:28
+msgid "End of content"
+msgstr ""
+
+#: modules/ads/ads.php:29
+msgid "Manual: [semrs_ad slot=\"tool\"] (below a tool result)"
+msgstr ""
+
+#: modules/ads/ads.php:30
+msgid "Manual: [semrs_ad slot=\"sidebar\"] (sticky, wide screens)"
+msgstr ""
+
+#: modules/ads/ads.php:31
+msgid "Manual: [semrs_ad slot=\"manual\"] (anywhere)"
+msgstr ""
+
+#: modules/ads/render.php:223
+msgid "Ads: ON for visitors"
+msgstr ""
+
+#: modules/ads/render.php:223
+msgid "(hidden for you)"
+msgstr ""
+
+#. translators: %s: reason
+#: modules/ads/render.php:226
+#, php-format
+msgid "Ads: OFF (%s)"
+msgstr ""
+
+#: modules/seo/admin.php:33
+msgid "Title separator"
+msgstr ""
+
+#: modules/seo/admin.php:34
+msgid "Homepage title"
+msgstr ""
+
+#: modules/seo/admin.php:34
+msgid "Empty = \"Site name | Tagline\" (or the front page's own SEO title)."
+msgstr ""
+
+#: modules/seo/admin.php:35
+msgid "Homepage meta description"
+msgstr ""
+
+#: modules/seo/admin.php:36
+msgid "Posts & pages title template"
+msgstr ""
+
+#: modules/seo/admin.php:36
+msgid "Variables:"
+msgstr ""
+
+#: modules/seo/admin.php:37
+msgid "Category / tag title template"
+msgstr ""
+
+#: modules/seo/admin.php:38
+msgid "Author title template"
+msgstr ""
+
+#: modules/seo/admin.php:39
+msgid "Search title template"
+msgstr ""
+
+#: modules/seo/admin.php:40
+msgid "404 title template"
+msgstr ""
+
+#: modules/seo/admin.php:41
+msgid "Date archive title template"
+msgstr ""
+
+#: modules/seo/admin.php:42
+msgid "Noindex tag archives"
+msgstr ""
+
+#: modules/seo/admin.php:42
+msgid "Recommended: tag pages are usually thin duplicates."
+msgstr ""
+
+#: modules/seo/admin.php:43
+msgid "Noindex author archives"
+msgstr ""
+
+#: modules/seo/admin.php:43
+msgid "Tick for single-author sites."
+msgstr ""
+
+#: modules/seo/admin.php:44
+msgid "Noindex date archives"
+msgstr ""
+
+#: modules/seo/admin.php:45
+msgid "Redirect attachment pages to their post"
+msgstr ""
+
+#: modules/seo/admin.php:46
+msgid "XML sitemap (/wp-sitemap.xml)"
+msgstr ""
+
+#: modules/seo/admin.php:46
+msgid "Old /sitemap_index.xml and /sitemap.xml URLs redirect here. Submit /wp-sitemap.xml in Search Console."
+msgstr ""
+
+#: modules/seo/admin.php:47
+msgid "llms.txt for AI assistants (/llms.txt)"
+msgstr ""
+
+#: modules/seo/admin.php:47
+msgid "A plain-text map of your important pages for ChatGPT, Perplexity, Claude and other AI tools. Noindexed pages are left out."
+msgstr ""
+
+#: modules/seo/admin.php:48
+msgid "Extra robots.txt lines"
+msgstr ""
+
+#: modules/seo/admin.php:48
+msgid "Only for the virtual robots.txt (no physical file in the site root)."
+msgstr ""
+
+#: modules/seo/admin.php:49
+msgid "Entity type"
+msgstr ""
+
+#: modules/seo/admin.php:50
+msgid "Name"
+msgstr ""
+
+#: modules/seo/admin.php:51
+msgid "Logo URL"
+msgstr ""
+
+#: modules/seo/admin.php:51
+msgid "Empty = the site logo from the Customizer."
+msgstr ""
+
+#: modules/seo/admin.php:52
+msgid "Email"
+msgstr ""
+
+#: modules/seo/admin.php:53
+msgid "Phone"
+msgstr ""
+
+#: modules/seo/admin.php:54
+msgid "Street address"
+msgstr ""
+
+#: modules/seo/admin.php:54
+msgid "Real address only. Never a virtual office."
+msgstr ""
+
+#: modules/seo/admin.php:55
+msgid "City"
+msgstr ""
+
+#: modules/seo/admin.php:56
+msgid "State / region"
+msgstr ""
+
+#: modules/seo/admin.php:57
+msgid "Postal code"
+msgstr ""
+
+#: modules/seo/admin.php:58
+msgid "Country code (e.g. US, GB, PK)"
+msgstr ""
+
+#: modules/seo/admin.php:59
+msgid "Areas served (comma-separated)"
+msgstr ""
+
+#: modules/seo/admin.php:60
+msgid "Social profiles (one URL per line)"
+msgstr ""
+
+#: modules/seo/admin.php:61
+msgid "Default share image URL (1200×630)"
+msgstr ""
+
+#: modules/seo/admin.php:62
+msgid "X (Twitter) username"
+msgstr ""
+
+#: modules/seo/admin.php:63
+msgid "Google verification code"
+msgstr ""
+
+#: modules/seo/admin.php:63
+msgid "Only the content=\"…\" value. Skip if Site Kit already verified the site."
+msgstr ""
+
+#: modules/seo/admin.php:64
+msgid "Bing verification code"
+msgstr ""
+
+#: modules/seo/admin.php:65
+msgid "Show breadcrumbs (SEMRS Pro theme)"
+msgstr ""
+
+#: modules/seo/admin.php:66
+msgid "Breadcrumb home label"
+msgstr ""
+
+#: modules/seo/admin.php:107
+msgid "Titles & meta"
+msgstr ""
+
+#: modules/seo/admin.php:108
+msgid "Indexing & sitemap"
+msgstr ""
+
+#: modules/seo/admin.php:109
+msgid "Business / organization (schema)"
+msgstr ""
+
+#: modules/seo/admin.php:110
+msgid "Social, verification & breadcrumbs"
+msgstr ""
+
+#: modules/seo/admin.php:114 modules/seo/admin.php:171
+msgid "SEMRS SEO"
+msgstr ""
+
+#. translators: %s: plugin
+#: modules/seo/admin.php:116
+#, php-format
+msgid "%s is active, so SEMRS SEO output is paused. You can set everything up now; it takes over when you deactivate it. Rank Math titles, descriptions, focus keywords, canonicals and noindex settings are read automatically."
+msgstr ""
+
+#. translators: %s: plugin name
+#: modules/seo/admin.php:193
+#, php-format
+msgid "%s is active and controls SEO output. Values here take effect after you switch."
+msgstr ""
+
+#: modules/seo/admin.php:210
+msgid "Focus keyword"
+msgstr ""
+
+#: modules/seo/admin.php:212
+msgid "SEO title"
+msgstr ""
+
+#: modules/seo/admin.php:215
+msgid "Meta description"
+msgstr ""
+
+#: modules/seo/admin.php:218
+msgid "Google preview"
+msgstr ""
+
+#: modules/seo/admin.php:224
+msgid "Advanced"
+msgstr ""
+
+#: modules/seo/admin.php:225
+msgid "Canonical URL (leave empty for this page)"
+msgstr ""
+
+#: modules/seo/admin.php:227
+msgid "Share image URL (empty = featured image)"
+msgstr ""
+
+#: modules/seo/admin.php:229
+msgid "Schema type"
+msgstr ""
+
+#: modules/seo/admin.php:236
+msgid "Noindex (hide from Google; also removes it from the sitemap and turns ads off)"
+msgstr ""
+
+#: modules/seo/admin.php:237
+msgid "Nofollow links on this page"
+msgstr ""
+
+#: modules/seo/admin.php:238
+msgid "Don't build FAQ schema from Details blocks"
+msgstr ""
+
+#: modules/seo/admin.php:243
+msgid "SEO score and checks"
+msgstr ""
+
+#: modules/seo/admin.php:245
+msgid "Re-check now"
+msgstr ""
+
+#: modules/seo/admin.php:245
+msgid "Checks your unsaved changes too."
+msgstr ""
+
+#: modules/seo/admin.php:246
+msgid "Internal link ideas"
+msgstr ""
+
+#: modules/seo/admin.php:247
+msgid "Click Re-check to find your pages about this topic that are not linked yet."
+msgstr ""
+
+#: modules/seo/admin.php:292
+msgid "Link to these pages where it helps the reader:"
+msgstr ""
+
+#: modules/seo/admin.php:292
+msgid "No unlinked pages found on this topic."
+msgstr ""
+
+#: modules/seo/admin.php:296
+msgid "Copy link"
+msgstr ""
+
+#: modules/seo/admin.php:297
+msgid "Copied"
+msgstr ""
+
+#: modules/seo/analysis.php:180
+msgid "Focus keyword in SEO title"
+msgstr ""
+
+#: modules/seo/analysis.php:181
+msgid "Focus keyword in meta description"
+msgstr ""
+
+#: modules/seo/analysis.php:182
+msgid "Focus keyword in URL slug"
+msgstr ""
+
+#: modules/seo/analysis.php:183
+msgid "Focus keyword in the first 100 words"
+msgstr ""
+
+#: modules/seo/analysis.php:202
+msgid "Focus keyword not used on another page"
+msgstr ""
+
+#. translators: %s: page title
+#: modules/seo/analysis.php:202
+#, php-format
+msgid "Focus keyword is also used on \"%s\" (pages compete with each other)"
+msgstr ""
+
+#: modules/seo/analysis.php:207
+msgid "Set a focus keyword"
+msgstr ""
+
+#. translators: %s: page title */ __( 'Focus keyword is also used on "%s" (pages compete with each other)', 'semrs-core' ), get_the_title( $others[0] ) ), 'basic', 4 ); } else { $add( false, __( 'Set a focus keyword', 'semrs-core' ), 'basic', 20 ); } $tl = mb_strlen( $title ); $dl = mb_strlen( $desc ); /* translators: %d: characters
+#: modules/seo/analysis.php:212
+#, php-format
+msgid "SEO title 30–60 characters (now %d)"
+msgstr ""
+
+#. translators: %d: characters */ $add( $tl >= 30 && $tl <= 60, sprintf( __( 'SEO title 30–60 characters (now %d)', 'semrs-core' ), $tl ), 'basic', 6 ); /* translators: %d: characters
+#: modules/seo/analysis.php:214
+#, php-format
+msgid "Meta description 120–155 characters (now %d)"
+msgstr ""
+
+#. translators: %d: characters */ $add( $dl >= 120 && $dl <= 155, sprintf( __( 'Meta description 120–155 characters (now %d)', 'semrs-core' ), $dl ), 'basic', 6 ); /* translators: %d: characters
+#: modules/seo/analysis.php:216
+#, php-format
+msgid "Short URL slug (%d characters, 75 max)"
+msgstr ""
+
+#. translators: %d: characters */ $add( strlen( (string) $d['slug'] ) <= 75, sprintf( __( 'Short URL slug (%d characters, 75 max)', 'semrs-core' ), strlen( (string) $d['slug'] ) ), 'basic', 2 ); // Content. $min = 'page' === $d['type'] ? 200 : 300; /* translators: 1: minimum words, 2: words now
+#: modules/seo/analysis.php:221
+#, php-format
+msgid "At least %1$d words (now %2$d)"
+msgstr ""
+
+#. translators: 1: minimum words, 2: words now */ $add( $words >= $min, sprintf( __( 'At least %1$d words (now %2$d)', 'semrs-core' ), $min, $words ), 'content', 8 ); /* translators: %d: links
+#: modules/seo/analysis.php:223
+#, php-format
+msgid "Internal links to your other pages (%d)"
+msgstr ""
+
+#. translators: 1: minimum words, 2: words now */ $add( $words >= $min, sprintf( __( 'At least %1$d words (now %2$d)', 'semrs-core' ), $min, $words ), 'content', 8 ); /* translators: %d: links */ $add( count( $internal ) > 0, sprintf( __( 'Internal links to your other pages (%d)', 'semrs-core' ), count( $internal ) ), 'content', 6 ); /* translators: %d: links
+#: modules/seo/analysis.php:225
+#, php-format
+msgid "Link to a useful outside source (%d)"
+msgstr ""
+
+#. translators: %d: links */ $add( count( $internal ) > 0, sprintf( __( 'Internal links to your other pages (%d)', 'semrs-core' ), count( $internal ) ), 'content', 6 ); /* translators: %d: links */ $add( $outbound > 0, sprintf( __( 'Link to a useful outside source (%d)', 'semrs-core' ), $outbound ), 'content', 2 ); $add( 0 === $no_alt, $imgs ? sprintf( /* translators: %d: images
+#: modules/seo/analysis.php:226
+#, php-format
+msgid "All images have alt text (%d missing)"
+msgstr ""
+
+#. translators: %d: links */ $add( $outbound > 0, sprintf( __( 'Link to a useful outside source (%d)', 'semrs-core' ), $outbound ), 'content', 2 ); $add( 0 === $no_alt, $imgs ? sprintf( /* translators: %d: images
+#: modules/seo/analysis.php:226
+msgid "Images: none in the content (add one if it helps the reader)"
+msgstr ""
+
+#. translators: %d: images
+#: modules/seo/analysis.php:227
+msgid "Featured image set (used for share cards and Google Discover)"
+msgstr ""
+
+#: modules/seo/analysis.php:228
+msgid "No extra H1 in the content (the theme prints the title as H1)"
+msgstr ""
+
+#. translators: 1: subheadings, 2: recommended
+#: modules/seo/analysis.php:232
+#, php-format
+msgid "Subheadings break up the text (%1$d, at least %2$d)"
+msgstr ""
+
+#: modules/seo/analysis.php:235
+msgid "Focus keyword in a subheading (H2–H3)"
+msgstr ""
+
+#. translators: 1: density percent, 2: times used
+#: modules/seo/analysis.php:239
+#, php-format
+msgid "Keyword density 0.5–3%% (now %1$s%%, used %2$d times)"
+msgstr ""
+
+#. translators: 1: density percent, 2: times used */ $add( $density >= 0.5 && $density <= 3, sprintf( __( 'Keyword density 0.5–3%% (now %1$s%%, used %2$d times)', 'semrs-core' ), $density, $hits ), 'content', 4 ); } // Readability. if ( $words >= 50 ) { $pct = round( $long_sent / $n_sent * 100 ); /* translators: %d: percent
+#: modules/seo/analysis.php:246
+#, php-format
+msgid "Short sentences: %d%% are over 25 words (keep under 25%%)"
+msgstr ""
+
+#: modules/seo/analysis.php:247
+msgid "Paragraphs are a comfortable length"
+msgstr ""
+
+#. translators: %d: percent */ $add( $pct <= 25, sprintf( __( 'Short sentences: %d%% are over 25 words (keep under 25%%)', 'semrs-core' ), $pct ), 'readability', 4 ); $add( 0 === $long_para, 0 === $long_para ? __( 'Paragraphs are a comfortable length', 'semrs-core' ) : sprintf( /* translators: %d: paragraphs
+#: modules/seo/analysis.php:247
+#, php-format
+msgid "%d paragraph is over 150 words"
+msgid_plural "%d paragraphs are over 150 words"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: score
+#: modules/seo/analysis.php:255
+#, php-format
+msgid "Easy to read: Flesch score %d (50+ is fairly easy)"
+msgstr ""
+
+#: modules/seo/analysis.php:385
+msgid "SEMRS SEO score (updated when the post is saved or an SEO audit runs)"
+msgstr ""
+
+#: modules/seo/analysis.php:392
+msgid "noindex"
+msgstr ""
+
+#: modules/seo/analysis.php:470
+msgid "Basic SEO"
+msgstr ""
+
+#: modules/seo/analysis.php:471
+msgid "Content"
+msgstr ""
+
+#: modules/seo/analysis.php:472
+msgid "Readability"
+msgstr ""
+
+#. translators: %d: issues
+#: modules/seo/analysis.php:485
+#, php-format
+msgid "%d to fix"
+msgid_plural "%d to fix"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: issues
+#: modules/seo/analysis.php:485
+msgid "all good"
+msgstr ""
+
+#: modules/seo/audit.php:18 modules/seo/audit.php:244
+msgid "SEO Audit"
+msgstr ""
+
+#: modules/seo/audit.php:36
+msgid "Search engines are allowed to index the site"
+msgstr ""
+
+#: modules/seo/audit.php:37
+msgid "Search engines are blocked"
+msgstr ""
+
+#: modules/seo/audit.php:37
+msgid "Settings → Reading → \"Discourage search engines\" is ticked. Untick it when the site is ready."
+msgstr ""
+
+#: modules/seo/audit.php:39
+msgid "Readable URLs (permalinks) are on"
+msgstr ""
+
+#: modules/seo/audit.php:40
+msgid "URLs look like ?p=123"
+msgstr ""
+
+#: modules/seo/audit.php:40
+msgid "Choose \"Post name\" under Settings → Permalinks."
+msgstr ""
+
+#: modules/seo/audit.php:42
+msgid "The site uses HTTPS"
+msgstr ""
+
+#: modules/seo/audit.php:43
+msgid "The site address is not HTTPS"
+msgstr ""
+
+#: modules/seo/audit.php:43
+msgid "Ask your host for a free SSL certificate, then change both addresses under Settings → General to https://."
+msgstr ""
+
+#: modules/seo/audit.php:46
+msgid "The site has its own tagline"
+msgstr ""
+
+#: modules/seo/audit.php:47
+msgid "The tagline is empty or the WordPress default"
+msgstr ""
+
+#: modules/seo/audit.php:47
+msgid "Write a short line about what you do. It is used in titles and search results."
+msgstr ""
+
+#: modules/seo/audit.php:49
+msgid "The homepage has a meta description"
+msgstr ""
+
+#: modules/seo/audit.php:50
+msgid "The homepage has no meta description"
+msgstr ""
+
+#: modules/seo/audit.php:50
+msgid "Write one under SEMRS → SEO → Titles & meta (120–155 characters)."
+msgstr ""
+
+#: modules/seo/audit.php:52
+msgid "XML sitemap is on (/wp-sitemap.xml)"
+msgstr ""
+
+#: modules/seo/audit.php:52
+msgid "Submit it once in Google Search Console and Bing Webmaster Tools."
+msgstr ""
+
+#: modules/seo/audit.php:53
+msgid "XML sitemap is off"
+msgstr ""
+
+#: modules/seo/audit.php:53
+msgid "Search engines find new pages faster with a sitemap."
+msgstr ""
+
+#: modules/seo/audit.php:55
+msgid "Logo set for search results (schema)"
+msgstr ""
+
+#: modules/seo/audit.php:56
+msgid "No logo for search results"
+msgstr ""
+
+#: modules/seo/audit.php:56
+msgid "Add a logo in the Customizer or under SEMRS → SEO → Business."
+msgstr ""
+
+#: modules/seo/audit.php:58
+msgid "Site icon (favicon) set"
+msgstr ""
+
+#: modules/seo/audit.php:59
+msgid "No site icon"
+msgstr ""
+
+#: modules/seo/audit.php:59
+msgid "Google shows it next to your results on phones. Add one under Customize → Site Identity."
+msgstr ""
+
+#: modules/seo/audit.php:63
+msgid "robots.txt blocks the whole site"
+msgstr ""
+
+#: modules/seo/audit.php:63
+msgid "A robots.txt file in the site root has \"Disallow: /\". Remove that line (or the file) with your host's file manager."
+msgstr ""
+
+#: modules/seo/audit.php:64
+msgid "A physical robots.txt file is used"
+msgstr ""
+
+#: modules/seo/audit.php:64
+msgid "Extra robots.txt lines from SEMRS settings are ignored while that file exists."
+msgstr ""
+
+#. translators: %s: plugin name
+#: modules/seo/audit.php:68
+#, php-format
+msgid "%s is active, so SEMRS SEO output is paused"
+msgstr ""
+
+#. translators: %s: plugin name
+#: modules/seo/audit.php:68
+msgid "Use one SEO plugin only, to avoid duplicate tags."
+msgstr ""
+
+#: modules/seo/audit.php:71
+msgid "Google Search Console verification code added"
+msgstr ""
+
+#: modules/seo/audit.php:72
+msgid "No Google Search Console code"
+msgstr ""
+
+#: modules/seo/audit.php:72
+msgid "Skip this if you verified another way (DNS or Site Kit). Search Console shows how Google sees your site."
+msgstr ""
+
+#: modules/seo/audit.php:76
+msgid "WordPress sample content is still published"
+msgstr ""
+
+#: modules/seo/audit.php:76
+msgid "Delete or rewrite \"Hello world!\" and \"Sample Page\": thin pages hurt site quality (and AdSense approval)."
+msgstr ""
+
+#: modules/seo/audit.php:232
+msgid "Missing meta description"
+msgstr ""
+
+#: modules/seo/audit.php:233
+msgid "Duplicate SEO title"
+msgstr ""
+
+#: modules/seo/audit.php:234
+msgid "Duplicate description"
+msgstr ""
+
+#: modules/seo/audit.php:235
+msgid "Thin content"
+msgstr ""
+
+#: modules/seo/audit.php:236
+msgid "Orphan (no internal links in)"
+msgstr ""
+
+#: modules/seo/audit.php:237
+msgid "Score under 50"
+msgstr ""
+
+#: modules/seo/audit.php:238
+msgid "Noindex"
+msgstr ""
+
+#: modules/seo/audit.php:260
+msgid "Site checks"
+msgstr ""
+
+#: modules/seo/audit.php:264
+msgid "Everything looks good."
+msgstr ""
+
+#. translators: 1: critical issues, 2: warnings
+#: modules/seo/audit.php:267
+#, php-format
+msgid "%1$d critical, %2$d to improve."
+msgstr ""
+
+#: modules/seo/audit.php:278
+msgid "Open"
+msgstr ""
+
+#: modules/seo/audit.php:278
+msgid "Fix"
+msgstr ""
+
+#: modules/seo/audit.php:286
+msgid "Content audit"
+msgstr ""
+
+#: modules/seo/audit.php:287
+msgid "Scores every published post and page (up to 2,000, newest first) with the same checks as the SEO box in the editor, then looks across pages for duplicates and orphans. It runs in small steps; keep this tab open."
+msgstr ""
+
+#: modules/seo/audit.php:288
+msgid "Run the audit again"
+msgstr ""
+
+#: modules/seo/audit.php:288
+msgid "Run the content audit"
+msgstr ""
+
+#. translators: %s: time ago
+#: modules/seo/audit.php:293
+#, php-format
+msgid "Last run %s ago."
+msgstr ""
+
+#. translators: %d: pages
+#: modules/seo/audit.php:301
+#, php-format
+msgid "Average score, %d pages"
+msgstr ""
+
+#: modules/seo/audit.php:307
+msgid "Page"
+msgstr ""
+
+#: modules/seo/audit.php:307
+msgid "Score"
+msgstr ""
+
+#: modules/seo/audit.php:307
+msgid "Words"
+msgstr ""
+
+#: modules/seo/audit.php:307
+msgid "Links in"
+msgstr ""
+
+#: modules/seo/audit.php:307
+msgid "What to fix"
+msgstr ""
+
+#: modules/seo/audit.php:311
+msgid "(no title)"
+msgstr ""
+
+#: modules/seo/audit.php:311
+msgid "View"
+msgstr ""
+
+#: modules/seo/audit.php:323
+msgid "Orphan pages get no links from your other posts and pages (menus are not counted). Link to them from related articles so visitors and Google can find them."
+msgstr ""
+
+#: modules/seo/audit.php:341
+msgid "The audit stopped. Click the button to try again."
+msgstr ""
+
+#: modules/seo/audit.php:343
+msgid "Starting…"
+msgstr ""
+
+#: modules/seo/breadcrumbs.php:38 modules/seo/meta.php:39
+msgid "Blog"
+msgstr ""
+
+#. translators: %s: search query
+#: modules/seo/breadcrumbs.php:73
+#, php-format
+msgid "Search: %s"
+msgstr ""
+
+#: modules/seo/breadcrumbs.php:75
+msgid "Page not found"
+msgstr ""
+
+#: modules/seo/breadcrumbs.php:98
+msgid "Breadcrumb"
+msgstr ""
+
+#: modules/seo/llms.php:49
+msgid "Home"
+msgstr ""
+
+#: modules/seo/llms.php:93
+msgid "Latest articles"
+msgstr ""
+
+#: modules/seo/llms.php:100
+msgid "Optional"
+msgstr ""
+
+#: modules/seo/llms.php:100
+msgid "XML sitemap (every page)"
+msgstr ""
+
+#. translators: %d: page number
+#: modules/seo/meta.php:19
+#, php-format
+msgid "Page %d"
+msgstr ""
+
+#: modules/seo/schema.php:19
+msgid "Default (BlogPosting for posts, WebPage for others)"
+msgstr ""
+
+#: modules/seo/schema.php:23
+msgid "Service (service pages)"
+msgstr ""
+
+#: modules/seo/schema.php:24
+msgid "WebApplication (free tool pages)"
+msgstr ""
+
+#: modules/seo/schema.php:28
+msgid "WebPage only (no extra type)"
+msgstr ""
+
+#: modules/speed/admin.php:65
+msgid "Optimize"
+msgstr ""
+
+#: modules/speed/admin.php:66 modules/speed/admin.php:169
+msgid "Page cache"
+msgstr ""
+
+#: modules/speed/admin.php:67
+msgid "Database"
+msgstr ""
+
+#: modules/speed/admin.php:68
+msgid "Speed check"
+msgstr ""
+
+#: modules/speed/admin.php:73
+msgid "SEMRS Speed"
+msgstr ""
+
+#: modules/speed/admin.php:108
+msgid "Each switch removes work from every page view. Test your site after changing the options marked as off by default."
+msgstr ""
+
+#: modules/speed/admin.php:114
+msgid "off by default"
+msgstr ""
+
+#: modules/speed/admin.php:117
+msgid "Never defer these script handles"
+msgstr ""
+
+#: modules/speed/admin.php:117
+msgid "One handle per line (e.g. jquery)."
+msgstr ""
+
+#: modules/speed/admin.php:118
+msgid "Stylesheets to load without blocking"
+msgstr ""
+
+#: modules/speed/admin.php:118
+msgid "One style handle per line (the id of the <link> tag without \"-css\"). Never list the theme's main stylesheet, or the page will flash unstyled."
+msgstr ""
+
+#: modules/speed/admin.php:126
+msgid "Delay JavaScript until the visitor interacts"
+msgstr ""
+
+#: modules/speed/admin.php:126
+msgid "Analytics, pixels, chat and heatmap scripts wait until the first scroll, tap or key press, which raises mobile PageSpeed scores."
+msgstr ""
+
+#: modules/speed/admin.php:127
+msgid "Cache preload"
+msgstr ""
+
+#: modules/speed/admin.php:127
+msgid "Rebuilds the page cache in the background after it clears, so the first visitor never waits."
+msgstr ""
+
+#: modules/speed/admin.php:128
+msgid "CDN"
+msgstr ""
+
+#: modules/speed/admin.php:128
+msgid "Serves images, CSS and JavaScript from your CDN address."
+msgstr ""
+
+#. translators: %s: plugin name
+#: modules/speed/admin.php:148
+#, php-format
+msgid "Paused: %s already handles page caching. Use one page cache only."
+msgstr ""
+
+#: modules/speed/admin.php:150
+msgid "The folder wp-content/cache/semrs/ cannot be created or written. Ask your host to make wp-content writable."
+msgstr ""
+
+#. translators: 1: number of pages, 2: size
+#: modules/speed/admin.php:153
+#, php-format
+msgid "On. %1$d cached pages (%2$s)."
+msgstr ""
+
+#: modules/speed/admin.php:155
+msgid "Off."
+msgstr ""
+
+#: modules/speed/admin.php:159
+msgid "Page cache:"
+msgstr ""
+
+#: modules/speed/admin.php:161 modules/speed/cache.php:322
+msgid "Clear cache"
+msgstr ""
+
+#: modules/speed/admin.php:164
+msgid "The page cache saves each finished page as a file and sends that file to the next visitors, so WordPress does not build the page again. Pages typically load several times faster from the cache."
+msgstr ""
+
+#: modules/speed/admin.php:169
+msgid "Cache pages for visitors who are not logged in"
+msgstr ""
+
+#: modules/speed/admin.php:170
+msgid "Keep cached pages for"
+msgstr ""
+
+#: modules/speed/admin.php:170
+msgid "hours"
+msgstr ""
+
+#: modules/speed/admin.php:170
+msgid "At most 10 hours, so forms on cached pages keep working. The cache also clears whenever you publish or update content, menus, widgets or settings."
+msgstr ""
+
+#: modules/speed/admin.php:171
+msgid "Never cache these URLs"
+msgstr ""
+
+#: modules/speed/admin.php:171
+msgid "One path per line, for example /quote/ or /members/* (a * at the end matches everything below)."
+msgstr ""
+
+#: modules/speed/admin.php:175
+msgid "Never cached"
+msgstr ""
+
+#: modules/speed/admin.php:177
+msgid "Logged-in users, visitors who left a comment, and shoppers with items in a WooCommerce or Easy Digital Downloads cart"
+msgstr ""
+
+#: modules/speed/admin.php:178
+msgid "Search results, 404 pages, previews, feeds, sitemaps, password-protected pages, cart, checkout and account pages"
+msgstr ""
+
+#: modules/speed/admin.php:179
+msgid "URLs with a query string (except tracking tags such as utm_source, gclid and fbclid)"
+msgstr ""
+
+#: modules/speed/admin.php:180
+msgid "Form submissions and every admin, REST and AJAX request"
+msgstr ""
+
+#: modules/speed/admin.php:182
+msgid "Phones and computers get separate copies. Developers can stop a page from being cached with define( 'DONOTCACHEPAGE', true ), or switch the cache off with define( 'SEMRS_CACHE_OFF', true ) in wp-config.php."
+msgstr ""
+
+#: modules/speed/cache.php:58
+msgid "a page-cache drop-in (advanced-cache.php)"
+msgstr ""
+
+#: modules/speed/cache.php:334 modules/speed/cleanup.php:116
+msgid "Sorry, you are not allowed to do that."
+msgstr ""
+
+#. translators: %d: files
+#: modules/speed/cache.php:347
+#, php-format
+msgid "Page cache cleared (%d pages)."
+msgstr ""
+
+#. translators: %d: milliseconds
+#: modules/speed/check.php:119
+#, php-format
+msgid "Server response: %d ms"
+msgstr ""
+
+#. translators: %d: milliseconds
+#: modules/speed/check.php:119
+msgid "Aim for under 600 ms. Turn on the page cache (or your host's cache); if it stays slow, ask your host about PHP 8.2+ and server resources."
+msgstr ""
+
+#: modules/speed/check.php:121
+msgid "Page cache is working (served from cache)"
+msgstr ""
+
+#: modules/speed/check.php:123
+msgid "Page cache is on, but the homepage was not served from it"
+msgstr ""
+
+#: modules/speed/check.php:123
+msgid "Run the check again. If it still says so, the homepage may be excluded or a plugin sets a cookie for every visitor."
+msgstr ""
+
+#. translators: %s: plugin name
+#: modules/speed/check.php:127
+#, php-format
+msgid "Page cache handled by %s"
+msgstr ""
+
+#. translators: %s: plugin name
+#: modules/speed/check.php:127
+msgid "No page cache"
+msgstr ""
+
+#. translators: %s: plugin name
+#: modules/speed/check.php:127
+msgid "Turn on the SEMRS page cache on the Page cache tab (or use your host's cache). It is the biggest speed win for most sites."
+msgstr ""
+
+#. translators: %s: gzip or br
+#: modules/speed/check.php:129
+#, php-format
+msgid "Compression is on (%s)"
+msgstr ""
+
+#. translators: %s: gzip or br
+#: modules/speed/check.php:129
+msgid "No compression detected"
+msgstr ""
+
+#. translators: %s: gzip or br
+#: modules/speed/check.php:129
+msgid "Ask your host to turn on Gzip or Brotli; it makes pages about 70% smaller to download. (Some local test servers never compress.)"
+msgstr ""
+
+#. translators: %d: kilobytes
+#: modules/speed/check.php:131
+#, php-format
+msgid "Homepage HTML: %d KB"
+msgstr ""
+
+#. translators: %d: kilobytes
+#: modules/speed/check.php:131
+msgid "Large HTML is slow on phones. Show fewer posts on the homepage or split long pages."
+msgstr ""
+
+#. translators: %d: files
+#: modules/speed/check.php:133
+#, php-format
+msgid "Render-blocking scripts in the head: %d"
+msgstr ""
+
+#. translators: %d: files
+#: modules/speed/check.php:133
+msgid "Turn on \"Defer front-end scripts\" on the Optimize tab and test your site."
+msgstr ""
+
+#. translators: %d: files
+#: modules/speed/check.php:135
+#, php-format
+msgid "Stylesheets in the head: %d"
+msgstr ""
+
+#. translators: %d: files
+#: modules/speed/check.php:135
+msgid "Turn on \"Inline small stylesheets\", or load plugin CSS that is not needed at the top of the page without blocking."
+msgstr ""
+
+#. translators: 1: images, 2: images without sizes
+#: modules/speed/check.php:137
+#, php-format
+msgid "All %d homepage images have width and height"
+msgstr ""
+
+#. translators: 1: images, 2: images without sizes
+#: modules/speed/check.php:137
+#, php-format
+msgid "%2$d of %1$d homepage images have no width or height"
+msgstr ""
+
+#. translators: 1: images, 2: images without sizes
+#: modules/speed/check.php:137
+msgid "Images without sizes make the page jump while loading (layout shift). Insert images from the Media Library so WordPress adds sizes."
+msgstr ""
+
+#. translators: %s: host names
+#: modules/speed/check.php:140
+#, php-format
+msgid "Scripts from other sites: %s"
+msgstr ""
+
+#. translators: %s: host names
+#: modules/speed/check.php:140
+msgid "Each outside script costs time. Remove tags you no longer use. SEMRS Pro can delay analytics and chat scripts until the visitor interacts."
+msgstr ""
+
+#. translators: %d: images
+#: modules/speed/check.php:143
+msgid "No oversized JPEG or PNG uploads found"
+msgstr ""
+
+#. translators: %d: images
+#: modules/speed/check.php:143
+#, php-format
+msgid "%d uploaded images are over 300 KB"
+msgstr ""
+
+#. translators: %d: images
+#: modules/speed/check.php:143
+msgid "Compress them before uploading, or upload WebP versions (your server supports WebP)."
+msgstr ""
+
+#. translators: %d: images
+#: modules/speed/check.php:143
+msgid "Compress them before uploading (for example with Squoosh)."
+msgstr ""
+
+#. translators: %s: PHP version
+#: modules/speed/check.php:145
+#, php-format
+msgid "PHP %s"
+msgstr ""
+
+#. translators: %s: PHP version
+#: modules/speed/check.php:145
+msgid "PHP 8.1 or newer is much faster. Your host can switch it in the control panel."
+msgstr ""
+
+#: modules/speed/check.php:146
+msgid "Persistent object cache is active"
+msgstr ""
+
+#: modules/speed/check.php:146
+msgid "No persistent object cache"
+msgstr ""
+
+#: modules/speed/check.php:146
+msgid "Optional: if your host offers Redis or Memcached, turning it on speeds up the admin and uncached pages."
+msgstr ""
+
+#. translators: %d: kilobytes
+#: modules/speed/check.php:148
+#, php-format
+msgid "Autoloaded options: %d KB"
+msgstr ""
+
+#. translators: %d: kilobytes
+#: modules/speed/check.php:148
+msgid "Over 800 KB is loaded on every request. Old plugins often leave settings behind; remove plugins you do not use."
+msgstr ""
+
+#: modules/speed/check.php:150
+msgid "Debug mode is on"
+msgstr ""
+
+#: modules/speed/check.php:150
+msgid "Set WP_DEBUG to false in wp-config.php on a live site."
+msgstr ""
+
+#: modules/speed/check.php:167
+msgid "Loads your homepage twice from your own server and checks the things that make the biggest difference. For real-world phone scores, also test with Google PageSpeed Insights."
+msgstr ""
+
+#: modules/speed/check.php:169
+msgid "Run speed check"
+msgstr ""
+
+#: modules/speed/check.php:170
+msgid "Open PageSpeed Insights"
+msgstr ""
+
+#. translators: %s: error
+#: modules/speed/check.php:178
+#, php-format
+msgid "Your server could not load its own homepage: %s. Some hosts block these \"loopback\" requests; use PageSpeed Insights instead."
+msgstr ""
+
+#. translators: 1: time ago, 2: first load ms, 3: second load ms
+#: modules/speed/check.php:185
+#, php-format
+msgid "Checked %1$s ago. First load %2$d ms, second load %3$d ms."
+msgstr ""
+
+#: modules/speed/cleanup.php:20
+msgid "Revisions older than 30 days"
+msgstr ""
+
+#: modules/speed/cleanup.php:20
+msgid "Earlier versions of posts. The last 30 days are kept so you can still undo recent changes."
+msgstr ""
+
+#: modules/speed/cleanup.php:21
+msgid "Auto-drafts older than 7 days"
+msgstr ""
+
+#: modules/speed/cleanup.php:21
+msgid "Empty drafts WordPress creates when you open \"Add New\"."
+msgstr ""
+
+#: modules/speed/cleanup.php:22
+msgid "Posts and pages in the trash"
+msgstr ""
+
+#: modules/speed/cleanup.php:22
+msgid "Permanently deletes them. Check the trash first if you are unsure."
+msgstr ""
+
+#: modules/speed/cleanup.php:23
+msgid "Spam comments"
+msgstr ""
+
+#: modules/speed/cleanup.php:24
+msgid "Comments in the trash"
+msgstr ""
+
+#: modules/speed/cleanup.php:25
+msgid "Expired transients"
+msgstr ""
+
+#: modules/speed/cleanup.php:25
+msgid "Temporary cached data that has expired. WordPress rebuilds anything still needed."
+msgstr ""
+
+#: modules/speed/cleanup.php:26
+msgid "Orphaned post meta"
+msgstr ""
+
+#: modules/speed/cleanup.php:26
+msgid "Settings left behind by posts that no longer exist."
+msgstr ""
+
+#. translators: %d: rows
+#: modules/speed/cleanup.php:131
+#, php-format
+msgid "Removed %d items."
+msgstr ""
+
+#: modules/speed/cleanup.php:134
+msgid "A smaller database makes the admin and uncached pages faster. Make a backup first if your host does not do it for you. Each click removes up to 500 items; click again for more."
+msgstr ""
+
+#: modules/speed/cleanup.php:136
+msgid "Item"
+msgstr ""
+
+#: modules/speed/cleanup.php:136
+msgid "Count"
+msgstr ""
+
+#: modules/speed/cleanup.php:145
+msgid "Permanently remove these items?"
+msgstr ""
+
+#: modules/speed/cleanup.php:148
+msgid "Clean"
+msgstr ""
+
+#: modules/speed/cleanup.php:151
+msgid "Nothing to clean"
+msgstr ""
+
+#: modules/speed/speed.php:22
+msgid "Remove emoji scripts"
+msgstr ""
+
+#: modules/speed/speed.php:22
+msgid "Browsers show emoji natively; saves a script and styles on every page."
+msgstr ""
+
+#: modules/speed/speed.php:23
+msgid "Remove oEmbed discovery and wp-embed script"
+msgstr ""
+
+#: modules/speed/speed.php:23
+msgid "Your own embeds of YouTube etc. keep working."
+msgstr ""
+
+#: modules/speed/speed.php:24
+msgid "Dashicons only for logged-in users"
+msgstr ""
+
+#: modules/speed/speed.php:24
+msgid "Visitors never need the admin icon font."
+msgstr ""
+
+#: modules/speed/speed.php:25
+msgid "Remove jQuery Migrate on the front end"
+msgstr ""
+
+#: modules/speed/speed.php:25
+msgid "Turn off if an old plugin breaks."
+msgstr ""
+
+#: modules/speed/speed.php:26
+msgid "Clean the <head> (RSD, WLW, generator, shortlink)"
+msgstr ""
+
+#: modules/speed/speed.php:27
+msgid "Slow the Heartbeat API to every 60 seconds"
+msgstr ""
+
+#: modules/speed/speed.php:27
+msgid "Lowers server load from open admin tabs. Autosave still works."
+msgstr ""
+
+#: modules/speed/speed.php:28
+msgid "Keep at most 10 revisions per post"
+msgstr ""
+
+#: modules/speed/speed.php:28
+msgid "Keeps the database small."
+msgstr ""
+
+#: modules/speed/speed.php:29
+msgid "YouTube click-to-play (lightweight preview)"
+msgstr ""
+
+#: modules/speed/speed.php:29
+msgid "Shows the thumbnail and loads the video player only when clicked. One of the biggest speed wins on pages with videos."
+msgstr ""
+
+#: modules/speed/speed.php:30
+msgid "Preload the featured image on posts and pages"
+msgstr ""
+
+#: modules/speed/speed.php:30
+msgid "Helps Largest Contentful Paint (LCP)."
+msgstr ""
+
+#: modules/speed/speed.php:31
+msgid "Preconnect to Google ad and analytics servers when used"
+msgstr ""
+
+#: modules/speed/speed.php:31
+msgid "Adds preconnect hints only when SEMRS Ads or Google tags are active."
+msgstr ""
+
+#: modules/speed/speed.php:32
+msgid "Load block styles only for blocks on the page"
+msgstr ""
+
+#: modules/speed/speed.php:32
+msgid "Instead of one big stylesheet for every block, each page gets only the CSS of the blocks it uses."
+msgstr ""
+
+#: modules/speed/speed.php:33
+msgid "Inline small stylesheets (under 10 KB)"
+msgstr ""
+
+#: modules/speed/speed.php:33
+msgid "Puts small CSS files straight into the page, saving render-blocking requests. Best together with the page cache."
+msgstr ""
+
+#: modules/speed/speed.php:34
+msgid "Load chosen stylesheets without blocking the page"
+msgstr ""
+
+#: modules/speed/speed.php:34
+msgid "For CSS that is not needed for the top of the page (e.g. a slider or form plugin). List the style handles below."
+msgstr ""
+
+#: modules/speed/speed.php:35
+msgid "Prefetch pages when a visitor hovers over a link"
+msgstr ""
+
+#: modules/speed/speed.php:35
+msgid "The next page starts loading about 200 ms before the click, so it opens almost instantly. Uses the browser's Speculation Rules; admin, login, cart and links with ? are skipped."
+msgstr ""
+
+#: modules/speed/speed.php:36
+msgid "Disable XML-RPC"
+msgstr ""
+
+#: modules/speed/speed.php:36
+msgid "Blocks a common attack target. Leave off if you use Jetpack or the WordPress mobile app."
+msgstr ""
+
+#: modules/speed/speed.php:37
+msgid "Defer front-end scripts"
+msgstr ""
+
+#: modules/speed/speed.php:37
+msgid "Scripts load after the page is drawn. Test your site after switching on; add any script handle that breaks to the exclusions."
+msgstr ""
+
+#: modules/speed/speed.php:182
+msgid "Play video"
+msgstr ""
+
+#: semrs-core.php:50
+msgid "Titles, meta descriptions, robots, canonical, Open Graph, JSON-LD schema, XML sitemaps, breadcrumbs, llms.txt, a 0–100 SEO score with readability checks and link ideas, and a site-wide SEO audit. Reads existing Rank Math, Yoast and AIOSEO data."
+msgstr ""
+
+#: semrs-core.php:51
+msgid "Ads Manager"
+msgstr ""
+
+#: semrs-core.php:51
+msgid "Insert AdSense, Google Ad Manager (AdX) or any ad network code: in-content positions, header/footer code, shortcodes, exclusions, density caps, device targeting, lazy loading, ads.txt."
+msgstr ""
+
+#: semrs-core.php:52
+msgid "Speed Optimization"
+msgstr ""
+
+#: semrs-core.php:52
+msgid "Page cache, per-block CSS, inline or non-blocking CSS, deferred scripts, hover prefetch, YouTube click-to-play, image preload and preconnect hints; removes bloat (emoji, embeds, dashicons, jQuery Migrate, XML-RPC); database cleanup and a speed check."
+msgstr ""
+

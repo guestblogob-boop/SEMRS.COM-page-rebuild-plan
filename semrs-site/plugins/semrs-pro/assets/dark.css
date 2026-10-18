@@ -1,0 +1,58 @@
+/* SEMRS Pro dark mode. Header, top bar and footer stay navy. */
+html { color-scheme: light; }
+.sp-dark-toggle { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; color: inherit; background: transparent; border: 1px solid currentColor; border-color: color-mix(in srgb, currentColor 30%, transparent); border-radius: 50%; cursor: pointer; }
+.sp-dark-toggle:hover { background: rgba(127, 127, 127, .14); }
+.sp-dark-toggle:focus-visible { outline: 2px solid var(--sp-accent); outline-offset: 2px; }
+.sp-dark-toggle__sun, html[data-theme="dark"] .sp-dark-toggle__moon { display: none; }
+html[data-theme="dark"] .sp-dark-toggle__sun { display: block; }
+.sp-hb-main .sp-dark-toggle { color: var(--sp-primary); }
+.sp-hb-top .sp-dark-toggle { width: 32px; height: 32px; }
+@media (max-width: 921px) { .sp-hb-main .sp-hb-zone > .sp-dark-toggle { display: grid !important; } }
+
+html[data-theme="dark"] {
+	color-scheme: dark;
+	--sp-bg: #0e1626;
+	--sp-surface: #152238;
+	--sp-card: #132036;
+	--sp-line: #263652;
+	--sp-text: #d7dfeb;
+	--sp-muted: #9eabbf;
+	--sp-link: #9cc3ff;
+	--sp-primary: #f1f5fb;
+	--sp-on-dark: #e8eef7;
+	--sp-accent-text: #e5c15a;
+	--sp-accent-soft: #2b2512;
+	--sp-header-bg: #0b1f3a;
+	--sp-shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
+	--wp--preset--color--white: #132036;
+	--wp--preset--color--surface: #152238;
+	--wp--preset--color--text: #d7dfeb;
+	--wp--preset--color--muted: #9eabbf;
+}
+html[data-theme="dark"] body { background: var(--sp-bg); color: var(--sp-text); }
+
+/* Navy areas stay navy (they used the primary colour, which is light in dark mode). */
+html[data-theme="dark"] .site-header { background: #0b1f3a; border-color: #1b2f50; }
+html[data-theme="dark"] .site-footer,
+html[data-theme="dark"] .semrs-section--navy,
+html[data-theme="dark"] .semrs-cta-band,
+html[data-theme="dark"] .sp-to-top,
+html[data-theme="dark"] .page-numbers.current { background: #0b1f3a; border-color: #1e3a66; }
+html[data-theme="dark"] .semrs-section--navy, html[data-theme="dark"] .semrs-cta-band { box-shadow: inset 0 0 0 1px #1e3a66; }
+html[data-theme="dark"] .sp-button--outline:hover,
+html[data-theme="dark"] .is-style-outline > .wp-block-button__link:hover,
+html[data-theme="dark"] .semrs-btn:hover { background: #1e3a66; border-color: #1e3a66; color: #fff; }
+
+/* Cards, panels and fields that were white. */
+html[data-theme="dark"] :is(.semrs-card, .semrs-card-grid > .wp-block-column, .semrs-process > li, .semrs-faq .wp-block-details, .semrs-tool__panel, .semrs-tools-card, .semrs-post, .semrs-pricing, .semrs-service--card, .semrs-acc__item, .semrs-testi, .semrs-cd__unit, .semrs-source, .sp-card, .sp-search-panel, .semrs-popup__box) { background: var(--sp-card); border-color: var(--sp-line); }
+html[data-theme="dark"] .semrs-tabs--boxed .semrs-tabs__list button[aria-selected="true"] { background: var(--sp-card); }
+html[data-theme="dark"] :is(input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]), select, textarea) { background: #0b1322; color: var(--sp-text); border-color: #33476a; }
+html[data-theme="dark"] .semrs-serp { background: #fff; color: #202124; } /* Google preview stays true to Google. */
+html[data-theme="dark"] :is(code, pre, kbd) { background: #0b1322; color: #e6edf6; }
+html[data-theme="dark"] :is(table, th, td) { border-color: var(--sp-line); }
+html[data-theme="dark"] .main-navigation .sub-menu { background: #0e1a2e; border-color: #263652; }
+html[data-theme="dark"] .semrs-mobile-cta { background: #0b1f3a; border-color: #1e3a66; }
+html[data-theme="dark"] img:not([src$=".svg"]) { filter: brightness(.94); }
+html[data-theme="dark"] .semrs-ad-slot::before { color: #9eabbf; }
+html[data-theme="dark"] .semrs-show{background:var(--sp-card);border-color:var(--sp-line)}
+html[data-theme="dark"] .semrs-mobile-cta a:not(.semrs-mobile-cta__primary){color:#fff;background:#13305a;border-color:#2a4a7a}

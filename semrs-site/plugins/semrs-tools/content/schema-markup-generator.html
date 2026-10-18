@@ -1,0 +1,179 @@
+<!-- wp:paragraph -->
+<p>Choose a schema type, fill in the form and get valid JSON-LD structured data ready to paste into your page. The generator supports Organization, Article, FAQPage, BreadcrumbList, Product, Event and Service, and links straight to Google's Rich Results Test.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:shortcode -->
+[semrs_tool id="schema-markup-generator"]
+<!-- /wp:shortcode -->
+
+<!-- wp:shortcode -->
+[semrs_ad slot="tool"]
+<!-- /wp:shortcode -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What schema markup is</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Schema markup is a standard vocabulary, maintained at Schema.org, that describes the content of a page in a form machines understand. Instead of guessing that "Smith &amp; Co" is a business, "4.30pm" is a closing time or "$49" is a price, search engines can read those facts directly. Google recommends the JSON-LD format, a block of code that sits in the page and does not change what visitors see.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Structured data can make a page eligible for rich results, such as product prices, event dates or breadcrumb paths in search results. It also helps search engines and AI systems connect your pages to the right business, author and topic. It does not guarantee a rich result or a higher ranking, but it removes ambiguity, and accurate data is increasingly valuable.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Which schema type to use</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Organization:</strong> your business identity, usually on the homepage or About page: name, logo, contact details and social profiles.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Article:</strong> blog posts, guides and news. Choose BlogPosting for blog content and NewsArticle for news.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>FAQPage:</strong> pages with visible questions and answers. Google now shows FAQ rich results only for some well-known authoritative sites, but the markup still describes your content clearly.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>BreadcrumbList:</strong> the path from your homepage to the current page, which Google can show instead of the full URL.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Product:</strong> a single product with a visible price and availability.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Event:</strong> a dated event, in person or online.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Service:</strong> a service you offer, the provider and the areas you serve.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>For a physical local business, use our dedicated Local Business Schema Generator, which adds address, map coordinates and opening hours.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to use the generator</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Choose a schema type from the buttons at the top.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Fill in the fields. Leave optional fields empty if they do not apply; empty fields are left out of the code.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>For FAQ and breadcrumb types, add or remove items with the buttons.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Watch the JSON-LD update on the right.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Click <strong>Copy code</strong> and paste it into your page. In WordPress, use a Custom HTML block, your theme's header settings or your SEO plugin's schema feature.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Click <strong>Test in Google</strong> and paste your page URL or code into the Rich Results Test to confirm there are no errors.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Worked example</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A marketing agency in Toronto publishes a guide called "How to Choose a Web Designer". Using the Article type, it enters the headline, a one-sentence summary, the main image URL, the author's name and profile page, the agency name and logo, the publish date and the page URL. The generator produces a BlogPosting block that ties the guide to a real author and publisher. The agency pastes it into the post, runs the Rich Results Test, sees the article detected with no errors, and adds a BreadcrumbList block so Google shows "Home › Guides › How to Choose a Web Designer" in results.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Rules to follow</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Only mark up what visitors can see.</strong> If a price, review or question is in your schema, it must also be visible on the page. Hidden or misleading markup breaks Google's guidelines and can lead to a manual action.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Never invent ratings or reviews.</strong> This generator deliberately has no rating fields. Add review markup only for genuine reviews displayed on the page.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Be specific and accurate.</strong> Use real URLs, full dates and the exact business name you use everywhere else.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>One topic per block.</strong> Several blocks on one page are fine, as long as each describes something on that page.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Keep it updated.</strong> Change the schema when prices, dates or details change.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Common mistakes</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Copying another site's schema and leaving its details in.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Adding Product markup to category pages that list many products.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Using FAQ markup for sales copy rather than real questions.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Relative URLs or images that do not load.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Dates in an unclear format. Use the date picker so the format is correct.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Duplicate Organization blocks from a theme and a plugin at the same time.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Tips for local businesses</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If you serve customers locally in the US, UK, Canada or Australia, start with Organization or LocalBusiness markup on your homepage, using exactly the same business name, address and phone number as your Google Business Profile. Add Service markup on each service page with the areas you serve, and Event markup for workshops or open days. Structured data supports your local presence; it does not replace a verified Google Business Profile or genuine customer reviews.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Frequently asked questions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:group {"className":"semrs-faq","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-faq"><!-- wp:details -->
+<details class="wp-block-details"><summary>Is JSON-LD better than microdata?</summary><!-- wp:paragraph -->
+<p>Google supports both, but it recommends JSON-LD because it sits in one block, separate from your HTML, which makes it easier to add, read and maintain.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Will schema markup improve my rankings?</summary><!-- wp:paragraph -->
+<p>Structured data is not a direct ranking factor. It helps search engines understand your content and can make pages eligible for rich results, which can improve how many people click.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Why is Google not showing my rich result?</summary><!-- wp:paragraph -->
+<p>Valid markup makes a page eligible but does not guarantee display. Google decides based on quality, relevance and the search. Some types, such as FAQ, are now shown only for selected sites.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Can I add several schema types to one page?</summary><!-- wp:paragraph -->
+<p>Yes. A blog post can have Article and BreadcrumbList markup at the same time, as long as each describes content on that page.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Does my WordPress SEO plugin already add schema?</summary><!-- wp:paragraph -->
+<p>Many do, for example basic Organization, WebPage and Article data. Check your page source or the Rich Results Test before adding more, so you do not create duplicates.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details --></div>
+<!-- /wp:group -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Related free tools</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="/tools/local-business-schema-generator/">Local Business Schema Generator</a>: address, opening hours and map coordinates.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="/tools/serp-snippet-preview/">SERP Snippet Preview</a>: see how your result looks in Google.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="/tools/llms-txt-generator/">llms.txt Generator</a>: help AI tools understand your site.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:group {"className":"semrs-service-cta","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-service-cta"><!-- wp:paragraph -->
+<p>Want structured data set up and validated across your whole site? <a href="/services/technical-seo/">See SEMRS Technical SEO →</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

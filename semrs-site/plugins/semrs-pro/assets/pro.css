@@ -1,0 +1,18 @@
+/* SEMRS Pro: theme module styles (mega menu, table of contents). */
+
+/* Mega menu (desktop): add CSS class "semrs-mega" to a top menu item */
+@media (min-width: 922px) {
+	/* Mega menu: add class "semrs-mega" to a top item */
+	.main-navigation li.semrs-mega { position: static; }
+	.main-navigation li.semrs-mega > .sub-menu { left: 50%; transform: translate(-50%, 6px); width: min(960px, calc(100vw - 32px)); display: grid; grid-template-columns: repeat(var(--sp-mega-cols, 3), 1fr); gap: .25rem 1rem; padding: 1.25rem; border-top: 3px solid var(--sp-accent); }
+	.main-navigation li.semrs-mega:hover > .sub-menu, .main-navigation li.semrs-mega:focus-within > .sub-menu { transform: translate(-50%, 0); }
+	.main-navigation li.semrs-mega-cols-2 > .sub-menu { --sp-mega-cols: 2; }
+	.main-navigation li.semrs-mega-cols-4 > .sub-menu { --sp-mega-cols: 4; }
+}
+
+/* Table of contents */
+.sp-toc { margin: 1.5rem 0; padding: 1rem 1.25rem; background: var(--sp-surface); border: 1px solid var(--sp-line); border-radius: var(--sp-radius); }
+.sp-toc summary { font-weight: 700; color: var(--sp-primary); cursor: pointer; }
+.sp-toc ol { margin: .75rem 0 0 1.2rem; padding: 0; }
+.sp-toc li { margin: .25rem 0; }
+.sp-toc .sp-toc-l3 { margin-left: 1rem; list-style: circle; }

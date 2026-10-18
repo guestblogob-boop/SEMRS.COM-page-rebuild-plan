@@ -1,0 +1,335 @@
+# Copyright (C) 2026 SEMRS
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: SEMRS Tools\n"
+"Report-Msgid-Bugs-To: https://semrs.com/support/\n"
+"POT-Creation-Date: 2026-10-17 18:14+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Domain: semrs-tools\n"
+
+#. Name of the plugin
+#: semrs-tools.php
+msgid "SEMRS Tools"
+msgstr ""
+
+#. Description of the plugin
+#: semrs-tools.php
+msgid "Free SEO tools for any WordPress site: SERP preview, meta checker, robots.txt, redirect checker, schema generators, word counter, Google review link, llms.txt, UTM builder, image compressor, SEO ROI calculator. Each tool loads only its own small script. Shortcode: [semrs_tool id=\"…\"], directory: [semrs_tools]."
+msgstr ""
+
+#. URI of the plugin
+#: semrs-tools.php
+msgid "https://semrs.com/tools/"
+msgstr ""
+
+#. Author of the plugin
+#: semrs-tools.php
+msgid "SEMRS"
+msgstr ""
+
+#: includes/admin.php:15
+msgid "Free Tools"
+msgstr ""
+
+#: includes/admin.php:17 includes/admin.php:234
+msgid "SEMRS Free Tools"
+msgstr ""
+
+#: includes/admin.php:183
+msgid "Not allowed."
+msgstr ""
+
+#: includes/admin.php:195
+msgid "Free SEO Tools"
+msgstr ""
+
+#: includes/admin.php:197
+msgid "Free SEO tools for business owners and marketers. No signup, no limits on browser tools."
+msgstr ""
+
+#. translators: %s: category name
+#: includes/admin.php:206
+#, php-format
+msgid "Free %s Tools"
+msgstr ""
+
+#: includes/admin.php:214
+msgid "How to use this tool"
+msgstr ""
+
+#: includes/admin.php:215
+msgid "DRAFT: write the guide (800–1,500 words: how to use it, a worked example, best practices, common mistakes, FAQ) before publishing. Pages without a real guide are thin content for Google and AdSense."
+msgstr ""
+
+#. translators: %s: tool name
+#: includes/admin.php:217
+#, php-format
+msgid "Free %s"
+msgstr ""
+
+#. translators: %d: number of pages
+#: includes/admin.php:239
+#, php-format
+msgid "%d draft pages created. Existing pages were left untouched."
+msgstr ""
+
+#: includes/admin.php:243
+msgid "Put a tool on any page with its shortcode. Each page loads only that tool's script."
+msgstr ""
+
+#: includes/admin.php:247
+msgid "Create all tool pages as drafts (hub, 9 categories, 12 tools, full content + SEO)"
+msgstr ""
+
+#: includes/admin.php:248
+msgid "Drafts with complete guides, SEO titles, descriptions, focus keywords and schema. Existing pages are never overwritten. Review, then publish."
+msgstr ""
+
+#: includes/admin.php:251
+msgid "Tool"
+msgstr ""
+
+#: includes/admin.php:251
+msgid "Category"
+msgstr ""
+
+#: includes/admin.php:251
+msgid "Runs"
+msgstr ""
+
+#: includes/admin.php:251
+msgid "Shortcode"
+msgstr ""
+
+#: includes/admin.php:251
+msgid "Page"
+msgstr ""
+
+#: includes/admin.php:257
+msgid "Server (rate-limited)"
+msgstr ""
+
+#: includes/admin.php:257
+msgid "Browser"
+msgstr ""
+
+#: includes/admin.php:264
+msgid "Directory shortcodes:"
+msgstr ""
+
+#: includes/registry.php:19
+msgid "Meta Tags & SERP"
+msgstr ""
+
+#: includes/registry.php:19
+msgid "Preview and perfect how your pages look in Google."
+msgstr ""
+
+#: includes/registry.php:19
+msgid "SEO Services"
+msgstr ""
+
+#: includes/registry.php:20 includes/registry.php:21
+msgid "Technical SEO"
+msgstr ""
+
+#: includes/registry.php:20
+msgid "Crawling, indexing and redirect tools."
+msgstr ""
+
+#: includes/registry.php:21
+msgid "Schema Markup"
+msgstr ""
+
+#: includes/registry.php:21
+msgid "Generate structured data Google understands."
+msgstr ""
+
+#: includes/registry.php:22
+msgid "Content & Keywords"
+msgstr ""
+
+#: includes/registry.php:22
+msgid "Write and measure content that ranks."
+msgstr ""
+
+#: includes/registry.php:22
+msgid "SEO Content Writing"
+msgstr ""
+
+#: includes/registry.php:23
+msgid "Local SEO"
+msgstr ""
+
+#: includes/registry.php:23
+msgid "Tools for local businesses and Google Business Profile."
+msgstr ""
+
+#: includes/registry.php:24
+msgid "AI Search (GEO)"
+msgstr ""
+
+#: includes/registry.php:24
+msgid "Get found and cited by AI answer engines."
+msgstr ""
+
+#: includes/registry.php:24
+msgid "AI Search Optimization"
+msgstr ""
+
+#: includes/registry.php:25
+msgid "Ads & Marketing"
+msgstr ""
+
+#: includes/registry.php:25
+msgid "Campaign tracking and ad tools."
+msgstr ""
+
+#: includes/registry.php:25
+msgid "Paid Ads Management"
+msgstr ""
+
+#: includes/registry.php:26
+msgid "Website & Design"
+msgstr ""
+
+#: includes/registry.php:26
+msgid "Faster, more accessible websites."
+msgstr ""
+
+#: includes/registry.php:26
+msgid "Web Design"
+msgstr ""
+
+#: includes/registry.php:27
+msgid "Business Calculators"
+msgstr ""
+
+#: includes/registry.php:27
+msgid "Put numbers on your marketing decisions."
+msgstr ""
+
+#: includes/registry.php:27
+msgid "Get a Quote"
+msgstr ""
+
+#: includes/registry.php:42
+msgid "SERP Snippet Preview"
+msgstr ""
+
+#: includes/registry.php:42
+msgid "See your Google result on desktop and mobile before you publish."
+msgstr ""
+
+#: includes/registry.php:43
+msgid "Meta Title & Description Checker"
+msgstr ""
+
+#: includes/registry.php:43
+msgid "Check length, pixel width and keyword use, then copy the tags."
+msgstr ""
+
+#: includes/registry.php:44
+msgid "Robots.txt Generator"
+msgstr ""
+
+#: includes/registry.php:44
+msgid "Build a correct robots.txt with sitemap and AI-crawler rules."
+msgstr ""
+
+#: includes/registry.php:45
+msgid "Redirect Checker"
+msgstr ""
+
+#: includes/registry.php:45
+msgid "Trace every redirect hop and status code for any URL."
+msgstr ""
+
+#: includes/registry.php:46
+msgid "Schema Markup Generator"
+msgstr ""
+
+#: includes/registry.php:46
+msgid "JSON-LD for Organization, Article, FAQ, Breadcrumb, Product, Event and Service."
+msgstr ""
+
+#: includes/registry.php:47
+msgid "Local Business Schema Generator"
+msgstr ""
+
+#: includes/registry.php:47
+msgid "LocalBusiness JSON-LD with address, hours and geo."
+msgstr ""
+
+#: includes/registry.php:48
+msgid "Word Counter"
+msgstr ""
+
+#: includes/registry.php:48
+msgid "Words, characters, sentences, reading time and top keywords."
+msgstr ""
+
+#: includes/registry.php:49
+msgid "Google Review Link Generator"
+msgstr ""
+
+#: includes/registry.php:49
+msgid "Create a direct \"leave a review\" link from your Place ID."
+msgstr ""
+
+#: includes/registry.php:50
+msgid "llms.txt Generator"
+msgstr ""
+
+#: includes/registry.php:50
+msgid "Create an llms.txt file that guides AI tools to your best pages."
+msgstr ""
+
+#: includes/registry.php:51
+msgid "UTM Builder"
+msgstr ""
+
+#: includes/registry.php:51
+msgid "Build tracked campaign links, one at a time or in bulk."
+msgstr ""
+
+#: includes/registry.php:52
+msgid "Image Compressor & WebP Converter"
+msgstr ""
+
+#: includes/registry.php:52
+msgid "Compress and convert images in your browser. Files never leave your device."
+msgstr ""
+
+#: includes/registry.php:53
+msgid "SEO ROI Calculator"
+msgstr ""
+
+#: includes/registry.php:53
+msgid "Estimate what extra organic traffic could be worth."
+msgstr ""
+
+#: includes/render.php:75
+msgid "This free tool needs JavaScript. Please enable it in your browser."
+msgstr ""
+
+#: includes/render.php:76
+msgid "Loading tool…"
+msgstr ""
+
+#: includes/render.php:110
+msgid "Use free tool →"
+msgstr ""
+
+#: includes/rest.php:103
+msgid "Enter a public website address, like https://example.com/page/."
+msgstr ""
+
+#: includes/rest.php:111
+msgid "Limit reached (30 checks per hour). Please try again later."
+msgstr ""
+

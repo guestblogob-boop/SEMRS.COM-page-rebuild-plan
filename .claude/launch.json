@@ -1,0 +1,47 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "semrs-playground",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "-y",
+        "@wp-playground/cli@latest",
+        "server",
+        "--port=9400",
+        "--blueprint=./semrs-site/preview/blueprint.json",
+        "--mount=./semrs-site/theme/semrs:/wordpress/wp-content/themes/semrs",
+        "--mount=./semrs-site/theme/semrs-child-seo:/wordpress/wp-content/themes/semrs-child-seo",
+        "--mount=./semrs-site/plugins/semrs-core:/wordpress/wp-content/plugins/semrs-core",
+        "--mount=./semrs-site/plugins/semrs-pro:/wordpress/wp-content/plugins/semrs-pro",
+        "--mount=./semrs-site/plugins/semrs-update-server:/wordpress/wp-content/plugins/semrs-update-server",
+        "--mount=./semrs-site/preview:/wordpress/semrs-assets",
+        "--mount=./semrs-site/preview/mu:/wordpress/wp-content/mu-plugins",
+        "--mount=./semrs-site/plugins/semrs-tools:/wordpress/wp-content/plugins/semrs-tools",
+        "--mount=./semrs-site/plugins/semrs-blocks:/wordpress/wp-content/plugins/semrs-blocks",
+        "--mount=./semrs-site/plugins/semrs-site:/wordpress/wp-content/plugins/semrs-site",
+        "--mount=./semrs-site/theme:/wordpress/semrs-preview"
+      ],
+      "port": 9400
+    },
+    {
+      "name": "semrs-checks",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "-y",
+        "@wp-playground/cli@latest",
+        "server",
+        "--port=9401",
+        "--workers=1",
+        "--blueprint=./semrs-site/dist/.check/blueprint.json",
+        "--mount=./semrs-site/dist/.check/plugins/semrs-core:/wordpress/wp-content/plugins/semrs-core",
+        "--mount=./semrs-site/dist/.check/plugins/semrs-blocks:/wordpress/wp-content/plugins/semrs-blocks",
+        "--mount=./semrs-site/dist/.check/plugins/semrs-tools:/wordpress/wp-content/plugins/semrs-tools",
+        "--mount=./semrs-site/dist/.check/plugins/semrs-pro:/wordpress/wp-content/plugins/semrs-pro",
+        "--mount=./semrs-site/dist/.check/themes/semrs:/wordpress/wp-content/themes/semrs",
+        "--mount=./semrs-site/dist/.check/themes/semrs-child-seo:/wordpress/wp-content/themes/semrs-child-seo"
+      ],
+      "port": 9401
+    }
+  ]
+}

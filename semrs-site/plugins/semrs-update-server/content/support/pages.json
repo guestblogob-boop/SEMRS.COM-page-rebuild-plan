@@ -1,0 +1,47 @@
+{
+	"ads": {
+		"title": "SEMRS Ads Manager & AdSense Policy Guide",
+		"description": "Place AdSense, Ad Manager or other network ads with the free SEMRS Core ads manager, and keep your site within Google AdSense program policies.",
+		"order": 5
+	},
+	"blocks": {
+		"title": "SEMRS Blocks Manual: Every Block Explained",
+		"description": "How to use the free SEMRS Blocks plugin: containers, tabs, accordions, galleries, testimonials, table of contents, icons, post grids, pricing, contact form, visibility, and the Pro blocks, popups and display conditions.",
+		"order": 2
+	},
+	"policies": {
+		"title": "Policies: Google, AdSense, WordPress.org & Privacy",
+		"description": "How SEMRS products follow Google Search guidelines, AdSense policies, WordPress.org theme and plugin guidelines, GPL licensing and privacy rules, and what site owners must do.",
+		"order": 8
+	},
+	"pro": {
+		"title": "SEMRS Pro: Install, License Key & Updates",
+		"description": "How to install SEMRS Pro, activate or move your license key, get one-click updates, and what happens when a license expires.",
+		"order": 7
+	},
+	"seo": {
+		"title": "SEMRS Core SEO Manual: Titles, Schema, Sitemaps",
+		"description": "Set up SEO with SEMRS Core: titles and meta, SEO score and readability checks, site audit, schema, XML sitemaps, llms.txt and switching from Rank Math, Yoast or AIOSEO.",
+		"order": 4
+	},
+	"speed": {
+		"title": "SEMRS Speed Optimization Manual",
+		"description": "Make WordPress faster with the free SEMRS Core speed module: page cache, CSS and script optimization, hover prefetch, database cleanup and a built-in speed check.",
+		"order": 6
+	},
+	"support": {
+		"title": "SEMRS Support & User Manual",
+		"description": "How to install, set up and use the SEMRS theme, SEMRS Core, SEMRS Blocks, SEMRS Tools and SEMRS Pro, with policy guides for Google, AdSense and WordPress.org.",
+		"order": 0
+	},
+	"templates": {
+		"title": "Templates & Starter Sites: Import a Complete Website",
+		"description": "Import a complete website in one click with SEMRS starter sites, insert ready-made pages and sections, and apply header and footer presets. Free and Pro templates.",
+		"order": 3
+	},
+	"theme": {
+		"title": "SEMRS Theme Manual: Header Builder, Layouts & Page Options",
+		"description": "Step-by-step guide to the free SEMRS theme: logo, header and footer builder, sticky and transparent header, colours, layouts, blog features, patterns and per-page options.",
+		"order": 1
+	}
+}

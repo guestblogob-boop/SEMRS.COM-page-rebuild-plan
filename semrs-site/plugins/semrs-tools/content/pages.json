@@ -1,0 +1,222 @@
+{
+	"ai-search": {
+		"h1": "Free AI Search (GEO) Tools",
+		"title": "Free AI Search Optimization (GEO) Tools | SEMRS",
+		"description": "Free tools for AI search optimization: create an llms.txt file that guides AI assistants to your best pages, and set AI crawler rules in robots.txt.",
+		"focus": "ai search optimization tools",
+		"schema": "CollectionPage",
+		"kind": "category",
+		"parent": "tools",
+		"order": 25
+	},
+	"calculators": {
+		"h1": "Free Marketing & SEO Calculators",
+		"title": "Free SEO & Marketing Calculators | SEMRS",
+		"description": "Free calculators for business owners: estimate the value of extra organic traffic, leads and customers, your SEO ROI and the month you could break even.",
+		"focus": "seo calculators",
+		"schema": "CollectionPage",
+		"kind": "category",
+		"parent": "tools",
+		"order": 28
+	},
+	"content-keywords": {
+		"h1": "Free Content & Keyword Tools",
+		"title": "Free Content & Keyword Tools for SEO Writing | SEMRS",
+		"description": "Free content tools for SEO writers: count words and characters, check reading time and sentence length, and see keyword density. Private and instant.",
+		"focus": "content tools",
+		"schema": "CollectionPage",
+		"kind": "category",
+		"parent": "tools",
+		"order": 23
+	},
+	"google-review-link-generator": {
+		"h1": "Free Google Review Link Generator",
+		"title": "Free Google Review Link Generator | SEMRS",
+		"description": "Create a direct link that opens your Google review form in one tap. Paste your Place ID and get the link plus ready-to-send email and SMS review requests.",
+		"focus": "google review link generator",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 8
+	},
+	"image-compressor": {
+		"h1": "Free Image Compressor & WebP Converter",
+		"title": "Free Image Compressor & WebP Converter | SEMRS",
+		"description": "Compress JPG and PNG images and convert them to WebP in your browser. Resize to web-friendly widths and download. Files never leave your device. Free.",
+		"focus": "image compressor",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 11
+	},
+	"llms-txt-generator": {
+		"h1": "Free llms.txt Generator",
+		"title": "Free llms.txt Generator for AI Search | SEMRS",
+		"description": "Create an llms.txt file that summarises your website and points AI tools to your most useful pages. Add sections and links, then download the file. Free.",
+		"focus": "llms.txt generator",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 9
+	},
+	"local-business-schema-generator": {
+		"h1": "Free Local Business Schema Generator",
+		"title": "Free Local Business Schema Generator | SEMRS",
+		"description": "Create LocalBusiness JSON-LD with your address, phone, opening hours, map location and service areas. Choose from 29 business types and copy the code. Free.",
+		"focus": "local business schema generator",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 6
+	},
+	"local-seo": {
+		"h1": "Free Local SEO Tools",
+		"title": "Free Local SEO Tools for Small Businesses | SEMRS",
+		"description": "Free local SEO tools for small businesses: create a Google review link, build LocalBusiness schema and write local titles that win clicks in your area.",
+		"focus": "local seo tools",
+		"schema": "CollectionPage",
+		"kind": "category",
+		"parent": "tools",
+		"order": 24
+	},
+	"marketing": {
+		"h1": "Free Ads & Marketing Tools",
+		"title": "Free Marketing Tools – UTM Builder & Tracking | SEMRS",
+		"description": "Free marketing tools to track what works: build UTM campaign links for Google Ads, social, email and QR codes, in bulk, with CSV export for your team.",
+		"focus": "marketing tools",
+		"schema": "CollectionPage",
+		"kind": "category",
+		"parent": "tools",
+		"order": 26
+	},
+	"meta-description-checker": {
+		"h1": "Free Meta Title & Description Checker",
+		"title": "Free Meta Title & Description Checker | SEMRS",
+		"description": "Check your meta title and description for length, pixel width and keyword use. Get instant fixes and copy ready-made title, description and Open Graph tags.",
+		"focus": "meta description checker",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 2
+	},
+	"meta-serp": {
+		"h1": "Free Meta Tag & SERP Tools",
+		"title": "Free Meta Tag & SERP Preview Tools | SEMRS",
+		"description": "Free tools to write better title tags and meta descriptions. Preview your Google result on desktop and mobile, check pixel width and copy ready-made tags.",
+		"focus": "meta tag tools",
+		"schema": "CollectionPage",
+		"kind": "category",
+		"parent": "tools",
+		"order": 20
+	},
+	"redirect-checker": {
+		"h1": "Free Redirect Checker",
+		"title": "Free Redirect Checker – Trace 301 & 302 Chains | SEMRS",
+		"description": "Check any URL for redirects. See every hop, status code and response time, spot redirect chains, loops and temporary redirects, and get clear fixes. Free.",
+		"focus": "redirect checker",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 4
+	},
+	"robots-txt-generator": {
+		"h1": "Free Robots.txt Generator",
+		"title": "Free Robots.txt Generator with AI Crawler Rules | SEMRS",
+		"description": "Create a correct robots.txt in seconds: WordPress rules, blocked paths, sitemap links and AI crawler settings for GPTBot, ClaudeBot and more. Free download.",
+		"focus": "robots.txt generator",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 3
+	},
+	"schema-markup-generator": {
+		"h1": "Free Schema Markup Generator",
+		"title": "Free Schema Markup Generator (JSON-LD) | SEMRS",
+		"description": "Generate valid JSON-LD schema for Organization, Article, FAQ, Breadcrumb, Product, Event and Service pages. Copy the code and test it with Google. Free.",
+		"focus": "schema markup generator",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 5
+	},
+	"schema": {
+		"h1": "Free Schema Markup Tools",
+		"title": "Free Schema Markup Generators (JSON-LD) | SEMRS",
+		"description": "Free schema markup generators for JSON-LD: Organization, Article, FAQ, Breadcrumb, Product, Event, Service and LocalBusiness with address and opening hours.",
+		"focus": "schema markup tools",
+		"schema": "CollectionPage",
+		"kind": "category",
+		"parent": "tools",
+		"order": 22
+	},
+	"seo-roi-calculator": {
+		"h1": "Free SEO ROI Calculator",
+		"title": "Free SEO ROI Calculator – Estimate Your Return | SEMRS",
+		"description": "Estimate what extra organic traffic is worth. Enter visits, conversion rate, close rate and customer value to see leads, revenue, ROI and break-even.",
+		"focus": "seo roi calculator",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 12
+	},
+	"serp-snippet-preview": {
+		"h1": "Free SERP Snippet Preview Tool",
+		"title": "Free SERP Snippet Preview Tool – See Your Google Result",
+		"description": "Preview your page title and meta description as they appear in Google on desktop and mobile. Check pixel width, fix truncation and copy the tags. Free.",
+		"focus": "serp snippet preview",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 1
+	},
+	"technical-seo": {
+		"h1": "Free Technical SEO Tools",
+		"title": "Free Technical SEO Tools – Robots.txt & Redirects | SEMRS",
+		"description": "Free technical SEO tools: generate a correct robots.txt with AI crawler rules and trace redirect chains, status codes and loops for any public URL.",
+		"focus": "technical seo tools",
+		"schema": "CollectionPage",
+		"kind": "category",
+		"parent": "tools",
+		"order": 21
+	},
+	"tools": {
+		"h1": "Free SEO Tools",
+		"title": "Free SEO Tools – No Signup, No Limits | SEMRS",
+		"description": "12 free SEO tools for business owners and marketers: SERP preview, schema generators, robots.txt, redirect checker, UTM builder, image compressor and more.",
+		"focus": "free seo tools",
+		"schema": "CollectionPage",
+		"kind": "hub",
+		"parent": "",
+		"order": 0
+	},
+	"utm-builder": {
+		"h1": "Free UTM Builder",
+		"title": "Free UTM Builder – Campaign URL Generator | SEMRS",
+		"description": "Build tracked campaign links for Google Analytics with presets for Google Ads, Facebook, email and QR codes. Bulk mode tags many URLs at once. CSV export.",
+		"focus": "utm builder",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 10
+	},
+	"website": {
+		"h1": "Free Website & Design Tools",
+		"title": "Free Website Tools – Image Compressor & WebP | SEMRS",
+		"description": "Free website tools to make pages faster: compress images and convert them to WebP in your browser, resize for the web and download. Nothing is uploaded.",
+		"focus": "website tools",
+		"schema": "CollectionPage",
+		"kind": "category",
+		"parent": "tools",
+		"order": 27
+	},
+	"word-counter": {
+		"h1": "Free Word Counter",
+		"title": "Free Word Counter – Words, Reading Time & Keywords | SEMRS",
+		"description": "Count words, characters, sentences and paragraphs instantly. See reading and speaking time, average sentence length and keyword density. Private and free.",
+		"focus": "word counter",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 7
+	}
+}

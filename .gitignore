@@ -1,0 +1,13 @@
+# Build output (regenerate with `node release.mjs` / `node dist/mkcheck.cjs`)
+semrs-site/dist/releases/
+semrs-site/dist/wporg/
+semrs-site/dist/server/
+semrs-site/dist/.check/
+semrs-site/dist/.wporg-tmp/
+
+# Local / tooling
+node_modules/
+.claude/settings.local.json
+*.log
+.DS_Store
+Thumbs.db

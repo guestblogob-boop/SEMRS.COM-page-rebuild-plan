@@ -1,0 +1,169 @@
+<!-- wp:paragraph -->
+<p>The SEO module is part of the free SEMRS Core plugin. Switch it on in <strong>SEMRS → Features</strong>, then open <strong>SEMRS → SEO</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">1. Site-wide settings (SEMRS → SEO)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Titles:</strong> choose a separator and title templates. Variables such as <code>%title%</code>, <code>%site%</code> and <code>%sep%</code> are filled in for each page.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Homepage:</strong> write the homepage title (under 60 characters) and description (under 160 characters).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Organisation or person:</strong> your business name, type (LocalBusiness, ProfessionalService, Organization or Person), logo, address, area served and social profiles. This becomes your site's JSON-LD schema.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Robots:</strong> search results and 404 pages are always kept out of Google; choose whether tag, author and date archives are indexed (tags and dates are noindexed by default).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Verification:</strong> paste the Google Search Console and Bing Webmaster codes.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">2. Each post and page (SEMRS SEO box in the editor)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Focus keyword</strong>, <strong>SEO title</strong> and <strong>meta description</strong> with live length counters and a Google preview.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Canonical URL</strong> (leave empty unless the page is a copy of another).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Schema type</strong>, <strong>noindex</strong> and <strong>nofollow</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>SEO score (0–100)</strong> with checks in three groups:</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>- <strong>Basic SEO:</strong> focus keyword in the title, description, URL and first 100 words; the keyword not already used on another page (pages competing for the same keyword); title 30–60 and description 120–155 characters; a short URL. - <strong>Content:</strong> enough words (300 for posts, 200 for pages); internal links; a link to a useful outside source; image alt text; a featured image; no extra H1; subheadings that break up long text; the keyword in a subheading; keyword density between 0.5% and 3%. - <strong>Readability:</strong> short sentences, comfortable paragraph length and, for English sites, the Flesch reading-ease score.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Re-check now</strong> analyses your unsaved changes, so you can improve the score before you publish.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Internal link ideas:</strong> after a re-check, SEMRS lists your published pages on the same topic that this page does not link to yet, with a Copy link button.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The score also appears in an <strong>SEO</strong> column on the Posts and Pages lists (green 80+, orange 50–79, red under 50). Click the column title to sort by score.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Empty descriptions are filled from the excerpt or the first paragraph, so no page is left without one.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">3. SEO Audit (SEMRS → SEO Audit)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><strong>Site checks</strong> run instantly: search engines allowed, readable permalinks, HTTPS, your own tagline, a homepage description, the sitemap, a logo for search results, a site icon, robots.txt problems, a second SEO plugin, Search Console verification and leftover WordPress sample content. Each problem has a <strong>Fix</strong> link.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Content audit:</strong> click <strong>Run the content audit</strong>. SEMRS scores every published post and page (up to 2,000) in small steps, then shows:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>average score and pages scoring under 50</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>missing meta descriptions, duplicate SEO titles and duplicate descriptions</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>thin content and noindexed pages</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>orphan pages</strong>: pages no other post or page links to (menus are not counted). Link to them from related articles so visitors and Google can find them.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Click a number to filter the table; each row lists what to fix, with an edit link.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">4. Schema</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>SEMRS Core outputs one connected JSON-LD graph: Organization or LocalBusiness, WebSite with search, WebPage, BreadcrumbList, Article/BlogPosting with the author, Service, WebApplication for tool pages, and FAQPage built automatically from visible FAQ (Details) blocks. Schema must describe what visitors can see on the page; never add reviews or ratings that are not shown.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">5. XML sitemap, robots.txt and llms.txt</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The sitemap uses WordPress's own engine at <code>/wp-sitemap.xml</code>; noindexed pages are left out and old <code>/sitemap_index.xml</code> addresses redirect to it. Submit it in Google Search Console → Sitemaps. Extra robots.txt lines can be added in SEMRS → SEO.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>llms.txt</strong> (on by default) is a short plain-text map of your site at <code>/llms.txt</code> for AI assistants such as ChatGPT, Perplexity and Claude: your site summary, main pages and latest articles with their descriptions. Noindexed and password-protected pages are left out, and it updates when you publish. A real llms.txt file in your site root always takes priority. Switch it off under SEMRS → SEO → Indexing.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">6. Switching from another SEO plugin</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>While Rank Math, Yoast, All in One SEO, SEOPress or The SEO Framework is active, SEMRS SEO pauses its output so you never get duplicate tags. Titles, descriptions, focus keywords, canonicals, noindex settings and share images saved by <strong>Rank Math</strong>, <strong>Yoast SEO</strong> or <strong>All in One SEO</strong> (post settings) are read automatically, including their title variables, so nothing is lost when you switch.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Install SEMRS Core and check a few pages in the SEMRS SEO box.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Deactivate the old SEO plugin.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Open a few pages, right-click → View Source, and confirm there is one <code>&lt;title&gt;</code>, one meta description and one canonical tag.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Re-submit your sitemap in Search Console.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">7. SEMRS Pro SEO extras</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Redirects with a 404 monitor, multi-location local SEO, IndexNow instant indexing, automatic image alt text, and the <strong>Bulk SEO editor</strong> (SEMRS → Bulk SEO): edit SEO titles, descriptions, focus keywords and noindex for 20 posts at a time, with length counters and a "missing description" filter. See <a href="/support/pro/">SEMRS Pro</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Good practice</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Write titles and descriptions for people, not for keyword counts. Google's guidelines ask for helpful, original content; tools can only make that content easier to find.</p>
+<!-- /wp:paragraph -->

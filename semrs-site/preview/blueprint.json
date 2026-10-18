@@ -1,0 +1,59 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"landingPage": "/pattern-sheet/",
+	"preferredVersions": {
+		"php": "8.2",
+		"wp": "latest"
+	},
+	"login": true,
+	"steps": [
+		{
+			"step": "activateTheme",
+			"themeFolderName": "semrs-child-seo"
+		},
+		{
+			"step": "activatePlugin",
+			"pluginPath": "semrs-core/semrs-core.php"
+		},
+		{
+			"step": "activatePlugin",
+			"pluginPath": "semrs-blocks/semrs-blocks.php"
+		},
+		{
+			"step": "activatePlugin",
+			"pluginPath": "semrs-pro/semrs-pro.php"
+		},
+		{
+			"step": "activatePlugin",
+			"pluginPath": "semrs-update-server/semrs-update-server.php"
+		},
+		{
+			"step": "activatePlugin",
+			"pluginPath": "semrs-tools/semrs-tools.php"
+		},
+		{
+			"step": "activatePlugin",
+			"pluginPath": "semrs-site/semrs-site.php"
+		},
+		{
+			"step": "defineWpConfigConsts",
+			"consts": {
+				"WP_DEBUG": true,
+				"WP_DEBUG_DISPLAY": true,
+				"SEMRS_UPDATE_SERVER": "http://127.0.0.1:9400/wp-json/semrs-updates/v1/"
+			}
+		},
+		{
+			"step": "setSiteOptions",
+			"options": {
+				"blogname": "SEMRS",
+				"blogdescription": "SEO, web design and content for small businesses",
+				"permalink_structure": "/%postname%/"
+			}
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php ini_set('display_errors','1'); error_reporting(E_ALL); require '/wordpress/wp-load.php';\nrequire_once ABSPATH . 'wp-admin/includes/taxonomy.php';\n$sheet = file_get_contents('/wordpress/semrs-preview/pattern-sheet.html');\n$id = wp_insert_post(array('post_type'=>'page','post_status'=>'publish','post_title'=>'Pattern Sheet','post_name'=>'pattern-sheet','post_content'=>$sheet));\nupdate_post_meta($id,'_wp_page_template','page-templates/full-width.php');\n$cat = wp_create_category('SEO Guides');\n$body = '<!-- wp:paragraph --><p>This sample post checks the table of contents, the author box, the progress bar and related posts.</p><!-- /wp:paragraph -->';\nforeach (array('What a title tag does','How long should a meta description be','Pricing: what $99 SEO really buys','Common mistakes') as $h) { $body .= '<!-- wp:heading --><h2 class=\"wp-block-heading\">'.$h.'</h2><!-- /wp:heading --><!-- wp:paragraph --><p>'.str_repeat('Sample guide text for layout testing. ', 40).'</p><!-- /wp:paragraph -->'; }\nfor ($i=1;$i<=4;$i++) { wp_insert_post(array('post_status'=>'publish','post_title'=>$i===1?'How to write title tags that get clicks':'Sample SEO guide '.$i,'post_content'=>$body,'post_category'=>array($cat),'post_date'=>date('Y-m-d H:i:s', strtotime('-'.(10+$i).' days')))); }\nwp_update_user(array('ID'=>1,'display_name'=>'SEMRS Editorial Team','description'=>'Placeholder author bio for preview.'));\nset_theme_mod('semrs_whatsapp','15551234567');\nset_theme_mod('semrs_phone','+1 555 123 4567');\nset_theme_mod('semrs_theme_footer_note','SEMRS (Search Engine Marketing & Ranking Solutions) is an independent agency and is not affiliated with Semrush.');\n$menu = wp_create_nav_menu('Primary');\n$tools = wp_update_nav_menu_item($menu,0,array('menu-item-title'=>'Free Tools','menu-item-url'=>home_url('/tools/'),'menu-item-status'=>'publish','menu-item-classes'=>'semrs-mega'));\nforeach (array('SERP Snippet Preview','Meta Description Checker','Robots.txt Generator','Redirect Checker','Schema Markup Generator','Local Business Schema','Word Counter','Google Review Link','llms.txt Generator','UTM Builder','Image Compressor','SEO ROI Calculator') as $t) { wp_update_nav_menu_item($menu,0,array('menu-item-title'=>$t,'menu-item-url'=>home_url('/tools/'.sanitize_title($t).'/'),'menu-item-status'=>'publish','menu-item-parent-id'=>$tools)); }\nforeach (array('Services'=>'/services/','Pricing'=>'/pricing/','How We Work'=>'/how-we-work/','Blog'=>'/blog/','About'=>'/about/') as $t=>$u) { wp_update_nav_menu_item($menu,0,array('menu-item-title'=>$t,'menu-item-url'=>home_url($u),'menu-item-status'=>'publish')); }\nset_theme_mod('nav_menu_locations', array('primary'=>$menu));\nupdate_option('sidebars_widgets', array_merge((array) get_option('sidebars_widgets'), array('sidebar-1'=>array('search-2','recent-posts-2'))));\nupdate_option('widget_search', array(2=>array('title'=>'Search'), '_multiwidget'=>1));\nupdate_option('widget_recent-posts', array(2=>array('title'=>'Recent posts','number'=>5), '_multiwidget'=>1));\nset_theme_mod('semrs_theme_cta_text','Free SEO review');\nset_theme_mod('semrs_theme_cta_url','/get-a-quote/');\nwp_set_current_user(1);\nrequire_once WP_PLUGIN_DIR . '/semrs-tools/includes/admin.php';\n$n = semrs_tools_install_pages('publish');\necho 'tool pages: ' . $n . \"\n\";\nrequire_once ABSPATH . 'wp-admin/includes/image.php';\n$up = wp_upload_dir(); copy('/wordpress/semrs-assets/test-logo-512.png', $up['path'] . '/semrs-logo-512.png');\n$att = wp_insert_attachment(array('post_mime_type'=>'image/png','post_title'=>'SEMRS logo','post_status'=>'inherit'), $up['path'] . '/semrs-logo-512.png');\nwp_update_attachment_metadata($att, wp_generate_attachment_metadata($att, $up['path'] . '/semrs-logo-512.png'));\nset_theme_mod('custom_logo', $att);\nforeach (array('facebook'=>'https://facebook.com/semrs','x'=>'https://x.com/semrs','instagram'=>'https://instagram.com/semrs','linkedin'=>'https://linkedin.com/company/semrs','youtube'=>'https://youtube.com/@semrs','tiktok'=>'https://tiktok.com/@semrs','pinterest'=>'https://pinterest.com/semrs','whatsapp'=>'https://wa.me/15551234567','threads'=>'https://threads.net/@semrs') as $k=>$u) { set_theme_mod('semrs_theme_social_'.$k, $u); }\n$loc = wp_insert_post(array('post_type'=>'semrs_location','post_status'=>'publish','post_title'=>'SEMRS Austin','post_content'=>'<!-- wp:paragraph --><p>Test location for the Local SEO module.</p><!-- /wp:paragraph -->'));\nforeach (array('type'=>'ProfessionalService','street'=>'100 Congress Ave','city'=>'Austin','region'=>'TX','postal'=>'78701','country'=>'US','phone'=>'+1 512 555 0100','lat'=>'30.2650','lng'=>'-97.7440','areas'=>'Austin, Round Rock, Cedar Park') as $k=>$v) { update_post_meta($loc, '_semrs_loc_'.$k, $v); }\n$h=array(); foreach (array('Monday','Tuesday','Wednesday','Thursday','Friday') as $d) { $h[$d]=array('open'=>'09:00','close'=>'17:00'); } update_post_meta($loc, '_semrs_loc_hours', $h);\nsemrs_us_install();\nforeach (array('semrs-core','semrs-pro','semrs') as $s) { copy('/wordpress/semrs-assets/test-releases/'.$s.'-1.9.0.zip', semrs_us_dir().$s.'-1.9.0-'.md5($s.wp_salt()).'.zip'); semrs_us_save_release($s, '1.9.0', array('file'=>$s.'-1.9.0-'.md5($s.wp_salt()).'.zip','changelog'=>'Test release for the update notice.','requires'=>'6.5','tested'=>'6.8','requires_php'=>'7.4')); }\nupdate_option('semrs_test_key', semrs_us_create_key('test@example.com', 1, ''));\nupdate_option('semrs_pro_license_key', get_option('semrs_test_key'));\n$demo = wp_insert_post(array('post_type'=>'page','post_status'=>'publish','post_title'=>'Blocks Demo','post_name'=>'blocks-demo','post_content'=>file_get_contents('/wordpress/semrs-assets/blocks-demo.html')));\nupdate_post_meta($demo,'_wp_page_template','page-templates/full-width.php');\n$show_content = '';\nforeach (array('hero-cover','services','steps','pricing','faq','cta') as $p) { $show_content .= '<!-- wp:pattern {\"slug\":\"semrs/' . $p . '\"} /-->' . \"\\n\\n\"; }\n$show = wp_insert_post(array('post_type'=>'page','post_status'=>'publish','post_title'=>'Theme Showcase','post_name'=>'theme-showcase','post_content'=>$show_content));\nupdate_post_meta($show,'_wp_page_template','page-templates/full-width.php');\nupdate_post_meta($show,'semrs_hide_title','1');\nrequire_once WP_PLUGIN_DIR . '/semrs-site/semrs-site.php';\n$kw = semrs_site_install_pages();\nforeach (get_posts(array('post_type'=>'page','post_status'=>'draft','name'=>'keyword-ideas-generator','numberposts'=>1)) as $kp) { wp_publish_post($kp->ID); }\n$hp = wp_insert_post(array('post_type'=>'page','post_status'=>'publish','post_title'=>'Home Photo','post_name'=>'home-photo','post_content'=>'<!-- wp:pattern {\"slug\":\"semrs-site/hero-photo\"} /-->' . \"\n\n\" . '<!-- wp:pattern {\"slug\":\"semrs/services\"} /-->'));\nupdate_post_meta($hp,'_wp_page_template','page-templates/full-width.php');\nupdate_post_meta($hp,'semrs_hide_title','1');\n// Themes & Plugins showcase page (preview images from /semrs-assets/shots/showcase).\nrequire_once ABSPATH . 'wp-admin/includes/image.php';\n$sc_products = array(\n\tarray('semrs', 'SEMRS', 'free', 'Light, SEO-first theme with a drag-and-drop header and footer builder.', 'Download'),\n\tarray('semrs-child-seo', 'SEMRS Child SEO', 'free', 'Brand colours plus a Call / WhatsApp bar on phones.', 'Download'),\n\tarray('semrs-core', 'SEMRS Core', 'free', 'SEO, speed optimization and a policy-safe ads manager.', 'Download'),\n\tarray('semrs-blocks', 'SEMRS Blocks', 'free', 'Containers, tabs, accordions, galleries, contact form and more.', 'Download'),\n\tarray('semrs-tools', 'SEMRS Tools', 'free', 'Free SEO tools your visitors can use on your site.', 'Download'),\n\tarray('semrs-pro', 'SEMRS Pro', 'pro', 'Dark mode, language switcher, popups, Pro blocks and more.', 'Buy Pro'),\n);\n$sc_up = wp_upload_dir();\n$sc_items = '';\nforeach ($sc_products as $sc_p) {\n\t$sc_ids = array();\n\tforeach (array('desktop', 'mobile') as $sc_v) {\n\t\t$sc_src = '/wordpress/semrs-assets/shots/showcase/' . $sc_p[0] . '-' . $sc_v . '.png';\n\t\tif (!file_exists($sc_src)) { continue; }\n\t\t$sc_dst = $sc_up['path'] . '/' . $sc_p[0] . '-' . $sc_v . '.png';\n\t\tcopy($sc_src, $sc_dst);\n\t\t$sc_att = wp_insert_attachment(array('post_mime_type' => 'image/png', 'post_title' => $sc_p[1] . ' ' . $sc_v . ' preview', 'post_status' => 'inherit'), $sc_dst);\n\t\twp_update_attachment_metadata($sc_att, wp_generate_attachment_metadata($sc_att, $sc_dst));\n\t\tupdate_post_meta($sc_att, '_wp_attachment_image_alt', $sc_p[1] . ' ' . $sc_v . ' preview');\n\t\t$sc_ids[$sc_v] = $sc_att;\n\t}\n\t$sc_items .= '<!-- wp:semrs/showcase-item ' . wp_json_encode(array('title' => $sc_p[1], 'badge' => $sc_p[2], 'text' => $sc_p[3], 'desktop' => $sc_ids['desktop'] ?? 0, 'mobile' => $sc_ids['mobile'] ?? 0, 'url' => '#', 'button' => 'Preview', 'url2' => '#', 'button2' => $sc_p[4])) . ' /-->' . \"\\n\";\n}\n$sc_page = wp_insert_post(array('post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Themes and Plugins', 'post_name' => 'themes-plugins', 'post_content' => '<!-- wp:heading {\"level\":1} --><h1 class=\"wp-block-heading\">SEMRS themes and plugins</h1><!-- /wp:heading -->' . \"\\n\\n\" . '<!-- wp:semrs/showcase {\"align\":\"wide\"} -->' . \"\\n\" . $sc_items . '<!-- /wp:semrs/showcase -->'));\nupdate_post_meta($sc_page, '_wp_page_template', 'page-templates/full-width.php');\nupdate_post_meta($sc_page, 'semrs_hide_title', '1');\nset_theme_mod('semrs_theme_phone','+1 555 010 0200');\nset_theme_mod('semrs_theme_email','hello@example.test');\nset_theme_mod('semrs_theme_hb_layout', wp_json_encode(array('top'=>array('left'=>array('contact'),'center'=>array(),'right'=>array('social')),'main'=>array('left'=>array('logo'),'center'=>array(),'right'=>array('menu','button','search')),'bottom'=>array('left'=>array(),'center'=>array(),'right'=>array()))));\nflush_rewrite_rules();\necho 'ok';"
+		}
+	]
+}

@@ -1,0 +1,38 @@
+/* SEMRS Pro blocks: slider, counter, scroll animations. */
+
+/* Slider / carousel */
+.semrs-slider { position: relative; overflow: hidden; border-radius: var(--sp-radius, 12px); --semrs-per: 1; --semrs-gap: 16px; }
+.semrs-slider__track { display: flex; gap: var(--semrs-gap); margin: 0; padding: 0; list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; overscroll-behavior-x: contain; }
+.semrs-slider__track::-webkit-scrollbar { display: none; }
+.semrs-slide { position: relative; flex: 0 0 calc((100% - (var(--semrs-per) - 1) * var(--semrs-gap)) / var(--semrs-per)); scroll-snap-align: start; margin: 0; }
+.semrs-slide img, .semrs-slide__noimg { display: block; width: 100%; height: var(--semrs-h, auto); aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--sp-radius, 12px); background: var(--sp-surface, #f1f5f9); }
+.semrs-slider[style*="--semrs-h"] .semrs-slide img { aspect-ratio: auto; }
+.semrs-slide__link { display: block; color: inherit; text-decoration: none; }
+.semrs-slide__caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 16px 14px; color: #fff; font-weight: 600; line-height: 1.3; background: linear-gradient(transparent, rgba(15, 23, 42, .8)); border-radius: 0 0 var(--sp-radius, 12px) var(--sp-radius, 12px); }
+.semrs-slider__prev, .semrs-slider__next { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .92); color: #0f172a; font-size: 28px; line-height: 1; cursor: pointer; box-shadow: 0 2px 10px rgba(0, 0, 0, .15); }
+.semrs-slider__prev { left: 10px; }
+.semrs-slider__next { right: 10px; }
+.semrs-slider__prev:focus-visible, .semrs-slider__next:focus-visible, .semrs-slider__dots button:focus-visible { outline: 3px solid var(--sp-primary, #2563eb); outline-offset: 2px; }
+.semrs-slider__prev[disabled], .semrs-slider__next[disabled] { opacity: .35; cursor: default; }
+.semrs-slider__dots { display: flex; justify-content: center; gap: 4px; padding-top: 10px; }
+.semrs-slider__dots button { width: 24px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; }
+.semrs-slider__dots button::before { content: ""; display: block; width: 10px; height: 10px; margin: auto; border-radius: 50%; background: var(--sp-border, #cbd5e1); }
+.semrs-slider__dots button[aria-selected="true"]::before { background: var(--sp-primary, #2563eb); }
+@media (max-width: 781px) { .semrs-slider { --semrs-per: 1 !important; } .semrs-slider__prev, .semrs-slider__next { display: none; } }
+@media (min-width: 782px) and (max-width: 1023px) { .semrs-slider[style*="--semrs-per:3"], .semrs-slider[style*="--semrs-per:4"] { --semrs-per: 2 !important; } }
+
+/* Counter */
+.semrs-counter { text-align: center; }
+.semrs-counter svg { color: var(--sp-primary, #2563eb); }
+.semrs-counter__num { margin: 6px 0 2px; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.semrs-counter__label { margin: 0; color: var(--sp-muted, #475569); }
+
+/* Scroll animations (content stays visible without JS or with reduced motion) */
+.semrs-anim-ready body { overflow-x: clip; } /* Slide-in start positions never cause sideways scrolling (clip keeps sticky headers working). */
+.semrs-anim-ready .semrs-anim { transition: opacity .6s ease, transform .6s ease; }
+.semrs-anim-ready .semrs-anim:not(.is-in) { opacity: 0; }
+.semrs-anim-ready .semrs-anim--fade-up:not(.is-in) { transform: translateY(24px); }
+.semrs-anim-ready .semrs-anim--zoom-in:not(.is-in) { transform: scale(.94); }
+.semrs-anim-ready .semrs-anim--slide-left:not(.is-in) { transform: translateX(32px); }
+.semrs-anim-ready .semrs-anim--slide-right:not(.is-in) { transform: translateX(-32px); }
+@media (prefers-reduced-motion: reduce) { .semrs-anim-ready .semrs-anim { transition: none; opacity: 1 !important; transform: none !important; } }
