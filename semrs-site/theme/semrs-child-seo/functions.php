@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEMRS_CHILD_VERSION', '1.2.5' );
+define( 'SEMRS_CHILD_VERSION', '1.2.6' );
 
 /**
  * Read a child setting (Customizer → SEMRS Theme → Contact & conversion).

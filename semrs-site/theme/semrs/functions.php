@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEMRS_THEME_VERSION', '1.3.5' );
+define( 'SEMRS_THEME_VERSION', '1.3.6' );
 define( 'SEMRS_THEME_DIR', get_template_directory() );
 define( 'SEMRS_THEME_URI', get_template_directory_uri() );
 

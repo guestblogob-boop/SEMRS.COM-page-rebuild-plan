@@ -62,7 +62,7 @@ function semrs_theme_settings_map() {
 		'top_mobile'       => array( 'hbuilder', 'checkbox', __( 'Show the top bar on phones', 'semrs' ), false ),
 		'mobile_button'    => array( 'hbuilder', 'checkbox', __( 'Show the header button next to the menu icon on phones', 'semrs' ), false ),
 		'phone'            => array( 'hbuilder', 'text', __( 'Phone (Contact element)', 'semrs' ), '' ),
-		'action_bar'       => array( 'hbuilder', 'checkbox', __( 'Quick contact bar on phones (Call, WhatsApp and the header button; uses Phone, the WhatsApp profile URL and the header button)', 'semrs' ), false ),
+		'action_bar'       => array( 'hbuilder', 'checkbox', __( 'Quick contact: Call / WhatsApp / header button bar on phones and a WhatsApp button on larger screens (uses Phone, the WhatsApp profile URL and the header button)', 'semrs' ), false ),
 		'email'            => array( 'hbuilder', 'text', __( 'Email (Contact element)', 'semrs' ), '' ),
 		'btn2_text'        => array( 'hbuilder', 'text', __( 'Second button text', 'semrs' ), '' ),
 		'btn2_url'         => array( 'hbuilder', 'url', __( 'Second button link', 'semrs' ), '' ),

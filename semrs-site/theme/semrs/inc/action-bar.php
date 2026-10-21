@@ -1,6 +1,7 @@
 <?php
 /**
- * Quick contact bar on phones: Call · WhatsApp · header button.
+ * Quick contact bar on phones (Call · WhatsApp · header button) and a
+ * floating WhatsApp button on larger screens.
  * Off by default (Customizer → SEMRS Theme → Header builder). Uses the Phone,
  * WhatsApp profile URL and header button settings. Child themes that print
  * their own bar (SEMRS Child SEO) take over automatically.
@@ -54,13 +55,16 @@ function semrs_theme_action_bar() {
 	if ( $phone ) {
 		printf( '<a href="tel:%s">%s<span>%s</span></a>', esc_attr( $phone ), $icon( 'M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.3.2 2.5.57 3.6a1 1 0 0 1-.25 1z' ), esc_html__( 'Call', 'semrs' ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped SVG.
 	}
+	$nets = semrs_theme_social_networks();
 	if ( $wa ) {
-		$nets = semrs_theme_social_networks();
 		printf( '<a href="%s" target="_blank" rel="noopener">%s<span>WhatsApp</span></a>', esc_url( $wa ), $icon( $nets['whatsapp'][2] ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped SVG.
 	}
 	if ( $text && $url ) {
 		printf( '<a class="sp-action-bar__primary" href="%s">%s</a>', esc_url( $url ), esc_html( $text ) );
 	}
 	echo '</nav>';
+	if ( $wa ) {
+		printf( '<a class="sp-whatsapp" href="%s" target="_blank" rel="noopener" aria-label="%s">%s</a>', esc_url( $wa ), esc_attr__( 'Chat on WhatsApp', 'semrs' ), $icon( $nets['whatsapp'][2] ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped SVG.
+	}
 }
 add_action( 'wp_footer', 'semrs_theme_action_bar', 6 );
