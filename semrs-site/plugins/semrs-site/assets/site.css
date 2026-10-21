@@ -10,7 +10,7 @@
 /* Hero with photo: arch-shaped photo + transparent overlay with SEO cards. */
 .semrs-hero-photo__stage { position: relative; width: 100%; max-width: 600px; aspect-ratio: 1 / 1; margin: 0 0 0 auto; }
 .semrs-hero-photo__stage > .wp-block-image { margin: 0; }
-.semrs-hero-photo__img { position: absolute; left: 14%; right: 14%; top: 10%; bottom: 0; overflow: hidden; border-radius: 999px 999px 0 0; background: #efe6dc; }
+.semrs-hero-photo__img { position: absolute; left: 14%; right: 14%; top: 10%; bottom: 0; overflow: hidden; border-radius: 999px 999px 0 0; background: #d6eefb; }
 .semrs-hero-photo__img img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 .semrs-hero-photo__overlay { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
 .semrs-hero-photo__overlay img { display: block; width: 100%; height: 100%; }

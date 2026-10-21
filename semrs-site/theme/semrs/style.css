@@ -4,7 +4,7 @@ Theme URI:         https://semrs.com/
 Author:            SEMRS
 Author URI:        https://semrs.com/
 Description:       Lightweight, SEO-first theme for businesses, agencies and blogs. Drag-and-drop header and footer builder with top bar, sticky and transparent header, header search and a mobile menu panel. Seven section patterns, sidebar layouts, blog grid or list, reading progress bar, author box, related posts and per-page header, footer and sidebar options. No jQuery: one stylesheet and one small script.
-Version:           1.3.4
+Version:           1.3.5
 Requires at least: 6.5
 Tested up to:      7.1
 Requires PHP:      7.4
@@ -535,8 +535,8 @@ label { font-weight: 600; color: var(--sp-primary); }
 
 /* ---------- C7. Hero with cover image ---------- */
 .semrs-hero-cover, .entry-content > .wp-block-group.alignfull.semrs-hero-cover, .sp-full-width .entry-content > .wp-block-group.alignfull.semrs-hero-cover { padding-left: clamp(16px, 4vw, 48px); padding-right: clamp(16px, 4vw, 48px); }
-.semrs-hero-cover { position: relative; overflow: hidden; padding-bottom: 0; background: linear-gradient(115deg, #fdf7e7 0%, #fbf1f1 45%, #eef3fb 100%); }
-.semrs-hero-cover::before { content: ""; position: absolute; left: -120px; top: -140px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(212, 167, 44, .16), rgba(212, 167, 44, 0) 70%); pointer-events: none; }
+.semrs-hero-cover { position: relative; overflow: hidden; padding-bottom: 0; background: radial-gradient(640px 420px at 6% 8%, rgba(212, 167, 44, .30), rgba(212, 167, 44, 0) 70%), radial-gradient(760px 560px at 88% 38%, rgba(86, 166, 236, .34), rgba(86, 166, 236, 0) 68%), radial-gradient(520px 360px at 38% 105%, rgba(255, 140, 120, .16), rgba(255, 140, 120, 0) 70%), linear-gradient(118deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, .65) 42%, rgba(255, 255, 255, 0) 54%), linear-gradient(115deg, #fff4d6 0%, #fdeef2 42%, #dcecff 100%); }
+.semrs-hero-cover::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(11, 31, 58, .07) 1px, transparent 1.5px); background-size: 22px 22px; -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .5) 45%, transparent 70%); mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .5) 45%, transparent 70%); pointer-events: none; }
 .semrs-hero-cover__cols { position: relative; gap: 2rem !important; margin-bottom: 0; }
 .semrs-hero-cover__text { padding-bottom: var(--sp-section); }
 .semrs-hero-cover .semrs-eyebrow { color: #c0392b; letter-spacing: .04em; text-transform: none; font-size: 1rem; }
@@ -546,7 +546,7 @@ label { font-weight: 600; color: var(--sp-primary); }
 /* Photo in an arch with SEO cards around it (overlay SVG never covers the face or tablet). */
 .semrs-hero-cover__stage { position: relative; width: 100%; max-width: 600px; aspect-ratio: 1 / 1; margin: 1.5rem 0 0 auto; }
 .semrs-hero-cover__stage > .wp-block-image { margin: 0; }
-.semrs-hero-cover__photo { position: absolute; left: 14%; right: 14%; top: 10%; bottom: 0; overflow: hidden; border-radius: 999px 999px 0 0; background: #efe6dc; }
+.semrs-hero-cover__photo { position: absolute; left: 14%; right: 14%; top: 10%; bottom: 0; overflow: hidden; border-radius: 999px 999px 0 0; background: #d6eefb; }
 .semrs-hero-cover__photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 .semrs-hero-cover__overlay { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
 .semrs-hero-cover__overlay img { display: block; width: 100%; height: 100%; }
