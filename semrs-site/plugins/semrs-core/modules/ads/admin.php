@@ -231,7 +231,7 @@ add_action( 'save_post', 'semrs_ads_save_metabox' );
  * @return string[]
  */
 function semrs_ads_action_links( $links ) {
-	array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=semrs-ads' ) ) . '">' . esc_html__( 'Settings', 'semrs-core' ) . '</a>' );
+	array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=semrs' ) ) . '">' . esc_html__( 'Settings', 'semrs-core' ) . '</a>' );
 	return $links;
 }
 add_filter( 'plugin_action_links_semrs-core/semrs-core.php', 'semrs_ads_action_links' );

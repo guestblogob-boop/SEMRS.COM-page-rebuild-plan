@@ -297,3 +297,22 @@ function semrs_shops_exports_page() {
 	echo '<li>' . esc_html__( 'Image URLs point to this site. If it is not public yet, upload the images from the plugin\'s images folder instead.', 'semrs-shops' ) . '</li>';
 	echo '</ol><p class="description">' . esc_html__( 'eBay and Amazon files are not offered: both marketplaces restrict downloadable products such as printables and patterns.', 'semrs-shops' ) . '</p></div>';
 }
+
+/**
+ * Plugins screen: starter shops and exports links.
+ *
+ * @param string[] $links Links.
+ * @return string[]
+ */
+function semrs_shops_action_links( $links ) {
+	$url = menu_page_url( 'semrs-shops-exports', false );
+	if ( $url ) {
+		array_unshift( $links, '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Exports', 'semrs-shops' ) . '</a>' );
+	}
+	$url = menu_page_url( 'semrs-templates', false );
+	if ( $url ) {
+		array_unshift( $links, '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Starter shops', 'semrs-shops' ) . '</a>' );
+	}
+	return $links;
+}
+add_filter( 'plugin_action_links_semrs-shops/semrs-shops.php', 'semrs_shops_action_links' );

@@ -3,7 +3,7 @@
  * Plugin Name:       SEMRS Shops
  * Plugin URI:        https://semrs.com/
  * Description:       Ready-made online shops for SEMRS Blocks: a Digital Downloads Shop (Christmas SVGs, printables, gift tags, cards, planners, workbooks, coloring pages, shirt, hat, cup, wall and car decal designs, pet and animal designs, custom family and pet portraits, personalised prints, Canva and Notion templates) and a Crochet Pattern Shop (amigurumi animals and birds, pet accessories, blankets, wearables, home decor, seasonal, bags and car accessories, with a crochet help page). One-click starter sites and editor patterns with colour, size, format and licence options, personalisation and bundles.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Requires Plugins:  semrs-blocks
@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEMRS_SHOPS_VERSION', '1.0.0' );
+define( 'SEMRS_SHOPS_VERSION', '1.0.1' );
 define( 'SEMRS_SHOPS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_SHOPS_URL', plugin_dir_url( __FILE__ ) );
 

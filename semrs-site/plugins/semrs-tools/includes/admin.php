@@ -265,3 +265,18 @@ function semrs_tools_admin_page() {
 	</div>
 	<?php
 }
+
+/**
+ * Plugins screen: Settings link.
+ *
+ * @param string[] $links Links.
+ * @return string[]
+ */
+function semrs_tools_action_links( $links ) {
+	$url = menu_page_url( 'semrs-tools', false );
+	if ( $url ) {
+		array_unshift( $links, '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'semrs-tools' ) . '</a>' );
+	}
+	return $links;
+}
+add_filter( 'plugin_action_links_semrs-tools/semrs-tools.php', 'semrs_tools_action_links' );

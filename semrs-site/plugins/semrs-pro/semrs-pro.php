@@ -3,7 +3,7 @@
  * Plugin Name:       SEMRS Pro
  * Plugin URI:        https://semrs.com/
  * Description:       Premium add-on for the SEMRS theme and SEMRS Core: sticky/transparent header, mega menu, table of contents, author box, related posts, extra section patterns, white label; redirects + 404 log, multi-location local SEO, IndexNow, image SEO; ads manager; site layouts; case studies, portfolio and testimonials; lead tracking.
- * Version:           1.3.0
+ * Version:           1.3.1
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-pro
@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEMRS_PRO_VERSION', '1.3.0' );
+define( 'SEMRS_PRO_VERSION', '1.3.1' );
 define( 'SEMRS_PRO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_PRO_URL', plugin_dir_url( __FILE__ ) );
 

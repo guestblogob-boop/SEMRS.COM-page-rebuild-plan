@@ -182,3 +182,22 @@ function semrs_pro_license_page() {
 	</div>
 	<?php
 }
+
+/**
+ * Plugins screen: Settings and License links.
+ *
+ * @param string[] $links Links.
+ * @return string[]
+ */
+function semrs_pro_action_links( $links ) {
+	$url = menu_page_url( 'semrs-license', false );
+	if ( $url ) {
+		array_unshift( $links, '<a href="' . esc_url( $url ) . '">' . esc_html__( 'License', 'semrs-pro' ) . '</a>' );
+	}
+	$url = menu_page_url( 'semrs', false );
+	if ( $url ) {
+		array_unshift( $links, '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'semrs-pro' ) . '</a>' );
+	}
+	return $links;
+}
+add_filter( 'plugin_action_links_semrs-pro/semrs-pro.php', 'semrs_pro_action_links' );

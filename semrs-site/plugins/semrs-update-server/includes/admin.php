@@ -19,10 +19,11 @@ function semrs_us_menu() {
 add_action( 'admin_menu', 'semrs_us_menu' );
 
 /**
- * Read slug + version from a package zip (folder name + header).
+ * Read slug, version, requirements and this version's changelog from a
+ * package zip (folder name, main file / style.css headers, readme.txt).
  *
  * @param string $zip_path Path to zip.
- * @return array{slug:string,version:string}|null
+ * @return array|null slug, version, requires, tested, requires_php, changelog
  */
 function semrs_us_read_zip( $zip_path ) {
 	if ( ! class_exists( 'ZipArchive' ) ) {
@@ -42,8 +43,16 @@ function semrs_us_read_zip( $zip_path ) {
 			break;
 		}
 	}
+	$readme = (string) $z->getFromName( $slug . '/readme.txt' );
+	$head   = (string) $src . "\n" . $readme;
+	$meta   = array();
+	foreach ( array( 'requires' => 'Requires at least', 'tested' => 'Tested up to', 'requires_php' => 'Requires PHP' ) as $key => $label ) {
+		$meta[ $key ] = preg_match( '/^[ \t\/*#@]*' . $label . ':\s*([0-9.]+)/mi', $head, $m ) ? $m[1] : '';
+	}
+	// This version's changelog lines from readme.txt ("= 1.3.0 =" followed by "* …" lines).
+	$meta['changelog'] = preg_match( '/^= ' . preg_quote( $ver, '/' ) . ' =\s*\n((?:\*[^\n]*\n?)+)/m', $readme, $m ) ? trim( preg_replace( '/^\*\s*/m', '', $m[1] ) ) : '';
 	$z->close();
-	return $slug && $ver ? array( 'slug' => sanitize_key( $slug ), 'version' => $ver ) : null;
+	return $slug && $ver ? array_merge( array( 'slug' => sanitize_key( $slug ), 'version' => $ver ), $meta ) : null;
 }
 
 /**
@@ -71,11 +80,12 @@ function semrs_us_actions() {
 					$info['version'],
 					array(
 						'file'         => $name,
-						'changelog'    => isset( $_POST['changelog'] ) ? wp_kses_post( wp_unslash( $_POST['changelog'] ) ) : '',
+						'changelog'    => ! empty( $_POST['changelog'] ) ? wp_kses_post( wp_unslash( $_POST['changelog'] ) ) : $info['changelog'],
 						'notice'       => isset( $_POST['notice'] ) ? sanitize_text_field( wp_unslash( $_POST['notice'] ) ) : '',
-						'requires'     => isset( $_POST['requires'] ) ? sanitize_text_field( wp_unslash( $_POST['requires'] ) ) : '6.5',
-						'tested'       => isset( $_POST['tested'] ) ? sanitize_text_field( wp_unslash( $_POST['tested'] ) ) : '',
-						'requires_php' => isset( $_POST['requires_php'] ) ? sanitize_text_field( wp_unslash( $_POST['requires_php'] ) ) : '7.4',
+						// Empty fields use the zip's own headers (Requires at least / Tested up to / Requires PHP).
+						'requires'     => ! empty( $_POST['requires'] ) ? sanitize_text_field( wp_unslash( $_POST['requires'] ) ) : ( $info['requires'] ? $info['requires'] : '6.5' ),
+						'tested'       => ! empty( $_POST['tested'] ) ? sanitize_text_field( wp_unslash( $_POST['tested'] ) ) : ( $info['tested'] ? $info['tested'] : get_bloginfo( 'version' ) ),
+						'requires_php' => ! empty( $_POST['requires_php'] ) ? sanitize_text_field( wp_unslash( $_POST['requires_php'] ) ) : ( $info['requires_php'] ? $info['requires_php'] : '7.4' ),
 					)
 				);
 				$msg = 'published-' . $info['slug'] . '-' . $info['version'];
@@ -122,9 +132,12 @@ function semrs_us_page_releases() {
 			<input type="hidden" name="action" value="semrs_us"><input type="hidden" name="semrs_do" value="release">
 			<table class="form-table" role="presentation">
 				<tr><th><?php esc_html_e( 'Release zip', 'semrs-update-server' ); ?></th><td><input type="file" name="zip" accept=".zip" required><p class="description"><?php esc_html_e( 'From dist/releases/. Product and version are read from the zip.', 'semrs-update-server' ); ?></p></td></tr>
-				<tr><th><?php esc_html_e( 'Changelog', 'semrs-update-server' ); ?></th><td><textarea name="changelog" class="large-text" rows="5" placeholder="<?php esc_attr_e( 'One change per line', 'semrs-update-server' ); ?>"></textarea></td></tr>
+				<tr><th><?php esc_html_e( 'Changelog', 'semrs-update-server' ); ?></th><td><textarea name="changelog" class="large-text" rows="5" placeholder="<?php esc_attr_e( 'One change per line. Leave empty to use this version’s changelog from the readme.txt in the zip.', 'semrs-update-server' ); ?>"></textarea></td></tr>
 				<tr><th><?php esc_html_e( 'Upgrade notice (optional)', 'semrs-update-server' ); ?></th><td><input type="text" name="notice" class="large-text"></td></tr>
-				<tr><th><?php esc_html_e( 'Requires WP / Tested up to / PHP', 'semrs-update-server' ); ?></th><td><input name="requires" value="6.5" size="5"> <input name="tested" value="<?php echo esc_attr( get_bloginfo( 'version' ) ); ?>" size="5"> <input name="requires_php" value="7.4" size="5"></td></tr>
+				<tr><th><label for="semrs-us-requires"><?php esc_html_e( 'Minimum WordPress version', 'semrs-update-server' ); ?></label></th><td><input id="semrs-us-requires" name="requires" size="6" placeholder="<?php esc_attr_e( 'from zip', 'semrs-update-server' ); ?>"> <span class="description"><?php esc_html_e( 'Oldest WordPress the product works on ("Requires at least", currently 6.5).', 'semrs-update-server' ); ?></span></td></tr>
+				<tr><th><label for="semrs-us-tested"><?php esc_html_e( 'Tested up to WordPress', 'semrs-update-server' ); ?></label></th><td><input id="semrs-us-tested" name="tested" size="6" placeholder="<?php esc_attr_e( 'from zip', 'semrs-update-server' ); ?>"> <span class="description"><?php echo esc_html( sprintf( /* translators: %s: WordPress version */ __( 'Newest WordPress it was tested with. This site runs WordPress %s.', 'semrs-update-server' ), get_bloginfo( 'version' ) ) ); ?></span></td></tr>
+				<tr><th><label for="semrs-us-php"><?php esc_html_e( 'Minimum PHP version', 'semrs-update-server' ); ?></label></th><td><input id="semrs-us-php" name="requires_php" size="6" placeholder="<?php esc_attr_e( 'from zip', 'semrs-update-server' ); ?>"> <span class="description"><?php echo esc_html( sprintf( /* translators: %s: PHP version */ __( 'This is PHP, not WordPress ("Requires PHP", currently 7.4, the same minimum as WordPress 7). This server runs PHP %s.', 'semrs-update-server' ), PHP_VERSION ) ); ?></span>
+					<p class="description"><?php esc_html_e( 'Leave these three empty to use the values written in the zip (readme.txt / plugin header).', 'semrs-update-server' ); ?></p></td></tr>
 			</table>
 			<?php submit_button( __( 'Publish release', 'semrs-update-server' ) ); ?>
 		</form>
@@ -199,3 +212,22 @@ function semrs_us_page_sites() {
 	</div>
 	<?php
 }
+
+/**
+ * Plugins screen: Releases and License keys links.
+ *
+ * @param string[] $links Links.
+ * @return string[]
+ */
+function semrs_us_action_links( $links ) {
+	$url = menu_page_url( 'semrs-updates-keys', false );
+	if ( $url ) {
+		array_unshift( $links, '<a href="' . esc_url( $url ) . '">' . esc_html__( 'License keys', 'semrs-update-server' ) . '</a>' );
+	}
+	$url = menu_page_url( 'semrs-updates', false );
+	if ( $url ) {
+		array_unshift( $links, '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Releases', 'semrs-update-server' ) . '</a>' );
+	}
+	return $links;
+}
+add_filter( 'plugin_action_links_semrs-update-server/semrs-update-server.php', 'semrs_us_action_links' );

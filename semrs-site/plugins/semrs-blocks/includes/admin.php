@@ -29,7 +29,8 @@ add_action( 'admin_menu', 'semrs_blocks_admin_menu', 20 );
  * @return array
  */
 function semrs_blocks_action_links( $links ) {
-	array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=semrs-blocks' ) ) . '">' . esc_html__( 'Blocks', 'semrs-blocks' ) . '</a>' );
+	array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=semrs-templates' ) ) . '">' . esc_html__( 'Templates', 'semrs-blocks' ) . '</a>' );
+	array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=semrs-blocks' ) ) . '">' . esc_html__( 'Settings', 'semrs-blocks' ) . '</a>' );
 	return $links;
 }
 add_filter( 'plugin_action_links_semrs-blocks/semrs-blocks.php', 'semrs_blocks_action_links' );

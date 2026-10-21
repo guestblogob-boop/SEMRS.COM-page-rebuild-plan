@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       SEMRS Site (semrs.com only)
  * Description:       semrs.com-only additions that are never given to clients: the SEMRS Store (products, collection and product pages, pricing) and SEMRS Pro sales page installer, the Keyword Ideas Generator tool, the "Hero with photo and keyword tool" pattern and its photo, and the web design portfolio hub ([semrs_portfolio]). Needs SEMRS Tools for the tool.
- * Version:           1.2.0
+ * Version:           1.2.1
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            SEMRS
@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEMRS_SITE_VERSION', '1.2.0' );
+define( 'SEMRS_SITE_VERSION', '1.2.1' );
 define( 'SEMRS_SITE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_SITE_URL', plugin_dir_url( __FILE__ ) );
 
@@ -166,3 +166,18 @@ function semrs_site_menu() {
 	);
 }
 add_action( 'admin_menu', 'semrs_site_menu' );
+
+/**
+ * Plugins screen: Settings link (semrs.com pages, store and portfolio).
+ *
+ * @param string[] $links Links.
+ * @return string[]
+ */
+function semrs_site_action_links( $links ) {
+	$url = menu_page_url( 'semrs-site', false );
+	if ( $url ) {
+		array_unshift( $links, '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'semrs-site' ) . '</a>' );
+	}
+	return $links;
+}
+add_filter( 'plugin_action_links_semrs-site/semrs-site.php', 'semrs_site_action_links' );

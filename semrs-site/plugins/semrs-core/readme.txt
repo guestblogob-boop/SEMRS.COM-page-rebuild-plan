@@ -4,7 +4,7 @@ Tags: seo, schema, page cache, speed, sitemap
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 
 Free SEO score and site audit, page cache, speed tools and a policy-safe AdSense manager for any WordPress site.
@@ -60,6 +60,9 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt and all other features run entirely on your own server.
 
 == Changelog ==
+
+= 1.2.1 =
+* The Settings link on the Plugins screen opens the SEMRS dashboard
 
 = 1.2.0 =
 * SEO: 0–100 SEO score with readability checks, Re-check and internal link ideas; SEO Audit screen; llms.txt; reads Yoast and AIOSEO data
