@@ -67,12 +67,12 @@ add_action(
 	}
 );
 
-// Refresh rewrite rules once when the store's address rules change.
+// Refresh rewrite rules once when the store's or portfolio's address rules change.
 add_action(
 	'init',
 	function () {
-		if ( '2' !== get_option( 'semrs_store_rewrite' ) ) {
-			update_option( 'semrs_store_rewrite', '2' );
+		if ( '3' !== get_option( 'semrs_store_rewrite' ) ) {
+			update_option( 'semrs_store_rewrite', '3' );
 			flush_rewrite_rules();
 		}
 	},

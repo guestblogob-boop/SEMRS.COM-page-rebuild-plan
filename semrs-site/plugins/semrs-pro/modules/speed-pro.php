@@ -1,7 +1,8 @@
 <?php
 /**
  * Speed Pro: delay analytics, pixel and chat scripts until the visitor
- * interacts; preload the SEMRS page cache in the background after it
+ * interacts; skip form and block-plugin files on pages that do not use
+ * them; preload the SEMRS page cache in the background after it
  * clears; serve static files from a CDN. Settings live on SEMRS → Speed →
  * Optimize. Needs the SEMRS Core Speed module.
  *
@@ -40,6 +41,7 @@ function semrs_pro_speed_settings() {
 			'delay'         => false,
 			'delay_list'    => semrs_pro_speed_default_delay(),
 			'delay_timeout' => 0,
+			'unload'        => false,
 			'preload'       => false,
 			'cdn'           => '',
 		),
@@ -68,6 +70,7 @@ add_action(
 						'delay'         => ! empty( $in['delay'] ),
 						'delay_list'    => sanitize_textarea_field( $in['delay_list'] ?? '' ),
 						'delay_timeout' => min( 30, absint( $in['delay_timeout'] ?? 0 ) ),
+						'unload'        => ! empty( $in['unload'] ),
 						'preload'       => ! empty( $in['preload'] ),
 						'cdn'           => untrailingslashit( $cdn ),
 					);
@@ -89,6 +92,10 @@ add_action(
 			<textarea name="semrs_speed_pro[delay_list]" rows="5" class="large-text code"><?php echo esc_textarea( $p['delay_list'] ); ?></textarea>
 			<p class="description"><?php esc_html_e( 'One pattern per line, matched against the script address or its inline code.', 'semrs-pro' ); ?></p>
 			<label><?php esc_html_e( 'Also run them after', 'semrs-pro' ); ?> <input type="number" min="0" max="30" class="small-text" name="semrs_speed_pro[delay_timeout]" value="<?php echo esc_attr( $p['delay_timeout'] ); ?>"> <?php esc_html_e( 'seconds without interaction (0 = only on interaction)', 'semrs-pro' ); ?></label>
+		</td></tr>
+		<tr><th><?php esc_html_e( 'Unused plugin files', 'semrs-pro' ); ?></th><td>
+			<label><input type="checkbox" name="semrs_speed_pro[unload]" value="1" <?php checked( $p['unload'] ); ?>> <?php esc_html_e( 'Load form and block-plugin files only on pages that use them', 'semrs-pro' ); ?></label>
+			<p class="description"><?php esc_html_e( 'Contact Form 7 (with its reCAPTCHA and Turnstile scripts) loads only where a form appears in the content or a widget; Spectra files load only where a Spectra block appears.', 'semrs-pro' ); ?></p>
 		</td></tr>
 		<tr><th><?php esc_html_e( 'Cache preload', 'semrs-pro' ); ?></th><td>
 			<label><input type="checkbox" name="semrs_speed_pro[preload]" value="1" <?php checked( $p['preload'] ); ?>> <?php esc_html_e( 'Rebuild the page cache in the background after it clears', 'semrs-pro' ); ?></label>
@@ -175,7 +182,94 @@ $semrs_pro_speed = semrs_pro_speed_settings();
 if ( $semrs_pro_speed['delay'] || $semrs_pro_speed['cdn'] ) {
 	add_filter( 'semrs_speed_html', 'semrs_pro_speed_html' );
 }
+if ( $semrs_pro_speed['unload'] && ! is_admin() ) {
+	add_action( 'wp_enqueue_scripts', 'semrs_pro_speed_unload', 999 );
+	add_action( 'wp_print_scripts', 'semrs_pro_speed_unload', 1 );
+	add_action( 'wp_print_footer_scripts', 'semrs_pro_speed_unload', 1 );
+}
 unset( $semrs_pro_speed );
+
+/**
+ * Content that can hold forms and blocks on this request: the post (with
+ * any synced patterns it uses) and the block widgets.
+ *
+ * @return string
+ */
+function semrs_pro_speed_page_content() {
+	static $text = null;
+	if ( null !== $text ) {
+		return $text;
+	}
+	$text = '';
+	if ( is_singular() ) {
+		$post = get_post();
+		$text = $post ? (string) $post->post_content : '';
+		if ( preg_match_all( '/<!-- wp:block \{"ref":(\d+)/', $text, $refs ) ) {
+			foreach ( array_unique( $refs[1] ) as $ref ) {
+				$text .= (string) get_post_field( 'post_content', (int) $ref );
+			}
+		}
+	}
+	// Widgets placed in a sidebar (inactive ones are never shown).
+	$stores = array(
+		'block' => array( (array) get_option( 'widget_block', array() ), 'content' ),
+		'text'  => array( (array) get_option( 'widget_text', array() ), 'text' ),
+	);
+	foreach ( wp_get_sidebars_widgets() as $sidebar => $ids ) {
+		if ( 'wp_inactive_widgets' === $sidebar || ! is_array( $ids ) ) {
+			continue;
+		}
+		foreach ( $ids as $id ) {
+			if ( preg_match( '/^(block|text)-(\d+)$/', (string) $id, $m ) ) {
+				list( $store, $field ) = $stores[ $m[1] ];
+				$text .= (string) ( $store[ (int) $m[2] ][ $field ] ?? '' );
+			}
+		}
+	}
+	return $text;
+}
+
+/**
+ * Dequeue plugin files the current page does not use.
+ */
+function semrs_pro_speed_unload() {
+	if ( is_customize_preview() || is_preview() ) {
+		return;
+	}
+	$text = semrs_pro_speed_page_content();
+	if ( false !== strpos( $text, '<!-- wp:pattern' ) ) {
+		return; // Patterns are resolved at render time: keep everything.
+	}
+	$rules = array(
+		// Contact Form 7 and the captcha scripts it adds.
+		array(
+			'needs'   => '#wp:contact-form-7/|\[contact-form(-7)?[\s\]]#',
+			'scripts' => array( 'contact-form-7', 'swv', 'wpcf7-recaptcha', 'google-recaptcha', 'cloudflare-turnstile', 'googlesitekit-events-provider-contact-form-7' ),
+			'styles'  => array( 'contact-form-7', 'contact-form-7-rtl' ),
+			'prefix'  => '',
+		),
+		// Spectra (Ultimate Addons for Gutenberg).
+		array(
+			'needs'   => '#wp:uagb/#',
+			'scripts' => array(),
+			'styles'  => array(),
+			'prefix'  => '/^(uagb-|uag-)/',
+		),
+	);
+	$rules = apply_filters( 'semrs_pro_speed_unload_rules', $rules );
+	foreach ( $rules as $rule ) {
+		if ( 0 !== preg_match( $rule['needs'], $text ) ) {
+			continue; // Used here, or a bad pattern from the filter: keep the files.
+		}
+		foreach ( array( 'scripts' => wp_scripts(), 'styles' => wp_styles() ) as $kind => $deps ) {
+			foreach ( (array) $deps->queue as $handle ) {
+				if ( in_array( $handle, $rule[ $kind ], true ) || ( $rule['prefix'] && preg_match( $rule['prefix'], $handle ) ) ) {
+					'scripts' === $kind ? wp_dequeue_script( $handle ) : wp_dequeue_style( $handle );
+				}
+			}
+		}
+	}
+}
 
 /**
  * Final-HTML changes (through SEMRS Core's page buffer).

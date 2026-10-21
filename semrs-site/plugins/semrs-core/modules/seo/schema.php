@@ -296,3 +296,75 @@ add_action(
 	},
 	20
 );
+
+/**
+ * Schema type and FAQ switch editable over the REST API (block editor and
+ * site tools), for posts the user can edit.
+ */
+add_action(
+	'init',
+	function () {
+		foreach ( array( '_semrs_schema', '_semrs_faq_off' ) as $key ) {
+			register_post_meta(
+				'',
+				$key,
+				array(
+					'type'              => 'string',
+					'single'            => true,
+					'show_in_rest'      => true,
+					'sanitize_callback' => '_semrs_schema' === $key
+						? function ( $v ) {
+							return array_key_exists( (string) $v, semrs_seo_schema_types() ) ? (string) $v : '';
+						}
+						: function ( $v ) {
+							return $v ? '1' : '';
+						},
+					'auth_callback'     => function ( $allowed, $meta_key, $post_id ) {
+						return current_user_can( 'edit_post', $post_id );
+					},
+				)
+			);
+		}
+	}
+);
+
+/**
+ * Rank Math bridge: while Rank Math prints the JSON-LD, add the SEMRS
+ * Service / WebApplication node and the FAQPage from visible accordions
+ * when its graph has none, and supply the whole SEMRS graph on pages where
+ * Rank Math prints nothing.
+ *
+ * @param array $data Rank Math graph nodes.
+ * @return array
+ */
+function semrs_seo_rank_math_json_ld( $data ) {
+	if ( ! is_singular() ) {
+		return $data;
+	}
+	$graph = semrs_seo_graph();
+	if ( empty( $data ) ) {
+		return $graph;
+	}
+	$have = array();
+	foreach ( (array) $data as $node ) {
+		foreach ( (array) ( $node['@type'] ?? array() ) as $t ) {
+			$have[ $t ] = true;
+		}
+	}
+	foreach ( $graph as $node ) {
+		$type = is_string( $node['@type'] ?? null ) ? $node['@type'] : '';
+		if ( in_array( $type, array( 'Service', 'WebApplication', 'FAQPage' ), true ) && empty( $have[ $type ] ) ) {
+			$data[ 'semrs-' . strtolower( $type ) ] = $node;
+		}
+	}
+	return $data;
+}
+add_action(
+	'plugins_loaded',
+	function () {
+		if ( 'Rank Math' === semrs_seo_conflict() ) {
+			add_filter( 'rank_math/json_ld', 'semrs_seo_rank_math_json_ld', 999 );
+		}
+	},
+	20
+);

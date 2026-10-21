@@ -271,3 +271,19 @@ function semrs_portfolio_admin_box() {
 	echo ' ';
 	submit_button( __( 'Create portfolio page as draft', 'semrs-site' ), 'secondary', 'semrs_portfolio_install', false );
 }
+
+/**
+ * The portfolio hub page owns /portfolio/: the SEMRS Pro portfolio post
+ * type keeps its single-item addresses but gives up the archive there.
+ *
+ * @param array  $args Post type arguments.
+ * @param string $type Post type.
+ * @return array
+ */
+function semrs_portfolio_type_args( $args, $type ) {
+	if ( 'semrs_portfolio' === $type ) {
+		$args['has_archive'] = false;
+	}
+	return $args;
+}
+add_filter( 'register_post_type_args', 'semrs_portfolio_type_args', 10, 2 );

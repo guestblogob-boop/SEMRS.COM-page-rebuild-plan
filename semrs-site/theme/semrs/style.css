@@ -4,7 +4,7 @@ Theme URI:         https://semrs.com/
 Author:            SEMRS
 Author URI:        https://semrs.com/
 Description:       Lightweight, SEO-first theme for businesses, agencies and blogs. Drag-and-drop header and footer builder with top bar, sticky and transparent header, header search and a mobile menu panel. Seven section patterns, sidebar layouts, blog grid or list, reading progress bar, author box, related posts and per-page header, footer and sidebar options. No jQuery: one stylesheet and one small script.
-Version:           1.3.10
+Version:           1.3.11
 Requires at least: 6.5
 Tested up to:      7.1
 Requires PHP:      7.4
@@ -602,3 +602,24 @@ html[data-theme="dark"] .semrs-hero-cover .semrs-eyebrow { color: #f08a7e; }
 .semrs-compare th, .semrs-compare td { padding: .75rem .9rem; text-align: left; vertical-align: top; }
 @media (prefers-reduced-motion: reduce) { .semrs-tilt .semrs-block, .semrs-tilt > .semrs-container__inner > * { transition: none; } .semrs-tilt .semrs-block:hover { transform: none; } .semrs-chart__line { animation: none; stroke-dashoffset: 0; } }
 html[data-theme="dark"] .semrs-chart { background: #13233d; border-color: #2a3d5c; }
+
+/* ---------- Home showcase: dashboard, gauges, portfolio strip ---------- */
+.semrs-dash { margin: 0; border-radius: 22px; box-shadow: 0 30px 60px rgba(11,31,58,.28), 0 0 0 1px rgba(255,255,255,.06); transition: transform .5s ease; transform: perspective(1100px) rotateY(-8deg) rotateX(4deg); }
+.semrs-dash:hover { transform: perspective(1100px) rotateY(0) rotateX(0) translateY(-4px); }
+.semrs-dash svg { display: block; width: 100%; height: auto; border-radius: 22px; }
+.semrs-gauges { display: grid; gap: 18px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.semrs-gauge { margin: 0; padding: 18px 14px; text-align: center; color: var(--sp-text); background: var(--sp-bg); border: 1px solid var(--sp-line); border-radius: 16px; box-shadow: 0 10px 26px rgba(11,31,58,.08); }
+.semrs-gauge svg { display: block; margin: 0 auto 8px; }
+.semrs-gauge figcaption { font-size: .85rem; color: var(--sp-muted); }
+.semrs-gauge figcaption strong { color: var(--sp-text); }
+@media (max-width: 700px) { .semrs-gauges { grid-template-columns: 1fr; } }
+.semrs-home-pf { display: grid; gap: 22px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 1.5rem 0; }
+.semrs-home-pf__item { display: block; color: inherit; text-decoration: none; border-radius: 14px; overflow: hidden; background: var(--sp-bg); border: 1px solid var(--sp-line); box-shadow: 0 10px 26px rgba(11,31,58,.1); transition: transform .3s, box-shadow .3s; }
+.semrs-home-pf__item:hover { transform: translateY(-6px); box-shadow: 0 22px 44px rgba(11,31,58,.18); }
+.semrs-home-pf__img { display: block; aspect-ratio: 4 / 3; overflow: hidden; }
+.semrs-home-pf__img img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; transition: object-position 6s ease-in-out; }
+.semrs-home-pf__item:hover img, .semrs-home-pf__item:focus-visible img { object-position: 50% 100%; }
+.semrs-home-pf__title { display: block; padding: .8rem 1rem; font-weight: 700; }
+@media (max-width: 781px) { .semrs-home-pf { grid-template-columns: 1fr; } .semrs-dash { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .semrs-dash, .semrs-home-pf__item, .semrs-home-pf__img img { transition: none; } .semrs-dash { transform: none; } }
+html[data-theme="dark"] .semrs-gauge, html[data-theme="dark"] .semrs-home-pf__item { background: #13233d; border-color: #2a3d5c; }

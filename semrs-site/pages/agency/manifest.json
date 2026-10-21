@@ -138,5 +138,15 @@
 		"adsOff": true,
 		"noindex": true,
 		"file": "thank-you.html"
+	},
+	{
+		"slug": "home",
+		"title": "Home",
+		"parent": "",
+		"seoTitle": "SEO Agency for Small Business: SEO, Web Design & Content | SEMRS",
+		"seoDesc": "SEMRS helps small businesses get found on Google and in AI search: SEO services, fast website design, content and ads management, with a free SEO review in 48 hours.",
+		"adsOff": true,
+		"noindex": false,
+		"file": "home.html"
 	}
 ]
