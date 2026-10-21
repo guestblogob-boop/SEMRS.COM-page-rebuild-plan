@@ -1,0 +1,142 @@
+[
+	{
+		"slug": "services",
+		"title": "Services",
+		"parent": "",
+		"seoTitle": "SEO, Web Design & Content Services | SEMRS",
+		"seoDesc": "SEO, web design, content management, content writing, social media and ads management for small businesses, with public prices and monthly reports.",
+		"adsOff": true,
+		"noindex": false,
+		"file": "services.html"
+	},
+	{
+		"slug": "seo",
+		"title": "SEO Services",
+		"parent": "services",
+		"seoTitle": "SEO Services for Small Business: Technical, Local & Content SEO | SEMRS",
+		"seoDesc": "Monthly SEO services for small businesses: technical SEO, on-page optimization, local SEO, content and AI search (GEO), with a written plan and reports from your own data.",
+		"adsOff": true,
+		"noindex": false,
+		"file": "seo.html"
+	},
+	{
+		"slug": "content-management",
+		"title": "Content Management",
+		"parent": "services",
+		"seoTitle": "Content Management & WordPress Publishing | SEMRS",
+		"seoDesc": "We plan, format, optimize and publish your content in WordPress, keep old pages up to date and manage your blog calendar.",
+		"adsOff": true,
+		"noindex": false,
+		"file": "content-management.html"
+	},
+	{
+		"slug": "web-design",
+		"title": "Web Design",
+		"parent": "services",
+		"seoTitle": "Small Business Web Design | SEMRS",
+		"seoDesc": "Fast, mobile-friendly WordPress websites built for SEO from day one: home, services, about, blog, contact and legal pages, easy to update.",
+		"adsOff": true,
+		"noindex": false,
+		"file": "web-design.html"
+	},
+	{
+		"slug": "seo-content-writing",
+		"title": "SEO Content Writing",
+		"parent": "services",
+		"seoTitle": "SEO Content Writing Services | SEMRS",
+		"seoDesc": "Researched, human-edited blog posts, service pages and guides written for your customers and planned around search intent.",
+		"adsOff": true,
+		"noindex": false,
+		"file": "seo-content-writing.html"
+	},
+	{
+		"slug": "social-media-management",
+		"title": "Social Media Management",
+		"parent": "services",
+		"seoTitle": "Social Media Management Services | SEMRS",
+		"seoDesc": "Content calendars, post design, scheduling, community replies and monthly insights for Facebook, Instagram, LinkedIn and TikTok.",
+		"adsOff": true,
+		"noindex": false,
+		"file": "social-media-management.html"
+	},
+	{
+		"slug": "paid-ads",
+		"title": "Ads Management",
+		"parent": "services",
+		"seoTitle": "Google Ads & Social Ads Management for Small Business | SEMRS",
+		"seoDesc": "Google Ads, Meta and LinkedIn campaigns with proper conversion tracking, clear budgets and monthly reports. Your ad accounts stay yours.",
+		"adsOff": true,
+		"noindex": false,
+		"file": "paid-ads.html"
+	},
+	{
+		"slug": "pricing",
+		"title": "Pricing",
+		"parent": "",
+		"seoTitle": "SEO & Web Design Pricing (From-Prices) | SEMRS",
+		"seoDesc": "Starting prices for monthly SEO plans, website design, content writing, content management, social media and ads management. No long contracts.",
+		"adsOff": true,
+		"noindex": false,
+		"file": "pricing.html"
+	},
+	{
+		"slug": "how-we-work",
+		"title": "How We Work",
+		"parent": "",
+		"seoTitle": "Our 6-Step SEO Process with Human Approval | SEMRS",
+		"seoDesc": "How SEMRS works: free review, discovery call, written plan, specialist work, human approval and monthly reports from your own data.",
+		"adsOff": true,
+		"noindex": false,
+		"file": "how-we-work.html"
+	},
+	{
+		"slug": "get-a-quote",
+		"title": "Get a Quote",
+		"parent": "",
+		"seoTitle": "Get a Free SEO Review in 48 Hours | SEMRS",
+		"seoDesc": "Request a free SEO review or a quote for SEO, web design, content, social media or ads management. Reply within one business day.",
+		"adsOff": true,
+		"noindex": false,
+		"file": "get-a-quote.html"
+	},
+	{
+		"slug": "registration-form",
+		"title": "Client Registration",
+		"parent": "",
+		"seoTitle": "Client Registration | SEMRS",
+		"seoDesc": "Register your business with SEMRS to start an SEO, web design, content, social media or ads project.",
+		"adsOff": true,
+		"noindex": false,
+		"file": "registration-form.html"
+	},
+	{
+		"slug": "contact-us",
+		"title": "Contact",
+		"parent": "",
+		"seoTitle": "Contact SEMRS",
+		"seoDesc": "Contact SEMRS about SEO, web design, content, social media or ads management. We reply within one business day.",
+		"adsOff": true,
+		"noindex": false,
+		"file": "contact-us.html"
+	},
+	{
+		"slug": "about",
+		"title": "About",
+		"parent": "",
+		"seoTitle": "About SEMRS: Search Engine Marketing & Ranking Solutions",
+		"seoDesc": "Who SEMRS is, how we work and what we stand for: public prices, human-approved work and reports from real data.",
+		"adsOff": true,
+		"noindex": false,
+		"file": "about.html"
+	},
+	{
+		"slug": "thank-you",
+		"title": "Thank You",
+		"parent": "",
+		"seoTitle": "Thanks: We Will Reply Within 1 Business Day | SEMRS",
+		"seoDesc": "",
+		"adsOff": true,
+		"noindex": true,
+		"file": "thank-you.html"
+	}
+]

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       SEMRS Update Server
  * Description:       Runs on semrs.com only. Publishes theme and plugin releases, manages SEMRS Pro license keys, answers update checks from every site using SEMRS products, and lists the live sites with their versions.
- * Version:           1.1.1
+ * Version:           1.1.2
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            SEMRS
@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEMRS_US_VERSION', '1.1.1' );
+define( 'SEMRS_US_VERSION', '1.1.2' );
 define( 'SEMRS_US_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_US_URL', plugin_dir_url( __FILE__ ) );
 
@@ -97,3 +97,15 @@ if ( is_admin() ) {
 	require SEMRS_US_DIR . 'includes/admin.php';
 	require SEMRS_US_DIR . 'includes/support-pages.php';
 }
+
+/**
+ * The site that runs the update server checks updates and licences against
+ * itself (e.g. the staging server), unless SEMRS_UPDATE_SERVER is defined.
+ *
+ * @param string $base Server URL.
+ * @return string
+ */
+function semrs_us_self_server( $base ) {
+	return defined( 'SEMRS_UPDATE_SERVER' ) ? $base : rest_url( 'semrs-updates/v1/' );
+}
+add_filter( 'semrs_update_server', 'semrs_us_self_server' );

@@ -4,7 +4,7 @@ Theme URI:         https://semrs.com/
 Author:            SEMRS
 Author URI:        https://semrs.com/
 Description:       Lightweight, SEO-first theme for businesses, agencies and blogs. Drag-and-drop header and footer builder with top bar, sticky and transparent header, header search and a mobile menu panel. Seven section patterns, sidebar layouts, blog grid or list, reading progress bar, author box, related posts and per-page header, footer and sidebar options. No jQuery: one stylesheet and one small script.
-Version:           1.3.7
+Version:           1.3.10
 Requires at least: 6.5
 Tested up to:      7.1
 Requires PHP:      7.4
@@ -23,6 +23,10 @@ Tags:              blog, news, portfolio, one-column, two-columns, right-sidebar
 	--sp-text: #1f2937;
 	--sp-muted: #5b6575;
 	--sp-link: #1e3a66;
+	--sp-link-hover: #8c6a0e;
+	--sp-btn-hover: #0b1f3a;
+	--sp-btn-hover-text: #ffffff;
+	--sp-btn-outline: #0b1f3a;
 	--sp-bg: #ffffff;
 	--sp-surface: #f6f7f9;
 	--sp-line: #e3e7ee;
@@ -69,7 +73,7 @@ h3 { font-size: clamp(1.25rem, 1.1rem + .6vw, 1.5rem); }
 h4 { font-size: 1.15rem; }
 p, ul, ol, dl, blockquote, figure, pre, table { margin: 0 0 1.25em; }
 a { color: var(--sp-link); text-underline-offset: 3px; text-decoration-thickness: 1px; }
-a:hover { color: var(--sp-primary); }
+a:hover { color: var(--sp-link-hover); text-decoration-thickness: 2px; }
 :focus-visible { outline: 3px solid var(--sp-accent); outline-offset: 2px; }
 hr { border: 0; border-top: 1px solid var(--sp-line); margin: 2em 0; }
 blockquote { border-left: 4px solid var(--sp-accent); margin-left: 0; padding: .25em 0 .25em 1.25em; color: var(--sp-muted); font-size: 1.05em; }
@@ -199,16 +203,25 @@ html[data-theme="dark"] .sp-action-bar a:not(.sp-action-bar__primary) { color: #
 	color: var(--sp-on-accent); background: var(--sp-accent);
 	border: 2px solid var(--sp-accent); border-radius: 8px;
 	text-decoration: none; cursor: pointer;
-	transition: background-color .15s, color .15s, border-color .15s;
+	position: relative; overflow: hidden; isolation: isolate;
+	transition: background-color .2s, color .2s, border-color .2s, transform .2s, box-shadow .2s;
 }
-.sp-button:hover, .wp-block-button__link:hover, .wp-element-button:hover, button[type="submit"]:hover, input[type="submit"]:hover, .wpcf7-submit:hover { color: #fff; background: var(--sp-primary); border-color: var(--sp-primary); }
-.is-style-outline > .wp-block-button__link, .sp-button--outline { color: var(--sp-primary); background: transparent; border-color: var(--sp-primary); }
-.is-style-outline > .wp-block-button__link:hover, .sp-button--outline:hover { color: #fff; background: var(--sp-primary); }
+.sp-button:hover, .wp-block-button__link:hover, .wp-element-button:hover, button[type="submit"]:hover, input[type="submit"]:hover, .wpcf7-submit:hover { color: var(--sp-btn-hover-text); background: var(--sp-btn-hover); border-color: var(--sp-btn-hover); }
+.is-style-outline > .wp-block-button__link, .sp-button--outline { color: var(--sp-btn-outline); background: transparent; border-color: var(--sp-btn-outline); }
+.is-style-outline > .wp-block-button__link:hover, .sp-button--outline:hover { color: var(--sp-btn-hover-text); background: var(--sp-btn-hover); border-color: var(--sp-btn-hover); }
+/* Hover: lift + light sweep. Active: pressed. Keyboard focus: clear ring. */
+:is(.sp-button, .wp-block-button__link, .wp-element-button, .semrs-btn, .semrs-pf__btn)::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.35) 50%, transparent 70%); transform: translateX(-120%); transition: transform .6s ease; pointer-events: none; }
+:is(.sp-button, .wp-block-button__link, .wp-element-button, .semrs-btn, .semrs-pf__btn):hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(11,31,58,.22); }
+:is(.sp-button, .wp-block-button__link, .wp-element-button, .semrs-btn, .semrs-pf__btn):hover::after { transform: translateX(120%); }
+:is(.sp-button, .wp-block-button__link, .wp-element-button, button[type="submit"], input[type="submit"], .semrs-btn, .semrs-pf__btn):active { transform: translateY(1px) scale(.98); box-shadow: 0 2px 6px rgba(11,31,58,.2); filter: brightness(.92); }
+:is(.sp-button, .wp-block-button__link, .wp-element-button, button, input[type="submit"], .semrs-btn, .semrs-pf__btn, a):focus-visible { outline: 3px solid var(--sp-accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { :is(.sp-button, .wp-block-button__link, .wp-element-button, .semrs-btn, .semrs-pf__btn) { transition: background-color .2s, color .2s; } :is(.sp-button, .wp-block-button__link, .wp-element-button, .semrs-btn, .semrs-pf__btn):hover { transform: none; } :is(.sp-button, .wp-block-button__link, .wp-element-button, .semrs-btn, .semrs-pf__btn)::after { display: none; } }
 /* Same colours when core block styles load after the theme (blocks rendered late, per-block CSS). */
 .wp-block-button > .wp-block-button__link:not(.has-background) { color: var(--sp-on-accent); background: var(--sp-accent); border-color: var(--sp-accent); }
-.wp-block-button > .wp-block-button__link:not(.has-background):hover { color: #fff; background: var(--sp-primary); border-color: var(--sp-primary); }
-.wp-block-button.is-style-outline > .wp-block-button__link:not(.has-background) { color: var(--sp-primary); background: transparent; border-color: var(--sp-primary); }
-.wp-block-button.is-style-outline > .wp-block-button__link:not(.has-background):hover { color: #fff; background: var(--sp-primary); }
+.wp-block-button > .wp-block-button__link:not(.has-background):hover { color: var(--sp-btn-hover-text); background: var(--sp-btn-hover); border-color: var(--sp-btn-hover); }
+.wp-block-button.is-style-outline > .wp-block-button__link:not(.has-background) { color: var(--sp-btn-outline); background: transparent; border-color: var(--sp-btn-outline); }
+.wp-block-button.is-style-outline > .wp-block-button__link:not(.has-background):hover { color: var(--sp-btn-hover-text); background: var(--sp-btn-hover); border-color: var(--sp-btn-hover); }
+.semrs-has-color .wp-block-button > .wp-block-button__link:not(.has-background):hover, .semrs-has-color .wp-block-button.is-style-outline > .wp-block-button__link:not(.has-background):hover { color: #0b1f3a; background: #ffffff; border-color: #ffffff; }
 .semrs-has-color .wp-block-button.is-style-outline > .wp-block-button__link:not(.has-background) { color: inherit; border-color: currentColor; }
 input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]), select, textarea {
 	width: 100%; min-height: 48px; padding: .65rem .85rem;
@@ -336,6 +349,8 @@ label { font-weight: 600; color: var(--sp-primary); }
 .sp-search { position: relative; }
 .sp-search-toggle { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; color: var(--sp-primary); background: transparent; border: 0; border-radius: 8px; cursor: pointer; }
 .sp-search-toggle:hover, .sp-search-toggle[aria-expanded="true"] { background: var(--sp-surface); }
+.sp-hb-top .sp-search-toggle { width: 36px; height: 36px; color: inherit; }
+.sp-hb-top .sp-search-toggle:hover, .sp-hb-top .sp-search-toggle[aria-expanded="true"] { background: rgba(255,255,255,.14); }
 .sp-search-panel { position: absolute; right: 0; top: calc(100% + 8px); z-index: 20; width: min(360px, calc(100vw - 32px)); padding: .75rem; background: var(--sp-bg); border: 1px solid var(--sp-line); border-radius: var(--sp-radius); box-shadow: var(--sp-shadow); }
 .sp-search-panel[hidden] { display: none; }
 .sp-search-panel .search-form { display: flex; gap: .5rem; }
@@ -570,3 +585,20 @@ html[data-theme="dark"] .semrs-hero-cover .semrs-eyebrow { color: #f08a7e; }
 /* WordPress classes (Theme Review): captions and post-author comments. */
 .gallery-caption{font-size:.875rem;color:var(--sp-muted,#5b6577);margin-top:.35em}
 .bypostauthor>article .comment-author b,.bypostauthor>.comment-body .fn{color:var(--sp-primary,#0b1f3a)}
+
+/* ---------- Showcase details: 3D tilt cards, charts, comparison tables ---------- */
+.semrs-tilt { perspective: 900px; }
+.semrs-tilt .semrs-block, .semrs-tilt > .semrs-container__inner > * { transition: transform .35s ease, box-shadow .35s ease; transform-style: preserve-3d; }
+.semrs-tilt .semrs-block:hover, .semrs-tilt > .semrs-container__inner > *:hover { transform: translateY(-6px) rotateX(4deg) rotateY(-4deg); box-shadow: 0 22px 44px rgba(11,31,58,.18); }
+.semrs-chart { margin: 0; padding: 1.25rem; color: var(--sp-text); background: var(--sp-bg); border: 1px solid var(--sp-line); border-radius: 16px; box-shadow: 0 12px 32px rgba(11,31,58,.08); }
+.semrs-chart svg { display: block; height: auto; }
+.semrs-chart figcaption { margin-top: .5rem; font-size: .85rem; color: var(--sp-muted); }
+.semrs-chart__line { stroke-dasharray: 900; stroke-dashoffset: 900; animation: semrs-draw 2.2s ease-out .3s forwards; }
+@keyframes semrs-draw { to { stroke-dashoffset: 0; } }
+.semrs-compare table { border-collapse: separate; border-spacing: 0; overflow: hidden; border: 1px solid var(--sp-line); border-radius: 12px; }
+.semrs-compare thead th { color: #fff; background: var(--sp-primary); }
+.semrs-compare thead th:last-child, .semrs-compare td:last-child { font-weight: 700; }
+.semrs-compare thead th:last-child { color: var(--sp-on-accent); background: var(--sp-accent); }
+.semrs-compare th, .semrs-compare td { padding: .75rem .9rem; text-align: left; vertical-align: top; }
+@media (prefers-reduced-motion: reduce) { .semrs-tilt .semrs-block, .semrs-tilt > .semrs-container__inner > * { transition: none; } .semrs-tilt .semrs-block:hover { transform: none; } .semrs-chart__line { animation: none; stroke-dashoffset: 0; } }
+html[data-theme="dark"] .semrs-chart { background: #13233d; border-color: #2a3d5c; }

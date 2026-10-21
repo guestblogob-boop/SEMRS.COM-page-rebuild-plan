@@ -30,9 +30,33 @@ function semrs_pro_dark_settings( $map ) {
 			'auto'   => __( 'Switch, starts with the visitor\'s device setting', 'semrs-pro' ),
 		),
 	);
+	// Dark mode colours (Customize → SEMRS Theme → Colours).
+	foreach ( semrs_pro_dark_colors() as $key => $c ) {
+		$map[ $key ] = array( 'colors', 'color', $c[0], $c[1] );
+	}
 	return $map;
 }
 add_filter( 'semrs_theme_settings', 'semrs_pro_dark_settings' );
+
+/**
+ * Dark mode colour settings: key => [label, default, CSS variable].
+ *
+ * @return array
+ */
+function semrs_pro_dark_colors() {
+	return array(
+		'dark_bg'             => array( __( 'Dark mode: page background (Pro)', 'semrs-pro' ), '#0e1626', '--sp-bg' ),
+		'dark_surface'        => array( __( 'Dark mode: section and card background (Pro)', 'semrs-pro' ), '#152238', '--sp-surface' ),
+		'dark_text'           => array( __( 'Dark mode: text (Pro)', 'semrs-pro' ), '#d7dfeb', '--sp-text' ),
+		'dark_link'           => array( __( 'Dark mode: links (Pro)', 'semrs-pro' ), '#9cc3ff', '--sp-link' ),
+		'dark_link_hover'     => array( __( 'Dark mode: links on hover (Pro)', 'semrs-pro' ), '#e5c15a', '--sp-link-hover' ),
+		'dark_header'         => array( __( 'Dark mode: header bar (Pro)', 'semrs-pro' ), '#0b1f3a', '--sp-dark-header' ),
+		'dark_top'            => array( __( 'Dark mode: top bar (Pro)', 'semrs-pro' ), '#0b1f3a', '--sp-dark-top' ),
+		'dark_btn_hover'      => array( __( 'Dark mode: button background on hover (Pro)', 'semrs-pro' ), '#ffffff', '--sp-btn-hover' ),
+		'dark_btn_hover_text' => array( __( 'Dark mode: button text on hover (Pro)', 'semrs-pro' ), '#0b1f3a', '--sp-btn-hover-text' ),
+		'dark_btn_outline'    => array( __( 'Dark mode: outline button text and border (Pro)', 'semrs-pro' ), '#f1f5fb', '--sp-btn-outline' ),
+	);
+}
 
 /**
  * Current mode setting.
@@ -90,6 +114,16 @@ function semrs_pro_dark_assets() {
 		return;
 	}
 	wp_enqueue_style( 'semrs-pro-dark', SEMRS_PRO_URL . 'assets/dark.css', array( 'semrs' ), SEMRS_PRO_VERSION );
+	$css = '';
+	foreach ( semrs_pro_dark_colors() as $key => $c ) {
+		$val = sanitize_hex_color( (string) semrs_theme_opt( $key ) );
+		if ( $val && strtolower( $val ) !== $c[1] ) {
+			$css .= $c[2] . ':' . $val . ';';
+		}
+	}
+	if ( $css ) {
+		wp_add_inline_style( 'semrs-pro-dark', 'html[data-theme="dark"]{' . $css . '}' );
+	}
 	wp_enqueue_script( 'semrs-pro-dark', SEMRS_PRO_URL . 'assets/js/dark.js', array(), SEMRS_PRO_VERSION, array( 'in_footer' => true, 'strategy' => 'defer' ) );
 }
 add_action( 'wp_enqueue_scripts', 'semrs_pro_dark_assets', 20 );

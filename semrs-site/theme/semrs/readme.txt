@@ -4,7 +4,7 @@ Tags: blog, portfolio, grid-layout, full-width-template, block-patterns
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.7
+Stable tag: 1.3.10
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,16 @@ Appearance → Customize → SEMRS Theme → Header builder.
 Edit the page, open "Page options" in the sidebar and set Transparent header to On.
 
 == Changelog ==
+
+= 1.3.10 =
+* Visible button hover, pressed and focus states with a lift and light-sweep animation
+* New colour settings: links on hover, button hover background and text, outline buttons
+
+= 1.3.9 =
+* 3D tilt cards, animated charts and comparison table styles
+
+= 1.3.8 =
+* Search icon in the top bar uses the top bar text colour
 
 = 1.3.7 =
 * Block buttons always use the theme accent colour
