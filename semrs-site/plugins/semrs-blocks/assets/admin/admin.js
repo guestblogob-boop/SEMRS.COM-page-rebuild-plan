@@ -36,3 +36,22 @@
 		});
 	});
 })();
+
+/* Templates: live preview viewer (page tabs and device sizes). */
+( function () {
+	var frame = document.querySelector( '.semrs-viewer__frame' );
+	if ( ! frame ) { return; }
+	document.querySelectorAll( '.semrs-viewer__pages button' ).forEach( function ( b, i, all ) {
+		b.addEventListener( 'click', function () {
+			frame.src = b.getAttribute( 'data-src' );
+			all.forEach( function ( x ) { x.classList.toggle( 'button-primary', x === b ); } );
+		} );
+	} );
+	document.querySelectorAll( '.semrs-viewer__devices button' ).forEach( function ( b, i, all ) {
+		b.addEventListener( 'click', function () {
+			frame.style.width = b.getAttribute( 'data-width' );
+			all.forEach( function ( x ) { x.setAttribute( 'aria-pressed', x === b ? 'true' : 'false' ); } );
+		} );
+	} );
+} )();
+	

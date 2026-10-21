@@ -49,3 +49,6 @@ add_action(
 		);
 	}
 );
+
+// Template live previews open logged out so headless Chrome can capture them.
+add_filter( 'semrs_blocks_template_preview_allowed', '__return_true' );

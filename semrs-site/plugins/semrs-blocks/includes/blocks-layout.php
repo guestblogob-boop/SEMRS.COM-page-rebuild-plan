@@ -29,7 +29,7 @@ function semrs_blocks_layout( $blocks ) {
 		'panels'      => array(
 			__( 'Layout', 'semrs-blocks' )     => array( 'layout', 'columns', 'columnsTablet', 'gap', 'valign', 'justify', 'width', 'tag' ),
 			__( 'Spacing', 'semrs-blocks' )    => array( 'padTop', 'padBottom', 'padSides', 'minHeight', 'radius' ),
-			__( 'Background', 'semrs-blocks' ) => array( 'bg', 'gradient', 'image', 'overlay', 'overlayOpacity', 'textColor', 'fixed' ),
+			__( 'Background', 'semrs-blocks' ) => array( 'bg', 'gradient', 'image', 'imageUrl', 'overlay', 'overlayOpacity', 'textColor', 'fixed' ),
 		),
 		'controls'    => array(
 			'layout'         => array( 'type' => 'select', 'label' => __( 'Arrange inner blocks', 'semrs-blocks' ), 'default' => 'stack', 'options' => array( 'stack' => __( 'Stack (one under another)', 'semrs-blocks' ), 'row' => __( 'Row (side by side, wraps on phones)', 'semrs-blocks' ), 'grid' => __( 'Grid (equal columns)', 'semrs-blocks' ) ) ),
@@ -48,6 +48,7 @@ function semrs_blocks_layout( $blocks ) {
 			'bg'             => array( 'type' => 'color', 'label' => __( 'Background colour', 'semrs-blocks' ), 'default' => '' ),
 			'gradient'       => array( 'type' => 'select', 'label' => __( 'Background gradient', 'semrs-blocks' ), 'default' => '', 'options' => array( '' => __( 'None', 'semrs-blocks' ), 'navy' => __( 'Navy', 'semrs-blocks' ), 'sunrise' => __( 'Sunrise', 'semrs-blocks' ), 'ocean' => __( 'Ocean', 'semrs-blocks' ), 'mint' => __( 'Mint', 'semrs-blocks' ), 'soft' => __( 'Soft grey', 'semrs-blocks' ) ) ),
 			'image'          => array( 'type' => 'media', 'label' => __( 'Background image', 'semrs-blocks' ), 'default' => 0 ),
+			'imageUrl'       => array( 'type' => 'text', 'label' => __( 'Background image address (used when no image is chosen above)', 'semrs-blocks' ), 'default' => '' ),
 			'overlay'        => array( 'type' => 'color', 'label' => __( 'Overlay colour (over the image)', 'semrs-blocks' ), 'default' => '' ),
 			'overlayOpacity' => array( 'type' => 'range', 'label' => __( 'Overlay opacity (%)', 'semrs-blocks' ), 'default' => 50, 'min' => 0, 'max' => 100 ),
 			'textColor'      => array( 'type' => 'color', 'label' => __( 'Text colour', 'semrs-blocks' ), 'default' => '' ),
@@ -180,6 +181,9 @@ function semrs_blocks_render_container( $a, $block = null, $content = '' ) {
 		'soft'    => 'linear-gradient(180deg,#f6f7f9,#ffffff)',
 	);
 	$img       = (int) semrs_blocks_a( $a, 'image', 0 ) ? wp_get_attachment_image_url( (int) $a['image'], 'full' ) : '';
+	if ( ! $img && preg_match( '#^https?://#i', (string) semrs_blocks_a( $a, 'imageUrl', '' ) ) ) {
+		$img = (string) $a['imageUrl']; // Template photos before they are in the Media Library.
+	}
 	$layers    = array();
 	if ( $img ) {
 		$layers[] = 'url(' . esc_url_raw( $img ) . ') center/cover no-repeat';

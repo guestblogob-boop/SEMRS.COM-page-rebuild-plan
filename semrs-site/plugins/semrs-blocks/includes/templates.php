@@ -5,7 +5,7 @@
  *
  * - Sections: templates/sections/*.html (block markup with {{tokens}}).
  * - Sites:    templates/sites.php (pages = lists of sections + copy).
- * - Images:   templates/images/*.png (original artwork, GPL).
+ * - Photos:   templates/photos/{site}-hero/about/post1-3.jpg (CC0, see readme.txt).
  * - Previews: templates/previews/{site}-desktop.jpg / -mobile.jpg.
  *
  * Pages and sections are also registered as block patterns, so they can be
@@ -29,42 +29,67 @@ function semrs_blocks_template_sites() {
 			$sites[ $niche['id'] ] = semrs_blocks_niche_site( $niche );
 		}
 		$sites = apply_filters( 'semrs_blocks_template_sites', $sites );
+		foreach ( $sites as $id => $site ) {
+			$sites[ $id ]['pages'] += semrs_blocks_template_legal_pages();
+		}
 	}
 	return $sites;
+}
+
+/**
+ * Privacy policy and terms pages added to every starter site (footer menu, not the main menu).
+ *
+ * @return array
+ */
+function semrs_blocks_template_legal_pages() {
+	return array(
+		'privacy-policy' => array( 'title' => 'Privacy Policy', 'legal' => true, 'sections' => array( 'page-header', 'legal-privacy' ), 'vars' => array( 'page_title' => 'Privacy Policy', 'page_intro' => 'How {{name}} collects, uses and protects your personal information.' ) ),
+		'terms'          => array( 'title' => 'Terms of Use', 'legal' => true, 'sections' => array( 'page-header', 'legal-terms' ), 'vars' => array( 'page_title' => 'Terms of Use', 'page_intro' => 'The terms that apply when you use this website.' ) ),
+	);
 }
 
 /**
  * Build a full starter site from a short niche definition.
  *
  * Niche keys: id, title, tier, category, description, kind (services|local|
- * blog|education), art (image file), hero_eyebrow, hero_title, hero_text,
- * cta_text, cta2_text, services (6 × [icon, title, text]), about_title,
- * about_text, about_points, steps (3 × [icon, title, text], optional),
- * faq (4 × [q, a]), form_services, plus any copy key to override.
+ * blog|education), hero_eyebrow, hero_title, hero_text, cta_text, cta2_text,
+ * services (6 × [icon, title, text]), about_title, about_text, about_points,
+ * steps (3 × [icon, title, text], optional), faq (4 × [q, a]), form_services,
+ * posts (3 × [title, excerpt, [[heading, text] × 3]]), palette, header,
+ * demo_name, photo_dir/photo_base, plus any copy key to override.
+ *
+ * Photos are {id}-hero.jpg, {id}-about.jpg and {id}-post1…3.jpg in
+ * templates/photos/ (CC0, see readme.txt).
  *
  * @param array $n Niche.
  * @return array Site.
  */
 function semrs_blocks_niche_site( $n ) {
-	$kind = $n['kind'] ?? 'services';
-	$copy = array(
+	$kind    = $n['kind'] ?? 'services';
+	$svc     = 'education' === $kind ? 'programs' : 'services';
+	$points  = array_values( (array) $n['about_points'] );
+	$service = array_values( (array) $n['services'] );
+	$copy    = array(
 		'hero_eyebrow'     => $n['hero_eyebrow'] ?? '{{name}}',
 		'hero_title'       => $n['hero_title'],
 		'hero_text'        => $n['hero_text'],
-		'hero_alt'         => $n['title'] . ' illustration',
+		'hero_alt'         => $n['hero_alt'] ?? $n['title'],
+		'hero_points'      => implode( "\n", array_slice( $points, 0, 2 ) ),
+		'chip_a'           => $service[0][1] ?? ( $points[0] ?? '' ),
+		'chip_b'           => $service[1][1] ?? ( $points[1] ?? '' ),
 		'cta_text'         => $n['cta_text'] ?? 'Get in touch',
 		'cta_url'          => $n['cta_url'] ?? '/contact/',
-		'cta2_text'        => $n['cta2_text'] ?? 'Our services',
-		'cta2_url'         => '/' . ( 'education' === $kind ? 'programs' : 'services' ) . '/',
+		'cta2_text'        => $n['cta2_text'] ?? ( 'blog' === $kind ? 'Latest articles' : 'Our services' ),
+		'cta2_url'         => '/' . ( 'blog' === $kind ? 'blog' : $svc ) . '/',
 		'features_eyebrow' => $n['features_eyebrow'] ?? ( 'education' === $kind ? 'Programs' : 'What we offer' ),
 		'features_title'   => $n['features_title'] ?? ( 'education' === $kind ? 'Choose your program' : 'Our services' ),
 		'features_text'    => $n['features_text'] ?? '',
-		'f_url'            => '/' . ( 'education' === $kind ? 'programs' : 'services' ) . '/',
+		'f_url'            => '/' . $svc . '/',
 		'about_eyebrow'    => 'About {{name}}',
 		'about_title'      => $n['about_title'],
 		'about_text'       => $n['about_text'],
-		'about_alt'        => 'Dashboard with a rising chart',
-		'about_points'     => implode( "\n", (array) $n['about_points'] ),
+		'about_alt'        => $n['about_alt'] ?? $n['about_title'],
+		'about_points'     => implode( "\n", $points ),
 		'steps_eyebrow'    => 'How it works',
 		'steps_title'      => $n['steps_title'] ?? 'Simple from start to finish',
 		'faq_eyebrow'      => 'Questions',
@@ -78,17 +103,20 @@ function semrs_blocks_niche_site( $n ) {
 		'text_title'       => 'Our story',
 		'text_p1'          => $n['story_1'] ?? '{{name}} was started to offer honest, high-quality service with clear prices and friendly people.',
 		'text_p2'          => $n['story_2'] ?? 'Today we help customers in {{city}} and beyond, and most new customers come from recommendations.',
+		'posts_eyebrow'    => $n['posts_eyebrow'] ?? 'From the blog',
 		'posts_title'      => $n['posts_title'] ?? 'Latest articles',
+		'posts_more'       => $n['posts_more'] ?? 'All articles',
+		'blog_url'         => '/blog/',
 		'hours_title'      => 'Opening hours',
 		'hours_week'       => $n['hours_week'] ?? '8:00 – 18:00',
 		'hours_sat'        => $n['hours_sat'] ?? '9:00 – 14:00',
 		'hours_sun'        => $n['hours_sun'] ?? 'Closed',
 		'areas_title'      => 'Areas we serve',
 		'areas'            => "{{city}}\nCity centre\nNorth district\nSouth district\nEast district\nWest district",
-		'page_title'       => 'blog' === $kind ? $n['hero_title'] : '{{name}}',
+		'page_title'       => '{{name}}',
 		'page_intro'       => $n['hero_text'],
 	);
-	foreach ( array_values( (array) $n['services'] ) as $i => $s ) {
+	foreach ( $service as $i => $s ) {
 		$copy[ 'f' . ( $i + 1 ) . '_icon' ]  = $s[0];
 		$copy[ 'f' . ( $i + 1 ) . '_title' ] = $s[1];
 		$copy[ 'f' . ( $i + 1 ) . '_text' ]  = $s[2];
@@ -105,41 +133,103 @@ function semrs_blocks_niche_site( $n ) {
 	}
 	$copy = array_merge( $copy, (array) ( $n['copy'] ?? array() ) );
 
-	$svc = 'education' === $kind ? 'programs' : 'services';
+	$blog = array( 'title' => $n['blog_title'] ?? ( 'blog' === $kind ? 'Articles' : 'Blog' ), 'posts_page' => true, 'vars' => array( 'page_title' => $n['blog_title'] ?? ( 'blog' === $kind ? 'All articles' : 'Blog' ), 'page_intro' => $n['blog_intro'] ?? 'Tips, guides and news from {{name}}.' ) );
 	if ( 'blog' === $kind ) {
 		$pages = array(
-			'home'    => array( 'title' => 'Home', 'front' => true, 'sections' => array( 'page-header', 'posts', 'about', 'cta' ) ),
-			'about'   => array( 'title' => 'About', 'sections' => array( 'page-header', 'about', 'text' ), 'vars' => array( 'page_title' => 'About {{name}}', 'page_intro' => $n['about_text'] ) ),
+			'home'    => array( 'title' => 'Home', 'front' => true, 'sections' => array( 'hero', 'posts', 'about', 'cta' ) ),
+			'blog'    => $blog,
+			'about'   => array( 'title' => 'About', 'sections' => array( 'page-header', 'about', 'text', 'cta' ), 'vars' => array( 'page_title' => 'About {{name}}', 'page_intro' => $n['about_text'] ) ),
 			'contact' => array( 'title' => 'Contact', 'sections' => array( 'page-header', 'contact' ), 'vars' => array( 'page_title' => 'Contact', 'page_intro' => 'Questions, ideas or collaborations: get in touch.' ) ),
 		);
 	} else {
-		$home = array( 'hero', 'features', 'about', 'steps', 'faq', 'cta' );
-		if ( 'local' === $kind ) {
-			$home = array( 'hero', 'features', 'about', 'hours', 'faq', 'cta' );
-		}
 		$pages = array(
-			'home'  => array( 'title' => 'Home', 'front' => true, 'sections' => $home ),
-			$svc    => array( 'title' => 'education' === $kind ? 'Programs' : 'Services', 'sections' => array( 'page-header', 'features6', 'faq', 'cta' ), 'vars' => array( 'page_title' => $copy['features_title'], 'page_intro' => $copy['features_text'] ? $copy['features_text'] : $n['hero_text'] ) ),
-			'about' => array( 'title' => 'About', 'sections' => array( 'page-header', 'text', 'about', 'cta' ), 'vars' => array( 'page_title' => 'About {{name}}', 'page_intro' => $n['about_title'] ) ),
+			'home'  => array( 'title' => 'Home', 'front' => true, 'sections' => array( 'hero', 'features', 'about', 'local' === $kind ? 'hours' : 'steps', 'posts', 'faq', 'cta' ) ),
+			$svc    => array( 'title' => 'education' === $kind ? 'Programs' : 'Services', 'sections' => array( 'page-header', 'features6', 'steps', 'faq', 'cta' ), 'vars' => array( 'page_title' => $copy['features_title'], 'page_intro' => $copy['features_text'] ? $copy['features_text'] : $n['hero_text'] ) ),
+			'about' => array( 'title' => 'About', 'sections' => array( 'page-header', 'about', 'text', 'steps', 'cta' ), 'vars' => array( 'page_title' => 'About {{name}}', 'page_intro' => $n['about_title'] ) ),
 		);
 		if ( 'education' === $kind ) {
 			$pages['admissions'] = array( 'title' => 'Admissions', 'sections' => array( 'page-header', 'steps', 'contact' ), 'vars' => array( 'page_title' => $n['admissions_title'] ?? 'Admissions & registration', 'page_intro' => $n['admissions_intro'] ?? 'Register your interest and we will guide you through the next steps.', 'contact_title' => 'Registration form', 'contact_text' => 'Fill in the form and choose your program. We will contact you with dates, fees and the documents you need.' ) );
 		}
-		$pages['blog']    = array( 'title' => $n['blog_title'] ?? 'Blog', 'posts_page' => true );
-		$pages['contact'] = array( 'title' => 'Contact', 'sections' => 'local' === $kind ? array( 'page-header', 'contact', 'hours' ) : array( 'page-header', 'contact' ), 'vars' => array( 'page_title' => 'Contact {{name}}', 'page_intro' => $copy['contact_text'] ) );
+		$pages['blog']    = $blog;
+		$pages['contact'] = array( 'title' => 'Contact', 'sections' => array( 'page-header', 'contact', 'local' === $kind ? 'hours' : 'faq' ), 'vars' => array( 'page_title' => 'Contact {{name}}', 'page_intro' => $copy['contact_text'] ) );
 	}
+
+	$headers = array( 'services' => 'classic', 'local' => 'topbar', 'education' => 'topbar', 'blog' => 'minimal' );
 
 	return array(
 		'title'       => $n['title'],
 		'tier'        => $n['tier'] ?? 'free',
 		'category'    => $n['category'],
+		'kind'        => $kind,
 		'description' => $n['description'],
-		'images'      => array( 'hero' => $n['art'] ?? 'hero-woman.png', 'about' => 'about-dashboard.png' ),
-		'image_dir'   => $n['image_dir'] ?? SEMRS_BLOCKS_DIR . 'templates/images/',
-		'image_base'  => $n['image_base'] ?? SEMRS_BLOCKS_URL . 'templates/images/',
+		'demo_name'   => $n['demo_name'] ?? $n['title'],
+		'palette'     => $n['palette'] ?? array(),
+		'header'      => $n['header'] ?? $headers[ $kind ],
+		'images'      => semrs_blocks_template_photo_set( $n['id'] ),
+		'image_dir'   => $n['photo_dir'] ?? SEMRS_BLOCKS_DIR . 'templates/photos/',
+		'image_base'  => $n['photo_base'] ?? SEMRS_BLOCKS_URL . 'templates/photos/',
 		'preview_dir' => $n['preview_dir'] ?? null,
 		'copy'        => $copy,
 		'pages'       => $pages,
+		'posts'       => semrs_blocks_template_posts( (array) ( $n['posts'] ?? array() ), $n['blog_cat'] ?? ( 'blog' === $kind ? 'Guides' : $n['title'] . ' tips' ), 'blog' !== $kind ),
+	);
+}
+
+/**
+ * Photo file names of a site: {id}-hero.jpg, {id}-about.jpg, {id}-post1…3.jpg.
+ *
+ * @param string $id Site id.
+ * @return array slot => file
+ */
+function semrs_blocks_template_photo_set( $id ) {
+	$files = array();
+	foreach ( array( 'hero', 'about', 'post1', 'post2', 'post3' ) as $slot ) {
+		$files[ $slot ] = $id . '-' . $slot . '.jpg';
+	}
+	return $files;
+}
+
+/**
+ * Example blog posts in block markup from [title, excerpt, [[heading, text] × n]].
+ * The copy is general, helpful advice for the owner to edit; no invented results.
+ *
+ * @param array  $list    Posts.
+ * @param string $cat     Category name.
+ * @param bool   $contact Add a closing line that links to the contact page.
+ * @return array slug => title, excerpt, content, image, cat
+ */
+function semrs_blocks_template_posts( $list, $cat, $contact = true ) {
+	$out = array();
+	foreach ( array_values( $list ) as $i => $p ) {
+		$html = "<!-- wp:paragraph -->\n<p>" . esc_html( $p[1] ) . "</p>\n<!-- /wp:paragraph -->";
+		foreach ( (array) ( $p[2] ?? array() ) as $part ) {
+			$html .= "\n\n<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">" . esc_html( $part[0] ) . "</h2>\n<!-- /wp:heading -->";
+			$html .= "\n\n<!-- wp:paragraph -->\n<p>" . esc_html( $part[1] ) . "</p>\n<!-- /wp:paragraph -->";
+		}
+		if ( $contact ) {
+			$html .= "\n\n<!-- wp:paragraph -->\n<p>Have a question about this? <a href=\"/contact/\">Contact {{name}}</a> and we will be happy to help.</p>\n<!-- /wp:paragraph -->";
+		}
+		$out[ sanitize_title( $p[0] ) ] = array(
+			'title'   => $p[0],
+			'excerpt' => $p[1],
+			'content' => $html,
+			'image'   => 'post' . ( $i + 1 ),
+			'cat'     => $cat,
+		);
+	}
+	return $out;
+}
+
+/**
+ * Niche colours, with the SEMRS navy and gold as defaults.
+ *
+ * @param array $site Site.
+ * @return array primary, accent, on_accent, soft, light
+ */
+function semrs_blocks_template_palette( $site ) {
+	return array_merge(
+		array( 'primary' => '#0b1f3a', 'accent' => '#d4a72c', 'on_accent' => '', 'soft' => '#fbf4e0', 'light' => '#f6f7f9' ),
+		array_filter( (array) ( $site['palette'] ?? array() ) )
 	);
 }
 
@@ -254,8 +344,23 @@ function semrs_blocks_template_vars( $site, $page, $owner ) {
 		'city'       => $owner['city'],
 		'country'    => $owner['country'],
 		'year'       => gmdate( 'Y' ),
+		'updated'    => wp_date( 'F Y' ),
 	);
-	$vars = array_merge( $base, (array) ( $site['copy'] ?? array() ), (array) ( $page['vars'] ?? array() ) );
+	$colors = array();
+	foreach ( semrs_blocks_template_palette( $site ) as $k => $v ) {
+		$colors[ 'c_' . $k ] = $v;
+	}
+	$copy     = (array) ( $site['copy'] ?? array() );
+	$defaults = array(
+		'hero_points'   => implode( "\n", array_slice( explode( "\n", (string) ( $copy['about_points'] ?? '' ) ), 0, 2 ) ),
+		'chip_a'        => $copy['f1_title'] ?? '',
+		'chip_b'        => $copy['f2_title'] ?? '',
+		'posts_eyebrow' => __( 'From the blog', 'semrs-blocks' ),
+		'posts_title'   => __( 'Latest articles', 'semrs-blocks' ),
+		'posts_more'    => __( 'All articles', 'semrs-blocks' ),
+		'blog_url'      => '/blog/',
+	);
+	$vars = array_merge( $base, $colors, $defaults, $copy, (array) ( $page['vars'] ?? array() ) );
 	foreach ( $vars as $k => $v ) {
 		$vars[ $k ] = strtr( (string) $v, array( '{{name}}' => $base['name'], '{{phone}}' => $base['phone'], '{{phone_link}}' => $base['phone_link'], '{{email}}' => $base['email'], '{{city}}' => $base['city'], '{{year}}' => $base['year'] ) );
 	}
@@ -304,7 +409,7 @@ function semrs_blocks_template_example_owner() {
 function semrs_blocks_template_image_urls( $site ) {
 	$urls = array();
 	foreach ( (array) ( $site['images'] ?? array() ) as $key => $file ) {
-		$urls[ $key ] = ( $site['image_base'] ?? SEMRS_BLOCKS_URL . 'templates/images/' ) . $file;
+		$urls[ $key ] = ( $site['image_base'] ?? SEMRS_BLOCKS_URL . 'templates/photos/' ) . $file;
 	}
 	return $urls;
 }
@@ -418,6 +523,17 @@ function semrs_blocks_template_media( $path, $alt ) {
 }
 
 /**
+ * Existing page with this address (pages only: get_page_by_path() also matches attachments).
+ *
+ * @param string $slug Page slug.
+ * @return WP_Post|null
+ */
+function semrs_blocks_template_existing( $slug ) {
+	$found = get_posts( array( 'name' => $slug, 'post_type' => 'page', 'post_status' => 'any', 'numberposts' => 1 ) );
+	return $found ? $found[0] : null;
+}
+
+/**
  * Import a starter site.
  *
  * @param string $sid  Site id.
@@ -440,16 +556,22 @@ function semrs_blocks_template_import( $sid, $opts ) {
 
 	// Images into the Media Library, then their URLs.
 	$images = array();
-	$dir    = $site['image_dir'] ?? SEMRS_BLOCKS_DIR . 'templates/images/';
+	$media  = array();
+	$dir    = $site['image_dir'] ?? SEMRS_BLOCKS_DIR . 'templates/photos/';
+	$alts   = array( 'hero' => $site['copy']['hero_alt'] ?? '', 'about' => $site['copy']['about_alt'] ?? '' );
+	foreach ( array_values( (array) ( $site['posts'] ?? array() ) ) as $post ) {
+		$alts[ $post['image'] ] = $post['title'];
+	}
 	foreach ( (array) ( $site['images'] ?? array() ) as $key => $file ) {
-		$id             = semrs_blocks_template_media( $dir . $file, $owner['name'] . ' – ' . $key );
+		$id             = semrs_blocks_template_media( $dir . $file, ! empty( $alts[ $key ] ) ? $alts[ $key ] : $owner['name'] . ' – ' . $key );
+		$media[ $key ]  = $id;
 		$images[ $key ] = $id ? wp_get_attachment_url( $id ) : '';
 	}
 
 	$ids      = array();
 	$is_semrs = 'semrs' === get_template();
 	foreach ( $site['pages'] as $pid => $page ) {
-		$existing = get_page_by_path( $pid );
+		$existing = semrs_blocks_template_existing( $pid );
 		if ( $existing ) {
 			$report['skipped'][ $pid ] = (int) $existing->ID;
 			$ids[ $pid ]               = (int) $existing->ID;
@@ -506,7 +628,7 @@ function semrs_blocks_template_import( $sid, $opts ) {
 				$order = array_merge( array_flip( array_intersect( (array) $site['menu'], array_keys( $order ) ) ), $order ); // Menu order, not page order.
 			}
 			foreach ( $order as $pid => $page ) {
-				if ( ! empty( $ids[ $pid ] ) && empty( $page['front'] ) ) {
+				if ( ! empty( $ids[ $pid ] ) && empty( $page['front'] ) && empty( $page['legal'] ) ) {
 					wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-object-id' => $ids[ $pid ], 'menu-item-object' => 'page', 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish' ) );
 				}
 			}
@@ -517,24 +639,208 @@ function semrs_blocks_template_import( $sid, $opts ) {
 			set_theme_mod( 'nav_menu_locations', $locations );
 			$report['menu'] = $menu_id;
 		}
+		// Footer menu: privacy policy and terms.
+		$legal_name = $owner['name'] . ' legal';
+		$legal      = wp_get_nav_menu_object( $legal_name );
+		$legal_id   = $legal ? (int) $legal->term_id : (int) wp_create_nav_menu( $legal_name );
+		if ( $legal_id && ! $legal ) {
+			foreach ( $site['pages'] as $pid => $page ) {
+				if ( ! empty( $page['legal'] ) && ! empty( $ids[ $pid ] ) ) {
+					wp_update_nav_menu_item( $legal_id, 0, array( 'menu-item-object-id' => $ids[ $pid ], 'menu-item-object' => 'page', 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish' ) );
+				}
+			}
+		}
+		if ( $legal_id ) {
+			$locations           = (array) get_theme_mod( 'nav_menu_locations', array() );
+			$locations['footer'] = $legal_id;
+			set_theme_mod( 'nav_menu_locations', $locations );
+		}
+	}
+	if ( ! empty( $opts['title'] ) && '' !== $owner['name'] ) {
+		update_option( 'blogname', $owner['name'] );
+	}
+	// WordPress privacy page setting, if none is set yet.
+	if ( ! empty( $ids['privacy-policy'] ) && ! get_post( (int) get_option( 'wp_page_for_privacy_policy' ) ) ) {
+		update_option( 'wp_page_for_privacy_policy', $ids['privacy-policy'] );
 	}
 
-	// SEMRS theme: header button, contact details, header layout.
-	if ( ! empty( $opts['theme'] ) && $is_semrs ) {
-		$copy = $site['copy'] ?? array();
-		set_theme_mod( 'semrs_theme_phone', $owner['phone'] );
-		set_theme_mod( 'semrs_theme_email', $owner['email'] );
-		if ( ! empty( $copy['cta_text'] ) ) {
-			set_theme_mod( 'semrs_theme_cta_text', strtr( $copy['cta_text'], array( '{{phone}}' => $owner['phone'] ) ) );
-			set_theme_mod( 'semrs_theme_cta_url', strtr( $copy['cta_url'] ?? '/contact/', array( '{{phone_link}}' => preg_replace( '/[^0-9+]/', '', $owner['phone'] ) ) ) );
+	// Example blog posts with their photos (never replaces a post with the same address).
+	$post_links = array();
+	if ( ! empty( $opts['posts'] ) ) {
+		$vars = semrs_blocks_template_vars( $site, array(), $owner );
+		foreach ( (array) ( $site['posts'] ?? array() ) as $slug => $post ) {
+			$existing = get_posts( array( 'name' => $slug, 'post_type' => 'post', 'post_status' => 'any', 'numberposts' => 1 ) ); // Not get_page_by_path(): it also matches the photo attachments.
+			$existing = $existing ? $existing[0] : null;
+			if ( $existing ) {
+				$post_links[ $post['title'] ] = get_permalink( $existing );
+				continue;
+			}
+			$cat = term_exists( $post['cat'], 'category' );
+			$cat = $cat ? $cat : wp_insert_term( $post['cat'], 'category' );
+			$id  = wp_insert_post(
+				array(
+					'post_type'     => 'post',
+					'post_status'   => $status,
+					'post_title'    => $post['title'],
+					'post_name'     => $slug,
+					'post_excerpt'  => $post['excerpt'],
+					'post_content'  => wp_slash( strtr( $post['content'], array( '{{name}}' => esc_html( $vars['name'] ) ) ) ),
+					'post_category' => is_array( $cat ) ? array( (int) $cat['term_id'] ) : array(),
+				),
+				true
+			);
+			if ( is_wp_error( $id ) ) {
+				continue;
+			}
+			if ( ! empty( $media[ $post['image'] ] ) ) {
+				set_post_thumbnail( $id, $media[ $post['image'] ] );
+			}
+			update_post_meta( $id, '_semrs_template', $sid );
+			$report['posts'][ $slug ]     = (int) $id;
+			$post_links[ $post['title'] ] = get_permalink( $id );
 		}
-		set_theme_mod( 'semrs_theme_hb_layout', wp_json_encode( $site['header'] ?? array( 'top' => array( 'left' => array( 'contact' ), 'center' => array(), 'right' => array( 'social' ) ), 'main' => array( 'left' => array( 'logo' ), 'center' => array(), 'right' => array( 'menu', 'button', 'search' ) ), 'bottom' => array( 'left' => array(), 'center' => array(), 'right' => array() ) ) ) );
+	}
+
+	// SEMRS theme: niche header, footer and colours, header button, contact details.
+	if ( ! empty( $opts['theme'] ) && $is_semrs ) {
+		$mods = semrs_blocks_template_theme_mods( $site, $owner, ! empty( $opts['colors'] ) );
+		// Optional credit in the footer bar, e.g. Website by Your Agency (off unless filled in).
+		if ( ! empty( $opts['credit_text'] ) ) {
+			$mods['html3'] = $opts['credit_url'] ? '<a href="' . esc_url( $opts['credit_url'] ) . '">' . esc_html( $opts['credit_text'] ) . '</a>' : esc_html( $opts['credit_text'] );
+		}
+		// Optional notice in the top bar for demo and portfolio sites.
+		if ( ! empty( $opts['demo'] ) ) {
+			$layout                          = json_decode( $mods['hb_layout'], true );
+			$layout['top']['center']         = array_merge( array( 'html1' ), (array) ( $layout['top']['center'] ?? array() ) );
+			$mods['hb_layout']               = wp_json_encode( $layout );
+			$mods['html1']                   = esc_html__( 'Demo website: example business, prices and content.', 'semrs-blocks' );
+			$mods['top_mobile']              = true;
+		}
+		foreach ( $mods as $mod => $value ) {
+			set_theme_mod( 'semrs_theme_' . $mod, $value );
+		}
+		// Footer columns are added only when all footer widget areas are empty.
+		$sidebars = wp_get_sidebars_widgets();
+		if ( ! array_filter( array_intersect_key( $sidebars, array_flip( array( 'footer-1', 'footer-2', 'footer-3', 'footer-4' ) ) ) ) ) {
+			$links = array();
+			foreach ( $site['pages'] as $pid => $page ) {
+				if ( empty( $page['front'] ) && empty( $page['legal'] ) && ! empty( $ids[ $pid ] ) ) {
+					$links[ strtr( $page['title'], array( '{{name}}' => $owner['name'] ) ) ] = get_permalink( $ids[ $pid ] );
+				}
+			}
+			$widgets = (array) get_option( 'widget_block', array() );
+			$next    = max( array_merge( array( 0 ), array_filter( array_keys( $widgets ), 'is_int' ) ) ) + 1;
+			foreach ( semrs_blocks_template_footer_blocks( $site, $owner, $links, $post_links ) as $i => $html ) {
+				$widgets[ $next ]                   = array( 'content' => $html );
+				$sidebars[ 'footer-' . ( $i + 1 ) ] = array( 'block-' . $next );
+				++$next;
+			}
+			$widgets['_multiwidget'] = 1;
+			update_option( 'widget_block', $widgets );
+			wp_set_sidebars_widgets( $sidebars );
+		}
 	}
 
 	$log         = (array) get_option( 'semrs_blocks_template_imports', array() );
 	$log[]       = array( 'site' => $sid, 'time' => time(), 'pages' => $report['created'] );
 	update_option( 'semrs_blocks_template_imports', array_slice( $log, -20 ), false );
 	return $report;
+}
+
+/**
+ * SEMRS theme settings for a site (keys without the semrs_theme_ prefix):
+ * header preset, footer bar, contact details, header button and colours.
+ *
+ * @param array $site   Site.
+ * @param array $owner  Owner details.
+ * @param bool  $colors Include the niche colours.
+ * @return array
+ */
+function semrs_blocks_template_theme_mods( $site, $owner, $colors = true ) {
+	$copy   = $site['copy'] ?? array();
+	$header = $site['header'] ?? 'topbar';
+	$extra  = array();
+	if ( ! is_array( $header ) ) {
+		$presets = semrs_blocks_header_presets();
+		$preset  = $presets[ $header ] ?? $presets['topbar'];
+		$header  = $preset[2];
+		$extra   = (array) ( $preset[3] ?? array() );
+	}
+	$mods = array(
+		'phone'       => $owner['phone'],
+		'email'       => $owner['email'],
+		'hb_layout'   => wp_json_encode( $header ),
+		'transparent' => 'off',
+		'fb_layout'   => wp_json_encode( array( 'bottom' => array( 'left' => array( 'copyright' ), 'center' => array( 'html3' ), 'right' => array( 'footer_menu', 'social' ) ) ) ),
+		'footer_cols' => '4',
+	);
+	if ( ! empty( $copy['cta_text'] ) ) {
+		$mods['cta_text'] = strtr( $copy['cta_text'], array( '{{phone}}' => $owner['phone'] ) );
+		$mods['cta_url']  = strtr( $copy['cta_url'] ?? '/contact/', array( '{{phone_link}}' => preg_replace( '/[^0-9+]/', '', $owner['phone'] ) ) );
+	}
+	if ( $colors ) {
+		$p    = semrs_blocks_template_palette( $site );
+		$mods = array_merge(
+			$mods,
+			array(
+				'color_primary'   => $p['primary'],
+				'color_accent'    => $p['accent'],
+				'color_on_accent' => $p['on_accent'] ? $p['on_accent'] : $p['primary'],
+				'color_link'      => $p['primary'],
+				'top_bg'          => $p['primary'],
+			)
+		);
+	}
+	return array_merge( $mods, $extra );
+}
+
+/**
+ * Four footer columns in block markup: about, pages, services (or latest
+ * articles on blogs) and contact details.
+ *
+ * @param array $site       Site.
+ * @param array $owner      Owner details.
+ * @param array $links      Page title => URL.
+ * @param array  $post_links Post title => URL.
+ * @param string $svc_url    Services page URL (default: the imported page).
+ * @return string[]
+ */
+function semrs_blocks_template_footer_blocks( $site, $owner, $links, $post_links = array(), $svc_url = '' ) {
+	$v    = semrs_blocks_template_vars( $site, array(), $owner );
+	$h    = function ( $text ) {
+		return "<!-- wp:heading {\"level\":3} -->\n<h3 class=\"wp-block-heading\">" . esc_html( $text ) . "</h3>\n<!-- /wp:heading -->\n\n";
+	};
+	$p    = function ( $html ) {
+		return "<!-- wp:paragraph -->\n<p>" . $html . "</p>\n<!-- /wp:paragraph -->";
+	};
+	$list = function ( $items ) {
+		$out = "<!-- wp:list -->\n<ul class=\"wp-block-list\">";
+		foreach ( $items as $text => $url ) {
+			$out .= "<!-- wp:list-item -->\n<li><a href=\"" . esc_url( $url ) . '">' . esc_html( $text ) . "</a></li>\n<!-- /wp:list-item -->";
+		}
+		return $out . "</ul>\n<!-- /wp:list -->";
+	};
+	if ( 'blog' === ( $site['kind'] ?? '' ) || ! isset( $v['f1_title'] ) ) {
+		$third = $h( $v['posts_title'] ?? __( 'Latest articles', 'semrs-blocks' ) ) . $list( $post_links ? $post_links : array_fill_keys( wp_list_pluck( (array) ( $site['posts'] ?? array() ), 'title' ), $v['blog_url'] ?? '/blog/' ) );
+	} else {
+		$svc = array();
+		for ( $i = 1; $i <= 4; $i++ ) {
+			if ( ! empty( $v[ 'f' . $i . '_title' ] ) ) {
+				$svc[ $v[ 'f' . $i . '_title' ] ] = $svc_url ? $svc_url : home_url( $v['f_url'] ?? '/services/' );
+			}
+		}
+		$third = $h( $v['features_title'] ?? __( 'Services', 'semrs-blocks' ) ) . $list( $svc );
+	}
+	$contact = '<a href="tel:' . esc_attr( $v['phone_link'] ) . '">' . esc_html( $v['phone'] ) . '</a><br><a href="mailto:' . esc_attr( $v['email'] ) . '">' . esc_html( $v['email'] ) . '</a>' . ( $v['city'] ? '<br>' . esc_html( $v['city'] ) : '' );
+	if ( 'local' === ( $site['kind'] ?? '' ) && ! empty( $v['hours_week'] ) ) {
+		$contact .= '<br>' . esc_html__( 'Mon – Fri', 'semrs-blocks' ) . ' ' . esc_html( $v['hours_week'] );
+	}
+	return array(
+		$h( $v['name'] ) . $p( esc_html( $v['about_text'] ?? '' ) ),
+		$h( __( 'Quick links', 'semrs-blocks' ) ) . $list( $links ),
+		$third,
+		$h( __( 'Contact', 'semrs-blocks' ) ) . $p( $contact ),
+	);
 }
 
 /* ---------------------------------------------------------------------------
@@ -611,6 +917,12 @@ function semrs_blocks_templates_import_action() {
 			'home'   => ! empty( $in['home'] ),
 			'menu'   => ! empty( $in['menu'] ),
 			'theme'  => ! empty( $in['theme'] ),
+			'colors' => ! empty( $in['colors'] ),
+			'posts'  => ! empty( $in['posts'] ),
+			'title'  => ! empty( $in['title'] ),
+			'demo'   => ! empty( $in['demo'] ),
+			'credit_text' => sanitize_text_field( $in['credit_text'] ?? '' ),
+			'credit_url'  => esc_url_raw( $in['credit_url'] ?? '' ),
 		)
 	);
 	if ( is_wp_error( $report ) ) {
@@ -650,7 +962,9 @@ function semrs_blocks_template_card( $sid, $site, $locked, $buttons = true ) {
 		echo '<a class="button button-primary" href="' . esc_url( semrs_blocks_pro_url() ) . '" target="_blank" rel="noopener">' . esc_html__( 'Unlock with Pro', 'semrs-blocks' ) . '</a>';
 	} else {
 		echo '<a class="button button-primary" href="' . esc_url( admin_url( 'admin.php?page=semrs-templates&site=' . $sid ) ) . '">' . esc_html__( 'Import', 'semrs-blocks' ) . '</a>';
-		if ( $desk ) {
+		if ( ! empty( $site['pages'] ) ) {
+			echo '<a class="button" href="' . esc_url( admin_url( 'admin.php?page=semrs-templates&preview=' . $sid ) ) . '">' . esc_html__( 'Preview site', 'semrs-blocks' ) . '</a>';
+		} elseif ( $desk ) {
 			echo '<a class="button" href="' . esc_url( $desk ) . '" target="_blank" rel="noopener">' . esc_html__( 'Full preview', 'semrs-blocks' ) . '</a>';
 		}
 	}
@@ -670,11 +984,18 @@ function semrs_blocks_templates_page() {
 		echo '<div class="notice notice-success"><p><strong>' . esc_html__( 'Import finished.', 'semrs-blocks' ) . '</strong> ';
 		/* translators: 1: created pages, 2: skipped pages */
 		echo esc_html( sprintf( __( '%1$d pages created, %2$d skipped because a page with the same address already exists.', 'semrs-blocks' ), count( $report['created'] ), count( $report['skipped'] ) ) ) . '</p><ul style="list-style:disc;margin-left:20px">';
-		foreach ( $report['created'] as $pid => $id ) {
+		foreach ( $report['created'] + (array) ( $report['posts'] ?? array() ) as $pid => $id ) {
 			echo '<li><a href="' . esc_url( get_edit_post_link( $id ) ) . '">' . esc_html( get_the_title( $id ) ) . '</a> · <a href="' . esc_url( get_permalink( $id ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'view', 'semrs-blocks' ) . '</a></li>';
 		}
-		echo '</ul><p>' . esc_html__( 'Next: replace the example prices, opening hours and areas with your own, add your real photos, and check each page before publishing.', 'semrs-blocks' ) . '</p></div>';
+		echo '</ul><p>' . esc_html__( 'Next: replace the example prices, opening hours and areas with your own, add your real photos, check that the privacy policy and terms match how you work (and your local law), and check each page before publishing.', 'semrs-blocks' ) . '</p></div>';
 		delete_transient( 'semrs_tpl_report_' . get_current_user_id() );
+	}
+
+	$preview = isset( $_GET['preview'] ) ? sanitize_key( $_GET['preview'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+	if ( $preview && isset( $sites[ $preview ] ) && ! ( 'pro' === ( $sites[ $preview ]['tier'] ?? 'free' ) && ! defined( 'SEMRS_PRO_VERSION' ) ) ) {
+		semrs_blocks_template_viewer( $preview, $sites[ $preview ] );
+		echo '</div>';
+		return;
 	}
 
 	if ( $sid && isset( $sites[ $sid ] ) ) {
@@ -699,14 +1020,25 @@ function semrs_blocks_templates_page() {
 		$field( 'country', __( 'Country code for phone numbers (e.g. US, GB, PK)', 'semrs-blocks' ), 'US' );
 		echo '<p><strong>' . esc_html__( 'Pages', 'semrs-blocks' ) . '</strong><br>';
 		foreach ( $site['pages'] as $pid => $page ) {
-			$exists = get_page_by_path( $pid );
+			$exists = semrs_blocks_template_existing( $pid );
 			echo esc_html( $page['title'] ) . ' <code>/' . esc_html( $pid ) . '/</code>' . ( $exists ? ' <em>(' . esc_html__( 'exists, will be skipped', 'semrs-blocks' ) . ')</em>' : '' ) . '<br>';
 		}
 		echo '</p><p><label><input type="radio" name="status" value="draft" checked> ' . esc_html__( 'Create as drafts (recommended: review, then publish)', 'semrs-blocks' ) . '</label><br><label><input type="radio" name="status" value="publish"> ' . esc_html__( 'Publish now', 'semrs-blocks' ) . '</label></p>';
 		echo '<p><label><input type="checkbox" name="home" value="1" checked> ' . esc_html__( 'Set the home page (and blog page)', 'semrs-blocks' ) . '</label><br>';
-		echo '<label><input type="checkbox" name="menu" value="1" checked> ' . esc_html__( 'Create the main menu', 'semrs-blocks' ) . '</label><br>';
+		echo '<label><input type="checkbox" name="menu" value="1" checked> ' . esc_html__( 'Create the main menu and the footer menu (privacy policy, terms)', 'semrs-blocks' ) . '</label><br>';
+		echo '<label><input type="checkbox" name="title" value="1"> ' . esc_html__( 'Use the business name as the site title', 'semrs-blocks' ) . '</label><br>';
+		if ( ! empty( $site['posts'] ) ) {
+			/* translators: %d: number of posts */
+			echo '<label><input type="checkbox" name="posts" value="1" checked> ' . esc_html( sprintf( __( 'Add %d example blog posts with photos', 'semrs-blocks' ), count( $site['posts'] ) ) ) . '</label><br>';
+		}
 		if ( 'semrs' === get_template() ) {
-			echo '<label><input type="checkbox" name="theme" value="1" checked> ' . esc_html__( 'Apply the header layout, button and contact details (SEMRS theme)', 'semrs-blocks' ) . '</label>';
+			echo '<label><input type="checkbox" name="theme" value="1" checked> ' . esc_html__( 'Apply the header, footer columns, button and contact details (SEMRS theme)', 'semrs-blocks' ) . '</label><br>';
+			echo '<label><input type="checkbox" name="colors" value="1" checked> ' . esc_html__( 'Use the template colours (changes the theme colours)', 'semrs-blocks' ) . '</label>';
+			echo '</p><details><summary><strong>' . esc_html__( 'Demo and portfolio sites (optional)', 'semrs-blocks' ) . '</strong></summary><p>';
+			echo '<label><input type="checkbox" name="demo" value="1"> ' . esc_html__( 'Show a "Demo website" notice in the top bar', 'semrs-blocks' ) . '</label></p>';
+			$field( 'credit_text', __( 'Footer credit text (e.g. "Website by Your Agency")', 'semrs-blocks' ), '' );
+			$field( 'credit_url', __( 'Footer credit link', 'semrs-blocks' ), '', 'url' );
+			echo '</details><p>';
 		}
 		echo '</p>';
 		if ( $locked ) {

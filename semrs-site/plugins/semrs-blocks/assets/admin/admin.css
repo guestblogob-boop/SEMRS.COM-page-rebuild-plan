@@ -52,3 +52,12 @@
 .semrs-wf__row--top .semrs-wf__el, .semrs-wf--footer .semrs-wf__el { background: rgba(255,255,255,.14); color: #fff; }
 .semrs-wf__el--logo { font-weight: 700; background: #0b1f3a; color: #d4a72c; }
 .semrs-wf__el--button { background: #d4a72c; color: #0b1f3a; font-weight: 700; }
+
+/* Templates: live preview viewer */
+.semrs-viewer__bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0 12px}
+.semrs-viewer__title{font-size:15px;margin-right:8px}
+.semrs-viewer__pages,.semrs-viewer__devices{display:flex;flex-wrap:wrap;gap:4px}
+.semrs-viewer__devices{margin-left:auto}
+.semrs-viewer__devices [aria-pressed="true"]{background:#2271b1;border-color:#2271b1;color:#fff}
+.semrs-viewer__stage{display:flex;justify-content:center;background:#e9edf3;border:1px solid #dcdcde;border-radius:6px;padding:12px}
+.semrs-viewer__frame{width:100%;height:calc(100vh - 230px);min-height:520px;border:0;border-radius:4px;background:#fff;box-shadow:0 6px 24px rgba(15,23,42,.14);transition:width .25s}

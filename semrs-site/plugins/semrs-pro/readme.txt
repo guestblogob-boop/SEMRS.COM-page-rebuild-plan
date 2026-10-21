@@ -4,7 +4,7 @@ Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: semrs-core
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 
 Premium add-on for the free SEMRS theme and the free SEMRS Core plugin. Every module can be switched off under SEMRS → Modules.
@@ -64,10 +64,53 @@ The Ads Manager moved to the free SEMRS Core plugin in 1.1.0.
 * Case Studies, Portfolio and Testimonials with permission gates.
 * Contact Form 7 → GA4 generate_lead → thank-you page.
 
+== Photo credits ==
+
+Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https://creativecommons.org/publicdomain/zero/1.0/), found through Openverse. They were cropped and compressed for the templates. No attribution is required; sources are listed for transparency.
+
+* consultant-hero.jpg: Christina Morillo, StockSnap, CC0 1.0 – https://stocksnap.io/photo/business-meeting-SKBXLJOILI
+* consultant-about.jpg: Direct Media, StockSnap, CC0 1.0 – https://stocksnap.io/photo/business-office-IHBPBLYUFE
+* consultant-post1.jpg: energepic.com, StockSnap, CC0 1.0 – https://stocksnap.io/photo/office-work-42H3JH8QI5
+* consultant-post2.jpg: Cathryn Lavery, StockSnap, CC0 1.0 – https://stocksnap.io/photo/journal-notepad-DPKNIIN5X3
+* consultant-post3.jpg: Direct Media, StockSnap, CC0 1.0 – https://stocksnap.io/photo/business-presenting-XDAR6MIG75
+* clinic-hero.jpg: Direct Media, StockSnap, CC0 1.0 – https://stocksnap.io/photo/male-doctor-KN1OCKC4Y2
+* clinic-about.jpg: Direct Media, StockSnap, CC0 1.0 – https://stocksnap.io/photo/doctor-mask-GWE6UQDBTN
+* clinic-post1.jpg: Negative Space, StockSnap, CC0 1.0 – https://stocksnap.io/photo/stethoscope-medical-9M1HWW2JFV
+* clinic-post2.jpg: Direct Media, StockSnap, CC0 1.0 – https://stocksnap.io/photo/caregiver-nurse-QQEQNVMB0I
+* clinic-post3.jpg: Healthy Living, StockSnap, CC0 1.0 – https://stocksnap.io/photo/healthy-food-7NGJXUAFPT
+* travel-agency-hero.jpg: Pablo Heimplatz, StockSnap, CC0 1.0 – https://stocksnap.io/photo/grass-highland-3SOTA2KHAI
+* travel-agency-about.jpg: Chatree Petjan, StockSnap, CC0 1.0 – https://stocksnap.io/photo/background-travel-HJGIY622S1
+* travel-agency-post1.jpg: Matt Moloney, StockSnap, CC0 1.0 – https://stocksnap.io/photo/tropical-beach-4ASM8GQGNN
+* travel-agency-post2.jpg: Aukje Leermakers, StockSnap, CC0 1.0 – https://stocksnap.io/photo/mountain-lake-5IGV8IZMBT
+* travel-agency-post3.jpg: rawpixel, CC0 1.0 – https://www.rawpixel.com/image/5942830/free-public-domain-cc0-photo
+* camping-hero.jpg: Christopher Jolly, StockSnap, CC0 1.0 – https://stocksnap.io/photo/camp-tent-PTERNSNX0F
+* camping-about.jpg: Anggoro Sakti, StockSnap, CC0 1.0 – https://stocksnap.io/photo/man-campfire-HRLU7ZESP0
+* camping-post1.jpg: Hiking Adventures, StockSnap, CC0 1.0 – https://stocksnap.io/photo/hiking-trail-HTYBXCKX4P
+* camping-post2.jpg: Elliott Chau, StockSnap, CC0 1.0 – https://stocksnap.io/photo/camping-tent-OCXLY7U3OG
+* camping-post3.jpg: rawpixel, CC0 1.0 – https://www.rawpixel.com/image/5917516/image-public-domain-stars-nature
+* school-hero.jpg: rawpixel, CC0 1.0 – https://www.rawpixel.com/image/6111772/students-classroom-africa-unknown-date
+* school-about.jpg: Brodie Vissers, StockSnap, CC0 1.0 – https://stocksnap.io/photo/people-girls-Y2AHVPYB51
+* school-post1.jpg: Suzy Hazelwood, StockSnap, CC0 1.0 – https://stocksnap.io/photo/books-library-GTWPBBTRRN
+* school-post2.jpg: The African Union Mission in Somalia, rawpixel, CC0 1.0 – https://www.rawpixel.com/image/3373064/free-photo-image-teaching-education-africa-black-teacher
+* school-post3.jpg: Tamarcus Brown, StockSnap, CC0 1.0 – https://stocksnap.io/photo/student-school-1KOT8HDPAX
+* online-courses-hero.jpg: Bench Accounting, StockSnap, CC0 1.0 – https://stocksnap.io/photo/working-typing-0E0M5W9O3V
+* online-courses-about.jpg: Matthew Henry, StockSnap, CC0 1.0 – https://stocksnap.io/photo/laptop-code-0K2OHEKTRH
+* online-courses-post1.jpg: Michal Kulesza, StockSnap, CC0 1.0 – https://stocksnap.io/photo/beats-headphones-7B62IKGVF4
+* online-courses-post2.jpg: Jeffrey Betts, StockSnap, CC0 1.0 – https://stocksnap.io/photo/office-work-91WZ32J28K
+* online-courses-post3.jpg: Daniel Frank, StockSnap, CC0 1.0 – https://stocksnap.io/photo/laptop-apple-V6JZXOHZRD
+* ai-llm-hero.jpg: Christina Morillo, StockSnap, CC0 1.0 – https://stocksnap.io/photo/developer-discuss-OEIJJX36TI
+* ai-llm-about.jpg: Negative Space, StockSnap, CC0 1.0 – https://stocksnap.io/photo/analytics-charts-RCFX768X06
+* ai-llm-post1.jpg: One Idea LLC, StockSnap, CC0 1.0 – https://stocksnap.io/photo/programming-code-1STVFMTBJY
+* ai-llm-post2.jpg: Alex Knight, StockSnap, CC0 1.0 – https://stocksnap.io/photo/robot-technology-WUBMLJRYEK
+* ai-llm-post3.jpg: rawpixel, CC0 1.0 – https://www.rawpixel.com/image/5906639/photo-image-light-desktop-wallpapers-public-domain
+
 == License ==
 SEMRS → License: paste your key and click Activate (Deactivate frees the site so you can move the key). Updates come from semrs.com (SEMRS Update Server): with a valid key, WordPress shows "Update available" and installs new versions in one click. Features never switch off when a license expires; the license controls updates and support.
 
 == Changelog ==
+
+= 1.3.0 =
+* Pro starter sites with real CC0 photos, example posts, legal pages, niche colours and footers
 
 = 1.2.0 =
 * SEO: 0–100 SEO score with readability checks, Re-check and internal link ideas; SEO Audit screen; llms.txt; reads Yoast and AIOSEO data

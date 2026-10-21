@@ -65,7 +65,9 @@ for (const p of PACKAGES) {
 		let r = read(rPath).replace(/^Stable tag:\s*[0-9.]+/m, `Stable tag: ${ver}`);
 		const own = args['notes-' + p.slug] ? String(args['notes-' + p.slug]).split('|').map((n) => n.trim()).filter(Boolean) : notes;
 		const entry = `= ${ver} =\n${own.map((n) => '* ' + n).join('\n')}\n\n`;
-		r = /== Changelog ==\n+/.test(r) ? r.replace(/== Changelog ==\n+/, `== Changelog ==\n\n${entry}`) : r.trimEnd() + `\n\n== Changelog ==\n\n${entry}`;
+		if (!r.includes(`= ${ver} =\n`)) { // Rebuilding the same version keeps its existing entry.
+			r = /== Changelog ==\n+/.test(r) ? r.replace(/== Changelog ==\n+/, `== Changelog ==\n\n${entry}`) : r.trimEnd() + `\n\n== Changelog ==\n\n${entry}`;
+		}
 		write(rPath, r);
 	}
 

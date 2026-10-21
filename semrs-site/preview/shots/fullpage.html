@@ -1,0 +1,27 @@
+<!doctype html>
+<!-- PREVIEW ONLY: loads ?src= in a frame of ?w= px width, then grows the frame to the page height.
+     ?measure=1 writes the height into <body data-h> (read with --dump-dom). -->
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:#fff;overflow:hidden}iframe{display:block;border:0}</style></head>
+<body>
+<iframe id="f" scrolling="no"></iframe>
+<script>
+var q = new URLSearchParams(location.search), f = document.getElementById('f');
+var w = parseInt(q.get('w') || '1200', 10);
+f.style.width = w + 'px'; f.style.height = '900px';
+f.onload = function () {
+	var d = f.contentDocument;
+	d.documentElement.style.scrollBehavior = 'auto';
+	d.querySelectorAll('img[loading="lazy"]').forEach(function (i) { i.loading = 'eager'; });
+	var fix = d.createElement('style');
+	// Sticky header and floating buttons would repeat or float mid-page in a full-page capture.
+	fix.textContent = '.site-header{position:relative!important;top:auto!important}.sp-to-top,.sp-whatsapp,.sp-action-bar,.semrs-wa{display:none!important}body.sp-has-action-bar{padding-bottom:0!important}';
+	d.head.appendChild(fix);
+	setTimeout(function () {
+		var h = Math.min(14000, d.documentElement.scrollHeight);
+		f.style.height = h + 'px';
+		document.body.setAttribute('data-h', h);
+	}, 1500);
+};
+f.src = q.get('src');
+</script>
+</body></html>

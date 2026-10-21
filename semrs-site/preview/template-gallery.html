@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEMRS Starter Sites</title>
+<style>
+	:root { --ink: #0b1f3a; --muted: #5b6577; --line: #e3e7ee; --bg: #f4f6fa; }
+	* { box-sizing: border-box; }
+	body { margin: 0; font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); }
+	header { padding: 28px 24px 8px; max-width: 1400px; margin: 0 auto; }
+	h1 { margin: 0 0 4px; font-size: 26px; }
+	header p { margin: 0; color: var(--muted); }
+	.grid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); padding: 20px 24px 48px; max-width: 1400px; margin: 0 auto; }
+	.card { background: #fff; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(15, 23, 42, .06); }
+	.media { display: grid; grid-template-columns: 1fr 34%; gap: 10px; padding: 10px; background: linear-gradient(135deg, #0b1f3a, #1e4d8c); }
+	.desk, .phone { position: relative; overflow: hidden; border-radius: 6px; background: #fff; }
+	.desk { aspect-ratio: 4 / 3; }
+	.phone { aspect-ratio: 390 / 760; align-self: center; border: 4px solid #111; border-radius: 16px; }
+	.media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; transition: object-position 8s ease-in-out; }
+	.card:hover .media img, .card:focus-within .media img { object-position: 50% 100%; }
+	.bar { display: flex; align-items: center; gap: 8px; padding: 12px 14px 4px; }
+	.bar h2 { flex: 1; margin: 0; font-size: 16px; }
+	.tag { padding: 2px 9px; font-size: 11px; font-weight: 700; text-transform: uppercase; border-radius: 99px; color: #0a5c36; background: #e6f4ea; }
+	.tag.pro { color: #fff; background: linear-gradient(135deg, #b8860b, #d4a72c); }
+	.card p { margin: 0; padding: 0 14px 14px; color: var(--muted); font-size: 13px; }
+	a.full { color: inherit; }
+	@media (prefers-reduced-motion: reduce) { .media img { transition: none; } }
+</style>
+</head>
+<body>
+<header>
+	<h1>SEMRS starter sites</h1>
+	<p>Full home pages, desktop and phone. Hover a card to scroll through the whole page; click a preview to open it full size.</p>
+</header>
+<main class="grid" id="grid"></main>
+<script>
+	var sites = [
+		['agency', 'Agency', 'Free', 'Marketing, SEO or web agency'], ['local', 'Local Business', 'Free', 'Plumber, electrician or any local service'], ['blog', 'Blog', 'Free', 'Personal blog or magazine'],
+		['seo-services', 'SEO Services', 'Free', 'SEO consultant or agency'], ['digital-marketing', 'Digital Marketing', 'Free', 'Ads, SEO, email and analytics'], ['content-marketing', 'Content Marketing', 'Free', 'Writers and content studios'],
+		['social-media', 'Social Media Management', 'Free', 'Social media managers'], ['guest-posting', 'Guest Blogging', 'Free', 'Outreach and guest posts'], ['cleaning', 'Cleaning Service', 'Free', 'Home and office cleaning'],
+		['maintenance', 'Handyman & Maintenance', 'Free', 'Handyman and property care'], ['repairs', 'Repair Shop', 'Free', 'Phone, laptop and appliance repairs'], ['gardening', 'Gardening & Landscaping', 'Free', 'Gardeners and landscapers'],
+		['pets', 'Pet Care & Grooming', 'Free', 'Grooming, dog walking, pet sitting'], ['dentist', 'Dentist', 'Free', 'Dental practice'], ['top-ten', 'Top 10 Lists & Reviews', 'Free', 'List and review blog'],
+		['travel-blog', 'Travel Blog', 'Free', 'Destination guides and tips'], ['consultant', 'Consultant', 'Pro', 'Coach or consultant'], ['clinic', 'Clinic', 'Pro', 'Medical or dental clinic'],
+		['travel-agency', 'Travel Agency', 'Pro', 'Tours and tailor-made trips'], ['camping', 'Camping & Outdoors', 'Pro', 'Campsite and glamping'], ['school', 'School & Admissions', 'Pro', 'School with registration'],
+		['online-courses', 'Online Courses', 'Pro', 'Online academy'], ['ai-llm', 'AI & LLM Services', 'Pro', 'AI consultancy']
+	];
+	var dir = 'file:' === location.protocol ? '../plugins/semrs-blocks/templates/previews/' : '/wp-content/plugins/semrs-blocks/templates/previews/';
+	document.getElementById('grid').innerHTML = sites.map(function (s) {
+		return '<article class="card"><div class="media">' +
+			'<a class="desk" href="' + dir + s[0] + '-desktop.jpg" target="_blank" aria-label="' + s[1] + ' desktop preview"><img src="' + dir + s[0] + '-desktop.jpg" alt="" loading="lazy"></a>' +
+			'<a class="phone" href="' + dir + s[0] + '-mobile.jpg" target="_blank" aria-label="' + s[1] + ' phone preview"><img src="' + dir + s[0] + '-mobile.jpg" alt="" loading="lazy"></a>' +
+			'</div><div class="bar"><h2>' + s[1] + '</h2><span class="tag' + (s[2] === 'Pro' ? ' pro' : '') + '">' + s[2] + '</span></div><p>' + s[3] + '</p></article>';
+	}).join('');
+</script>
+</body>
+</html>

@@ -4,7 +4,7 @@ Theme URI:         https://semrs.com/
 Author:            SEMRS
 Author URI:        https://semrs.com/
 Description:       Lightweight, SEO-first theme for businesses, agencies and blogs. Drag-and-drop header and footer builder with top bar, sticky and transparent header, header search and a mobile menu panel. Seven section patterns, sidebar layouts, blog grid or list, reading progress bar, author box, related posts and per-page header, footer and sidebar options. No jQuery: one stylesheet and one small script.
-Version:           1.3.6
+Version:           1.3.7
 Requires at least: 6.5
 Tested up to:      7.1
 Requires PHP:      7.4
@@ -100,6 +100,8 @@ th { background: var(--sp-surface); }
 .sp-full-width .sp-container.sp-content-container { max-width: none; padding-inline: 0; }
 .sp-full-width .entry-content > * { max-width: var(--sp-content); margin-inline: auto; padding-inline: 16px; }
 .sp-full-width .entry-content > .alignwide { max-width: var(--sp-container); }
+/* The content area is already edge to edge: no 100vw (it includes the scrollbar and causes sideways scrolling). */
+.sp-full-width .entry-content > .alignfull { width: auto; margin-inline: 0; }
 .sp-full-width .entry-content > .alignfull,
 .sp-full-width .entry-content > .wp-block-group.alignfull { max-width: none; padding-inline: 0; }
 /* Section groups span the full width but keep their own side padding */
@@ -202,6 +204,12 @@ html[data-theme="dark"] .sp-action-bar a:not(.sp-action-bar__primary) { color: #
 .sp-button:hover, .wp-block-button__link:hover, .wp-element-button:hover, button[type="submit"]:hover, input[type="submit"]:hover, .wpcf7-submit:hover { color: #fff; background: var(--sp-primary); border-color: var(--sp-primary); }
 .is-style-outline > .wp-block-button__link, .sp-button--outline { color: var(--sp-primary); background: transparent; border-color: var(--sp-primary); }
 .is-style-outline > .wp-block-button__link:hover, .sp-button--outline:hover { color: #fff; background: var(--sp-primary); }
+/* Same colours when core block styles load after the theme (blocks rendered late, per-block CSS). */
+.wp-block-button > .wp-block-button__link:not(.has-background) { color: var(--sp-on-accent); background: var(--sp-accent); border-color: var(--sp-accent); }
+.wp-block-button > .wp-block-button__link:not(.has-background):hover { color: #fff; background: var(--sp-primary); border-color: var(--sp-primary); }
+.wp-block-button.is-style-outline > .wp-block-button__link:not(.has-background) { color: var(--sp-primary); background: transparent; border-color: var(--sp-primary); }
+.wp-block-button.is-style-outline > .wp-block-button__link:not(.has-background):hover { color: #fff; background: var(--sp-primary); }
+.semrs-has-color .wp-block-button.is-style-outline > .wp-block-button__link:not(.has-background) { color: inherit; border-color: currentColor; }
 input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]), select, textarea {
 	width: 100%; min-height: 48px; padding: .65rem .85rem;
 	font: inherit; font-size: 16px; color: var(--sp-text);

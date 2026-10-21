@@ -1,4 +1,4 @@
-<!-- wp:semrs/container {"align":"full","layout":"row","valign":"center","gradient":"sunrise","padTop":72,"padBottom":72,"gap":40,"tag":"section"} -->
+<!-- wp:semrs/container {"align":"full","layout":"row","valign":"center","bg":"{{c_soft}}","padTop":64,"padBottom":64,"gap":48,"tag":"section"} -->
 <!-- wp:group {"layout":{"type":"default"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"className":"semrs-eyebrow"} -->
 <p class="semrs-eyebrow">{{hero_eyebrow}}</p>
@@ -20,10 +20,22 @@
 <!-- wp:button {"className":"is-style-outline"} -->
 <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="{{cta2_url}}">{{cta2_text}}</a></div>
 <!-- /wp:button --></div>
-<!-- /wp:buttons --></div>
+<!-- /wp:buttons -->
+
+<!-- wp:semrs/icon-list {"items":"{{hero_points}}","icon":"check-circle","columns":2,"size":20} /--></div>
 <!-- /wp:group -->
 
-<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"semrs-tpl-art"} -->
-<figure class="wp-block-image size-full semrs-tpl-art"><img src="{{img:hero}}" alt="{{hero_alt}}"/></figure>
+<!-- wp:group {"className":"semrs-tpl-media","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-tpl-media"><!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"semrs-tpl-photo semrs-tpl-photo--hero"} -->
+<figure class="wp-block-image size-full semrs-tpl-photo semrs-tpl-photo--hero"><img src="{{img:hero}}" alt="{{hero_alt}}"/></figure>
 <!-- /wp:image -->
+
+<!-- wp:paragraph {"className":"semrs-tpl-chip semrs-tpl-chip--a"} -->
+<p class="semrs-tpl-chip semrs-tpl-chip--a">{{chip_a}}</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"semrs-tpl-chip semrs-tpl-chip--b"} -->
+<p class="semrs-tpl-chip semrs-tpl-chip--b">{{chip_b}}</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
 <!-- /wp:semrs/container -->

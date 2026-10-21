@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:       SEMRS Site (semrs.com only)
- * Description:       semrs.com-only additions that are never given to clients: the SEMRS Store (products, collection and product pages, pricing) and SEMRS Pro sales page installer, the Keyword Ideas Generator tool, and the "Hero with photo and keyword tool" pattern and its photo. Needs SEMRS Tools for the tool.
- * Version:           1.1.2
+ * Description:       semrs.com-only additions that are never given to clients: the SEMRS Store (products, collection and product pages, pricing) and SEMRS Pro sales page installer, the Keyword Ideas Generator tool, the "Hero with photo and keyword tool" pattern and its photo, and the web design portfolio hub ([semrs_portfolio]). Needs SEMRS Tools for the tool.
+ * Version:           1.2.0
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            SEMRS
@@ -14,11 +14,12 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEMRS_SITE_VERSION', '1.1.2' );
+define( 'SEMRS_SITE_VERSION', '1.2.0' );
 define( 'SEMRS_SITE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_SITE_URL', plugin_dir_url( __FILE__ ) );
 
 require SEMRS_SITE_DIR . 'includes/store.php';
+require SEMRS_SITE_DIR . 'includes/portfolio.php';
 if ( is_admin() ) {
 	require SEMRS_SITE_DIR . 'includes/store-install.php';
 }
@@ -137,6 +138,10 @@ function semrs_site_menu() {
 			if ( isset( $_POST['semrs_store_install'] ) && check_admin_referer( 'semrs_site_install' ) ) {
 				$store = semrs_store_install();
 			}
+			$portfolio = null;
+			if ( isset( $_POST['semrs_portfolio_install'] ) && check_admin_referer( 'semrs_site_install' ) ) {
+				$portfolio = semrs_portfolio_install();
+			}
 			echo '<div class="wrap"><h1>' . esc_html__( 'semrs.com pages', 'semrs-site' ) . '</h1>';
 			if ( null !== $made ) {
 				/* translators: %d: number of pages */
@@ -146,12 +151,16 @@ function semrs_site_menu() {
 				/* translators: 1: products, 2: pages */
 				echo '<div class="notice notice-success"><p>' . esc_html( sprintf( __( '%1$d draft product(s) and %2$d draft page(s) created. Check the prices and add your checkout links under Store → All products before publishing.', 'semrs-site' ), $store['products'], $store['pages'] ) ) . '</p></div>';
 			}
+			if ( null !== $portfolio ) {
+				echo '<div class="notice notice-' . ( $portfolio ? 'success' : 'info' ) . '"><p>' . ( $portfolio ? esc_html__( 'Portfolio page created as a draft at /portfolio/. Review, then publish.', 'semrs-site' ) . ' <a href="' . esc_url( get_edit_post_link( $portfolio ) ) . '">' . esc_html__( 'Edit', 'semrs-site' ) . '</a>' : esc_html__( 'A page at /portfolio/ already exists, so nothing was changed.', 'semrs-site' ) ) . '</p></div>';
+			}
 			echo '<form method="post">';
 			wp_nonce_field( 'semrs_site_install' );
 			echo '<h2>' . esc_html__( 'Tools', 'semrs-site' ) . '</h2><p>' . esc_html__( 'Creates the Keyword Ideas Generator page as a draft under /tools/. Existing pages are never changed.', 'semrs-site' ) . '</p>';
 			submit_button( __( 'Create missing pages as drafts', 'semrs-site' ), 'primary', 'semrs_site_install' );
 			echo '<h2>' . esc_html__( 'Store and SEMRS Pro sales page', 'semrs-site' ) . '</h2><p>' . esc_html__( 'Creates the store categories, the six SEMRS products (with desktop and phone screenshots) and the SEMRS Pro sales page at /semrs-pro/, all as drafts. Suggested Pro prices: $49, $99 and $199 per year for 1, 5 and unlimited sites. Change them before publishing. Checkout links start empty, so the buttons say "Checkout opens soon".', 'semrs-site' ) . '</p>';
 			submit_button( __( 'Create store as drafts', 'semrs-site' ), 'secondary', 'semrs_store_install' );
+			semrs_portfolio_admin_box();
 			echo '</form></div>';
 		}
 	);

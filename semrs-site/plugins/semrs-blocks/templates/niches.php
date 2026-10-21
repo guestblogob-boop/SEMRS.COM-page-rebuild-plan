@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
 return array(
 
 	array(
-		'id' => 'seo-services', 'title' => 'SEO Services', 'category' => 'Marketing', 'kind' => 'services', 'art' => 'art-seo-services.png',
+		'id' => 'seo-services', 'title' => 'SEO Services', 'category' => 'Marketing', 'kind' => 'services',
 		'description'   => 'SEO consultant or agency: technical, local and content SEO with a free audit offer.',
 		'hero_eyebrow'  => 'SEO services by {{name}}',
 		'hero_title'    => 'Get found by customers who are already searching',
@@ -25,10 +25,17 @@ return array(
 		'steps'         => array( array( 'search', 'Free audit', 'We review your site and competitors.' ), array( 'target', 'SEO plan', 'A clear list of fixes and content, agreed with you.' ), array( 'trending-up', 'Grow', 'We do the work and report every month.' ) ),
 		'faq'           => array( array( 'How long does SEO take?', 'Most sites see first improvements in three to six months.' ), array( 'Do you guarantee rankings?', 'No honest agency can. We promise clear work and transparent reporting.' ), array( 'Do I need a contract?', 'No, plans are month to month.' ), array( 'Can you help local businesses?', 'Yes, local SEO is one of our core services.' ) ),
 		'form_services' => array( 'SEO audit', 'Technical SEO', 'Local SEO', 'Content SEO', 'Link building' ),
+		'demo_name'     => 'RankWise SEO', 'palette' => array( 'primary' => '#0b1f3a', 'accent' => '#d4a72c', 'soft' => '#fbf4e0' ),
+		'hero_alt'      => 'SEO consultant working on a laptop', 'about_alt' => 'Team reviewing a website together', 'blog_cat' => 'SEO tips',
+		'posts'         => array(
+			array( 'What a technical SEO audit checks', 'A technical audit finds the problems that stop search engines from crawling and understanding your pages.', array( array( 'Crawling and indexing', 'We check that important pages can be crawled, are not blocked by robots.txt and appear in the sitemap.' ), array( 'Speed and mobile', 'Slow, hard-to-use pages lose visitors. Core Web Vitals show where to improve.' ), array( 'Structured data', 'Schema markup helps search engines understand your business, services and articles.' ) ) ),
+			array( 'How to choose keywords that bring customers', 'The best keywords match what your buyers type when they are ready to act, not just what gets the most searches.', array( array( 'Start with your services', 'List every service and the words customers use for them, including local terms.' ), array( 'Check the intent', 'Look at the current results: if they are guides, a sales page will struggle to rank.' ), array( 'Group and map', 'Give each group of keywords one page, so your pages do not compete with each other.' ) ) ),
+			array( 'Local SEO basics for small businesses', 'If customers find you nearby, your Google Business Profile and location pages matter as much as your website.', array( array( 'Complete your profile', 'Add categories, opening hours, photos and services, and keep them up to date.' ), array( 'Keep details consistent', 'Use the same name, address and phone number everywhere your business is listed.' ), array( 'Ask for honest reviews', 'Ask happy customers for a review and reply to every review politely.' ) ) ),
+		),
 	),
 
 	array(
-		'id' => 'digital-marketing', 'title' => 'Digital Marketing', 'category' => 'Marketing', 'kind' => 'services', 'art' => 'art-digital-marketing.png',
+		'id' => 'digital-marketing', 'title' => 'Digital Marketing', 'category' => 'Marketing', 'kind' => 'services',
 		'description'   => 'Full-service digital marketing agency: ads, SEO, email and analytics.',
 		'hero_title'    => 'Digital marketing that pays for itself',
 		'hero_text'     => 'Campaigns across search, social and email, measured properly so you know what each customer costs.',
@@ -39,10 +46,17 @@ return array(
 		'about_points'  => array( 'Transparent reporting', 'Your ad accounts stay yours', 'Monthly strategy reviews' ),
 		'faq'           => array( array( 'What budget do I need?', 'We help you start small, prove results, then scale what works.' ), array( 'Who owns the ad accounts?', 'You do. We work inside accounts in your name.' ), array( 'How do you report?', 'A monthly report and call with real numbers and next steps.' ), array( 'Do you work with small businesses?', 'Yes, most of our clients are small and growing businesses.' ) ),
 		'form_services' => array( 'Google Ads', 'Social ads', 'SEO', 'Email marketing', 'Not sure yet' ),
+		'demo_name'     => 'Brightpath Marketing', 'palette' => array( 'primary' => '#1e1b4b', 'accent' => '#f59e0b', 'soft' => '#fef3c7' ),
+		'hero_alt'      => 'Marketer checking campaign results on a phone', 'about_alt' => 'Planning a marketing strategy on a laptop', 'blog_cat' => 'Marketing tips',
+		'posts'         => array(
+			array( 'Social media ads: where to start', 'A small, well-targeted test teaches you more than a big budget spread across every platform.', array( array( 'Pick one platform', 'Choose the platform where your customers already spend time.' ), array( 'Set one clear goal', 'Leads, sales or visits: one goal makes results easy to judge.' ), array( 'Test, then scale', 'Run two or three ads, keep the best one and increase the budget slowly.' ) ) ),
+			array( 'Set up conversion tracking in GA4', 'Without tracking you cannot tell which campaigns bring customers. GA4 events fix that.', array( array( 'Choose your key actions', 'Form submissions, calls and purchases are the actions that matter most.' ), array( 'Mark them as key events', 'In GA4, mark these events so they appear in your reports.' ), array( 'Check it works', 'Use DebugView to test each action before you spend on ads.' ) ) ),
+			array( 'Email marketing that people open', 'Short, useful emails sent regularly build trust and bring customers back.', array( array( 'Grow a real list', 'Only email people who asked to hear from you.' ), array( 'Write a clear subject line', 'Say what is inside. Curiosity helps, but clarity wins.' ), array( 'Measure clicks, not just opens', 'Clicks show whether the content was useful.' ) ) ),
+		),
 	),
 
 	array(
-		'id' => 'content-marketing', 'title' => 'Content Marketing', 'category' => 'Marketing', 'kind' => 'services', 'art' => 'art-content-marketing.png',
+		'id' => 'content-marketing', 'title' => 'Content Marketing', 'category' => 'Marketing', 'kind' => 'services',
 		'description'   => 'Content agency or freelance writer: blog posts, website copy, content strategy.',
 		'hero_title'    => 'Content that your customers actually want to read',
 		'hero_text'     => 'Strategy, writing and editing for blogs, websites and newsletters, researched and on-brand.',
@@ -53,10 +67,17 @@ return array(
 		'about_points'  => array( 'Original, human-edited writing', 'Fact-checked and on-brand', 'Unlimited small revisions' ),
 		'faq'           => array( array( 'Do you use AI to write?', 'We may use tools for research, but every piece is written and edited by a person.' ), array( 'Who owns the content?', 'You do, once it is paid for.' ), array( 'How long is a typical article?', 'As long as it needs to be, usually 800 to 2,000 words.' ), array( 'Can you write for my industry?', 'Yes. We interview you to capture your expertise.' ) ),
 		'form_services' => array( 'Blog posts', 'Website copy', 'Content strategy', 'Newsletter', 'Editing' ),
+		'demo_name'     => 'Wordcraft Studio', 'palette' => array( 'primary' => '#134e4a', 'accent' => '#f4a261', 'soft' => '#fdf1e7' ),
+		'hero_alt'      => 'Writer planning content at a desk', 'about_alt' => 'Notebook and pen for writing ideas', 'blog_cat' => 'Content tips',
+		'posts'         => array(
+			array( 'How to plan a content calendar', 'A simple calendar keeps your blog consistent and focused on what customers ask.', array( array( 'Collect real questions', 'Use emails, calls and search data to list the questions customers ask.' ), array( 'Pick a realistic pace', 'One great article a week beats five rushed ones.' ), array( 'Plan updates too', 'Refreshing older posts often brings faster results than new ones.' ) ) ),
+			array( 'Writing service pages that convert', 'A good service page answers what, who, how much and what next, in that order.', array( array( 'Lead with the outcome', 'Explain what the customer gets, not just what you do.' ), array( 'Show your process', 'Short steps make the service easy to understand.' ), array( 'End with one clear action', 'A single button or form works better than many choices.' ) ) ),
+			array( 'Editing checklist before you publish', 'A quick edit makes any article clearer, shorter and easier to trust.', array( array( 'Cut the warm-up', 'Start with the answer; add context after.' ), array( 'Check every fact', 'Link to sources for numbers and claims.' ), array( 'Read it aloud', 'Long sentences and repeated words stand out when you hear them.' ) ) ),
+		),
 	),
 
 	array(
-		'id' => 'social-media', 'title' => 'Social Media Management', 'category' => 'Marketing', 'kind' => 'services', 'art' => 'art-social-media.png',
+		'id' => 'social-media', 'title' => 'Social Media Management', 'category' => 'Marketing', 'kind' => 'services',
 		'description'   => 'Social media manager or agency: content, posting, community and ads.',
 		'hero_title'    => 'Social media that keeps your brand active and growing',
 		'hero_text'     => 'Planning, design, posting and community replies across the platforms your customers use.',
@@ -67,10 +88,17 @@ return array(
 		'about_points'  => array( 'You approve every post', 'Platform-native content', 'Clear monthly reports' ),
 		'faq'           => array( array( 'Which platforms do you manage?', 'Instagram, Facebook, LinkedIn, TikTok and more, depending on your audience.' ), array( 'Do I approve posts?', 'Yes, you see and approve the calendar before anything goes live.' ), array( 'Do you buy followers?', 'Never. We grow real audiences only.' ), array( 'How often do you post?', 'It depends on your plan, usually three to five times a week.' ) ),
 		'form_services' => array( 'Instagram', 'Facebook', 'LinkedIn', 'TikTok', 'Social ads' ),
+		'demo_name'     => 'Socially Studio', 'palette' => array( 'primary' => '#3b0764', 'accent' => '#f472b6', 'soft' => '#fdf2f8' ),
+		'hero_alt'      => 'Social media manager reviewing posts on a phone', 'about_alt' => 'Planning social posts on a smartphone', 'blog_cat' => 'Social media tips',
+		'posts'         => array(
+			array( 'How often should a business post?', 'Consistency matters more than volume: pick a pace you can keep for months.', array( array( 'Start small', 'Three good posts a week is plenty for most small businesses.' ), array( 'Reuse your best ideas', 'Turn one topic into a photo, a short video and a story.' ), array( 'Watch what works', 'Check which posts get comments and saves, and make more like them.' ) ) ),
+			array( 'Ideas for short videos', 'Short videos do not need a studio: a phone, good light and a clear idea are enough.', array( array( 'Behind the scenes', 'Show how you work, prepare or pack an order.' ), array( 'Answer a question', 'Pick one common customer question and answer it in 30 seconds.' ), array( 'Before and after', 'Results make simple, satisfying videos.' ) ) ),
+			array( 'Reply to comments the right way', 'Replies build trust and show new followers that real people run the account.', array( array( 'Reply quickly', 'Aim to answer within a day.' ), array( 'Move complaints to private messages', 'Acknowledge publicly, then solve the problem privately.' ), array( 'Thank people', 'A short thank-you encourages more comments.' ) ) ),
+		),
 	),
 
 	array(
-		'id' => 'guest-posting', 'title' => 'Guest Blogging', 'category' => 'Marketing', 'kind' => 'services', 'art' => 'art-guest-posting.png',
+		'id' => 'guest-posting', 'title' => 'Guest Blogging', 'category' => 'Marketing', 'kind' => 'services',
 		'description'   => 'Guest posting and outreach service: write-for-us page, editorial guidelines and order form.',
 		'hero_title'    => 'Guest posts on real, relevant websites',
 		'hero_text'     => 'Editorial outreach and high-quality articles placed on sites your audience actually reads.',
@@ -81,10 +109,17 @@ return array(
 		'about_points'  => array( 'Real sites with real traffic', 'Relevant to your industry', 'Clear reporting' ),
 		'faq'           => array( array( 'Do you follow Google guidelines?', 'Yes. Paid placements are disclosed according to each site\'s policy and links are qualified where required.' ), array( 'Can I write for your site?', 'Yes, read our guidelines and send your topic idea through the form.' ), array( 'How long does a placement take?', 'Usually two to four weeks.' ), array( 'Do you accept all topics?', 'No. We decline gambling, adult and other restricted topics.' ) ),
 		'form_services' => array( 'Guest post order', 'Write for us (contributor)', 'Niche edit', 'Partnership' ),
+		'demo_name'     => 'Outreach House', 'palette' => array( 'primary' => '#0f3d3e', 'accent' => '#f2c94c', 'soft' => '#fdf8e4' ),
+		'hero_alt'      => 'Writer drafting an article at a desk', 'about_alt' => 'Reading the news on a laptop and paper', 'blog_cat' => 'Outreach tips',
+		'posts'         => array(
+			array( 'How to pitch a guest post', 'Editors say yes to pitches that show you read their site and have something useful to add.', array( array( 'Read the site first', 'Look at recent topics and the writing style.' ), array( 'Offer two or three ideas', 'Short, specific titles make it easy to say yes.' ), array( 'Keep the email short', 'Who you are, the ideas, and one line on why they fit.' ) ) ),
+			array( 'What makes a website worth writing for', 'A good placement is about real readers and relevance, not just numbers.', array( array( 'Real audience', 'Comments, shares and steady traffic are good signs.' ), array( 'Relevant topics', 'The site should cover subjects close to yours.' ), array( 'Clear editorial standards', 'Sites with guidelines and editing usually have better content.' ) ) ),
+			array( 'Guest posting and search guidelines', 'Guest posts are fine when they help readers. Paid links must be disclosed and qualified.', array( array( 'Write for readers', 'Useful content is the goal; a link is a bonus.' ), array( 'Disclose paid placements', 'Follow the site policy and mark sponsored content clearly.' ), array( 'Avoid link schemes', 'Large-scale article swaps or keyword-stuffed links can harm both sites.' ) ) ),
+		),
 	),
 
 	array(
-		'id' => 'cleaning', 'title' => 'Cleaning Service', 'category' => 'Home services', 'kind' => 'local', 'art' => 'art-cleaning.png',
+		'id' => 'cleaning', 'title' => 'Cleaning Service', 'category' => 'Home services', 'kind' => 'local',
 		'description'   => 'Home and office cleaning: services, opening hours, areas served and quote form.',
 		'hero_eyebrow'  => 'Cleaning in {{city}}',
 		'hero_title'    => 'A spotless home or office, without the hassle',
@@ -96,10 +131,17 @@ return array(
 		'about_points'  => array( 'Free, fixed quotes', 'Vetted and insured cleaners', 'Flexible times' ),
 		'faq'           => array( array( 'Do I need to provide supplies?', 'No, we bring everything unless you prefer your own products.' ), array( 'Are your cleaners insured?', 'Yes, every cleaner is vetted and insured.' ), array( 'Can I change my booking?', 'Yes, with 24 hours notice at no charge.' ), array( 'Which areas do you cover?', '{{city}} and the nearby areas listed on this page.' ) ),
 		'form_services' => array( 'Home cleaning', 'Office cleaning', 'Deep cleaning', 'End of tenancy' ),
+		'demo_name'     => 'Sparkle Home Cleaning', 'palette' => array( 'primary' => '#0c4a6e', 'accent' => '#38bdf8', 'soft' => '#e0f2fe' ),
+		'hero_alt'      => 'Cleaner wiping a surface with gloves and a sponge', 'about_alt' => 'Bright, clean kitchen with a window', 'blog_cat' => 'Cleaning tips',
+		'posts'         => array(
+			array( 'A weekly cleaning routine that works', 'A little every day keeps a home tidy and makes the big clean much faster.', array( array( 'Daily: ten minutes', 'Clear surfaces, wipe the kitchen and put things back.' ), array( 'Weekly: the main clean', 'Vacuum, mop, clean bathrooms and change bedding.' ), array( 'Monthly: the extras', 'Windows, skirting boards and inside the fridge.' ) ) ),
+			array( 'How to deep clean a kitchen', 'Work from top to bottom so dust and crumbs fall onto surfaces you have not cleaned yet.', array( array( 'Start high', 'Cupboard tops, extractor fan and light fittings.' ), array( 'Then surfaces and appliances', 'Degrease the hob and clean inside the microwave and oven.' ), array( 'Finish with the floor', 'Vacuum corners, then mop.' ) ) ),
+			array( 'Pet-safe cleaning products', 'Many everyday products can irritate pets. Simple swaps make cleaning safer.', array( array( 'Check the label', 'Avoid strong solvents and products with a warning symbol for animals.' ), array( 'Ventilate', 'Open windows while cleaning and let floors dry before pets walk on them.' ), array( 'Ask your cleaner', 'Good cleaners can bring pet-safe products on request.' ) ) ),
+		),
 	),
 
 	array(
-		'id' => 'maintenance', 'title' => 'Handyman & Maintenance', 'category' => 'Home services', 'kind' => 'local', 'art' => 'art-maintenance.png',
+		'id' => 'maintenance', 'title' => 'Handyman & Maintenance', 'category' => 'Home services', 'kind' => 'local',
 		'description'   => 'Handyman or property maintenance: jobs list, hours, areas and booking.',
 		'hero_eyebrow'  => 'Handyman in {{city}}',
 		'hero_title'    => 'Small jobs done right, on time',
@@ -111,10 +153,17 @@ return array(
 		'about_points'  => array( 'Fixed or hourly prices', 'Insured work', 'Same-week visits' ),
 		'faq'           => array( array( 'Do you charge per hour or per job?', 'Both options are available; you get the price before we start.' ), array( 'Do you bring materials?', 'We can, or use the materials you have.' ), array( 'Can you work for landlords?', 'Yes, including regular maintenance plans.' ), array( 'Are you insured?', 'Yes, fully insured.' ) ),
 		'form_services' => array( 'Repair', 'Assembly', 'Painting', 'Maintenance plan', 'Other job' ),
+		'demo_name'     => 'HandyPro Maintenance', 'palette' => array( 'primary' => '#1f2937', 'accent' => '#f59e0b', 'soft' => '#fef3c7' ),
+		'hero_alt'      => 'Handyman in a work apron', 'about_alt' => 'Workshop bench with tools', 'blog_cat' => 'Home maintenance',
+		'posts'         => array(
+			array( 'Seasonal home maintenance checklist', 'A few checks each season prevent small problems from becoming expensive repairs.', array( array( 'Spring', 'Check gutters, outside taps and window seals.' ), array( 'Autumn', 'Bleed radiators, test smoke alarms and clear leaves.' ), array( 'All year', 'Look for damp patches, loose tiles and sticking doors.' ) ) ),
+			array( 'How to prepare a wall for painting', 'Good preparation is most of the work and makes the paint last longer.', array( array( 'Fill and sand', 'Fill holes and cracks, then sand smooth when dry.' ), array( 'Clean the wall', 'Wipe away dust and grease so paint sticks properly.' ), array( 'Prime if needed', 'New plaster and repairs need a primer coat.' ) ) ),
+			array( 'When to call a handyman', 'Some jobs are quick to do yourself; others are safer and faster with a professional.', array( array( 'DIY-friendly', 'Hanging pictures, simple shelves and changing light bulbs.' ), array( 'Call a pro', 'Anything electrical, heavy fixtures or work at height.' ), array( 'Group small jobs', 'Save a list and book one visit for several small jobs.' ) ) ),
+		),
 	),
 
 	array(
-		'id' => 'repairs', 'title' => 'Repair Shop', 'category' => 'Home services', 'kind' => 'local', 'art' => 'art-repairs.png',
+		'id' => 'repairs', 'title' => 'Repair Shop', 'category' => 'Home services', 'kind' => 'local',
 		'description'   => 'Phone, computer or appliance repair shop: repairs list, hours and repair request form.',
 		'hero_eyebrow'  => 'Repairs in {{city}}',
 		'hero_title'    => 'Fast repairs for phones, laptops and appliances',
@@ -126,10 +175,17 @@ return array(
 		'about_points'  => array( 'Free diagnosis', 'Quality parts', 'Warranty on repairs' ),
 		'faq'           => array( array( 'How long does a repair take?', 'Many repairs take under an hour; complex ones a few days.' ), array( 'Is diagnosis free?', 'Yes, we check the device and quote before any repair.' ), array( 'Do you offer a warranty?', 'Yes, on parts and workmanship.' ), array( 'What happens to my data?', 'We never access personal files unless needed for the repair.' ) ),
 		'form_services' => array( 'Phone', 'Laptop or PC', 'Tablet', 'Appliance', 'Other device' ),
+		'demo_name'     => 'QuickFix Repairs', 'palette' => array( 'primary' => '#111827', 'accent' => '#22d3ee', 'soft' => '#ecfeff' ),
+		'hero_alt'      => 'Technician repairing a desktop computer', 'about_alt' => 'Repairing a computer motherboard', 'blog_cat' => 'Repair tips',
+		'posts'         => array(
+			array( 'Make your laptop battery last longer', 'Small habits keep a battery healthy for years.', array( array( 'Avoid heat', 'Do not leave the laptop in the sun or on soft surfaces that block vents.' ), array( 'Use battery settings', 'Turn on battery saver and lower the screen brightness.' ), array( 'Keep it updated', 'Updates often include power improvements.' ) ) ),
+			array( 'Cracked phone screen: what to do', 'A cracked screen can get worse quickly. Act early to protect the phone and your data.', array( array( 'Back up now', 'Save photos and contacts before the screen stops responding.' ), array( 'Protect the crack', 'A screen protector stops glass from spreading or cutting fingers.' ), array( 'Get a quote', 'Screen repairs are often quicker and cheaper than people expect.' ) ) ),
+			array( 'Repair or replace an appliance?', 'Age, repair cost and energy use help you decide.', array( array( 'Check the age', 'Older appliances may use much more energy than new models.' ), array( 'Compare costs', 'If the repair costs more than half a new one, replacement may be better.' ), array( 'Ask for a diagnosis', 'A clear diagnosis tells you exactly what is wrong before you decide.' ) ) ),
+		),
 	),
 
 	array(
-		'id' => 'gardening', 'title' => 'Gardening & Landscaping', 'category' => 'Home services', 'kind' => 'local', 'art' => 'art-gardening.png',
+		'id' => 'gardening', 'title' => 'Gardening & Landscaping', 'category' => 'Home services', 'kind' => 'local',
 		'description'   => 'Gardener or landscaper: services, seasons, areas and quote form.',
 		'hero_eyebrow'  => 'Gardening in {{city}}',
 		'hero_title'    => 'Beautiful gardens, looked after all year',
@@ -141,10 +197,17 @@ return array(
 		'about_points'  => array( 'Free garden visit and quote', 'Green waste removed', 'Regular or one-off visits' ),
 		'faq'           => array( array( 'Do you take away garden waste?', 'Yes, we remove and responsibly dispose of green waste.' ), array( 'Do you work in winter?', 'Yes, there is plenty to do in every season.' ), array( 'Can you design a new garden?', 'Yes, from small borders to full makeovers.' ), array( 'Which areas do you serve?', '{{city}} and nearby areas.' ) ),
 		'form_services' => array( 'Regular maintenance', 'Garden design', 'Landscaping', 'One-off tidy' ),
+		'demo_name'     => 'Green Leaf Gardens', 'palette' => array( 'primary' => '#14532d', 'accent' => '#a3e635', 'soft' => '#ecfccb' ),
+		'hero_alt'      => 'Gardener watering plants with a hose', 'about_alt' => 'Garden lawn with seating area', 'blog_cat' => 'Garden tips',
+		'posts'         => array(
+			array( 'Lawn care through the year', 'A healthy lawn needs different care in each season.', array( array( 'Spring', 'Rake out moss, feed and start mowing on a high setting.' ), array( 'Summer', 'Mow often, water in dry spells and leave clippings in heat.' ), array( 'Autumn', 'Scarify, aerate and clear fallen leaves.' ) ) ),
+			array( 'Growing plants from seedlings', 'Seedlings need light, gentle watering and time to adjust before planting out.', array( array( 'Light', 'Give them a bright windowsill or a greenhouse.' ), array( 'Water from below', 'Stand pots in water so roots grow down.' ), array( 'Harden off', 'Put them outside for a few hours a day for a week before planting.' ) ) ),
+			array( 'Hedge trimming: when and how', 'Trim at the right time to keep hedges dense and protect nesting birds.', array( array( 'Check for nests', 'Avoid cutting while birds are nesting; check carefully first.' ), array( 'Shape it wider at the base', 'A slightly sloping hedge lets light reach the bottom.' ), array( 'Use sharp tools', 'Clean cuts heal faster and look neater.' ) ) ),
+		),
 	),
 
 	array(
-		'id' => 'pets', 'title' => 'Pet Care & Grooming', 'category' => 'Home services', 'kind' => 'local', 'art' => 'art-pets.png',
+		'id' => 'pets', 'title' => 'Pet Care & Grooming', 'category' => 'Home services', 'kind' => 'local',
 		'description'   => 'Pet grooming, sitting or dog walking: services, hours and booking.',
 		'hero_eyebrow'  => 'Pet care in {{city}}',
 		'hero_title'    => 'Happy pets, happy owners',
@@ -156,10 +219,17 @@ return array(
 		'about_points'  => array( 'Gentle, patient care', 'Insured team', 'Updates after every visit' ),
 		'faq'           => array( array( 'Which animals do you care for?', 'Mainly dogs and cats; ask us about other pets.' ), array( 'Are you insured?', 'Yes, fully insured.' ), array( 'Can you give medication?', 'Yes, following your vet\'s instructions.' ), array( 'Do you groom nervous dogs?', 'Yes, with extra time and breaks.' ) ),
 		'form_services' => array( 'Grooming', 'Dog walking', 'Pet sitting', 'Other' ),
+		'demo_name'     => 'Happy Paws Pet Care', 'palette' => array( 'primary' => '#0f4c5c', 'accent' => '#ffb703', 'soft' => '#fff4d6' ),
+		'hero_alt'      => 'Groomer brushing a small white dog', 'about_alt' => 'Woman and dog walking on the beach at sunset', 'blog_cat' => 'Pet care tips',
+		'posts'         => array(
+			array( 'How often should you groom your dog?', 'It depends on the coat: short coats need less, long and curly coats need regular care.', array( array( 'Short coats', 'Brush weekly and bathe only when needed.' ), array( 'Long and curly coats', 'Brush several times a week and book a professional groom every 4–8 weeks.' ), array( 'Nails and ears', 'Check nails and ears every couple of weeks.' ) ) ),
+			array( 'Helping cats and dogs live together', 'Slow, calm introductions help pets feel safe and get along.', array( array( 'Separate spaces first', 'Give each pet its own room, food and bed.' ), array( 'Swap scents', 'Let them sniff each other’s bedding before they meet.' ), array( 'Short, supervised meetings', 'Keep the first meetings short and reward calm behaviour.' ) ) ),
+			array( 'Puppy care: the first weeks at home', 'A simple routine helps a new puppy settle in quickly.', array( array( 'Set a routine', 'Regular meals, toilet breaks and sleep make training easier.' ), array( 'Socialise gently', 'Introduce new people, sounds and places a little at a time.' ), array( 'Book a vet check', 'Ask your vet about vaccinations and a care plan.' ) ) ),
+		),
 	),
 
 	array(
-		'id' => 'dentist', 'title' => 'Dentist', 'category' => 'Health', 'kind' => 'local', 'art' => 'art-dentist.png',
+		'id' => 'dentist', 'title' => 'Dentist', 'category' => 'Health', 'kind' => 'local',
 		'description'   => 'Dental practice: treatments, opening hours and appointment requests.',
 		'hero_eyebrow'  => 'Dentist in {{city}}',
 		'hero_title'    => 'Healthy smiles in a calm, friendly practice',
@@ -174,10 +244,17 @@ return array(
 		'form_services' => array( 'Check-up', 'Hygiene', 'Treatment', 'Child appointment', 'Other' ),
 		'contact_title' => 'Request an appointment', 'contact_text' => 'Send your preferred days and times. This form is not for emergencies.',
 		'hours_week'    => '9:00 – 19:00', 'hours_sat' => '9:00 – 13:00',
+		'demo_name'     => 'Bright Smile Dental', 'palette' => array( 'primary' => '#0e4d64', 'accent' => '#5eead4', 'soft' => '#e6fbf7' ),
+		'hero_alt'      => 'Dentist examining a patient', 'about_alt' => 'Modern dental treatment room', 'blog_cat' => 'Dental care tips',
+		'posts'         => array(
+			array( 'How to brush your teeth properly', 'Good technique matters more than brushing hard.', array( array( 'Two minutes, twice a day', 'Brush every surface, including the backs of teeth.' ), array( 'Use fluoride toothpaste', 'Spit, do not rinse, so the fluoride keeps working.' ), array( 'Replace your brush', 'Change it every three months or when the bristles splay.' ) ) ),
+			array( 'Foods that are kind to your teeth', 'What and how often you eat both affect your teeth.', array( array( 'Limit sugary snacks', 'Keep sweet foods to mealtimes rather than all day.' ), array( 'Choose water', 'Water and milk are the best drinks for teeth.' ), array( 'Crunchy vegetables', 'Carrots and apples help clean teeth naturally.' ) ) ),
+			array( 'What happens at a dental check-up', 'Knowing what to expect makes check-ups easier, especially for nervous patients.', array( array( 'Questions first', 'We ask about your health, medicines and any worries.' ), array( 'The examination', 'We check teeth, gums and mouth, and take X-rays if needed.' ), array( 'Your plan', 'We explain anything we find and agree the next steps with you.' ) ) ),
+		),
 	),
 
 	array(
-		'id' => 'top-ten', 'title' => 'Top 10 Lists & Reviews', 'category' => 'Blog', 'kind' => 'blog', 'art' => 'art-top-ten.png',
+		'id' => 'top-ten', 'title' => 'Top 10 Lists & Reviews', 'category' => 'Blog', 'kind' => 'blog',
 		'description'   => 'List and review blog: top 10 lists, best places, buying guides and comparisons.',
 		'hero_title'    => 'Top 10 lists and honest guides',
 		'hero_text'     => 'Researched lists of the best places, products and ideas, updated regularly.',
@@ -189,10 +266,17 @@ return array(
 		'faq'           => array(),
 		'cta_title'     => 'Suggest the next list', 'cta_band_text' => 'Tell us what you would like us to research next.', 'cta_text' => 'Send a suggestion',
 		'form_services' => array( 'List suggestion', 'Correction', 'Partnership' ),
+		'demo_name'     => 'TopPicks Guide', 'palette' => array( 'primary' => '#1f2937', 'accent' => '#facc15', 'soft' => '#fefce8' ),
+		'hero_alt'      => 'Eiffel Tower in Paris', 'about_alt' => 'Woman reading reviews on her phone', 'blog_cat' => 'Lists',
+		'posts'         => array(
+			array( '10 city break ideas for a long weekend', 'Short flights, walkable centres and plenty to see: how we chose these city breaks.', array( array( 'How we chose', 'We looked at travel time, things to do and how easy each city is to explore on foot.' ), array( 'Best for food', 'Cities with great markets and local dishes made our list.' ), array( 'Plan ahead', 'Book popular sights early and check local transport passes.' ) ) ),
+			array( 'How to choose a laptop for work', 'The right laptop depends on what you do every day, not the biggest numbers.', array( array( 'Know your tasks', 'Office work, design and video editing need very different power.' ), array( 'Screen and keyboard', 'You use them all day; try them before you buy.' ), array( 'Battery and weight', 'Important if you work away from a desk.' ) ) ),
+			array( 'Brunch spots worth getting up for', 'Our criteria for a great brunch, and how to find one in any city.', array( array( 'Fresh ingredients', 'Short menus with seasonal food are a good sign.' ), array( 'Read recent reviews', 'Look at the newest reviews and photos.' ), array( 'Go early', 'Popular places fill up fast at weekends.' ) ) ),
+		),
 	),
 
 	array(
-		'id' => 'travel-blog', 'title' => 'Travel Blog', 'category' => 'Blog', 'kind' => 'blog', 'art' => 'art-travel-blog.png',
+		'id' => 'travel-blog', 'title' => 'Travel Blog', 'category' => 'Blog', 'kind' => 'blog',
 		'description'   => 'Travel blog: destination guides, places to visit, itineraries and tips.',
 		'hero_title'    => 'Travel guides, places and practical tips',
 		'hero_text'     => 'Destination guides, itineraries and honest tips from real trips.',
@@ -204,5 +288,12 @@ return array(
 		'faq'           => array(),
 		'cta_title'     => 'Planning a trip?', 'cta_band_text' => 'Ask a question or suggest a destination for the next guide.', 'cta_text' => 'Contact me',
 		'form_services' => array( 'Question', 'Collaboration', 'Destination idea' ),
+		'demo_name'     => 'Wander Notes', 'palette' => array( 'primary' => '#083344', 'accent' => '#fb923c', 'soft' => '#fff1e6' ),
+		'hero_alt'      => 'Traveller with a backpack looking at mountains', 'about_alt' => 'Traveller exploring an old town street', 'blog_cat' => 'Travel guides',
+		'posts'         => array(
+			array( 'Packing light for a two-week trip', 'One bag is enough for most trips if you plan your clothes and laundry.', array( array( 'Plan outfits', 'Pick clothes in colours that all match each other.' ), array( 'Use packing cubes', 'They keep things organised and save space.' ), array( 'Do laundry once', 'A mid-trip wash halves the clothes you need.' ) ) ),
+			array( 'How to explore an old town', 'The best old towns reward slow walking and early mornings.', array( array( 'Arrive early', 'Streets are quiet and the light is best before the crowds.' ), array( 'Get a little lost', 'The side streets are often more interesting than the main square.' ), array( 'Eat where locals eat', 'Walk a few streets away from the main sights.' ) ) ),
+			array( 'Tips for long flights', 'Small preparations make long flights more comfortable.', array( array( 'Choose your seat', 'Aisle seats make it easier to stretch your legs.' ), array( 'Stay hydrated', 'Drink water regularly and limit coffee and alcohol.' ), array( 'Adjust to the new time', 'Sleep and eat on your destination’s schedule.' ) ) ),
+		),
 	),
 );
