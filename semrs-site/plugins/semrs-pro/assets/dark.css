@@ -57,7 +57,8 @@ html[data-theme="dark"] :is(input:not([type="submit"]):not([type="button"]):not(
 html[data-theme="dark"] .semrs-serp { background: #fff; color: #202124; } /* Google preview stays true to Google. */
 html[data-theme="dark"] :is(code, pre, kbd) { background: #0b1322; color: #e6edf6; }
 html[data-theme="dark"] :is(table, th, td) { border-color: var(--sp-line); }
-html[data-theme="dark"] .main-navigation .sub-menu { background: #0e1a2e; border-color: #263652; }
+html[data-theme="dark"] .main-navigation .sub-menu { background: var(--sp-surface, #0e1a2e); border-color: var(--sp-line, #263652); }
+html[data-theme="dark"] .main-navigation .sub-menu .sub-menu { background: none; }
 html[data-theme="dark"] .semrs-mobile-cta { background: var(--sp-dark-header, #0b1f3a); border-color: var(--sp-line); }
 html[data-theme="dark"] img:not([src$=".svg"]) { filter: brightness(.94); }
 html[data-theme="dark"] .semrs-ad-slot::before { color: #9eabbf; }

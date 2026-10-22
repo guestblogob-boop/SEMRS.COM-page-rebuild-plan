@@ -4,7 +4,7 @@ Tags: blog, portfolio, grid-layout, full-width-template, block-patterns
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.14
+Stable tag: 1.3.15
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,9 @@ Appearance → Customize → SEMRS Theme → Header builder.
 Edit the page, open "Page options" in the sidebar and set Transparent header to On.
 
 == Changelog ==
+
+= 1.3.15 =
+* Dropdown menu items use the accent tint and a marker bar on hover and for the current page, matching the top menu.
 
 = 1.3.14 =
 * Footer and top-bar link hover uses a lighter tint of the accent so it stays readable (5:1) on dark blue backgrounds.

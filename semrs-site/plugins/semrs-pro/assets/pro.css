@@ -8,6 +8,10 @@
 	.main-navigation li.semrs-mega:hover > .sub-menu, .main-navigation li.semrs-mega:focus-within > .sub-menu { transform: translate(-50%, 0); }
 	.main-navigation li.semrs-mega-cols-2 > .sub-menu { --sp-mega-cols: 2; }
 	.main-navigation li.semrs-mega-cols-4 > .sub-menu { --sp-mega-cols: 4; }
+	/* Column headings (items that have their own links underneath). */
+	.main-navigation li.semrs-mega > .sub-menu > li.menu-item-has-children > a { font-weight: 700; color: var(--sp-primary); border-bottom: 2px solid var(--sp-accent); border-radius: 6px 6px 0 0; margin-bottom: .25rem; }
+	.main-navigation li.semrs-mega > .sub-menu .sub-menu { position: static; opacity: 1; visibility: visible; transform: none; min-width: 0; padding: 0; border: 0; box-shadow: none; background: none; }
+	.main-navigation li.semrs-mega > .sub-menu a:hover, .main-navigation li.semrs-mega > .sub-menu a:focus-visible { background: var(--sp-accent-soft); color: var(--sp-primary); box-shadow: inset 3px 0 0 var(--sp-accent); }
 }
 
 /* Table of contents */
