@@ -4,7 +4,7 @@ Tags: seo, page cache, redirects, webp, user roles
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 
 Free SEO, redirects, page cache, WebP images, user roles, review widgets and a policy-safe AdSense manager in one plugin.
@@ -81,6 +81,9 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt and all other features run entirely on your own server.
 
 == Changelog ==
+
+= 1.3.1 =
+* Redirects: addresses with non-English (percent-encoded) characters are saved correctly.
 
 = 1.3.0 =
 * New free modules: Redirects & 404 log and IndexNow (moved from Pro; IndexNow is now opt-in), Image Optimization (WebP/AVIF, resize and compression on upload), User Roles editor with extra roles per user, and Review Widgets (Trustpilot TrustBox and Google reviews link).

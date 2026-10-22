@@ -138,7 +138,16 @@ function semrs_redirect_actions() {
 	$msg   = '';
 
 	if ( 'add' === $do ) {
-		$from = isset( $_POST['from'] ) ? sanitize_text_field( wp_unslash( $_POST['from'] ) ) : '';
+		// Keep percent-encoded octets (non-English slugs); sanitize_text_field() would strip them.
+		$from = isset( $_POST['from'] ) ? trim( (string) wp_unslash( $_POST['from'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- reduced to URL-path characters below.
+		$from = preg_replace_callback(
+			'/[^\x20-\x7e]+/',
+			function ( $m ) {
+				return rawurlencode( $m[0] );
+			},
+			$from
+		);
+		$from = preg_replace( '#[^A-Za-z0-9\-._~%/*]#', '', $from );
 		$to   = isset( $_POST['to'] ) ? esc_url_raw( wp_unslash( $_POST['to'] ) ) : '';
 		$code = isset( $_POST['code'] ) ? absint( $_POST['code'] ) : 301;
 		$from = '/' . ltrim( (string) wp_parse_url( $from, PHP_URL_PATH ), '/' );

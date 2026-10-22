@@ -3,7 +3,7 @@
  * Plugin Name:       SEMRS Core
  * Plugin URI:        https://semrs.com/
  * Description:       Free SEO, speed, images, roles and ads for any WordPress site: titles, meta, schema, sitemaps, SEO score and site audit, llms.txt, redirects and 404 log, IndexNow (reads Rank Math, Yoast and AIOSEO data); WebP/AVIF image optimization, user role editor, review widgets; page cache, CSS and script optimization, prefetch, database cleanup, speed check; AdSense/AdX/ad network code with policy-safe placement and ads.txt. SEMRS Pro adds Pro modules.
- * Version:           1.3.0
+ * Version:           1.3.1
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-core
@@ -16,7 +16,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEMRS_CORE_VERSION', '1.3.0' );
+define( 'SEMRS_CORE_VERSION', '1.3.1' );
 define( 'SEMRS_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_CORE_FILE', __FILE__ );
 define( 'SEMRS_CORE_URL', plugin_dir_url( __FILE__ ) );
