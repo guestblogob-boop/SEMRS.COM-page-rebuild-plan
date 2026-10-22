@@ -116,6 +116,12 @@ function venn(title, sub, circles, center, source) {
 
 const SEMRS = 'Source: SEMRS guide';
 export const GRAPHICS = {
+	'small-business-loan-approval-by-lender': () => hbars('Where small businesses get fully approved', 'Share of loan applicants fully approved, by lender type', [['Small banks', 54, true], ['Large banks', 45], ['Online lenders', 30]], 60, (v) => Math.round(v) + '%', 'Source: Federal Reserve Small Business Credit Survey, 2025 Report on Employer Firms', 'Survey of 7,653 US employer firms, fielded September–November 2024.'),
+	'email-marketing-platform-checklist': () => steps('How to choose an email marketing platform', 'Six checks before you commit to a platform', [
+		['Set your goal', 'Newsletter, online store or service enquiries'], ['Count your list', 'Contacts and how often you send'], ['Check integrations', 'Website forms, CRM and online store'],
+		['Test the editor', 'Build one real email and view it on a phone'], ['Price the next tier', 'What you pay at double your list size'], ['Plan your exit', 'Export contacts with their consent records'],
+	], 3, SEMRS),
+	'general-liability-insurance-cost-bands': () => hbars('What small businesses pay for general liability', 'Share of Insureon customers by monthly premium (median about $45 a month)', [['Under $30', 22], ['$30 to $60', 41, true], ['Over $60', 37]], 60, (v) => Math.round(v) + '%', 'Source: Insureon, general liability insurance cost, updated March 30, 2026', '"Over $60" is the remaining share. Your premium depends on your industry, location and limits.'),
 	'financial-advisor-marketing-plan': () => steps('A 6-step financial advisor marketing plan', 'Each step builds on the one before; compliance review runs through all of them', [
 		['Pick a niche', 'One audience you can describe in a sentence'], ['Answer-first website', 'Niche pages, fees, process and credentials'], ['Local SEO and content', 'Business Profile plus one helpful article a week'],
 		['Google Ads and leads', 'Tight niche keywords and a matching landing page'], ['Referrals and LinkedIn', 'CPAs, estate attorneys and useful posts'], ['Review and archive', 'Compliance approval and records for every piece'],

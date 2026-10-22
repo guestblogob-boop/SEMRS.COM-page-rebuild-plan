@@ -230,6 +230,69 @@
    "license": "SEMRS original"
   }
  },
+ "small-business-loans-for-marketing": {
+  "featured": {
+   "file": "small-business-loans-for-marketing-featured.webp",
+   "alt": "Hands writing a plan in an open notebook beside a cup of coffee",
+   "caption": "Write down what the marketing will cost and earn before you apply for a loan.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Journal Notepad by Cathryn Lavery, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/journal-notepad-DPKNIIN5X3",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "small-business-loan-approval-by-lender.webp",
+   "alt": "Bar chart: share of small business loan applicants fully approved was 54% at small banks, 45% at large banks and 30% at online lenders",
+   "caption": "Full approval rates differ widely by lender type, so where you apply matters.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "email-marketing-platforms": {
+  "featured": {
+   "file": "email-marketing-platforms-featured.webp",
+   "alt": "Person reading on a smartphone while holding a takeaway coffee cup",
+   "caption": "Most people read marketing emails on their phone, so test every email on mobile.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Mobile Smartphone by JESHOOTS.com, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/mobile-smartphone-DLITZEAVJJ",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "email-marketing-platform-checklist.webp",
+   "alt": "Six checks for choosing an email marketing platform: goal, list size, integrations, editor, next-tier price and exporting contacts",
+   "caption": "Six checks to run before you commit to an email marketing platform.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "general-liability-insurance-small-business": {
+  "featured": {
+   "file": "general-liability-insurance-small-business-featured.webp",
+   "alt": "Painter in blue overalls holding a paint roller in front of a striped yellow wall",
+   "caption": "Trades that work in clients’ homes are often asked to show proof of general liability cover.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Guy Man by Michal Jarmoluk, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/guy-man-Q67DPDQSC1",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "general-liability-insurance-cost-bands.webp",
+   "alt": "Bar chart: 22% of Insureon small business customers paid under $30 a month for general liability, 41% paid $30 to $60 and 37% paid more",
+   "caption": "Most small businesses in the Insureon data paid between $30 and $60 a month.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
  "seo-for-small-business": {
   "featured": {
    "file": "seo-for-small-business-featured.webp",
