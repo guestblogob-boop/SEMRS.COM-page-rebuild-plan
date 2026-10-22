@@ -2,8 +2,8 @@
 /**
  * Plugin Name:       SEMRS Core
  * Plugin URI:        https://semrs.com/
- * Description:       Free SEO, speed optimization and ads manager for any WordPress site: titles, meta, schema, sitemaps, SEO score and site audit, llms.txt (reads Rank Math, Yoast and AIOSEO data); page cache, CSS and script optimization, prefetch, database cleanup, speed check; AdSense/AdX/ad network code with policy-safe placement and ads.txt. SEMRS Pro adds Pro modules.
- * Version:           1.2.2
+ * Description:       Free SEO, speed, images, roles and ads for any WordPress site: titles, meta, schema, sitemaps, SEO score and site audit, llms.txt, redirects and 404 log, IndexNow (reads Rank Math, Yoast and AIOSEO data); WebP/AVIF image optimization, user role editor, review widgets; page cache, CSS and script optimization, prefetch, database cleanup, speed check; AdSense/AdX/ad network code with policy-safe placement and ads.txt. SEMRS Pro adds Pro modules.
+ * Version:           1.3.0
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-core
@@ -16,7 +16,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEMRS_CORE_VERSION', '1.2.2' );
+define( 'SEMRS_CORE_VERSION', '1.3.0' );
 define( 'SEMRS_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_CORE_FILE', __FILE__ );
 define( 'SEMRS_CORE_URL', plugin_dir_url( __FILE__ ) );
@@ -32,7 +32,12 @@ function semrs_core_module_files() {
 		array(
 			'seo'   => SEMRS_CORE_DIR . 'modules/seo/seo.php',
 			'ads'   => SEMRS_CORE_DIR . 'modules/ads/ads.php',
-			'speed' => SEMRS_CORE_DIR . 'modules/speed/speed.php',
+			'speed'     => SEMRS_CORE_DIR . 'modules/speed/speed.php',
+			'redirects' => SEMRS_CORE_DIR . 'modules/redirects/redirects.php',
+			'indexnow'  => SEMRS_CORE_DIR . 'modules/indexnow/indexnow.php',
+			'images'    => SEMRS_CORE_DIR . 'modules/images/images.php',
+			'roles'     => SEMRS_CORE_DIR . 'modules/roles/roles.php',
+			'reviews'   => SEMRS_CORE_DIR . 'modules/reviews/reviews.php',
 		)
 	);
 }
@@ -50,6 +55,11 @@ function semrs_core_modules() {
 			'seo'   => array( __( 'SEO', 'semrs-core' ), __( 'Titles, meta descriptions, robots, canonical, Open Graph, JSON-LD schema, XML sitemaps, breadcrumbs, llms.txt, a 0–100 SEO score with readability checks and link ideas, and a site-wide SEO audit. Reads existing Rank Math, Yoast and AIOSEO data.', 'semrs-core' ), 'free' ),
 			'ads'   => array( __( 'Ads Manager', 'semrs-core' ), __( 'Insert AdSense, Google Ad Manager (AdX) or any ad network code: in-content positions, header/footer code, shortcodes, exclusions, density caps, device targeting, lazy loading, ads.txt.', 'semrs-core' ), 'free' ),
 			'speed' => array( __( 'Speed Optimization', 'semrs-core' ), __( 'Page cache, per-block CSS, inline or non-blocking CSS, deferred scripts, hover prefetch, YouTube click-to-play, image preload and preconnect hints; removes bloat (emoji, embeds, dashicons, jQuery Migrate, XML-RPC); database cleanup and a speed check.', 'semrs-core' ), 'free' ),
+			'redirects' => array( __( 'Redirects & 404 log', 'semrs-core' ), __( '301/302/307/410 redirects with wildcards, loop protection, a 404 log with one-click redirect, and Rank Math redirect import.', 'semrs-core' ), 'free' ),
+			'indexnow'  => array( __( 'IndexNow', 'semrs-core' ), __( 'Once you switch it on, tells Bing, Yandex, Seznam and other IndexNow search engines when you publish, update or delete content.', 'semrs-core' ), 'free' ),
+			'images'    => array( __( 'Image Optimization', 'semrs-core' ), __( 'New uploads are compressed, resized to a maximum size and saved as WebP (or AVIF) on your own server. No outside service and no quota.', 'semrs-core' ), 'free' ),
+			'roles'     => array( __( 'User Roles', 'semrs-core' ), __( 'Edit what each role can do, add roles copied from an existing one, delete custom roles and give a user extra roles.', 'semrs-core' ), 'free' ),
+			'reviews'   => array( __( 'Review Widgets', 'semrs-core' ), __( 'Show your real Trustpilot or Google review widget with a shortcode. Its script loads only on pages that use it.', 'semrs-core' ), 'free' ),
 		)
 	);
 }

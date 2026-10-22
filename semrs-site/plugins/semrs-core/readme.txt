@@ -1,17 +1,17 @@
 === SEMRS Core ===
 Contributors: semrs
-Tags: seo, schema, page cache, speed, sitemap
+Tags: seo, page cache, redirects, webp, user roles
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.2
+Stable tag: 1.3.0
 License: GPLv2 or later
 
-Free SEO score and site audit, page cache, speed tools and a policy-safe AdSense manager for any WordPress site.
+Free SEO, redirects, page cache, WebP images, user roles, review widgets and a policy-safe AdSense manager in one plugin.
 
 == Description ==
 
-Free SEO with an SEO score and site audit, a page cache and speed optimization, and a policy-safe ads manager for any WordPress site. SEMRS Pro adds redirects + 404 log, multi-location local SEO, IndexNow, image SEO, a bulk SEO editor, delayed scripts, cache preload, CDN, Pro blocks and more.
+Free SEO with an SEO score and site audit, redirects and a 404 log, IndexNow, a page cache and speed optimization, WebP/AVIF image optimization on your own server, a user role editor, review widgets and a policy-safe ads manager for any WordPress site. SEMRS Pro adds multi-location local SEO, image SEO, custom schema, a bulk SEO editor, delayed scripts, stylesheet minification, cache preload, CDN, media library conversion, Pro blocks and more.
 
 == Features screen ==
 SEMRS → Features shows every SEMRS feature, free and Pro, as cards with search, filters (Free, Pro, SEO, Speed, Ads, Design, Leads), on/off switches and a Settings link. A switched-off feature loads no code. Pro features are marked PRO and stay locked until SEMRS Pro is installed.
@@ -34,6 +34,25 @@ SEMRS → Features shows every SEMRS feature, free and Pro, as cards with search
 * llms.txt for AI assistants (/llms.txt): site summary, pages and latest articles; noindexed pages left out.
 * Switching from Rank Math, Yoast SEO or All in One SEO: SEMRS output pauses while any SEO plugin is active, and their titles, descriptions, focus keywords, canonicals, noindex/nofollow and share images are read automatically (title variables converted), so nothing is lost when you switch.
 
+= Redirects & 404 log (SEMRS → Redirects) =
+* 301, 302, 307 and 410 redirects, wildcards (/old-folder/*), loop protection.
+* 404 log (last 200 addresses, scanner noise skipped) with a one-click redirect.
+* Imports Rank Math redirects.
+
+= IndexNow (SEMRS → IndexNow) =
+* Off until you switch it on. Then new, updated and deleted public URLs are sent to IndexNow search engines (Bing, Yandex, Seznam, Naver…). Paused on local and staging sites.
+
+= Images (SEMRS → Images) =
+* New JPEG and PNG uploads are resized to a maximum side, compressed and saved as WebP or AVIF with WordPress's own image editor. No account, no quota, nothing leaves your server.
+* Compression quality for every image size WordPress creates.
+
+= User roles (Users → Roles) =
+* Change what each role can do, add a role copied from another, add custom capabilities, delete roles created here (their users get the default role).
+* Give a user extra roles next to their main role. The Administrator role is protected.
+
+= Review widgets (SEMRS → Reviews) =
+* [semrs_reviews] shows your real Trustpilot TrustBox (four free styles) or a button to your Google reviews. Trustpilot's script loads only on pages that use it.
+
 = Ads (SEMRS → Ads) =
 * AdSense / Ad Manager (AdX) and other network codes at policy-safe positions: after the title, inside content (after paragraph N, safe insertion that skips tables, lists and headings), after content, sidebar and shortcode.
 * Off by default on contact, quote, thank-you, login and search pages; density cap; device targeting; space reserved to prevent layout shift (CLS); "Advertisement" label; lazy loading; ads.txt editor.
@@ -55,11 +74,16 @@ SEMRS Core works without any outside service. These connections happen only when
 * **Google AdSense** (Ads module, only after you enter your publisher ID and switch ads on): the AdSense script is loaded from pagead2.googlesyndication.com on pages where ads are allowed, and Google serves the ads. Google receives the visitor's IP address, browser details and cookies as described in its policies. [Terms](https://policies.google.com/terms), [Privacy](https://policies.google.com/privacy), [AdSense terms](https://www.google.com/adsense/new/localized-terms).
 * **Other ad networks** (Ads module, custom code): only the code you paste is loaded, from the network you choose, under that network's terms.
 * **YouTube** (Speed → YouTube click-to-play, on by default for pages that already embed YouTube videos): the video thumbnail is loaded from i.ytimg.com, and the player loads from youtube-nocookie.com only when the visitor clicks Play. [Terms](https://www.youtube.com/t/terms), [Privacy](https://policies.google.com/privacy).
+* **IndexNow** (IndexNow module, only after you switch it on under SEMRS → IndexNow): the addresses of public posts you publish, update or delete, with your site's key, are sent to api.indexnow.org, which shares them with participating search engines. [Terms and privacy](https://www.indexnow.org/terms).
+* **Trustpilot** (Review widgets, only on pages where you add [semrs_reviews] with your business unit ID): the TrustBox script is loaded from widget.trustpilot.com and Trustpilot shows your reviews. [Terms](https://legal.trustpilot.com/for-everyone/end-user-terms-and-conditions), [Privacy](https://legal.trustpilot.com/for-reviewers/end-user-privacy-terms).
 * **Google PageSpeed Insights** (Speed → Speed check): an "Open PageSpeed Insights" link opens pagespeed.web.dev with your homepage address when you click it. Nothing is sent automatically. [Terms](https://policies.google.com/terms), [Privacy](https://policies.google.com/privacy).
 
 The speed check, SEO audit, page cache, llms.txt and all other features run entirely on your own server.
 
 == Changelog ==
+
+= 1.3.0 =
+* New free modules: Redirects & 404 log and IndexNow (moved from Pro; IndexNow is now opt-in), Image Optimization (WebP/AVIF, resize and compression on upload), User Roles editor with extra roles per user, and Review Widgets (Trustpilot TrustBox and Google reviews link).
 
 = 1.2.2 =
 * Rank Math bridge: Service, WebApplication and FAQPage structured data are added to Rank Math's graph, and pages where Rank Math prints none get the SEMRS graph. Schema type is editable over the REST API.

@@ -5,10 +5,14 @@
  * Works even while another SEO plugin is active, but redirects only run when
  * SEMRS SEO output is active (so two plugins never redirect the same URL).
  *
- * @package semrs-pro
+ * @package semrs-core
  */
 
 defined( 'ABSPATH' ) || exit;
+
+if ( ! function_exists( 'semrs_seo_active' ) ) {
+	return; // Needs the SEO module.
+}
 
 /**
  * Normalise a path for matching: leading slash, no query, trailing slash,
@@ -59,7 +63,7 @@ function semrs_redirect_run() {
 		if ( 410 === (int) $rule['code'] ) {
 			status_header( 410 );
 			nocache_headers();
-			wp_die( esc_html__( 'This page has been permanently removed.', 'semrs-pro' ), esc_html__( 'Gone', 'semrs-pro' ), array( 'response' => 410 ) );
+			wp_die( esc_html__( 'This page has been permanently removed.', 'semrs-core' ), esc_html__( 'Gone', 'semrs-core' ), array( 'response' => 410 ) );
 		}
 		$to = $rule['to'];
 		if ( '*' === substr( $to, -1 ) ) {
@@ -117,7 +121,7 @@ if ( ! is_admin() ) {
  * Admin menu.
  */
 function semrs_redirect_menu() {
-	add_submenu_page( 'semrs', __( 'Redirects', 'semrs-pro' ), __( 'Redirects', 'semrs-pro' ), 'manage_options', 'semrs-redirects', 'semrs_redirect_page' );
+	add_submenu_page( 'semrs', __( 'Redirects', 'semrs-core' ), __( 'Redirects', 'semrs-core' ), 'manage_options', 'semrs-redirects', 'semrs_redirect_page' );
 }
 add_action( 'admin_menu', 'semrs_redirect_menu', 21 );
 
@@ -126,7 +130,7 @@ add_action( 'admin_menu', 'semrs_redirect_menu', 21 );
  */
 function semrs_redirect_actions() {
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( esc_html__( 'Not allowed.', 'semrs-pro' ) );
+		wp_die( esc_html__( 'Not allowed.', 'semrs-core' ) );
 	}
 	check_admin_referer( 'semrs_redirects' );
 	$rules = semrs_redirect_rules();
@@ -206,36 +210,36 @@ function semrs_redirect_page() {
 	$from  = isset( $_GET['from'] ) ? sanitize_text_field( wp_unslash( $_GET['from'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e( 'Redirects', 'semrs-pro' ); ?></h1>
+		<h1><?php esc_html_e( 'Redirects', 'semrs-core' ); ?></h1>
 		<?php if ( $msg ) : ?>
-			<div class="notice notice-success is-dismissible"><p><?php echo esc_html( 0 === strpos( $msg, 'imported-' ) ? sprintf( /* translators: %d: count */ __( 'Imported %d redirects from Rank Math.', 'semrs-pro' ), (int) substr( $msg, 9 ) ) : __( 'Saved.', 'semrs-pro' ) ); ?></p></div>
+			<div class="notice notice-success is-dismissible"><p><?php echo esc_html( 0 === strpos( $msg, 'imported-' ) ? sprintf( /* translators: %d: count */ __( 'Imported %d redirects from Rank Math.', 'semrs-core' ), (int) substr( $msg, 9 ) ) : __( 'Saved.', 'semrs-core' ) ); ?></p></div>
 		<?php endif; ?>
 		<?php if ( ! semrs_seo_active() ) : ?>
-			<div class="notice notice-warning inline"><p><?php echo esc_html( sprintf( /* translators: %s: plugin */ __( '%s is active, so these redirects are paused. Import its redirects now; they start working when you deactivate it.', 'semrs-pro' ), semrs_seo_conflict() ) ); ?></p></div>
+			<div class="notice notice-warning inline"><p><?php echo esc_html( sprintf( /* translators: %s: plugin */ __( '%s is active, so these redirects are paused. Import its redirects now; they start working when you deactivate it.', 'semrs-core' ), semrs_seo_conflict() ) ); ?></p></div>
 		<?php endif; ?>
 
-		<h2><?php esc_html_e( 'Add redirect', 'semrs-pro' ); ?></h2>
+		<h2><?php esc_html_e( 'Add redirect', 'semrs-core' ); ?></h2>
 		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 			<?php wp_nonce_field( 'semrs_redirects' ); ?>
 			<input type="hidden" name="action" value="semrs_redirects"><input type="hidden" name="semrs_do" value="add">
 			<input name="from" class="regular-text" placeholder="/old-page/  or  /old-folder/*" value="<?php echo esc_attr( $from ); ?>" required>
 			→ <input name="to" class="regular-text" placeholder="/new-page/  or  https://…">
 			<select name="code"><option value="301">301 Permanent</option><option value="302">302 Temporary</option><option value="307">307 Temporary</option><option value="410">410 Gone</option></select>
-			<button class="button button-primary"><?php esc_html_e( 'Add', 'semrs-pro' ); ?></button>
+			<button class="button button-primary"><?php esc_html_e( 'Add', 'semrs-core' ); ?></button>
 		</form>
 
-		<h2><?php esc_html_e( 'Active redirects', 'semrs-pro' ); ?> (<?php echo count( $rules ); ?>)</h2>
-		<table class="widefat striped" style="max-width:1000px"><thead><tr><th><?php esc_html_e( 'From', 'semrs-pro' ); ?></th><th><?php esc_html_e( 'To', 'semrs-pro' ); ?></th><th><?php esc_html_e( 'Type', 'semrs-pro' ); ?></th><th></th></tr></thead><tbody>
+		<h2><?php esc_html_e( 'Active redirects', 'semrs-core' ); ?> (<?php echo count( $rules ); ?>)</h2>
+		<table class="widefat striped" style="max-width:1000px"><thead><tr><th><?php esc_html_e( 'From', 'semrs-core' ); ?></th><th><?php esc_html_e( 'To', 'semrs-core' ); ?></th><th><?php esc_html_e( 'Type', 'semrs-core' ); ?></th><th></th></tr></thead><tbody>
 		<?php foreach ( $rules as $i => $r ) : ?>
-			<tr><td><code><?php echo esc_html( $r['from'] ); ?></code></td><td><?php echo esc_html( $r['to'] ); ?></td><td><?php echo (int) $r['code']; ?></td><td><?php semrs_redirect_button( 'delete', __( 'Delete', 'semrs-pro' ), array( 'index' => $i ), 'button-link-delete' ); ?></td></tr>
+			<tr><td><code><?php echo esc_html( $r['from'] ); ?></code></td><td><?php echo esc_html( $r['to'] ); ?></td><td><?php echo (int) $r['code']; ?></td><td><?php semrs_redirect_button( 'delete', __( 'Delete', 'semrs-core' ), array( 'index' => $i ), 'button-link-delete' ); ?></td></tr>
 		<?php endforeach; ?>
-		<?php if ( ! $rules ) : ?><tr><td colspan="4"><?php esc_html_e( 'No redirects yet.', 'semrs-pro' ); ?></td></tr><?php endif; ?>
+		<?php if ( ! $rules ) : ?><tr><td colspan="4"><?php esc_html_e( 'No redirects yet.', 'semrs-core' ); ?></td></tr><?php endif; ?>
 		</tbody></table>
-		<p><?php semrs_redirect_button( 'import_rm', __( 'Import active redirects from Rank Math', 'semrs-pro' ) ); ?></p>
+		<p><?php semrs_redirect_button( 'import_rm', __( 'Import active redirects from Rank Math', 'semrs-core' ) ); ?></p>
 
-		<h2><?php esc_html_e( '404 log', 'semrs-pro' ); ?></h2>
-		<p class="description"><?php esc_html_e( 'Recent "not found" URLs. Redirect the ones that had real content or real links; ignore random junk.', 'semrs-pro' ); ?></p>
-		<table class="widefat striped" style="max-width:1000px"><thead><tr><th><?php esc_html_e( 'URL', 'semrs-pro' ); ?></th><th><?php esc_html_e( 'Hits', 'semrs-pro' ); ?></th><th><?php esc_html_e( 'Last seen', 'semrs-pro' ); ?></th><th></th></tr></thead><tbody>
+		<h2><?php esc_html_e( '404 log', 'semrs-core' ); ?></h2>
+		<p class="description"><?php esc_html_e( 'Recent "not found" URLs. Redirect the ones that had real content or real links; ignore random junk.', 'semrs-core' ); ?></p>
+		<table class="widefat striped" style="max-width:1000px"><thead><tr><th><?php esc_html_e( 'URL', 'semrs-core' ); ?></th><th><?php esc_html_e( 'Hits', 'semrs-core' ); ?></th><th><?php esc_html_e( 'Last seen', 'semrs-core' ); ?></th><th></th></tr></thead><tbody>
 		<?php
 		if ( is_array( $log ) && $log ) {
 			uasort(
@@ -249,17 +253,17 @@ function semrs_redirect_page() {
 					'<tr><td><code>%s</code></td><td>%d</td><td>%s</td><td><a class="button button-small" href="%s">%s</a></td></tr>',
 					esc_html( $path ),
 					(int) $row['hits'],
-					esc_html( human_time_diff( (int) $row['last'] ) . ' ' . __( 'ago', 'semrs-pro' ) ),
+					esc_html( human_time_diff( (int) $row['last'] ) . ' ' . __( 'ago', 'semrs-core' ) ),
 					esc_url( add_query_arg( array( 'page' => 'semrs-redirects', 'from' => $path ), admin_url( 'admin.php' ) ) ),
-					esc_html__( 'Redirect', 'semrs-pro' )
+					esc_html__( 'Redirect', 'semrs-core' )
 				);
 			}
 		} else {
-			echo '<tr><td colspan="4">' . esc_html__( 'No 404s logged.', 'semrs-pro' ) . '</td></tr>';
+			echo '<tr><td colspan="4">' . esc_html__( 'No 404s logged.', 'semrs-core' ) . '</td></tr>';
 		}
 		?>
 		</tbody></table>
-		<p><?php semrs_redirect_button( 'clear404', __( 'Clear 404 log', 'semrs-pro' ) ); ?></p>
+		<p><?php semrs_redirect_button( 'clear404', __( 'Clear 404 log', 'semrs-core' ) ); ?></p>
 	</div>
 	<?php
 }

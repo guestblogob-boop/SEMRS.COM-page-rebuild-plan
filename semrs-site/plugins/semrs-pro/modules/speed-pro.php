@@ -2,7 +2,8 @@
 /**
  * Speed Pro: delay analytics, pixel and chat scripts until the visitor
  * interacts; skip form and block-plugin files on pages that do not use
- * them; preload the SEMRS page cache in the background after it
+ * them; minify stylesheets, add missing image sizes, lazy-load iframes;
+ * preload the SEMRS page cache in the background after it
  * clears; serve static files from a CDN. Settings live on SEMRS → Speed →
  * Optimize. Needs the SEMRS Core Speed module.
  *
@@ -42,6 +43,9 @@ function semrs_pro_speed_settings() {
 			'delay_list'    => semrs_pro_speed_default_delay(),
 			'delay_timeout' => 0,
 			'unload'        => false,
+			'minify_css'    => false,
+			'dims'          => false,
+			'lazy_iframes'  => false,
 			'preload'       => false,
 			'cdn'           => '',
 		),
@@ -71,6 +75,9 @@ add_action(
 						'delay_list'    => sanitize_textarea_field( $in['delay_list'] ?? '' ),
 						'delay_timeout' => min( 30, absint( $in['delay_timeout'] ?? 0 ) ),
 						'unload'        => ! empty( $in['unload'] ),
+						'minify_css'    => ! empty( $in['minify_css'] ),
+						'dims'          => ! empty( $in['dims'] ),
+						'lazy_iframes'  => ! empty( $in['lazy_iframes'] ),
 						'preload'       => ! empty( $in['preload'] ),
 						'cdn'           => untrailingslashit( $cdn ),
 					);
@@ -96,6 +103,11 @@ add_action(
 		<tr><th><?php esc_html_e( 'Unused plugin files', 'semrs-pro' ); ?></th><td>
 			<label><input type="checkbox" name="semrs_speed_pro[unload]" value="1" <?php checked( $p['unload'] ); ?>> <?php esc_html_e( 'Load form and block-plugin files only on pages that use them', 'semrs-pro' ); ?></label>
 			<p class="description"><?php esc_html_e( 'Contact Form 7 (with its reCAPTCHA and Turnstile scripts) loads only where a form appears in the content or a widget; Spectra files load only where a Spectra block appears.', 'semrs-pro' ); ?></p>
+		</td></tr>
+		<tr><th><?php esc_html_e( 'Files and media', 'semrs-pro' ); ?></th><td>
+			<label><input type="checkbox" name="semrs_speed_pro[minify_css]" value="1" <?php checked( $p['minify_css'] ); ?>> <?php esc_html_e( 'Minify stylesheets (smaller CSS files, cached until the file changes)', 'semrs-pro' ); ?></label><br>
+			<label><input type="checkbox" name="semrs_speed_pro[dims]" value="1" <?php checked( $p['dims'] ); ?>> <?php esc_html_e( 'Add missing width and height to images (stops the page jumping while it loads)', 'semrs-pro' ); ?></label><br>
+			<label><input type="checkbox" name="semrs_speed_pro[lazy_iframes]" value="1" <?php checked( $p['lazy_iframes'] ); ?>> <?php esc_html_e( 'Lazy-load iframes such as maps and embedded videos', 'semrs-pro' ); ?></label>
 		</td></tr>
 		<tr><th><?php esc_html_e( 'Cache preload', 'semrs-pro' ); ?></th><td>
 			<label><input type="checkbox" name="semrs_speed_pro[preload]" value="1" <?php checked( $p['preload'] ); ?>> <?php esc_html_e( 'Rebuild the page cache in the background after it clears', 'semrs-pro' ); ?></label>
@@ -159,6 +171,112 @@ function semrs_pro_speed_delay( $html ) {
 }
 
 /**
+ * Add width and height to local images that have neither, so the page does
+ * not jump while images load (Cumulative Layout Shift).
+ *
+ * @param string $html Page HTML.
+ * @return string
+ */
+function semrs_pro_speed_dims( $html ) {
+	$up   = wp_get_upload_dir();
+	$urls = array( set_url_scheme( $up['baseurl'], 'https' ), set_url_scheme( $up['baseurl'], 'http' ) );
+	return preg_replace_callback(
+		'#<img\b[^>]*>#i',
+		function ( $m ) use ( $up, $urls ) {
+			$tag = $m[0];
+			if ( preg_match( '/\s(width|height)=/i', $tag ) || ! preg_match( '/\ssrc=["\']([^"\']+)["\']/i', $tag, $src ) ) {
+				return $tag;
+			}
+			$rel = str_replace( $urls, '', strtok( $src[1], '?' ) );
+			if ( $rel === $src[1] || false !== strpos( $rel, '..' ) || ! preg_match( '/\.(jpe?g|png|gif|webp|avif)$/i', $rel ) ) {
+				return $tag;
+			}
+			$size = @getimagesize( $up['basedir'] . rawurldecode( $rel ) ); // phpcs:ignore WordPress.PHP.NoSilencedErrors -- missing files are skipped.
+			if ( empty( $size[0] ) ) {
+				return $tag;
+			}
+			return preg_replace( '/^<img\b/i', '<img width="' . (int) $size[0] . '" height="' . (int) $size[1] . '"', $tag );
+		},
+		$html
+	);
+}
+
+/**
+ * Lazy-load iframes (maps, videos, forms) that do not say otherwise.
+ *
+ * @param string $html Page HTML.
+ * @return string
+ */
+function semrs_pro_speed_lazy_iframes( $html ) {
+	return preg_replace( '#<iframe\b(?![^>]*\sloading=)#i', '<iframe loading="lazy"', $html );
+}
+
+/**
+ * Minify one CSS string: comments (except /*! licences), extra spaces and
+ * the last semicolon in each block.
+ *
+ * @param string $css CSS.
+ * @return string
+ */
+function semrs_pro_speed_min_css( $css ) {
+	$css = preg_replace( '#/\*(?!!).*?\*/#s', '', $css );
+	$css = preg_replace( '/\s+/', ' ', $css );
+	$css = preg_replace( '/\s*([{};,])\s*/', '$1', $css );
+	$css = preg_replace( '/:\s+/', ':', $css );
+	return trim( str_replace( ';}', '}', $css ) );
+}
+
+/**
+ * Serve minified copies of local stylesheets (cached until the file
+ * changes). Relative url() paths are made absolute so fonts and images
+ * still load. Files already named .min.css are left alone.
+ *
+ * @param string $html Page HTML.
+ * @return string
+ */
+function semrs_pro_speed_minify( $html ) {
+	if ( ! function_exists( 'semrs_cache_dir' ) ) {
+		return $html;
+	}
+	$dir  = semrs_cache_dir() . 'min/';
+	$url  = content_url( 'cache/semrs/min/' );
+	$site = set_url_scheme( site_url( '/' ), 'https' );
+	return preg_replace_callback(
+		'#<link\b[^>]*rel=["\']stylesheet["\'][^>]*>#i',
+		function ( $m ) use ( $dir, $url, $site ) {
+			if ( ! preg_match( '/\shref=["\']([^"\']+)["\']/i', $m[0], $h ) ) {
+				return $m[0];
+			}
+			$href = html_entity_decode( $h[1] );
+			$path = strtok( set_url_scheme( $href, 'https' ), '?' );
+			if ( 0 !== strpos( $path, $site ) || ! preg_match( '/(?<!\.min)\.css$/i', $path ) ) {
+				return $m[0];
+			}
+			$file = ABSPATH . substr( $path, strlen( $site ) );
+			if ( false !== strpos( $file, '..' ) || ! is_readable( $file ) ) {
+				return $m[0];
+			}
+			$name = md5( $file . filemtime( $file ) ) . '.css';
+			if ( ! file_exists( $dir . $name ) ) {
+				$base = dirname( $path ) . '/';
+				$css  = preg_replace_callback(
+					'/url\(\s*(["\']?)(?!data:|https?:|\/|#)([^"\')]+)\1\s*\)/i',
+					function ( $u ) use ( $base ) {
+						return 'url(' . $u[1] . $base . $u[2] . $u[1] . ')';
+					},
+					(string) file_get_contents( $file ) // phpcs:ignore WordPress.WP.AlternativeFunctions -- local stylesheet.
+				);
+				if ( ! wp_mkdir_p( $dir ) || false === file_put_contents( $dir . $name, semrs_pro_speed_min_css( $css ), LOCK_EX ) ) { // phpcs:ignore WordPress.WP.AlternativeFunctions
+					return $m[0];
+				}
+			}
+			return str_replace( $h[1], esc_url( $url . $name ), $m[0] );
+		},
+		$html
+	);
+}
+
+/**
  * Point static files at the CDN.
  *
  * @param string $html Page HTML.
@@ -179,7 +297,7 @@ function semrs_pro_speed_cdn( $html ) {
 }
 
 $semrs_pro_speed = semrs_pro_speed_settings();
-if ( $semrs_pro_speed['delay'] || $semrs_pro_speed['cdn'] ) {
+if ( $semrs_pro_speed['delay'] || $semrs_pro_speed['cdn'] || $semrs_pro_speed['minify_css'] || $semrs_pro_speed['dims'] || $semrs_pro_speed['lazy_iframes'] ) {
 	add_filter( 'semrs_speed_html', 'semrs_pro_speed_html' );
 }
 if ( $semrs_pro_speed['unload'] && ! is_admin() ) {
@@ -282,6 +400,15 @@ function semrs_pro_speed_html( $html ) {
 		return $html;
 	}
 	$p = semrs_pro_speed_settings();
+	if ( $p['minify_css'] ) {
+		$html = semrs_pro_speed_minify( $html );
+	}
+	if ( $p['dims'] ) {
+		$html = semrs_pro_speed_dims( $html );
+	}
+	if ( $p['lazy_iframes'] ) {
+		$html = semrs_pro_speed_lazy_iframes( $html );
+	}
 	if ( $p['delay'] ) {
 		$html = semrs_pro_speed_delay( $html );
 	}

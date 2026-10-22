@@ -57,6 +57,24 @@ add_action(
 		update_option( 'semrs_core_flush', 1 );
 	}
 );
+
+/**
+ * Switching off an SEO or cache plugin can leave its sitemap rules and
+ * cached pages behind: rebuild the rules and clear the SEMRS cache.
+ *
+ * @param string $plugin Plugin basename.
+ */
+add_action(
+	'deactivated_plugin',
+	function ( $plugin ) {
+		if ( preg_match( '#^(seo-by-rank-math|wordpress-seo|all-in-one-seo-pack|wp-seopress|autodescription|wp-rocket|litespeed-cache|w3-total-cache|wp-super-cache|wp-fastest-cache)/#', $plugin ) ) {
+			update_option( 'semrs_core_flush', 1 );
+			if ( function_exists( 'semrs_cache_purge_all' ) ) {
+				semrs_cache_purge_all();
+			}
+		}
+	}
+);
 add_action(
 	'init',
 	function () {
@@ -96,6 +114,11 @@ function semrs_core_module_meta() {
 			'seo_bulk'   => array( 'seo', 'editor-table', admin_url( 'admin.php?page=semrs-seo-bulk' ) ),
 			'speed_pro'  => array( 'speed', 'dashboard', admin_url( 'admin.php?page=semrs-speed' ) ),
 			'ads_pro'    => array( 'ads', 'chart-bar', admin_url( 'admin.php?page=semrs-ads' ) ),
+			'images'     => array( 'speed', 'format-gallery', admin_url( 'admin.php?page=semrs-images' ) ),
+			'roles'      => array( 'design', 'groups', admin_url( 'users.php?page=semrs-roles' ) ),
+			'reviews'    => array( 'leads', 'star-filled', admin_url( 'admin.php?page=semrs-reviews' ) ),
+			'image_library' => array( 'speed', 'images-alt2', admin_url( 'admin.php?page=semrs-images' ) ),
+			'schema_pro' => array( 'seo', 'editor-code', '' ),
 		)
 	);
 }
@@ -108,11 +131,11 @@ function semrs_core_module_meta() {
  */
 function semrs_core_pro_teasers() {
 	return array(
-		'redirects'  => array( __( 'Redirects & 404 monitor', 'semrs-core' ), __( '301/302/307/410 redirects with wildcards, a 404 log and one-click fixes. Imports Rank Math redirects.', 'semrs-core' ) ),
 		'local'      => array( __( 'Multi-location Local SEO', 'semrs-core' ), __( 'Locations with address, hours, map link and service areas; LocalBusiness schema for each one.', 'semrs-core' ) ),
-		'indexnow'   => array( __( 'IndexNow instant indexing', 'semrs-core' ), __( 'Tells Bing, Yandex and others about new and updated pages the moment you publish.', 'semrs-core' ) ),
+		'schema_pro' => array( __( 'Custom schema', 'semrs-core' ), __( 'Add your own JSON-LD (Event, Product, Course, HowTo, Recipe, Video) to any page, with starters and a JSON check.', 'semrs-core' ) ),
+		'image_library' => array( __( 'Image library conversion', 'semrs-core' ), __( 'WebP or AVIF copies of every image already uploaded, all sizes, with originals kept.', 'semrs-core' ) ),
 		'seo_bulk'   => array( __( 'Bulk SEO editor', 'semrs-core' ), __( 'Edit SEO titles, meta descriptions, focus keywords and noindex for many posts on one screen, with length counters.', 'semrs-core' ) ),
-		'speed_pro'  => array( __( 'Speed Pro', 'semrs-core' ), __( 'Delay analytics, pixel and chat scripts until the visitor interacts, preload the page cache in the background, and serve files from a CDN.', 'semrs-core' ) ),
+		'speed_pro'  => array( __( 'Speed Pro', 'semrs-core' ), __( 'Delay analytics, pixel and chat scripts until the visitor interacts, load form plugins only where used, minify stylesheets, add image sizes, lazy-load iframes, preload the page cache and serve files from a CDN.', 'semrs-core' ) ),
 		'ads_pro'    => array( __( 'Ads Pro', 'semrs-core' ), __( 'More placements, targeting by category, post age and dates, A/B rotation, click protection and a polite ad-blocker message.', 'semrs-core' ) ),
 		'image_seo'  => array( __( 'Image SEO', 'semrs-core' ), __( 'Fills missing alt text and titles automatically from clean file names.', 'semrs-core' ) ),
 		'blocks_pro' => array( __( 'Pro Blocks', 'semrs-core' ), __( 'Slider and carousel, animated counter, 3D model viewer and scroll animations on every block.', 'semrs-core' ) ),

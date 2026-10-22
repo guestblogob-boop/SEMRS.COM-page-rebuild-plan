@@ -2,8 +2,8 @@
 /**
  * Plugin Name:       SEMRS Pro
  * Plugin URI:        https://semrs.com/
- * Description:       Premium add-on for the SEMRS theme and SEMRS Core: sticky/transparent header, mega menu, table of contents, author box, related posts, extra section patterns, white label; redirects + 404 log, multi-location local SEO, IndexNow, image SEO; ads manager; site layouts; case studies, portfolio and testimonials; lead tracking.
- * Version:           1.3.3
+ * Description:       Premium add-on for the SEMRS theme and SEMRS Core: sticky/transparent header, mega menu, table of contents, author box, related posts, extra section patterns, white label; multi-location local SEO, image SEO, custom schema; image library conversion; speed extras; ads manager; site layouts; case studies, portfolio and testimonials; lead tracking.
+ * Version:           1.4.0
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-pro
@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEMRS_PRO_VERSION', '1.3.3' );
+define( 'SEMRS_PRO_VERSION', '1.4.0' );
 define( 'SEMRS_PRO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_PRO_URL', plugin_dir_url( __FILE__ ) );
 
@@ -32,9 +32,7 @@ function semrs_pro_module_files( $files ) {
 		$files,
 		array(
 			'theme_pro' => SEMRS_PRO_DIR . 'modules/theme-pro.php',
-			'redirects' => SEMRS_PRO_DIR . 'modules/redirects.php',
 			'local'     => SEMRS_PRO_DIR . 'modules/local-seo.php',
-			'indexnow'  => SEMRS_PRO_DIR . 'modules/indexnow.php',
 			'image_seo' => SEMRS_PRO_DIR . 'modules/image-seo.php',
 			'layouts'   => SEMRS_PRO_DIR . 'modules/layouts.php',
 			'proof'     => SEMRS_PRO_DIR . 'modules/proof.php',
@@ -47,6 +45,8 @@ function semrs_pro_module_files( $files ) {
 			'seo_bulk'   => SEMRS_PRO_DIR . 'modules/seo-bulk.php',
 			'speed_pro'  => SEMRS_PRO_DIR . 'modules/speed-pro.php',
 			'ads_pro'    => SEMRS_PRO_DIR . 'modules/ads-pro.php',
+			'image_library' => SEMRS_PRO_DIR . 'modules/image-library.php',
+			'schema_pro' => SEMRS_PRO_DIR . 'modules/schema-pro.php',
 		)
 	);
 }
@@ -63,9 +63,7 @@ function semrs_pro_module_labels( $mods ) {
 		$mods,
 		array(
 			'theme_pro' => array( __( 'Theme Pro', 'semrs-pro' ), __( 'Mega menu, dark mode switch, automatic table of contents, extra section patterns and white label (needs the SEMRS theme; the header builder, sticky header, author box and related posts are free in the theme).', 'semrs-pro' ), 'pro' ),
-			'redirects' => array( __( 'Redirects & 404 log', 'semrs-pro' ), __( '301/302/307/410 redirects with wildcards, loop protection, 404 log with one-click redirect, Rank Math redirect import.', 'semrs-pro' ), 'pro' ),
 			'local'     => array( __( 'Local SEO (multi-location)', 'semrs-pro' ), __( 'Locations with address, phone, hours, map and service areas; LocalBusiness schema per location; [semrs_locations] directory and [semrs_location] card shortcodes.', 'semrs-pro' ), 'pro' ),
-			'indexnow'  => array( __( 'IndexNow', 'semrs-pro' ), __( 'Notifies Bing, Yandex, Seznam and other IndexNow search engines instantly when you publish, update or delete content.', 'semrs-pro' ), 'pro' ),
 			'image_seo' => array( __( 'Image SEO', 'semrs-pro' ), __( 'Fills missing alt text and titles from clean file names on upload, and adds missing alt text to images in content.', 'semrs-pro' ), 'pro' ),
 			'layouts'   => array( __( 'Site Layouts', 'semrs-pro' ), __( 'Show any block content at a theme position with display rules (custom hooks).', 'semrs-pro' ), 'pro' ),
 			'proof'     => array( __( 'Proof', 'semrs-pro' ), __( 'Case Studies, Portfolio and Testimonials with permission gates.', 'semrs-pro' ), 'pro' ),
@@ -78,6 +76,8 @@ function semrs_pro_module_labels( $mods ) {
 			'seo_bulk'   => array( __( 'Bulk SEO editor', 'semrs-pro' ), __( 'Edit SEO titles, meta descriptions, focus keywords and noindex for many posts on one screen, with length counters and filters (needs the SEO module).', 'semrs-pro' ), 'pro' ),
 			'speed_pro'  => array( __( 'Speed Pro', 'semrs-pro' ), __( 'Delay analytics, pixel and chat scripts until the visitor interacts, preload the page cache in the background, and serve files from a CDN (needs the Speed module).', 'semrs-pro' ), 'pro' ),
 			'ads_pro'    => array( __( 'Ads Pro', 'semrs-pro' ), __( 'More placements (repeat in content, between posts in lists), targeting by category, post age and dates, A/B rotation, click protection, a polite ad-blocker message and per-page position switches (needs the Ads module).', 'semrs-pro' ), 'pro' ),
+			'image_library' => array( __( 'Image library conversion', 'semrs-pro' ), __( 'Makes WebP or AVIF copies of every image already in the media library, all sizes, in batches, and shows them on your pages. Originals are kept; one click removes the copies.', 'semrs-pro' ), 'pro' ),
+			'schema_pro' => array( __( 'Custom schema', 'semrs-pro' ), __( 'Add your own JSON-LD (Event, Product, Course, HowTo, Recipe, Video…) to any page from the editor, with starters and a JSON check.', 'semrs-pro' ), 'pro' ),
 		)
 	);
 }

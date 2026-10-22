@@ -4,7 +4,7 @@ Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: semrs-core
-Stable tag: 1.3.3
+Stable tag: 1.4.0
 License: GPLv2 or later
 
 Premium add-on for the free SEMRS theme and the free SEMRS Core plugin. Every module can be switched off under SEMRS → Modules.
@@ -18,9 +18,8 @@ Premium add-on for the free SEMRS theme and the free SEMRS Core plugin. Every mo
 * White label: rename the theme in Appearance → Themes.
 
 == SEO Pro ==
-* Redirects: 301/302/307/410, wildcards, loop protection, 404 log with one-click redirect, Rank Math redirect import.
 * Local SEO (multi-location): Locations with NAP, opening hours, map link, service areas and Google Business Profile link; LocalBusiness schema per location joined to the site graph; [semrs_locations] and [semrs_location id="…"] shortcodes.
-* IndexNow: instant notification to Bing, Yandex, Seznam, Naver and others on publish, update and delete (paused on local/staging sites).
+* Custom schema: your own JSON-LD on any post or page (Event, Product, Course, HowTo, Recipe, Video starters), checked as JSON on save.
 * Image SEO: alt text and titles from clean file names on upload (camera names ignored); missing alt attributes filled on output.
 * Bulk SEO editor (SEMRS → Bulk SEO): SEO titles, meta descriptions, focus keywords and noindex for 20 posts per screen, with counters, search and a "missing description" filter; scores update on save.
 
@@ -28,6 +27,13 @@ Premium add-on for the free SEMRS theme and the free SEMRS Core plugin. Every mo
 * Delay JavaScript until interaction: analytics, pixel, chat and heatmap scripts (list prefilled) run after the first scroll, tap or key press, in their original order; optional timeout. Ad scripts such as AdSense, JSON-LD and other data scripts are never delayed.
 * Cache preload: after the SEMRS page cache clears, the homepage and 200 newest pages are rebuilt in the background for phones and computers.
 * CDN: static files from wp-content and wp-includes are served from your CDN address.
+* Unused plugin files: Contact Form 7 (with reCAPTCHA and Turnstile) and Spectra load only on pages that use them.
+* Minified stylesheets (cached until the file changes), missing image width/height added, lazy-loaded iframes.
+
+== Image library (needs the SEMRS Core Images module) ==
+* WebP or AVIF copies of every JPEG and PNG already in the media library, all sizes, made in batches and shown on your pages. Originals stay untouched; "Remove copies" undoes it.
+
+Redirects and the 404 log, and IndexNow, moved to the free SEMRS Core plugin in Core 1.3.0.
 
 == Ads Pro (needs the SEMRS Core Ads module) ==
 * Extra placements: repeat in content every N paragraphs (density cap and gap still apply) and between posts on blog and category pages.
@@ -108,6 +114,9 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 SEMRS → License: paste your key and click Activate (Deactivate frees the site so you can move the key). Updates come from semrs.com (SEMRS Update Server): with a valid key, WordPress shows "Update available" and installs new versions in one click. Features never switch off when a license expires; the license controls updates and support.
 
 == Changelog ==
+
+= 1.4.0 =
+* New: Image library conversion (WebP/AVIF copies of existing images, originals kept), Custom schema per page, and Speed Pro stylesheet minification, missing image sizes and lazy iframes. Redirects and IndexNow moved to free SEMRS Core 1.3.0.
 
 = 1.3.3 =
 * Speed: new option to load Contact Form 7 (with reCAPTCHA and Turnstile) and Spectra files only on pages that use them.
