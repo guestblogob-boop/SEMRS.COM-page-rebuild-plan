@@ -44,7 +44,8 @@ function semrs_seo_title() {
 		return ( $custom ? $custom : semrs_seo_fill( $s['tpl_singular'], array( 'title' => single_post_title( '', false ) ) ) ) . semrs_seo_page_suffix();
 	}
 	if ( is_category() || is_tag() || is_tax() ) {
-		return semrs_seo_fill( $s['tpl_term'], array( 'term' => single_term_title( '', false ) ) ) . semrs_seo_page_suffix();
+		$custom = trim( (string) get_term_meta( get_queried_object_id(), '_semrs_title', true ) );
+		return ( $custom ? $custom : semrs_seo_fill( $s['tpl_term'], array( 'term' => single_term_title( '', false ) ) ) ) . semrs_seo_page_suffix();
 	}
 	if ( is_post_type_archive() ) {
 		return semrs_seo_fill( $s['tpl_term'], array( 'term' => post_type_archive_title( '', false ) ) ) . semrs_seo_page_suffix();
@@ -85,7 +86,8 @@ function semrs_seo_description() {
 			$desc = $post->post_excerpt ? $post->post_excerpt : strip_shortcodes( excerpt_remove_blocks( $post->post_content ) );
 		}
 	} elseif ( is_category() || is_tag() || is_tax() ) {
-		$desc = term_description();
+		$desc = trim( (string) get_term_meta( get_queried_object_id(), '_semrs_description', true ) );
+		$desc = $desc ? $desc : term_description();
 	} elseif ( is_author() ) {
 		$desc = get_the_author_meta( 'description', get_queried_object_id() );
 	}
@@ -188,6 +190,8 @@ function semrs_seo_register_output() {
 				$noindex = true;
 			} elseif ( is_date() && $s['noindex_dates'] ) {
 				$noindex = true;
+			} elseif ( ( is_category() || is_tag() || is_tax() ) && ! have_posts() ) {
+				$noindex = true; // Empty archive: indexed once it has posts.
 			}
 			if ( $noindex ) {
 				$robots['noindex'] = true;

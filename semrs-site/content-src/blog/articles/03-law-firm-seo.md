@@ -4,7 +4,7 @@ slug: seo-for-attorneys
 seo_title: SEO for Attorneys: Law Firm SEO Guide (2026)
 focus: seo for attorneys
 description: SEO for attorneys and law firms: local SEO, practice area pages, content, links and tracking, plus the bar advertising rules to follow.
-category: 25
+category: 298
 keyword: seo for attorneys
 ---
 Legal keywords are some of the most expensive on the internet. The 2025 WordStream by LocaliQ benchmarks ([reported by Search Engine Land](https://searchengineland.com/google-ads-costs-keep-rising-but-conversion-rates-improved-in-2025-477927)) put the average Google Ads cost per click for attorneys and legal services at about $8.58 and the average cost per lead at about $131.63, the highest of any industry they track. That is why SEO for attorneys matters so much: every case that arrives from organic search is a case you did not pay a click price for.

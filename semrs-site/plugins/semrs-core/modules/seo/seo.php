@@ -252,6 +252,7 @@ function semrs_seo_fill( $tpl, $vars = array() ) {
 
 require __DIR__ . '/breadcrumbs.php';
 require __DIR__ . '/meta.php';
+require __DIR__ . '/terms.php';
 require __DIR__ . '/schema.php';
 require __DIR__ . '/sitemap.php';
 require __DIR__ . '/analysis.php';

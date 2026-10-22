@@ -90,18 +90,24 @@ Build images with the scratchpad script `blog-images.mjs` (photos are badged and
 
 ## 10. Categories (WordPress IDs)
 
-| ID | Category |
-|---|---|
-| 1 | Digital Marketing |
-| 24 | Web Design & WordPress |
-| 25 | Industry Marketing |
-| 26 | Local SEO |
-| 27 | PPC & Paid Ads |
-| 292 | Marketing Costs & ROI |
-| 293 | SEO & AI Search |
-| 294 | Content & Social Media |
-| 296 | AI Marketing |
-| 297 | Business Finance |
+Each category page has its own description, SEO title, meta description and focus keyword (Posts → Categories → Edit → SEMRS SEO). Category pages with no posts are noindexed automatically until the first post is published. Don't target a category's focus keyword in an article.
+
+| ID | Category | Workbook sheet | Category focus keyword |
+|---|---|---|---|
+| 1 | Digital Marketing | Digital Marketing | small business marketing |
+| 293 | SEO & AI Search | SEO & AI Search | seo and ai search |
+| 26 | Local SEO | Local SEO | local seo |
+| 27 | PPC & Paid Ads | PPC & Paid Ads | ppc advertising |
+| 24 | Web Design & WordPress | Web Design & WordPress | wordpress website design |
+| 294 | Content & Social Media | Content & Social Media | content and social media marketing |
+| 296 | AI Marketing | AI Marketing | ai marketing |
+| 292 | Marketing Costs & ROI | Marketing Costs & ROI | marketing costs |
+| 25 | Finance & Insurance Marketing | Industry Marketing (Finance & Insurance) | financial services marketing |
+| 298 | Legal & Healthcare Marketing | Industry Marketing (Legal & Health) | legal and healthcare marketing |
+| 297 | Business Finance | Business Finance (loans, credit, merchant services) | small business finance |
+| 299 | Business Insurance | Business Finance (keywords containing "insurance") | small business insurance |
+
+The old `/category/industry-marketing/` URL redirects to Finance & Insurance Marketing.
 
 ## 11. Google and AdSense content rules
 
