@@ -19,7 +19,7 @@ Google offers two main ways for local businesses to pay for leads from search: L
 
 Local Services Ads appear at the top of some searches, often above regular ads, with your business name, star rating, a badge and a "call" or "message" button. Instead of paying for clicks, you pay when a customer contacts you through the ad (see [Google's Local Services Ads page](https://ads.google.com/local-services-ads/)).
 
-Businesses must pass Google's screening for their category. Home service categories (such as plumbers, electricians and HVAC) typically earn a **Google Guaranteed** badge, while professional services (such as lawyers, financial planners and real estate agents) can earn a **Google Screened** badge. Screening can include background checks, licence and insurance verification, depending on category and country. Availability varies by category and location.
+Businesses must pass Google's screening for their category. Home service categories (such as plumbers, electricians and HVAC) typically earn a **Google Guaranteed** badge, while professional services (such as lawyers, financial planners and real estate agents) can earn a **Google Screened** badge. Screening can include background checks, license and insurance verification, depending on category and country. Availability varies by category and location.
 
 ## What are Google Ads search campaigns?
 
@@ -88,7 +88,7 @@ Whichever you start with, a complete [Google Business Profile](/google-business-
 You pay per lead, and the price varies by category and location. Google shows estimated lead costs when you set up your account, and you can set a weekly budget.
 
 ? Can lawyers and financial advisors use Local Services Ads?
-In many locations, yes, under the Google Screened program, which includes checks such as licence verification. Eligibility depends on the category and country.
+In many locations, yes, under the Google Screened program, which includes checks such as license verification. Eligibility depends on the category and country.
 
 ? Do Local Services Ads replace SEO?
 No. They capture people ready to call now. SEO builds visibility for the many searches LSA does not cover and does not charge per lead.

@@ -24,7 +24,7 @@ In a widely cited Ahrefs survey of SEO providers, about 78% charged a monthly re
 | Monthly retainer | Ongoing work each month: technical fixes, content, links, reporting | Most small and mid-size businesses |
 | Project fee | One-off audit, site migration or content project | A defined problem with a clear end |
 | Hourly consulting | Advice and training billed by the hour | In-house teams that do the work themselves |
-| Performance-based | Fees tied to rankings or leads | Rarely a good idea; incentives can favour shortcuts |
+| Performance-based | Fees tied to rankings or leads | Rarely a good idea; incentives can favor shortcuts |
 
 ## What drives the cost of SEO
 

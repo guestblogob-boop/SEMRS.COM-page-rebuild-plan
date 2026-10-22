@@ -7,7 +7,7 @@ description: AI marketing tools small businesses use for writing, SEO, ads, desi
 category: 296
 keyword: ai marketing tools
 ---
-AI marketing tools can draft content, suggest keywords, write ad variations, resize images and summarise reports in minutes. Used well, they free a small team to focus on strategy and customers. Used carelessly, they produce generic content, factual errors and brand risks. This guide groups AI marketing tools by job, explains what to look for and sets out the human checks every business should keep.
+AI marketing tools can draft content, suggest keywords, write ad variations, resize images and summarize reports in minutes. Used well, they free a small team to focus on strategy and customers. Used carelessly, they produce generic content, factual errors and brand risks. This guide groups AI marketing tools by job, explains what to look for and sets out the human checks every business should keep.
 
 ### Key takeaways
 
@@ -19,10 +19,10 @@ AI marketing tools can draft content, suggest keywords, write ad variations, res
 
 - **First drafts**: outlines, blog drafts, product descriptions, email sequences and social captions.
 - **Variations**: many versions of ad headlines or subject lines to test.
-- **Research help**: summarising competitor pages, grouping keywords and finding question ideas.
+- **Research help**: summarizing competitor pages, grouping keywords and finding question ideas.
 - **Repurposing**: turning one article into a newsletter, social posts and a video script.
 - **Design and images**: resizing, background removal and on-brand templates.
-- **Analysis**: summarising Search Console, Analytics and ad reports in plain language.
+- **Analysis**: summarizing Search Console, Analytics and ad reports in plain language.
 
 ## Where AI still needs a person
 
@@ -53,7 +53,7 @@ Tool names change fast; judge any tool by the checks in the right-hand column ra
 4. **Count editing time.** A tool that saves drafting time but needs heavy fixing may not save anything.
 5. **Integrations matter.** Tools that connect to your CMS, CRM or ad accounts save copy-and-paste time.
 
-## Does Google penalise AI content?
+## Does Google penalize AI content?
 
 [Google's position](https://developers.google.com/search/blog/2023/02/google-search-and-ai-content) is that it rewards helpful content regardless of how it is produced, and that using automation to mass-produce pages mainly to manipulate rankings breaks its [spam policies](https://developers.google.com/search/docs/essentials/spam-policies) on scaled content abuse. In practice: AI-assisted content is fine when a knowledgeable person shapes it, checks it and adds real value; hundreds of thin AI pages are a risk.
 

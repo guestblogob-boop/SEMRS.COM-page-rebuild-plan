@@ -67,7 +67,7 @@ Mortgage brokers, real estate agents, auto dealers, CPAs and business attorneys 
 
 ### 11. Email and text for renewals and reviews
 
-A monthly email with one seasonal tip (hurricane prep, winter driving, year-end business coverage) keeps you top of mind and produces cross-sell questions. For texts and automated calls, collect clear written consent first and honour opt-outs immediately; the TCPA and state laws carry heavy penalties (see the [FCC guide to unwanted calls and texts](https://www.fcc.gov/consumers/guides/stop-unwanted-robocalls-and-texts)).
+A monthly email with one seasonal tip (hurricane prep, winter driving, year-end business coverage) keeps you top of mind and produces cross-sell questions. For texts and automated calls, collect clear written consent first and honor opt-outs immediately; the TCPA and state laws carry heavy penalties (see the [FCC guide to unwanted calls and texts](https://www.fcc.gov/consumers/guides/stop-unwanted-robocalls-and-texts)).
 
 ### 12. Annual coverage reviews
 

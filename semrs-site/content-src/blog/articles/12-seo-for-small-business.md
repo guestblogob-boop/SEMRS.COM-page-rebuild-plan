@@ -26,7 +26,7 @@ Start with the services you sell and the words customers use, not internal jargo
 @img chart
 
 - **Service keywords**: "emergency plumber Denver", "bookkeeping for contractors".
-- **Question keywords**: "how much does a roof replacement cost", "do I need a business licence for…".
+- **Question keywords**: "how much does a roof replacement cost", "do I need a business license for…".
 - **Comparison keywords**: "Invisalign vs braces", "LLC vs sole proprietor".
 
 Choose keywords where you can genuinely be the best answer, and prefer specific long-tail searches when you are starting out.
@@ -69,7 +69,7 @@ Links from trusted, relevant sites still matter. Good sources include local busi
 
 ## Step 8: Prepare for AI search
 
-Google AI Overviews and AI assistants such as ChatGPT summarise answers from the web. Pages that answer questions clearly, show expertise, use structured data and are cited by other sites have a better chance of being referenced. This is often called generative engine optimization (GEO), and it builds on the same foundations as good SEO.
+Google AI Overviews and AI assistants such as ChatGPT summarize answers from the web. Pages that answer questions clearly, show expertise, use structured data and are cited by other sites have a better chance of being referenced. This is often called generative engine optimization (GEO), and it builds on the same foundations as good SEO.
 
 ## Step 9: Measure what matters
 

@@ -25,11 +25,11 @@ For state and local governments (Title II), the Department of Justice adopted a 
 
 ## What WCAG asks for, in plain words
 
-WCAG is organised around four principles. A site should be:
+WCAG is organized around four principles. A site should be:
 
 @img chart
 
-- **Perceivable**: text alternatives for images, captions for video, enough colour contrast.
+- **Perceivable**: text alternatives for images, captions for video, enough color contrast.
 - **Operable**: everything works with a keyboard, nothing flashes dangerously, users have enough time.
 - **Understandable**: clear language, predictable navigation, helpful form errors.
 - **Robust**: clean code that works with screen readers and other assistive technology.
@@ -37,7 +37,7 @@ WCAG is organised around four principles. A site should be:
 ## The most common accessibility problems
 
 1. **Missing alt text** on meaningful images.
-2. **Low colour contrast** between text and background.
+2. **Low color contrast** between text and background.
 3. **Form fields without labels**, so screen readers announce "edit text" with no context.
 4. **Links and buttons with vague names** such as "click here" or icon-only buttons with no label.
 5. **Keyboard traps** and menus that only open on mouse hover.
@@ -49,7 +49,7 @@ WCAG is organised around four principles. A site should be:
 
 ## Why accessibility overlays are not a fix
 
-Overlay widgets promise one-line compliance. They can change colours or font sizes, but they cannot reliably repair missing labels, broken keyboard paths or inaccessible forms, and some interfere with screen readers. Many accessibility lawsuits have been filed against sites that used overlays, and US regulators have taken action against misleading compliance claims. Fixing the code is the dependable route.
+Overlay widgets promise one-line compliance. They can change colors or font sizes, but they cannot reliably repair missing labels, broken keyboard paths or inaccessible forms, and some interfere with screen readers. Many accessibility lawsuits have been filed against sites that used overlays, and US regulators have taken action against misleading compliance claims. Fixing the code is the dependable route.
 
 ## How to reach ADA website compliance: a step-by-step plan
 
@@ -63,7 +63,7 @@ Unplug the mouse and try to complete your main tasks with Tab, Shift+Tab, Enter 
 
 ### Step 3: Fix the templates first
 
-Most issues live in shared templates: header, menu, footer, forms and buttons. Fixing them once fixes every page. Choose an accessible theme; the SEMRS WordPress theme is built with keyboard focus states, skip links and contrast-checked colours.
+Most issues live in shared templates: header, menu, footer, forms and buttons. Fixing them once fixes every page. Choose an accessible theme; the SEMRS WordPress theme is built with keyboard focus states, skip links and contrast-checked colors.
 
 ### Step 4: Fix content
 

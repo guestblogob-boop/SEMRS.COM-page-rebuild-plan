@@ -1,4 +1,4 @@
-// Data graphics for the SEMRS blog articles, drawn as SVG (brand colours,
+// Data graphics for the SEMRS blog articles, drawn as SVG (brand colors,
 // cited figures only). build-images.mjs turns them into WebP files.
 const W = 1200, H = 675;
 const C = { blue: '#0b2fd1', navy: '#0a1650', orange: '#f7941d', orangeDk: '#b45309', ink: '#151b33', mute: '#5a6383', soft: '#eef1ff', warm: '#fff3e3', line: '#dfe3ef', bg: '#f8f9ff', green: '#0f7b4d' };
@@ -137,8 +137,8 @@ export const GRAPHICS = {
 		['Keyword control', 'Limited', 'Full'], ['Landing page', 'Your LSA profile', 'Any page on your site'], ['Best for', 'Phone-driven local services', 'Any business, precise targeting'],
 	], SEMRS + ' · availability depends on category and location'),
 	'wcag-pour-principles': () => steps('The four WCAG principles of accessibility', 'Most accessibility fixes map to one of these', [
-		['Perceivable', 'Alt text, captions, enough colour contrast'], ['Operable', 'Works with a keyboard, visible focus, no traps'],
-		['Understandable', 'Clear language, labelled forms, helpful errors'], ['Robust', 'Clean code that works with screen readers'],
+		['Perceivable', 'Alt text, captions, enough color contrast'], ['Operable', 'Works with a keyboard, visible focus, no traps'],
+		['Understandable', 'Clear language, labeled forms, helpful errors'], ['Robust', 'Clean code that works with screen readers'],
 	], 2, 'Source: W3C Web Content Accessibility Guidelines (WCAG) 2.2'),
 	'ai-content-workflow-human-approval': () => steps('A safe AI content workflow', 'AI drafts; people decide what is true and what gets published', [
 		['Brief by a person', 'Audience, goal, keyword, must-have points'], ['AI outline and draft', 'Speed on structure and first wording'], ['Expert fact check', 'Sources, examples, removes filler'],
