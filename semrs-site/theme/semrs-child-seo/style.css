@@ -1,11 +1,11 @@
 /*
 Theme Name:   SEMRS Child SEO
 Theme URI:    https://semrs.com/
-Description:  SEMRS brand layer for the SEMRS theme: navy/gold brand tokens, sticky mobile CTA bar and WhatsApp button. Rebrand by editing the tokens at the top.
+Description:  SEMRS brand layer for the SEMRS theme: logo blue/orange brand tokens, sticky mobile CTA bar and WhatsApp button. Rebrand by editing the tokens at the top.
 Author:       SEMRS
 Author URI:   https://semrs.com/
 Template:     semrs
-Version:      1.2.6
+Version:      1.2.7
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
@@ -20,13 +20,15 @@ Text Domain:  semrs-child-seo
    WCAG AA checked: see README.md
    ========================================================= */
 :root {
-	--semrs-navy-900: #0b1f3a;
-	--semrs-navy-700: #1e3a66;
-	--semrs-navy-100: #e8eef7;
-	--semrs-gold-500: #d4a72c;
-	--semrs-gold-700: #8c6a0e;
-	--semrs-gold-100: #fbf4e0;
-	--semrs-ink: #1f2937;
+	/* Logo colours: royal blue #0b2fd1 and orange #f7941d. */
+	--semrs-navy-900: #0b2fd1; /* brand blue: headings, menu, footer (9:1 on white) */
+	--semrs-navy-700: #0b2fd1; /* links */
+	--semrs-navy-100: #e6ebff;
+	--semrs-deep: #0a1650;     /* text on orange buttons (7:1) */
+	--semrs-gold-500: #f7941d; /* brand orange: buttons, highlights */
+	--semrs-gold-700: #b45309; /* orange text on white (5:1) */
+	--semrs-gold-100: #fff1e0;
+	--semrs-ink: #1c2340;
 	--semrs-muted: #5b6575;
 	--semrs-line: #e3e7ee;
 	--semrs-surface: #f6f7f9;
@@ -41,7 +43,7 @@ Text Domain:  semrs-child-seo
 
 	--sp-primary: var(--semrs-navy-900);
 	--sp-accent: var(--semrs-gold-500);
-	--sp-on-accent: var(--semrs-navy-900);
+	--sp-on-accent: var(--semrs-deep);
 	--sp-text: var(--semrs-ink);
 	--sp-muted: var(--semrs-muted);
 	--sp-link: var(--semrs-navy-700);
@@ -57,7 +59,7 @@ Text Domain:  semrs-child-seo
 @media (max-width: 921px) {
 	.semrs-mobile-cta { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 998; gap: .5rem; padding: .5rem .5rem calc(.5rem + env(safe-area-inset-bottom)); background: #fff; border-top: 1px solid var(--semrs-line); box-shadow: 0 -2px 12px rgba(11, 31, 58, .08); }
 	.semrs-mobile-cta a { flex: 1 1 0; display: flex; align-items: center; justify-content: center; gap: .35rem; min-height: 48px; font-size: .875rem; font-weight: 700; color: var(--semrs-navy-900); text-decoration: none; border: 1px solid var(--semrs-line); border-radius: var(--semrs-radius-sm); }
-	.semrs-mobile-cta a.semrs-mobile-cta__primary { flex: 2 1 0; background: var(--semrs-gold-500); border-color: var(--semrs-gold-500); }
+	.semrs-mobile-cta a.semrs-mobile-cta__primary { flex: 2 1 0; color: var(--semrs-deep); background: var(--semrs-gold-500); border-color: var(--semrs-gold-500); }
 	body.semrs-has-mobile-cta { padding-bottom: 72px; }
 	body.semrs-has-mobile-cta .sp-to-top { bottom: 84px; }
 	.semrs-whatsapp { display: none !important; }
