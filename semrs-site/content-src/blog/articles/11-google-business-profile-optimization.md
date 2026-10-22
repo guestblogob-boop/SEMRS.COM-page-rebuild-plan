@@ -1,15 +1,25 @@
 ---
 title: Google Business Profile Optimization: The Complete Guide for Local Businesses
 slug: google-business-profile-optimization
+seo_title: Google Business Profile Optimization: Full Guide
+focus: google business profile
 description: How to optimize your Google Business Profile: categories, services, photos, posts, reviews and the factors that help you rank in Google Maps.
 category: 26
 keyword: google business profile
 ---
 Your Google Business Profile is the panel that appears when people search for your business or for services near them on Google Search and Google Maps. For local businesses it is often the first impression, and it can bring more calls than your website. This guide covers every part of Google Business Profile optimization, from setup to reviews, in the order that matters most.
 
+### Key takeaways
+
+- Google ranks local results on relevance, distance and prominence.
+- The right primary category, complete details and real photos improve relevance.
+- A steady flow of genuine reviews, with replies, builds prominence.
+
 ## How Google ranks local results
 
-Google has said local results depend mainly on three things:
+[Google has said](https://support.google.com/business/answer/7091) local results depend mainly on three things:
+
+@img chart
 
 - **Relevance**: how well your profile matches what someone searched.
 - **Distance**: how far your business is from the searcher or the location in the search.
@@ -17,9 +27,9 @@ Google has said local results depend mainly on three things:
 
 You cannot change distance, but you can improve relevance and prominence a lot.
 
-## Step 1: Claim and verify your profile
+## Step 1: Claim and verify your Google Business Profile
 
-Search for your business on Google Maps. If a profile exists, claim it; if not, create one at business.google.com. Verification may be by video, phone, email or postcard depending on your business. Use your real business name, without extra keywords, which breaks Google's guidelines.
+Search for your business on Google Maps. If a profile exists, claim it; if not, create one at business.google.com. Verification may be by video, phone, email or postcard depending on your business. Use your real business name, without extra keywords, which breaks [Google's guidelines for representing your business](https://support.google.com/business/answer/3038177).
 
 ## Step 2: Choose the right categories
 

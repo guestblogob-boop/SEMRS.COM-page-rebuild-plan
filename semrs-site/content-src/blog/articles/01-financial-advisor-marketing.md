@@ -1,17 +1,27 @@
 ---
 title: Financial Advisor Marketing: How to Get More Qualified Clients in 2026
 slug: financial-advisor-marketing
+seo_title: Financial Advisor Marketing: Get More Qualified Clients
+focus: financial advisor marketing
 description: A practical financial advisor marketing plan: niche positioning, SEO, Google Ads, referrals and lead generation that stay within SEC and FINRA rules.
 category: 25
 keyword: financial advisor marketing
 ---
 Financial advisor marketing works best when it does three things at once: it makes clear who you serve, it shows up where those people search for help, and it stays inside the advertising rules that apply to your firm. This guide walks through each part, from choosing a niche to running Google Ads, with the compliance points to check before anything goes live.
 
+### Key takeaways
+
+- Pick a niche you can describe in one sentence; it makes SEO, ads and referrals easier.
+- Answer-first niche pages, local SEO and weekly content bring prospects who are already searching.
+- Every ad and page needs compliance review under the SEC Marketing Rule or FINRA Rule 2210.
+
 ! This article is general marketing guidance, not legal or compliance advice. Ask your compliance officer or counsel to review any advertisement before you publish it.
 
 ## Why financial advisor marketing is different
 
-Most small businesses can say almost anything that is true about their service. Advisors cannot. Registered investment advisers (RIAs) follow the SEC Marketing Rule (Rule 206(4)-1 under the Investment Advisers Act), and broker-dealer representatives follow FINRA Rule 2210 on communications with the public. Both rules care about the same ideas: claims must be fair and balanced, performance must be presented with the required context, and testimonials or endorsements come with disclosure duties.
+Most small businesses can say almost anything that is true about their service. Advisors cannot. Registered investment advisers (RIAs) follow the [SEC Marketing Rule](https://www.sec.gov/rules-regulations/2020/12/investment-adviser-marketing) (Rule 206(4)-1 under the Investment Advisers Act), and broker-dealer representatives follow [FINRA Rule 2210](https://www.finra.org/rules-guidance/rulebooks/finra-rules/2210) on communications with the public. Both rules care about the same ideas: claims must be fair and balanced, performance must be presented with the required context, and testimonials or endorsements come with disclosure duties.
+
+@img chart
 
 That changes how marketing is planned. Every page, ad and social post needs a review step, records must be kept, and some popular tactics, such as quoting cherry-picked returns, are off the table. The upside is that competitors face the same limits, so the advisors who win are the ones with the clearest message and the most useful content.
 

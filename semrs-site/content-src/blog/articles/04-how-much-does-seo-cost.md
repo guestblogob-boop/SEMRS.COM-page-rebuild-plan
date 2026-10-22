@@ -1,13 +1,21 @@
 ---
 title: How Much Does SEO Cost? Pricing Models, Typical Ranges and What You Get
 slug: how-much-does-seo-cost
+seo_title: How Much Does SEO Cost in 2026? Pricing Guide
+focus: how much does seo cost
 description: How much does SEO cost in 2026? Retainer, project and hourly pricing, typical ranges from industry surveys, and how to judge what a quote includes.
 category: 292
 keyword: how much does seo cost
 ---
-Most businesses pay for SEO as a monthly retainer, and the most common price band is a few hundred to a few thousand dollars a month. The right amount for you depends on how competitive your market is, how much work your website needs and whether you want local or national visibility. This guide explains the pricing models, shows typical ranges from published industry surveys and gives you a checklist for comparing quotes.
+How much does SEO cost? Most businesses pay for SEO as a monthly retainer, and the most common price band is a few hundred to a few thousand dollars a month. The right amount for you depends on how competitive your market is, how much work your website needs and whether you want local or national visibility. This guide explains the pricing models, shows typical ranges from published industry surveys and gives you a checklist for comparing quotes.
 
-## The short answer
+### Key takeaways
+
+- Most SEO providers charge a monthly retainer; the most common band is $501–$1,000.
+- Agencies averaged about $3,209 a month and freelancers about $1,348 in the Ahrefs survey.
+- Budget for six to twelve months and judge SEO by leads, not rankings alone.
+
+## How much does SEO cost? The short answer
 
 In a widely cited Ahrefs survey of SEO providers, about 78% charged a monthly retainer. The single most common band was **$501 to $1,000 per month**, agencies averaged roughly **$3,209 per month** and freelancers roughly **$1,348 per month**. Providers in the US and Canada charged more than the global average. Treat these as reference points, not fixed prices: the survey was self-reported, and markets change.
 
@@ -21,6 +29,8 @@ In a widely cited Ahrefs survey of SEO providers, about 78% charged a monthly re
 ## What drives the cost of SEO
 
 ### Competition in your market
+
+@img chart
 
 Ranking a plumber in a small town is a different job from ranking a personal injury firm in a big city. The more businesses fight for the same searches, the more content, links and time it takes.
 

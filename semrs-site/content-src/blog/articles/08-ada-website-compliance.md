@@ -1,11 +1,19 @@
 ---
 title: ADA Website Compliance: A Practical Guide for Small Businesses
 slug: ada-website-compliance
+seo_title: ADA Website Compliance: Practical Guide for 2026
+focus: ada website compliance
 description: ADA website compliance explained: what the law expects, WCAG standards, common accessibility problems, why overlays fall short and a fix plan.
 category: 24
 keyword: ada website compliance
 ---
 An accessible website is one that people with disabilities can use, including people who are blind, have low vision, are deaf or hard of hearing, or cannot use a mouse. In the United States, the Americans with Disabilities Act (ADA) is the main law behind website accessibility claims, and lawsuits against business websites are common. This guide explains what ADA website compliance means in practice and gives you a plan to fix the most frequent problems.
+
+### Key takeaways
+
+- The US Department of Justice expects websites of businesses open to the public to be accessible.
+- WCAG 2.1 or 2.2 Level AA is the standard most settlements and rules refer to.
+- Fix templates and content; overlay widgets cannot guarantee compliance.
 
 ! This article is general information, not legal advice. Talk to a lawyer about your specific obligations.
 
@@ -18,6 +26,8 @@ For state and local governments (Title II), the Department of Justice adopted a 
 ## What WCAG asks for, in plain words
 
 WCAG is organised around four principles. A site should be:
+
+@img chart
 
 - **Perceivable**: text alternatives for images, captions for video, enough colour contrast.
 - **Operable**: everything works with a keyboard, nothing flashes dangerously, users have enough time.
@@ -41,7 +51,7 @@ WCAG is organised around four principles. A site should be:
 
 Overlay widgets promise one-line compliance. They can change colours or font sizes, but they cannot reliably repair missing labels, broken keyboard paths or inaccessible forms, and some interfere with screen readers. Many accessibility lawsuits have been filed against sites that used overlays, and US regulators have taken action against misleading compliance claims. Fixing the code is the dependable route.
 
-## A step-by-step plan to make your site accessible
+## How to reach ADA website compliance: a step-by-step plan
 
 ### Step 1: Test what you have
 

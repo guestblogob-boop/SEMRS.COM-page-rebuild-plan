@@ -1,0 +1,254 @@
+{
+ "financial-advisor-marketing": {
+  "featured": {
+   "file": "financial-advisor-marketing-featured.webp",
+   "alt": "Business advisors meeting around a laptop to review a client plan",
+   "caption": "Advisors who choose a clear niche can plan every channel around one audience.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Business Office by Direct Media, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/business-office-IHBPBLYUFE",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "financial-advisor-marketing-plan.webp",
+   "alt": "6-step financial advisor marketing plan: niche, website, local SEO and content, Google Ads, referrals, compliance review",
+   "caption": "The six steps of the financial advisor marketing plan in this guide.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "insurance-agency-marketing": {
+  "featured": {
+   "file": "insurance-agency-marketing-featured.webp",
+   "alt": "A professional talking with an older client at home about her plans",
+   "caption": "Insurance is bought around life events, so marketing should meet people at those moments.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Caregiver Nurse by Direct Media, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/caregiver-nurse-QQEQNVMB0I",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "insurance-agency-90-day-marketing-plan.webp",
+   "alt": "90-day insurance agency marketing plan: foundations in weeks 1–4, paid search in weeks 5–8, owned lead sources in weeks 9–12",
+   "caption": "A 90-day plan for insurance agency marketing.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "seo-for-attorneys": {
+  "featured": {
+   "file": "seo-for-attorneys-featured.webp",
+   "alt": "A client consultation across a desk in a professional office",
+   "caption": "Most law firm cases start with a search and end with a consultation like this one.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Business Meeting by Christina Morillo, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/business-meeting-SKBXLJOILI",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "google-ads-legal-cpc-cpl-2025.webp",
+   "alt": "Bar chart: Google Ads cost per click $5.26 across industries vs $8.58 for legal; cost per lead $70.11 vs $131.63",
+   "caption": "Legal is the most expensive Google Ads category in the 2025 benchmarks, which makes SEO for attorneys more valuable.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "how-much-does-seo-cost": {
+  "featured": {
+   "file": "how-much-does-seo-cost-featured.webp",
+   "alt": "Website analytics chart on a laptop screen showing organic traffic",
+   "caption": "SEO is priced mostly as a monthly retainer and judged by traffic and leads over months.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Google Analytics by Negative Space, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/google-analytics-89AZTB8E5H",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "seo-retainer-cost-by-provider.webp",
+   "alt": "Bar chart of average monthly SEO retainers: freelancers $1,348, local SEO $1,557, agencies $3,209, consultancies $3,250",
+   "caption": "Average monthly SEO retainers by provider type, from the Ahrefs survey.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "google-ads-cost": {
+  "featured": {
+   "file": "google-ads-cost-featured.webp",
+   "alt": "Advertising performance dashboard with charts open on a laptop",
+   "caption": "Tracking cost per lead, not just cost per click, shows what Google Ads really costs.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Analytics on MacBook Laptop, CC0 (free for commercial use)",
+   "source": "https://www.rawpixel.com/image/5968621/analytics-macbook-laptop",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "google-ads-budget-to-customers.webp",
+   "alt": "Funnel example: $500 Google Ads budget buys 100 clicks at $5, giving 5 leads at 5% and about 1 customer at 25%",
+   "caption": "Work out your Google Ads budget backwards from the value of a customer.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "how-much-does-digital-marketing-cost": {
+  "featured": {
+   "file": "how-much-does-digital-marketing-cost-featured.webp",
+   "alt": "Laptop, coffee and printed marketing charts on a wooden desk",
+   "caption": "Set a marketing budget from your numbers, then fund one or two channels properly.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Laptop Coffee Charts Desk Wood, CC0 (free for commercial use)",
+   "source": "https://www.rawpixel.com/image/5966850/laptop-coffee-charts-desk-wood",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "digital-marketing-pricing-models.webp",
+   "alt": "Four ways digital marketing agencies charge: monthly retainer, project fee, hourly and percentage of ad spend",
+   "caption": "The four pricing models you will see in digital marketing quotes.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "local-services-ads-vs-google-ads": {
+  "featured": {
+   "file": "local-services-ads-vs-google-ads-featured.webp",
+   "alt": "Red water valve on a pipe, the kind of job home service businesses take calls for",
+   "caption": "Home and professional services can pay per lead with Local Services Ads where eligible.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Sprinkler system, CC0 (free for commercial use)",
+   "source": "https://www.rawpixel.com/image/5907868/sprinkler-system-free-public-domain-cc0-image",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "local-services-ads-vs-google-ads-comparison.webp",
+   "alt": "Comparison table of Local Services Ads and Google Ads: payment, placement, badge, keyword control, landing page and best use",
+   "caption": "Local Services Ads and Google Ads side by side.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "ada-website-compliance": {
+  "featured": {
+   "file": "ada-website-compliance-featured.webp",
+   "alt": "Hands typing on a laptop keyboard",
+   "caption": "Every task on an accessible website can be completed with a keyboard alone.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Macbook Laptop by Skitter Photo, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/macbook-laptop-CJSRRVR4JE",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "wcag-pour-principles.webp",
+   "alt": "The four WCAG principles: perceivable, operable, understandable and robust, with examples of each",
+   "caption": "Most ADA website compliance fixes map to one of the four WCAG principles.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "ai-marketing-tools": {
+  "featured": {
+   "file": "ai-marketing-tools-featured.webp",
+   "alt": "A humanoid robot standing in front of a screen",
+   "caption": "AI speeds up drafts and analysis; people still decide what is accurate and what gets published.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Robot Technology by Alex Knight, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/robot-technology-WUBMLJRYEK",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "ai-content-workflow-human-approval.webp",
+   "alt": "Six-step AI content workflow: human brief, AI draft, expert fact check, editor review, human approval, measure and update",
+   "caption": "A safe workflow for using AI marketing tools, with people approving every piece.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "best-crm-for-small-business": {
+  "featured": {
+   "file": "best-crm-for-small-business-featured.webp",
+   "alt": "A small sales team in a meeting with a laptop open on the table",
+   "caption": "The best CRM is the one your whole team uses every day.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Business Meeting by Direct Media, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/business-meeting-Z1ZIMB54UM",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "crm-sales-pipeline-stages.webp",
+   "alt": "Sales pipeline stages in a CRM: new lead, contacted, qualified, proposal sent and won",
+   "caption": "A simple pipeline to set up in a CRM for small business.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "google-business-profile-optimization": {
+  "featured": {
+   "file": "google-business-profile-optimization-featured.webp",
+   "alt": "Small business owner in a work apron with tools in the pocket",
+   "caption": "A complete Google Business Profile is often the first thing local customers see.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Handyman wearing apron with tools, CC0 (free for commercial use)",
+   "source": "https://www.rawpixel.com/image/11515749/handyman-wearing-apron-with-tools",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "google-local-ranking-factors.webp",
+   "alt": "Diagram of Google local ranking factors: relevance, distance and prominence overlapping at the map pack",
+   "caption": "Google names relevance, distance and prominence as the main local ranking factors.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "seo-for-small-business": {
+  "featured": {
+   "file": "seo-for-small-business-featured.webp",
+   "alt": "Small business owner typing on a laptop next to a coffee and a phone",
+   "caption": "Small businesses can do the SEO basics themselves and grow from there.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Laptop Typing by Kristin Hardwick, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/laptop-typing-XJMBMTYYN2",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "seo-for-small-business-roadmap.webp",
+   "alt": "Nine-step SEO for small business roadmap from keyword research to measuring leads",
+   "caption": "The nine steps of SEO for small business covered in this guide.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ }
+}

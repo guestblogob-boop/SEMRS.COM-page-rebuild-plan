@@ -1,13 +1,21 @@
 ---
 title: How Much Does Digital Marketing Cost? A Small Business Price Guide
 slug: how-much-does-digital-marketing-cost
+seo_title: Digital Marketing Cost: Small Business Price Guide
+focus: digital marketing cost
 description: What digital marketing costs a small business: SEO, Google Ads, websites, content, social and email, how agencies charge and how to set a budget.
 category: 292
 keyword: digital marketing cost
 ---
-Digital marketing can cost almost nothing if you do it yourself, or many thousands a month if you hand several channels to an agency. What most small businesses really want to know is how to spend a sensible amount on the channels that will bring customers. This guide breaks down the cost of each channel, the ways agencies charge and a simple method for setting your budget.
+Your digital marketing cost can be almost nothing if you do it yourself, or many thousands a month if you hand several channels to an agency. What most small businesses really want to know is how to spend a sensible amount on the channels that will bring customers. This guide breaks down the cost of each channel, the ways agencies charge and a simple method for setting your budget.
 
-## The main costs at a glance
+### Key takeaways
+
+- Each channel is priced differently: retainers for SEO, ad spend plus fees for paid ads, projects for websites.
+- Fund one or two channels properly instead of spreading a small budget across six.
+- Measure cost per lead and cost per customer, then move budget to what works.
+
+## Digital marketing cost by channel at a glance
 
 | Channel | How it is usually priced | What drives the cost |
 |---|---|---|
@@ -49,9 +57,11 @@ Email software is a subscription that usually grows with your list size. Setup w
 - **Hourly**: consulting or ad-hoc work.
 - **Percentage of ad spend**: common for paid ads management; make sure the agency is not rewarded simply for spending more.
 
-## How to set a digital marketing budget
+@img chart
 
-1. **Know your numbers.** Average sale value, profit margin and how many new customers you need each month.
+## How to set a digital marketing budget and control cost
+
+1. **Know your numbers.** Before comparing any digital marketing cost, know your average sale value, profit margin and how many new customers you need each month.
 2. **Pick one or two channels to start.** A local service business might start with a [Google Business Profile](/google-business-profile-optimization/), a solid website and Google Ads. An online store might start with SEO, email and shopping ads.
 3. **Fund each channel properly.** Spreading a small budget across six channels usually means none of them works.
 4. **Measure cost per lead and cost per customer.** Then move budget to what works.

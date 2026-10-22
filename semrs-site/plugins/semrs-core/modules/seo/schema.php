@@ -325,6 +325,22 @@ add_action(
 				)
 			);
 		}
+		// SEO title, description and focus keyword (the editor box fields), and the stored score.
+		foreach ( array( '_semrs_title', '_semrs_description', '_semrs_focus', '_semrs_score' ) as $key ) {
+			register_post_meta(
+				'',
+				$key,
+				array(
+					'type'              => 'string',
+					'single'            => true,
+					'show_in_rest'      => true,
+					'sanitize_callback' => '_semrs_description' === $key ? 'sanitize_textarea_field' : 'sanitize_text_field',
+					'auth_callback'     => function ( $allowed, $meta_key, $post_id ) {
+						return current_user_can( 'edit_post', $post_id );
+					},
+				)
+			);
+		}
 	}
 );
 

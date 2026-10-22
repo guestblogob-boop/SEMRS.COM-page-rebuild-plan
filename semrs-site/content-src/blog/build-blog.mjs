@@ -37,6 +37,7 @@ function build(md) {
 		if (!l.trim()) { i++; continue; }
 		if (l.startsWith('### ')) { out.push(head(l.slice(4), 3)); i++; continue; }
 		if (l.startsWith('## ')) { out.push(head(l.slice(3), 2)); i++; continue; }
+		if (l.startsWith('@img ')) { out.push(`<!-- semrs-img:${l.slice(5).trim()} -->`); i++; continue; }
 		if (l.startsWith('! ')) { out.push(para(l.slice(2), 'semrs-service-cta')); i++; continue; }
 		if (/^- /.test(l)) { const it = []; while (i < lines.length && /^- /.test(lines[i])) it.push(lines[i++].slice(2)); out.push(list(it, false)); continue; }
 		if (/^\d+\. /.test(l)) { const it = []; while (i < lines.length && /^\d+\. /.test(lines[i])) it.push(lines[i++].replace(/^\d+\. /, '')); out.push(list(it, true)); continue; }
@@ -54,8 +55,32 @@ const items = files.map((f) => {
 	const meta = Object.fromEntries(m[1].split('\n').map((l) => { const k = l.indexOf(':'); return [l.slice(0, k).trim(), l.slice(k + 1).trim()]; }));
 	const content = build(m[2]);
 	const words = m[2].replace(/[#*|!?\-\[\]()]/g, ' ').split(/\s+/).filter(Boolean).length;
-	return { slug: meta.slug, title: meta.title, excerpt: meta.description, category: +meta.category, keyword: meta.keyword, words, content };
+	return { slug: meta.slug, title: meta.title, seoTitle: meta.seo_title, focus: meta.focus, excerpt: meta.description, category: +meta.category, keyword: meta.keyword, words, content };
 });
+
+// Checks that mirror the SEMRS SEO score (Core modules/seo/analysis.php).
+const strip = (h) => h.replace(/<!--[\s\S]*?-->/g, ' ').replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+for (const it of items) {
+	const kw = (it.focus || '').toLowerCase();
+	const text = strip(it.content); const lower = text.toLowerCase(); const wl = text.split(' ');
+	const first = wl.slice(0, 100).join(' ').toLowerCase();
+	const subs = [...it.content.matchAll(/<h[23][^>]*>([\s\S]*?)<\/h[23]>/g)].map((m) => strip(m[1]).toLowerCase()).join(' | ');
+	const hits = lower.split(kw).length - 1; const density = Math.round(hits * kw.split(' ').length / wl.length * 1000) / 10;
+	const fails = [];
+	if (!kw) fails.push('no focus');
+	if (!(it.seoTitle || '').toLowerCase().includes(kw)) fails.push('kw not in SEO title');
+	if (!it.excerpt.toLowerCase().includes(kw)) fails.push('kw not in description');
+	if (!it.slug.includes(kw.replace(/ /g, '-'))) fails.push('kw not in slug');
+	if (!first.includes(kw)) fails.push('kw not in first 100 words');
+	if (!subs.includes(kw)) fails.push('kw not in H2/H3');
+	if (density < 0.5 || density > 3) fails.push('density ' + density + '% (' + hits + ')');
+	const tl = (it.seoTitle || '').length, dl = it.excerpt.length;
+	if (tl < 30 || tl > 60) fails.push('title ' + tl);
+	if (dl < 120 || dl > 155) fails.push('description ' + dl);
+	const longSent = text.split(/[.!?]\s/).filter((x) => x.split(' ').length > 25).length;
+	it.check = fails;
+	console.log((fails.length ? 'FIX ' : 'ok  ') + it.slug + (fails.length ? ' → ' + fails.join('; ') : '') + ' [density ' + density + '%, ' + wl.length + ' words, long sentences ' + longSent + ']');
+}
 fs.mkdirSync(OUT, { recursive: true });
 fs.writeFileSync(path.join(OUT, 'bundle.json'), JSON.stringify(items));
 for (const it of items) console.log(String(it.words).padStart(5), it.category, it.slug, `(${it.excerpt.length} char description)`);

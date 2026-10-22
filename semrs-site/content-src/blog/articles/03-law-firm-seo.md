@@ -1,19 +1,29 @@
 ---
 title: SEO for Attorneys: A Law Firm SEO Guide That Brings Signed Cases
 slug: seo-for-attorneys
-description: SEO for attorneys and law firms: local SEO, practice area pages, content, links and tracking, plus the bar advertising rules to follow. A step-by-step guide.
+seo_title: SEO for Attorneys: Law Firm SEO Guide (2026)
+focus: seo for attorneys
+description: SEO for attorneys and law firms: local SEO, practice area pages, content, links and tracking, plus the bar advertising rules to follow.
 category: 25
 keyword: seo for attorneys
 ---
-Legal keywords are some of the most expensive on the internet. The 2025 WordStream by LocaliQ benchmarks put the average Google Ads cost per click for attorneys and legal services at about $8.58 and the average cost per lead at about $131.63, the highest of any industry they track. That is why SEO for attorneys matters so much: every case that arrives from organic search is a case you did not pay a click price for.
+Legal keywords are some of the most expensive on the internet. The 2025 WordStream by LocaliQ benchmarks ([reported by Search Engine Land](https://searchengineland.com/google-ads-costs-keep-rising-but-conversion-rates-improved-in-2025-477927)) put the average Google Ads cost per click for attorneys and legal services at about $8.58 and the average cost per lead at about $131.63, the highest of any industry they track. That is why SEO for attorneys matters so much: every case that arrives from organic search is a case you did not pay a click price for.
+
+### Key takeaways
+
+- Legal clicks are the most expensive on Google Ads, so every organic case saves real money.
+- Win the map pack first, then build one strong page per practice area and city you serve.
+- Follow your state bar advertising rules: no guarantees and no unsupported "expert" claims.
 
 This guide covers the parts of law firm SEO that move the needle, in the order most firms should tackle them.
 
-! Lawyer advertising is regulated by state bars, usually based on ABA Model Rules 7.1 to 7.3. Avoid misleading claims, unsupported "best" or "expert" labels and guarantees of outcomes, and check your state's rules on testimonials and past results.
+! Lawyer advertising is regulated by state bars, usually based on [ABA Model Rules 7.1](https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_7_1_communication_concerning_a_lawyer_s_services/) to 7.3. Avoid misleading claims, unsupported "best" or "expert" labels and guarantees of outcomes, and check your state's rules on testimonials and past results.
 
 ## How clients search for a lawyer
 
 People rarely search "attorney" alone. They search a problem and a place: "car accident lawyer Houston", "how long do I have to file a slip and fall claim", "divorce lawyer near me free consultation". Your SEO plan should map to those three intents:
+
+@img chart
 
 - **Local service searches** (practice area + city or "near me"): won through the map pack and practice area pages.
 - **Question searches** (deadlines, process, costs): won through helpful articles and FAQs.
@@ -70,7 +80,7 @@ Links from respected sites still help rankings. Ethical sources include bar asso
 
 Set up call tracking and form tracking, connect them to your intake software and report on consultations and signed cases by source. Rankings and traffic are signals; signed cases are the result.
 
-## How long does SEO take for a law firm?
+## How long does SEO for attorneys take?
 
 Local improvements often show within a few months once the Business Profile, reviews and practice area pages are fixed. Competitive practice areas in large cities usually need six to eighteen months of steady work. Many firms run Google Ads or Local Services Ads while SEO builds; see our guide to [Local Services Ads vs Google Ads](/local-services-ads-vs-google-ads/).
 

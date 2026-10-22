@@ -1,15 +1,23 @@
 ---
 title: Google Local Services Ads vs Google Ads: Which Is Better for Your Business?
 slug: local-services-ads-vs-google-ads
+seo_title: Local Services Ads vs Google Ads: Which Is Better?
+focus: local services ads vs google ads
 description: Google Local Services Ads vs Google Ads compared: how each is priced, where they appear, eligibility, badges, pros and cons, and when to run both.
 category: 27
 keyword: local services ads
 ---
-Google offers two main ways for local businesses to pay for leads from search: Local Services Ads (LSA) and regular Google Ads search campaigns. They look similar to a searcher but work very differently for you. Local Services Ads charge per lead and carry a trust badge; Google Ads charge per click and give you far more control. This comparison will help you decide which to run first, and when to run both.
+Google offers two main ways for local businesses to pay for leads from search: Local Services Ads (LSA) and regular Google Ads search campaigns. They look similar to a searcher but work very differently for you. Local Services Ads charge per lead and carry a trust badge; Google Ads charge per click and give you far more control. This Local Services Ads vs Google Ads comparison will help you decide which to run first, and when to run both.
+
+### Key takeaways
+
+- Local Services Ads charge per lead and show a Google Guaranteed or Google Screened badge.
+- Google Ads charge per click but give full control over keywords, ads and landing pages.
+- Eligible local service businesses often start with Local Services Ads and add Google Ads later.
 
 ## What are Google Local Services Ads?
 
-Local Services Ads appear at the top of some searches, often above regular ads, with your business name, star rating, a badge and a "call" or "message" button. Instead of paying for clicks, you pay when a customer contacts you through the ad.
+Local Services Ads appear at the top of some searches, often above regular ads, with your business name, star rating, a badge and a "call" or "message" button. Instead of paying for clicks, you pay when a customer contacts you through the ad (see [Google's Local Services Ads page](https://ads.google.com/local-services-ads/)).
 
 Businesses must pass Google's screening for their category. Home service categories (such as plumbers, electricians and HVAC) typically earn a **Google Guaranteed** badge, while professional services (such as lawyers, financial planners and real estate agents) can earn a **Google Screened** badge. Screening can include background checks, licence and insurance verification, depending on category and country. Availability varies by category and location.
 
@@ -17,7 +25,7 @@ Businesses must pass Google's screening for their category. Home service categor
 
 Regular search ads appear for the keywords you choose, with your own headlines, descriptions and links. You pay each time someone clicks, whether or not they call you. You control keywords, ad text, landing pages, schedule, budget and bidding.
 
-## Side-by-side comparison
+## Local Services Ads vs Google Ads: side-by-side comparison
 
 | | Local Services Ads | Google Ads (search) |
 |---|---|---|
@@ -28,6 +36,8 @@ Regular search ads appear for the keywords you choose, with your own headlines, 
 | Landing page | Your LSA profile | Any page on your website |
 | Setup | Verification and screening required | Account setup and campaign build |
 | Best for | Phone-driven local services | Any business, many services, precise targeting |
+
+@img chart
 
 ## Pros and cons of Local Services Ads
 

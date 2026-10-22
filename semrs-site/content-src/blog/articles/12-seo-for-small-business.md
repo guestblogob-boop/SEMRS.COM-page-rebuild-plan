@@ -1,19 +1,29 @@
 ---
 title: SEO for Small Business: A Step-by-Step Guide to Ranking on Google
 slug: seo-for-small-business
-description: SEO for small business explained step by step: keyword research, on-page SEO, local SEO, technical basics, content, links, AI search and how to measure results.
+seo_title: SEO for Small Business: Step-by-Step Ranking Guide
+focus: seo for small business
+description: SEO for small business explained step by step: keyword research, on-page and local SEO, technical basics, content, links, AI search and results.
 category: 293
 keyword: seo for small business
 ---
-Search engine optimization (SEO) helps your website appear when people search for what you sell. For a small business, it is one of the few marketing channels that keeps bringing customers without paying for every click. This guide covers the steps that matter most, in a sensible order, so you can do the basics yourself or know what to expect from an agency.
+Search engine optimization (SEO) helps your website appear when people search for what you sell. SEO for small business is one of the few marketing channels that keeps bringing customers without paying for every click. This guide covers the steps that matter most, in a sensible order, so you can do the basics yourself or know what to expect from an agency.
+
+### Key takeaways
+
+- Start with the searches your customers make and give each main service its own page.
+- Local SEO and technical basics often bring the fastest results for small businesses.
+- Judge SEO by leads over months; results compound once pages rank.
 
 ## How SEO works in one paragraph
 
-Google wants to show the most helpful, trustworthy result for every search. It finds pages by crawling links, understands them through their text and structure, and ranks them using hundreds of signals, including relevance to the search, quality and expertise of the content, how well the page works for visitors and how many trusted sites refer to it. SEO is the work of making your pages the best answer and making sure Google can understand that.
+Google wants to show the most helpful, trustworthy result for every search. It finds pages by crawling links, understands them through their text and structure, and ranks them using hundreds of signals, including relevance to the search, quality and expertise of the content, how well the page works for visitors and how many trusted sites refer to it. SEO is the work of making your pages the best answer and making sure Google can understand that. Google explains the basics in its own [SEO Starter Guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide).
 
 ## Step 1: Find the searches your customers make
 
 Start with the services you sell and the words customers use, not internal jargon. Use Google Keyword Planner, Search Console and our free [keyword ideas generator](/tools/keyword-ideas-generator/) to find:
+
+@img chart
 
 - **Service keywords**: "emergency plumber Denver", "bookkeeping for contractors".
 - **Question keywords**: "how much does a roof replacement cost", "do I need a business licence for…".
@@ -65,7 +75,7 @@ Google AI Overviews and AI assistants such as ChatGPT summarise answers from the
 
 Track impressions, clicks and positions in Google Search Console, visits and conversions in Google Analytics, and calls and form leads by source. Judge SEO by leads and sales over months, not daily rankings.
 
-## How long does SEO take for a small business?
+## How long does SEO for small business take?
 
 Local improvements can appear within a few months. Ranking for competitive terms usually takes six to twelve months of steady work. The results compound: pages that rank keep bringing visitors without a click price.
 

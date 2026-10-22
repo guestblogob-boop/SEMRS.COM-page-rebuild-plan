@@ -1,11 +1,19 @@
 ---
 title: Google Ads Cost in 2026: CPC by Industry and How to Set Your Budget
 slug: google-ads-cost
-description: How much do Google Ads cost? Average cost per click and cost per lead by industry, what drives Google Ads pricing and how to set a budget that produces leads.
+seo_title: Google Ads Cost in 2026: CPC by Industry & Budgets
+focus: google ads cost
+description: Google Ads cost explained: average cost per click and cost per lead by industry, what drives pricing and how to set a budget that brings leads.
 category: 292
 keyword: google ads cost
 ---
-Google Ads has no fixed price list. You set a budget, Google runs an auction for every search, and you pay when someone clicks. In 2025 the WordStream by LocaliQ benchmarks put the average cost per click (CPC) across industries at about **$5.26** and the average cost per lead at about **$70.11**, with legal services the most expensive at about **$8.58 per click** and **$131.63 per lead**. Your own costs depend on your industry, location, keywords and how well your ads and landing pages are built.
+There is no fixed Google Ads cost or price list. You set a budget, Google runs an auction for every search, and you pay when someone clicks. In 2025 the WordStream by LocaliQ benchmarks put the average cost per click (CPC) across industries at about **$5.26** and the average cost per lead at about **$70.11**, with legal services the most expensive at about **$8.58 per click** and **$131.63 per lead**. Your own costs depend on your industry, location, keywords and how well your ads and landing pages are built.
+
+### Key takeaways
+
+- The 2025 benchmarks put the average cost per click near $5.26 and the average cost per lead near $70.11.
+- Legal is the most expensive category at about $8.58 per click and $131.63 per lead.
+- Set your budget backwards from the value of a customer, then cut waste with negative keywords.
 
 ## How Google Ads pricing works
 
@@ -43,6 +51,8 @@ Benchmarks are blended averages from thousands of campaigns. Competitive keyword
 3. **Give campaigns enough data.** A budget that buys only a handful of clicks a day makes learning slow. Fewer, tightly themed keywords with a sensible daily budget work better than many keywords spread thin.
 4. **Review weekly for the first month.** Add negative keywords, pause poor performers and move budget to what converts.
 
+@img chart
+
 ## Ways to lower your cost per lead
 
 - Use exact and phrase match for your most valuable services.
@@ -77,4 +87,4 @@ Common causes are broad keywords, missing negative keywords, landing pages that 
 ? Can SEMRS manage my Google Ads?
 Yes. SEMRS plans and manages Google Ads with a separate, transparent fee and a human approval step before any budget change. [Get a free quote](/get-a-quote/).
 
-**Sources:** Search Engine Land, [Google Ads costs keep rising in 2025](https://searchengineland.com/google-ads-costs-keep-rising-but-conversion-rates-improved-in-2025-477927); LocaliQ, [legal search advertising benchmarks](https://localiq.com/blog/legal-search-advertising-benchmarks/).
+**Sources:** Search Engine Land, [Google Ads costs keep rising in 2025](https://searchengineland.com/google-ads-costs-keep-rising-but-conversion-rates-improved-in-2025-477927).
