@@ -142,7 +142,12 @@ function semrs_blocks_template_preview_menu( $out, $args ) {
 	}
 	$footer = 'footer' === $args->theme_location;
 	$items  = '';
-	foreach ( $ctx['site']['pages'] as $pid => $page ) {
+	$pages  = $ctx['site']['pages'];
+	if ( ! $footer && isset( $ctx['site']['menu'] ) ) {
+		$pages = array_intersect_key( $pages, array_flip( (array) $ctx['site']['menu'] ) ); // The template's own menu, in its order, as the import builds it.
+		$pages = array_merge( array_intersect_key( array_flip( (array) $ctx['site']['menu'] ), $pages ), $pages );
+	}
+	foreach ( $pages as $pid => $page ) {
 		if ( ! empty( $page['front'] ) || $footer !== ! empty( $page['legal'] ) ) {
 			continue;
 		}
@@ -233,6 +238,12 @@ function semrs_blocks_template_preview_render() {
 	}
 	$name = $ctx['owner']['name'];
 	add_filter( 'theme_mod_custom_logo', '__return_false' );
+	add_filter(
+		'theme_mod_semrs_theme_dark_mode',
+		function () {
+			return 'off'; // The template's own colours, not this site's dark mode.
+		}
+	);
 	add_filter( 'theme_mod_semrs_theme_footer_note', '__return_empty_string' );
 	add_filter( 'theme_mod_semrs_theme_html3', '__return_empty_string' );
 	if ( function_exists( 'semrs_theme_social_networks' ) ) {

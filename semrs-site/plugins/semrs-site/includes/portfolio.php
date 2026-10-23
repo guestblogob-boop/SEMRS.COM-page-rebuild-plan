@@ -93,9 +93,112 @@ function semrs_portfolio_designs() {
 			'tier'        => $d[3],
 			'desktop'     => $desk,
 			'mobile'      => semrs_blocks_template_preview( $id, 'mobile', $d[4] ),
+			'pages'       => semrs_portfolio_pages( $id, $d[4], $d[3] ),
 		);
 	}
 	return $designs;
+}
+
+/**
+ * Browsable pages of a design (live template preview), legal and product pages left out.
+ *
+ * @param string $id   Design id.
+ * @param array  $site Template site data (empty for teasers).
+ * @param string $tier free|pro.
+ * @return array list of [ page title, preview URL ]; empty when it cannot be previewed.
+ */
+function semrs_portfolio_pages( $id, $site, $tier ) {
+	if ( empty( $site['pages'] ) || ! function_exists( 'semrs_blocks_template_preview_url' ) || ( 'pro' === $tier && ! defined( 'SEMRS_PRO_VERSION' ) ) ) {
+		return array();
+	}
+	$pages = array();
+	foreach ( $site['pages'] as $pid => $page ) {
+		$product = (bool) preg_grep( '/-product-/', (array) ( $page['sections'] ?? array() ) ); // Shop product pages open from the shop itself.
+		if ( empty( $page['legal'] ) && ! $product ) {
+			$pages[] = array( strtr( $page['title'], array( '{{name}}' => $site['demo_name'] ?? $site['title'] ) ), semrs_blocks_template_preview_url( $id, $pid ) );
+		}
+	}
+	return $pages;
+}
+
+/**
+ * Template previews are public on semrs.com, so every design opens as a
+ * complete website (example content, noindex, never cached).
+ */
+add_filter( 'semrs_blocks_template_preview_allowed', '__return_true' );
+
+/**
+ * No ads inside template previews.
+ *
+ * @param string $reason Reason ads are blocked.
+ * @return string
+ */
+function semrs_portfolio_preview_ads( $reason ) {
+	return '' === $reason && ! empty( $_GET['semrs_tpl_preview'] ) ? 'Template preview' : $reason; // phpcs:ignore WordPress.Security.NonceVerification
+}
+add_filter( 'semrs_ads_block_reason', 'semrs_portfolio_preview_ads' );
+/**
+ * Viewer data for one design (read by portfolio.js).
+ *
+ * @param string $id Design id.
+ * @param array  $d  Design.
+ * @return string data-pf attribute.
+ */
+function semrs_portfolio_data_attr( $id, $d ) {
+	$s = semrs_portfolio_settings();
+	return ' data-pf="' . esc_attr(
+		wp_json_encode(
+			array(
+				't' => $d['title'],
+				'q' => add_query_arg( 'design', $id, $s['contact'] ),
+				'd' => semrs_portfolio_demo_url( $id ),
+				'i' => $d['desktop'],
+				'p' => $d['pages'],
+			)
+		)
+	) . '"';
+}
+
+/**
+ * Where a preview link points without JavaScript: the live home page, or the image.
+ *
+ * @param array  $d      Design.
+ * @param string $device desktop|mobile.
+ * @return string
+ */
+function semrs_portfolio_open_url( $d, $device = 'desktop' ) {
+	if ( $d['pages'] ) {
+		return $d['pages'][0][1];
+	}
+	return 'mobile' === $device && $d['mobile'] ? $d['mobile'] : $d['desktop'];
+}
+
+/**
+ * Viewer script and its labels.
+ */
+function semrs_portfolio_enqueue() {
+	if ( wp_script_is( 'semrs-portfolio' ) ) {
+		return;
+	}
+	wp_enqueue_script( 'semrs-portfolio', SEMRS_SITE_URL . 'assets/portfolio.js', array(), SEMRS_SITE_VERSION, true );
+	wp_add_inline_script(
+		'semrs-portfolio',
+		'var semrsPf=' . wp_json_encode(
+			array(
+				'pages'   => __( 'Pages', 'semrs-site' ),
+				'size'    => __( 'Preview size', 'semrs-site' ),
+				'desktop' => __( 'Desktop', 'semrs-site' ),
+				'tablet'  => __( 'Tablet', 'semrs-site' ),
+				'phone'   => __( 'Phone', 'semrs-site' ),
+				'newtab'  => __( 'Open in new tab', 'semrs-site' ),
+				'demo'    => __( 'Live demo', 'semrs-site' ),
+				'get'     => __( 'Get this website', 'semrs-site' ),
+				'close'   => __( 'Close', 'semrs-site' ),
+				'note'    => __( 'Example business name, prices and content. Your website is built with your own brand, text and photos.', 'semrs-site' ),
+			)
+		) . ';',
+		'before'
+	);
 }
 
 /**
@@ -126,7 +229,7 @@ function semrs_portfolio_shortcode() {
 	$s    = semrs_portfolio_settings();
 	$cats = array_unique( array_filter( wp_list_pluck( $designs, 'category' ) ) );
 	sort( $cats );
-	wp_enqueue_script( 'semrs-portfolio', SEMRS_SITE_URL . 'assets/portfolio.js', array(), SEMRS_SITE_VERSION, true );
+	semrs_portfolio_enqueue();
 
 	$out  = '<div class="semrs-pf" id="designs">';
 	$out .= '<div class="semrs-pf__filters" role="group" aria-label="' . esc_attr__( 'Filter designs', 'semrs-site' ) . '"><button type="button" class="is-active" aria-pressed="true" data-cat="">' . esc_html__( 'All designs', 'semrs-site' ) . '</button>';
@@ -137,19 +240,48 @@ function semrs_portfolio_shortcode() {
 	foreach ( $designs as $id => $d ) {
 		$demo  = semrs_portfolio_demo_url( $id );
 		$quote = add_query_arg( 'design', $id, $s['contact'] );
-		$out  .= '<article class="semrs-pf__card" data-cat="' . esc_attr( sanitize_title( $d['category'] ) ) . '">';
-		$out  .= '<div class="semrs-pf__media"><a class="semrs-pf__desk" href="' . esc_url( $d['desktop'] ) . '" target="_blank" rel="noopener" aria-label="' . esc_attr( sprintf( /* translators: %s: design name */ __( '%s: full desktop page', 'semrs-site' ), $d['title'] ) ) . '"><img src="' . esc_url( $d['desktop'] ) . '" alt="" loading="lazy" width="540" height="405"></a>';
+		$out  .= '<article class="semrs-pf__card" data-cat="' . esc_attr( sanitize_title( $d['category'] ) ) . '"' . semrs_portfolio_data_attr( $id, $d ) . '>';
+		$out  .= '<div class="semrs-pf__media"><a class="semrs-pf__desk semrs-pf-open" data-device="desktop" href="' . esc_url( semrs_portfolio_open_url( $d ) ) . '" target="_blank" rel="noopener" aria-label="' . esc_attr( sprintf( /* translators: %s: design name */ __( '%s: view the full website on desktop', 'semrs-site' ), $d['title'] ) ) . '"><img src="' . esc_url( $d['desktop'] ) . '" alt="" loading="lazy" width="540" height="405"></a>';
 		if ( $d['mobile'] ) {
-			$out .= '<a class="semrs-pf__phone" href="' . esc_url( $d['mobile'] ) . '" target="_blank" rel="noopener" aria-label="' . esc_attr( sprintf( /* translators: %s: design name */ __( '%s: full phone page', 'semrs-site' ), $d['title'] ) ) . '"><img src="' . esc_url( $d['mobile'] ) . '" alt="" loading="lazy" width="270" height="526"></a>';
+			$out .= '<a class="semrs-pf__phone semrs-pf-open" data-device="phone" href="' . esc_url( semrs_portfolio_open_url( $d, 'mobile' ) ) . '" target="_blank" rel="noopener" aria-label="' . esc_attr( sprintf( /* translators: %s: design name */ __( '%s: view the full website on a phone', 'semrs-site' ), $d['title'] ) ) . '"><img src="' . esc_url( $d['mobile'] ) . '" alt="" loading="lazy" width="270" height="526"></a>';
 		}
 		$out .= '</div><div class="semrs-pf__body"><p class="semrs-pf__cat">' . esc_html( $d['category'] ) . '</p><h3 class="semrs-pf__title">' . esc_html( $d['title'] ) . '</h3><p class="semrs-pf__text">' . esc_html( $d['description'] ) . '</p><div class="semrs-pf__btns">';
-		$out .= $demo ? '<a class="semrs-pf__btn" href="' . esc_url( $demo ) . '" target="_blank" rel="noopener">' . esc_html__( 'Live demo', 'semrs-site' ) . '</a>' : '<a class="semrs-pf__btn" href="' . esc_url( $d['desktop'] ) . '" target="_blank" rel="noopener">' . esc_html__( 'View full design', 'semrs-site' ) . '</a>';
+		$out .= '<a class="semrs-pf__btn semrs-pf-open" data-device="desktop" href="' . esc_url( semrs_portfolio_open_url( $d ) ) . '" target="_blank" rel="noopener">' . ( $d['pages'] ? esc_html__( 'View full website', 'semrs-site' ) : esc_html__( 'View full design', 'semrs-site' ) ) . '</a>';
+		if ( $demo ) {
+			$out .= '<a class="semrs-pf__btn semrs-pf__btn--ghost" href="' . esc_url( $demo ) . '" target="_blank" rel="noopener">' . esc_html__( 'Live demo', 'semrs-site' ) . '</a>';
+		}
 		$out .= '<a class="semrs-pf__btn semrs-pf__btn--ghost" href="' . esc_url( $quote ) . '">' . esc_html__( 'Get this website', 'semrs-site' ) . '</a></div></div></article>';
 	}
 	$out .= '</div><p class="semrs-pf__note">' . esc_html__( 'Demo websites use example business names, prices and content. Your website is built with your own brand, text and photos.', 'semrs-site' ) . '</p></div>';
 	return $out;
 }
 add_shortcode( 'semrs_portfolio', 'semrs_portfolio_shortcode' );
+
+/**
+ * [semrs_portfolio_featured designs="pets,dentist,agency"]: a few designs
+ * for the home page, each opening the full-website viewer.
+ *
+ * @param array $atts Shortcode attributes.
+ * @return string
+ */
+function semrs_portfolio_featured_shortcode( $atts ) {
+	$atts    = shortcode_atts( array( 'designs' => 'pets,dentist,agency' ), $atts, 'semrs_portfolio_featured' );
+	$designs = semrs_portfolio_designs();
+	$out     = '';
+	foreach ( array_map( 'sanitize_key', explode( ',', $atts['designs'] ) ) as $id ) {
+		if ( empty( $designs[ $id ] ) ) {
+			continue;
+		}
+		$d    = $designs[ $id ];
+		$out .= '<a class="semrs-home-pf__item semrs-pf-open" data-device="desktop" href="' . esc_url( semrs_portfolio_open_url( $d ) ) . '" target="_blank" rel="noopener"' . semrs_portfolio_data_attr( $id, $d ) . '><span class="semrs-home-pf__img"><img src="' . esc_url( $d['desktop'] ) . '" alt="' . esc_attr( sprintf( /* translators: %s: design name */ __( '%s website design by SEMRS', 'semrs-site' ), $d['title'] ) ) . '" loading="lazy" width="540" height="405"></span><span class="semrs-home-pf__title">' . esc_html( $d['title'] ) . '</span></a>';
+	}
+	if ( '' === $out ) {
+		return '';
+	}
+	semrs_portfolio_enqueue();
+	return '<div class="semrs-home-pf">' . $out . '</div>';
+}
+add_shortcode( 'semrs_portfolio_featured', 'semrs_portfolio_featured_shortcode' );
 
 /**
  * Portfolio page content: hero, design grid, process and call to action.
@@ -187,7 +319,7 @@ function semrs_portfolio_page_content() {
 	$c .= $p( $stat . ' ' . __( 'Pick a design you like and we build it with your brand, or start from scratch.', 'semrs-site' ), 'semrs-lead' );
 	$c .= $btns( array( array( __( 'Get a free website quote', 'semrs-site' ), $s['contact'] ), array( __( 'Browse designs', 'semrs-site' ), '#designs', true ) ) );
 	$c .= "<!-- /wp:semrs/container -->\n\n";
-	$c .= '<!-- wp:semrs/container {"align":"full","padTop":48,"padBottom":64,"tag":"section"} -->' . "\n" . $h( __( 'Website designs', 'semrs-site' ) ) . $p( __( 'Hover a design to scroll through the whole home page. Open any design full size, or visit its live demo.', 'semrs-site' ) ) . "<!-- wp:shortcode -->\n[semrs_portfolio]\n<!-- /wp:shortcode -->\n<!-- /wp:semrs/container -->\n\n";
+	$c .= '<!-- wp:semrs/container {"align":"full","padTop":48,"padBottom":64,"tag":"section"} -->' . "\n" . $h( __( 'Website designs', 'semrs-site' ) ) . $p( __( 'Hover a design to scroll through its home page. Click it to browse the whole website, page by page, on desktop, tablet or phone.', 'semrs-site' ) ) . "<!-- wp:shortcode -->\n[semrs_portfolio]\n<!-- /wp:shortcode -->\n<!-- /wp:semrs/container -->\n\n";
 	$c .= '<!-- wp:semrs/container {"align":"full","bg":"#f6f7f9","padTop":64,"padBottom":64,"tag":"section"} -->' . "\n" . $h( __( 'How we build your website', 'semrs-site' ), 2, true );
 	$c .= '<!-- wp:semrs/container {"layout":"grid","columns":3,"columnsTablet":3,"width":"full","gap":32} -->' . "\n";
 	foreach ( array( array( 'search', __( '1. Choose a design', 'semrs-site' ), __( 'Pick a design from the portfolio, or tell us what you have in mind.', 'semrs-site' ) ), array( 'pen', __( '2. We make it yours', 'semrs-site' ), __( 'Your logo, colours, text and photos, with SEO and speed set up from day one.', 'semrs-site' ) ), array( 'rocket', __( '3. Launch and grow', 'semrs-site' ), __( 'We launch on your domain and can keep improving it with SEO and content.', 'semrs-site' ) ) ) as $step ) {

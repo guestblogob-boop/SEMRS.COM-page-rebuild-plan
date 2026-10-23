@@ -55,6 +55,7 @@ function semrs_ads_sanitize( $in ) {
 		'min_words'       => max( 0, absint( $in['min_words'] ?? 300 ) ),
 		'max_incontent'   => max( 0, min( 5, absint( $in['max_incontent'] ?? 3 ) ) ),
 		'min_gap'         => max( 1, min( 10, absint( $in['min_gap'] ?? 3 ) ) ),
+		'min_gap_words'   => min( 1000, absint( $in['min_gap_words'] ?? $d['min_gap_words'] ) ),
 		'exclude_front'   => ! empty( $in['exclude_front'] ),
 		'exclude_search'  => ! empty( $in['exclude_search'] ),
 		'exclude_paths'   => sanitize_textarea_field( $in['exclude_paths'] ?? '' ),
@@ -70,7 +71,7 @@ function semrs_ads_sanitize( $in ) {
 			'enabled' => ! empty( $slot['enabled'] ),
 			'network' => 'custom' === ( $slot['network'] ?? '' ) ? 'custom' : 'adsense',
 			'ad_slot' => preg_replace( '/\D/', '', (string) ( $slot['ad_slot'] ?? '' ) ),
-			'format'  => 'in-article' === ( $slot['format'] ?? '' ) ? 'in-article' : 'auto',
+			'format'  => isset( semrs_ads_formats()[ $slot['format'] ?? '' ] ) ? $slot['format'] : 'auto',
 			'code'    => semrs_ads_clean_code( $slot['code'] ?? '' ),
 			'device'  => in_array( $slot['device'] ?? '', array( 'all', 'mobile', 'desktop', 'wide' ), true ) ? $slot['device'] : 'all',
 		);
@@ -97,7 +98,7 @@ function semrs_ads_render_settings() {
 			<table class="form-table" role="presentation">
 				<tr><th><?php esc_html_e( 'Status', 'semrs-core' ); ?></th><td><?php $check( 'enabled', __( 'Show ads', 'semrs-core' ) ); ?></td></tr>
 				<tr><th><label for="semrs-pub"><?php esc_html_e( 'AdSense publisher ID', 'semrs-core' ); ?></label></th><td><input id="semrs-pub" class="regular-text" name="<?php echo esc_attr( $n ); ?>[publisher_id]" value="<?php echo esc_attr( $s['publisher_id'] ); ?>" placeholder="ca-pub-1234567890123456"></td></tr>
-				<tr><th><?php esc_html_e( 'AdSense tag', 'semrs-core' ); ?></th><td><?php $check( 'load_adsense', __( 'Load the AdSense tag on allowed pages (also runs Auto ads if they are on in AdSense)', 'semrs-core' ) ); ?><p class="description"><?php esc_html_e( 'Remove any other AdSense tag (Site Kit "Place AdSense code", Ad Inserter, header plugins) so the tag loads once.', 'semrs-core' ); ?></p></td></tr>
+				<tr><th><?php esc_html_e( 'AdSense tag', 'semrs-core' ); ?></th><td><?php $check( 'load_adsense', __( 'Load the AdSense tag on allowed pages (also runs Auto ads if they are on in AdSense)', 'semrs-core' ) ); ?><p class="description"><?php esc_html_e( 'Site Kit by Google\'s AdSense tag is blocked automatically on pages without ads and wherever SEMRS loads the tag. Remove any other copy (Ad Inserter, header plugins) so the tag loads once.', 'semrs-core' ); ?></p></td></tr>
 				<tr><th><label for="semrs-head"><?php esc_html_e( 'Partner header code', 'semrs-core' ); ?></label></th><td><textarea id="semrs-head" class="large-text code" rows="4" name="<?php echo esc_attr( $n ); ?>[head_code]"><?php echo esc_textarea( $s['head_code'] ); ?></textarea><p class="description"><?php esc_html_e( 'Optional: Google Ad Manager / Ezoic / Raptive / Mediavine header script. Loaded only on pages where ads are allowed.', 'semrs-core' ); ?></p></td></tr>
 				<tr><th><?php esc_html_e( 'Behaviour', 'semrs-core' ); ?></th><td><?php $check( 'lazy', __( 'Lazy-load units just before they scroll into view (better viewability and speed)', 'semrs-core' ) ); $check( 'hide_for_admins', __( 'Hide ads for administrators', 'semrs-core' ) ); ?></td></tr>
 				<tr><th><label for="semrs-label"><?php esc_html_e( 'Label above ads', 'semrs-core' ); ?></label></th><td><input id="semrs-label" class="regular-text" name="<?php echo esc_attr( $n ); ?>[label]" value="<?php echo esc_attr( $s['label'] ); ?>"></td></tr>
@@ -109,6 +110,7 @@ function semrs_ads_render_settings() {
 				<tr><th><?php esc_html_e( 'Minimum words for in-content ads', 'semrs-core' ); ?></th><td><input type="number" min="0" name="<?php echo esc_attr( $n ); ?>[min_words]" value="<?php echo esc_attr( $s['min_words'] ); ?>"></td></tr>
 				<tr><th><?php esc_html_e( 'Maximum in-content ads per page', 'semrs-core' ); ?></th><td><input type="number" min="0" max="5" name="<?php echo esc_attr( $n ); ?>[max_incontent]" value="<?php echo esc_attr( $s['max_incontent'] ); ?>"></td></tr>
 				<tr><th><?php esc_html_e( 'Minimum paragraphs between ads', 'semrs-core' ); ?></th><td><input type="number" min="1" max="10" name="<?php echo esc_attr( $n ); ?>[min_gap]" value="<?php echo esc_attr( $s['min_gap'] ); ?>"></td></tr>
+				<tr><th><?php esc_html_e( 'Minimum words between ads', 'semrs-core' ); ?></th><td><input type="number" min="0" max="1000" name="<?php echo esc_attr( $n ); ?>[min_gap_words]" value="<?php echo esc_attr( $s['min_gap_words'] ); ?>"><p class="description"><?php esc_html_e( 'Also kept between the ad below the title and the first in-content ad, so two ads never share the first screen.', 'semrs-core' ); ?></p></td></tr>
 			</table>
 
 			<h2><?php esc_html_e( 'Where ads never show', 'semrs-core' ); ?></h2>
@@ -133,7 +135,7 @@ function semrs_ads_render_settings() {
 						<td><strong><?php echo esc_html( $label ); ?></strong></td>
 						<td><input type="checkbox" name="<?php echo esc_attr( $f ); ?>[enabled]" value="1" <?php checked( $sl['enabled'] ); ?>></td>
 						<td><select name="<?php echo esc_attr( $f ); ?>[network]"><option value="adsense" <?php selected( $sl['network'], 'adsense' ); ?>>AdSense</option><option value="custom" <?php selected( $sl['network'], 'custom' ); ?>><?php esc_html_e( 'Custom code', 'semrs-core' ); ?></option></select></td>
-						<td><input class="regular-text" style="width:140px" name="<?php echo esc_attr( $f ); ?>[ad_slot]" value="<?php echo esc_attr( $sl['ad_slot'] ); ?>" placeholder="1234567890"><br><select name="<?php echo esc_attr( $f ); ?>[format]"><option value="auto" <?php selected( $sl['format'], 'auto' ); ?>><?php esc_html_e( 'Display (responsive)', 'semrs-core' ); ?></option><option value="in-article" <?php selected( $sl['format'], 'in-article' ); ?>><?php esc_html_e( 'In-article', 'semrs-core' ); ?></option></select></td>
+						<td><input class="regular-text" style="width:140px" name="<?php echo esc_attr( $f ); ?>[ad_slot]" value="<?php echo esc_attr( $sl['ad_slot'] ); ?>" placeholder="1234567890"><br><select name="<?php echo esc_attr( $f ); ?>[format]"><?php foreach ( semrs_ads_formats() as $fk => $fv ) : ?><option value="<?php echo esc_attr( $fk ); ?>" <?php selected( $sl['format'], $fk ); ?>><?php echo esc_html( $fv[0] ); ?></option><?php endforeach; ?></select></td>
 						<td><textarea class="code" rows="2" style="width:100%" name="<?php echo esc_attr( $f ); ?>[code]"><?php echo esc_textarea( $sl['code'] ); ?></textarea></td>
 						<td><select name="<?php echo esc_attr( $f ); ?>[device]">
 							<?php foreach ( array( 'all' => __( 'All', 'semrs-core' ), 'mobile' => __( 'Mobile + tablet (<922px)', 'semrs-core' ), 'desktop' => __( 'Desktop (≥922px)', 'semrs-core' ), 'wide' => __( 'Wide (≥1200px)', 'semrs-core' ) ) as $v => $l ) : ?>

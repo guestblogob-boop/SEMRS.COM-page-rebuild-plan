@@ -4,7 +4,7 @@ Tags: seo, page cache, redirects, webp, user roles
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.3
+Stable tag: 1.3.7
 License: GPLv2 or later
 
 Free SEO, redirects, page cache, WebP images, user roles, review widgets and a policy-safe AdSense manager in one plugin.
@@ -81,6 +81,20 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt and all other features run entirely on your own server.
 
 == Changelog ==
+
+= 1.3.7 =
+* Ads: rectangle, vertical (half-page) and Multiplex formats
+
+= 1.3.6 =
+* Ads: fixed the AdSense tag check
+* Ads: blocks Site Kit's duplicate AdSense tag and keeps it off ad-free pages
+* Ads: minimum words between ads, no ad above a free tool
+
+= 1.3.5 =
+* Maintenance release.
+
+= 1.3.4 =
+* Maintenance release.
 
 = 1.3.3 =
 * SEO title, meta description and focus keyword fields for categories and tags (also over the REST API); empty category archives are noindexed until they have posts.

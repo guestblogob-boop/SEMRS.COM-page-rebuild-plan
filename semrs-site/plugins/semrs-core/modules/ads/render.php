@@ -28,11 +28,21 @@ function semrs_ads_head() {
 add_action( 'wp_head', 'semrs_ads_head', 2 );
 
 /**
+ * Does SEMRS print the AdSense tag on this site (setting on, valid publisher ID)?
+ *
+ * @return bool
+ */
+function semrs_ads_loads_tag() {
+	$s = semrs_ads_settings();
+	return $s['enabled'] && $s['load_adsense'] && (bool) preg_match( '/^ca-pub-\d{10,20}$/', $s['publisher_id'] );
+}
+
+/**
  * The AdSense tag, enqueued (async, crossorigin) only where ads are allowed.
  */
 function semrs_ads_enqueue_adsense() {
 	$s = semrs_ads_settings();
-	if ( ! $s['load_adsense'] || ! preg_match( '/^ca-pub-d{10,20}$/', $s['publisher_id'] ) || ! semrs_ads_allowed() ) {
+	if ( ! semrs_ads_loads_tag() || ! semrs_ads_allowed() ) {
 		return;
 	}
 	wp_enqueue_script(
@@ -45,6 +55,23 @@ function semrs_ads_enqueue_adsense() {
 }
 add_action( 'wp_enqueue_scripts', 'semrs_ads_enqueue_adsense' );
 
+/**
+ * Site Kit by Google also prints the AdSense tag, on every page. Block its
+ * copy where SEMRS keeps a page ad-free (Auto ads would otherwise appear on
+ * contact, pricing or legal pages) and where SEMRS prints the tag itself
+ * (two tags on one page break ad requests).
+ *
+ * @param bool $blocked Blocked already.
+ * @return bool
+ */
+function semrs_ads_sitekit_tag( $blocked ) {
+	if ( $blocked || ! semrs_ads_settings()['enabled'] ) {
+		return $blocked;
+	}
+	return semrs_ads_loads_tag() || ! semrs_ads_allowed();
+}
+add_filter( 'googlesitekit_adsense_tag_blocked', 'semrs_ads_sitekit_tag' );
+
 add_filter(
 	'script_loader_tag',
 	function ( $tag, $handle ) {
@@ -53,6 +80,34 @@ add_filter(
 	10,
 	2
 );
+
+/**
+ * AdSense formats: label => <ins> attributes. "Display" units accept the
+ * auto, rectangle and vertical shapes; in-article and multiplex need units of
+ * that type in AdSense.
+ *
+ * @return array format => [ label, attributes ]
+ */
+function semrs_ads_formats() {
+	return array(
+		'auto'       => array( __( 'Display (responsive)', 'semrs-core' ), 'style="display:block" data-ad-format="auto" data-full-width-responsive="true"' ),
+		'rectangle'  => array( __( 'Display: rectangle (336×280, 300×250)', 'semrs-core' ), 'style="display:block" data-ad-format="rectangle" data-full-width-responsive="true"' ),
+		'vertical'   => array( __( 'Display: vertical (300×600, 160×600)', 'semrs-core' ), 'style="display:block" data-ad-format="vertical" data-full-width-responsive="false"' ),
+		'in-article' => array( __( 'In-article unit', 'semrs-core' ), 'style="display:block;text-align:center" data-ad-layout="in-article" data-ad-format="fluid"' ),
+		'multiplex'  => array( __( 'Multiplex unit (related-content grid)', 'semrs-core' ), 'style="display:block" data-ad-format="autorelaxed"' ),
+	);
+}
+
+/**
+ * <ins> attributes for a format (unknown formats fall back to responsive display).
+ *
+ * @param string $format Format key.
+ * @return string
+ */
+function semrs_ads_format_attrs( $format ) {
+	$all = semrs_ads_formats();
+	return isset( $all[ $format ] ) ? $all[ $format ][1] : $all['auto'][1];
+}
 
 /**
  * Markup for one unit, or '' when the slot is off or unconfigured.
@@ -82,12 +137,9 @@ function semrs_ads_unit( $key, $extra = '' ) {
 	if ( 'custom' === $slot['network'] ) {
 		$inner = (string) $slot['code'];
 	} elseif ( preg_match( '/^ca-pub-\d{10,20}$/', $s['publisher_id'] ) && preg_match( '/^\d{6,20}$/', (string) $slot['ad_slot'] ) ) {
-		$fmt   = 'in-article' === $slot['format']
-			? 'style="display:block;text-align:center" data-ad-layout="in-article" data-ad-format="fluid"'
-			: 'style="display:block" data-ad-format="auto" data-full-width-responsive="true"';
 		$inner = sprintf(
 			'<ins class="adsbygoogle" %s data-ad-client="%s" data-ad-slot="%s"></ins>',
-			$fmt,
+			semrs_ads_format_attrs( $slot['format'] ),
 			esc_attr( $s['publisher_id'] ),
 			esc_attr( $slot['ad_slot'] )
 		);
@@ -146,27 +198,65 @@ function semrs_ads_insert( $content ) {
 	$points  = semrs_ads_safe_points( $content );
 	$total   = count( $points );
 	$gap     = max( 1, (int) $s['min_gap'] );
+	$gap_w   = max( 0, (int) $s['min_gap_words'] );
 	$max     = max( 0, (int) $s['max_incontent'] );
+	// No ad between the title and a free tool: visitors reach the tool first (its own ad sits below the result).
+	$has_tool = (bool) preg_match( '/class=["\'][^"\']*\bsemrs-tool\b/', $content );
+	$top      = ! $has_tool && ! empty( $s['slots']['before_content']['enabled'] );
 	$inserts = array(); // offset => html.
 	$used    = array(); // paragraph indexes used.
 
-	$try = function ( $index, $key ) use ( &$inserts, &$used, $points, $total, $gap, $max ) {
+	// Words of content before each safe point, so ads keep a reading distance apart.
+	$words = array();
+	$count = 0;
+	$prev  = 0;
+	foreach ( $points as $i => $offset ) {
+		$count      += count( preg_split( '/\s+/u', trim( wp_strip_all_tags( substr( $content, $prev, $offset - $prev ) ) ), -1, PREG_SPLIT_NO_EMPTY ) );
+		$words[ $i ] = $count;
+		$prev        = $offset;
+	}
+	$all_words = count( preg_split( '/\s+/u', trim( wp_strip_all_tags( $content ) ), -1, PREG_SPLIT_NO_EMPTY ) );
+
+	// Ads already in the content (the tool ad, manual shortcodes) keep the same distance.
+	$fixed = array();
+	if ( preg_match_all( '/<div class="semrs-ad-slot\b/', $content, $found, PREG_OFFSET_CAPTURE ) ) {
+		foreach ( $found[0] as $f ) {
+			$fixed[] = count( preg_split( '/\s+/u', trim( wp_strip_all_tags( substr( $content, 0, $f[1] ) ) ), -1, PREG_SPLIT_NO_EMPTY ) );
+		}
+	}
+
+	$try = function ( $index, $key ) use ( &$inserts, &$used, $points, $total, $gap, $gap_w, $max, $top, $words, $fixed ) {
 		if ( count( $inserts ) >= $max || $index < 0 || $index >= $total - 1 ) {
-			return; // Never after the final paragraph (end-of-content slot covers that).
+			return false; // Never after the final paragraph (end-of-content slot covers that).
+		}
+		if ( $top && $words[ $index ] < $gap_w ) {
+			return false; // Too close to the ad below the title.
+		}
+		foreach ( $fixed as $w ) {
+			if ( abs( $w - $words[ $index ] ) < $gap_w ) {
+				return false;
+			}
 		}
 		foreach ( $used as $u ) {
-			if ( abs( $u - $index ) < $gap ) {
-				return;
+			if ( abs( $u - $index ) < $gap || abs( $words[ $u ] - $words[ $index ] ) < $gap_w ) {
+				return false;
 			}
 		}
 		$html = semrs_ads_unit( $key );
-		if ( $html ) {
-			$inserts[ $points[ $index ] ] = $html;
-			$used[]                       = $index;
+		if ( ! $html ) {
+			return false;
 		}
+		$inserts[ $points[ $index ] ] = $html;
+		$used[]                       = $index;
+		return true;
 	};
 
-	$try( max( 0, (int) $s['paragraph_n'] - 1 ), 'after_paragraph' );
+	// First in-content ad after paragraph N, or the next point far enough down.
+	for ( $i = max( 0, (int) $s['paragraph_n'] - 1 ); $i < (int) floor( $total / 2 ); $i++ ) {
+		if ( $try( $i, 'after_paragraph' ) ) {
+			break;
+		}
+	}
 	$try( (int) floor( $total / 2 ), 'mid_content' );
 	/**
 	 * Extra in-content placements: list of [paragraph index, position key].
@@ -185,9 +275,10 @@ function semrs_ads_insert( $content ) {
 	}
 
 	$count  = count( $inserts );
-	$before = $count < $max ? semrs_ads_unit( 'before_content' ) : '';
+	$before = $top && $count < $max ? semrs_ads_unit( 'before_content' ) : '';
 	$count += $before ? 1 : 0;
-	$after  = ( $count < $max && $total >= 4 ) ? semrs_ads_unit( 'after_content' ) : '';
+	$last   = max( array_merge( $fixed, $used ? array( $words[ max( $used ) ] ) : array(), array( $before ? 0 : -$gap_w ) ) );
+	$after  = ( $count < $max && $total >= 4 && $all_words - $last >= $gap_w ) ? semrs_ads_unit( 'after_content' ) : '';
 
 	return $before . $content . $after;
 }

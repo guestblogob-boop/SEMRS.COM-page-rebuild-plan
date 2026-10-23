@@ -177,9 +177,9 @@ add_filter(
 		if ( '' !== trim( (string) $r['b_code'] ) ) {
 			$b = (string) $r['b_code'];
 		} elseif ( $r['b_slot'] && preg_match( '/^ca-pub-\d{10,20}$/', $s['publisher_id'] ) ) {
-			$fmt = 'in-article' === $slot['format']
+			$fmt = function_exists( 'semrs_ads_format_attrs' ) ? semrs_ads_format_attrs( $slot['format'] ) : ( 'in-article' === $slot['format']
 				? 'style="display:block;text-align:center" data-ad-layout="in-article" data-ad-format="fluid"'
-				: 'style="display:block" data-ad-format="auto" data-full-width-responsive="true"';
+				: 'style="display:block" data-ad-format="auto" data-full-width-responsive="true"' );
 			$b   = sprintf( '<ins class="adsbygoogle" %s data-ad-client="%s" data-ad-slot="%s"></ins>', $fmt, esc_attr( $s['publisher_id'] ), esc_attr( $r['b_slot'] ) );
 		}
 		return '' === $b ? $templates : $templates . '<template>' . $b . '</template>';
