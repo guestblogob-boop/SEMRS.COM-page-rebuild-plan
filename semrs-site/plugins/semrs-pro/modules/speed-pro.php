@@ -2,7 +2,7 @@
 /**
  * Speed Pro: delay analytics, pixel and chat scripts until the visitor
  * interacts; skip form and block-plugin files on pages that do not use
- * them; minify stylesheets, add missing image sizes, lazy-load iframes;
+ * them; remove unused CSS; minify stylesheets, add missing image sizes, lazy-load iframes;
  * preload the SEMRS page cache in the background after it
  * clears; serve static files from a CDN. Settings live on SEMRS → Speed →
  * Optimize. Needs the SEMRS Core Speed module.
@@ -17,6 +17,8 @@ defined( 'ABSPATH' ) || exit;
 if ( ! function_exists( 'semrs_speed_settings' ) ) {
 	return; // Core Speed module is off.
 }
+
+require __DIR__ . '/speed-ucss.php';
 
 /**
  * Default script patterns to delay.
@@ -44,6 +46,9 @@ function semrs_pro_speed_settings() {
 			'delay_timeout' => 0,
 			'unload'        => false,
 			'minify_css'    => false,
+			'ucss'          => false,
+			'ucss_safelist' => semrs_pro_ucss_default_safelist(),
+			'ucss_exclude'  => semrs_pro_ucss_default_exclude(),
 			'dims'          => false,
 			'lazy_iframes'  => false,
 			'preload'       => false,
@@ -76,6 +81,9 @@ add_action(
 						'delay_timeout' => min( 30, absint( $in['delay_timeout'] ?? 0 ) ),
 						'unload'        => ! empty( $in['unload'] ),
 						'minify_css'    => ! empty( $in['minify_css'] ),
+						'ucss'          => ! empty( $in['ucss'] ),
+						'ucss_safelist' => sanitize_textarea_field( $in['ucss_safelist'] ?? '' ),
+						'ucss_exclude'  => sanitize_textarea_field( $in['ucss_exclude'] ?? '' ),
 						'dims'          => ! empty( $in['dims'] ),
 						'lazy_iframes'  => ! empty( $in['lazy_iframes'] ),
 						'preload'       => ! empty( $in['preload'] ),
@@ -103,6 +111,14 @@ add_action(
 		<tr><th><?php esc_html_e( 'Unused plugin files', 'semrs-pro' ); ?></th><td>
 			<label><input type="checkbox" name="semrs_speed_pro[unload]" value="1" <?php checked( $p['unload'] ); ?>> <?php esc_html_e( 'Load form and block-plugin files only on pages that use them', 'semrs-pro' ); ?></label>
 			<p class="description"><?php esc_html_e( 'Contact Form 7 (with its reCAPTCHA and Turnstile scripts) loads only where a form appears in the content or a widget; Spectra files load only where a Spectra block appears.', 'semrs-pro' ); ?></p>
+		</td></tr>
+		<tr><th><?php esc_html_e( 'Remove unused CSS', 'semrs-pro' ); ?></th><td>
+			<label><input type="checkbox" name="semrs_speed_pro[ucss]" value="1" <?php checked( $p['ucss'] ); ?>> <?php esc_html_e( 'On', 'semrs-pro' ); ?></label>
+			<p class="description"><?php esc_html_e( 'Each page gets only the CSS rules it uses, inline. The full stylesheets still load at the lowest priority and switch on at the first scroll, tap, mouse move or key press. Logged-in users always get the full CSS.', 'semrs-pro' ); ?></p>
+			<p><label for="semrs-ucss-safe"><?php esc_html_e( 'Always keep these classes (added by JavaScript), one per line, * = any characters:', 'semrs-pro' ); ?></label></p>
+			<textarea id="semrs-ucss-safe" name="semrs_speed_pro[ucss_safelist]" rows="4" class="large-text code"><?php echo esc_textarea( $p['ucss_safelist'] ); ?></textarea>
+			<p><label for="semrs-ucss-skip"><?php esc_html_e( 'Leave these stylesheets whole (part of the file name or handle), one per line:', 'semrs-pro' ); ?></label></p>
+			<textarea id="semrs-ucss-skip" name="semrs_speed_pro[ucss_exclude]" rows="2" class="large-text code"><?php echo esc_textarea( $p['ucss_exclude'] ); ?></textarea>
 		</td></tr>
 		<tr><th><?php esc_html_e( 'Files and media', 'semrs-pro' ); ?></th><td>
 			<label><input type="checkbox" name="semrs_speed_pro[minify_css]" value="1" <?php checked( $p['minify_css'] ); ?>> <?php esc_html_e( 'Minify stylesheets (smaller CSS files, cached until the file changes)', 'semrs-pro' ); ?></label><br>
@@ -297,7 +313,7 @@ function semrs_pro_speed_cdn( $html ) {
 }
 
 $semrs_pro_speed = semrs_pro_speed_settings();
-if ( $semrs_pro_speed['delay'] || $semrs_pro_speed['cdn'] || $semrs_pro_speed['minify_css'] || $semrs_pro_speed['dims'] || $semrs_pro_speed['lazy_iframes'] ) {
+if ( $semrs_pro_speed['delay'] || $semrs_pro_speed['cdn'] || $semrs_pro_speed['ucss'] || $semrs_pro_speed['minify_css'] || $semrs_pro_speed['dims'] || $semrs_pro_speed['lazy_iframes'] ) {
 	add_filter( 'semrs_speed_html', 'semrs_pro_speed_html' );
 }
 if ( $semrs_pro_speed['unload'] && ! is_admin() ) {
@@ -400,6 +416,9 @@ function semrs_pro_speed_html( $html ) {
 		return $html;
 	}
 	$p = semrs_pro_speed_settings();
+	if ( $p['ucss'] ) {
+		$html = semrs_pro_ucss( $html ); // Before minify, which then serves the full files minified.
+	}
 	if ( $p['minify_css'] ) {
 		$html = semrs_pro_speed_minify( $html );
 	}

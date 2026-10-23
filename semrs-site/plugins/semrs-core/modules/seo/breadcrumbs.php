@@ -41,7 +41,8 @@ function semrs_seo_breadcrumb_trail() {
 		if ( $page ) {
 			$trail[] = array( get_the_title( $page ), get_permalink( $page ) );
 		}
-		$primary = (int) get_post_meta( get_queried_object_id(), 'rank_math_primary_category', true );
+		$primary = (int) get_post_meta( get_queried_object_id(), '_semrs_primary_category', true );
+		$primary = $primary ? $primary : (int) get_post_meta( get_queried_object_id(), 'rank_math_primary_category', true );
 		$cat     = $primary ? get_term( $primary, 'category' ) : null;
 		if ( ! $cat || is_wp_error( $cat ) ) {
 			$cats = get_the_category( get_queried_object_id() );

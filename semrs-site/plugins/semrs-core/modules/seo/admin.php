@@ -115,6 +115,7 @@ function semrs_seo_settings_page() {
 		<?php if ( ! semrs_seo_active() ) : ?>
 			<div class="notice notice-warning inline"><p><?php echo esc_html( sprintf( /* translators: %s: plugin */ __( '%s is active, so SEMRS SEO output is paused. You can set everything up now; it takes over when you deactivate it. Rank Math titles, descriptions, focus keywords, canonicals and noindex settings are read automatically.', 'semrs-core' ), semrs_seo_conflict() ) ); ?></p></div>
 		<?php endif; ?>
+		<?php semrs_seo_rm_import_box(); ?>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'semrs_seo' ); ?>
 			<?php foreach ( $sections as $sec => $title ) : ?>

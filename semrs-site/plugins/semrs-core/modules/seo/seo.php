@@ -212,12 +212,13 @@ function semrs_seo_rm_vars( $text, $post_id = 0 ) {
 		return $text;
 	}
 	$cats = $post_id ? get_the_category( $post_id ) : array();
+	$rm   = (array) get_option( 'rank-math-options-titles', array() );
 	$map  = array(
 		'%title%'            => $post_id ? get_the_title( $post_id ) : '',
 		'%seo_title%'        => $post_id ? get_the_title( $post_id ) : '',
 		'%sitename%'         => get_bloginfo( 'name' ),
 		'%sitedesc%'         => get_bloginfo( 'description' ),
-		'%sep%'              => semrs_seo_settings()['sep'],
+		'%sep%'              => ! empty( $rm['title_separator'] ) ? $rm['title_separator'] : semrs_seo_settings()['sep'], // Keep imported titles exactly as Rank Math showed them.
 		'%excerpt%'          => $post_id ? wp_strip_all_tags( get_the_excerpt( $post_id ) ) : '',
 		'%category%'         => $cats ? $cats[0]->name : '',
 		'%primary_category%' => $cats ? $cats[0]->name : '',
@@ -260,4 +261,5 @@ require __DIR__ . '/llms.php';
 if ( is_admin() ) {
 	require __DIR__ . '/admin.php';
 	require __DIR__ . '/audit.php';
+	require __DIR__ . '/import.php';
 }
