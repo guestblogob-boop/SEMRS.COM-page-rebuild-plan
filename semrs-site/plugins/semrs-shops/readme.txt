@@ -5,7 +5,7 @@ Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: semrs-blocks
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,9 @@ Shop home, all-products page, category pages, FAQ and contact are included. All 
 3. Go to SEMRS → Templates, choose Digital Downloads Shop or Crochet Pattern Shop and click Import.
 
 == Changelog ==
+
+= 1.0.2 =
+* Declares WP Consent API support (functional storage only, no trackers)
 
 = 1.0.1 =
 * Settings links on the Plugins screen

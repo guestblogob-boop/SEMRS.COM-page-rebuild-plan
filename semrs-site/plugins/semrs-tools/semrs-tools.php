@@ -3,7 +3,7 @@
  * Plugin Name:       SEMRS Tools
  * Plugin URI:        https://semrs.com/tools/
  * Description:       Free SEO tools for any WordPress site: SERP preview, meta checker, robots.txt, redirect checker, schema generators, word counter, Google review link, llms.txt, UTM builder, image compressor, SEO ROI calculator. Each tool loads only its own small script. Shortcode: [semrs_tool id="…"], directory: [semrs_tools].
- * Version:           1.3.1
+ * Version:           1.3.2
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-tools
@@ -16,7 +16,10 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEMRS_TOOLS_VERSION', '1.3.1' );
+// WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
+add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
+
+define( 'SEMRS_TOOLS_VERSION', '1.3.2' );
 define( 'SEMRS_TOOLS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_TOOLS_URL', plugin_dir_url( __FILE__ ) );
 

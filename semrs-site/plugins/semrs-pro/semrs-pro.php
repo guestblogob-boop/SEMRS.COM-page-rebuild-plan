@@ -3,7 +3,7 @@
  * Plugin Name:       SEMRS Pro
  * Plugin URI:        https://semrs.com/
  * Description:       Premium add-on for the SEMRS theme and SEMRS Core: sticky/transparent header, mega menu, table of contents, author box, related posts, extra section patterns, white label; multi-location local SEO, image SEO, custom schema; image library conversion; speed extras; ads manager; site layouts; case studies, portfolio and testimonials; lead tracking.
- * Version:           1.4.3
+ * Version:           1.4.4
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-pro
@@ -17,7 +17,10 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEMRS_PRO_VERSION', '1.4.3' );
+// WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
+add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
+
+define( 'SEMRS_PRO_VERSION', '1.4.4' );
 define( 'SEMRS_PRO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_PRO_URL', plugin_dir_url( __FILE__ ) );
 

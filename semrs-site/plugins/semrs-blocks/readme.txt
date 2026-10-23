@@ -4,7 +4,7 @@ Tags: blocks, icons, pricing table, contact form, post grid
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: GPLv2 or later
 
 Free blocks for any block theme or classic theme: SEMRS, Astra, GeneratePress, Kadence, Twenty Twenty-Five.
@@ -141,6 +141,9 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 * travel-blog-post3.jpg: rawpixel, CC0 1.0 – https://www.rawpixel.com/image/3285498/free-photo-image-plane-window-boat
 
 == Changelog ==
+
+= 1.3.3 =
+* Declares WP Consent API support (functional storage only, no trackers)
 
 = 1.3.2 =
 * Maintenance release.

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       SEMRS Site (semrs.com only)
  * Description:       semrs.com-only additions that are never given to clients: the SEMRS Store (products, collection and product pages, pricing) and SEMRS Pro sales page installer, the Keyword Ideas Generator tool, the "Hero with photo and keyword tool" pattern and its photo, and the web design portfolio hub ([semrs_portfolio]). Needs SEMRS Tools for the tool.
- * Version:           1.2.12
+ * Version:           1.2.13
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            SEMRS
@@ -14,7 +14,10 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEMRS_SITE_VERSION', '1.2.12' );
+// WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
+add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
+
+define( 'SEMRS_SITE_VERSION', '1.2.13' );
 define( 'SEMRS_SITE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_SITE_URL', plugin_dir_url( __FILE__ ) );
 

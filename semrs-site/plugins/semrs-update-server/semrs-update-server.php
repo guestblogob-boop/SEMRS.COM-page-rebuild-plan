@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       SEMRS Update Server
  * Description:       Runs on semrs.com only. Publishes theme and plugin releases, manages SEMRS Pro license keys, answers update checks from every site using SEMRS products, and lists the live sites with their versions.
- * Version:           1.1.2
+ * Version:           1.1.3
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            SEMRS
@@ -14,7 +14,10 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEMRS_US_VERSION', '1.1.2' );
+// WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
+add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
+
+define( 'SEMRS_US_VERSION', '1.1.3' );
 define( 'SEMRS_US_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_US_URL', plugin_dir_url( __FILE__ ) );
 

@@ -4,7 +4,7 @@ Tags: seo tools, serp preview, schema generator, utm builder, image compressor
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 
 12 free SEO tools for any WordPress site. Each page loads only its own small script (core ~2 KB + tool 2-6 KB gzipped).
@@ -28,6 +28,9 @@ Calculators: SEO ROI Calculator
 * GA4 events: tool_used, tool_run, tool_copy, tool_download, cta_click.
 
 == Changelog ==
+
+= 1.3.2 =
+* Declares WP Consent API support (functional storage only, no trackers)
 
 = 1.3.1 =
 * Settings links on the Plugins screen
