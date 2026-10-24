@@ -237,13 +237,16 @@ function semrs_redirect_page() {
 			<button class="button button-primary"><?php esc_html_e( 'Add', 'semrs-core' ); ?></button>
 		</form>
 
-		<h2><?php esc_html_e( 'Active redirects', 'semrs-core' ); ?> (<?php echo count( $rules ); ?>)</h2>
+		<?php // Long lists start folded; click the heading to show or hide them. ?>
+		<details class="semrs-redirect-list"<?php echo count( $rules ) > 20 ? '' : ' open'; ?>>
+		<summary style="cursor:pointer"><h2 style="display:inline-block"><?php esc_html_e( 'Active redirects', 'semrs-core' ); ?> (<?php echo count( $rules ); ?>)</h2> <span class="description"><?php esc_html_e( 'Click to show or hide', 'semrs-core' ); ?></span></summary>
 		<table class="widefat striped" style="max-width:1000px"><thead><tr><th><?php esc_html_e( 'From', 'semrs-core' ); ?></th><th><?php esc_html_e( 'To', 'semrs-core' ); ?></th><th><?php esc_html_e( 'Type', 'semrs-core' ); ?></th><th></th></tr></thead><tbody>
 		<?php foreach ( $rules as $i => $r ) : ?>
 			<tr><td><code><?php echo esc_html( $r['from'] ); ?></code></td><td><?php echo esc_html( $r['to'] ); ?></td><td><?php echo (int) $r['code']; ?></td><td><?php semrs_redirect_button( 'delete', __( 'Delete', 'semrs-core' ), array( 'index' => $i ), 'button-link-delete' ); ?></td></tr>
 		<?php endforeach; ?>
 		<?php if ( ! $rules ) : ?><tr><td colspan="4"><?php esc_html_e( 'No redirects yet.', 'semrs-core' ); ?></td></tr><?php endif; ?>
 		</tbody></table>
+		</details>
 		<p><?php semrs_redirect_button( 'import_rm', __( 'Import active redirects from Rank Math', 'semrs-core' ) ); ?></p>
 
 		<h2><?php esc_html_e( '404 log', 'semrs-core' ); ?></h2>
