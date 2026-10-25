@@ -5,7 +5,7 @@ SemrsTools.register('redirect-checker', function (root, api) {
 	var url = h('input', { type: 'url', placeholder: 'https://example.com/old-page/', required: true, inputmode: 'url' });
 	var btn = h('button', { type: 'submit', class: 'wp-element-button semrs-btn', text: 'Check redirects' });
 	var form = h('form', { class: 'semrs-tool__panel', novalidate: true },
-		h('h3', { class: 'semrs-tool__title', text: 'Enter a URL' }),
+		h('h2', { class: 'semrs-tool__title', text: 'Enter a URL' }),
 		api.field('URL to check', url, 'Checks up to 10 hops. Public websites only.'),
 		btn);
 	var out = h('div', { class: 'semrs-tool__panel', 'aria-live': 'polite' }, h('p', { class: 'semrs-tool__hint', text: 'Results appear here.' }));

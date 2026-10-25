@@ -1,0 +1,47 @@
+/* SEMRS SEO sidebar (block editor). */
+.semrs-sb-pill{display:inline-flex;align-items:center;justify-content:center;min-width:64px;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;line-height:1.4;color:#fff;background:#8c8f94;white-space:nowrap}
+.semrs-sb-pill.good{background:#00813a}.semrs-sb-pill.ok{background:#b26200}.semrs-sb-pill.bad{background:#cc1818}
+.semrs-sb-pill--icon{min-width:0;padding:2px 8px;font-size:11px}
+.semrs-sb-tabs .components-tab-panel__tabs{border-bottom:1px solid #e0e0e0}
+.semrs-sb-tabs .components-tab-panel__tabs button{flex:1;justify-content:center;font-size:12px;padding:6px 4px}
+.semrs-sb-tabs .components-tab-panel__tabs .dashicons{font-size:16px;width:16px;height:16px}
+.semrs-sb-serp{font-family:Arial,sans-serif;border:1px solid #dcdcde;border-radius:8px;padding:10px 12px;background:#fff;color:#202124}
+.semrs-sb-serp.is-mobile{max-width:360px;margin:0 auto}
+.semrs-sb-serp__url{font-size:12px;color:#202124;word-break:break-all}
+.semrs-sb-serp__title{font-size:18px;line-height:1.3;color:#1a0dab;margin:3px 0}
+.semrs-sb-serp__desc{font-size:13px;line-height:1.5;color:#4d5156}
+.semrs-sb-modal{max-width:720px;width:100%}
+.semrs-sb-modal__preview{display:grid;gap:10px;margin-bottom:12px;padding:12px;background:#f6f7f7;border-radius:8px}
+.semrs-sb-modal__preview .components-button-group{justify-self:end}
+.semrs-sb-field{padding:12px;margin-bottom:12px;background:#f6f7f7;border-radius:8px}
+.semrs-sb-field__head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+.semrs-sb-row{display:flex;gap:6px;align-items:flex-start}.semrs-sb-row>:first-child{flex:1}
+.semrs-sb-meter{display:flex;align-items:center;gap:8px;font-size:12px;color:#646970}
+.semrs-sb-meter__text.bad{color:#cc1818;font-weight:600}.semrs-sb-meter__text.good{color:#00813a}
+.semrs-sb-meter__bar{display:block;width:90px;height:5px;border-radius:3px;background:#dcdcde;overflow:hidden}
+.semrs-sb-meter__bar i{display:block;height:100%;background:#8c8f94}.semrs-sb-meter__bar i.good{background:#00813a}.semrs-sb-meter__bar i.ok{background:#dba617}.semrs-sb-meter__bar i.bad{background:#cc1818}
+.semrs-sb-help{margin:6px 0 0;font-size:12px;color:#646970}
+.semrs-sb-sub{display:flex;align-items:center;gap:4px;margin:10px 0 4px;font-size:12px;font-weight:500}
+.semrs-sb-pro{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:3px;font-size:10px;font-weight:700;line-height:1.5;color:#1d2327;background:#f0b849;vertical-align:middle}
+.semrs-sb-pronote{margin:8px 0 0;font-size:12px;color:#50575e}.semrs-sb-pronote .dashicons{font-size:14px;width:14px;height:14px;vertical-align:-2px}
+.semrs-sb-score{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-top:1px solid #e0e0e0}
+.semrs-sb-group{display:flex;align-items:center;gap:8px}
+.semrs-sb-badge{padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;color:#fff}
+.semrs-sb-badge.bad{background:#cc1818}.semrs-sb-badge.good{background:#00813a}
+.semrs-sb-checks{margin:0;padding:0;list-style:none}
+.semrs-sb-checks li{position:relative;padding:4px 0 4px 24px;font-size:13px;line-height:1.4}
+.semrs-sb-checks li::before{position:absolute;left:0;top:4px;width:16px;height:16px;border-radius:50%;color:#fff;font-size:10px;font-weight:700;line-height:16px;text-align:center}
+.semrs-sb-checks li.ok::before{content:"✓";background:#00813a}.semrs-sb-checks li.no::before{content:"✕";background:#cc1818}
+.semrs-sb-links{margin:0;padding:0;list-style:none}.semrs-sb-links li{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:4px 0;border-bottom:1px solid #f0f0f1}
+.semrs-sb-image img{display:block;max-width:100%;margin-top:8px;border-radius:4px}
+.semrs-sb-image .components-button{margin-top:6px}
+.semrs-sb .components-panel__body .components-base-control{margin-bottom:12px}
+.semrs-sb-ai{margin:8px 0 4px}
+.semrs-sb-ai__list{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+.semrs-sb-ai__list li{display:flex;flex-direction:column;gap:2px}
+.semrs-sb-ai__list button{text-align:left;padding:8px 10px;border:1px solid #c3c4c7;border-radius:6px;background:#fff;cursor:pointer;font:inherit;font-size:13px;line-height:1.4}
+.semrs-sb-ai__list button:hover,.semrs-sb-ai__list button:focus{border-color:#2271b1;background:#f0f6fc}
+.semrs-sb-ai__list span{font-size:11px;color:#646970}
+.semrs-sb-fix{display:inline-block;margin:4px 0 0 0;padding:1px 8px;border:0;border-radius:999px;background:#f3e8ff;color:#6d28d9;font-size:11px;font-weight:600;cursor:pointer}
+.semrs-sb-fix:hover,.semrs-sb-fix:focus{background:#e9d5ff}
+.semrs-sb-checks li .semrs-sb-fix{display:table}

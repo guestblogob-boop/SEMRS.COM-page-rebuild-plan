@@ -176,11 +176,13 @@ function semrs_seo_register_output() {
 		function ( $robots ) {
 			$s       = semrs_seo_settings();
 			$noindex = false;
-			if ( is_singular() ) {
-				$id      = get_queried_object_id();
+			$id      = is_singular() ? get_queried_object_id() : 0;
+			if ( $id ) {
 				$noindex = semrs_seo_is_noindex( $id );
-				if ( semrs_seo_meta( $id, 'nofollow' ) ) {
-					$robots['nofollow'] = true;
+				foreach ( array( 'nofollow', 'noarchive', 'nosnippet', 'noimageindex' ) as $flag ) {
+					if ( semrs_seo_meta( $id, $flag ) ) {
+						$robots[ $flag ] = true;
+					}
 				}
 			} elseif ( is_search() || is_404() ) {
 				$noindex = true;
@@ -196,11 +198,17 @@ function semrs_seo_register_output() {
 			if ( $noindex ) {
 				$robots['noindex'] = true;
 				$robots['follow']  = empty( $robots['nofollow'] );
-			} else {
-				$robots['max-snippet']       = '-1';
-				$robots['max-video-preview'] = '-1';
+			} elseif ( empty( $robots['nosnippet'] ) ) {
+				// Advanced robots from SEMRS SEO → Advanced (empty = no limit).
+				$snip = $id ? (string) semrs_seo_meta( $id, 'max_snippet' ) : '';
+				$vid  = $id ? (string) semrs_seo_meta( $id, 'max_video' ) : '';
+				$robots['max-snippet']       = '' !== $snip ? (string) (int) $snip : '-1';
+				$robots['max-video-preview'] = '' !== $vid ? (string) (int) $vid : '-1';
 			}
-			$robots['max-image-preview'] = 'large';
+			$img = $id ? (string) semrs_seo_meta( $id, 'max_image' ) : '';
+			if ( empty( $robots['noimageindex'] ) ) {
+				$robots['max-image-preview'] = in_array( $img, array( 'none', 'standard', 'large' ), true ) ? $img : 'large';
+			}
 			return $robots;
 		}
 	);
@@ -220,6 +228,12 @@ function semrs_seo_register_output() {
 		$image = semrs_seo_image();
 		$type  = is_singular( 'post' ) ? 'article' : 'website';
 		$url   = $canon ? $canon : home_url( add_query_arg( array() ) );
+		// Social tab (Facebook and X) overrides for this post.
+		$sid      = is_singular() ? get_queried_object_id() : 0;
+		$og_title = $sid ? trim( (string) semrs_seo_meta( $sid, 'og_title' ) ) : '';
+		$og_desc  = $sid ? trim( (string) semrs_seo_meta( $sid, 'og_description' ) ) : '';
+		$og_title = '' !== $og_title ? $og_title : $title;
+		$og_desc  = '' !== $og_desc ? $og_desc : $desc;
 
 		echo "\n<!-- SEMRS SEO -->\n";
 		if ( $desc ) {
@@ -231,8 +245,8 @@ function semrs_seo_register_output() {
 		$og = array(
 			'og:locale'    => get_locale(),
 			'og:type'      => $type,
-			'og:title'     => $title,
-			'og:description' => $desc,
+			'og:title'     => $og_title,
+			'og:description' => $og_desc,
 			'og:url'       => $url,
 			'og:site_name' => get_bloginfo( 'name' ),
 			'og:image'     => $image,
@@ -246,7 +260,21 @@ function semrs_seo_register_output() {
 			printf( '<meta property="article:published_time" content="%s">' . "\n", esc_attr( get_the_date( 'c' ) ) );
 			printf( '<meta property="article:modified_time" content="%s">' . "\n", esc_attr( get_the_modified_date( 'c' ) ) );
 		}
-		printf( '<meta name="twitter:card" content="%s">' . "\n", $image ? 'summary_large_image' : 'summary' );
+		$card = $sid ? (string) semrs_seo_meta( $sid, 'tw_card' ) : '';
+		$card = in_array( $card, array( 'summary', 'summary_large_image' ), true ) ? $card : ( $image ? 'summary_large_image' : 'summary' );
+		printf( '<meta name="twitter:card" content="%s">' . "\n", esc_attr( $card ) );
+		if ( $sid && semrs_seo_meta( $sid, 'tw_custom' ) ) {
+			// X reads Open Graph by default; these print only when the post has its own X details.
+			$tw = array(
+				'twitter:title'       => trim( (string) semrs_seo_meta( $sid, 'tw_title' ) ),
+				'twitter:description' => trim( (string) semrs_seo_meta( $sid, 'tw_description' ) ),
+				'twitter:image'       => trim( (string) semrs_seo_meta( $sid, 'tw_image' ) ),
+			);
+			$tw = array_merge( array_filter( array( 'twitter:title' => $og_title, 'twitter:description' => $og_desc, 'twitter:image' => $image ) ), array_filter( $tw ) );
+			foreach ( $tw as $name => $val ) {
+				printf( '<meta name="%s" content="%s">' . "\n", esc_attr( $name ), 'twitter:image' === $name ? esc_url( $val ) : esc_attr( $val ) );
+			}
+		}
 		if ( $s['twitter_site'] ) {
 			printf( '<meta name="twitter:site" content="@%s">' . "\n", esc_attr( ltrim( $s['twitter_site'], '@' ) ) );
 		}

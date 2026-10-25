@@ -74,7 +74,7 @@ SemrsTools.register('robots-txt-generator', function (root, api) {
 	function render() {
 		var r = build();
 		out.innerHTML = '';
-		out.append(h('h3', { class: 'semrs-tool__title', text: 'Your robots.txt' }), h('pre', { class: 'semrs-tool__output', text: r.text }));
+		out.append(h('h2', { class: 'semrs-tool__title', text: 'Your robots.txt' }), h('pre', { class: 'semrs-tool__output', text: r.text }));
 		if (r.warn.length) {
 			var ul = h('ul', { class: 'semrs-tool__checks' });
 			r.warn.forEach(function (w) { ul.append(h('li', { class: 'warn', text: w })); });

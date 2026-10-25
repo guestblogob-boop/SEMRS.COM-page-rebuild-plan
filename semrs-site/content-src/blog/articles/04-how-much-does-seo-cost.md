@@ -9,7 +9,7 @@ keyword: how much does seo cost
 ---
 How much does SEO cost? Most businesses pay for SEO as a monthly retainer, and the most common price band is a few hundred to a few thousand dollars a month. The right amount for you depends on how competitive your market is, how much work your website needs and whether you want local or national visibility. This guide explains the pricing models, shows typical ranges from published industry surveys and gives you a checklist for comparing quotes.
 
-### Key takeaways
+## Key takeaways
 
 - Most SEO providers charge a monthly retainer; the most common band is $501–$1,000.
 - Agencies averaged about $3,209 a month and freelancers about $1,348 in the Ahrefs survey.

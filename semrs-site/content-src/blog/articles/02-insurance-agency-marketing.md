@@ -9,7 +9,7 @@ keyword: digital marketing for insurance agents
 ---
 Insurance is a crowded, expensive market to advertise in, and buying leads gets costly fast. The agencies that grow steadily build their own lead sources: a strong local presence, content that answers coverage questions and a referral system that runs every month. Here are twelve insurance agency marketing ideas for agents, ordered from the quickest wins to the long-term assets.
 
-### Key takeaways
+## Key takeaways
 
 - Start with free wins: a complete Google Business Profile, steady reviews and a fast quote path.
 - Use Google Ads and Local Services Ads with tight local targeting, then build leads you own with content and referrals.

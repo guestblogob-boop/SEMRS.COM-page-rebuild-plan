@@ -69,7 +69,7 @@ SemrsTools.register('serp-snippet-preview', function (root, api) {
 		info(titleInfo, title.value.length, tpx, 60, LIMITS.dTitle, 30);
 		info(descInfo, desc.value.length, dpx, 155, LIMITS.dDesc, 120);
 		out.innerHTML = '';
-		out.append(h('h3', { class: 'semrs-tool__title', text: 'Google preview' }),
+		out.append(h('h2', { class: 'semrs-tool__title', text: 'Google preview' }),
 			h('p', { class: 'semrs-serp__label', text: 'Desktop' }), snippet(false),
 			h('p', { class: 'semrs-serp__label', text: 'Mobile' }), snippet(true),
 			h('p', { class: 'semrs-tool__hint', text: 'Pixel limits are approximate. Google may also rewrite titles and descriptions.' }),

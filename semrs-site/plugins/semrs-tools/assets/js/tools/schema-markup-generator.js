@@ -120,7 +120,7 @@ SemrsTools.register('schema-markup-generator', function (root, api) {
 	function render() {
 		out.innerHTML = '';
 		out.append(
-			h('h3', { class: 'semrs-tool__title', text: state.type + ' JSON-LD' }),
+			h('h2', { class: 'semrs-tool__title', text: state.type + ' JSON-LD' }),
 			h('pre', { class: 'semrs-tool__output', text: code() }),
 			h('div', { class: 'semrs-tool__actions' },
 				api.copyBtn(code, 'Copy code', api.id),

@@ -325,8 +325,47 @@ add_action(
 				)
 			);
 		}
-		// SEO title, description and focus keyword (the editor box fields), and the stored score.
-		foreach ( array( '_semrs_title', '_semrs_description', '_semrs_focus', '_semrs_score' ) as $key ) {
+		// Every field of the SEMRS SEO sidebar (General, Advanced, Social) and the stored score.
+		$fields = array(
+			'_semrs_title'            => 'sanitize_text_field',
+			'_semrs_description'      => 'sanitize_textarea_field',
+			'_semrs_focus'            => 'sanitize_text_field',
+			'_semrs_focus_more'       => 'sanitize_text_field',
+			'_semrs_score'            => 'sanitize_text_field',
+			'_semrs_canonical'        => 'esc_url_raw',
+			'_semrs_breadcrumb_title' => 'sanitize_text_field',
+			'_semrs_og_title'         => 'sanitize_text_field',
+			'_semrs_og_description'   => 'sanitize_textarea_field',
+			'_semrs_og_image'         => 'esc_url_raw',
+			'_semrs_tw_title'         => 'sanitize_text_field',
+			'_semrs_tw_description'   => 'sanitize_textarea_field',
+			'_semrs_tw_image'         => 'esc_url_raw',
+			'_semrs_tw_card'          => function ( $v ) {
+				return in_array( $v, array( 'summary', 'summary_large_image' ), true ) ? $v : '';
+			},
+			'_semrs_max_image'        => function ( $v ) {
+				return in_array( $v, array( 'large', 'standard', 'none' ), true ) ? $v : '';
+			},
+			'_semrs_max_snippet'      => function ( $v ) {
+				return '' === trim( (string) $v ) ? '' : (string) max( -1, (int) $v );
+			},
+			'_semrs_max_video'        => function ( $v ) {
+				return '' === trim( (string) $v ) ? '' : (string) max( -1, (int) $v );
+			},
+		);
+		// Switches: '1' on, '0' off (an explicit '0' overrides an imported Rank Math robots value).
+		foreach ( array( 'pillar', 'tw_custom', 'noindex', 'nofollow', 'noarchive', 'nosnippet', 'noimageindex' ) as $flag ) {
+			$fields[ '_semrs_' . $flag ] = function ( $v ) {
+				return ( $v && '0' !== (string) $v ) ? '1' : '0';
+			};
+		}
+		foreach ( semrs_seo_pro_fields() as $pro_field ) {
+			$inner                         = $fields[ '_semrs_' . $pro_field ] ?? 'sanitize_text_field';
+			$fields[ '_semrs_' . $pro_field ] = function ( $v ) use ( $inner ) {
+				return semrs_seo_pro() ? call_user_func( $inner, $v ) : ''; // Locked until SEMRS Pro is licensed.
+			};
+		}
+		foreach ( $fields as $key => $sanitize ) {
 			register_post_meta(
 				'',
 				$key,
@@ -334,7 +373,7 @@ add_action(
 					'type'              => 'string',
 					'single'            => true,
 					'show_in_rest'      => true,
-					'sanitize_callback' => '_semrs_description' === $key ? 'sanitize_textarea_field' : 'sanitize_text_field',
+					'sanitize_callback' => $sanitize,
 					'auth_callback'     => function ( $allowed, $meta_key, $post_id ) {
 						return current_user_can( 'edit_post', $post_id );
 					},

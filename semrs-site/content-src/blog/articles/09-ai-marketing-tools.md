@@ -9,7 +9,7 @@ keyword: ai marketing tools
 ---
 AI marketing tools can draft content, suggest keywords, write ad variations, resize images and summarize reports in minutes. Used well, they free a small team to focus on strategy and customers. Used carelessly, they produce generic content, factual errors and brand risks. This guide groups AI marketing tools by job, explains what to look for and sets out the human checks every business should keep.
 
-### Key takeaways
+## Key takeaways
 
 - AI marketing tools are best at first drafts, variations, research help and report summaries.
 - Facts, expertise, regulated topics and publishing decisions still need a person.

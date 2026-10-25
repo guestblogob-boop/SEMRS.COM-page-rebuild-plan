@@ -121,7 +121,7 @@
 		var api = {
 			id: id, cfg: cfg, h: h, field: field, track: track, copyBtn: copyBtn, downloadBtn: downloadBtn,
 			store: store, load: load, textWidth: textWidth, debounce: debounce, esc: esc, counter: counter,
-			panel: function (title) { return h('div', { class: 'semrs-tool__panel' }, title ? h('h3', { class: 'semrs-tool__title', text: title }) : null); }
+			panel: function (title) { return h('div', { class: 'semrs-tool__panel' }, title ? h('h2', { class: 'semrs-tool__title', text: title }) : null); }
 		};
 		registry[id](root, api);
 		var label = root.getAttribute('data-service-label');

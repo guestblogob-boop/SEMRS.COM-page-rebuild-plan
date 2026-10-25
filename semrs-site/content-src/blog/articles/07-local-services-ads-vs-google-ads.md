@@ -9,7 +9,7 @@ keyword: local services ads
 ---
 Google offers two main ways for local businesses to pay for leads from search: Local Services Ads (LSA) and regular Google Ads search campaigns. They look similar to a searcher but work very differently for you. Local Services Ads charge per lead and carry a trust badge; Google Ads charge per click and give you far more control. This Local Services Ads vs Google Ads comparison will help you decide which to run first, and when to run both.
 
-### Key takeaways
+## Key takeaways
 
 - Local Services Ads charge per lead and show a Google Guaranteed or Google Screened badge.
 - Google Ads charge per click but give full control over keywords, ads and landing pages.

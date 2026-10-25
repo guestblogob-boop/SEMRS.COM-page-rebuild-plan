@@ -38,7 +38,7 @@ SemrsTools.register('word-counter', function (root, api) {
 		table.append(tb);
 		out.innerHTML = '';
 		out.append(
-			h('h3', { class: 'semrs-tool__title', text: 'Statistics' }),
+			h('h2', { class: 'semrs-tool__title', text: 'Statistics' }),
 			h('div', { class: 'semrs-tool__stats' },
 				stat(wc.toLocaleString(), 'words'), stat(t.length.toLocaleString(), 'characters'), stat(t.replace(/\s/g, '').length.toLocaleString(), 'without spaces'),
 				stat(sentences, 'sentences'), stat(paras, 'paragraphs'), stat(fmt(wc / 238), 'reading time'),

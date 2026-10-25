@@ -9,7 +9,7 @@ keyword: ada website compliance
 ---
 An accessible website is one that people with disabilities can use, including people who are blind, have low vision, are deaf or hard of hearing, or cannot use a mouse. In the United States, the Americans with Disabilities Act (ADA) is the main law behind website accessibility claims, and lawsuits against business websites are common. This guide explains what ADA website compliance means in practice and gives you a plan to fix the most frequent problems.
 
-### Key takeaways
+## Key takeaways
 
 - The US Department of Justice expects websites of businesses open to the public to be accessible.
 - WCAG 2.1 or 2.2 Level AA is the standard most settlements and rules refer to.

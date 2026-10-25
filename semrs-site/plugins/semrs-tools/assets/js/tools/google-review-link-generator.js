@@ -25,7 +25,7 @@ SemrsTools.register('google-review-link-generator', function (root, api) {
 	function render() {
 		var v = pid.value.trim();
 		out.innerHTML = '';
-		out.append(h('h3', { class: 'semrs-tool__title', text: 'Your review link' }));
+		out.append(h('h2', { class: 'semrs-tool__title', text: 'Your review link' }));
 		if (!v) {
 			out.append(h('p', { class: 'semrs-tool__hint', text: 'Paste your Place ID to create the link.' }));
 			return;

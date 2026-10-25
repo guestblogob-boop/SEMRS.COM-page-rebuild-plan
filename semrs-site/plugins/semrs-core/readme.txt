@@ -4,7 +4,7 @@ Tags: seo, page cache, redirects, webp, user roles
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.11
+Stable tag: 1.3.15
 License: GPLv2 or later
 
 Free SEO, redirects, page cache, WebP images, user roles, review widgets and a policy-safe AdSense manager in one plugin.
@@ -81,6 +81,24 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt and all other features run entirely on your own server.
 
 == Changelog ==
+
+= 1.3.15 =
+* Fix with AI on failing title, description and focus keyword checks
+* Secondary keywords check (Pro): each used once, never more
+* Clear keyword-stuffing warning when the keyword density is too high
+
+= 1.3.14 =
+* SEMRS SEO sidebar: Write with AI buttons for focus keyword, SEO title, meta description and Facebook text (with SEMRS Pro AI SEO)
+* AI SEO in the Features list
+
+= 1.3.13 =
+* SEMRS SEO sidebar in the block editor, like Rank Math: score in the toolbar; General (Edit Snippet with title/permalink/description counters and pixel widths, focus keywords, Pillar Content, checks), Advanced (robots meta, canonical, breadcrumb title), Schema and Social (Facebook, X) tabs
+* Rank Math checks: Basic SEO, Additional, Title readability and Content readability groups
+* Variables in SEO titles and descriptions (%title% %sep% %sitename% %excerpt% %focuskw%…)
+* Pro items (more keywords, advanced robots, X details) unlock with a SEMRS Pro license
+
+= 1.3.12 =
+* SEO box: new Speed & accessibility checks (image size and format, no GIFs, lazy embeds, valid lists and ARIA roles, link text, heading order, theme colours for dark mode) to keep pages at PageSpeed 100
 
 = 1.3.11 =
 * Redirects: the list of active redirects folds; click its heading to show or hide it

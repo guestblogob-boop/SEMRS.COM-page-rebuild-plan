@@ -9,7 +9,7 @@ keyword: email marketing platform
 ---
 An email marketing platform lets you collect subscribers, design emails, automate follow-ups and see who opens and clicks, without sending bulk mail from your own inbox. For a small business, the right email marketing platform is the one that fits your list size, your budget and the way you sell. This guide compares free plans from popular tools, lists the features that matter and covers the rules every sender must follow.
 
-### Key takeaways
+## Key takeaways
 
 - Start with the free plan that fits your list; most free plans cap contacts or sends, not features you need on day one.
 - Must-haves are signup forms, automation, segmentation, reporting and easy unsubscribes.

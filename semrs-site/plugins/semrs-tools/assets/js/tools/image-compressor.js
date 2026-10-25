@@ -14,7 +14,7 @@ SemrsTools.register('image-compressor', function (root, api) {
 	var qLabel = h('span', { text: quality.value + '%' });
 	var maxW = h('select', null, ['0', '2560', '1920', '1600', '1200', '800'].map(function (v) { return h('option', { value: v, text: v === '0' ? 'Keep original size' : 'Max width ' + v + ' px' }); }));
 	maxW.value = s.maxW || '1920';
-	var file = h('input', { type: 'file', accept: 'image/jpeg,image/png,image/webp,image/gif,image/bmp', multiple: true, style: 'display:none' });
+	var file = h('input', { type: 'file', accept: 'image/jpeg,image/png,image/webp,image/gif,image/bmp', multiple: true, 'aria-label': 'Choose images to compress', style: 'display:none' });
 	var drop = h('div', { class: 'semrs-drop', tabindex: '0', role: 'button', 'aria-label': 'Choose images to compress' },
 		h('strong', { text: 'Drop images here or click to choose' }), h('br'),
 		h('span', { class: 'semrs-tool__hint', text: 'JPG, PNG, WebP or GIF · up to ' + MAX_FILES + ' files · ' + MAX_MB + ' MB each · processed on your device' }));

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       SEMRS Site (semrs.com only)
  * Description:       semrs.com-only additions that are never given to clients: the SEMRS Store (products, collection and product pages, pricing) and SEMRS Pro sales page installer, the Keyword Ideas Generator tool, the "Hero with photo and keyword tool" pattern and its photo, and the web design portfolio hub ([semrs_portfolio]). Needs SEMRS Tools for the tool.
- * Version:           1.2.14
+ * Version:           1.2.17
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            SEMRS
@@ -17,7 +17,19 @@ defined( 'ABSPATH' ) || exit;
 // WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
 add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
 
-define( 'SEMRS_SITE_VERSION', '1.2.14' );
+// semrs.com issues the Pro licenses, so its own SEMRS SEO Pro items are always unlocked.
+add_filter( 'semrs_seo_pro_unlocked', '__return_true' );
+
+// House rule for AI-written SEO text on semrs.com.
+add_filter(
+	'semrs_ai_rules',
+	function ( $rules ) {
+		$rules[] = 'Never mention the brand Semrush.';
+		return $rules;
+	}
+);
+
+define( 'SEMRS_SITE_VERSION', '1.2.17' );
 define( 'SEMRS_SITE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_SITE_URL', plugin_dir_url( __FILE__ ) );
 

@@ -53,7 +53,7 @@ SemrsTools.register('utm-builder', function (root, api) {
 		if (/^(cpc|email|social|organic)$/i.test(f.source.value.trim())) { warn.push(['warn', 'That looks like a medium. Source is where traffic comes from (google, facebook, newsletter).']); }
 		if (link && link.indexOf(location.hostname) > -1 && f.source.value) { warn.push(['warn', 'Don’t use UTM tags on links between pages of your own site; they overwrite the real traffic source.']); }
 		out.innerHTML = '';
-		out.append(h('h3', { class: 'semrs-tool__title', text: 'Your tracked link' }), h('pre', { class: 'semrs-tool__output', text: link || 'Fill in the URL and campaign details.' }));
+		out.append(h('h2', { class: 'semrs-tool__title', text: 'Your tracked link' }), h('pre', { class: 'semrs-tool__output', text: link || 'Fill in the URL and campaign details.' }));
 		if (link) { out.append(h('div', { class: 'semrs-tool__actions' }, api.copyBtn(function () { return tag(url.value); }, 'Copy link', api.id))); }
 		if (warn.length) { var ul = h('ul', { class: 'semrs-tool__checks' }); warn.forEach(function (w) { ul.append(h('li', { class: w[0], text: w[1] })); }); out.append(ul); }
 		var rows = bulkRows();

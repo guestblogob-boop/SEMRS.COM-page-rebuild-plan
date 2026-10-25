@@ -9,7 +9,7 @@ keyword: digital marketing cost
 ---
 Your digital marketing cost can be almost nothing if you do it yourself, or many thousands a month if you hand several channels to an agency. What most small businesses really want to know is how to spend a sensible amount on the channels that will bring customers. This guide breaks down the cost of each channel, the ways agencies charge and a simple method for setting your budget.
 
-### Key takeaways
+## Key takeaways
 
 - Each channel is priced differently: retainers for SEO, ad spend plus fees for paid ads, projects for websites.
 - Fund one or two channels properly instead of spreading a small budget across six.

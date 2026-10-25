@@ -9,7 +9,7 @@ keyword: seo for attorneys
 ---
 Legal keywords are some of the most expensive on the internet. The 2025 WordStream by LocaliQ benchmarks ([reported by Search Engine Land](https://searchengineland.com/google-ads-costs-keep-rising-but-conversion-rates-improved-in-2025-477927)) put the average Google Ads cost per click for attorneys and legal services at about $8.58 and the average cost per lead at about $131.63, the highest of any industry they track. That is why SEO for attorneys matters so much: every case that arrives from organic search is a case you did not pay a click price for.
 
-### Key takeaways
+## Key takeaways
 
 - Legal clicks are the most expensive on Google Ads, so every organic case saves real money.
 - Win the map pack first, then build one strong page per practice area and city you serve.

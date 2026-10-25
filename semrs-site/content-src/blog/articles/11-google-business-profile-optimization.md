@@ -9,7 +9,7 @@ keyword: google business profile
 ---
 Your Google Business Profile is the panel that appears when people search for your business or for services near them on Google Search and Google Maps. For local businesses it is often the first impression, and it can bring more calls than your website. This guide covers every part of Google Business Profile optimization, from setup to reviews, in the order that matters most.
 
-### Key takeaways
+## Key takeaways
 
 - Google ranks local results on relevance, distance and prominence.
 - The right primary category, complete details and real photos improve relevance.

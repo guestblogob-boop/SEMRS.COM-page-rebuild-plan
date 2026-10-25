@@ -53,7 +53,7 @@ SemrsTools.register('keyword-ideas-generator', function (root, api) {
 	function render() {
 		var k = clean(seed.value), c = clean(city.value);
 		out.innerHTML = '';
-		out.append(h('h3', { class: 'semrs-tool__title', text: 'Keyword ideas' }));
+		out.append(h('h2', { class: 'semrs-tool__title', text: 'Keyword ideas' }));
 		if (!k) {
 			out.append(h('p', { class: 'semrs-tool__hint', text: 'Enter a seed keyword to see ideas grouped by what the searcher wants.' }));
 			last = [];

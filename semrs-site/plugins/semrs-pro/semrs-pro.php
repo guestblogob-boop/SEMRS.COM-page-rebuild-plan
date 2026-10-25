@@ -3,7 +3,7 @@
  * Plugin Name:       SEMRS Pro
  * Plugin URI:        https://semrs.com/
  * Description:       Premium add-on for the SEMRS theme and SEMRS Core: sticky/transparent header, mega menu, table of contents, author box, related posts, extra section patterns, white label; multi-location local SEO, image SEO, custom schema; image library conversion; speed extras; ads manager; site layouts; case studies, portfolio and testimonials; lead tracking.
- * Version:           1.4.6
+ * Version:           1.4.7
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-pro
@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 // WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
 add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
 
-define( 'SEMRS_PRO_VERSION', '1.4.6' );
+define( 'SEMRS_PRO_VERSION', '1.4.7' );
 define( 'SEMRS_PRO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_PRO_URL', plugin_dir_url( __FILE__ ) );
 
@@ -50,6 +50,7 @@ function semrs_pro_module_files( $files ) {
 			'ads_pro'    => SEMRS_PRO_DIR . 'modules/ads-pro.php',
 			'image_library' => SEMRS_PRO_DIR . 'modules/image-library.php',
 			'schema_pro' => SEMRS_PRO_DIR . 'modules/schema-pro.php',
+			'ai_seo'     => SEMRS_PRO_DIR . 'modules/ai-seo.php',
 		)
 	);
 }
@@ -80,6 +81,7 @@ function semrs_pro_module_labels( $mods ) {
 			'speed_pro'  => array( __( 'Speed Pro', 'semrs-pro' ), __( 'Delay analytics, pixel and chat scripts until the visitor interacts, preload the page cache in the background, and serve files from a CDN (needs the Speed module).', 'semrs-pro' ), 'pro' ),
 			'ads_pro'    => array( __( 'Ads Pro', 'semrs-pro' ), __( 'More placements (repeat in content, between posts in lists), targeting by category, post age and dates, A/B rotation, click protection, a polite ad-blocker message and per-page position switches (needs the Ads module).', 'semrs-pro' ), 'pro' ),
 			'image_library' => array( __( 'Image library conversion', 'semrs-pro' ), __( 'Makes WebP or AVIF copies of every image already in the media library, all sizes, in batches, and shows them on your pages. Originals are kept; one click removes the copies.', 'semrs-pro' ), 'pro' ),
+			'ai_seo'     => array( __( 'AI SEO', 'semrs-pro' ), __( 'AI writes SEO titles, meta descriptions, focus keywords, social text and image alt text from your content, with your own Claude, OpenAI or Gemini key; autofill on publish and bulk fill (needs the SEO module).', 'semrs-pro' ), 'pro' ),
 			'schema_pro' => array( __( 'Custom schema', 'semrs-pro' ), __( 'Add your own JSON-LD (Event, Product, Course, HowTo, Recipe, Video…) to any page from the editor, with starters and a JSON check.', 'semrs-pro' ), 'pro' ),
 		)
 	);

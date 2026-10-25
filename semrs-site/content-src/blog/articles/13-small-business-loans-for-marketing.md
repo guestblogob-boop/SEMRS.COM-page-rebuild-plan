@@ -9,7 +9,7 @@ keyword: small business loans
 ---
 Small business loans can pay for a new website, a launch campaign or a steady SEO program when cash flow alone cannot. But not every loan allows marketing as a use, and borrowing only makes sense when the marketing is likely to earn back more than the loan costs. This guide compares the main options, explains what each one can fund and shows a simple payback check before you apply.
 
-### Key takeaways
+## Key takeaways
 
 - SBA 7(a) loans and SBA microloans can fund working capital, which can include marketing; SBA 504 loans cannot.
 - Lines of credit and business credit cards suit short, repeatable marketing costs; term loans suit one-off projects like a website.

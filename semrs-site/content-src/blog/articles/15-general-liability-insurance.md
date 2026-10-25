@@ -9,7 +9,7 @@ keyword: general liability insurance small business
 ---
 General liability insurance pays for claims that your business caused injury to someone else or damaged their property, plus your legal defense. Clients and landlords ask for it more than any other cover. The U.S. Small Business Administration says any business may need it. This guide shows what the policy covers, what it leaves out, what it costs and how to buy one.
 
-### Key takeaways
+## Key takeaways
 
 - General liability covers third-party bodily injury, property damage, and personal and advertising injury, plus legal defense costs.
 - It does not cover your own employees, your own property, professional mistakes or vehicles; those need other policies.

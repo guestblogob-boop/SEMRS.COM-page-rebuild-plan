@@ -59,7 +59,7 @@ SemrsTools.register('local-business-schema-generator', function (root, api) {
 		if (!s.street || !s.city) { warn.push('Add your full address. Use the same name, address and phone (NAP) everywhere online.'); }
 		if (!s.telephone) { warn.push('Add a phone number with country code, e.g. +1 555 123 4567.'); }
 		out.innerHTML = '';
-		out.append(h('h3', { class: 'semrs-tool__title', text: s.type + ' JSON-LD' }), h('pre', { class: 'semrs-tool__output', text: code() }));
+		out.append(h('h2', { class: 'semrs-tool__title', text: s.type + ' JSON-LD' }), h('pre', { class: 'semrs-tool__output', text: code() }));
 		if (warn.length) { var ul = h('ul', { class: 'semrs-tool__checks' }); warn.forEach(function (w) { ul.append(h('li', { class: 'warn', text: w })); }); out.append(ul); }
 		out.append(h('div', { class: 'semrs-tool__actions' }, api.copyBtn(code, 'Copy code', api.id), h('a', { class: 'semrs-btn semrs-btn--ghost', href: 'https://search.google.com/test/rich-results', target: '_blank', rel: 'noopener', text: 'Test in Google ↗' })),
 			h('p', { class: 'semrs-tool__hint', text: 'Add it once, on your homepage or contact page. Use only your real business address.' }));

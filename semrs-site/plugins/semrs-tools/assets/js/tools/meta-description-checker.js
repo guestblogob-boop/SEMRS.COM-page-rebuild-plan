@@ -22,7 +22,7 @@ SemrsTools.register('meta-description-checker', function (root, api) {
 		var list = h('ul', { class: 'semrs-tool__checks' });
 		if (!t && !d) {
 			out.innerHTML = '';
-			out.append(h('h3', { class: 'semrs-tool__title', text: 'Results' }), h('p', { class: 'semrs-tool__hint', text: 'Type a title and description to see the checks.' }));
+			out.append(h('h2', { class: 'semrs-tool__title', text: 'Results' }), h('p', { class: 'semrs-tool__hint', text: 'Type a title and description to see the checks.' }));
 			return;
 		}
 		list.append(
@@ -54,7 +54,7 @@ SemrsTools.register('meta-description-checker', function (root, api) {
 		var passed = list.querySelectorAll('.ok').length, total = list.children.length;
 		out.innerHTML = '';
 		out.append(
-			h('h3', { class: 'semrs-tool__title', text: 'Results' }),
+			h('h2', { class: 'semrs-tool__title', text: 'Results' }),
 			h('div', { class: 'semrs-tool__stats' },
 				h('div', { class: 'semrs-tool__stat' }, h('b', { text: passed + '/' + total }), h('span', { text: 'checks passed' })),
 				h('div', { class: 'semrs-tool__stat' }, h('b', { text: tl }), h('span', { text: 'title chars' })),

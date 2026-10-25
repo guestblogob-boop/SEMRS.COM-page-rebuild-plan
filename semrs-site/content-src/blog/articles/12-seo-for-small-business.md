@@ -9,7 +9,7 @@ keyword: seo for small business
 ---
 Search engine optimization (SEO) helps your website appear when people search for what you sell. SEO for small business is one of the few marketing channels that keeps bringing customers without paying for every click. This guide covers the steps that matter most, in a sensible order, so you can do the basics yourself or know what to expect from an agency.
 
-### Key takeaways
+## Key takeaways
 
 - Start with the searches your customers make and give each main service its own page.
 - Local SEO and technical basics often bring the fastest results for small businesses.

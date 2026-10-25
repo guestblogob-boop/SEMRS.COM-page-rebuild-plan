@@ -1,6 +1,6 @@
 # SEMRS blog writing guide
 
-The house style and SEO checklist for every semrs.com article. The first 12 articles (October 2026) follow it and score 98–100 on the SEMRS SEO check. Use it for every article in the content plan (`keywords/semrs-keywords.xlsx`, sheet "3-Month Plan").
+The house style and SEO checklist for every semrs.com article. Section 13 (speed, accessibility and dark mode) applies to every page and post on the site. The first 12 articles (October 2026) follow it and score 98–100 on the SEMRS SEO check. Use it for every article in the content plan (`keywords/semrs-keywords.xlsx`, sheet "3-Month Plan").
 
 ## 1. Who we write for
 
@@ -34,7 +34,7 @@ keyword: <primary keyword from the plan>
 ## 4. Structure (in this order)
 
 1. **Opening paragraph** (2–4 sentences): answer the search question directly. The focus keyword appears in the first 100 words.
-2. **Key takeaways** (`### Key takeaways` + 3 bullets): the three most useful points.
+2. **Key takeaways** (`## Key takeaways` + 3 bullets): the three most useful points. It is an H2: an H3 straight after the title skips a heading level.
 3. **Disclaimer callout** for legal, finance, tax, health or insurance topics (`! This article is general … not legal advice …`).
 4. **H2 sections** (one idea each). At least one H2 contains the focus keyword. Use H3 for sub-steps. Never use H1 in the body (the title is the H1).
 5. **One data graphic** after the section it illustrates (`@img chart`), see section 7.
@@ -92,7 +92,8 @@ Build images with `node content-src/blog/blog-images.mjs` from the `semrs-site` 
 - FAQ section present (FAQPage schema is added by SEMRS automatically).
 - Article, BreadcrumbList and Organization schema come from SEMRS; nothing to add by hand.
 - Run `node content-src/blog/build-blog.mjs` from the `semrs-site` folder: every article must print `ok`.
-- After publishing, the SEMRS SEO score must be 98 or higher.
+- After publishing, the SEMRS SEO score must be 98 or higher, with every **Speed & accessibility** check green.
+- PageSpeed Insights 100 / 100 / 100 / 100 and Agentic Browsing 3/3, mobile and desktop: follow section 13.
 
 ## 9. Local SEO requirements
 
@@ -134,5 +135,35 @@ The old `/category/industry-marketing/` URL redirects to Finance & Insurance Mar
 1. Pick the next article in the 3-Month Plan sheet; copy the article template sheet into `content-src/blog/articles/NN-slug.md`.
 2. Write it to this guide; add the graphic to `graphics.mjs` and the photo to `blog-images.mjs`, then run it (free-stock photos get the SEMRS text stamp; generated images only if necessary).
 3. Build and check (`build-blog.mjs` prints `ok`).
-4. Upload to staging, set the featured image, check the SEMRS score (98+), then a person approves it before it goes live.
-5. Mark it "Written" in the plan.
+4. Upload to staging, set the featured image, check the SEMRS score (98+) with every "Speed & accessibility" check green, then a person approves it before it goes live.
+5. After it goes live, run [PageSpeed Insights](https://pagespeed.web.dev/) on the URL (mobile and desktop): 100 in Performance, Accessibility, Best Practices and SEO, and 3/3 Agentic Browsing (section 13).
+6. Mark it "Written" in the plan.
+
+## 13. Speed, accessibility and dark mode (PageSpeed 100)
+
+These rules apply to **every page and post** on semrs.com, not only articles. semrs.com scores 100 in all four PageSpeed Insights categories and 3/3 in Agentic Browsing (October 2026); new content must keep it there. The SEMRS SEO box checks most of them automatically in its **Speed & accessibility** group.
+
+**Layout: nothing may jump (Cumulative Layout Shift 0)**
+- Every image has a `width` and `height` (WordPress adds them for Media Library images; never paste images by URL without them).
+- Animated or typing text must not change the height of the page. The SEMRS Fancy Heading reserves the space of its longest word; don't build moving text any other way.
+- Don't insert banners, notices or embeds above content after the page loads. Ads go only in the SEMRS ad slots, which reserve their space.
+
+**Images and media**
+- WebP (or AVIF/SVG), sized to how they show: 1200 px wide at most for full-width images. Featured images under 100 KB, any image under 150 KB.
+- No GIFs. Use a still image or a short, muted video.
+- Videos and maps are embedded with lazy loading (the default WordPress embed blocks do this).
+
+**Structure that screen readers and AI agents understand**
+- One H1 (the title); headings in order (H2 → H3 → H4), never skipping a level.
+- Lists contain only list items. Don't put a role on a list item, and don't put `role="img"` on a figure that has a caption; put the role on the image or SVG inside.
+- Every link and button has readable text (or an `aria-label` for icon-only buttons). No "click here".
+- Every form field has a visible label.
+
+**Colour and dark mode**
+- Use the theme's colours (block colour settings from the SEMRS palette). Don't type fixed light backgrounds such as `#fff`, `#f6f7f9` or `#fbf4e0` into blocks: they turn into light boxes with unreadable white text in dark mode.
+- Text must stay readable in **both** light and dark mode, including on hover: links and outline buttons on blue bands are white, and button hovers use the theme's button hover colours.
+- Check new pages in dark mode (moon icon in the header) before publishing.
+
+**Scripts and caching (site setup, not per article)**
+- No extra tracking or chat scripts in content. Third-party scripts (Google tags) load through Site Kit and are delayed until the visitor interacts.
+- CSS and JS are versioned (`?ver=`) and cached for a year (the `# BEGIN SEMRS cache` block in `.htaccess`); images for four months. Keep that block when editing `.htaccess`.

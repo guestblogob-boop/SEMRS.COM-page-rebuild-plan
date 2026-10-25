@@ -104,6 +104,25 @@ function semrs_seo_settings() {
 }
 
 /**
+ * Are the SEMRS SEO Pro items unlocked? Yes once SEMRS Pro is installed with a valid license.
+ *
+ * @return bool
+ */
+function semrs_seo_pro() {
+	$ok = defined( 'SEMRS_PRO_VERSION' ) && function_exists( 'semrs_pro_license_status' ) && 'valid' === semrs_pro_license_status();
+	return (bool) apply_filters( 'semrs_seo_pro_unlocked', $ok );
+}
+
+/**
+ * Per-post fields that need SEMRS Pro: extra focus keywords, advanced robots and separate X details.
+ *
+ * @return string[]
+ */
+function semrs_seo_pro_fields() {
+	return array( 'focus_more', 'max_snippet', 'max_video', 'max_image', 'tw_custom', 'tw_card', 'tw_title', 'tw_description', 'tw_image' );
+}
+
+/**
  * Per-post SEO value with Rank Math, Yoast and AIOSEO fallbacks.
  *
  * @param int    $post_id Post ID.
@@ -111,9 +130,13 @@ function semrs_seo_settings() {
  * @return mixed
  */
 function semrs_seo_meta( $post_id, $field ) {
+	if ( in_array( $field, semrs_seo_pro_fields(), true ) && ! semrs_seo_pro() ) {
+		return ''; // Pro field: ignored until SEMRS Pro is licensed.
+	}
 	$own = get_post_meta( $post_id, '_semrs_' . $field, true );
 	if ( '' !== $own && null !== $own && false !== $own ) {
-		return $own;
+		// Our own titles and descriptions may use %title%, %sep%, %sitename%, %excerpt%, %focuskw%…
+		return in_array( $field, array( 'title', 'description', 'og_title', 'og_description', 'tw_title', 'tw_description', 'breadcrumb_title' ), true ) ? semrs_seo_rm_vars( (string) $own, $post_id ) : $own;
 	}
 	$rm = semrs_seo_rank_math_meta( $post_id, $field );
 	if ( '' !== $rm && false !== $rm ) {
@@ -178,14 +201,42 @@ function semrs_seo_rank_math_meta( $post_id, $field ) {
 		case 'focus':
 			$kw = (string) get_post_meta( $post_id, 'rank_math_focus_keyword', true );
 			return trim( strtok( $kw, ',' ) ?: '' );
+		case 'focus_more':
+			$kw = array_map( 'trim', explode( ',', (string) get_post_meta( $post_id, 'rank_math_focus_keyword', true ) ) );
+			return implode( ', ', array_filter( array_slice( $kw, 1 ) ) );
 		case 'canonical':
 			return (string) get_post_meta( $post_id, 'rank_math_canonical_url', true );
 		case 'og_image':
 			return (string) get_post_meta( $post_id, 'rank_math_facebook_image', true );
+		case 'og_title':
+		case 'og_description':
+		case 'tw_title':
+		case 'tw_description':
+			$rm_key = array( 'og_title' => 'rank_math_facebook_title', 'og_description' => 'rank_math_facebook_description', 'tw_title' => 'rank_math_twitter_title', 'tw_description' => 'rank_math_twitter_description' );
+			return semrs_seo_rm_vars( (string) get_post_meta( $post_id, $rm_key[ $field ], true ), $post_id );
+		case 'tw_image':
+			return (string) get_post_meta( $post_id, 'rank_math_twitter_image', true );
+		case 'tw_card':
+			return (string) get_post_meta( $post_id, 'rank_math_twitter_card_type', true );
+		case 'tw_custom':
+			return 'off' === get_post_meta( $post_id, 'rank_math_twitter_use_facebook', true ) ? '1' : '';
+		case 'breadcrumb_title':
+			return (string) get_post_meta( $post_id, 'rank_math_breadcrumb_title', true );
+		case 'pillar':
+			return 'on' === get_post_meta( $post_id, 'rank_math_pillar_content', true ) ? '1' : '';
 		case 'noindex':
 		case 'nofollow':
+		case 'noarchive':
+		case 'nosnippet':
+		case 'noimageindex':
 			$robots = get_post_meta( $post_id, 'rank_math_robots', true );
 			return is_array( $robots ) && in_array( $field, $robots, true );
+		case 'max_snippet':
+		case 'max_video':
+		case 'max_image':
+			$adv = get_post_meta( $post_id, 'rank_math_advanced_robots', true );
+			$key = array( 'max_snippet' => 'max-snippet', 'max_video' => 'max-video-preview', 'max_image' => 'max-image-preview' )[ $field ];
+			return is_array( $adv ) && isset( $adv[ $key ] ) ? (string) $adv[ $key ] : '';
 	}
 	return '';
 }
@@ -223,6 +274,7 @@ function semrs_seo_rm_vars( $text, $post_id = 0 ) {
 		'%category%'         => $cats ? $cats[0]->name : '',
 		'%primary_category%' => $cats ? $cats[0]->name : '',
 		'%currentyear%'      => gmdate( 'Y' ),
+		'%focuskw%'          => $post_id ? (string) semrs_seo_meta( $post_id, 'focus' ) : '',
 		'%page%'             => '',
 	);
 	$text = strtr( $text, $map );

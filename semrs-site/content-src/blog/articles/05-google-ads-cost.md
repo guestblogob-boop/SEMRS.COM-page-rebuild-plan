@@ -9,7 +9,7 @@ keyword: google ads cost
 ---
 There is no fixed Google Ads cost or price list. You set a budget, Google runs an auction for every search, and you pay when someone clicks. In 2025 the WordStream by LocaliQ benchmarks put the average cost per click (CPC) across industries at about **$5.26** and the average cost per lead at about **$70.11**, with legal services the most expensive at about **$8.58 per click** and **$131.63 per lead**. Your own costs depend on your industry, location, keywords and how well your ads and landing pages are built.
 
-### Key takeaways
+## Key takeaways
 
 - The 2025 benchmarks put the average cost per click near $5.26 and the average cost per lead near $70.11.
 - Legal is the most expensive category at about $8.58 per click and $131.63 per lead.

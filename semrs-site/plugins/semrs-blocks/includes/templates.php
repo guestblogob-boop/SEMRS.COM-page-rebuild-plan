@@ -6,7 +6,7 @@
  * - Sections: templates/sections/*.html (block markup with {{tokens}}).
  * - Sites:    templates/sites.php (pages = lists of sections + copy).
  * - Photos:   templates/photos/{site}-hero/about/post1-3.jpg (CC0, see readme.txt).
- * - Previews: templates/previews/{site}-desktop.jpg / -mobile.jpg.
+ * - Previews: templates/previews/{site}-desktop.webp / -mobile.webp (.jpg still works).
  *
  * Pages and sections are also registered as block patterns, so they can be
  * inserted from the editor (Patterns → SEMRS full pages / SEMRS sections).
@@ -886,8 +886,10 @@ function semrs_blocks_template_preview( $sid, $view, $site = array() ) {
 		array_unshift( $dirs, $site['preview_dir'] );
 	}
 	foreach ( $dirs as $d ) {
-		if ( file_exists( $d[0] . $sid . '-' . $view . '.jpg' ) ) {
-			return $d[1] . $sid . '-' . $view . '.jpg';
+		foreach ( array( 'webp', 'jpg' ) as $ext ) { // WebP first (lighter); JPG for older custom previews.
+			if ( file_exists( $d[0] . $sid . '-' . $view . '.' . $ext ) ) {
+				return $d[1] . $sid . '-' . $view . '.' . $ext;
+			}
 		}
 	}
 	return '';

@@ -13,7 +13,7 @@ SemrsTools.register('llms-txt-generator', function (root, api) {
 
 	function build() {
 		input.innerHTML = '';
-		input.append(h('h3', { class: 'semrs-tool__title', text: 'Your site' }),
+		input.append(h('h2', { class: 'semrs-tool__title', text: 'Your site' }),
 			api.field('Site or company name', bind(h('input', { type: 'text', placeholder: 'Acme Plumbing' }), s, 'name')),
 			api.field('One-sentence summary', bind(h('textarea', { rows: 2, placeholder: 'Licensed plumbers serving Austin, TX since 2012: repairs, water heaters and drain cleaning.' }), s, 'summary'), 'Shown as a quote. Say who you are, what you do and where.'),
 			api.field('More details (optional)', bind(h('textarea', { rows: 3, placeholder: 'Key facts an AI should know: service area, hours, pricing approach, what you do not offer.' }), s, 'details')));
@@ -53,7 +53,7 @@ SemrsTools.register('llms-txt-generator', function (root, api) {
 			(sec.links || '').split(/\n/).forEach(function (l) { if (l.trim() && !/\|\s*https?:\/\//.test(l) && !/^\s*https?:\/\//.test(l)) { warn.push('Line "' + l.trim().slice(0, 40) + '" needs a full URL (https://…).'); } });
 		});
 		out.innerHTML = '';
-		out.append(h('h3', { class: 'semrs-tool__title', text: 'llms.txt' }), h('pre', { class: 'semrs-tool__output', text: text() }));
+		out.append(h('h2', { class: 'semrs-tool__title', text: 'llms.txt' }), h('pre', { class: 'semrs-tool__output', text: text() }));
 		if (warn.length) { var ul = h('ul', { class: 'semrs-tool__checks' }); warn.slice(0, 6).forEach(function (w) { ul.append(h('li', { class: 'warn', text: w })); }); out.append(ul); }
 		out.append(
 			h('div', { class: 'semrs-tool__actions' }, api.copyBtn(text, 'Copy', api.id), api.downloadBtn(text, 'llms.txt', 'text/markdown', 'Download llms.txt', api.id)),

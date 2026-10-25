@@ -9,7 +9,7 @@ keyword: financial advisor marketing
 ---
 Financial advisor marketing works best when it does three things at once: it makes clear who you serve, it shows up where those people search for help, and it stays inside the advertising rules that apply to your firm. This guide walks through each part, from choosing a niche to running Google Ads, with the compliance points to check before anything goes live.
 
-### Key takeaways
+## Key takeaways
 
 - Pick a niche you can describe in one sentence; it makes SEO, ads and referrals easier.
 - Answer-first niche pages, local SEO and weekly content bring prospects who are already searching.

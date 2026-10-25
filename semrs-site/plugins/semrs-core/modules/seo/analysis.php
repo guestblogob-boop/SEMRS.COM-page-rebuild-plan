@@ -29,6 +29,8 @@ function semrs_seo_analysis_input( $post, $over = array() ) {
 		'title'       => (string) semrs_seo_meta( $post->ID, 'title' ),
 		'description' => (string) semrs_seo_meta( $post->ID, 'description' ),
 		'thumb'       => has_post_thumbnail( $post ),
+		'pillar'      => (bool) semrs_seo_meta( $post->ID, 'pillar' ),
+		'focus_more'  => (string) semrs_seo_meta( $post->ID, 'focus_more' ),
 	);
 	foreach ( $over as $k => $v ) {
 		if ( array_key_exists( $k, $d ) && null !== $v ) {
@@ -114,32 +116,44 @@ function semrs_seo_analyze( $d ) {
 	$lower = mb_strtolower( $text );
 	$wlist = '' === $text ? array() : preg_split( '/\s+/u', $text );
 	$words = count( $wlist );
-	$first = mb_strtolower( implode( ' ', array_slice( $wlist, 0, 100 ) ) );
+	// "Beginning of the content": the first 10% of the words (at least the first 50).
+	$first = mb_strtolower( implode( ' ', array_slice( $wlist, 0, max( 50, (int) ceil( $words * 0.1 ) ) ) ) );
 
 	// Links.
 	$internal = array();
 	$outbound = 0;
-	if ( preg_match_all( '/<a\s[^>]*href=["\']([^"\']+)["\']/i', $html, $m ) ) {
-		foreach ( $m[1] as $href ) {
-			$path = semrs_seo_link_path( $href );
+	$dofollow = 0;
+	if ( preg_match_all( '/<a\s([^>]*)>/i', $html, $m ) ) {
+		foreach ( $m[1] as $attrs ) {
+			if ( ! preg_match( '/href=["\']([^"\']+)["\']/i', $attrs, $hm ) ) {
+				continue;
+			}
+			$path = semrs_seo_link_path( $hm[1] );
 			if ( '' !== $path ) {
 				$internal[] = $path;
-			} elseif ( preg_match( '#^(?:https?:)?//#i', $href ) ) {
+			} elseif ( preg_match( '#^(?:https?:)?//#i', $hm[1] ) ) {
 				$outbound++;
+				if ( ! preg_match( '/rel=["\'][^"\']*\b(?:nofollow|sponsored|ugc)\b/i', $attrs ) ) {
+					$dofollow++;
+				}
 			}
 		}
 	}
 	$internal = array_values( array_unique( $internal ) );
 
-	// Images.
+	// Images and media.
 	preg_match_all( '/<img\s[^>]*>/i', $html, $img_tags );
 	$imgs   = count( $img_tags[0] );
 	$no_alt = 0;
+	$kw_alt = false;
 	foreach ( $img_tags[0] as $tag ) {
-		if ( ! preg_match( '/\salt=["\'][^"\']+["\']/', $tag ) ) {
+		if ( ! preg_match( '/\salt=["\']([^"\']+)["\']/', $tag, $alt ) ) {
 			$no_alt++;
+		} elseif ( '' !== $kw && false !== mb_strpos( mb_strtolower( html_entity_decode( $alt[1] ) ), $kw ) ) {
+			$kw_alt = true;
 		}
 	}
+	$media = $imgs + preg_match_all( '/<video[\s>]|<iframe\s[^>]*(?:youtube|vimeo|wistia)/i', $html );
 
 	// Headings.
 	$h1s = preg_match_all( '/<h1[\s>]/i', $html );
@@ -159,28 +173,73 @@ function semrs_seo_analyze( $d ) {
 	$long_para = 0;
 	if ( preg_match_all( '/<p[\s>].*?<\/p>/is', $html, $pm ) ) {
 		foreach ( $pm[0] as $para ) {
-			if ( str_word_count( wp_strip_all_tags( $para ) ) > 150 ) {
+			if ( str_word_count( wp_strip_all_tags( $para ) ) > 120 ) {
 				$long_para++;
 			}
 		}
 	}
 
 	$c   = array();
-	$add = function ( $ok, $label, $group, $weight ) use ( &$c ) {
+	// $fix: the field AI can rewrite to pass this check (shown as "Fix with AI" in the sidebar).
+	$add = function ( $ok, $label, $group, $weight, $fix = '' ) use ( &$c ) {
 		$c[] = array(
 			'ok'     => (bool) $ok,
 			'label'  => $label,
 			'group'  => $group,
 			'weight' => $weight,
+			'fix'    => $fix,
 		);
 	};
 
-	// Basic.
+	// Basic SEO.
+	$is_post = 'page' !== $d['type'];
 	if ( '' !== $kw ) {
-		$add( false !== mb_strpos( mb_strtolower( $title ), $kw ), __( 'Focus keyword in SEO title', 'semrs-core' ), 'basic', 8 );
-		$add( '' !== $desc && false !== mb_strpos( mb_strtolower( $desc ), $kw ), __( 'Focus keyword in meta description', 'semrs-core' ), 'basic', 5 );
-		$add( false !== strpos( (string) $d['slug'], sanitize_title( $kw ) ), __( 'Focus keyword in URL slug', 'semrs-core' ), 'basic', 4 );
-		$add( false !== mb_strpos( $first, $kw ), __( 'Focus keyword in the first 100 words', 'semrs-core' ), 'basic', 5 );
+		$add( false !== mb_strpos( mb_strtolower( $title ), $kw ), __( 'Focus keyword in the SEO title', 'semrs-core' ), 'basic', 8, 'title' );
+		$add( '' !== $desc && false !== mb_strpos( mb_strtolower( $desc ), $kw ), __( 'Focus keyword in the meta description', 'semrs-core' ), 'basic', 5, 'description' );
+		$add( false !== strpos( (string) $d['slug'], sanitize_title( $kw ) ), __( 'Focus keyword in the URL', 'semrs-core' ), 'basic', 4 );
+		$add( false !== mb_strpos( $first, $kw ), __( 'Focus keyword at the beginning of the content (first 10%)', 'semrs-core' ), 'basic', 5 );
+		$add( false !== mb_strpos( $lower, $kw ), __( 'Focus keyword in the content', 'semrs-core' ), 'basic', 5 );
+	} else {
+		$add( false, __( 'Set a focus keyword for this content', 'semrs-core' ), 'basic', 20, 'focus' );
+	}
+	if ( $is_post ) {
+		$long = ! empty( $d['pillar'] ) ? 1500 : 600;
+		/* translators: 1: minimum words, 2: words now */
+		$add( $words >= $long, sprintf( __( 'Content is at least %1$d words long; 2,500+ is best (now %2$d)', 'semrs-core' ), $long, $words ), 'basic', 8 );
+	} else {
+		/* translators: %d: words now */
+		$add( $words >= 300, sprintf( __( 'At least 300 words on the page (now %d)', 'semrs-core' ), $words ), 'basic', 6 );
+	}
+	$tl = mb_strlen( $title );
+	$dl = mb_strlen( $desc );
+	/* translators: %d: characters */
+	$add( $tl >= 30 && $tl <= 60, sprintf( __( 'SEO title 30–60 characters (now %d)', 'semrs-core' ), $tl ), 'basic', 6, 'title' );
+	/* translators: %d: characters */
+	$add( $dl >= 120 && $dl <= 160, sprintf( __( 'Meta description 120–160 characters (now %d)', 'semrs-core' ), $dl ), 'basic', 6, 'description' );
+
+	// Additional.
+	if ( '' !== $kw ) {
+		$add( $subs > 0 && false !== mb_strpos( $sub_txt, $kw ), __( 'Focus keyword in a subheading (H2, H3, H4…)', 'semrs-core' ), 'additional', 4 );
+		$add( $kw_alt, __( 'An image has the focus keyword in its alt text', 'semrs-core' ), 'additional', 3 );
+		$hits    = '' === $lower ? 0 : substr_count( $lower, $kw );
+		$density = $words ? round( $hits * max( 1, count( preg_split( '/\s+/u', $kw ) ) ) / $words * 100, 2 ) : 0;
+		$add(
+			$density >= 0.5 && $density <= 2.5,
+			$density > 2.5
+				/* translators: 1: density percent, 2: times used */
+				? sprintf( __( 'Keyword density is too high: %1$s%% (used %2$d times). Use the keyword less, or synonyms, to avoid keyword stuffing', 'semrs-core' ), $density, $hits )
+				/* translators: 1: density percent, 2: times used */
+				: sprintf( __( 'Keyword density about 1%% (now %1$s%%, used %2$d times)', 'semrs-core' ), $density, $hits ),
+			'additional',
+			4
+		);
+		// Secondary keywords (Pro): each should appear at least once. Never asked for more, so no stuffing.
+		$more = semrs_seo_pro() ? array_filter( array_map( 'trim', explode( ',', mb_strtolower( (string) ( $d['focus_more'] ?? '' ) ) ) ) ) : array();
+		if ( $more ) {
+			$missing = array_values( array_filter( $more, function ( $k ) use ( $lower ) { return false === mb_strpos( $lower, $k ); } ) );
+			/* translators: %s: keywords */
+			$add( ! $missing, $missing ? sprintf( __( 'Use each secondary keyword once in the content (missing: %s)', 'semrs-core' ), implode( ', ', $missing ) ) : __( 'Every secondary keyword appears in the content', 'semrs-core' ), 'additional', 2 );
+		}
 		$others = array_values(
 			array_diff(
 				get_posts(
@@ -200,51 +259,49 @@ function semrs_seo_analyze( $d ) {
 		$add(
 			empty( $others ),
 			empty( $others ) ? __( 'Focus keyword not used on another page', 'semrs-core' ) : sprintf( /* translators: %s: page title */ __( 'Focus keyword is also used on "%s" (pages compete with each other)', 'semrs-core' ), get_the_title( $others[0] ) ),
-			'basic',
+			'additional',
 			4
 		);
-	} else {
-		$add( false, __( 'Set a focus keyword', 'semrs-core' ), 'basic', 20 );
 	}
-	$tl = mb_strlen( $title );
-	$dl = mb_strlen( $desc );
 	/* translators: %d: characters */
-	$add( $tl >= 30 && $tl <= 60, sprintf( __( 'SEO title 30–60 characters (now %d)', 'semrs-core' ), $tl ), 'basic', 6 );
-	/* translators: %d: characters */
-	$add( $dl >= 120 && $dl <= 155, sprintf( __( 'Meta description 120–155 characters (now %d)', 'semrs-core' ), $dl ), 'basic', 6 );
-	/* translators: %d: characters */
-	$add( strlen( (string) $d['slug'] ) <= 75, sprintf( __( 'Short URL slug (%d characters, 75 max)', 'semrs-core' ), strlen( (string) $d['slug'] ) ), 'basic', 2 );
+	$add( strlen( (string) $d['slug'] ) <= 75, sprintf( __( 'Short URL (%d characters, 75 max)', 'semrs-core' ), strlen( (string) $d['slug'] ) ), 'additional', 2 );
+	/* translators: %d: links */
+	$add( $outbound > 0, sprintf( __( 'Links out to useful outside sources (%d)', 'semrs-core' ), $outbound ), 'additional', 2 );
+	/* translators: %d: links */
+	$add( $dofollow > 0, sprintf( __( 'At least one DoFollow link to an outside source (%d)', 'semrs-core' ), $dofollow ), 'additional', 1 );
+	/* translators: %d: links */
+	$add( count( $internal ) > 0, sprintf( __( 'Internal links to your other pages (%d)', 'semrs-core' ), count( $internal ) ), 'additional', 6 );
+	$add( ! empty( $d['thumb'] ), __( 'Featured image set (used for share cards and Google Discover)', 'semrs-core' ), 'additional', 3 );
+	$add( 0 === $no_alt, $imgs ? sprintf( /* translators: %d: images */ __( 'All images have alt text (%d missing)', 'semrs-core' ), $no_alt ) : __( 'Images: none in the content yet', 'semrs-core' ), 'additional', $imgs ? 4 : 1 );
+	$add( 0 === $h1s, __( 'No extra H1 in the content (the theme prints the title as H1)', 'semrs-core' ), 'additional', 3 );
 
-	// Content.
-	$min = 'page' === $d['type'] ? 200 : 300;
-	/* translators: 1: minimum words, 2: words now */
-	$add( $words >= $min, sprintf( __( 'At least %1$d words (now %2$d)', 'semrs-core' ), $min, $words ), 'content', 8 );
-	/* translators: %d: links */
-	$add( count( $internal ) > 0, sprintf( __( 'Internal links to your other pages (%d)', 'semrs-core' ), count( $internal ) ), 'content', 6 );
-	/* translators: %d: links */
-	$add( $outbound > 0, sprintf( __( 'Link to a useful outside source (%d)', 'semrs-core' ), $outbound ), 'content', 2 );
-	$add( 0 === $no_alt, $imgs ? sprintf( /* translators: %d: images */ __( 'All images have alt text (%d missing)', 'semrs-core' ), $no_alt ) : __( 'Images: none in the content (add one if it helps the reader)', 'semrs-core' ), 'content', $imgs ? 4 : 1 );
-	$add( ! empty( $d['thumb'] ), __( 'Featured image set (used for share cards and Google Discover)', 'semrs-core' ), 'content', 3 );
-	$add( 0 === $h1s, __( 'No extra H1 in the content (the theme prints the title as H1)', 'semrs-core' ), 'content', 3 );
-	if ( $words > 300 ) {
-		$need = (int) floor( $words / 350 );
-		/* translators: 1: subheadings, 2: recommended */
-		$add( $subs >= $need, sprintf( __( 'Subheadings break up the text (%1$d, at least %2$d)', 'semrs-core' ), $subs, $need ), 'content', 4 );
-	}
+	// Title readability.
+	$tlow = mb_strtolower( $title );
 	if ( '' !== $kw ) {
-		$add( $subs > 0 && false !== mb_strpos( $sub_txt, $kw ), __( 'Focus keyword in a subheading (H2–H3)', 'semrs-core' ), 'content', 4 );
-		$hits    = '' === $lower ? 0 : substr_count( $lower, $kw );
-		$density = $words ? round( $hits * max( 1, count( preg_split( '/\s+/u', $kw ) ) ) / $words * 100, 1 ) : 0;
-		/* translators: 1: density percent, 2: times used */
-		$add( $density >= 0.5 && $density <= 3, sprintf( __( 'Keyword density 0.5–3%% (now %1$s%%, used %2$d times)', 'semrs-core' ), $density, $hits ), 'content', 4 );
+		$pos = mb_strpos( $tlow, $kw );
+		$add( false !== $pos && $pos <= max( 10, (int) ( mb_strlen( $tlow ) / 2 ) ), __( 'Focus keyword near the beginning of the SEO title', 'semrs-core' ), 'title', 4, 'title' );
 	}
+	$twords = preg_split( '/[^a-z0-9\'-]+/', $tlow );
+	$add( (bool) array_intersect( $twords, semrs_seo_sentiment_words() ), __( 'Title has a positive or negative sentiment word (e.g. best, easy, mistakes, avoid)', 'semrs-core' ), 'title', 2, 'title' );
+	$add( (bool) array_intersect( $twords, semrs_seo_power_words() ), __( 'Title has a power word (e.g. proven, complete, simple, essential)', 'semrs-core' ), 'title', 2, 'title' );
+	$add( (bool) preg_match( '/\d/', $title ), __( 'Title contains a number (e.g. "7 ways", "2026")', 'semrs-core' ), 'title', 2, 'title' );
 
-	// Readability.
+	// Content readability.
 	if ( $words >= 50 ) {
+		if ( $words > 600 ) {
+			$add( (bool) preg_match( '/class=["\'][^"\']*(?:semrs-toc|rank-math-toc|wp-block-rank-math-toc|ez-toc|lwptoc)/i', $html ), __( 'Table of contents breaks down the text (SEMRS Table of contents block)', 'semrs-core' ), 'readability', 3 );
+		}
+		$add( 0 === $long_para, 0 === $long_para ? __( 'Short, concise paragraphs (120 words max)', 'semrs-core' ) : sprintf( /* translators: %d: paragraphs */ _n( '%d paragraph is over 120 words', '%d paragraphs are over 120 words', $long_para, 'semrs-core' ), $long_para ), 'readability', 3 );
+		/* translators: %d: images and videos */
+		$add( $media >= ( $is_post ? 2 : 1 ), sprintf( __( 'A few images or videos make the content appealing (%d)', 'semrs-core' ), $media ), 'readability', 3 );
+		if ( $words > 300 ) {
+			$need = (int) floor( $words / 350 );
+			/* translators: 1: subheadings, 2: recommended */
+			$add( $subs >= $need, sprintf( __( 'Subheadings break up the text (%1$d, at least %2$d)', 'semrs-core' ), $subs, $need ), 'readability', 4 );
+		}
 		$pct = round( $long_sent / $n_sent * 100 );
 		/* translators: %d: percent */
 		$add( $pct <= 25, sprintf( __( 'Short sentences: %d%% are over 25 words (keep under 25%%)', 'semrs-core' ), $pct ), 'readability', 4 );
-		$add( 0 === $long_para, 0 === $long_para ? __( 'Paragraphs are a comfortable length', 'semrs-core' ) : sprintf( /* translators: %d: paragraphs */ _n( '%d paragraph is over 150 words', '%d paragraphs are over 150 words', $long_para, 'semrs-core' ), $long_para ), 'readability', 3 );
 		if ( 0 === strpos( get_locale(), 'en' ) ) {
 			$syll = 0;
 			foreach ( $wlist as $w ) {
@@ -255,6 +312,8 @@ function semrs_seo_analyze( $d ) {
 			$add( $flesch >= 50, sprintf( __( 'Easy to read: Flesch score %d (50+ is fairly easy)', 'semrs-core' ), $flesch ), 'readability', 3 );
 		}
 	}
+
+	semrs_seo_speed_checks( $html, $img_tags[0], $add );
 
 	$total = 0;
 	$got   = 0;
@@ -268,6 +327,138 @@ function semrs_seo_analyze( $d ) {
 		'links'  => $internal,
 		'words'  => $words,
 	);
+}
+
+/**
+ * Words that give a title a clear positive or negative sentiment.
+ *
+ * @return string[]
+ */
+function semrs_seo_sentiment_words() {
+	return array( 'best', 'better', 'easy', 'easiest', 'great', 'top', 'perfect', 'smart', 'simple', 'free', 'happy', 'love', 'winning', 'success', 'successful', 'effective', 'helpful', 'useful', 'worst', 'bad', 'avoid', 'mistakes', 'mistake', 'never', 'stop', 'wrong', 'fail', 'fails', 'failing', 'problems', 'risk', 'risks', 'warning', 'costly', 'hidden', 'myths', 'truth', 'honest', 'real' );
+}
+
+/**
+ * Power words for titles.
+ *
+ * @return string[]
+ */
+function semrs_seo_power_words() {
+	return array( 'proven', 'complete', 'ultimate', 'essential', 'simple', 'easy', 'quick', 'fast', 'step-by-step', 'guide', 'checklist', 'blueprint', 'expert', 'powerful', 'practical', 'secret', 'secrets', 'tips', 'tricks', 'strategies', 'hacks', 'instantly', 'effortless', 'surprising', 'critical', 'crucial', 'definitive', 'insider', 'actionable', 'affordable', 'smart', 'best', 'top', 'new', 'free', 'boost', 'grow', 'save', 'win' );
+}
+
+/**
+ * Speed and accessibility checks on the rendered content: the rules that keep a page at
+ * 100 in PageSpeed Insights (performance, accessibility, best practices, agentic browsing).
+ *
+ * @param string   $html Rendered content.
+ * @param string[] $imgs <img> tags in the content.
+ * @param callable $add  Adds a check: ( ok, label, group, weight ).
+ */
+function semrs_seo_speed_checks( $html, $imgs, $add ) {
+	// Images: fixed size (no layout shift), light formats, small files.
+	$no_size = 0;
+	$old_fmt = 0;
+	$gifs    = 0;
+	$heavy   = 0;
+	foreach ( $imgs as $tag ) {
+		if ( ! preg_match( '/\swidth=["\']?\d/i', $tag ) || ! preg_match( '/\sheight=["\']?\d/i', $tag ) ) {
+			$no_size++;
+		}
+		$src = preg_match( '/\ssrc=["\']([^"\']+)["\']/i', $tag, $m ) ? strtolower( strtok( $m[1], '?' ) ) : '';
+		if ( preg_match( '/\.gif$/', $src ) ) {
+			$gifs++;
+		} elseif ( preg_match( '/\.(?:jpe?g|png|bmp|tiff?)$/', $src ) ) {
+			$old_fmt++;
+		}
+		if ( preg_match( '/wp-image-(\d+)/', $tag, $id ) ) {
+			$file = get_attached_file( (int) $id[1] );
+			if ( $file && file_exists( $file ) && filesize( $file ) > 150 * KB_IN_BYTES ) {
+				$heavy++;
+			}
+		}
+	}
+	if ( $imgs ) {
+		/* translators: %d: images */
+		$add( 0 === $no_size, sprintf( __( 'Images have a width and height, so the page does not jump while loading (%d missing)', 'semrs-core' ), $no_size ), 'speed', 4 );
+		/* translators: %d: images */
+		$add( 0 === $old_fmt, sprintf( __( 'Images are WebP, AVIF or SVG (%d JPEG/PNG to convert)', 'semrs-core' ), $old_fmt ), 'speed', 3 );
+		/* translators: %d: images */
+		$add( 0 === $heavy, sprintf( __( 'Image files are under 150 KB (%d larger)', 'semrs-core' ), $heavy ), 'speed', 3 );
+		/* translators: %d: images */
+		$add( 0 === $gifs, sprintf( __( 'No GIF images: use a still image or a short video (%d found)', 'semrs-core' ), $gifs ), 'speed', 2 );
+	}
+
+	// Embeds load only when scrolled to.
+	if ( preg_match_all( '/<iframe\s[^>]*>/i', $html, $frames ) ) {
+		$eager = count( array_filter( $frames[0], function ( $f ) { return ! preg_match( '/loading=["\']lazy/i', $f ); } ) );
+		/* translators: %d: embeds */
+		$add( 0 === $eager, sprintf( __( 'Embedded videos and maps load lazily (%d load at once)', 'semrs-core' ), $eager ), 'speed', 2 );
+	}
+
+	// Valid structure for screen readers and AI agents.
+	$bad_list = 0;
+	if ( preg_match_all( '/<(ul|ol)\b[^>]*>(.*?)<\/\1>/is', $html, $lists ) ) {
+		foreach ( $lists[2] as $inner ) {
+			$inner = preg_replace( '/<(ul|ol)\b.*?<\/\1>/is', '', $inner ); // Nested lists are checked on their own.
+			$depth = 0;
+			if ( preg_match_all( '/<(\/?)([a-z][a-z0-9-]*)\b[^>]*?(\/?)>/i', $inner, $tags, PREG_SET_ORDER ) ) {
+				foreach ( $tags as $t ) {
+					$name = strtolower( $t[2] );
+					if ( in_array( $name, array( 'br', 'img', 'input', 'hr', 'wbr', 'source', 'path', 'circle', 'rect', 'line', 'polyline', 'polygon', 'use', 'stop' ), true ) ) {
+						$bad_list += ( 0 === $depth && ! $t[1] ) ? 1 : 0;
+						continue;
+					}
+					if ( $t[1] ) {
+						$depth--;
+						continue;
+					}
+					if ( 0 === $depth && ! in_array( $name, array( 'li', 'script', 'template' ), true ) ) {
+						$bad_list++;
+					}
+					if ( ! $t[3] ) {
+						$depth++;
+					}
+				}
+			}
+		}
+	}
+	$bad_role = preg_match_all( '/<li\b[^>]*\srole=/i', $html ) + preg_match_all( '/<figure\b[^>]*\srole=["\']img["\'][^>]*>(?:(?!<\/figure>).)*<figcaption/is', $html );
+	$add( 0 === $bad_list, __( 'Lists contain only list items (<li>)', 'semrs-core' ), 'speed', 3 );
+	$add( 0 === $bad_role, __( 'ARIA roles fit their elements (no role on <li>, no role="img" on a captioned figure)', 'semrs-core' ), 'speed', 3 );
+	$empty_links = 0;
+	if ( preg_match_all( '/<a\s([^>]*)>(.*?)<\/a>/is', $html, $links, PREG_SET_ORDER ) ) {
+		foreach ( $links as $l ) {
+			if ( '' === trim( wp_strip_all_tags( $l[2] ) ) && ! preg_match( '/aria-label=["\'][^"\']+|title=["\'][^"\']+/i', $l[1] ) && ! preg_match( '/<img[^>]*alt=["\'][^"\']+/i', $l[2] ) ) {
+				$empty_links++;
+			}
+		}
+	}
+	/* translators: %d: links */
+	$add( 0 === $empty_links, sprintf( __( 'Every link has readable text (%d empty)', 'semrs-core' ), $empty_links ), 'speed', 2 );
+	$skips = 0;
+	if ( preg_match_all( '/<h([2-6])[\s>]/i', $html, $hs ) ) {
+		$prev = 1;
+		foreach ( $hs[1] as $lvl ) {
+			$skips += ( (int) $lvl > $prev + 1 ) ? 1 : 0;
+			$prev   = (int) $lvl;
+		}
+	}
+	/* translators: %d: headings */
+	$add( 0 === $skips, sprintf( __( 'Headings go in order without skipping a level (%d skipped)', 'semrs-core' ), $skips ), 'speed', 2 );
+
+	// Colours that follow the theme: fixed light backgrounds become unreadable in dark mode.
+	$fixed = 0;
+	if ( preg_match_all( '/style=["\'][^"\']*background(?:-color)?:\s*(#[0-9a-f]{3,6}\b|white\b)/i', $html, $bgs ) ) {
+		foreach ( $bgs[1] as $hex ) {
+			$hex = 'white' === strtolower( $hex ) ? 'ffffff' : ltrim( $hex, '#' );
+			$hex = 3 === strlen( $hex ) ? $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2] : str_pad( $hex, 6, '0' );
+			$lum = ( 0.2126 * hexdec( substr( $hex, 0, 2 ) ) + 0.7152 * hexdec( substr( $hex, 2, 2 ) ) + 0.0722 * hexdec( substr( $hex, 4, 2 ) ) ) / 255;
+			$fixed += $lum > 0.85 ? 1 : 0;
+		}
+	}
+	/* translators: %d: elements */
+	$add( 0 === $fixed, sprintf( __( 'Background colours come from the theme, not fixed light colours (%d fixed; they break dark mode)', 'semrs-core' ), $fixed ), 'speed', 2 );
 }
 
 /**
@@ -429,7 +620,7 @@ if ( is_admin() ) {
 				wp_send_json_error( null, 403 );
 			}
 			$over = array();
-			foreach ( array( 'content', 'post_title', 'slug', 'focus', 'title', 'description' ) as $k ) {
+			foreach ( array( 'content', 'post_title', 'slug', 'focus', 'focus_more', 'title', 'description' ) as $k ) {
 				if ( isset( $_POST[ $k ] ) ) {
 					$raw        = wp_unslash( $_POST[ $k ] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- sanitized below.
 					$over[ $k ] = 'content' === $k ? wp_kses_post( $raw ) : sanitize_text_field( $raw );
@@ -437,6 +628,17 @@ if ( is_admin() ) {
 			}
 			if ( isset( $over['slug'] ) ) {
 				$over['slug'] = sanitize_title( $over['slug'] );
+			}
+			if ( isset( $over['focus'] ) ) {
+				$over['focus'] = trim( (string) strtok( $over['focus'], ',' ) ); // The first keyword is the primary one.
+			}
+			foreach ( array( 'title', 'description' ) as $k ) {
+				if ( ! empty( $over[ $k ] ) ) {
+					$over[ $k ] = semrs_seo_rm_vars( $over[ $k ], $id );
+				}
+			}
+			if ( isset( $_POST['pillar'] ) ) {
+				$over['pillar'] = ! empty( $_POST['pillar'] );
 			}
 			if ( isset( $_POST['thumb'] ) ) {
 				$over['thumb'] = ! empty( $_POST['thumb'] );
@@ -451,11 +653,29 @@ if ( is_admin() ) {
 			$r = semrs_seo_analyze( $d );
 			wp_send_json_success(
 				array(
-					'html'  => semrs_seo_checks_html( $r ),
-					'links' => semrs_seo_link_suggestions( $d, $r['links'] ),
+					'html'   => semrs_seo_checks_html( $r ),
+					'links'  => semrs_seo_link_suggestions( $d, $r['links'] ),
+					'score'  => $r['score'],
+					'checks' => $r['checks'],
+					'groups' => semrs_seo_check_groups(),
 				)
 			);
 		}
+	);
+}
+
+/**
+ * Check groups in display order (Rank Math's groups plus Speed & accessibility).
+ *
+ * @return array<string, string>
+ */
+function semrs_seo_check_groups() {
+	return array(
+		'basic'       => __( 'Basic SEO', 'semrs-core' ),
+		'additional'  => __( 'Additional', 'semrs-core' ),
+		'title'       => __( 'Title readability', 'semrs-core' ),
+		'readability' => __( 'Content readability', 'semrs-core' ),
+		'speed'       => __( 'Speed & accessibility', 'semrs-core' ),
 	);
 }
 
@@ -466,12 +686,8 @@ if ( is_admin() ) {
  * @return string
  */
 function semrs_seo_checks_html( $r ) {
-	$groups = array(
-		'basic'       => __( 'Basic SEO', 'semrs-core' ),
-		'content'     => __( 'Content', 'semrs-core' ),
-		'readability' => __( 'Readability', 'semrs-core' ),
-	);
-	$out = sprintf(
+	$groups = semrs_seo_check_groups();
+	$out    = sprintf(
 		'<div class="semrs-score-big semrs-score--%1$s"><strong>%2$d</strong><span>/100</span></div>',
 		esc_attr( semrs_seo_score_class( $r['score'] ) ),
 		(int) $r['score']

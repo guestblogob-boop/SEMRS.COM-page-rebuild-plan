@@ -8,6 +8,16 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Breadcrumb name of the current post: its "Breadcrumb title" (SEMRS SEO → Advanced) or the post title.
+ *
+ * @return string
+ */
+function semrs_seo_crumb_title() {
+	$custom = trim( (string) semrs_seo_meta( get_queried_object_id(), 'breadcrumb_title' ) );
+	return '' !== $custom ? $custom : get_the_title();
+}
+
+/**
  * Trail for the current request: list of [ name, url ].
  *
  * @return array<int, array{0:string,1:string}>
@@ -51,18 +61,18 @@ function semrs_seo_breadcrumb_trail() {
 		if ( $cat ) {
 			$add_term_chain( $cat );
 		}
-		$trail[] = array( get_the_title(), get_permalink() );
+		$trail[] = array( semrs_seo_crumb_title(), get_permalink() );
 	} elseif ( is_page() ) {
 		foreach ( array_reverse( get_post_ancestors( get_queried_object_id() ) ) as $ancestor ) {
 			$trail[] = array( get_the_title( $ancestor ), get_permalink( $ancestor ) );
 		}
-		$trail[] = array( get_the_title(), get_permalink() );
+		$trail[] = array( semrs_seo_crumb_title(), get_permalink() );
 	} elseif ( is_singular() ) {
 		$type = get_post_type_object( get_post_type() );
 		if ( $type && $type->has_archive ) {
 			$trail[] = array( $type->labels->name, get_post_type_archive_link( $type->name ) );
 		}
-		$trail[] = array( get_the_title(), get_permalink() );
+		$trail[] = array( semrs_seo_crumb_title(), get_permalink() );
 	} elseif ( is_post_type_archive() ) {
 		$trail[] = array( post_type_archive_title( '', false ), get_post_type_archive_link( get_query_var( 'post_type' ) ) );
 	} elseif ( is_category() || is_tag() || is_tax() ) {

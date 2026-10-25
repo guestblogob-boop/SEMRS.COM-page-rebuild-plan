@@ -45,7 +45,7 @@ SemrsTools.register('seo-roi-calculator', function (root, api) {
 		table.append(tb);
 		out.innerHTML = '';
 		out.append(
-			h('h3', { class: 'semrs-tool__title', text: 'Estimated return (first 12 months)' }),
+			h('h2', { class: 'semrs-tool__title', text: 'Estimated return (first 12 months)' }),
 			h('div', { class: 'semrs-tool__stats' },
 				stat(Math.round(fullExtra).toLocaleString('en-US'), 'extra visits / month at full growth'),
 				stat(leads.toFixed(1), 'extra leads / month'),

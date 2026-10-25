@@ -119,6 +119,7 @@ function semrs_core_module_meta() {
 			'reviews'    => array( 'leads', 'star-filled', admin_url( 'admin.php?page=semrs-reviews' ) ),
 			'image_library' => array( 'speed', 'images-alt2', admin_url( 'admin.php?page=semrs-images' ) ),
 			'schema_pro' => array( 'seo', 'editor-code', '' ),
+			'ai_seo'     => array( 'seo', 'superhero-alt', admin_url( 'admin.php?page=semrs-ai' ) ),
 		)
 	);
 }
@@ -132,6 +133,7 @@ function semrs_core_module_meta() {
 function semrs_core_pro_teasers() {
 	return array(
 		'local'      => array( __( 'Multi-location Local SEO', 'semrs-core' ), __( 'Locations with address, hours, map link and service areas; LocalBusiness schema for each one.', 'semrs-core' ) ),
+		'ai_seo'     => array( __( 'AI SEO', 'semrs-core' ), __( 'AI writes SEO titles, meta descriptions, focus keywords, social text and image alt text, with your own Claude, OpenAI or Gemini key.', 'semrs-core' ) ),
 		'schema_pro' => array( __( 'Custom schema', 'semrs-core' ), __( 'Add your own JSON-LD (Event, Product, Course, HowTo, Recipe, Video) to any page, with starters and a JSON check.', 'semrs-core' ) ),
 		'image_library' => array( __( 'Image library conversion', 'semrs-core' ), __( 'WebP or AVIF copies of every image already uploaded, all sizes, with originals kept.', 'semrs-core' ) ),
 		'seo_bulk'   => array( __( 'Bulk SEO editor', 'semrs-core' ), __( 'Edit SEO titles, meta descriptions, focus keywords and noindex for many posts on one screen, with length counters.', 'semrs-core' ) ),

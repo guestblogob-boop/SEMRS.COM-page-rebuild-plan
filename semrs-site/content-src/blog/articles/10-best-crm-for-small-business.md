@@ -9,7 +9,7 @@ keyword: crm for small business
 ---
 A customer relationship management (CRM) system keeps every lead, customer, conversation and deal in one place, so nothing falls through the cracks. For a small business, the best CRM is not the one with the most features; it is the one your team actually uses every day. This guide explains what to look for, compares popular options by use case and walks through a simple setup plan.
 
-### Key takeaways
+## Key takeaways
 
 - The best CRM for small business is the one your team uses every day.
 - Look for pipelines, lead capture with source tracking, email integration and simple automation.
