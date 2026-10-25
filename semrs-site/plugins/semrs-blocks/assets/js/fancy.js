@@ -6,7 +6,20 @@
 		var words;
 		try { words = JSON.parse(el.getAttribute('data-words')); } catch (e) { return; }
 		if (!words || words.length < 2) { return; }
-		var i = 0, text = words[0], deleting = true;
+		var i = Math.max(0, words.indexOf(el.textContent)), text = words[i], deleting = true;
+		// Reserve the height of the longest word so the heading (and anything centred beside it)
+		// never jumps when a word wraps onto another line (Cumulative Layout Shift).
+		var box = el.closest('.semrs-fancy-heading') || el.parentElement;
+		function reserve() {
+			var shown = el.textContent, max = 0;
+			box.style.minHeight = '';
+			words.forEach(function (w) { el.textContent = w; max = Math.max(max, box.offsetHeight); });
+			el.textContent = shown;
+			box.style.minHeight = max + 'px';
+		}
+		reserve();
+		var resizing;
+		window.addEventListener('resize', function () { clearTimeout(resizing); resizing = setTimeout(reserve, 150); });
 		if (reduce) {
 			setInterval(function () { i = (i + 1) % words.length; el.textContent = words[i]; }, 2500);
 			return;

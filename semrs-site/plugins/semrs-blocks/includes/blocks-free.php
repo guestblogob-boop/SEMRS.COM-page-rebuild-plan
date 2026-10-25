@@ -230,6 +230,8 @@ function semrs_blocks_render_fancy_heading( $a ) {
 	$first = $words ? $words[0] : '';
 	if ( 'typing' === $style && count( $words ) > 1 ) {
 		semrs_blocks_script( 'semrs-blocks-fancy', 'fancy.js' );
+		// Start on the longest word: the first paint already has the heading's tallest height, so typing never shifts the layout.
+		$first = array_reduce( $words, function ( $long, $w ) { return mb_strlen( $w ) > mb_strlen( $long ) ? $w : $long; }, '' );
 		$fancy = '<span class="semrs-fancy semrs-fancy--typing" data-words="' . esc_attr( wp_json_encode( $words ) ) . '"' . semrs_blocks_style( array( 'color' => $c1 ) ) . '>' . esc_html( $first ) . '</span><span class="semrs-fancy__caret" aria-hidden="true"></span>';
 		// Screen readers get all words once instead of the animation.
 		$fancy = '<span class="screen-reader-text">' . esc_html( implode( ', ', $words ) ) . '</span><span aria-hidden="true">' . $fancy . '</span>';
