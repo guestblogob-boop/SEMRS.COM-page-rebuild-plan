@@ -40,8 +40,8 @@ const table = (head, rows, caption) => `<!-- wp:table {"className":"is-style-str
 const tabs = (items) => `<!-- wp:semrs/tabs {"style":"pills"} -->\n${items.map(([title, icon, inner]) => `<!-- wp:semrs/tab ${json({ title, icon })} -->\n${inner.join('\n\n')}\n<!-- /wp:semrs/tab -->`).join('\n\n')}\n<!-- /wp:semrs/tabs -->`;
 const html = (markup) => `<!-- wp:html -->\n${markup}\n<!-- /wp:html -->`;
 // Typical SEO journey: an illustration (labelled), not a result. Colours follow the theme (dark mode safe).
-const seoChart = () => html(`<figure class="semrs-chart" role="img" aria-label="Illustration of a typical SEO journey over 12 months: technical fixes first, then content, then authority, with organic visibility rising gradually.">
-<svg viewBox="0 0 640 300" width="100%" xmlns="http://www.w3.org/2000/svg">
+const seoChart = () => html(`<figure class="semrs-chart">
+<svg role="img" aria-label="Illustration of a typical SEO journey over 12 months: technical fixes first, then content, then authority, with organic visibility rising gradually." viewBox="0 0 640 300" width="100%" xmlns="http://www.w3.org/2000/svg">
 <defs><linearGradient id="semrs-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sp-accent,#f7941d)" stop-opacity=".45"/><stop offset="1" stop-color="var(--sp-accent,#f7941d)" stop-opacity="0"/></linearGradient></defs>
 <g stroke="currentColor" stroke-opacity=".12">${[60, 110, 160, 210, 260].map((y) => `<line x1="40" y1="${y}" x2="620" y2="${y}"/>`).join('')}</g>
 <rect x="40" y="20" width="150" height="240" fill="currentColor" fill-opacity=".04"/><rect x="190" y="20" width="230" height="240" fill="currentColor" fill-opacity=".07"/><rect x="420" y="20" width="200" height="240" fill="currentColor" fill-opacity=".1"/>
@@ -55,7 +55,7 @@ const seoChart = () => html(`<figure class="semrs-chart" role="img" aria-label="
 </figure>`);
 
 // ---------- Page centrepieces: inline SVG + SMIL (each ~1–3 KB, no images). Illustrations, not data. ----------
-const frame = (label, inner, w = 520, hgt = 380) => html(`<figure class="semrs-dash semrs-mock" role="img" aria-label="${label}"><svg viewBox="0 0 ${w} ${hgt}" width="100%" xmlns="http://www.w3.org/2000/svg"><rect width="${w}" height="${hgt}" rx="22" fill="#0a1872"/>${inner}</svg></figure>`);
+const frame = (label, inner, w = 520, hgt = 380) => html(`<figure class="semrs-dash semrs-mock"><svg role="img" aria-label="${label}" viewBox="0 0 ${w} ${hgt}" width="100%" xmlns="http://www.w3.org/2000/svg"><rect width="${w}" height="${hgt}" rx="22" fill="#0a1872"/>${inner}</svg></figure>`);
 const grow = (attr, from, to, begin = 0, dur = 1.2) => `<animate attributeName="${attr}" from="${from}" to="${to}" dur="${dur}s" begin="${begin}s" fill="freeze"/>`;
 const MOCKS = {
 	flow: () => frame('Diagram: website, SEO, content, social and ads working together to bring leads.', [['Website', 40, '#1d3fc9'], ['SEO', 140, '#1d3fc9'], ['Content', 240, '#1d3fc9'], ['Social & Ads', 340, '#1d3fc9']].map(([t, y, c], i) => `<rect x="40" y="${y - 10}" width="220" height="64" rx="14" fill="${c}" opacity="0">${grow('opacity', 0, 1, i * 0.25, 0.6)}</rect><text x="64" y="${y + 28}" font-size="18" font-weight="700" fill="#fff" opacity="0">${t}${grow('opacity', 0, 1, i * 0.25 + 0.2, 0.6)}</text><path d="M260 ${y + 22} C330 ${y + 22} 330 210 380 210" fill="none" stroke="#f7941d" stroke-width="3" stroke-dasharray="200" stroke-dashoffset="200">${grow('stroke-dashoffset', 200, 0, 0.8 + i * 0.2, 1)}</path>`).join('') + `<circle cx="430" cy="210" r="56" fill="#f7941d"><animate attributeName="r" values="52;58;52" dur="2.4s" repeatCount="indefinite"/></circle><text x="430" y="205" text-anchor="middle" font-size="18" font-weight="800" fill="#0a1872">More</text><text x="430" y="228" text-anchor="middle" font-size="18" font-weight="800" fill="#0a1872">leads</text>`, 520, 420),
@@ -316,8 +316,8 @@ add('thank-you', 'Thank You', [
 
 // ---------- Home: the showcase page ----------
 // Animated growth dashboard (inline SVG + SMIL, ~3 KB). Illustration only: no real client data.
-const dashboard = () => html(`<figure class="semrs-dash semrs-tilt-one" role="img" aria-label="Illustration of an SEO dashboard: organic visits trending up, Core Web Vitals passing and keyword positions improving.">
-<svg viewBox="0 0 520 400" width="100%" xmlns="http://www.w3.org/2000/svg">
+const dashboard = () => html(`<figure class="semrs-dash semrs-tilt-one">
+<svg role="img" aria-label="Illustration of an SEO dashboard: organic visits trending up, Core Web Vitals passing and keyword positions improving." viewBox="0 0 520 400" width="100%" xmlns="http://www.w3.org/2000/svg">
 <defs><linearGradient id="semrs-d1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7941d" stop-opacity=".5"/><stop offset="1" stop-color="#f7941d" stop-opacity="0"/></linearGradient></defs>
 <rect x="0" y="0" width="520" height="400" rx="22" fill="#0a1872"/>
 <circle cx="24" cy="22" r="5" fill="#ff5f57"/><circle cx="42" cy="22" r="5" fill="#febc2e"/><circle cx="60" cy="22" r="5" fill="#28c840"/>

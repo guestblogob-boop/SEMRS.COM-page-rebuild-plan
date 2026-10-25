@@ -62,13 +62,25 @@ keyword: <primary keyword from the plan>
 
 | Image | Rule |
 |---|---|
-| Featured image | One photo, 1200 × 675, WebP, under 100 KB, SEMRS logo badge, file name `{slug}-featured.webp`. Own photos or CC0 / commercial-use license; record the credit in the media description. |
+| Featured image | One photo, 1200 × 675, WebP, under 100 KB, file name `{slug}-featured.webp`. Own photos or CC0 / commercial-use license; record the credit in the media description. |
 | Data graphic | One per article, in the body, drawn in SEMRS colors (blue #0b2fd1, orange #f7941d) with `content-src/blog/graphics.mjs`. Use only cited figures or the article's own steps. Label examples as examples. |
 | Alt text | Describe what the image actually shows; include the topic naturally, never stuff keywords. |
 | Caption | One sentence that adds meaning (what the reader should take from it). |
 | No GIFs | Heavy files hurt Core Web Vitals. Use a still graphic instead. |
 
-Build images with the scratchpad script `blog-images.mjs` (photos are badged and cropped, graphics rendered to WebP).
+### SEMRS stamp on images
+
+| Image source | Stamp |
+|---|---|
+| Photos from free image sites (CC0 / free-license stock: StockSnap, Rawpixel, Pixabay, Unsplash, Pexels and similar) | Always: the word **SEMRS** in plain text, white on a soft dark pill, bottom-right corner. |
+| Generated images (AI-made images, SEMRS data graphics) | Only when necessary, for example an image likely to be shared or copied on its own. Then the word **SEMRS** in plain text. SEMRS data graphics already print "SEMRS" in their footer, so they get no extra stamp. |
+| Own photos, client photos, screenshots | No stamp. |
+
+- Write the word **SEMRS** only: never the SEMRS logo, emblem or a badge, and no other words (no URL, slogan or "©").
+- Keep the stamp small and in a corner, away from faces, products and text in the image.
+- A stamp never replaces the credit: record the photo credit and license in the media description as before.
+
+Build images with `node content-src/blog/blog-images.mjs` from the `semrs-site` folder (needs `npm i --no-save sharp`). It crops and stamps free-stock photos and renders the graphics to WebP. In its `CHARTS` list, add `{ stamp: true }` to an item only when a generated image needs the stamp.
 
 ## 8. Technical SEO checklist
 
@@ -76,6 +88,7 @@ Build images with the scratchpad script `blog-images.mjs` (photos are badged and
 - One H1 (the title), logical H2 → H3 order, short slug.
 - SEO title 30–60 characters, meta description 120–155 characters.
 - Featured image set; every in-body image has alt text and a caption.
+- Free-stock photos carry the plain-text **SEMRS** stamp (never the logo); see section 7.
 - FAQ section present (FAQPage schema is added by SEMRS automatically).
 - Article, BreadcrumbList and Organization schema come from SEMRS; nothing to add by hand.
 - Run `node content-src/blog/build-blog.mjs` from the `semrs-site` folder: every article must print `ok`.
@@ -119,7 +132,7 @@ The old `/category/industry-marketing/` URL redirects to Finance & Insurance Mar
 ## 12. Publishing workflow
 
 1. Pick the next article in the 3-Month Plan sheet; copy the article template sheet into `content-src/blog/articles/NN-slug.md`.
-2. Write it to this guide; add the graphic to `graphics.mjs` and the photo to `blog-images.mjs`.
+2. Write it to this guide; add the graphic to `graphics.mjs` and the photo to `blog-images.mjs`, then run it (free-stock photos get the SEMRS text stamp; generated images only if necessary).
 3. Build and check (`build-blog.mjs` prints `ok`).
 4. Upload to staging, set the featured image, check the SEMRS score (98+), then a person approves it before it goes live.
 5. Mark it "Written" in the plan.

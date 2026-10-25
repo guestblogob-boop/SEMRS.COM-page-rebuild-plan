@@ -78,7 +78,7 @@
 .semrs-pricing__features li{display:flex;gap:.5rem;align-items:flex-start;margin:0}
 .semrs-pricing__features .is-yes .semrs-icon{color:#0f7b4d}
 .semrs-pricing__features .is-no{color:var(--b-muted)}
-.semrs-pricing__features .is-no .semrs-icon{color:#b42318}
+.semrs-pricing__features .is-no .semrs-icon{color:var(--sp-bad,#b42318)}
 .semrs-pricing .semrs-btn{margin-top:auto;width:100%}
 /* Service card */
 .semrs-service{display:flex;flex-direction:column;gap:.9rem;height:100%}
@@ -117,8 +117,8 @@
 .semrs-cf__check input{margin-top:.25rem;width:18px;height:18px;flex:0 0 auto}
 .semrs-cf__hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
 .semrs-cf__actions{margin:.4rem 0 0}
-.semrs-cf .is-invalid{border-color:#b42318!important}
-.semrs-cf__error{display:block;margin-top:.25rem;color:#b42318;font-size:.85rem}
+.semrs-cf .is-invalid{border-color:var(--sp-bad,#b42318)!important}
+.semrs-cf__error{display:block;margin-top:.25rem;color:var(--sp-bad,#b42318);font-size:.85rem}
 .semrs-cf__status:not(:empty){margin-top:.8rem;padding:.8rem 1rem;border-radius:8px;background:var(--b-surface)}
 .semrs-cf__status.is-ok{background:#e7f6ee;color:#0f5e3b}
 .semrs-cf__status.is-error{background:#fdecea;color:#8a1c12}

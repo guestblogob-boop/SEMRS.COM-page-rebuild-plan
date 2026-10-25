@@ -14,7 +14,7 @@ SemrsTools.register('redirect-checker', function (root, api) {
 	var LABELS = { 200: 'OK', 301: 'Moved permanently', 302: 'Found (temporary)', 303: 'See other', 307: 'Temporary redirect', 308: 'Permanent redirect', 404: 'Not found', 410: 'Gone', 403: 'Forbidden', 500: 'Server error', 503: 'Unavailable' };
 
 	function badge(code) {
-		var color = code >= 200 && code < 300 ? '#0f7b4d' : (code >= 300 && code < 400 ? '#8a5a00' : '#b42318');
+		var color = code >= 200 && code < 300 ? 'var(--st-ok)' : (code >= 300 && code < 400 ? 'var(--st-warn)' : 'var(--st-bad)');
 		return h('b', { style: 'color:' + color, text: code ? code + ' ' + (LABELS[code] || '') : 'Error' });
 	}
 

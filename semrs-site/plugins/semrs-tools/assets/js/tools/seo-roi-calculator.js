@@ -41,7 +41,7 @@ SemrsTools.register('seo-roi-calculator', function (root, api) {
 		var roi = cumCost ? (cumRev - cumCost) / cumCost * 100 : 0;
 		var table = h('table', { class: 'semrs-tool__table' }, h('thead', null, h('tr', null, h('th', { text: 'Month' }), h('th', { text: 'Extra visits' }), h('th', { text: 'Extra revenue' }), h('th', { text: 'Running total vs. cost' }))));
 		var tb = h('tbody');
-		rows.forEach(function (r) { tb.append(h('tr', null, h('td', { text: r[0] }), h('td', { text: r[1].toLocaleString('en-US') }), h('td', { text: money(r[2]) }), h('td', { style: 'color:' + (r[3] >= 0 ? '#0f7b4d' : '#b42318'), text: (r[3] < 0 ? '−' : '') + money(Math.abs(r[3])) }))); });
+		rows.forEach(function (r) { tb.append(h('tr', null, h('td', { text: r[0] }), h('td', { text: r[1].toLocaleString('en-US') }), h('td', { text: money(r[2]) }), h('td', { style: 'color:' + (r[3] >= 0 ? 'var(--st-ok)' : 'var(--st-bad)'), text: (r[3] < 0 ? '−' : '') + money(Math.abs(r[3])) }))); });
 		table.append(tb);
 		out.innerHTML = '';
 		out.append(

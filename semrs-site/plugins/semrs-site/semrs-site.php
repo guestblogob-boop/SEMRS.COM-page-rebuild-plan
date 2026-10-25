@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       SEMRS Site (semrs.com only)
  * Description:       semrs.com-only additions that are never given to clients: the SEMRS Store (products, collection and product pages, pricing) and SEMRS Pro sales page installer, the Keyword Ideas Generator tool, the "Hero with photo and keyword tool" pattern and its photo, and the web design portfolio hub ([semrs_portfolio]). Needs SEMRS Tools for the tool.
- * Version:           1.2.13
+ * Version:           1.2.14
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            SEMRS
@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 // WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
 add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
 
-define( 'SEMRS_SITE_VERSION', '1.2.13' );
+define( 'SEMRS_SITE_VERSION', '1.2.14' );
 define( 'SEMRS_SITE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_SITE_URL', plugin_dir_url( __FILE__ ) );
 
@@ -47,6 +47,22 @@ add_action(
 	},
 	99
 );
+
+/**
+ * Older page content put role="img" on <figure> elements that have a caption, which ARIA does not
+ * allow (Lighthouse: "ARIA roles on compatible elements", "accessibility tree not well-formed").
+ * Move the role and label onto the SVG inside instead.
+ *
+ * @param string $html Post content.
+ * @return string
+ */
+function semrs_site_figure_roles( $html ) {
+	if ( false === strpos( $html, 'role="img"' ) ) {
+		return $html;
+	}
+	return preg_replace( '#<figure class="(semrs-[^"]+)" role="img" aria-label="([^"]*)">(\s*)<svg #', '<figure class="$1">$3<svg role="img" aria-label="$2" ', $html );
+}
+add_filter( 'the_content', 'semrs_site_figure_roles', 20 );
 
 /**
  * Add the Keyword Ideas Generator to SEMRS Tools (directory, shortcode).

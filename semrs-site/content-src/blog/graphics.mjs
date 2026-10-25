@@ -1,5 +1,5 @@
 // Data graphics for the SEMRS blog articles, drawn as SVG (brand colors,
-// cited figures only). build-images.mjs turns them into WebP files.
+// cited figures only). blog-images.mjs turns them into WebP files.
 const W = 1200, H = 675;
 const C = { blue: '#0b2fd1', navy: '#0a1650', orange: '#f7941d', orangeDk: '#b45309', ink: '#151b33', mute: '#5a6383', soft: '#eef1ff', warm: '#fff3e3', line: '#dfe3ef', bg: '#f8f9ff', green: '#0f7b4d' };
 const F = "Segoe UI, Arial, Helvetica, sans-serif";
@@ -13,7 +13,7 @@ ${sub ? `<text x="60" y="128" font-family="${F}" font-size="22" fill="${C.mute}"
 ${body}
 <line x1="60" y1="${H - 52}" x2="${W - 60}" y2="${H - 52}" stroke="${C.line}" stroke-width="2"/>
 <text x="60" y="${H - 22}" font-family="${F}" font-size="17" fill="${C.mute}">${esc(source)}</text>
-<text x="${W - 60}" y="${H - 22}" text-anchor="end" font-family="${F}" font-size="18" font-weight="700" fill="${C.blue}">semrs.com</text>
+<text x="${W - 60}" y="${H - 22}" text-anchor="end" font-family="${F}" font-size="18" font-weight="700" fill="${C.blue}">SEMRS</text>
 </svg>`;
 
 const wrap = (text, max) => { const out = []; let line = ''; for (const w of text.split(' ')) { if ((line + ' ' + w).trim().length > max) { out.push(line.trim()); line = w; } else line += ' ' + w; } if (line.trim()) out.push(line.trim()); return out; };

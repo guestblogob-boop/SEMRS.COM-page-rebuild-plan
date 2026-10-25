@@ -320,10 +320,10 @@ function semrs_portfolio_page_content() {
 	$c .= $btns( array( array( __( 'Get a free website quote', 'semrs-site' ), $s['contact'] ), array( __( 'Browse designs', 'semrs-site' ), '#designs', true ) ) );
 	$c .= "<!-- /wp:semrs/container -->\n\n";
 	$c .= '<!-- wp:semrs/container {"align":"full","padTop":48,"padBottom":64,"tag":"section"} -->' . "\n" . $h( __( 'Website designs', 'semrs-site' ) ) . $p( __( 'Hover a design to scroll through its home page. Click it to browse the whole website, page by page, on desktop, tablet or phone.', 'semrs-site' ) ) . "<!-- wp:shortcode -->\n[semrs_portfolio]\n<!-- /wp:shortcode -->\n<!-- /wp:semrs/container -->\n\n";
-	$c .= '<!-- wp:semrs/container {"align":"full","bg":"#f6f7f9","padTop":64,"padBottom":64,"tag":"section"} -->' . "\n" . $h( __( 'How we build your website', 'semrs-site' ), 2, true );
+	$c .= '<!-- wp:semrs/container {"align":"full","bg":"var(--sp-surface)","padTop":64,"padBottom":64,"tag":"section"} -->' . "\n" . $h( __( 'How we build your website', 'semrs-site' ), 2, true );
 	$c .= '<!-- wp:semrs/container {"layout":"grid","columns":3,"columnsTablet":3,"width":"full","gap":32} -->' . "\n";
 	foreach ( array( array( 'search', __( '1. Choose a design', 'semrs-site' ), __( 'Pick a design from the portfolio, or tell us what you have in mind.', 'semrs-site' ) ), array( 'pen', __( '2. We make it yours', 'semrs-site' ), __( 'Your logo, colours, text and photos, with SEO and speed set up from day one.', 'semrs-site' ) ), array( 'rocket', __( '3. Launch and grow', 'semrs-site' ), __( 'We launch on your domain and can keep improving it with SEO and content.', 'semrs-site' ) ) ) as $step ) {
-		$c .= '<!-- wp:group {"layout":{"type":"default"}} -->' . "\n<div class=\"wp-block-group\"><!-- wp:semrs/icon {\"icon\":\"" . $step[0] . "\",\"size\":44,\"shape\":\"circle\",\"bg\":\"#fbf4e0\"} /-->\n\n" . $h( $step[1], 3 ) . $p( $step[2] ) . "</div>\n<!-- /wp:group -->\n\n";
+		$c .= '<!-- wp:group {"layout":{"type":"default"}} -->' . "\n<div class=\"wp-block-group\"><!-- wp:semrs/icon {\"icon\":\"" . $step[0] . "\",\"size\":44,\"shape\":\"circle\",\"bg\":\"var(--sp-accent-soft)\"} /-->\n\n" . $h( $step[1], 3 ) . $p( $step[2] ) . "</div>\n<!-- /wp:group -->\n\n";
 	}
 	$c .= "<!-- /wp:semrs/container -->\n<!-- /wp:semrs/container -->\n\n";
 	$c .= '<!-- wp:semrs/container {"align":"full","gradient":"navy","textColor":"#ffffff","padTop":64,"padBottom":64,"tag":"section"} -->' . "\n" . $h( __( 'Ready for a website that works for your business?', 'semrs-site' ), 2, true );

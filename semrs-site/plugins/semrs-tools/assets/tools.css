@@ -7,9 +7,9 @@
 	--st-muted: var(--sp-muted, #5b6575);
 	--st-line: var(--sp-line, #e3e7ee);
 	--st-surface: var(--sp-surface, #f6f7f9);
-	--st-ok: #0f7b4d;
-	--st-bad: #b42318;
-	--st-warn: #8a5a00;
+	--st-ok: var(--sp-ok, #0f7b4d);
+	--st-bad: var(--sp-bad, #b42318);
+	--st-warn: var(--sp-warn, #8a5a00);
 	min-height: 380px;
 	margin: 1.5rem 0;
 }
@@ -54,8 +54,10 @@
 .semrs-tool__table { width: 100%; border-collapse: collapse; font-size: .9rem; }
 .semrs-tool__table th, .semrs-tool__table td { border: 1px solid var(--st-line); padding: .5rem; text-align: left; vertical-align: top; word-break: break-word; }
 .semrs-tool__tabs { display: flex; flex-wrap: wrap; gap: .25rem; margin-bottom: 1rem; }
-.semrs-tool__tabs button { min-height: 40px; padding: .4rem .9rem; font: inherit; font-size: .9rem; background: #fff; border: 1px solid var(--st-line); border-radius: 999px; cursor: pointer; color: var(--st-primary); }
+.semrs-tool__tabs button { min-height: 40px; padding: .4rem .9rem; font: inherit; font-size: .9rem; background: var(--sp-card, #fff); border: 1px solid var(--st-line); border-radius: 999px; cursor: pointer; color: var(--st-primary); }
 .semrs-tool__tabs button[aria-pressed="true"] { background: var(--st-primary); border-color: var(--st-primary); color: #fff; }
+.semrs-tool__tabs button:not([aria-pressed="true"]):hover { color: var(--sp-btn-hover-text, #fff); background: var(--sp-btn-hover, #0b1f3a); border-color: var(--sp-btn-hover, #0b1f3a); }
+html[data-theme="dark"] .semrs-tool__tabs button[aria-pressed="true"] { background: var(--st-accent); border-color: var(--st-accent); color: var(--st-on-accent); }
 .semrs-tool__repeat { border: 1px dashed var(--st-line); border-radius: 8px; padding: .75rem; margin-bottom: .75rem; }
 /* SERP preview */
 .semrs-serp { font-family: Arial, sans-serif; background: #fff; max-width: 600px; }
@@ -70,14 +72,14 @@
 .semrs-serp__date { color: #70757a; }
 .semrs-serp__label { font-size: .8rem; font-weight: 600; color: var(--st-muted); margin: 1rem 0 .4rem; text-transform: uppercase; letter-spacing: .05em; }
 /* Image compressor */
-.semrs-drop { border: 2px dashed #b8c0cc; border-radius: 12px; padding: 2rem 1rem; text-align: center; background: #fff; cursor: pointer; }
-.semrs-drop.is-over { border-color: var(--st-accent); background: #fbf4e0; }
+.semrs-drop { border: 2px dashed #b8c0cc; border-radius: 12px; padding: 2rem 1rem; text-align: center; background: var(--sp-card, #fff); cursor: pointer; }
+.semrs-drop.is-over { border-color: var(--st-accent); background: var(--sp-accent-soft, #fbf4e0); }
 .semrs-img-list { display: grid; gap: .75rem; }
 .semrs-img-item { display: grid; grid-template-columns: 64px 1fr auto; gap: .75rem; align-items: center; padding: .5rem; border: 1px solid var(--st-line); border-radius: 8px; }
 .semrs-img-item img { width: 64px; height: 64px; object-fit: cover; border-radius: 6px; }
 .semrs-good { color: var(--st-ok); font-weight: 700; }
 /* Service CTA after a tool */
-.semrs-service-cta { border-left: 4px solid var(--st-accent, #d4a72c); background: #fbf4e0; border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0 0; }
+.semrs-service-cta { border-left: 4px solid var(--st-accent, #d4a72c); background: var(--sp-accent-soft, #fbf4e0); border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0 0; }
 .semrs-service-cta p { margin: 0; }
 @media (max-width: 544px) {
 	.semrs-tool, .semrs-tool__panel { padding: 1rem; }
@@ -87,7 +89,7 @@
 .semrs-tools-dir__cat { margin: 2.5rem 0; }
 .semrs-tools-dir__cat h2 a { text-decoration: none; color: inherit; }
 .semrs-tools-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
-.semrs-tools-card { display: flex; flex-direction: column; gap: .4rem; padding: 1.25rem; background: #fff; border: 1px solid var(--sp-line, #e3e7ee); border-radius: 12px; text-decoration: none; color: var(--sp-text, #1f2937); transition: border-color .15s, box-shadow .15s; }
+.semrs-tools-card { display: flex; flex-direction: column; gap: .4rem; padding: 1.25rem; background: var(--sp-card, #fff); border: 1px solid var(--sp-line, #e3e7ee); border-radius: 12px; text-decoration: none; color: var(--sp-text, #1f2937); transition: border-color .15s, box-shadow .15s; }
 .semrs-tools-card:hover { border-color: var(--sp-accent, #d4a72c); box-shadow: 0 8px 24px rgba(11, 31, 58, .08); }
 .semrs-tools-card__title { font-weight: 700; color: var(--sp-primary, #0b1f3a); font-size: 1.05rem; }
 .semrs-tools-card__desc { font-size: .9rem; color: var(--sp-muted, #5b6575); }

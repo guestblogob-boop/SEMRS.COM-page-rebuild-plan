@@ -163,10 +163,10 @@ function semrs_pro_render_slider( $a ) {
 	$items  = '';
 	foreach ( $slides as $n => $s ) {
 		/* translators: 1: slide number, 2: total */
-		$items .= '<li class="semrs-slide" role="group" aria-roledescription="slide" aria-label="' . esc_attr( sprintf( __( '%1$d of %2$d', 'semrs-pro' ), $n + 1, count( $slides ) ) ) . '">' . $s . '</li>';
+		$items .= '<div class="semrs-slide" role="group" aria-roledescription="slide" aria-label="' . esc_attr( sprintf( __( '%1$d of %2$d', 'semrs-pro' ), $n + 1, count( $slides ) ) ) . '">' . $s . '</div>';
 	}
 	return semrs_pro_blocks_css() . sprintf(
-		'<div class="semrs-slider" role="region" aria-roledescription="carousel" aria-label="%1$s" data-autoplay="%2$s" data-interval="%3$d" data-loop="%4$s" style="--semrs-per:%5$d;%6$s"><ul class="semrs-slider__track">%7$s</ul>%8$s%9$s</div>',
+		'<div class="semrs-slider" role="region" aria-roledescription="carousel" aria-label="%1$s" data-autoplay="%2$s" data-interval="%3$d" data-loop="%4$s" style="--semrs-per:%5$d;%6$s"><div class="semrs-slider__track">%7$s</div>%8$s%9$s</div>',
 		esc_attr__( 'Slider', 'semrs-pro' ),
 		! empty( $a['autoplay'] ) ? '1' : '0',
 		max( 2, (int) semrs_blocks_a( $a, 'interval', 5 ) ) * 1000,

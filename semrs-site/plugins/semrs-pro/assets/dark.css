@@ -29,6 +29,9 @@ html[data-theme="dark"] {
 	--sp-accent-soft: #2b2512;
 	--sp-accent-soft: color-mix(in srgb, var(--sp-accent) 18%, var(--sp-bg));
 	--sp-header-bg: #0b1f3a;
+	--sp-ok: #5fd39a;
+	--sp-bad: #ff8a80;
+	--sp-warn: #f3c969;
 	--sp-shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
 	--wp--preset--color--white: #132036;
 	--wp--preset--color--surface: #152238;
@@ -49,6 +52,10 @@ html[data-theme="dark"] .page-numbers.current { background: var(--sp-dark-header
 html[data-theme="dark"] .semrs-section--navy, html[data-theme="dark"] .semrs-cta-band { box-shadow: inset 0 0 0 1px #1e3a66; }
 html[data-theme="dark"] .semrs-btn:hover { background: var(--sp-btn-hover); border-color: var(--sp-btn-hover); color: var(--sp-btn-hover-text); }
 html[data-theme="dark"] :is(.sp-button, .wp-block-button__link, .wp-element-button, .semrs-btn):hover { box-shadow: 0 10px 24px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.18); }
+
+/* Light backgrounds typed into page content (container/group colour settings). */
+html[data-theme="dark"] :is([style*="background:#fff;"], [style*="background:#ffffff"], [style*="background-color:#fff;"], [style*="background-color:#ffffff"], [style*="background:#f6f7f9"], [style*="background-color:#f6f7f9"], [style*="background:#f0f0f0"], [style*="background-color:#f0f0f0"]) { background: var(--sp-surface) !important; color: var(--sp-text); }
+html[data-theme="dark"] :is([style*="background:#fbf4e0"], [style*="background-color:#fbf4e0"]) { background: var(--sp-accent-soft) !important; color: var(--sp-text); }
 
 /* Cards, panels and fields that were white. */
 html[data-theme="dark"] :is(.semrs-card, .semrs-card-grid > .wp-block-column, .semrs-process > li, .semrs-faq .wp-block-details, .semrs-tool__panel, .semrs-tools-card, .semrs-post, .semrs-pricing, .semrs-service--card, .semrs-acc__item, .semrs-testi, .semrs-cd__unit, .semrs-source, .sp-card, .sp-search-panel, .semrs-popup__box) { background: var(--sp-card); border-color: var(--sp-line); }
