@@ -4,7 +4,7 @@ Theme URI:         https://semrs.com/
 Author:            SEMRS
 Author URI:        https://semrs.com/
 Description:       Lightweight, SEO-first theme for businesses, agencies and blogs. Drag-and-drop header and footer builder with top bar, sticky and transparent header, header search and a mobile menu panel. Seven section patterns, sidebar layouts, blog grid or list, reading progress bar, author box, related posts and per-page header, footer and sidebar options. No jQuery: one stylesheet and one small script.
-Version:           1.3.16
+Version:           1.3.17
 Requires at least: 6.5
 Tested up to:      7.1
 Requires PHP:      7.4
@@ -141,9 +141,10 @@ th { background: var(--sp-surface); }
 .main-navigation ul { list-style: none; margin: 0; padding: 0; }
 .main-navigation a { display: block; color: var(--sp-primary); text-decoration: none; font-weight: 600; font-size: .95rem; }
 @media (min-width: 922px) {
-	.main-navigation > div > ul, .main-navigation > ul { display: flex; align-items: center; gap: .25rem; }
+	.main-navigation > div > ul, .main-navigation > ul { display: flex; align-items: center; gap: .15rem; }
 	.main-navigation li { position: relative; }
-	.main-navigation > div > ul > li > a, .main-navigation > ul > li > a { padding: .6rem .8rem; border-radius: 8px; }
+	/* Top-level labels stay on one line; spacing tightens on narrower desktops. */
+	.main-navigation > div > ul > li > a, .main-navigation > ul > li > a { padding: .6rem .6rem; border-radius: 8px; white-space: nowrap; }
 	.main-navigation > div > ul > li > a:hover, .main-navigation .current-menu-item > a { background: var(--sp-surface); }
 	.main-navigation > div > ul > li > a:hover, .main-navigation > ul > li > a:hover { background: var(--sp-accent-soft); color: var(--sp-primary); box-shadow: inset 0 -3px 0 var(--sp-accent); }
 	.main-navigation .menu-item-has-children > a::after { content: ""; display: inline-block; width: .45em; height: .45em; margin-left: .4em; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-.2em) rotate(45deg); }
@@ -154,6 +155,18 @@ th { background: var(--sp-surface); }
 	.main-navigation .sub-menu a:hover, .main-navigation .sub-menu a:focus-visible, .main-navigation .sub-menu .current-menu-item > a { background: var(--sp-accent-soft); color: var(--sp-primary); box-shadow: inset 3px 0 0 var(--sp-accent); }
 	.sp-submenu-toggle, .menu-toggle { display: none; }
 	.header-inner .site-header-search { position: relative; }
+}
+@media (min-width: 922px) {
+	/* The last item's dropdown opens leftwards, so it never runs past the screen edge. */
+	.main-navigation > div > ul > li:last-child > .sub-menu, .main-navigation > ul > li:last-child > .sub-menu { left: auto; right: 0; }
+}
+@media (min-width: 922px) and (max-width: 1199px) {
+	.main-navigation > div > ul > li > a, .main-navigation > ul > li > a { padding: .55rem .4rem; font-size: .86rem; }
+	.main-navigation .menu-item-has-children > a::after { margin-left: .3em; }
+}
+@media (min-width: 922px) and (max-width: 1099px) {
+	.main-navigation > div > ul, .main-navigation > ul { gap: 0; }
+	.main-navigation > div > ul > li > a, .main-navigation > ul > li > a { padding: .5rem .3rem; font-size: .8rem; }
 }
 .menu-item-description { display: block; font-size: .8rem; font-weight: 400; color: var(--sp-muted); }
 .header-cta { white-space: nowrap; }
