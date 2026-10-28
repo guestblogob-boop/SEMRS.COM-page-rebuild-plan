@@ -4,7 +4,7 @@ Tags: seo, page cache, redirects, webp, user roles
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.22
+Stable tag: 1.3.25
 License: GPLv2 or later
 
 Free SEO, redirects, page cache, WebP images, user roles, review widgets and a policy-safe AdSense manager in one plugin.
@@ -81,6 +81,16 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt and all other features run entirely on your own server.
 
 == Changelog ==
+
+= 1.3.25 =
+* Posts and Pages lists also show a Status column (published, draft or scheduled, and whether the page loads) and a Traffic column (Google clicks, impressions and average position, last 90 days).
+
+= 1.3.24 =
+* Posts and Pages lists show an Index status column (live & indexed, live but not indexed yet, waiting for Google, redirect, not live, noindex) with a Request indexing link.
+
+= 1.3.23 =
+* Ads: no layout shift. Boxes for another screen size never show, and an unfilled ad keeps its space unless it is below the screen.
+* Ads: /semrs-pro/ and /my-licenses/ are excluded by default.
 
 = 1.3.22 =
 * Features screen: with SEMRS Pro 1.5, modules that are not in your license's add-ons show which add-on they belong to, with an Add button. Their on/off setting is kept for when they unlock.

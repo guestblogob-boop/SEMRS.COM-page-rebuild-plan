@@ -4,7 +4,7 @@ Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: semrs-core
-Stable tag: 1.5.1
+Stable tag: 1.5.4
 License: GPLv2 or later
 
 Premium add-on for the free SEMRS theme and the free SEMRS Core plugin. Every module can be switched off under SEMRS → Modules.
@@ -116,6 +116,14 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 SEMRS → License: paste your key and click Activate (Deactivate frees the site so you can move the key). Updates come from semrs.com (SEMRS Update Server): with a valid key, WordPress shows "Update available" and installs new versions in one click. Features never switch off when a license expires; the license controls updates and support.
 
 == Changelog ==
+
+= 1.5.4 =
+* Automatic internal links use focus keywords of two words or more; one-word keywords such as "blog" or "pricing" no longer link common words across the site.
+* Automatic internal links now work for visitors: focus keywords were only read in wp-admin, so the public site had an empty keyword list.
+
+
+= 1.5.2 =
+* Broken link checker: browser-like requests, so pages that refuse bots (such as Google help pages) are no longer reported as broken; sign-in redirect loops are not counted as broken.
 
 = 1.5.1 =
 * Add-ons: your license key lists the add-ons you bought (SEO Pro, Speed Pro, Ads Pro, Theme & Blocks Pro, or All Pro) and only those modules load. Add-ons bought later go on the same key and switch on within a day, or right away with Check again.

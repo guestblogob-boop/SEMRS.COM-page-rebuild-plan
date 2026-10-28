@@ -470,3 +470,146 @@ function semrs_index_page() {
 	</script>
 	<?php
 }
+
+/**
+ * Posts and Pages lists: three columns from the same data as SEMRS → Index Status.
+ * - Status: WordPress status plus whether the page loads (live, redirect, not live).
+ * - Index status: live & indexed, waiting for Google, not indexed yet, noindex.
+ * - Traffic: Google clicks, impressions and average position, last 90 days (Search Console via Site Kit).
+ */
+function semrs_index_columns_init() {
+	foreach ( semrs_seo_public_types() as $type ) {
+		add_filter( "manage_{$type}_posts_columns", 'semrs_index_column' );
+		add_action( "manage_{$type}_posts_custom_column", 'semrs_index_column_cell', 10, 2 );
+	}
+}
+add_action( 'admin_init', 'semrs_index_columns_init' );
+
+/**
+ * Add the columns.
+ *
+ * @param array $cols Columns.
+ * @return array
+ */
+function semrs_index_column( $cols ) {
+	$cols['semrs_status']  = __( 'Status', 'semrs-core' );
+	$cols['semrs_index']   = __( 'Index status', 'semrs-core' );
+	$cols['semrs_traffic'] = __( 'Traffic (90 days)', 'semrs-core' );
+	return $cols;
+}
+
+/**
+ * Data for the columns, loaded once per screen.
+ *
+ * @return array{live:array,google:array|false,prop:string}
+ */
+function semrs_index_column_data() {
+	static $d = null;
+	if ( null === $d ) {
+		$g = semrs_index_google(); // Cached for 6 hours.
+		$d = array(
+			'live'   => semrs_index_live(),
+			'google' => is_wp_error( $g ) ? false : $g,
+			'prop'   => semrs_index_property(),
+		);
+	}
+	return $d;
+}
+
+/**
+ * A coloured dot and a label.
+ *
+ * @param string $label Label.
+ * @param string $color Colour.
+ * @param string $title Tooltip.
+ * @return string
+ */
+function semrs_index_dot( $label, $color, $title = '' ) {
+	return sprintf(
+		'<span title="%3$s" style="display:inline-flex;align-items:center;gap:6px"><span aria-hidden="true" style="flex:none;width:9px;height:9px;border-radius:50%%;background:%2$s"></span>%1$s</span>',
+		esc_html( $label ),
+		esc_attr( $color ),
+		esc_attr( $title )
+	);
+}
+
+/**
+ * Print one cell.
+ *
+ * @param string $col Column key.
+ * @param int    $id  Post ID.
+ */
+function semrs_index_column_cell( $col, $id ) {
+	if ( ! in_array( $col, array( 'semrs_status', 'semrs_index', 'semrs_traffic' ), true ) ) {
+		return;
+	}
+	$status = get_post_status( $id );
+	$muted  = '<span style="color:#646970">%s</span>';
+
+	if ( 'semrs_status' === $col ) {
+		if ( 'publish' !== $status ) {
+			$names = array(
+				'future'  => __( 'Scheduled', 'semrs-core' ),
+				'draft'   => __( 'Draft', 'semrs-core' ),
+				'pending' => __( 'Pending review', 'semrs-core' ),
+				'private' => __( 'Private', 'semrs-core' ),
+			);
+			$label = $names[ $status ] ?? ucfirst( (string) $status );
+			if ( 'future' === $status ) {
+				$label .= ' · ' . get_the_date( '', $id );
+			}
+			printf( $muted, esc_html( $label ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- fixed markup, escaped label.
+			return;
+		}
+		$check = semrs_index_column_data()['live'][ $id ] ?? null;
+		if ( ! $check ) {
+			echo semrs_index_dot( __( 'Published · not checked yet', 'semrs-core' ), '#646970' ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside.
+		} elseif ( 200 === (int) $check[0] ) {
+			echo semrs_index_dot( __( 'Published · Live', 'semrs-core' ), '#00813a', __( 'The page answers with HTTP 200.', 'semrs-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
+		} elseif ( $check[0] >= 300 && $check[0] < 400 ) {
+			/* translators: %s: address */
+			echo semrs_index_dot( __( 'Published · Redirects', 'semrs-core' ), '#b26200', sprintf( __( 'Goes to %s', 'semrs-core' ), $check[1] ) ); // phpcs:ignore WordPress.Security.EscapeOutput
+		} else {
+			/* translators: %d: HTTP status */
+			echo semrs_index_dot( sprintf( __( 'Published · Not live (%d)', 'semrs-core' ), (int) $check[0] ), '#b32d2e' ); // phpcs:ignore WordPress.Security.EscapeOutput
+		}
+		return;
+	}
+
+	if ( 'publish' !== $status ) {
+		printf( $muted, '—' ); // phpcs:ignore WordPress.Security.EscapeOutput -- fixed markup.
+		return;
+	}
+	$d = semrs_index_column_data();
+
+	if ( 'semrs_index' === $col ) {
+		$st = semrs_index_status( $id, $d['live'], $d['google'] );
+		echo semrs_index_dot( $st[1], $st[2], $st[3] ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside.
+		if ( $d['prop'] && in_array( $st[0], array( 'pending', 'waiting' ), true ) ) {
+			$url = 'https://search.google.com/search-console/inspect?resource_id=' . rawurlencode( $d['prop'] ) . '&id=' . rawurlencode( get_permalink( $id ) );
+			echo '<br><a href="' . esc_url( $url ) . '" target="_blank" rel="noopener">' . esc_html__( 'Request indexing', 'semrs-core' ) . '</a>';
+		}
+		return;
+	}
+
+	// Traffic.
+	if ( false === $d['google'] ) {
+		printf( $muted, esc_html__( 'Connect Site Kit', 'semrs-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- fixed markup, escaped text.
+		return;
+	}
+	$path = trailingslashit( strtolower( (string) wp_parse_url( get_permalink( $id ), PHP_URL_PATH ) ) );
+	if ( empty( $d['google'][ $path ] ) ) {
+		printf( $muted, esc_html__( 'No Google traffic yet', 'semrs-core' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
+		return;
+	}
+	list( $clicks, $impr, $pos ) = $d['google'][ $path ];
+	printf(
+		'<strong>%1$s</strong> %2$s<br><span style="color:#646970">%3$s · %4$s</span>',
+		esc_html( number_format_i18n( $clicks ) ),
+		esc_html( _n( 'click', 'clicks', $clicks, 'semrs-core' ) ),
+		/* translators: %s: impressions */
+		esc_html( sprintf( __( '%s impressions', 'semrs-core' ), number_format_i18n( $impr ) ) ),
+		/* translators: %s: average position */
+		esc_html( sprintf( __( 'position %s', 'semrs-core' ), $pos ) )
+	);
+}

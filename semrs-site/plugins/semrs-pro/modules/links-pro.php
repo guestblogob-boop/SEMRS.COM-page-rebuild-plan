@@ -68,10 +68,12 @@ function semrs_links_map() {
 			}
 		}
 	}
-	if ( $s['focus'] && function_exists( 'semrs_seo_post_types' ) ) {
-		$ids = get_posts(
+	if ( $s['focus'] ) {
+		// SEMRS Core defines semrs_seo_post_types() only in wp-admin; the front end builds the same list here.
+		$types = function_exists( 'semrs_seo_post_types' ) ? semrs_seo_post_types() : array_values( array_diff( get_post_types( array( 'public' => true ) ), array( 'attachment' ) ) );
+		$ids   = get_posts(
 			array(
-				'post_type'      => semrs_seo_post_types(),
+				'post_type'      => $types,
 				'post_status'    => 'publish',
 				'posts_per_page' => 500,
 				'fields'         => 'ids',
@@ -81,7 +83,8 @@ function semrs_links_map() {
 		);
 		foreach ( $ids as $id ) {
 			$kw = mb_strtolower( trim( (string) get_post_meta( $id, '_semrs_focus', true ) ) );
-			if ( mb_strlen( $kw ) >= 4 && ! isset( $map[ $kw ] ) && ! ( function_exists( 'semrs_seo_is_noindex' ) && semrs_seo_is_noindex( $id ) ) ) {
+			// Two words or more: one-word focus keywords ("blog", "pricing") would link common words everywhere.
+			if ( mb_strlen( $kw ) >= 4 && false !== strpos( $kw, ' ' ) && ! isset( $map[ $kw ] ) && ! ( function_exists( 'semrs_seo_is_noindex' ) && semrs_seo_is_noindex( $id ) ) ) {
 				$map[ $kw ] = get_permalink( $id ); // Your own rules win over focus keywords.
 			}
 		}
@@ -270,12 +273,21 @@ function semrs_links_full_index() {
  * @return array{0:int,1:string}
  */
 function semrs_links_check_url( $url ) {
-	$args = array( 'timeout' => 10, 'redirection' => 5, 'user-agent' => 'Mozilla/5.0 (compatible; SEMRS Link Checker; +' . home_url( '/' ) . ')' );
+	// A browser-like request: some sites (Google help pages among them) answer bots and HEAD with 404.
+	$args = array(
+		'timeout'     => 10,
+		'redirection' => 5,
+		'user-agent'  => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 SEMRS-Link-Checker',
+		'headers'     => array( 'Accept' => 'text/html,application/xhtml+xml,*/*;q=0.8', 'Accept-Language' => 'en-US,en;q=0.9' ),
+	);
 	$res  = wp_remote_head( $url, $args );
 	$code = is_wp_error( $res ) ? 0 : (int) wp_remote_retrieve_response_code( $res );
-	if ( is_wp_error( $res ) || in_array( $code, array( 403, 405, 501 ), true ) ) {
+	if ( is_wp_error( $res ) || in_array( $code, array( 403, 404, 405, 501 ), true ) ) {
 		$res  = wp_remote_get( $url, $args + array( 'limit_response_size' => 4096 ) ); // Some servers refuse HEAD.
 		$code = is_wp_error( $res ) ? 0 : (int) wp_remote_retrieve_response_code( $res );
+	}
+	if ( is_wp_error( $res ) && false !== stripos( $res->get_error_message(), 'redirect' ) ) {
+		return array( 300, __( 'Redirect loop: usually a sign-in page that works in a browser.', 'semrs-pro' ) ); // Not counted as broken.
 	}
 	return array( $code, is_wp_error( $res ) ? $res->get_error_message() : '' );
 }

@@ -24,6 +24,10 @@ function semrs_ads_head() {
 	if ( '' !== trim( $s['head_code'] ) ) {
 		echo $s['head_code'] . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput -- admin-only raw partner code (unfiltered_html checked on save).
 	}
+	// No layout shift: boxes for another screen size never show (the loader removes them
+	// later, without loading the ad), and an unfilled box keeps its space; the loader
+	// collapses it only when it is below the screen, where collapsing moves nothing in view.
+	echo '<style id="semrs-ads-cls">@media (max-width:921px){[data-semrs-ad][data-device="desktop"],[data-semrs-ad][data-device="wide"]{display:none}}@media (min-width:922px){[data-semrs-ad][data-device="mobile"]{display:none}}@media (max-width:1199px){[data-semrs-ad][data-device="wide"]{display:none}}.semrs-ad-slot[data-semrs-ad]:has(ins.adsbygoogle[data-ad-status="unfilled"]){display:block}.semrs-ad-slot[data-semrs-ad].is-empty::before{visibility:hidden}</style>' . "\n";
 }
 add_action( 'wp_head', 'semrs_ads_head', 2 );
 
@@ -359,9 +363,21 @@ function semrs_ads_loader() {
 			});
 			box.appendChild(frag);
 			document.dispatchEvent(new CustomEvent('semrs:ad', { detail: box }));
-			box.querySelectorAll('ins.adsbygoogle').forEach(function () {
+			box.querySelectorAll('ins.adsbygoogle').forEach(function (ins) {
 				try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+				watch(box, ins);
 			});
+		}
+		// Unfilled ad: collapse the box only while it is below the screen (no visible shift);
+		// otherwise keep the reserved space and hide the label.
+		function watch(box, ins) {
+			if (!('MutationObserver' in window)) { return; }
+			var mo = new MutationObserver(function () {
+				if (ins.getAttribute('data-ad-status') !== 'unfilled') { return; }
+				mo.disconnect();
+				if (box.getBoundingClientRect().top > window.innerHeight) { box.remove(); } else { box.classList.add('is-empty'); }
+			});
+			mo.observe(ins, { attributes: true, attributeFilter: ['data-ad-status'] });
 		}
 		var boxes = [].slice.call(document.querySelectorAll('[data-semrs-ad]')).filter(function (b) {
 			var q = mq[b.dataset.device] || mq.all;

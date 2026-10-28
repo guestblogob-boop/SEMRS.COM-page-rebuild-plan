@@ -10,7 +10,7 @@ SemrsTools.register('image-compressor', function (root, api) {
 		h('option', { value: 'image/jpeg', text: 'JPEG' }),
 		h('option', { value: 'image/png', text: 'PNG (lossless, larger)' }));
 	format.value = s.format && (s.format !== 'image/webp' || webpOk) ? s.format : (webpOk ? 'image/webp' : 'image/jpeg');
-	var quality = h('input', { type: 'range', min: 40, max: 95, step: 1, value: s.quality || 80 });
+	var quality = h('input', { type: 'range', min: 40, max: 95, step: 1, value: s.quality || 80, 'aria-label': 'Image quality' });
 	var qLabel = h('span', { text: quality.value + '%' });
 	var maxW = h('select', null, ['0', '2560', '1920', '1600', '1200', '800'].map(function (v) { return h('option', { value: v, text: v === '0' ? 'Keep original size' : 'Max width ' + v + ' px' }); }));
 	maxW.value = s.maxW || '1920';
