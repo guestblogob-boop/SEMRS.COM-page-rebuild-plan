@@ -141,8 +141,8 @@ function semrs_pro_render_slider( $a ) {
 		);
 		while ( $q->have_posts() ) {
 			$q->the_post();
-			$img      = has_post_thumbnail() ? get_the_post_thumbnail( null, 'large', array( 'loading' => 'lazy', 'alt' => '' ) ) : '<span class="semrs-slide__noimg"></span>';
-			$slides[] = '<a class="semrs-slide__link" href="' . esc_url( get_permalink() ) . '">' . $img . ( ! empty( $a['showCaption'] ) ? '<span class="semrs-slide__caption">' . esc_html( get_the_title() ) . '</span>' : '' ) . '</a>';
+			$img      = has_post_thumbnail() ? get_the_post_thumbnail( null, 'large', array( 'loading' => 'lazy', 'alt' => get_the_title() ) ) : '<span class="semrs-slide__noimg"></span>';
+			$slides[] = '<a class="semrs-slide__link" href="' . esc_url( get_permalink() ) . '">' . $img . ( ! empty( $a['showCaption'] ) ? '<span class="semrs-slide__caption"' . ( has_post_thumbnail() ? ' aria-hidden="true"' : '' ) . '>' . esc_html( get_the_title() ) . '</span>' : '' ) . '</a>';
 		}
 		wp_reset_postdata();
 	} else {

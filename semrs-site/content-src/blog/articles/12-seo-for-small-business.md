@@ -79,6 +79,8 @@ Track impressions, clicks and positions in Google Search Console, visits and con
 
 Local improvements can appear within a few months. Ranking for competitive terms usually takes six to twelve months of steady work. The results compound: pages that rank keep bringing visitors without a click price.
 
+If you run a law firm, read our [SEO for attorneys](/seo-for-attorneys/) guide for practice-area pages and local signals that matter in legal search. And because an accessible site is easier for everyone to use, see our practical guide to [ADA website compliance](/ada-website-compliance/).
+
 ## Frequently asked questions
 
 ? Can I do SEO for my small business myself?

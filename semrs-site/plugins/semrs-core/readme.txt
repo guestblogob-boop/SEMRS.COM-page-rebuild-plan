@@ -4,7 +4,7 @@ Tags: seo, page cache, redirects, webp, user roles
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.17
+Stable tag: 1.3.20
 License: GPLv2 or later
 
 Free SEO, redirects, page cache, WebP images, user roles, review widgets and a policy-safe AdSense manager in one plugin.
@@ -81,6 +81,20 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt and all other features run entirely on your own server.
 
 == Changelog ==
+
+= 1.3.20 =
+* The SEO score of the blog (posts) page now checks the post list visitors see, not its empty page text.
+
+= 1.3.19 =
+* Focus keyword in URL: passes on the homepage and ignores the site name
+* robots.txt editor saves clean line endings
+
+= 1.3.18 =
+* Index Status: live and indexed status with remarks for every page, indexing tasks (Request indexing in Google, IndexNow), auto-indexing switch, robots.txt editor
+* Content Calendar: month calendar with Previous/Today/Next, scheduled posts with Add to Google Calendar and .ics
+* One-click sharing to Facebook, X, LinkedIn, Pinterest, Reddit, WhatsApp, Telegram and email (post lists, calendar, SEO sidebar); auto-post on publish through a webhook (Pro)
+* SEO Audit: recognises a robots.txt file with your sitemap and Site Kit verification; menu and footer links count as internal links; the posts page and noindex pages don't lower the average
+* Focus keyword in URL check reads the full page address
 
 = 1.3.17 =
 * Pro items work on the front end and in background jobs too (sitemaps, video schema, auto-links, advanced robots, X tags), not only in wp-admin

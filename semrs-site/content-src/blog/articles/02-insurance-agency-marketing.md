@@ -83,6 +83,8 @@ The cheapest new policy is the one an existing client already needs. Schedule an
 
 @img chart
 
+Many insurance agencies also sell financial products. Our guide to [financial advisor marketing](/financial-advisor-marketing/) explains how advisers attract qualified clients while staying within compliance rules.
+
 ## Frequently asked questions
 
 ? What is the best insurance agency marketing strategy for leads?

@@ -321,6 +321,8 @@ require __DIR__ . '/schema.php';
 require __DIR__ . '/sitemap.php';
 require __DIR__ . '/analysis.php';
 require __DIR__ . '/llms.php';
+require __DIR__ . '/index-status.php';
+require __DIR__ . '/calendar.php';
 if ( is_admin() ) {
 	require __DIR__ . '/admin.php';
 	require __DIR__ . '/audit.php';

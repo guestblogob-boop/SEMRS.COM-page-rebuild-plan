@@ -38,7 +38,7 @@ An email marketing platform lets you collect subscribers, design emails, automat
 | Reporting | See which emails lead to enquiries and sales |
 | Deliverability tools | Domain authentication and bounce handling keep you out of spam |
 
-## Free email marketing platform plans compared
+## Free email platform plans compared
 
 The table shows free-plan limits published on each vendor's pricing page in October 2026. Limits and prices change often, so check the current plan before you sign up.
 
@@ -81,7 +81,7 @@ Each email that breaks the law can cost up to $53,088 in penalties, and you stay
 
 Google's [email sender guidelines](https://support.google.com/mail/answer/81126) require senders to authenticate their domain. Bulk senders, those sending about 5,000 or more messages a day to Gmail accounts, must set up SPF, DKIM and DMARC, offer one-click unsubscribe and keep spam complaints low. Even small senders should set up SPF and DKIM: your platform shows you which DNS records to add.
 
-## Getting results from your email marketing platform
+## Getting results from your email platform
 
 - **Start with a welcome series** of three to five emails for every new subscriber.
 - **Email on a steady schedule**, such as every two weeks, so people expect you.
@@ -93,13 +93,13 @@ Google's [email sender guidelines](https://support.google.com/mail/answer/81126)
 ## Frequently asked questions
 
 ? What is the best email marketing platform for a small business?
-The best email marketing platform depends on your goal and list size. Stores often prefer tools built around products and carts, creators favor newsletter tools, and service businesses need forms, automation and CRM sync. Test two free plans with a real email before you decide.
+The best email platform depends on your goal and list size. Stores often prefer tools built around products and carts, creators favor newsletter tools, and service businesses need forms, automation and CRM sync. Test two free plans with a real email before you decide.
 
-? Is there a free email marketing platform?
+? Is there a free email platform?
 Yes. Several platforms have free plans with limits on contacts or sends. In October 2026, Mailchimp, MailerLite and Klaviyo free plans started at about 250 contacts, Kit allowed up to 10,000 subscribers and Brevo allowed 300 emails a day.
 
 ? Can I send marketing emails from Gmail or Outlook?
-Not to a list. Personal inboxes are not built for bulk email, they lack proper unsubscribe handling and your messages are more likely to land in spam. Use an email marketing platform instead.
+Not to a list. Personal inboxes are not built for bulk email, they lack proper unsubscribe handling and your messages are more likely to land in spam. Use an email platform instead.
 
 ? How often should a small business send marketing emails?
 Most small businesses do well with one email every one to two weeks. Send more often only if each email is useful, and watch unsubscribes and complaints.

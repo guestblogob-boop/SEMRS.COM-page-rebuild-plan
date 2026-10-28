@@ -216,6 +216,7 @@ function semrs_seo_sidebar_assets() {
 			'schemaTypes' => $types,
 			'pro'         => semrs_seo_pro(),
 			'proUrl'      => function_exists( 'semrs_core_pro_url' ) ? semrs_core_pro_url() : 'https://semrs.com/semrs-pro/',
+			'share'       => 'publish' === $post->post_status && function_exists( 'semrs_share_links' ) ? array_values( array_map( function ( $l ) { return array( 'label' => $l[0], 'url' => $l[1] ); }, semrs_share_links( $post ) ) ) : array(),
 			'ai'          => null, // Filled by SEMRS Pro (AI SEO module).
 		), $post )
 	);

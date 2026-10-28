@@ -48,6 +48,14 @@ function semrs_seo_analysis_input( $post, $over = array() ) {
  */
 function semrs_seo_analysis_html( $d ) {
 	global $post;
+	if ( (int) $d['id'] && (int) $d['id'] === (int) get_option( 'page_for_posts' ) && '' === trim( wp_strip_all_tags( (string) $d['content'] ) ) ) {
+		// The posts page shows its title and the latest posts, so score what visitors see.
+		$html = '<p>' . esc_html( (string) $d['post_title'] ) . '</p>';
+		foreach ( get_posts( array( 'posts_per_page' => (int) get_option( 'posts_per_page', 10 ), 'post_status' => 'publish', 'no_found_rows' => true ) ) as $p ) {
+			$html .= '<h2><a href="' . esc_url( get_permalink( $p ) ) . '">' . esc_html( get_the_title( $p ) ) . '</a></h2><p>' . esc_html( get_the_excerpt( $p ) ) . '</p>';
+		}
+		return $html;
+	}
 	$saved = $post;
 	$post  = get_post( $d['id'] ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride -- restored below.
 	if ( $post ) {
@@ -196,7 +204,7 @@ function semrs_seo_analyze( $d ) {
 	if ( '' !== $kw ) {
 		$add( false !== mb_strpos( mb_strtolower( $title ), $kw ), __( 'Focus keyword in the SEO title', 'semrs-core' ), 'basic', 8, 'title' );
 		$add( '' !== $desc && false !== mb_strpos( mb_strtolower( $desc ), $kw ), __( 'Focus keyword in the meta description', 'semrs-core' ), 'basic', 5, 'description' );
-		$add( false !== strpos( (string) $d['slug'], sanitize_title( $kw ) ), __( 'Focus keyword in the URL', 'semrs-core' ), 'basic', 4 );
+		$add( semrs_seo_kw_in_url( $kw, $d ), __( 'Focus keyword in the URL', 'semrs-core' ), 'basic', 4 );
 		$add( false !== mb_strpos( $first, $kw ), __( 'Focus keyword at the beginning of the content (first 10%)', 'semrs-core' ), 'basic', 5 );
 		$add( false !== mb_strpos( $lower, $kw ), __( 'Focus keyword in the content', 'semrs-core' ), 'basic', 5 );
 	} else {
@@ -327,6 +335,47 @@ function semrs_seo_analyze( $d ) {
 		'links'  => $internal,
 		'words'  => $words,
 	);
+}
+
+/**
+ * Is the focus keyword in the page address? Every meaningful word of the keyword must appear in
+ * the full path (parent pages included), in any order; small words and simple plurals don't
+ * matter, so /services/seo/ matches "SEO services".
+ *
+ * @param string $kw Focus keyword (lower case).
+ * @param array  $d  Analysis input.
+ * @return bool
+ */
+function semrs_seo_kw_in_url( $kw, $d ) {
+	if ( (int) $d['id'] === (int) get_option( 'page_on_front' ) ) {
+		return true; // The homepage address is the domain itself.
+	}
+	$path = (string) wp_parse_url( (string) get_permalink( $d['id'] ), PHP_URL_PATH );
+	$segs = array_values( array_filter( explode( '/', $path ) ) );
+	if ( $segs && ! empty( $d['slug'] ) ) {
+		$segs[ count( $segs ) - 1 ] = (string) $d['slug']; // Unsaved slug from the editor.
+	}
+	$have  = array_filter( preg_split( '/[-\/]+/', strtolower( implode( '/', $segs ) ) ) );
+	$small = array( 'a', 'an', 'and', 'the', 'for', 'of', 'to', 'in', 'on', 'with', 'by', 'at', 'or', 'how', 'your', 'you', 'is' );
+	$small = array_merge( $small, explode( '-', sanitize_title( get_bloginfo( 'name' ) ) ) ); // The brand name is rarely in addresses.
+	$need  = array_diff( array_filter( explode( '-', sanitize_title( $kw ) ) ), $small );
+	if ( ! $need ) {
+		return false;
+	}
+	foreach ( $need as $w ) {
+		$stem = preg_replace( '/(ies|es|s)$/', '', $w );
+		$hit  = false;
+		foreach ( $have as $h ) {
+			if ( $h === $w || preg_replace( '/(ies|es|s)$/', '', $h ) === $stem ) {
+				$hit = true;
+				break;
+			}
+		}
+		if ( ! $hit ) {
+			return false;
+		}
+	}
+	return true;
 }
 
 /**

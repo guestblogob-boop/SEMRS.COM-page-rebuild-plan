@@ -294,7 +294,7 @@ function semrs_blocks_render_posts( $a, $block = null ) {
 			$out .= '<article class="semrs-post"><a class="semrs-post__title" href="' . esc_url( $link ) . '">' . esc_html( $title ) . '</a>' . ( ! empty( $a['showDate'] ) ? ' <time datetime="' . esc_attr( get_the_date( 'c' ) ) . '">' . esc_html( get_the_date() ) . '</time>' : '' ) . '</article>';
 			continue;
 		}
-		$img = ! empty( $a['showImage'] ) && has_post_thumbnail() ? '<a class="semrs-post__media" href="' . esc_url( $link ) . '" tabindex="-1" aria-hidden="true">' . get_the_post_thumbnail( null, 'medium_large', array( 'loading' => 'lazy', 'alt' => '' ) ) . '</a>' : '';
+		$img = ! empty( $a['showImage'] ) && has_post_thumbnail() ? '<a class="semrs-post__media" href="' . esc_url( $link ) . '" tabindex="-1" aria-hidden="true">' . get_the_post_thumbnail( null, 'medium_large', array( 'loading' => 'lazy', 'alt' => get_the_title() ) ) . '</a>' : '';
 		$meta = array();
 		if ( ! empty( $a['showCategory'] ) && 'post' === $type ) {
 			$cats = get_the_category();

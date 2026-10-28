@@ -200,6 +200,11 @@
 		var seoTitle = fill(get('title') || cfg.phTitle || cfg.tpl, post, get), seoDesc = fill(get('description') || cfg.phDesc || '%excerpt%', post, get);
 		var custom = get('tw_custom') === '1';
 		return el(Fragment, null,
+			el(C.PanelBody, { title: __('Share now', 'semrs-core'), initialOpen: true },
+				cfg.share && cfg.share.length ? el('div', { className: 'semrs-sb-share' }, cfg.share.map(function (s, i) {
+					return el(C.Button, { key: i, variant: 'secondary', size: 'small', href: s.url, target: '_blank', onClick: function (e) { if (s.url.indexOf('mailto:') !== 0) { e.preventDefault(); window.open(s.url, 'semrsshare', 'width=640,height=640'); } } }, s.label);
+				})) : el('p', { className: 'semrs-sb-help' }, __('Publish the post to share it.', 'semrs-core')),
+				el('p', { className: 'semrs-sb-help' }, __('Opens the share window of each network, for the account you are signed in to.', 'semrs-core'))),
 			el(C.PanelBody, { title: __('Facebook', 'semrs-core'), initialOpen: true },
 				el(C.TextControl, { __nextHasNoMarginBottom: true, label: __('Title', 'semrs-core'), value: get('og_title'), placeholder: seoTitle, onChange: function (v) { set('og_title', v); } }),
 				el(AiSuggest, { field: 'og_title', post: post, get: get, onPick: function (v) { set('og_title', v); } }),

@@ -61,14 +61,19 @@ function semrs_seo_site_checks() {
 		$body = (string) file_get_contents( $robots ); // phpcs:ignore WordPress.WP.AlternativeFunctions -- local file.
 		$c[]  = preg_match( '/^\s*Disallow:\s*\/\s*$/mi', $body )
 			? array( 'bad', __( 'robots.txt blocks the whole site', 'semrs-core' ), __( 'A robots.txt file in the site root has "Disallow: /". Remove that line (or the file) with your host\'s file manager.', 'semrs-core' ), home_url( '/robots.txt' ) )
-			: array( 'warn', __( 'A physical robots.txt file is used', 'semrs-core' ), __( 'Extra robots.txt lines from SEMRS settings are ignored while that file exists.', 'semrs-core' ), home_url( '/robots.txt' ) );
+			: ( false !== stripos( $body, 'sitemap:' )
+				? array( 'good', __( 'robots.txt allows crawling and lists your sitemap', 'semrs-core' ), __( 'Your site serves its own robots.txt file. Edit it under SEMRS → Index Status.', 'semrs-core' ), admin_url( 'admin.php?page=semrs-index#robots' ) )
+				: array( 'warn', __( 'robots.txt does not list your sitemap', 'semrs-core' ), __( 'Add your sitemap address to robots.txt under SEMRS → Index Status.', 'semrs-core' ), admin_url( 'admin.php?page=semrs-index#robots' ) ) );
 	}
 	if ( ! semrs_seo_active() ) {
 		/* translators: %s: plugin name */
 		$c[] = array( 'warn', sprintf( __( '%s is active, so SEMRS SEO output is paused', 'semrs-core' ), semrs_seo_conflict() ), __( 'Use one SEO plugin only, to avoid duplicate tags.', 'semrs-core' ), admin_url( 'plugins.php' ) );
 	}
-	$c[] = $s['verify_google']
-		? array( 'good', __( 'Google Search Console verification code added', 'semrs-core' ), '', '' )
+	$gsc       = (array) get_option( 'googlesitekit_search-console_settings', array() );
+	$gsc_files = glob( ABSPATH . 'google*.html' );
+	$verified  = $s['verify_google'] || ( defined( 'GOOGLESITEKIT_VERSION' ) && ! empty( $gsc['propertyID'] ) ) || ! empty( $gsc_files );
+	$c[]       = $verified
+		? array( 'good', __( 'Google Search Console is verified', 'semrs-core' ), $s['verify_google'] ? '' : __( 'Verified through Site Kit or a Google verification file.', 'semrs-core' ), '' )
 		: array( 'warn', __( 'No Google Search Console code', 'semrs-core' ), __( 'Skip this if you verified another way (DNS or Site Kit). Search Console shows how Google sees your site.', 'semrs-core' ), admin_url( 'admin.php?page=semrs-seo' ) );
 	$hello = get_page_by_path( 'hello-world', OBJECT, 'post' );
 	$samp  = get_page_by_path( 'sample-page' );
@@ -166,10 +171,30 @@ function semrs_seo_audit_finish( $rows ) {
 			}
 		}
 	}
-	$special = array_filter( array( (int) get_option( 'page_on_front' ), (int) get_option( 'page_for_posts' ) ) );
+	// Links in menus and widgets (header, footer, sidebar) count as internal links in.
+	$nav_html = '';
+	foreach ( wp_get_nav_menus() as $menu ) {
+		foreach ( (array) wp_get_nav_menu_items( $menu ) as $item ) {
+			$nav_html .= '<a href="' . esc_url( $item->url ) . '">';
+		}
+	}
+	foreach ( (array) get_option( 'widget_block', array() ) as $widget ) {
+		$nav_html .= is_array( $widget ) && isset( $widget['content'] ) ? (string) $widget['content'] : '';
+	}
+	if ( preg_match_all( '/href=["\']([^"\']+)["\']/i', $nav_html, $nm ) ) {
+		foreach ( array_unique( $nm[1] ) as $href ) {
+			$path = semrs_seo_link_path( $href );
+			if ( '' !== $path ) {
+				$inbound[ $path ] = ( $inbound[ $path ] ?? 0 ) + 1;
+			}
+		}
+	}
+	$blog    = (int) get_option( 'page_for_posts' );
+	$special = array_filter( array( (int) get_option( 'page_on_front' ), $blog ) );
 	$report  = array();
 	$counts  = array_fill_keys( array( 'nodesc', 'duptitle', 'dupdesc', 'thin', 'orphan', 'low', 'noindex' ), 0 );
 	$sum     = 0;
+	$scored  = 0;
 	foreach ( $rows as $id => $r ) {
 		$tags = array();
 		if ( $r['ni'] ) {
@@ -184,20 +209,23 @@ function semrs_seo_audit_finish( $rows ) {
 			if ( '' !== $r['sd'] && count( $descs[ $r['sd'] ] ) > 1 ) {
 				$tags[] = 'dupdesc';
 			}
-			if ( $r['w'] < ( 'page' === $r['ty'] ? 200 : 300 ) ) {
-				$tags[] = 'thin';
+			if ( (int) $id !== $blog && $r['w'] < ( 'page' === $r['ty'] ? 200 : 300 ) ) {
+				$tags[] = 'thin'; // The posts page lists posts; its own text doesn't count.
 			}
 			if ( ! in_array( (int) $id, $special, true ) && empty( $inbound[ $r['p'] ] ) ) {
 				$tags[] = 'orphan';
 			}
-			if ( $r['s'] < 50 ) {
+			if ( $r['s'] < 50 && (int) $id !== $blog ) {
 				$tags[] = 'low';
 			}
 		}
 		foreach ( $tags as $t ) {
 			$counts[ $t ]++;
 		}
-		$sum          += $r['s'];
+		if ( ! $r['ni'] && (int) $id !== $blog ) {
+			$sum += $r['s']; // Noindex pages and the posts page don't count towards the average.
+			$scored++;
+		}
 		$report[ $id ] = array(
 			't'    => $r['t'],
 			's'    => $r['s'],
@@ -213,7 +241,7 @@ function semrs_seo_audit_finish( $rows ) {
 		array(
 			'time'   => time(),
 			'total'  => count( $rows ),
-			'avg'    => $rows ? (int) round( $sum / count( $rows ) ) : 0,
+			'avg'    => $scored ? (int) round( $sum / $scored ) : 0,
 			'counts' => $counts,
 			'rows'   => $report,
 		),
