@@ -3,7 +3,7 @@
  * Plugin Name:       SEMRS Pro
  * Plugin URI:        https://semrs.com/
  * Description:       Premium add-on for the SEMRS theme and SEMRS Core: sticky/transparent header, mega menu, table of contents, author box, related posts, extra section patterns, white label; multi-location local SEO, image SEO, custom schema; image library conversion; speed extras; ads manager; site layouts; case studies, portfolio and testimonials; lead tracking.
- * Version:           1.4.7
+ * Version:           1.4.8
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-pro
@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 // WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
 add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
 
-define( 'SEMRS_PRO_VERSION', '1.4.7' );
+define( 'SEMRS_PRO_VERSION', '1.4.8' );
 define( 'SEMRS_PRO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_PRO_URL', plugin_dir_url( __FILE__ ) );
 
@@ -51,6 +51,9 @@ function semrs_pro_module_files( $files ) {
 			'image_library' => SEMRS_PRO_DIR . 'modules/image-library.php',
 			'schema_pro' => SEMRS_PRO_DIR . 'modules/schema-pro.php',
 			'ai_seo'     => SEMRS_PRO_DIR . 'modules/ai-seo.php',
+			'links_pro'  => SEMRS_PRO_DIR . 'modules/links-pro.php',
+			'sitemaps_pro' => SEMRS_PRO_DIR . 'modules/sitemaps-pro.php',
+			'rank_tracker' => SEMRS_PRO_DIR . 'modules/rank-tracker.php',
 		)
 	);
 }
@@ -81,6 +84,9 @@ function semrs_pro_module_labels( $mods ) {
 			'speed_pro'  => array( __( 'Speed Pro', 'semrs-pro' ), __( 'Delay analytics, pixel and chat scripts until the visitor interacts, preload the page cache in the background, and serve files from a CDN (needs the Speed module).', 'semrs-pro' ), 'pro' ),
 			'ads_pro'    => array( __( 'Ads Pro', 'semrs-pro' ), __( 'More placements (repeat in content, between posts in lists), targeting by category, post age and dates, A/B rotation, click protection, a polite ad-blocker message and per-page position switches (needs the Ads module).', 'semrs-pro' ), 'pro' ),
 			'image_library' => array( __( 'Image library conversion', 'semrs-pro' ), __( 'Makes WebP or AVIF copies of every image already in the media library, all sizes, in batches, and shows them on your pages. Originals are kept; one click removes the copies.', 'semrs-pro' ), 'pro' ),
+			'rank_tracker' => array( __( 'SEO Performance & rank tracking', 'semrs-pro' ), __( 'Search Console clicks, impressions, CTR and positions, top queries and pages, keyword rank tracking with daily history and a weekly email report (uses Site Kit by Google).', 'semrs-pro' ), 'pro' ),
+			'sitemaps_pro' => array( __( 'Sitemaps Pro', 'semrs-pro' ), __( 'Image, video and Google News sitemaps, and VideoObject schema for pages with YouTube, Vimeo or uploaded videos (needs the SEO module).', 'semrs-pro' ), 'pro' ),
+			'links_pro'  => array( __( 'Link Assistant', 'semrs-pro' ), __( 'Automatic internal links from your keywords and focus keywords (once per page, never stuffed) and a broken link checker that scans your content in the background.', 'semrs-pro' ), 'pro' ),
 			'ai_seo'     => array( __( 'AI SEO', 'semrs-pro' ), __( 'AI writes SEO titles, meta descriptions, focus keywords, social text and image alt text from your content, with your own Claude, OpenAI or Gemini key; autofill on publish and bulk fill (needs the SEO module).', 'semrs-pro' ), 'pro' ),
 			'schema_pro' => array( __( 'Custom schema', 'semrs-pro' ), __( 'Add your own JSON-LD (Event, Product, Course, HowTo, Recipe, Video…) to any page from the editor, with starters and a JSON check.', 'semrs-pro' ), 'pro' ),
 		)

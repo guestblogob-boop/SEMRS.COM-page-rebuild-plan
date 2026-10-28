@@ -120,6 +120,9 @@ function semrs_core_module_meta() {
 			'image_library' => array( 'speed', 'images-alt2', admin_url( 'admin.php?page=semrs-images' ) ),
 			'schema_pro' => array( 'seo', 'editor-code', '' ),
 			'ai_seo'     => array( 'seo', 'superhero-alt', admin_url( 'admin.php?page=semrs-ai' ) ),
+			'links_pro'  => array( 'seo', 'admin-links', admin_url( 'admin.php?page=semrs-links' ) ),
+			'sitemaps_pro' => array( 'seo', 'networking', admin_url( 'admin.php?page=semrs-sitemaps-pro' ) ),
+			'rank_tracker' => array( 'seo', 'chart-line', admin_url( 'admin.php?page=semrs-performance' ) ),
 		)
 	);
 }
@@ -133,6 +136,9 @@ function semrs_core_module_meta() {
 function semrs_core_pro_teasers() {
 	return array(
 		'local'      => array( __( 'Multi-location Local SEO', 'semrs-core' ), __( 'Locations with address, hours, map link and service areas; LocalBusiness schema for each one.', 'semrs-core' ) ),
+		'rank_tracker' => array( __( 'SEO Performance & rank tracking', 'semrs-core' ), __( 'Search Console data, keyword positions with history and a weekly email report.', 'semrs-core' ) ),
+		'sitemaps_pro' => array( __( 'Sitemaps Pro', 'semrs-core' ), __( 'Image, video and news sitemaps, and video schema.', 'semrs-core' ) ),
+		'links_pro'  => array( __( 'Link Assistant', 'semrs-core' ), __( 'Automatic internal links from your keywords and a broken link checker.', 'semrs-core' ) ),
 		'ai_seo'     => array( __( 'AI SEO', 'semrs-core' ), __( 'AI writes SEO titles, meta descriptions, focus keywords, social text and image alt text, with your own Claude, OpenAI or Gemini key.', 'semrs-core' ) ),
 		'schema_pro' => array( __( 'Custom schema', 'semrs-core' ), __( 'Add your own JSON-LD (Event, Product, Course, HowTo, Recipe, Video) to any page, with starters and a JSON check.', 'semrs-core' ) ),
 		'image_library' => array( __( 'Image library conversion', 'semrs-core' ), __( 'WebP or AVIF copies of every image already uploaded, all sizes, with originals kept.', 'semrs-core' ) ),

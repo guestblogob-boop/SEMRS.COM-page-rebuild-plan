@@ -79,7 +79,7 @@ Each email that breaks the law can cost up to $53,088 in penalties, and you stay
 
 ### Authenticate your domain
 
-Google's [email sender guidelines](https://support.google.com/a/answer/81126) require senders to authenticate their domain. Bulk senders, those sending about 5,000 or more messages a day to Gmail accounts, must set up SPF, DKIM and DMARC, offer one-click unsubscribe and keep spam complaints low. Even small senders should set up SPF and DKIM: your platform shows you which DNS records to add.
+Google's [email sender guidelines](https://support.google.com/mail/answer/81126) require senders to authenticate their domain. Bulk senders, those sending about 5,000 or more messages a day to Gmail accounts, must set up SPF, DKIM and DMARC, offer one-click unsubscribe and keep spam complaints low. Even small senders should set up SPF and DKIM: your platform shows you which DNS records to add.
 
 ## Getting results from your email marketing platform
 
@@ -109,4 +109,4 @@ Yes. SEMRS writes four marketing emails a month for your own list for $29 a mont
 
 ! Want emails written and ready to send each month? See [SEMRS pricing](/pricing/) or [request a free review](/get-a-quote/).
 
-**Sources:** Federal Trade Commission, [CAN-SPAM Act: a compliance guide for business](https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business); Google, [Email sender guidelines](https://support.google.com/a/answer/81126); vendor pricing pages for Mailchimp, MailerLite, Kit, Klaviyo and Brevo (checked October 2026).
+**Sources:** Federal Trade Commission, [CAN-SPAM Act: a compliance guide for business](https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business); Google, [Email sender guidelines](https://support.google.com/mail/answer/81126); vendor pricing pages for Mailchimp, MailerLite, Kit, Klaviyo and Brevo (checked October 2026).

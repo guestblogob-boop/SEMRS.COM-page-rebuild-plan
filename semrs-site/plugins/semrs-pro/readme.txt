@@ -4,7 +4,7 @@ Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: semrs-core
-Stable tag: 1.4.7
+Stable tag: 1.4.8
 License: GPLv2 or later
 
 Premium add-on for the free SEMRS theme and the free SEMRS Core plugin. Every module can be switched off under SEMRS → Modules.
@@ -114,6 +114,11 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 SEMRS → License: paste your key and click Activate (Deactivate frees the site so you can move the key). Updates come from semrs.com (SEMRS Update Server): with a valid key, WordPress shows "Update available" and installs new versions in one click. Features never switch off when a license expires; the license controls updates and support.
 
 == Changelog ==
+
+= 1.4.8 =
+* Link Assistant: automatic internal links (once per page, never stuffed, saved content unchanged) and a background broken link checker with unlink/recheck/redirect actions
+* Sitemaps Pro: image, video and Google News sitemaps; VideoObject schema for YouTube, Vimeo and uploaded videos
+* SEO Performance: Search Console clicks, impressions, CTR, positions, top queries and pages, keyword rank tracking with 30-day backfill and daily history, weekly email report (via Site Kit by Google)
 
 = 1.4.7 =
 * New AI SEO module: titles, meta descriptions, focus keywords, social text and image alt text written by Claude, OpenAI or Gemini with your own API key

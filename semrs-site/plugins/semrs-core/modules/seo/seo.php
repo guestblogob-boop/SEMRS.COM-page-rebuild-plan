@@ -109,7 +109,18 @@ function semrs_seo_settings() {
  * @return bool
  */
 function semrs_seo_pro() {
-	$ok = defined( 'SEMRS_PRO_VERSION' ) && function_exists( 'semrs_pro_license_status' ) && 'valid' === semrs_pro_license_status();
+	$ok = false;
+	if ( defined( 'SEMRS_PRO_VERSION' ) ) {
+		if ( function_exists( 'semrs_pro_license_status' ) ) {
+			$ok = 'valid' === semrs_pro_license_status();
+		} else {
+			// SEMRS Pro loads its license screen only in wp-admin; on the front end and in
+			// background jobs read the same saved status it uses.
+			$key    = (string) get_option( 'semrs_pro_license_key', '' );
+			$status = '' !== $key && 'valid' === get_option( 'semrs_pro_license_remote', '' ) ? 'valid' : 'unverified';
+			$ok     = 'valid' === apply_filters( 'semrs_pro_license_status', $status, $key );
+		}
+	}
 	return (bool) apply_filters( 'semrs_seo_pro_unlocked', $ok );
 }
 
