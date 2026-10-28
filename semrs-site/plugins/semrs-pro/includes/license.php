@@ -20,47 +20,6 @@ function semrs_pro_license_menu() {
 add_action( 'admin_menu', 'semrs_pro_license_menu', 90 );
 
 /**
- * License server base URL (same as the updater).
- *
- * @return string
- */
-function semrs_pro_license_server() {
-	if ( class_exists( 'SEMRS_Updater_1' ) ) {
-		return SEMRS_Updater_1::server();
-	}
-	return trailingslashit( defined( 'SEMRS_UPDATE_SERVER' ) ? SEMRS_UPDATE_SERVER : 'https://semrs.com/wp-json/semrs-updates/v1/' );
-}
-
-/**
- * Call the license server.
- *
- * @param string $action activate|deactivate.
- * @param string $key    License key.
- * @return array{ok:bool,data:array,error:string}
- */
-function semrs_pro_license_call( $action, $key ) {
-	$res = wp_remote_post(
-		semrs_pro_license_server() . $action,
-		array(
-			'timeout' => 15,
-			'body'    => array(
-				'key'     => $key,
-				'site'    => home_url( '/' ),
-				'version' => defined( 'SEMRS_PRO_VERSION' ) ? SEMRS_PRO_VERSION : '',
-			),
-		)
-	);
-	if ( is_wp_error( $res ) ) {
-		return array( 'ok' => false, 'data' => array(), 'error' => $res->get_error_message() );
-	}
-	$data = json_decode( (string) wp_remote_retrieve_body( $res ), true );
-	if ( 200 !== (int) wp_remote_retrieve_response_code( $res ) || ! is_array( $data ) ) {
-		return array( 'ok' => false, 'data' => array(), 'error' => __( 'The license server did not answer correctly. Try again in a few minutes.', 'semrs-pro' ) );
-	}
-	return array( 'ok' => true, 'data' => $data, 'error' => '' );
-}
-
-/**
  * Handle the Activate / Deactivate buttons.
  */
 function semrs_pro_license_actions() {
@@ -76,8 +35,7 @@ function semrs_pro_license_actions() {
 		$call = semrs_pro_license_call( 'activate', $key );
 		if ( $call['ok'] ) {
 			update_option( 'semrs_pro_license_key', $key, false );
-			update_option( 'semrs_pro_license_remote', sanitize_key( $call['data']['license'] ?? 'invalid' ), false );
-			update_option( 'semrs_pro_license_expires', sanitize_text_field( $call['data']['expires'] ?? '' ), false );
+			semrs_pro_license_apply( $call['data'], true );
 			$msg = sanitize_text_field( $call['data']['message'] ?? '' );
 		} else {
 			$msg = $call['error'];
@@ -88,7 +46,11 @@ function semrs_pro_license_actions() {
 		delete_option( 'semrs_pro_license_key' );
 		delete_option( 'semrs_pro_license_remote' );
 		delete_option( 'semrs_pro_license_expires' );
+		update_option( 'semrs_pro_addons', array(), false ); // Pro modules leave with the key.
 		$msg = $call['ok'] ? sanitize_text_field( $call['data']['message'] ?? '' ) : __( 'Removed from this site. The server could not be reached, so the slot will free itself after 30 days without checks.', 'semrs-pro' );
+	} elseif ( 'refresh' === $do ) {
+		$call = semrs_pro_license_refresh();
+		$msg  = $call['ok'] ? __( 'Checked. Your add-ons are up to date.', 'semrs-pro' ) : ( $call['error'] ? $call['error'] : __( 'No key saved.', 'semrs-pro' ) );
 	}
 	delete_site_transient( 'semrs_upd_' . md5( 'semrs-pro' ) );
 	set_transient( 'semrs_pro_license_msg_' . get_current_user_id(), $msg, 60 );
@@ -123,7 +85,7 @@ function semrs_pro_license_notice() {
 	if ( 'valid' !== semrs_pro_license_status() && current_user_can( 'manage_options' ) ) {
 		printf(
 			'<div class="notice notice-info"><p>%s <a href="%s">%s</a></p></div>',
-			esc_html__( 'Activate your SEMRS Pro license to get automatic updates and support.', 'semrs-pro' ),
+			semrs_pro_addons() ? esc_html__( 'Activate your SEMRS Pro license to get automatic updates and support.', 'semrs-pro' ) : esc_html__( 'Activate your SEMRS Pro license to unlock your Pro add-ons.', 'semrs-pro' ),
 			esc_url( admin_url( 'admin.php?page=semrs-license' ) ),
 			esc_html__( 'Activate license', 'semrs-pro' )
 		);
@@ -165,10 +127,11 @@ function semrs_pro_license_page() {
 		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 			<?php wp_nonce_field( 'semrs_pro_license' ); ?>
 			<input type="hidden" name="action" value="semrs_pro_license">
-			<?php if ( 'valid' === $status ) : ?>
+			<?php if ( 'valid' === $status || ( 'expired' === $status && semrs_pro_addons() ) ) : ?>
 				<input type="text" class="regular-text code" value="<?php echo esc_attr( substr( $key, 0, 4 ) . '-••••-••••-' . substr( $key, -4 ) ); ?>" readonly>
+				<button class="button" name="semrs_do" value="refresh"><?php esc_html_e( 'Check again', 'semrs-pro' ); ?></button>
 				<button class="button" name="semrs_do" value="deactivate"><?php esc_html_e( 'Deactivate license', 'semrs-pro' ); ?></button>
-				<p class="description"><?php esc_html_e( 'Deactivate before moving SEMRS Pro to another site, so the slot is freed.', 'semrs-pro' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Deactivate before moving SEMRS Pro to another site, so the slot is freed. Bought another add-on? Click Check again.', 'semrs-pro' ); ?></p>
 			<?php else : ?>
 				<input type="text" class="regular-text code" name="semrs_pro_license_key" value="<?php echo esc_attr( $key ); ?>" placeholder="XXXX-XXXX-XXXX-XXXX" autocomplete="off" required>
 				<button class="button button-primary" name="semrs_do" value="activate"><?php esc_html_e( 'Activate license', 'semrs-pro' ); ?></button>
@@ -178,7 +141,21 @@ function semrs_pro_license_page() {
 				<p class="description"><?php esc_html_e( 'Your key is in your purchase email. Local and staging sites do not use a site slot.', 'semrs-pro' ); ?></p>
 			<?php endif; ?>
 		</form>
-		<p class="description"><?php esc_html_e( 'Pro features never switch off when a license expires; the license controls updates and support.', 'semrs-pro' ); ?></p>
+		<h2><?php esc_html_e( 'Your add-ons', 'semrs-pro' ); ?></h2>
+		<table class="widefat striped" style="max-width:640px"><tbody>
+		<?php foreach ( semrs_pro_addon_labels() as $slug => $label ) : ?>
+			<tr>
+				<td><strong><?php echo esc_html( $label ); ?></strong></td>
+				<?php if ( semrs_pro_has( $slug ) ) : ?>
+					<td style="color:#0f7b4d;font-weight:600"><?php esc_html_e( '✔ Unlocked', 'semrs-pro' ); ?></td><td></td>
+				<?php else : ?>
+					<td><?php esc_html_e( '🔒 Not included', 'semrs-pro' ); ?></td>
+					<td style="text-align:right"><a class="button button-small" href="<?php echo esc_url( semrs_pro_buy_url() ); ?>" target="_blank" rel="noopener"><?php /* translators: %s: add-on name */ echo esc_html( sprintf( __( 'Add %s', 'semrs-pro' ), $label ) ); ?></a></td>
+				<?php endif; ?>
+			</tr>
+		<?php endforeach; ?>
+		</tbody></table>
+		<p class="description"><?php esc_html_e( 'Add-ons you bought keep working when a license expires; the license controls updates and support. Add-ons bought later go on the same key and switch on by themselves within a day.', 'semrs-pro' ); ?></p>
 	</div>
 	<?php
 }

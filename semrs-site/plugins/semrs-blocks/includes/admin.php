@@ -107,7 +107,7 @@ function semrs_blocks_admin_page() {
 	$all     = semrs_blocks_all();
 	$off     = (array) get_option( 'semrs_blocks_disabled', array() );
 	$info    = semrs_blocks_card_info();
-	$has_pro = defined( 'SEMRS_PRO_VERSION' );
+	$has_pro = semrs_blocks_has_pro();
 	$groups  = array(
 		'layout'    => __( 'Layout', 'semrs-blocks' ),
 		'design'    => __( 'Design', 'semrs-blocks' ),

@@ -60,23 +60,101 @@ function semrs_us_keys() {
 /**
  * Create a license key.
  *
- * @param string $email   Customer email.
- * @param int    $sites   Max active sites (0 = unlimited).
- * @param string $expires Y-m-d or '' (never).
+ * A key's add-ons, site limit and expiry come from its parts: the values set
+ * here or on the keys screen ("manual") plus every Lemon Squeezy order or
+ * paid invoice attached to it ("sources"). See semrs_us_key_recalc().
+ *
+ * @param string   $email   Customer email.
+ * @param int      $sites   Max active sites (0 = unlimited).
+ * @param string   $expires Y-m-d or '' (never).
+ * @param string[] $addons  Add-on slugs, or array( 'all' ).
+ * @param array    $args    name, note, manual (false for keys made only from sources).
  * @return string The key.
  */
-function semrs_us_create_key( $email, $sites, $expires ) {
+function semrs_us_create_key( $email, $sites, $expires, $addons = array( 'all' ), $args = array() ) {
 	$key  = strtoupper( implode( '-', str_split( substr( bin2hex( random_bytes( 10 ) ), 0, 16 ), 4 ) ) );
+	$args = array_merge( array( 'name' => '', 'note' => '', 'manual' => true ), $args );
 	$all  = semrs_us_keys();
-	$all[ $key ] = array(
-		'email'   => sanitize_email( $email ),
-		'sites'   => max( 0, (int) $sites ),
-		'expires' => preg_match( '/^\d{4}-\d{2}-\d{2}$/', $expires ) ? $expires : '',
-		'status'  => 'active',
-		'created' => gmdate( 'Y-m-d' ),
+	$all[ $key ] = semrs_us_key_recalc(
+		array(
+			'email'   => sanitize_email( $email ),
+			'name'    => sanitize_text_field( $args['name'] ),
+			'note'    => sanitize_text_field( $args['note'] ),
+			'status'  => 'active',
+			'created' => gmdate( 'Y-m-d' ),
+			'manual'  => $args['manual'] ? array(
+				'addons'  => semrs_us_clean_addons( $addons ),
+				'sites'   => max( 0, (int) $sites ),
+				'expires' => preg_match( '/^\d{4}-\d{2}-\d{2}$/', $expires ) ? $expires : '',
+			) : null,
+			'sources' => array(),
+		)
 	);
 	update_option( 'semrs_us_keys', $all, false );
 	return $key;
+}
+
+/**
+ * Save one key (recalculated).
+ *
+ * @param string $key Key.
+ * @param array  $k   Key data.
+ * @return array Saved data.
+ */
+function semrs_us_save_key( $key, $k ) {
+	$all         = semrs_us_keys();
+	$all[ $key ] = semrs_us_key_recalc( $k );
+	update_option( 'semrs_us_keys', $all, false );
+	return $all[ $key ];
+}
+
+/**
+ * Add-on slugs a key unlocks (keys made before add-ons existed unlock all).
+ *
+ * @param array $k Key data.
+ * @return string[] Expanded slugs, e.g. array( 'seo', 'ads' ).
+ */
+function semrs_us_key_addons( $k ) {
+	return semrs_us_expand_addons( isset( $k['addons'] ) && is_array( $k['addons'] ) ? $k['addons'] : array( 'all' ) );
+}
+
+/**
+ * Work out a key's add-ons, site limit and expiry from its parts.
+ * Add-ons: all parts together. Sites: the largest limit. Expiry: the latest.
+ * Refunded sources are left out.
+ *
+ * @param array $k Key data.
+ * @return array
+ */
+function semrs_us_key_recalc( $k ) {
+	if ( ! array_key_exists( 'manual', $k ) ) {
+		// Key from before add-ons: everything it had becomes its manual part.
+		$k['manual'] = array(
+			'addons'  => array( 'all' ),
+			'sites'   => (int) ( $k['sites'] ?? 1 ),
+			'expires' => (string) ( $k['expires'] ?? '' ),
+		);
+	}
+	$parts = is_array( $k['manual'] ) ? array( $k['manual'] ) : array();
+	foreach ( (array) ( $k['sources'] ?? array() ) as $src ) {
+		if ( 'refunded' !== ( $src['status'] ?? '' ) ) {
+			$parts[] = $src;
+		}
+	}
+	$addons  = array();
+	$sites   = -1;
+	$expires = null;
+	foreach ( $parts as $p ) {
+		$addons  = array_merge( $addons, (array) $p['addons'] );
+		$s       = (int) $p['sites'];
+		$sites   = ( 0 === $s || 0 === $sites ) ? 0 : max( $sites, $s );
+		$e       = (string) $p['expires'];
+		$expires = ( '' === $e || '' === $expires ) ? '' : ( null === $expires || $e > $expires ? $e : $expires );
+	}
+	$k['addons']  = semrs_us_clean_addons( $addons );
+	$k['sites']   = max( 0, $sites );
+	$k['expires'] = null === $expires ? gmdate( 'Y-m-d', time() - DAY_IN_SECONDS ) : $expires;
+	return $k;
 }
 
 /**
@@ -122,6 +200,9 @@ function semrs_us_license_status( $key, $host ) {
 		return 'invalid';
 	}
 	$k = $all[ $key ];
+	if ( ! semrs_us_key_addons( $k ) ) {
+		return 'invalid'; // Every part was refunded.
+	}
 	if ( $k['expires'] && strtotime( $k['expires'] . ' 23:59:59 UTC' ) < time() ) {
 		return 'expired';
 	}

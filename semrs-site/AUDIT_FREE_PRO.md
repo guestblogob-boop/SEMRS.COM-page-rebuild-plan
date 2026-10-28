@@ -1,120 +1,155 @@
-# SEMRS Theme & Plugins: Audit and Free/Pro Split
+# SEMRS Theme & Plugins: Free/Pro Audit and Competitor Comparison
 
-Date: 2026-10-11 · Compared against: Astra (free + Pro), GeneratePress (free + Premium), Kadence, Neve, Blocksy; Rank Math, Yoast SEO, All in One SEO; Ad Inserter.
+Date: 2026-10-28 · Versions audited: theme 1.3.16, Core 1.3.20, Pro 1.4.10, Blocks 1.3.7, Tools 1.3.4, Shops 1.0.3.
+Compared against: Rank Math, Yoast SEO, All in One SEO (AIOSEO), SEOPress, WP Rocket, Imagify, Ad Inserter, User Role Editor, and the themes Astra, GeneratePress, Kadence, Blocksy and Neve.
 
-Feature lists for the other products are from their public documentation as generally known. Re-check current versions before using any comparison in marketing.
+Competitor feature lists come from their public documentation as generally known. Check their current versions before you use any row in marketing. Never publish "faster than X" without a measured, same-host test.
 
-## 1. The new structure (same model as GeneratePress / Astra)
+Legend: ✔ yes · ◐ partly · — no · **P** = paid tier/add-on of that product.
 
-| Package | Tier | Sold/served as |
+## 1. Packages
+
+| Package | Tier | What it is |
 | --- | --- | --- |
-| **SEMRS** (`semrs`) theme | Free | WordPress.org-style theme; complete on its own |
-| **SEMRS Child SEO** | Free | Example/brand child theme |
-| **SEMRS Core** plugin | Free | SEO essentials (WordPress.org-style) |
-| **SEMRS Tools** plugin | Free | 12 SEO tools + 22 ready pages |
-| **SEMRS Pro** plugin | **Premium** | Unlocks Pro modules for the theme, SEO and ads. Requires SEMRS Core |
+| SEMRS theme (+ Child SEO) | Free | Theme, header/footer builder, 7 patterns |
+| SEMRS Core | Free | SEO, Ads, Speed, Redirects, IndexNow, Image optimization, User roles, Review widgets |
+| SEMRS Blocks | Free | Icons, headings, post grids, countdown, pricing, contact form |
+| SEMRS Tools | Free | 12 SEO tools + ready pages |
+| SEMRS Shops | Free | Two ready-made shop starter sites |
+| **SEMRS Pro** | **Paid** | 20 Pro modules for all of the above (list in §8). Needs Core |
 
-The free theme and plugins work fully on their own. SEMRS Pro adds modules; it never "unlocks" code hidden inside the free packages. That is the model GeneratePress Premium and Astra Pro use, and the one WordPress.org allows for free listings.
+## 2. Free section (what everyone gets)
 
-## 2. Theme audit
+**SEO (Core):** titles, descriptions, robots, canonical, Open Graph and X cards, JSON-LD graph (Organization, WebSite, WebPage, Article, Breadcrumb, FAQ from visible blocks, Service, LocalBusiness types), XML sitemaps, breadcrumbs, llms.txt, editor sidebar with a 0–100 score, readability and link ideas, site-wide SEO audit, Index Status page (live check and indexing tasks), IndexNow auto-submit, robots.txt editor, Content Calendar with .ics, one-click share buttons. Reads Rank Math, Yoast and AIOSEO data live.
+**Redirects:** 301/302/307/410, wildcards, loop protection, 404 log with one-click redirect, Rank Math import.
+**Speed:** page cache, per-block CSS, inline or non-blocking CSS, deferred scripts, hover prefetch (Speculation Rules), YouTube click-to-play, image preload, preconnect, bloat removal (emoji, embeds, dashicons, jQuery Migrate, XML-RPC, Heartbeat), database cleanup, server speed check.
+**Images:** new uploads compressed, resized and saved as WebP or AVIF on your own server. No quota.
+**Ads:** AdSense, Ad Manager or any code; in-content positions, header/footer code, shortcodes, safe-insertion exclusions, density caps, device targeting, lazy loading, ads.txt.
+**User roles:** edit capabilities, clone roles, delete custom roles, multiple roles per user.
+**Theme and Blocks:** drag-and-drop header/footer, sticky or transparent header, author box, related posts, progress bar, sidebar layouts, blog grid/list, free blocks.
 
-### Fixed in this round
-- **Logo space:** logo width settings for desktop (40–400 px) and mobile (32–260 px), plus header height (56–160 px). The header grows to fit the logo instead of squeezing it. Square logos (512 × 512 recommended) are detected and default to 64 px / 52 px until you change them. All three update live in the Customizer.
-- **Footer social icons:** 9 networks (Facebook, X, Instagram, LinkedIn, YouTube, TikTok, Pinterest, WhatsApp, Threads). Each icon fills a round button in the network's brand colour, or one colour if you prefer, with adjustable size (28–64 px). Icons are simplified marks drawn for the theme; swap in each network's official SVG from its brand resources page if you want pixel-exact logos.
-- **Components moved into the free theme:** sections, cards, process, pricing, CTA band, FAQ. Free users can now use the patterns.
-- **Patterns (the "editor"):** a "SEMRS sections" category in the block inserter. Free: Hero, FAQ, CTA band. Pro: Service cards, 6-step process, Pricing, Tool section, Contact section.
+## 3. Pro section (SEMRS Pro)
 
-### Feature comparison: theme
+| Group | Modules |
+| --- | --- |
+| SEO Pro | AI SEO (own Claude/OpenAI/Gemini key), Link Assistant (auto internal links + broken links), Sitemaps Pro (image, video, news + VideoObject), SEO Performance & rank tracking (Search Console via Site Kit), Bulk SEO editor, Custom schema, Multi-location Local SEO, Image SEO (auto alt) |
+| Speed Pro | Delay JS until interaction, cache preload, CDN rewrite, minify, remove unused CSS, image library conversion (bulk WebP/AVIF, one-click restore) |
+| Ads Pro | Repeat-in-content and between-posts placements, category/post-age/date targeting, A/B rotation, click protection, polite ad-blocker message, per-page switches |
+| Theme & Blocks Pro | Mega menu, dark mode switch, table of contents, white label, Site Layouts (hooks), display conditions, popups, slider/carousel, counters, 3D viewer, scroll animations, Pro starter sites, languages/hreflang, Proof (case studies, portfolio, testimonials), CF7 → GA4 lead tracking |
 
-| Feature | Astra free | Astra Pro | GP free | GP Premium | **SEMRS free** | **SEMRS Pro** |
+## 4. SEO comparison
+
+| Feature | Rank Math | Yoast | AIOSEO | SEOPress | **SEMRS free** | **SEMRS Pro** |
 | --- | --- | --- | --- | --- | --- | --- |
-| No jQuery, light CSS (≈5 KB gz) | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
-| Logo size controls | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
-| Colours / fonts / container width | ✔ | ✔ more | ✔ | ✔ more | ✔ | ✔ |
-| Sidebar layouts + per-page override | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
-| Blog grid / list | partly | ✔ | ✔ | ✔ | ✔ | ✔ |
-| Full-width + blank canvas templates | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
-| Footer widgets + social icons | ✔ | ✔ | widgets | ✔ | ✔ | ✔ |
-| Block patterns | ✔ starter | ✔ | — | ✔ site library | 7 | 12 |
-| Sticky / transparent header | — | ✔ | — | ✔ | ✔ (since 1.2) | ✔ |
-| Mega menu | — | ✔ | — | ✔ (CSS) | — | ✔ |
-| Custom hooks / layouts | — | ✔ | hooks | ✔ Elements | hooks | ✔ Site Layouts |
-| Progress bar, author box, related posts | — | partly | — | partly | ✔ (since 1.2) | ✔ |
-| Table of contents | — | — | — | — | — | ✔ |
-| White label | — | ✔ | — | — | — | ✔ (theme name) |
-| Drag-and-drop header/footer builder | ✔ | ✔ | — | — | ✔ (since 1.2) | ✔ |
-| **Site library / one-click starter sites** | ✔ | ✔ | — | ✔ | **— (gap)** | **— (gap)** |
-| WooCommerce styling | ✔ | ✔ | ✔ | ✔ | **— (gap)** | **— (gap)** |
-| Typography per element, Google fonts picker | ✔ | ✔ | ✔ | ✔ | system/Inter only | **— (gap)** |
-| Dark mode | — | — | — | — | — | — |
+| Meta, robots, canonical, OG | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
+| Schema graph + FAQ from content | ✔ | ✔ | ✔ | ◐ P | ✔ | ✔ |
+| Custom schema builder | P | — | P | P | — | ✔ |
+| Editor score + readability | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
+| Site-wide SEO audit | ◐ | — | ◐ | ◐ P | ✔ | ✔ |
+| Redirects + 404 log | ✔ | P | P | P | ✔ | ✔ |
+| IndexNow | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
+| Index status + indexing task list | ◐ | — | ◐ P | — | ✔ | ✔ |
+| robots.txt / llms.txt editor | ✔ / ◐ | ✔ / ✔ | ✔ / ✔ | ✔ / — | ✔ / ✔ | ✔ |
+| Content calendar + share buttons | — | — | — | — | ✔ | ✔ + publish webhook |
+| Search Console stats in WP | ✔ | — | P | P | — | ✔ |
+| Keyword rank tracking | P | — | P | — | — | ✔ |
+| Internal link automation | P | P (suggestions) | P | P | link ideas | ✔ |
+| Broken link checker | — | — | separate plugin | P | — | ✔ |
+| Image / video / news sitemaps | ✔ / P / P | ✔ / P / P | ✔ / P / P | ✔ / P / P | ✔ / — / — | ✔ |
+| Multi-location local SEO | P | P add-on | P | P | — | ✔ |
+| AI titles/descriptions | P credits | P | P | P | — | ✔ (own key, no credits) |
+| Bulk SEO editor | ✔ | — | P | P | — | ✔ |
+| Auto image alt | P | — | P | P | — | ✔ |
+| **Setup wizard** | ✔ | ✔ | ✔ | ✔ | **— gap** | **— gap** |
+| **WooCommerce product SEO** | ✔ | P | ✔ | P | **— gap** | **— gap** |
+| **Import (one-time) from Yoast/AIOSEO** | ✔ | ✔ | ✔ | ✔ | live read only | live read only |
 
-## 3. SEO audit (SEMRS Core free + Pro vs leading SEO plugins)
+## 5. Speed comparison (vs WP Rocket, paid only)
 
-| Feature | Rank Math free | Yoast free | AIOSEO free | **SEMRS Core free** | **SEMRS Pro** |
-| --- | --- | --- | --- | --- | --- |
-| Titles, descriptions, templates | ✔ | ✔ | ✔ | ✔ | ✔ |
-| Robots, canonical, Open Graph, X cards | ✔ | ✔ | ✔ | ✔ | ✔ |
-| Schema graph (Org/WebSite/WebPage/Article/Breadcrumb) | ✔ | ✔ | ✔ | ✔ | ✔ |
-| FAQ schema from visible FAQ blocks, automatically | block | block | block | ✔ (any Details block) | ✔ |
-| Service / WebApplication / Local business schema | ✔ | Local = paid | ✔ partly | ✔ (types) | ✔ + multi-location |
-| XML sitemap | ✔ | ✔ | ✔ | ✔ (core engine) | ✔ |
-| Breadcrumbs | ✔ | ✔ | ✔ | ✔ | ✔ |
-| Content checks in editor | ✔ | ✔ | ✔ | ✔ (10 checks) | ✔ |
-| Reads data from another SEO plugin | import | import | import | ✔ live fallback, no import needed | ✔ |
-| Redirects + 404 monitor | ✔ | paid | paid | — | ✔ + Rank Math import |
-| Multi-location local SEO | paid | paid add-on | paid | — | ✔ |
-| IndexNow | ✔ | ✔ | ✔ | — | ✔ |
-| Image alt automation | paid | — | paid | — | ✔ |
-| **Google Search Console / Analytics dashboard** | ✔ | — | ✔ | **— (gap)** | **— (gap)** |
-| **News / video / image sitemaps** | paid | paid | paid | **— (gap)** | **— (gap)** |
-| **Internal link suggestions** | paid | paid | paid | **— (gap)** | **— (gap)** |
-| **Keyword rank tracking** | paid | — | — | **— (gap)** | **— (gap)** |
-| **WooCommerce product SEO** | ✔ | paid | ✔ | **— (gap)** | **— (gap)** |
-| Setup wizard | ✔ | ✔ | ✔ | — | — |
-
-**Honest summary:** on core on-page SEO, SEMRS is already competitive with the free tiers of Rank Math, Yoast and AIOSEO. Pro includes several features those plugins charge for (redirects, multi-location local SEO, image alt automation). It is **not yet "better than Rank Math" overall**: Search Console integration, extra sitemap types, internal-link suggestions, WooCommerce SEO and a setup wizard are missing. Claim superiority only after those ship and you have tested side by side.
-
-## 4. Ads audit (SEMRS Pro Ads Manager vs Ad Inserter)
-
-| Feature | Ad Inserter free | Ad Inserter Pro | **SEMRS Pro Ads** |
+| Feature | WP Rocket | **SEMRS free** | **SEMRS Pro** |
 | --- | --- | --- | --- |
-| AdSense + any network code | ✔ | ✔ | ✔ |
-| Auto placement in content | ✔ (many positions) | ✔ | ✔ (before, after paragraph N, middle, end) |
-| Safe insertion (never inside tables, lists, forms, tools, CTAs) | manual | manual | ✔ automatic |
-| Thin-page protection (minimum words) | ✔ | ✔ | ✔ |
-| Default exclusions for conversion/legal/noindex pages | manual | manual | ✔ built in |
-| Density cap + minimum gap | partly | ✔ | ✔ |
-| Device targeting without hidden ads | CSS | ✔ | ✔ (JS before load) |
-| Lazy loading | ✔ | ✔ | ✔ |
-| ads.txt management | ✔ | ✔ | ✔ |
-| Hide for admins + admin-bar status | ✔ | ✔ | ✔ |
-| **Number of blocks / positions** | 16 | 64 | **7 (gap)** |
-| **A/B testing, rotation, scheduling** | partly | ✔ | **— (gap)** |
-| **Ad-block detection** | ✔ | ✔ | **— (gap)** |
-| **Statistics / click tracking** | — | ✔ | **— (gap)** |
-| **Geo-targeting by country** | — | ✔ | **— (gap)** |
+| Page cache, mobile copy, auto purge | ✔ | ✔ | ✔ |
+| Cache preload | ✔ | — | ✔ |
+| Delay JS until interaction | ✔ | — | ✔ |
+| Defer JS | ✔ | ✔ | ✔ |
+| Remove unused CSS | ✔ | per-block CSS | ✔ |
+| Non-blocking / inline CSS | ✔ | ✔ | ✔ |
+| Minify | ✔ | — | ✔ |
+| CDN rewrite | ✔ | — | ✔ |
+| Database cleanup | ✔ | ✔ | ✔ |
+| Heartbeat control, bloat removal | ✔ | ✔ | ✔ |
+| Prefetch / Speculation Rules | ✔ | ✔ | ✔ |
+| YouTube click-to-play | ✔ | ✔ | ✔ |
+| Built-in server speed check | — | ✔ | ✔ |
+| **Font preload / self-host Google Fonts** | ✔ | **— gap** | **— gap** |
+| **Lazy-load background images** | ✔ | **— gap** (WP core lazy-loads `<img>`) | **— gap** |
 
-**Summary:** SEMRS Ads is simpler and safer by default for AdSense policy. Ad Inserter Pro has more positions, testing, statistics and geo-targeting.
+## 6. Images, ads and roles
 
-## 5. Roadmap to "best in class" (priority order)
-
-| # | Item | Package | Why |
+| Images | Imagify | **SEMRS free** | **SEMRS Pro** |
 | --- | --- | --- | --- |
-| 1 | Licensing + updates (Freemius or EDD Software Licensing) | Pro | Required before selling |
-| 2 | Setup wizard (business details, social, sitemap, import from Rank Math/Yoast) | Core | First-run experience |
-| 3 | Search Console connection (clicks, impressions, top queries per page) | Pro | Biggest gap vs Rank Math |
-| 4 | Header/footer builder (rows, elements, drag and drop in the Customizer) | Pro | Biggest gap vs Astra |
-| 5 | Internal link suggestions in the editor | Pro | High value, rare in free tiers |
-| 6 | Ads: more positions, A/B rotation, country targeting, simple click stats | Pro | Gap vs Ad Inserter Pro |
-| 7 | Google fonts picker (self-hosted download) + per-element typography | Pro | Gap vs Astra/GP |
-| 8 | Starter site library (agency, local business, blog) | Pro | Sales driver |
-| 9 | WooCommerce styling + product schema | Free/Pro | Shops |
-| 10 | Video/news/image sitemaps | Pro | Publishers |
+| Compress + resize on upload | ✔ (quota) | ✔ (no quota) | ✔ |
+| WebP / AVIF | ✔ | ✔ | ✔ |
+| Bulk convert existing library | ✔ | — | ✔ |
+| Keep and restore originals | ✔ | ✔ | ✔ |
+| Compression levels (smart/lossless) | ✔ | quality slider | quality slider |
 
-## 6. Before selling
+| Ads | Ad Inserter free | Ad Inserter Pro | **SEMRS free** | **SEMRS Pro** |
+| --- | --- | --- | --- | --- |
+| AdSense / any code, ads.txt, lazy | ✔ | ✔ | ✔ | ✔ |
+| Safe insertion + policy exclusions | manual | manual | ✔ automatic | ✔ |
+| Category / date targeting | ✔ | ✔ | — | ✔ |
+| A/B rotation | ◐ | ✔ | — | ✔ |
+| Click protection | — | ✔ | — | ✔ |
+| Ad-block message | ✔ | ✔ | — | ✔ |
+| **Country (geo) targeting** | — | ✔ | **— gap** | **— gap** |
+| **Impression / click statistics** | — | ✔ | **— gap** | **— gap** |
 
-- WordPress.org review for the free theme and plugins (escaping, prefixing, no "upsell nags" beyond one dismissible notice).
-- A licensing provider (item 1). The License screen and `semrs_pro_license_status` filter are ready to connect.
-- Real speed tests: PageSpeed Insights on a demo site with each competitor theme, same content and hosting. Publish only measured numbers.
-- Trademark check on the "SEMRS" name before selling (decision D3).
-- Privacy policy and refund terms for the store.
+| Roles | User Role Editor | URE Pro | **SEMRS free** |
+| --- | --- | --- | --- |
+| Edit caps, add/clone/delete roles, multiple roles | ✔ | ✔ | ✔ |
+| **Block admin menu items per role** | — | ✔ | **— gap** |
+| **Export / import roles** | — | ✔ | **— gap** |
+
+## 7. Theme comparison
+
+| Feature | Astra Pro | GP Premium | Kadence Pro | Blocksy Pro | **SEMRS free** | **SEMRS Pro** |
+| --- | --- | --- | --- | --- | --- | --- |
+| Header/footer builder, sticky/transparent | ✔ | ◐ | ✔ | ✔ | ✔ | ✔ |
+| Mega menu | ✔ | ✔ | ✔ | ✔ | — | ✔ |
+| Hooks / conditional layouts | ✔ | ✔ | ✔ | ✔ | hooks | ✔ |
+| Dark mode switch | — | — | ◐ | ✔ | — | ✔ |
+| Popups | — | — | ◐ | ✔ | — | ✔ |
+| Table of contents | — | — | ◐ | ✔ | — | ✔ |
+| White label | ✔ | — | ✔ | ✔ | — | ✔ |
+| Starter sites | ✔ | ✔ | ✔ | ✔ | Shops | ✔ |
+| SEO + ads + speed built in | — | — | — | — | ✔ | ✔ |
+| **Google Fonts picker (self-hosted) + per-element typography** | ✔ | ✔ | ✔ | ✔ | **— gap** | **— gap** |
+| **WooCommerce styling** | ✔ | ✔ | ✔ | ✔ | **— gap** | **— gap** |
+
+## 8. Where SEMRS wins, where it doesn't
+
+**Wins today (verifiable):**
+- One stack replaces 6–8 plugins: an SEO plugin, WP Rocket, Imagify, Ad Inserter, User Role Editor, Redirection, a popup plugin and a broken-link checker. Fewer plugins means fewer scripts, which is the real speed advantage.
+- Free tier includes redirects, a 404 log, a page cache, WebP/AVIF on upload, a site audit, Index Status and a content calendar. Most competitors charge for these.
+- AI SEO uses the customer's own key, with no credit packs.
+- Ads are policy-safe by default.
+- PageSpeed 100 and Agentic 3/3 on semrs.com, measured.
+
+**Gaps to close before claiming "better than all of them":**
+1. Setup wizard plus one-time import from Yoast, AIOSEO and Rank Math (Core).
+2. WooCommerce product SEO: Product schema, product sitemaps, category meta (Core + Pro).
+3. Self-hosted Google Fonts picker and per-element typography (theme free + Pro).
+4. Ads: country targeting and simple impression/click stats (Pro).
+5. Font preload and lazy-loaded background images (Speed Pro).
+6. Roles: admin-menu restrictions per role and role export/import (Pro).
+7. WooCommerce theme styling (theme).
+
+**Rankings:** no plugin makes a site rank faster by itself. Rankings come from content, links and indexing. SEMRS can claim faster indexing signals (IndexNow, the Index Status task list, clean sitemaps) and better on-page quality (the audit). Don't promise ranking speed.
+
+## 9. Licensing (how keys work now)
+
+- The only paid product on the update server is `semrs-pro`, so each key covers all of SEMRS Pro.
+- Issue a key under **SEMRS Updates → License keys**: customer email, number of sites (0 = unlimited) and expiry date. The customer enters it under **SEMRS → License**.
+- The key controls updates and support only. Pro modules load whenever the Pro plugin is active, and the editor's Pro locks only check that the plugin is installed. A key-holder cannot be limited to "SEO Pro only".
+- Proposed per-group plans (SEO Pro, Speed Pro, Ads Pro, Theme & Blocks Pro, All Pro), stored on the key and enforced by one SEMRS Pro plugin: see the chat answer of 2026-10-28. Not built yet.

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       SEMRS Site (semrs.com only)
  * Description:       semrs.com-only additions that are never given to clients: the SEMRS Store (products, collection and product pages, pricing) and SEMRS Pro sales page installer, the Keyword Ideas Generator tool, the "Hero with photo and keyword tool" pattern and its photo, and the web design portfolio hub ([semrs_portfolio]). Needs SEMRS Tools for the tool.
- * Version:           1.2.18
+ * Version:           1.2.21
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            SEMRS
@@ -29,7 +29,7 @@ add_filter(
 	}
 );
 
-define( 'SEMRS_SITE_VERSION', '1.2.18' );
+define( 'SEMRS_SITE_VERSION', '1.2.21' );
 define( 'SEMRS_SITE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_SITE_URL', plugin_dir_url( __FILE__ ) );
 
@@ -192,7 +192,7 @@ function semrs_site_menu() {
 			wp_nonce_field( 'semrs_site_install' );
 			echo '<h2>' . esc_html__( 'Tools', 'semrs-site' ) . '</h2><p>' . esc_html__( 'Creates the Keyword Ideas Generator page as a draft under /tools/. Existing pages are never changed.', 'semrs-site' ) . '</p>';
 			submit_button( __( 'Create missing pages as drafts', 'semrs-site' ), 'primary', 'semrs_site_install' );
-			echo '<h2>' . esc_html__( 'Store and SEMRS Pro sales page', 'semrs-site' ) . '</h2><p>' . esc_html__( 'Creates the store categories, the six SEMRS products (with desktop and phone screenshots) and the SEMRS Pro sales page at /semrs-pro/, all as drafts. Suggested Pro prices: $49, $99 and $199 per year for 1, 5 and unlimited sites. Change them before publishing. Checkout links start empty, so the buttons say "Checkout opens soon".', 'semrs-site' ) . '</p>';
+			echo '<h2>' . esc_html__( 'Store and SEMRS Pro sales page', 'semrs-site' ) . '</h2><p>' . esc_html__( 'Creates the store categories, the six SEMRS products (with desktop and phone screenshots) and the SEMRS Pro sales page at /semrs-pro/, all as drafts. SEMRS Pro prices and checkout links come from SEMRS Updates → Sales & prices (add-ons and bundles); without a checkout link the buttons ask for an invoice.', 'semrs-site' ) . '</p>';
 			submit_button( __( 'Create store as drafts', 'semrs-site' ), 'secondary', 'semrs_store_install' );
 			semrs_portfolio_admin_box();
 			echo '</form></div>';

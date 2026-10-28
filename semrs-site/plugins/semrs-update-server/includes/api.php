@@ -34,6 +34,24 @@ function semrs_us_routes() {
 	);
 	register_rest_route(
 		'semrs-updates/v1',
+		'/license',
+		array(
+			'methods'             => 'POST',
+			'permission_callback' => '__return_true',
+			'callback'            => 'semrs_us_license',
+		)
+	);
+	register_rest_route(
+		'semrs-updates/v1',
+		'/lemonsqueezy',
+		array(
+			'methods'             => 'POST',
+			'permission_callback' => '__return_true', // Checked by the webhook signature.
+			'callback'            => 'semrs_us_ls_webhook',
+		)
+	);
+	register_rest_route(
+		'semrs-updates/v1',
 		'/deactivate',
 		array(
 			'methods'             => 'POST',
@@ -211,6 +229,35 @@ function semrs_us_activate( $req ) {
 			'message' => $messages[ $status ],
 			'expires' => isset( $keys[ $key ]['expires'] ) ? $keys[ $key ]['expires'] : '',
 			'sites'   => isset( $keys[ $key ]['sites'] ) ? (int) $keys[ $key ]['sites'] : 0,
+			'addons'  => isset( $keys[ $key ] ) && in_array( $status, array( 'valid', 'expired' ), true ) ? semrs_us_key_addons( $keys[ $key ] ) : array(),
+			'manage'  => semrs_us_account_url(),
+		)
+	);
+}
+
+/**
+ * License status for a site that already uses a key (daily check from SEMRS Pro).
+ * Paid add-ons stay listed after expiry; only refunds and revoked keys remove them.
+ *
+ * @param WP_REST_Request $req Request (key, site, version).
+ * @return WP_REST_Response
+ */
+function semrs_us_license( $req ) {
+	$key     = preg_replace( '/[^A-Za-z0-9-]/', '', (string) $req->get_param( 'key' ) );
+	$host    = semrs_us_host( (string) $req->get_param( 'site' ) );
+	$version = preg_replace( '/[^0-9A-Za-z.\-]/', '', (string) $req->get_param( 'version' ) );
+	$status  = $host ? semrs_us_license_status( $key, $host ) : 'invalid';
+	if ( 'valid' === $status ) {
+		semrs_us_record( 'semrs-pro', $host, $version, '', '', $key ); // Keeps the slot.
+	}
+	$k = semrs_us_keys()[ $key ] ?? null;
+	return rest_ensure_response(
+		array(
+			'license' => $status,
+			'expires' => $k ? $k['expires'] : '',
+			'sites'   => $k ? (int) $k['sites'] : 0,
+			'addons'  => $k && in_array( $status, array( 'valid', 'expired', 'limit' ), true ) ? semrs_us_key_addons( $k ) : array(),
+			'manage'  => semrs_us_account_url(),
 		)
 	);
 }

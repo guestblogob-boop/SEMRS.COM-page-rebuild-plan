@@ -430,7 +430,7 @@ function semrs_blocks_template_patterns() {
 	register_block_pattern_category( 'semrs', array( 'label' => __( 'SEMRS sections', 'semrs-blocks' ) ) );
 	$owner = semrs_blocks_template_example_owner();
 	foreach ( semrs_blocks_template_sites() as $sid => $site ) {
-		if ( 'pro' === ( $site['tier'] ?? 'free' ) && ! defined( 'SEMRS_PRO_VERSION' ) ) {
+		if ( 'pro' === ( $site['tier'] ?? 'free' ) && ! semrs_blocks_has_pro() ) {
 			continue;
 		}
 		$images = semrs_blocks_template_image_urls( $site );
@@ -547,7 +547,7 @@ function semrs_blocks_template_import( $sid, $opts ) {
 		return new WP_Error( 'semrs_tpl', __( 'Unknown starter site.', 'semrs-blocks' ) );
 	}
 	$site = $sites[ $sid ];
-	if ( 'pro' === ( $site['tier'] ?? 'free' ) && ! defined( 'SEMRS_PRO_VERSION' ) ) {
+	if ( 'pro' === ( $site['tier'] ?? 'free' ) && ! semrs_blocks_has_pro() ) {
 		return new WP_Error( 'semrs_tpl', __( 'This starter site is part of SEMRS Pro.', 'semrs-blocks' ) );
 	}
 	$owner  = $opts['owner'];
@@ -994,7 +994,7 @@ function semrs_blocks_templates_page() {
 	}
 
 	$preview = isset( $_GET['preview'] ) ? sanitize_key( $_GET['preview'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-	if ( $preview && isset( $sites[ $preview ] ) && ! ( 'pro' === ( $sites[ $preview ]['tier'] ?? 'free' ) && ! defined( 'SEMRS_PRO_VERSION' ) ) ) {
+	if ( $preview && isset( $sites[ $preview ] ) && ! ( 'pro' === ( $sites[ $preview ]['tier'] ?? 'free' ) && ! semrs_blocks_has_pro() ) ) {
 		semrs_blocks_template_viewer( $preview, $sites[ $preview ] );
 		echo '</div>';
 		return;
@@ -1002,7 +1002,7 @@ function semrs_blocks_templates_page() {
 
 	if ( $sid && isset( $sites[ $sid ] ) ) {
 		$site   = $sites[ $sid ];
-		$locked = 'pro' === ( $site['tier'] ?? 'free' ) && ! defined( 'SEMRS_PRO_VERSION' );
+		$locked = 'pro' === ( $site['tier'] ?? 'free' ) && ! semrs_blocks_has_pro();
 		echo '<p><a href="' . esc_url( admin_url( 'admin.php?page=semrs-templates' ) ) . '">&larr; ' . esc_html__( 'All templates', 'semrs-blocks' ) . '</a></p>';
 		echo '<div style="display:grid;gap:24px;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);align-items:start">';
 		echo '<div class="semrs-block semrs-showcase" style="--sc-cols:1;margin:0">';
@@ -1074,9 +1074,9 @@ function semrs_blocks_templates_page() {
 	}
 	echo '</div></div><div class="semrs-block semrs-showcase" style="--sc-cols:3;margin:0">';
 	foreach ( $sites as $id => $site ) {
-		semrs_blocks_template_card( $id, $site, 'pro' === ( $site['tier'] ?? 'free' ) && ! defined( 'SEMRS_PRO_VERSION' ) );
+		semrs_blocks_template_card( $id, $site, 'pro' === ( $site['tier'] ?? 'free' ) && ! semrs_blocks_has_pro() );
 	}
-	if ( ! defined( 'SEMRS_PRO_VERSION' ) ) {
+	if ( ! semrs_blocks_has_pro() ) {
 		foreach ( semrs_blocks_template_pro_teasers() as $id => $t ) {
 			if ( ! isset( $sites[ $id ] ) ) {
 				semrs_blocks_template_card( $id, array( 'title' => $t[0], 'tier' => 'pro', 'category' => $t[1], 'description' => $t[2] ), true );
@@ -1218,7 +1218,7 @@ function semrs_blocks_hf_tab() {
 function semrs_blocks_pages_tab() {
 	$pages = 0;
 	foreach ( semrs_blocks_template_sites() as $site ) {
-		if ( 'pro' === ( $site['tier'] ?? 'free' ) && ! defined( 'SEMRS_PRO_VERSION' ) ) {
+		if ( 'pro' === ( $site['tier'] ?? 'free' ) && ! semrs_blocks_has_pro() ) {
 			continue;
 		}
 		foreach ( $site['pages'] as $page ) {

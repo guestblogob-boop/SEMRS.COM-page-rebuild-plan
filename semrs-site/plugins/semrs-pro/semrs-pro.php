@@ -3,7 +3,7 @@
  * Plugin Name:       SEMRS Pro
  * Plugin URI:        https://semrs.com/
  * Description:       Premium add-on for the SEMRS theme and SEMRS Core: sticky/transparent header, mega menu, table of contents, author box, related posts, extra section patterns, white label; multi-location local SEO, image SEO, custom schema; image library conversion; speed extras; ads manager; site layouts; case studies, portfolio and testimonials; lead tracking.
- * Version:           1.4.10
+ * Version:           1.5.1
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-pro
@@ -20,19 +20,21 @@ defined( 'ABSPATH' ) || exit;
 // WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
 add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
 
-define( 'SEMRS_PRO_VERSION', '1.4.10' );
+define( 'SEMRS_PRO_VERSION', '1.5.1' );
 define( 'SEMRS_PRO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_PRO_URL', plugin_dir_url( __FILE__ ) );
 
+require SEMRS_PRO_DIR . 'includes/entitlements.php';
+
 /**
- * Register Pro module files with SEMRS Core's loader.
+ * Register Pro module files with SEMRS Core's loader: only the modules in
+ * the add-ons this site's license unlocks (see includes/entitlements.php).
  *
  * @param array $files key => absolute path.
  * @return array
  */
 function semrs_pro_module_files( $files ) {
-	return array_merge(
-		$files,
+	$pro = array_filter(
 		array(
 			'theme_pro' => SEMRS_PRO_DIR . 'modules/theme-pro.php',
 			'local'     => SEMRS_PRO_DIR . 'modules/local-seo.php',
@@ -54,8 +56,13 @@ function semrs_pro_module_files( $files ) {
 			'links_pro'  => SEMRS_PRO_DIR . 'modules/links-pro.php',
 			'sitemaps_pro' => SEMRS_PRO_DIR . 'modules/sitemaps-pro.php',
 			'rank_tracker' => SEMRS_PRO_DIR . 'modules/rank-tracker.php',
-		)
+		),
+		function ( $key ) {
+			return semrs_pro_has( semrs_pro_module_addon( $key ) );
+		},
+		ARRAY_FILTER_USE_KEY
 	);
+	return array_merge( $files, $pro );
 }
 add_filter( 'semrs_module_files', 'semrs_pro_module_files' );
 
@@ -113,6 +120,9 @@ add_action( 'admin_notices', 'semrs_pro_needs_core' );
  */
 function semrs_pro_activate() {
 	update_option( 'semrs_core_flush', 1 );
+	if ( null === get_option( 'semrs_pro_addons', null ) ) {
+		update_option( 'semrs_pro_fresh', 1, false ); // New install: Pro modules wait for a license.
+	}
 }
 register_activation_hook( __FILE__, 'semrs_pro_activate' );
 register_deactivation_hook( __FILE__, 'flush_rewrite_rules' );

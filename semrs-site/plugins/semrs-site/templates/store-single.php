@@ -67,8 +67,12 @@ while ( have_posts() ) :
 					<h1 class="semrs-buybox__title"><?php the_title(); ?></h1>
 					<p class="semrs-buybox__lead"><?php echo esc_html( $semrs_d['short'] ); ?></p>
 
-					<?php $semrs_engine = $semrs_d['paid'] ? semrs_store_engine( $semrs_d ) : ''; ?>
-					<?php if ( $semrs_engine ) : ?>
+					<?php $semrs_engine = $semrs_d['paid'] && ! $semrs_d['addons'] ? semrs_store_engine( $semrs_d ) : ''; ?>
+					<?php if ( $semrs_d['addons'] ) : ?>
+						<p class="semrs-buybox__price"><?php echo semrs_store_price_html( $semrs_d ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside. ?></p>
+						<p><?php esc_html_e( 'Pick only the add-ons you need (SEO Pro, Speed Pro, Ads Pro, Theme & Blocks Pro) or All Pro for everything. One key, and you can add more later.', 'semrs-site' ); ?></p>
+						<div id="semrs-plans"><a class="semrs-btn semrs-btn--buy semrs-btn--block" href="#plans"><?php esc_html_e( 'Choose your add-ons', 'semrs-site' ); ?></a></div>
+					<?php elseif ( $semrs_engine ) : ?>
 						<div id="semrs-plans"><?php echo $semrs_engine; // phpcs:ignore WordPress.Security.EscapeOutput -- built with escaping by SEMRS Blocks. ?></div>
 					<?php elseif ( $semrs_d['paid'] ) : ?>
 						<p class="semrs-buybox__price" data-price-out><?php echo esc_html( semrs_store_money( $semrs_d['tiers'][ $semrs_pick ]['price'], $semrs_d['currency'] ) ); ?> <span><?php echo esc_html( semrs_store_period( $semrs_d ) ); ?></span></p>
@@ -122,6 +126,8 @@ while ( have_posts() ) :
 					</dl>
 				</div>
 			</div>
+
+			<?php echo $semrs_d['addons'] ? semrs_store_pro_plans() : ''; // phpcs:ignore WordPress.Security.EscapeOutput -- built with escaping. ?>
 
 			<div class="semrs-details">
 				<details class="semrs-acc" open>

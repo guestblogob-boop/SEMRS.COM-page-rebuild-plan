@@ -49,7 +49,7 @@ function semrs_blocks_template_preview_context() {
 	}
 	$sid   = sanitize_key( wp_unslash( $_GET['semrs_tpl_preview'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
 	$sites = semrs_blocks_template_sites();
-	if ( empty( $sites[ $sid ] ) || ( 'pro' === ( $sites[ $sid ]['tier'] ?? 'free' ) && ! defined( 'SEMRS_PRO_VERSION' ) ) ) {
+	if ( empty( $sites[ $sid ] ) || ( 'pro' === ( $sites[ $sid ]['tier'] ?? 'free' ) && ! semrs_blocks_has_pro() ) ) {
 		return null;
 	}
 	$site = $sites[ $sid ];

@@ -182,7 +182,7 @@ function semrs_blocks_editor_data() {
 		$cats[] = array( 'value' => (string) $c->term_id, 'label' => $c->name );
 	}
 	$teasers = array();
-	if ( ! defined( 'SEMRS_PRO_VERSION' ) && get_option( 'semrs_blocks_show_pro', true ) ) {
+	if ( ! semrs_blocks_has_pro() && get_option( 'semrs_blocks_show_pro', true ) ) {
 		foreach ( semrs_blocks_pro_teasers() as $name => $t ) {
 			$teasers[ $name ] = array( 'title' => $t[0], 'icon' => $t[1], 'description' => $t[2] );
 		}
@@ -202,7 +202,7 @@ function semrs_blocks_editor_data() {
 				'iconSvgs'   => semrs_blocks_icons(),
 				'categories' => $cats,
 				'postTypes'  => $types,
-				'pro'        => defined( 'SEMRS_PRO_VERSION' ),
+				'pro'        => semrs_blocks_has_pro(),
 				'teasers'    => $teasers,
 				'proUrl'     => semrs_blocks_pro_url(),
 			)

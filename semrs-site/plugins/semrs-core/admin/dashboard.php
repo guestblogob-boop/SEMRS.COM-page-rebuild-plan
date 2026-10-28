@@ -39,7 +39,8 @@ function semrs_core_register_modules_setting() {
 			'sanitize_callback' => function ( $in ) {
 				$out = array();
 				foreach ( array_keys( semrs_core_modules() ) as $key ) {
-					$out[ $key ] = ! empty( $in[ $key ] );
+					// Locked modules have no switch: keep their setting for when they unlock.
+					$out[ $key ] = apply_filters( 'semrs_core_module_locked', false, $key ) ? semrs_core_module_on( $key ) : ! empty( $in[ $key ] );
 				}
 				return $out;
 			},
@@ -194,7 +195,7 @@ add_action( 'admin_enqueue_scripts', 'semrs_core_admin_assets' );
  * @param string $label  Label.
  * @param string $desc   Description.
  * @param string $tier   free|pro.
- * @param bool   $locked Pro not installed.
+ * @param bool   $locked Pro not installed, or not in this site's add-ons.
  */
 function semrs_core_card( $key, $label, $desc, $tier, $locked ) {
 	$meta  = semrs_core_module_meta()[ $key ] ?? array( 'seo', 'admin-generic', '' );
@@ -209,8 +210,10 @@ function semrs_core_card( $key, $label, $desc, $tier, $locked ) {
 	);
 	echo '<div class="semrs-card__top"><span class="dashicons dashicons-' . esc_attr( $meta[1] ) . '" aria-hidden="true"></span>';
 	echo '<span class="semrs-badge semrs-badge--' . esc_attr( $tier ) . '">' . ( 'pro' === $tier ? esc_html__( 'PRO', 'semrs-core' ) : esc_html__( 'FREE', 'semrs-core' ) ) . '</span>';
+	// [url, button text, lock title]; SEMRS Pro names the add-on a locked module belongs to.
+	$unlock = (array) apply_filters( 'semrs_core_unlock', array( semrs_core_pro_url(), __( 'Unlock with Pro', 'semrs-core' ), __( 'Included in SEMRS Pro', 'semrs-core' ) ), $key );
 	if ( $locked ) {
-		echo '<span class="semrs-lock dashicons dashicons-lock" title="' . esc_attr__( 'Included in SEMRS Pro', 'semrs-core' ) . '"></span>';
+		echo '<span class="semrs-lock dashicons dashicons-lock" title="' . esc_attr( $unlock[2] ) . '"></span>';
 	} else {
 		printf(
 			'<label class="semrs-switch"><input type="checkbox" name="semrs_core_modules[%1$s]" value="1" %2$s><span class="semrs-switch__ui" aria-hidden="true"></span><span class="screen-reader-text">%3$s</span></label>',
@@ -224,7 +227,7 @@ function semrs_core_card( $key, $label, $desc, $tier, $locked ) {
 	echo '<h3>' . esc_html( $label ) . '</h3><p>' . esc_html( $desc ) . '</p>';
 	echo '<div class="semrs-card__foot">';
 	if ( $locked ) {
-		echo '<a class="button button-primary" href="' . esc_url( semrs_core_pro_url() ) . '" target="_blank" rel="noopener">' . esc_html__( 'Unlock with Pro', 'semrs-core' ) . '</a>';
+		echo '<a class="button button-primary" href="' . esc_url( $unlock[0] ) . '" target="_blank" rel="noopener">' . esc_html( $unlock[1] ) . '</a>';
 	} elseif ( $meta[2] && $on ) {
 		echo '<a class="button" href="' . esc_url( $meta[2] ) . '">' . esc_html__( 'Settings', 'semrs-core' ) . '</a>';
 	}
@@ -280,7 +283,8 @@ function semrs_core_render_dashboard() {
 			<div class="semrs-grid">
 				<?php
 				foreach ( $modules as $key => $m ) {
-					semrs_core_card( $key, $m[0], $m[1], $m[2] ?? 'free', false );
+					// SEMRS Pro locks modules that are not in this site's add-ons.
+					semrs_core_card( $key, $m[0], $m[1], $m[2] ?? 'free', (bool) apply_filters( 'semrs_core_module_locked', false, $key ) );
 				}
 				foreach ( semrs_core_pro_teasers() as $key => $t ) {
 					if ( ! isset( $modules[ $key ] ) ) {

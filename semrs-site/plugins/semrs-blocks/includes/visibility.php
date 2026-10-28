@@ -90,7 +90,7 @@ function semrs_blocks_visibility_editor() {
 		'semrs-blocks-extensions',
 		'SEMRS_EXT',
 		array(
-			'pro'    => defined( 'SEMRS_PRO_VERSION' ),
+			'pro'    => semrs_blocks_has_pro(),
 			'proUrl' => semrs_blocks_pro_url(),
 		)
 	);

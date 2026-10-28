@@ -14,6 +14,8 @@ function semrs_us_menu() {
 	add_menu_page( __( 'SEMRS Updates', 'semrs-update-server' ), __( 'SEMRS Updates', 'semrs-update-server' ), 'manage_options', 'semrs-updates', 'semrs_us_page_releases', 'dashicons-update', 59 );
 	add_submenu_page( 'semrs-updates', __( 'Releases', 'semrs-update-server' ), __( 'Releases', 'semrs-update-server' ), 'manage_options', 'semrs-updates', 'semrs_us_page_releases' );
 	add_submenu_page( 'semrs-updates', __( 'License keys', 'semrs-update-server' ), __( 'License keys', 'semrs-update-server' ), 'manage_options', 'semrs-updates-keys', 'semrs_us_page_keys' );
+	add_submenu_page( 'semrs-updates', __( 'Invoices', 'semrs-update-server' ), __( 'Invoices', 'semrs-update-server' ), 'manage_options', 'semrs-updates-invoices', 'semrs_us_page_invoices' );
+	add_submenu_page( 'semrs-updates', __( 'Sales & prices', 'semrs-update-server' ), __( 'Sales & prices', 'semrs-update-server' ), 'manage_options', 'semrs-updates-sales', 'semrs_us_page_sales' );
 	add_submenu_page( 'semrs-updates', __( 'Live sites', 'semrs-update-server' ), __( 'Live sites', 'semrs-update-server' ), 'manage_options', 'semrs-updates-sites', 'semrs_us_page_sites' );
 }
 add_action( 'admin_menu', 'semrs_us_menu' );
@@ -95,9 +97,41 @@ function semrs_us_actions() {
 		$key  = semrs_us_create_key(
 			isset( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '',
 			isset( $_POST['sites'] ) ? absint( $_POST['sites'] ) : 1,
-			isset( $_POST['expires'] ) ? sanitize_text_field( wp_unslash( $_POST['expires'] ) ) : ''
+			isset( $_POST['expires'] ) ? sanitize_text_field( wp_unslash( $_POST['expires'] ) ) : '',
+			isset( $_POST['addons'] ) ? array_map( 'sanitize_key', (array) wp_unslash( $_POST['addons'] ) ) : array( 'all' ),
+			array( 'name' => isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '' )
 		);
+		if ( ! empty( $_POST['mail'] ) ) {
+			semrs_us_mail_key( $key, semrs_us_keys()[ $key ], 'new' );
+		}
 		$msg  = 'key-' . $key;
+		$back = 'semrs-updates-keys';
+	} elseif ( 'key_edit' === $do && isset( $_POST['key'] ) ) {
+		// Changes the key's own (manual) part; Lemon Squeezy and invoice parts stay.
+		$key = sanitize_text_field( wp_unslash( $_POST['key'] ) );
+		$all = semrs_us_keys();
+		if ( isset( $all[ $key ] ) ) {
+			$k           = semrs_us_key_recalc( $all[ $key ] );
+			$addons      = isset( $_POST['addons'] ) ? array_map( 'sanitize_key', (array) wp_unslash( $_POST['addons'] ) ) : array();
+			$expires     = isset( $_POST['expires'] ) ? sanitize_text_field( wp_unslash( $_POST['expires'] ) ) : '';
+			$k['manual'] = $addons ? array(
+				'addons'  => semrs_us_clean_addons( $addons ),
+				'sites'   => isset( $_POST['sites'] ) ? absint( $_POST['sites'] ) : 1,
+				'expires' => preg_match( '/^\d{4}-\d{2}-\d{2}$/', $expires ) ? $expires : '',
+			) : null;
+			$before = semrs_us_key_addons( $all[ $key ] );
+			$k      = semrs_us_save_key( $key, $k );
+			if ( ! empty( $_POST['mail'] ) && array_diff( semrs_us_key_addons( $k ), $before ) ) {
+				semrs_us_mail_key( $key, $k, 'added' );
+			}
+			$msg = 'edited';
+		}
+		$back = 'semrs-updates-keys';
+	} elseif ( 'key_mail' === $do && isset( $_POST['key'] ) ) {
+		$key = sanitize_text_field( wp_unslash( $_POST['key'] ) );
+		if ( isset( semrs_us_keys()[ $key ] ) ) {
+			$msg = semrs_us_mail_key( $key, semrs_us_keys()[ $key ], 'new' ) ? 'mailed' : 'mailfail';
+		}
 		$back = 'semrs-updates-keys';
 	} elseif ( 'key_status' === $do && isset( $_POST['key'] ) ) {
 		$all = semrs_us_keys();
@@ -157,26 +191,81 @@ function semrs_us_page_releases() {
  */
 function semrs_us_page_keys() {
 	$msg = isset( $_GET['msg'] ) ? sanitize_text_field( wp_unslash( $_GET['msg'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+	$q   = isset( $_GET['s'] ) ? strtolower( sanitize_text_field( wp_unslash( $_GET['s'] ) ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 	global $wpdb;
+	$boxes = function ( $checked ) {
+		$out = '<label style="margin-right:10px"><input type="checkbox" name="addons[]" value="all" ' . checked( in_array( 'all', $checked, true ), true, false ) . '> <strong>All Pro</strong></label>';
+		foreach ( semrs_us_addons() as $slug => $label ) {
+			$out .= '<label style="margin-right:10px"><input type="checkbox" name="addons[]" value="' . esc_attr( $slug ) . '" ' . checked( in_array( $slug, $checked, true ), true, false ) . '> ' . esc_html( $label ) . '</label>';
+		}
+		return $out;
+	};
+	$notes = array(
+		'edited'   => __( 'Key updated.', 'semrs-update-server' ),
+		'mailed'   => __( 'Key emailed to the customer.', 'semrs-update-server' ),
+		'mailfail' => __( 'The email could not be sent.', 'semrs-update-server' ),
+	);
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'SEMRS Pro license keys', 'semrs-update-server' ); ?></h1>
 		<?php if ( 0 === strpos( $msg, 'key-' ) ) : ?>
 			<div class="notice notice-success"><p><?php esc_html_e( 'New key:', 'semrs-update-server' ); ?> <code><?php echo esc_html( substr( $msg, 4 ) ); ?></code></p></div>
+		<?php elseif ( isset( $notes[ $msg ] ) ) : ?>
+			<div class="notice notice-<?php echo 'mailfail' === $msg ? 'warning' : 'success'; ?>"><p><?php echo esc_html( $notes[ $msg ] ); ?></p></div>
 		<?php endif; ?>
-		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+		<p><?php esc_html_e( 'Lemon Squeezy orders and paid invoices create and extend keys by themselves. Use this form for gifts, partners or anything else.', 'semrs-update-server' ); ?></p>
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="background:#fff;border:1px solid #c3c4c7;padding:12px 16px;max-width:1100px">
 			<?php wp_nonce_field( 'semrs_us' ); ?>
 			<input type="hidden" name="action" value="semrs_us"><input type="hidden" name="semrs_do" value="key_create">
-			<input type="email" name="email" placeholder="customer@example.com" required>
-			<label><?php esc_html_e( 'Sites', 'semrs-update-server' ); ?> <input type="number" name="sites" value="1" min="0" style="width:70px"></label>
-			<label><?php esc_html_e( 'Expires', 'semrs-update-server' ); ?> <input type="date" name="expires" value="<?php echo esc_attr( gmdate( 'Y-m-d', strtotime( '+1 year' ) ) ); ?>"></label>
-			<?php submit_button( __( 'Create key', 'semrs-update-server' ), 'primary', 'submit', false ); ?>
+			<p>
+				<input type="email" name="email" placeholder="customer@example.com" required>
+				<input type="text" name="name" placeholder="<?php esc_attr_e( 'Customer name', 'semrs-update-server' ); ?>">
+				<label><?php esc_html_e( 'Sites', 'semrs-update-server' ); ?> <input type="number" name="sites" value="1" min="0" style="width:70px"></label>
+				<label><?php esc_html_e( 'Expires', 'semrs-update-server' ); ?> <input type="date" name="expires" value="<?php echo esc_attr( gmdate( 'Y-m-d', strtotime( '+1 year' ) ) ); ?>"></label>
+			</p>
+			<p><?php echo $boxes( array( 'all' ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped in $boxes. ?></p>
+			<p><label><input type="checkbox" name="mail" value="1" checked> <?php esc_html_e( 'Email the key and setup steps to the customer', 'semrs-update-server' ); ?></label> <?php submit_button( __( 'Create key', 'semrs-update-server' ), 'primary', 'submit', false ); ?></p>
+			<p class="description"><?php esc_html_e( 'Sites = 0 means unlimited. Empty expiry = lifetime. Local and staging sites never count towards the limit.', 'semrs-update-server' ); ?></p>
 		</form>
-		<p class="description"><?php esc_html_e( 'Sites = 0 means unlimited. Local and staging sites never count towards the limit.', 'semrs-update-server' ); ?></p>
-		<table class="widefat striped" style="max-width:1000px;margin-top:1rem"><thead><tr><th><?php esc_html_e( 'Key', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Customer', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Sites used / allowed', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Expires', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Status', 'semrs-update-server' ); ?></th><th></th></tr></thead><tbody>
-		<?php foreach ( semrs_us_keys() as $key => $k ) : $used = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$wpdb->prefix}semrs_sites WHERE slug='semrs-pro' AND license_key=%s AND last_seen > %s", $key, gmdate( 'Y-m-d H:i:s', time() - 30 * DAY_IN_SECONDS ) ) ); // phpcs:ignore WordPress.DB ?>
-			<tr><td><code><?php echo esc_html( $key ); ?></code></td><td><?php echo esc_html( $k['email'] ); ?></td><td><?php echo esc_html( $used . ' / ' . ( $k['sites'] ? $k['sites'] : '∞' ) ); ?></td><td><?php echo esc_html( $k['expires'] ? $k['expires'] : __( 'Never', 'semrs-update-server' ) ); ?></td><td><?php echo esc_html( $k['status'] ); ?></td>
-			<td><form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>"><?php wp_nonce_field( 'semrs_us' ); ?><input type="hidden" name="action" value="semrs_us"><input type="hidden" name="semrs_do" value="key_status"><input type="hidden" name="key" value="<?php echo esc_attr( $key ); ?>"><button class="button button-small"><?php echo 'active' === $k['status'] ? esc_html__( 'Revoke', 'semrs-update-server' ) : esc_html__( 'Re-activate', 'semrs-update-server' ); ?></button></form></td></tr>
+		<form method="get" style="margin:14px 0"><input type="hidden" name="page" value="semrs-updates-keys"><input type="search" name="s" value="<?php echo esc_attr( $q ); ?>" placeholder="<?php esc_attr_e( 'Search email, name or key', 'semrs-update-server' ); ?>"> <button class="button"><?php esc_html_e( 'Search', 'semrs-update-server' ); ?></button></form>
+		<table class="widefat striped" style="max-width:1300px"><thead><tr><th><?php esc_html_e( 'Key', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Customer', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Add-ons', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Sites used / allowed', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Expires', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Status', 'semrs-update-server' ); ?></th><th></th></tr></thead><tbody>
+		<?php
+		foreach ( array_reverse( semrs_us_keys(), true ) as $key => $k ) :
+			$k = semrs_us_key_recalc( $k );
+			if ( $q && false === strpos( strtolower( $key . ' ' . $k['email'] . ' ' . ( $k['name'] ?? '' ) ), $q ) ) {
+				continue;
+			}
+			$used    = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$wpdb->prefix}semrs_sites WHERE slug='semrs-pro' AND license_key=%s AND last_seen > %s", $key, gmdate( 'Y-m-d H:i:s', time() - 30 * DAY_IN_SECONDS ) ) ); // phpcs:ignore WordPress.DB
+			$manual  = is_array( $k['manual'] ) ? $k['manual'] : array( 'addons' => array(), 'sites' => 1, 'expires' => '' );
+			$sources = array();
+			foreach ( (array) ( $k['sources'] ?? array() ) as $ref => $src ) {
+				$sources[] = $ref . ( 'refunded' === ( $src['status'] ?? '' ) ? ' (refunded)' : '' ) . ( ! empty( $src['test'] ) ? ' (test)' : '' );
+			}
+			?>
+			<tr>
+				<td><code><?php echo esc_html( $key ); ?></code><?php echo $sources ? '<br><small>' . esc_html( implode( ', ', $sources ) ) . '</small>' : ''; ?></td>
+				<td><?php echo esc_html( $k['email'] ); ?><?php echo ! empty( $k['name'] ) ? '<br><small>' . esc_html( $k['name'] ) . '</small>' : ''; ?></td>
+				<td><?php echo esc_html( semrs_us_addon_names( $k['addons'] ) ); ?></td>
+				<td><?php echo esc_html( $used . ' / ' . ( $k['sites'] ? $k['sites'] : '∞' ) ); ?></td>
+				<td><?php echo esc_html( $k['expires'] ? $k['expires'] : __( 'Never', 'semrs-update-server' ) ); ?></td>
+				<td><?php echo esc_html( $k['status'] ); ?></td>
+				<td style="white-space:nowrap">
+					<details><summary class="button button-small"><?php esc_html_e( 'Edit', 'semrs-update-server' ); ?></summary>
+						<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="white-space:normal;min-width:420px;padding:8px 0">
+							<?php wp_nonce_field( 'semrs_us' ); ?><input type="hidden" name="action" value="semrs_us"><input type="hidden" name="semrs_do" value="key_edit"><input type="hidden" name="key" value="<?php echo esc_attr( $key ); ?>">
+							<p><?php echo $boxes( (array) $manual['addons'] ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped in $boxes. ?></p>
+							<p><label><?php esc_html_e( 'Sites', 'semrs-update-server' ); ?> <input type="number" name="sites" value="<?php echo esc_attr( (int) $manual['sites'] ); ?>" min="0" style="width:70px"></label>
+							<label><?php esc_html_e( 'Expires', 'semrs-update-server' ); ?> <input type="date" name="expires" value="<?php echo esc_attr( $manual['expires'] ); ?>"></label></p>
+							<p class="description"><?php esc_html_e( 'These are the key\'s own values. Lemon Squeezy and invoice purchases add to them and are kept. Untick everything to leave only the purchases.', 'semrs-update-server' ); ?></p>
+							<p><label><input type="checkbox" name="mail" value="1"> <?php esc_html_e( 'Email the customer about new add-ons', 'semrs-update-server' ); ?></label></p>
+							<p><button class="button button-primary button-small"><?php esc_html_e( 'Save', 'semrs-update-server' ); ?></button></p>
+						</form>
+					</details>
+					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="display:inline"><?php wp_nonce_field( 'semrs_us' ); ?><input type="hidden" name="action" value="semrs_us"><input type="hidden" name="semrs_do" value="key_mail"><input type="hidden" name="key" value="<?php echo esc_attr( $key ); ?>"><button class="button button-small"><?php esc_html_e( 'Email key', 'semrs-update-server' ); ?></button></form>
+					<a class="button button-small" href="<?php echo esc_url( add_query_arg( array( 'page' => 'semrs-updates-invoices', 'key' => $key ), admin_url( 'admin.php' ) ) ); ?>"><?php esc_html_e( 'Invoice', 'semrs-update-server' ); ?></a>
+					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="display:inline"><?php wp_nonce_field( 'semrs_us' ); ?><input type="hidden" name="action" value="semrs_us"><input type="hidden" name="semrs_do" value="key_status"><input type="hidden" name="key" value="<?php echo esc_attr( $key ); ?>"><button class="button button-small"><?php echo 'active' === $k['status'] ? esc_html__( 'Revoke', 'semrs-update-server' ) : esc_html__( 'Re-activate', 'semrs-update-server' ); ?></button></form>
+				</td>
+			</tr>
 		<?php endforeach; ?>
 		</tbody></table>
 	</div>

@@ -4,10 +4,12 @@ Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: semrs-core
-Stable tag: 1.4.10
+Stable tag: 1.5.1
 License: GPLv2 or later
 
 Premium add-on for the free SEMRS theme and the free SEMRS Core plugin. Every module can be switched off under SEMRS → Modules.
+
+Sold as add-ons on one key: SEO Pro, Speed Pro, Ads Pro and Theme & Blocks Pro, or All Pro for everything. One plugin for all of them; the modules of the add-ons on your key load, the others stay locked and show which add-on they belong to.
 
 == Theme Pro (needs the SEMRS theme) ==
 * Sticky header and transparent front-page header.
@@ -114,6 +116,12 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 SEMRS → License: paste your key and click Activate (Deactivate frees the site so you can move the key). Updates come from semrs.com (SEMRS Update Server): with a valid key, WordPress shows "Update available" and installs new versions in one click. Features never switch off when a license expires; the license controls updates and support.
 
 == Changelog ==
+
+= 1.5.1 =
+* Add-ons: your license key lists the add-ons you bought (SEO Pro, Speed Pro, Ads Pro, Theme & Blocks Pro, or All Pro) and only those modules load. Add-ons bought later go on the same key and switch on within a day, or right away with Check again.
+* SEMRS → License shows your add-ons, with an Add button for each one you do not have yet.
+* New installs unlock Pro modules when the key is activated. Sites that already ran SEMRS Pro keep every module.
+* Add-ons you paid for keep working when the license expires; refunded or revoked keys remove them.
 
 = 1.4.10 =
 * Post sliders give every image alt text; the caption is hidden from screen readers so the link is not read twice.
