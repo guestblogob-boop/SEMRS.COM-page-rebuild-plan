@@ -4,7 +4,7 @@ Tags: seo, page cache, redirects, webp, user roles
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.31
+Stable tag: 1.3.32
 License: GPLv2 or later
 
 Free SEO, redirects, page cache, WebP images, user roles, review widgets and a policy-safe AdSense manager in one plugin.
@@ -81,6 +81,9 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt and all other features run entirely on your own server.
 
 == Changelog ==
+
+= 1.3.32 =
+* Index status: Check again next to every not-indexed status asks Google about that page now and updates the row; not-indexed pages are re-checked with Google every hour (requested pages first); a page shown in Google results counts as indexed.
 
 = 1.3.31 =
 * A page marked requested that is still not indexed after 14 days goes back to Request indexing, with a red note (Requested Oct 15 · still not indexed, request again), and returns to Request these today.

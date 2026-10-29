@@ -136,6 +136,12 @@ function semrs_index_status( $id, $live, $google ) {
 		if ( 'PASS' === $gsc['verdict'] ) {
 			return array( 'indexed', __( 'Indexed (Google)', 'semrs-core' ), '#00813a', $gsc['coverage'] . '.' . $crawl );
 		}
+		// Shown in Google results (impressions) means indexed, even if the last inspection is older.
+		$gpath = trailingslashit( strtolower( (string) wp_parse_url( get_permalink( $id ), PHP_URL_PATH ) ) );
+		if ( is_array( $google ) && ! empty( $google[ $gpath ][1] ) ) {
+			/* translators: %s: impressions */
+			return array( 'indexed', __( 'Indexed (Google)', 'semrs-core' ), '#00813a', sprintf( __( 'Shown in Google results (%s impressions, last 90 days).', 'semrs-core' ), number_format_i18n( $google[ $gpath ][1] ) ) );
+		}
 		if ( $age < 7 * DAY_IN_SECONDS ) {
 			/* translators: %s: Google's coverage state */
 			return array( 'waiting', __( 'Live: waiting for Google', 'semrs-core' ), '#2271b1', sprintf( __( 'Google: %s. New pages usually need a few days.', 'semrs-core' ), $gsc['coverage'] ) . $crawl );
@@ -180,6 +186,7 @@ function semrs_index_cron() {
 	$live = array_intersect_key( $live, array_flip( $ids ) );
 	update_option( 'semrs_index_live', $live, false );
 	semrs_index_gsc_batch( 100 ); // Google's verdict for the 100 pages checked longest ago.
+	delete_transient( 'semrs_index_google' ); // Fresh impressions too.
 	semrs_index_gsc_submit_sitemaps( true ); // Any sitemap Search Console does not have yet.
 }
 add_action( 'semrs_index_cron', 'semrs_index_cron' );
@@ -435,6 +442,53 @@ function semrs_index_gsc_batch( $limit ) {
 	update_option( 'semrs_index_gsc', array_intersect_key( $data, array_flip( semrs_index_ids() ) ), false );
 	return $done;
 }
+
+/**
+ * Ask Google about one page now and save the answer.
+ *
+ * @param int $id Post ID.
+ * @return array|WP_Error
+ */
+function semrs_index_gsc_one( $id ) {
+	$r = semrs_index_inspect( get_permalink( $id ) );
+	if ( ! is_wp_error( $r ) ) {
+		$data        = semrs_index_gsc_data();
+		$data[ $id ] = $r;
+		update_option( 'semrs_index_gsc', $data, false );
+	}
+	return $r;
+}
+
+/**
+ * Hourly: re-ask Google about pages it has not indexed yet (requested pages first, then the
+ * oldest answers), so a page shows "Indexed" within about an hour of Google indexing it.
+ */
+function semrs_index_gsc_hourly() {
+	$data = semrs_index_gsc_data();
+	$done = (array) get_option( 'semrs_index_done', array() );
+	$ids  = array();
+	foreach ( semrs_index_ids() as $id ) {
+		$g = $data[ $id ] ?? null;
+		if ( $g && 'PASS' !== $g['verdict'] && $g['checked'] < time() - 3 * HOUR_IN_SECONDS && ! semrs_seo_is_noindex( $id ) ) {
+			$ids[ $id ] = array( empty( $done[ $id ] ) ? 1 : 0, $g['checked'] );
+		}
+	}
+	uasort( $ids, function ( $a, $b ) { return $a[0] === $b[0] ? $a[1] - $b[1] : $a[0] - $b[0]; } );
+	foreach ( array_slice( array_keys( $ids ), 0, 8 ) as $id ) {
+		if ( is_wp_error( semrs_index_gsc_one( $id ) ) ) {
+			break;
+		}
+	}
+}
+add_action( 'semrs_index_gsc_hourly', 'semrs_index_gsc_hourly' );
+add_action(
+	'init',
+	function () {
+		if ( ! wp_next_scheduled( 'semrs_index_gsc_hourly' ) ) {
+			wp_schedule_event( time() + 600, 'hourly', 'semrs_index_gsc_hourly' );
+		}
+	}
+);
 
 /**
  * Pages to request in Search Console today: not indexed by Google, not requested in the
@@ -960,11 +1014,7 @@ function semrs_index_column_cell( $col, $id ) {
 	$d = semrs_index_column_data();
 
 	if ( 'semrs_index' === $col ) {
-		$st = semrs_index_status( $id, $d['live'], $d['google'] );
-		echo semrs_index_dot( $st[1], $st[2], $st[3] ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside.
-		if ( in_array( $st[0], array( 'pending', 'waiting' ), true ) ) {
-			echo '<br>' . semrs_index_steps( $id, $d['prop'] ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside.
-		}
+		echo '<div class="semrs-idx-cell">' . semrs_index_cell( $id, $d ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside.
 		return;
 	}
 
@@ -1126,11 +1176,20 @@ function semrs_index_copy_script() {
 				say(r.data.label);
 			}).catch(function () { b.disabled = false; });
 		}
+		// Check again: ask Google now and redraw the cell.
+		function check(b) {
+			var cell = b.closest('.semrs-idx-cell'); b.disabled = true; b.textContent = <?php echo wp_json_encode( __( 'Asking Google…', 'semrs-core' ) ); ?>;
+			var f = new FormData(); f.append('action', 'semrs_index_check'); f.append('id', b.getAttribute('data-id')); f.append('nonce', nonce);
+			fetch(ajaxurl, { method: 'POST', body: f, credentials: 'same-origin' }).then(function (r) { return r.json(); }).then(function (r) {
+				if (r.success && cell) { cell.innerHTML = r.data.html; say(cell.textContent); } else { b.disabled = false; b.textContent = (r.data && r.data.message) || 'Error'; }
+			}).catch(function () { b.disabled = false; b.textContent = 'Error'; });
+		}
 		document.addEventListener('click', function (e) {
 			var t = e.target.closest ? e.target : null; if (!t) { return; }
 			var c = t.closest('.semrs-copy-url'); if (c) { e.preventDefault(); copy(c); next(c); return; }
 			var q = t.closest('.semrs-idx-req'); if (q) { next(q); return; } // The link still opens Search Console.
 			var m = t.closest('.semrs-idx-mark'); if (m) { e.preventDefault(); mark(m); }
+			var k = t.closest('.semrs-idx-check'); if (k) { e.preventDefault(); check(k); }
 		});
 	})();
 	</script>
@@ -1138,3 +1197,42 @@ function semrs_index_copy_script() {
 }
 add_action( 'admin_footer-edit.php', 'semrs_index_copy_script' );
 add_action( 'admin_footer-semrs_page_semrs-index', 'semrs_index_copy_script' );
+
+/**
+ * Index status cell: Google's status, the indexing steps when not indexed, and "Check again"
+ * (asks Google about this page now).
+ *
+ * @param int   $id Post ID.
+ * @param array $d  Column data (live, google, prop).
+ * @return string
+ */
+function semrs_index_cell( $id, $d ) {
+	$st  = semrs_index_status( $id, $d['live'], $d['google'] );
+	$out = semrs_index_dot( $st[1], $st[2], $st[3] );
+	if ( in_array( $st[0], array( 'pending', 'waiting' ), true ) ) {
+		$g    = semrs_index_gsc_data()[ $id ] ?? null;
+		/* translators: %s: time ago */
+		$when = $g ? sprintf( __( 'checked %s ago', 'semrs-core' ), human_time_diff( $g['checked'] ) ) : __( 'not asked yet', 'semrs-core' );
+		$out .= ' <button type="button" class="button-link semrs-idx-check" data-id="' . (int) $id . '" title="' . esc_attr( $when ) . '">' . esc_html__( 'Check again', 'semrs-core' ) . '</button>';
+		$out .= '<br>' . semrs_index_steps( $id, $d['prop'] );
+	}
+	return $out;
+}
+
+// "Check again": ask Google about one page now and return the new cell.
+add_action(
+	'wp_ajax_semrs_index_check',
+	function () {
+		check_ajax_referer( 'semrs_index', 'nonce' );
+		$id = absint( $_POST['id'] ?? 0 );
+		if ( ! $id || ! current_user_can( 'edit_post', $id ) ) {
+			wp_send_json_error( null, 403 );
+		}
+		$r = semrs_index_gsc_one( $id );
+		if ( is_wp_error( $r ) ) {
+			wp_send_json_error( array( 'message' => $r->get_error_message() ) );
+		}
+		delete_transient( 'semrs_index_google' );
+		wp_send_json_success( array( 'html' => semrs_index_cell( $id, semrs_index_column_data() ) ) );
+	}
+);
