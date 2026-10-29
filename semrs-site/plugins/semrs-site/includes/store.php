@@ -621,6 +621,7 @@ function semrs_store_pro_plans() {
 		__( 'Local and staging sites are free and never use a slot.', 'semrs-site' ),
 		__( 'Add-ons you paid for keep working even if you stop renewing. Renewing keeps updates and support coming.', 'semrs-site' ),
 		__( 'Pay by card or PayPal at checkout, or ask for an invoice and pay by bank transfer.', 'semrs-site' ),
+		__( 'Our order process is conducted by our online reseller Paddle.com. Paddle.com is the Merchant of Record for all our orders.', 'semrs-site' ),
 		__( 'SEMRS Core, SEMRS Blocks, SEMRS Tools and the SEMRS theme stay free.', 'semrs-site' ),
 	);
 	if ( $sales['refund_days'] ) {
