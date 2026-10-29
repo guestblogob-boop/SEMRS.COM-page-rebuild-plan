@@ -4,7 +4,7 @@ Tags: seo, page cache, redirects, webp, user roles
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.29
+Stable tag: 1.3.31
 License: GPLv2 or later
 
 Free SEO, redirects, page cache, WebP images, user roles, review widgets and a policy-safe AdSense manager in one plugin.
@@ -81,6 +81,12 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt and all other features run entirely on your own server.
 
 == Changelog ==
+
+= 1.3.31 =
+* A page marked requested that is still not indexed after 14 days goes back to Request indexing, with a red note (Requested Oct 15 · still not indexed, request again), and returns to Request these today.
+
+= 1.3.30 =
+* Indexing steps in the Posts and Pages lists and in Request these today: Request indexing and Mark requested side by side; after Copy URL or Request indexing, Mark requested is highlighted as the next step; marking saves instantly and shows a green Requested badge for 14 days.
 
 = 1.3.29 =
 * Copy URL link under each published title in the Posts and Pages lists, and in Request these today: paste it into Search Console's URL Inspection without opening the page.

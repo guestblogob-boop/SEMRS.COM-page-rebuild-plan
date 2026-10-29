@@ -736,9 +736,7 @@ function semrs_index_page() {
 						<td><a href="<?php echo esc_url( get_permalink( $id ) ); ?>" target="_blank" rel="noopener"><?php echo esc_html( get_the_title( $id ) ); ?></a><br><small><?php echo esc_html( str_replace( home_url(), '', get_permalink( $id ) ) ); ?></small></td>
 						<td><?php echo esc_html( $rows[ $id ][1] ); ?><br><small><?php echo esc_html( $gsc[ $id ]['coverage'] ?? __( 'Not asked yet', 'semrs-core' ) ); ?></small></td>
 						<td>
-							<?php if ( $prop ) : ?><a class="button button-small button-primary" href="<?php echo esc_url( $inspect( get_permalink( $id ) ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( '1. Request indexing', 'semrs-core' ); ?></a> <?php endif; ?>
-							<?php echo semrs_index_copy_button( get_permalink( $id ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside. ?> &nbsp;
-							<?php semrs_index_button( 'done', __( '2. Mark requested', 'semrs-core' ), array( 'id' => $id ), 'button button-small' ); ?>
+							<?php echo semrs_index_copy_button( get_permalink( $id ) ) . ' &nbsp; ' . semrs_index_steps( $id, $prop ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside. ?>
 						</td>
 					</tr>
 				<?php endforeach; ?>
@@ -964,9 +962,8 @@ function semrs_index_column_cell( $col, $id ) {
 	if ( 'semrs_index' === $col ) {
 		$st = semrs_index_status( $id, $d['live'], $d['google'] );
 		echo semrs_index_dot( $st[1], $st[2], $st[3] ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside.
-		if ( $d['prop'] && in_array( $st[0], array( 'pending', 'waiting' ), true ) ) {
-			$url = 'https://search.google.com/search-console/inspect?resource_id=' . rawurlencode( $d['prop'] ) . '&id=' . rawurlencode( get_permalink( $id ) );
-			echo '<br><a href="' . esc_url( $url ) . '" target="_blank" rel="noopener">' . esc_html__( 'Request indexing', 'semrs-core' ) . '</a>';
+		if ( in_array( $st[0], array( 'pending', 'waiting' ), true ) ) {
+			echo '<br>' . semrs_index_steps( $id, $d['prop'] ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside.
 		}
 		return;
 	}
@@ -1021,29 +1018,121 @@ add_filter( 'post_row_actions', 'semrs_index_row_action', 10, 2 );
 add_filter( 'page_row_actions', 'semrs_index_row_action', 10, 2 );
 
 /**
- * Clipboard script for the copy buttons.
+ * When a page was marked "requested" in the last 14 days (0 when not).
+ *
+ * @param int $id Post ID.
+ * @return int Unix time.
+ */
+function semrs_index_requested( $id ) {
+	$t = (int) ( ( (array) get_option( 'semrs_index_done', array() ) )[ $id ] ?? 0 );
+	return $t > time() - 14 * DAY_IN_SECONDS ? $t : 0;
+}
+
+/**
+ * Indexing steps for a page that Google has not indexed: "Request indexing" (opens
+ * Search Console) and "Mark requested", or a green "Requested" badge once marked.
+ *
+ * @param int    $id   Post ID.
+ * @param string $prop Search Console property.
+ * @return string
+ */
+function semrs_index_steps( $id, $prop ) {
+	$req = semrs_index_requested( $id );
+	if ( $req ) {
+		/* translators: %s: date */
+		return '<span class="semrs-idx-done">✓ ' . esc_html( sprintf( __( 'Requested %s', 'semrs-core' ), date_i18n( 'M j', $req ) ) ) . '</span>';
+	}
+	$out = '<span class="semrs-idx-steps">';
+	// Requested over 14 days ago and still not indexed: back to "Request indexing", with a note.
+	$old = (int) ( ( (array) get_option( 'semrs_index_done', array() ) )[ $id ] ?? 0 );
+	if ( $old ) {
+		/* translators: %s: date */
+		$out .= '<span class="semrs-idx-again">' . esc_html( sprintf( __( 'Requested %s · still not indexed, request again', 'semrs-core' ), date_i18n( 'M j', $old ) ) ) . '</span><br>';
+	}
+	if ( $prop ) {
+		$url  = 'https://search.google.com/search-console/inspect?resource_id=' . rawurlencode( $prop ) . '&id=' . rawurlencode( get_permalink( $id ) );
+		$out .= '<a class="button button-small button-primary semrs-idx-req" href="' . esc_url( $url ) . '" target="_blank" rel="noopener">' . esc_html__( 'Request indexing', 'semrs-core' ) . '</a> ';
+	}
+	return $out . '<button type="button" class="button button-small semrs-idx-mark" data-id="' . (int) $id . '">' . esc_html__( 'Mark requested', 'semrs-core' ) . '</button></span>';
+}
+
+// "Mark requested" saves at once, without reloading the list.
+add_action(
+	'wp_ajax_semrs_index_mark',
+	function () {
+		check_ajax_referer( 'semrs_index', 'nonce' );
+		$id = absint( $_POST['id'] ?? 0 );
+		if ( ! $id || ! current_user_can( 'edit_post', $id ) ) {
+			wp_send_json_error( null, 403 );
+		}
+		$done        = (array) get_option( 'semrs_index_done', array() );
+		$done[ $id ] = time();
+		update_option( 'semrs_index_done', $done, false );
+		/* translators: %s: date */
+		wp_send_json_success( array( 'label' => '✓ ' . sprintf( __( 'Requested %s', 'semrs-core' ), date_i18n( 'M j' ) ) ) );
+	}
+);
+
+/**
+ * Script and styles for Copy URL and the indexing steps: after Copy URL or Request indexing,
+ * that row's "Mark requested" is highlighted as the next step; marking it turns the row green.
  */
 function semrs_index_copy_script() {
 	?>
+	<style>
+	.semrs-idx-mark.is-next { background: #f7941d; border-color: #c46f05; color: #1d2327; font-weight: 600; box-shadow: 0 0 0 3px rgba(247, 148, 29, .35); animation: semrs-idx-pulse 1.1s ease-in-out 4; }
+	.semrs-idx-req.is-done-step { background: #f6f7f7 !important; border-color: #c3c4c7 !important; color: #50575e !important; }
+	.semrs-idx-done { display: inline-block; margin-top: 4px; padding: 2px 8px; border-radius: 999px; background: #e7f6ec; color: #00702f; font-weight: 600; font-size: 12px; }
+	tr.semrs-idx-row-done > * { background-color: #f0faf3 !important; }
+	.semrs-idx-again { display: inline-block; margin: 4px 0 2px; color: #b32d2e; font-size: 12px; font-weight: 600; }
+	@keyframes semrs-idx-pulse { 50% { box-shadow: 0 0 0 7px rgba(247, 148, 29, .15); } }
+	@media (prefers-reduced-motion: reduce) { .semrs-idx-mark.is-next { animation: none; } }
+	</style>
 	<script>
-	document.addEventListener('click', function (e) {
-		var b = e.target.closest && e.target.closest('.semrs-copy-url');
-		if (!b) { return; }
-		e.preventDefault();
-		var url = b.getAttribute('data-url'), label = b.textContent;
-		function done(ok) {
-			b.textContent = ok ? <?php echo wp_json_encode( __( 'Copied ✓', 'semrs-core' ) ); ?> : url;
-			if (window.wp && wp.a11y) { wp.a11y.speak(ok ? <?php echo wp_json_encode( __( 'URL copied', 'semrs-core' ) ); ?> : url); }
-			setTimeout(function () { b.textContent = label; }, 1800);
+	(function () {
+		var nonce = <?php echo wp_json_encode( wp_create_nonce( 'semrs_index' ) ); ?>;
+		function say(t) { if (window.wp && wp.a11y) { wp.a11y.speak(t); } }
+		// Highlight this row's "Mark requested" as the next step.
+		function next(el) {
+			var row = el.closest('tr'); if (!row) { return; }
+			var mark = row.querySelector('.semrs-idx-mark'), req = row.querySelector('.semrs-idx-req');
+			if (!mark) { return; }
+			mark.classList.add('is-next');
+			if (req) { req.classList.add('is-done-step'); }
+			say(<?php echo wp_json_encode( __( 'After requesting indexing in Search Console, click Mark requested.', 'semrs-core' ) ); ?>);
 		}
-		// Copy at once inside the click (works everywhere); the Clipboard API is the fallback.
-		var t = document.createElement('textarea'); t.value = url; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
-		document.body.appendChild(t); t.select();
-		var ok = false; try { ok = document.execCommand('copy'); } catch (err) {}
-		document.body.removeChild(t);
-		if (ok || !navigator.clipboard) { done(ok); return; }
-		navigator.clipboard.writeText(url).then(function () { done(true); }, function () { done(false); });
-	});
+		function copy(b) {
+			var url = b.getAttribute('data-url'), label = b.textContent;
+			function done(ok) {
+				b.textContent = ok ? <?php echo wp_json_encode( __( 'Copied ✓', 'semrs-core' ) ); ?> : url;
+				say(ok ? <?php echo wp_json_encode( __( 'URL copied', 'semrs-core' ) ); ?> : url);
+				setTimeout(function () { b.textContent = label; }, 1800);
+			}
+			// Copy at once inside the click (works everywhere); the Clipboard API is the fallback.
+			var t = document.createElement('textarea'); t.value = url; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+			document.body.appendChild(t); t.select();
+			var ok = false; try { ok = document.execCommand('copy'); } catch (err) {}
+			document.body.removeChild(t);
+			if (ok || !navigator.clipboard) { done(ok); } else { navigator.clipboard.writeText(url).then(function () { done(true); }, function () { done(false); }); }
+		}
+		function mark(b) {
+			b.disabled = true;
+			var f = new FormData(); f.append('action', 'semrs_index_mark'); f.append('id', b.getAttribute('data-id')); f.append('nonce', nonce);
+			fetch(ajaxurl, { method: 'POST', body: f, credentials: 'same-origin' }).then(function (r) { return r.json(); }).then(function (r) {
+				if (!r.success) { b.disabled = false; return; }
+				var badge = document.createElement('span'); badge.className = 'semrs-idx-done'; badge.textContent = r.data.label;
+				var steps = b.closest('.semrs-idx-steps') || b; steps.replaceWith(badge);
+				var row = badge.closest('tr'); if (row) { row.classList.add('semrs-idx-row-done'); }
+				say(r.data.label);
+			}).catch(function () { b.disabled = false; });
+		}
+		document.addEventListener('click', function (e) {
+			var t = e.target.closest ? e.target : null; if (!t) { return; }
+			var c = t.closest('.semrs-copy-url'); if (c) { e.preventDefault(); copy(c); next(c); return; }
+			var q = t.closest('.semrs-idx-req'); if (q) { next(q); return; } // The link still opens Search Console.
+			var m = t.closest('.semrs-idx-mark'); if (m) { e.preventDefault(); mark(m); }
+		});
+	})();
 	</script>
 	<?php
 }
