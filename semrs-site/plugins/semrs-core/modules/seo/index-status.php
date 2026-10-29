@@ -737,6 +737,7 @@ function semrs_index_page() {
 						<td><?php echo esc_html( $rows[ $id ][1] ); ?><br><small><?php echo esc_html( $gsc[ $id ]['coverage'] ?? __( 'Not asked yet', 'semrs-core' ) ); ?></small></td>
 						<td>
 							<?php if ( $prop ) : ?><a class="button button-small button-primary" href="<?php echo esc_url( $inspect( get_permalink( $id ) ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( '1. Request indexing', 'semrs-core' ); ?></a> <?php endif; ?>
+							<?php echo semrs_index_copy_button( get_permalink( $id ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside. ?> &nbsp;
 							<?php semrs_index_button( 'done', __( '2. Mark requested', 'semrs-core' ), array( 'id' => $id ), 'button button-small' ); ?>
 						</td>
 					</tr>
@@ -991,3 +992,60 @@ function semrs_index_column_cell( $col, $id ) {
 		esc_html( sprintf( __( 'position %s', 'semrs-core' ), $pos ) )
 	);
 }
+
+/**
+ * "Copy URL" under each published title in the Posts and Pages lists (and in Index Status),
+ * so a URL can be pasted into Search Console's URL Inspection without opening the page.
+ *
+ * @param string $url URL.
+ * @return string
+ */
+function semrs_index_copy_button( $url ) {
+	return '<button type="button" class="button-link semrs-copy-url" data-url="' . esc_url( $url ) . '">' . esc_html__( 'Copy URL', 'semrs-core' ) . '</button>';
+}
+
+/**
+ * Row action.
+ *
+ * @param array   $actions Actions.
+ * @param WP_Post $post    Post.
+ * @return array
+ */
+function semrs_index_row_action( $actions, $post ) {
+	if ( 'publish' === $post->post_status && in_array( $post->post_type, semrs_seo_public_types(), true ) ) {
+		$actions['semrs_copy'] = semrs_index_copy_button( get_permalink( $post ) );
+	}
+	return $actions;
+}
+add_filter( 'post_row_actions', 'semrs_index_row_action', 10, 2 );
+add_filter( 'page_row_actions', 'semrs_index_row_action', 10, 2 );
+
+/**
+ * Clipboard script for the copy buttons.
+ */
+function semrs_index_copy_script() {
+	?>
+	<script>
+	document.addEventListener('click', function (e) {
+		var b = e.target.closest && e.target.closest('.semrs-copy-url');
+		if (!b) { return; }
+		e.preventDefault();
+		var url = b.getAttribute('data-url'), label = b.textContent;
+		function done(ok) {
+			b.textContent = ok ? <?php echo wp_json_encode( __( 'Copied ✓', 'semrs-core' ) ); ?> : url;
+			if (window.wp && wp.a11y) { wp.a11y.speak(ok ? <?php echo wp_json_encode( __( 'URL copied', 'semrs-core' ) ); ?> : url); }
+			setTimeout(function () { b.textContent = label; }, 1800);
+		}
+		// Copy at once inside the click (works everywhere); the Clipboard API is the fallback.
+		var t = document.createElement('textarea'); t.value = url; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+		document.body.appendChild(t); t.select();
+		var ok = false; try { ok = document.execCommand('copy'); } catch (err) {}
+		document.body.removeChild(t);
+		if (ok || !navigator.clipboard) { done(ok); return; }
+		navigator.clipboard.writeText(url).then(function () { done(true); }, function () { done(false); });
+	});
+	</script>
+	<?php
+}
+add_action( 'admin_footer-edit.php', 'semrs_index_copy_script' );
+add_action( 'admin_footer-semrs_page_semrs-index', 'semrs_index_copy_script' );
