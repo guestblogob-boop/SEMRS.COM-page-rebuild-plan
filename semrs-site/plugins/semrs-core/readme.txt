@@ -4,7 +4,7 @@ Tags: seo, page cache, redirects, webp, user roles
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.25
+Stable tag: 1.3.28
 License: GPLv2 or later
 
 Free SEO, redirects, page cache, WebP images, user roles, review widgets and a policy-safe AdSense manager in one plugin.
@@ -81,6 +81,14 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt and all other features run entirely on your own server.
 
 == Changelog ==
+
+= 1.3.28 =
+* Index Status shows each sitemap's state in Google Search Console (submitted, last read, errors), submits missing sitemaps every day and re-submits after you publish (at most every 6 hours): the supported way to tell Google about new pages.
+
+= 1.3.27 =
+* Ask Google about every page now runs in small steps with a progress counter (no gateway time-outs).
+* Index Status asks Google itself (Search Console URL Inspection through Site Kit) every day: indexed, crawled but not indexed, discovered, or unknown to Google, with the last crawl date.
+* New Request these today list: the 10 pages that most need an indexing request, within Search Console's daily limit.
 
 = 1.3.25 =
 * Posts and Pages lists also show a Status column (published, draft or scheduled, and whether the page loads) and a Traffic column (Google clicks, impressions and average position, last 90 days).

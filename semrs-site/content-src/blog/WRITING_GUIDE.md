@@ -146,7 +146,7 @@ The old `/category/industry-marketing/` URL redirects to Finance & Insurance Mar
 4. Upload to staging, set the featured image, check the SEMRS score (98+) with every "Speed & accessibility" check green, then a person approves it before it goes live.
 5. Schedule it in SEMRS → Content Calendar (or publish). On publish, auto-indexing sends the URL to Bing and the other IndexNow engines straight away and updates the sitemap for Google.
 6. After it goes live, run [PageSpeed Insights](https://pagespeed.web.dev/) on the URL (mobile and desktop) and meet the targets in section 13.
-7. Indexing (section 14): the **Index status** column in Posts and Pages shows each URL's state (Live & indexed, Live: waiting for Google, Live, not indexed yet, Redirects, Not live, Excluded: noindex). Click its **Request indexing** link (or use SEMRS → Index Status) and request indexing in Search Console.
+7. Indexing (section 14): the Posts and Pages lists show **Status** (published, live), **Index status** (Google's own verdict: Indexed, Waiting, Discovered, not crawled, Crawled, not indexed, Unknown to Google, noindex) and **Traffic** (Google clicks, impressions, position, 90 days). New pages appear in SEMRS → Index Status → **Request these today**; click Request indexing there, then Mark requested.
 8. Share it with the one-click share buttons in the post's SEMRS SEO box (or the Content Calendar).
 9. Mark it "Written" in the plan. Two weeks later, check its focus keyword in SEO → SEO Performance and its row in Index Status ("Live & indexed").
 
@@ -207,9 +207,10 @@ Site-wide settings, checked and set on 2026-10-28. Keep them this way; content w
 | SEO Performance | Daily rank tracking of every focus keyword, Search Console data via Site Kit | Shows what ranks and what needs work. |
 
 **Google**
-- Search Console is connected through Site Kit (verified). Make sure `/wp-sitemap.xml` is listed under Search Console → Sitemaps; add it if it is missing.
-- Google does not use IndexNow and has no public "request indexing" API. For each new or important page, use the **Request indexing** link in SEMRS → Index Status (one click per page in Search Console).
-- Pages in "Live, not indexed yet" for more than four weeks need more internal links from indexed pages and a content check (unique, helpful, not thin).
+- Search Console is connected through Site Kit (verified). SEMRS submitted `/wp-sitemap.xml`, `/sitemap-images.xml` and `/sitemap-videos.xml` on 2026-10-29 (they had never been submitted, which is why 13 pages were "Unknown to Google"). It re-submits missing sitemaps daily and after every publish (at most every 6 hours); Index Status shows when Google last read each one.
+- Index Status asks Google about every page daily (Search Console URL Inspection through Site Kit), so each page's status is Google's own verdict, with the last crawl date.
+- Google does not use IndexNow and has no public "request indexing" API (the Indexing API is only for job postings and livestreams). Use **Request these today** in Index Status: the 10 pages that most need a request, within Search Console's daily limit.
+- "Crawled, not indexed" pages, and any page not indexed after four weeks, need more internal links from indexed pages and a content check (unique, helpful, not thin).
 
 **Bing**
 - Bing Webmaster Tools: sign in with the site owner's account and choose **Import from Google Search Console** (fastest), or paste Bing's verification code in SEO → Social, verification & breadcrumbs → Bing verification code. Then submit `https://semrs.com/wp-sitemap.xml`.

@@ -126,6 +126,32 @@ function semrs_index_status( $id, $live, $google ) {
 		/* translators: %s: HTTP status */
 		return array( 'down', __( 'Not live', 'semrs-core' ), '#b32d2e', $code ? sprintf( __( 'The page answers with HTTP %s.', 'semrs-core' ), $code ) : __( 'The page did not answer.', 'semrs-core' ) );
 	}
+	$age = time() - (int) get_post_time( 'U', true, $id );
+	// Google's own verdict (URL Inspection), when checked in the last 8 days.
+	$gsc = semrs_index_gsc_data()[ $id ] ?? null;
+	if ( $gsc && $gsc['checked'] > time() - 8 * DAY_IN_SECONDS && '' !== $gsc['coverage'] ) {
+		/* translators: %s: date */
+		$crawl = $gsc['crawled'] ? ' ' . sprintf( __( 'Last crawled %s.', 'semrs-core' ), date_i18n( get_option( 'date_format' ), strtotime( $gsc['crawled'] ) ) ) : '';
+		$cov   = strtolower( $gsc['coverage'] );
+		if ( 'PASS' === $gsc['verdict'] ) {
+			return array( 'indexed', __( 'Indexed (Google)', 'semrs-core' ), '#00813a', $gsc['coverage'] . '.' . $crawl );
+		}
+		if ( $age < 7 * DAY_IN_SECONDS ) {
+			/* translators: %s: Google's coverage state */
+			return array( 'waiting', __( 'Live: waiting for Google', 'semrs-core' ), '#2271b1', sprintf( __( 'Google: %s. New pages usually need a few days.', 'semrs-core' ), $gsc['coverage'] ) . $crawl );
+		}
+		if ( false !== strpos( $cov, 'unknown' ) ) {
+			return array( 'pending', __( 'Unknown to Google', 'semrs-core' ), '#b32d2e', __( 'Google has not found this URL yet. Request indexing and link to it from pages that are already indexed.', 'semrs-core' ) );
+		}
+		if ( false !== strpos( $cov, 'discovered' ) ) {
+			return array( 'pending', __( 'Discovered, not crawled', 'semrs-core' ), '#b26200', __( 'Google knows the URL but has not crawled it yet. Request indexing and add internal links to it.', 'semrs-core' ) );
+		}
+		if ( false !== strpos( $cov, 'crawled' ) ) {
+			return array( 'pending', __( 'Crawled, not indexed', 'semrs-core' ), '#b26200', __( 'Google crawled it and has not indexed it yet. Make it more useful and different from your other pages, then request indexing.', 'semrs-core' ) . $crawl );
+		}
+		/* translators: %s: Google's coverage state */
+		return array( 'pending', __( 'Not indexed (Google)', 'semrs-core' ), '#b26200', sprintf( __( 'Google: %s.', 'semrs-core' ), $gsc['coverage'] ) . $crawl );
+	}
 	if ( false === $google ) {
 		return array( 'live', __( 'Live', 'semrs-core' ), '#00813a', __( 'Connect Site Kit to see whether Google shows it.', 'semrs-core' ) );
 	}
@@ -135,7 +161,6 @@ function semrs_index_status( $id, $live, $google ) {
 		/* translators: 1: impressions, 2: clicks, 3: position */
 		return array( 'indexed', __( 'Live & indexed', 'semrs-core' ), '#00813a', sprintf( __( '%1$s impressions, %2$s clicks, average position %3$s (last 90 days).', 'semrs-core' ), number_format_i18n( $impr ), number_format_i18n( $clicks ), $pos ) );
 	}
-	$age = time() - (int) get_post_time( 'U', true, $id );
 	if ( $age < 7 * DAY_IN_SECONDS ) {
 		return array( 'waiting', __( 'Live: waiting for Google', 'semrs-core' ), '#2271b1', __( 'Published in the last 7 days. Google usually needs a few days.', 'semrs-core' ) );
 	}
@@ -154,6 +179,8 @@ function semrs_index_cron() {
 	}
 	$live = array_intersect_key( $live, array_flip( $ids ) );
 	update_option( 'semrs_index_live', $live, false );
+	semrs_index_gsc_batch( 100 ); // Google's verdict for the 100 pages checked longest ago.
+	semrs_index_gsc_submit_sitemaps( true ); // Any sitemap Search Console does not have yet.
 }
 add_action( 'semrs_index_cron', 'semrs_index_cron' );
 add_action(
@@ -175,6 +202,264 @@ add_action(
 		}
 	}
 );
+
+/* ---------------------------------------------------------------------------
+ * Google's own verdict (Search Console URL Inspection API)
+ * ------------------------------------------------------------------------- */
+
+/**
+ * A Search Console access token from Site Kit's Google connection (the Site Kit owner's
+ * account), so no second Google sign-in is needed. Site Kit has no URL Inspection endpoint
+ * of its own, so this uses its classes directly; every step is guarded and returns '' when
+ * Site Kit is missing, disconnected or changed.
+ *
+ * @return string
+ */
+function semrs_index_gsc_token() {
+	static $token = null;
+	if ( null !== $token ) {
+		return $token;
+	}
+	$token = '';
+	$owner = (int) ( ( (array) get_option( 'googlesitekit_search-console_settings', array() ) )['ownerID'] ?? 0 );
+	if ( ! $owner || ! defined( 'GOOGLESITEKIT_PLUGIN_MAIN_FILE' ) || ! class_exists( '\Google\Site_Kit\Core\Authentication\Authentication' ) ) {
+		return $token;
+	}
+	$prev = get_current_user_id();
+	try {
+		wp_set_current_user( $owner );
+		$context = new \Google\Site_Kit\Context( GOOGLESITEKIT_PLUGIN_MAIN_FILE );
+		$auth    = new \Google\Site_Kit\Core\Authentication\Authentication( $context, new \Google\Site_Kit\Core\Storage\Options( $context ), new \Google\Site_Kit\Core\Storage\User_Options( $context, $owner ) );
+		$client  = $auth->get_oauth_client()->get_client();
+		if ( $client->isAccessTokenExpired() && $client->getRefreshToken() ) {
+			$client->fetchAccessTokenWithRefreshToken( $client->getRefreshToken() );
+		}
+		$t     = $client->getAccessToken();
+		$token = is_array( $t ) ? (string) ( $t['access_token'] ?? '' ) : '';
+	} catch ( \Throwable $e ) {
+		$token = '';
+	}
+	wp_set_current_user( $prev );
+	return $token;
+}
+
+/**
+ * Ask Google about one URL: verdict, coverage state ("Submitted and indexed", "Crawled -
+ * currently not indexed"…), last crawl and Google's canonical. Read-only: this API cannot
+ * request indexing (Google offers no API for that).
+ *
+ * @param string $url URL.
+ * @return array|WP_Error
+ */
+function semrs_index_inspect( $url ) {
+	$token = semrs_index_gsc_token();
+	$prop  = semrs_index_property();
+	if ( '' === $token || '' === $prop ) {
+		return new WP_Error( 'semrs_gsc_auth', __( 'Site Kit is not connected to Search Console, so Google could not be asked.', 'semrs-core' ) );
+	}
+	$res = wp_remote_post(
+		'https://searchconsole.googleapis.com/v1/urlInspection/index:inspect',
+		array(
+			'timeout' => 20,
+			'headers' => array( 'Authorization' => 'Bearer ' . $token, 'Content-Type' => 'application/json' ),
+			'body'    => wp_json_encode( array( 'inspectionUrl' => $url, 'siteUrl' => $prop, 'languageCode' => 'en-US' ) ),
+		)
+	);
+	if ( is_wp_error( $res ) ) {
+		return $res;
+	}
+	$data = json_decode( (string) wp_remote_retrieve_body( $res ), true );
+	if ( 200 !== (int) wp_remote_retrieve_response_code( $res ) || ! is_array( $data ) ) {
+		return new WP_Error( 'semrs_gsc_api', is_array( $data ) && ! empty( $data['error']['message'] ) ? (string) $data['error']['message'] : __( 'Search Console did not answer.', 'semrs-core' ) );
+	}
+	$r = (array) ( $data['inspectionResult']['indexStatusResult'] ?? array() );
+	return array(
+		'verdict'   => (string) ( $r['verdict'] ?? '' ),
+		'coverage'  => (string) ( $r['coverageState'] ?? '' ),
+		'crawled'   => (string) ( $r['lastCrawlTime'] ?? '' ),
+		'canonical' => (string) ( $r['googleCanonical'] ?? '' ),
+		'checked'   => time(),
+	);
+}
+
+/**
+ * Call the Search Console (webmasters v3) API with Site Kit's token.
+ *
+ * @param string $method GET|PUT.
+ * @param string $path   Path after /sites/{site}/.
+ * @return array|WP_Error Decoded body (empty array for 204).
+ */
+function semrs_index_gsc_call( $method, $path ) {
+	$token = semrs_index_gsc_token();
+	$prop  = semrs_index_property();
+	if ( '' === $token || '' === $prop ) {
+		return new WP_Error( 'semrs_gsc_auth', __( 'Site Kit is not connected to Search Console.', 'semrs-core' ) );
+	}
+	$res = wp_remote_request(
+		'https://www.googleapis.com/webmasters/v3/sites/' . rawurlencode( $prop ) . '/' . $path,
+		array( 'method' => $method, 'timeout' => 20, 'headers' => array( 'Authorization' => 'Bearer ' . $token, 'Content-Length' => '0' ) )
+	);
+	if ( is_wp_error( $res ) ) {
+		return $res;
+	}
+	$code = (int) wp_remote_retrieve_response_code( $res );
+	$data = json_decode( (string) wp_remote_retrieve_body( $res ), true );
+	if ( $code < 200 || $code >= 300 ) {
+		return new WP_Error( 'semrs_gsc_api', is_array( $data ) && ! empty( $data['error']['message'] ) ? (string) $data['error']['message'] : 'HTTP ' . $code );
+	}
+	return is_array( $data ) ? $data : array();
+}
+
+/**
+ * The site's sitemaps (main, image, video) that Search Console should have.
+ *
+ * @return string[]
+ */
+function semrs_index_sitemap_urls() {
+	return array_map( function ( $l ) { return trim( substr( $l, 8 ) ); }, semrs_index_sitemap_lines() );
+}
+
+/**
+ * Sitemaps known to Search Console: URL => [lastSubmitted, lastDownloaded, errors, warnings, pending].
+ * Cached for 6 hours.
+ *
+ * @param bool $fresh Skip the cache.
+ * @return array|WP_Error
+ */
+function semrs_index_gsc_sitemaps( $fresh = false ) {
+	$c = get_transient( 'semrs_index_gsc_sitemaps' );
+	if ( ! $fresh && is_array( $c ) ) {
+		return $c;
+	}
+	$data = semrs_index_gsc_call( 'GET', 'sitemaps' );
+	if ( is_wp_error( $data ) ) {
+		return $data;
+	}
+	$out = array();
+	foreach ( (array) ( $data['sitemap'] ?? array() ) as $s ) {
+		$out[ (string) $s['path'] ] = array( (string) ( $s['lastSubmitted'] ?? '' ), (string) ( $s['lastDownloaded'] ?? '' ), (int) ( $s['errors'] ?? 0 ), (int) ( $s['warnings'] ?? 0 ), ! empty( $s['isPending'] ) );
+	}
+	set_transient( 'semrs_index_gsc_sitemaps', $out, 6 * HOUR_IN_SECONDS );
+	return $out;
+}
+
+/**
+ * Submit the site's sitemaps to Search Console: the supported way to tell Google that
+ * pages are new or changed. With $missing_only, only sitemaps Google does not have yet.
+ *
+ * @param bool $missing_only Only missing ones.
+ * @return int|WP_Error Sitemaps submitted.
+ */
+function semrs_index_gsc_submit_sitemaps( $missing_only = false ) {
+	$known = semrs_index_gsc_sitemaps( true );
+	if ( is_wp_error( $known ) ) {
+		return $known;
+	}
+	$n = 0;
+	foreach ( semrs_index_sitemap_urls() as $url ) {
+		if ( $missing_only && isset( $known[ $url ] ) ) {
+			continue;
+		}
+		$r = semrs_index_gsc_call( 'PUT', 'sitemaps/' . rawurlencode( $url ) );
+		if ( is_wp_error( $r ) ) {
+			update_option( 'semrs_index_gsc_error', $r->get_error_message(), false );
+			return $r;
+		}
+		$n++;
+	}
+	update_option( 'semrs_index_sitemap_sent', time(), false );
+	delete_transient( 'semrs_index_gsc_sitemaps' );
+	return $n;
+}
+
+// New or updated content: re-submit the sitemaps to Google, at most every 6 hours.
+add_action(
+	'transition_post_status',
+	function ( $new, $old, $post ) {
+		if ( 'publish' === $new && ! wp_is_post_revision( $post ) && in_array( $post->post_type, semrs_seo_public_types(), true ) && ! wp_next_scheduled( 'semrs_index_sitemap_ping' ) ) {
+			$wait = max( 60, 6 * HOUR_IN_SECONDS - ( time() - (int) get_option( 'semrs_index_sitemap_sent', 0 ) ) );
+			wp_schedule_single_event( time() + $wait, 'semrs_index_sitemap_ping' );
+		}
+	},
+	10,
+	3
+);
+add_action(
+	'semrs_index_sitemap_ping',
+	function () {
+		semrs_index_gsc_submit_sitemaps();
+	}
+);
+
+/**
+ * Saved Google verdicts: post ID => inspect result.
+ *
+ * @return array
+ */
+function semrs_index_gsc_data() {
+	$v = get_option( 'semrs_index_gsc', array() );
+	return is_array( $v ) ? $v : array();
+}
+
+/**
+ * Ask Google about the pages checked longest ago (live, indexable pages only).
+ * The API allows 2,000 inspections a day per site; SEMRS uses far fewer.
+ *
+ * @param int $limit Pages per run.
+ * @return int|WP_Error Pages checked.
+ */
+function semrs_index_gsc_batch( $limit ) {
+	$data = semrs_index_gsc_data();
+	$ids  = array_values(
+		array_filter(
+			semrs_index_ids(),
+			function ( $id ) {
+				return ! semrs_seo_is_noindex( $id );
+			}
+		)
+	);
+	usort( $ids, function ( $a, $b ) use ( $data ) { return ( $data[ $a ]['checked'] ?? 0 ) - ( $data[ $b ]['checked'] ?? 0 ); } );
+	$done = 0;
+	foreach ( array_slice( $ids, 0, $limit ) as $id ) {
+		$r = semrs_index_inspect( get_permalink( $id ) );
+		if ( is_wp_error( $r ) ) {
+			update_option( 'semrs_index_gsc_error', $r->get_error_message(), false );
+			break;
+		}
+		$data[ $id ] = $r;
+		$done++;
+	}
+	if ( $done ) {
+		delete_option( 'semrs_index_gsc_error' );
+	}
+	update_option( 'semrs_index_gsc', array_intersect_key( $data, array_flip( semrs_index_ids() ) ), false );
+	return $done;
+}
+
+/**
+ * Pages to request in Search Console today: not indexed by Google, not requested in the
+ * last 14 days; unknown to Google first, then discovered, then crawled; newest first.
+ * Ten a day stays within Search Console's daily "Request indexing" limit.
+ *
+ * @param array $rows Status rows: post ID => status.
+ * @param int   $max  Pages.
+ * @return int[]
+ */
+function semrs_index_today( $rows, $max = 10 ) {
+	$done = (array) get_option( 'semrs_index_done', array() );
+	$gsc  = semrs_index_gsc_data();
+	$pick = array();
+	foreach ( $rows as $id => $st ) {
+		if ( ! in_array( $st[0], array( 'pending', 'waiting' ), true ) || ( ! empty( $done[ $id ] ) && $done[ $id ] > time() - 14 * DAY_IN_SECONDS ) ) {
+			continue;
+		}
+		$cov  = strtolower( (string) ( $gsc[ $id ]['coverage'] ?? '' ) );
+		$rank = false !== strpos( $cov, 'unknown' ) ? 0 : ( false !== strpos( $cov, 'discovered' ) ? 1 : ( false !== strpos( $cov, 'crawled' ) ? 2 : 3 ) );
+		$pick[ $id ] = array( $rank, - (int) get_post_time( 'U', true, $id ) );
+	}
+	uasort( $pick, function ( $a, $b ) { return $a[0] === $b[0] ? $a[1] - $b[1] : $a[0] - $b[0]; } );
+	return array_slice( array_keys( $pick ), 0, $max );
+}
 
 /* ---------------------------------------------------------------------------
  * robots.txt
@@ -251,6 +536,25 @@ add_action(
 	}
 );
 
+// Ask Google about every page in small steps from the screen (AJAX), so no request times out.
+add_action(
+	'wp_ajax_semrs_index_gsc_step',
+	function () {
+		check_ajax_referer( 'semrs_index', 'nonce' );
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( null, 403 );
+		}
+		$since = absint( $_POST['since'] ?? 0 );
+		$n     = semrs_index_gsc_batch( 5 );
+		if ( is_wp_error( $n ) || ! $n ) {
+			wp_send_json_error( array( 'message' => (string) get_option( 'semrs_index_gsc_error', '' ) ) );
+		}
+		$total = count( array_filter( semrs_index_ids(), function ( $id ) { return ! semrs_seo_is_noindex( $id ); } ) );
+		$fresh = count( array_filter( semrs_index_gsc_data(), function ( $r ) use ( $since ) { return ( $r['checked'] ?? 0 ) >= $since; } ) );
+		wp_send_json_success( array( 'done' => $fresh >= $total, 'checked' => $fresh, 'total' => $total ) );
+	}
+);
+
 // Actions: submit to IndexNow, mark task done, auto-index switch, robots.txt.
 add_action(
 	'admin_post_semrs_index',
@@ -273,6 +577,9 @@ add_action(
 				semrs_indexnow_send();
 			}
 			$msg = 'submitted';
+		} elseif ( 'sitemaps' === $do ) {
+			$n   = semrs_index_gsc_submit_sitemaps();
+			$msg = is_wp_error( $n ) ? 'gsc-failed' : 'sitemaps';
 		} elseif ( 'done' === $do ) {
 			$done                                 = (array) get_option( 'semrs_index_done', array() );
 			$done[ absint( $_POST['id'] ?? 0 ) ] = time();
@@ -348,7 +655,13 @@ function semrs_index_page() {
 		'robots'        => __( 'robots.txt saved. The old file was kept as a backup.', 'semrs-core' ),
 		'robots-failed' => __( 'robots.txt could not be written. Check the file permissions with your host.', 'semrs-core' ),
 		'saved'         => __( 'Saved.', 'semrs-core' ),
+		'sitemaps'      => __( 'Sitemaps submitted to Google Search Console.', 'semrs-core' ),
+		'gsc-failed'    => __( 'Google could not be reached. See the message below.', 'semrs-core' ),
 	);
+	$smaps = semrs_index_gsc_sitemaps();
+	$gsc      = semrs_index_gsc_data();
+	$gsc_err  = (string) get_option( 'semrs_index_gsc_error', '' );
+	$today    = semrs_index_today( $rows );
 	$inspect = function ( $url ) use ( $prop ) {
 		return 'https://search.google.com/search-console/inspect?resource_id=' . rawurlencode( $prop ) . '&id=' . rawurlencode( $url );
 	};
@@ -362,9 +675,12 @@ function semrs_index_page() {
 		<?php if ( isset( $_GET['msg'], $msgs[ $_GET['msg'] ] ) ) : // phpcs:ignore WordPress.Security.NonceVerification -- display only. ?>
 			<div class="notice notice-success is-dismissible"><p><?php echo esc_html( $msgs[ sanitize_key( $_GET['msg'] ) ] ); // phpcs:ignore WordPress.Security.NonceVerification ?></p></div>
 		<?php endif; ?>
-		<p><?php esc_html_e( 'Is every page live, and is Google showing it? "Indexed" means the page had Google impressions in the last 90 days (Search Console data via Site Kit).', 'semrs-core' ); ?></p>
+		<p><?php esc_html_e( 'Is every page live, and is Google showing it? Each page\'s index status comes from Google itself (Search Console URL Inspection, checked daily through Site Kit); pages not checked yet use their Google impressions in the last 90 days.', 'semrs-core' ); ?></p>
 		<?php if ( $gerr ) : ?>
 			<div class="notice notice-warning inline"><p><?php echo esc_html( $gerr ); ?></p></div>
+		<?php endif; ?>
+		<?php if ( $gsc_err ) : ?>
+			<div class="notice notice-warning inline"><p><?php echo esc_html( __( 'Google URL Inspection:', 'semrs-core' ) . ' ' . $gsc_err ); ?></p></div>
 		<?php endif; ?>
 		<div style="display:flex;flex-wrap:wrap;gap:10px;margin:12px 0">
 			<?php
@@ -379,8 +695,57 @@ function semrs_index_page() {
 		</div>
 		<p>
 			<button type="button" class="button button-primary" id="semrs-index-run"><?php esc_html_e( 'Check all pages now', 'semrs-core' ); ?></button>
-			<span id="semrs-index-progress" class="description" aria-live="polite"><?php esc_html_e( 'Pages are also re-checked in the background every day.', 'semrs-core' ); ?></span>
+			<button type="button" class="button" id="semrs-index-gsc"><?php esc_html_e( 'Ask Google about every page now', 'semrs-core' ); ?></button>
+			<span id="semrs-index-progress" class="description" aria-live="polite">
+				<?php
+				/* translators: 1: pages Google was asked about, 2: all pages */
+				echo esc_html( sprintf( __( 'Google has been asked about %1$d of %2$d pages. Pages are also re-checked in the background every day.', 'semrs-core' ), count( $gsc ), count( $ids ) ) );
+				?>
+			</span>
 		</p>
+
+		<h2><?php esc_html_e( 'Sitemaps in Google Search Console', 'semrs-core' ); ?></h2>
+		<p class="description"><?php esc_html_e( 'Submitting the sitemap is how a site tells Google about new and changed pages. SEMRS submits any missing sitemap every day and re-submits after you publish (at most every 6 hours).', 'semrs-core' ); ?></p>
+		<?php if ( is_wp_error( $smaps ) ) : ?>
+			<p><?php echo esc_html( $smaps->get_error_message() ); ?></p>
+		<?php else : ?>
+			<table class="widefat striped" style="max-width:1100px">
+				<thead><tr><th><?php esc_html_e( 'Sitemap', 'semrs-core' ); ?></th><th><?php esc_html_e( 'In Search Console', 'semrs-core' ); ?></th><th><?php esc_html_e( 'Last read by Google', 'semrs-core' ); ?></th><th><?php esc_html_e( 'Errors / warnings', 'semrs-core' ); ?></th></tr></thead>
+				<tbody>
+				<?php foreach ( semrs_index_sitemap_urls() as $u ) : $sm = $smaps[ $u ] ?? null; ?>
+					<tr>
+						<td><a href="<?php echo esc_url( $u ); ?>" target="_blank" rel="noopener"><?php echo esc_html( str_replace( home_url(), '', $u ) ); ?></a></td>
+						<td><?php echo $sm ? esc_html( sprintf( /* translators: %s: date */ __( 'Submitted %s', 'semrs-core' ), $sm[0] ? date_i18n( get_option( 'date_format' ), strtotime( $sm[0] ) ) : '' ) ) : '<strong style="color:#b32d2e">' . esc_html__( 'Not submitted', 'semrs-core' ) . '</strong>'; ?></td>
+						<td><?php echo $sm && $sm[1] ? esc_html( date_i18n( get_option( 'date_format' ), strtotime( $sm[1] ) ) ) : ( $sm && $sm[4] ? esc_html__( 'Pending', 'semrs-core' ) : '—' ); ?></td>
+						<td><?php echo $sm ? esc_html( $sm[2] . ' / ' . $sm[3] ) : '—'; ?></td>
+					</tr>
+				<?php endforeach; ?>
+				</tbody>
+			</table>
+			<p><?php semrs_index_button( 'sitemaps', __( 'Submit sitemaps to Google now', 'semrs-core' ), array(), 'button' ); ?></p>
+		<?php endif; ?>
+
+		<h2><?php esc_html_e( 'Request these today', 'semrs-core' ); ?> (<?php echo count( $today ); ?>)</h2>
+		<p class="description"><?php esc_html_e( 'Search Console accepts about 10 indexing requests a day, so these are the pages that need it most: unknown to Google first, then discovered, then crawled, newest first. A page you mark as requested leaves this list for 14 days.', 'semrs-core' ); ?></p>
+		<?php if ( $today ) : ?>
+			<table class="widefat striped" style="max-width:1100px">
+				<thead><tr><th><?php esc_html_e( 'Page', 'semrs-core' ); ?></th><th><?php esc_html_e( 'Google says', 'semrs-core' ); ?></th><th><?php esc_html_e( 'Steps', 'semrs-core' ); ?></th></tr></thead>
+				<tbody>
+				<?php foreach ( $today as $id ) : ?>
+					<tr>
+						<td><a href="<?php echo esc_url( get_permalink( $id ) ); ?>" target="_blank" rel="noopener"><?php echo esc_html( get_the_title( $id ) ); ?></a><br><small><?php echo esc_html( str_replace( home_url(), '', get_permalink( $id ) ) ); ?></small></td>
+						<td><?php echo esc_html( $rows[ $id ][1] ); ?><br><small><?php echo esc_html( $gsc[ $id ]['coverage'] ?? __( 'Not asked yet', 'semrs-core' ) ); ?></small></td>
+						<td>
+							<?php if ( $prop ) : ?><a class="button button-small button-primary" href="<?php echo esc_url( $inspect( get_permalink( $id ) ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( '1. Request indexing', 'semrs-core' ); ?></a> <?php endif; ?>
+							<?php semrs_index_button( 'done', __( '2. Mark requested', 'semrs-core' ), array( 'id' => $id ), 'button button-small' ); ?>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+				</tbody>
+			</table>
+		<?php else : ?>
+			<p><?php esc_html_e( 'Nothing to request today.', 'semrs-core' ); ?></p>
+		<?php endif; ?>
 
 		<h2><?php esc_html_e( 'Indexing tasks', 'semrs-core' ); ?> (<?php echo count( $tasks ); ?>)</h2>
 		<p class="description"><?php esc_html_e( 'Live pages Google has not shown yet. For each: open URL Inspection, click "Request indexing" in Search Console, then mark it done. Google offers no API for this, so it takes one click per page; Bing and other IndexNow engines are notified automatically.', 'semrs-core' ); ?></p>
@@ -465,6 +830,19 @@ function semrs_index_page() {
 					out.textContent = r.data.next + ' / ' + r.data.total; step(r.data.next);
 				}).catch(function () { out.textContent = 'Error'; btn.disabled = false; });
 			})(0);
+		});
+		var g = document.getElementById('semrs-index-gsc'), since = Math.floor(Date.now() / 1000) - 5;
+		g.addEventListener('click', function () {
+			g.disabled = true; btn.disabled = true;
+			(function step() {
+				var f = new FormData(); f.append('action', 'semrs_index_gsc_step'); f.append('since', since); f.append('nonce', <?php echo wp_json_encode( wp_create_nonce( 'semrs_index' ) ); ?>);
+				fetch(ajaxurl, { method: 'POST', body: f, credentials: 'same-origin' }).then(function (r) { return r.json(); }).then(function (r) {
+					if (!r.success) { out.textContent = (r.data && r.data.message) || 'Error'; g.disabled = false; btn.disabled = false; return; }
+					out.textContent = <?php echo wp_json_encode( __( 'Asking Google…', 'semrs-core' ) ); ?> + ' ' + r.data.checked + ' / ' + r.data.total;
+					if (r.data.done) { location.reload(); return; }
+					step();
+				}).catch(function () { out.textContent = 'Error'; g.disabled = false; btn.disabled = false; });
+			})();
 		});
 	})();
 	</script>
