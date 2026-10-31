@@ -37,7 +37,7 @@ function semrs_us_campaign_defaults() {
 		'christmas'      => array( 'name' => 'Christmas sale', 'when' => array( 'md', '12-18', '12-26' ), 'percent' => 35, 'code' => 'XMAS35', 'auto' => true, 'priority' => 90, 'headline' => 'Christmas sale: %d%% off SEMRS Pro', 'text' => 'A gift for your websites: SEO, speed, ads and theme Pro for less.' ),
 		'new-year'       => array( 'name' => 'New Year sale', 'when' => array( 'md', '12-27', '01-07' ), 'percent' => 30, 'code' => 'NEWYEAR30', 'auto' => true, 'priority' => 90, 'headline' => 'New Year sale: %d%% off SEMRS Pro', 'text' => 'Start the year with faster, better-ranking websites.' ),
 		'spring'         => array( 'name' => 'Spring sale', 'when' => array( 'md', '03-20', '03-27' ), 'percent' => 25, 'code' => 'SPRING25', 'auto' => true, 'priority' => 80, 'headline' => 'Spring sale: %d%% off SEMRS Pro', 'text' => 'Spring-clean your site: one plugin stack instead of eight.' ),
-		'wp-birthday'    => array( 'name' => 'WordPress birthday sale', 'when' => array( 'md', '05-24', '05-31' ), 'percent' => 27, 'code' => 'WPBDAY27', 'auto' => true, 'priority' => 80, 'headline' => 'WordPress turns another year: %d%% off', 'text' => 'WordPress was born on May 27. We celebrate with 27% off every plan.' ),
+		'wp-birthday'    => array( 'name' => 'WordPress birthday sale', 'when' => array( 'md', '05-24', '05-31' ), 'percent' => 27, 'code' => 'WPBDAY27', 'auto' => true, 'priority' => 80, 'headline' => 'WordPress turns another year: %d%% off', 'text' => 'WordPress was born on May 27. We celebrate with %d%% off every plan.' ),
 		'summer'         => array( 'name' => 'Summer sale', 'when' => array( 'md', '06-21', '06-28' ), 'percent' => 25, 'code' => 'SUMMER25', 'auto' => true, 'priority' => 80, 'headline' => 'Summer sale: %d%% off SEMRS Pro', 'text' => 'Get your site ready for the busy season.' ),
 		'back-to-school' => array( 'name' => 'Back to school sale', 'when' => array( 'md', '08-24', '08-31' ), 'percent' => 25, 'code' => 'SCHOOL25', 'auto' => true, 'priority' => 80, 'headline' => 'Back to school: %d%% off SEMRS Pro', 'text' => 'Learn SEO the easy way, with tools that do the heavy lifting.' ),
 		'halloween'      => array( 'name' => 'Halloween sale', 'when' => array( 'md', '10-25', '10-31' ), 'percent' => 30, 'code' => 'HALLOWEEN30', 'auto' => true, 'priority' => 80, 'headline' => 'Halloween: %d%% off SEMRS Pro', 'text' => 'No tricks, just a treat for your websites.' ),
@@ -299,7 +299,7 @@ function semrs_us_offer_new( $plan ) {
 				'id'      => $c['id'],
 				'code'    => $life && (int) $c['life'] > 0 && '' !== $c['life_code'] ? $c['life_code'] : $c['code'],
 				'percent' => $pct,
-				'label'   => sprintf( $c['headline'], $pct ),
+				'label'   => semrs_us_fmt( $c['headline'], $pct ),
 				'name'    => $c['name'],
 				'ends'    => $c['window'] ? $c['window'][1] : 0,
 			);
@@ -386,4 +386,27 @@ function semrs_us_pricing_url() {
 	$p = get_page_by_path( 'semrs-pro' );
 	$p = $p && 'publish' === $p->post_status ? $p : get_page_by_path( 'semrs-pro', OBJECT, 'semrs_product' );
 	return ( $p ? get_permalink( $p ) : home_url( '/semrs-pro/' ) ) . '#plans';
+}
+
+/**
+ * sprintf() for popup texts (built in or typed by an admin): a lone % is kept
+ * as a percent sign and a missing value never breaks the page.
+ *
+ * @param string $format Text with %d / %s / %1$d placeholders.
+ * @param mixed  ...$args Values.
+ * @return string
+ */
+function semrs_us_fmt( $format, ...$args ) {
+	$format = preg_replace_callback(
+		'/%%|%(?:\d+\$)?[ds]|%/',
+		function ( $m ) {
+			return '%' === $m[0] ? '%%' : $m[0];
+		},
+		(string) $format
+	);
+	try {
+		return vsprintf( $format, $args );
+	} catch ( \Throwable $e ) {
+		return str_replace( '%%', '%', preg_replace( '/%(?:\d+\$)?[ds]/', '', $format ) );
+	}
 }

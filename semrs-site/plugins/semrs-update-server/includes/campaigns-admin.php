@@ -297,7 +297,7 @@ function semrs_us_campaign_guide() {
 
 		<h3><?php esc_html_e( '4. Affiliate program', 'semrs-update-server' ); ?></h3>
 		<ul>
-			<li><?php echo esc_html( sprintf( /* translators: 1: first percent, 2: renewal percent, 3: cookie days */ __( 'Partners earn %1$d%% of the first order and %2$d%% of every renewal and add-on for life, with a %3$d-day cookie. Most WordPress programs pay 20–30% with a 30–60 day cookie.', 'semrs-update-server' ), $aff['first'], $aff['renewal'], $aff['cookie'] ) ); ?></li>
+			<li><?php echo esc_html( sprintf( /* translators: 1: first percent, 2: renewal percent, 3: cookie days */ __( 'Partners earn %1$d%% of the first order and %2$d%% of every renewal and add-on for life, with a %3$d-day cookie. Most WordPress programs pay 20–30%% with a 30–60 day cookie.', 'semrs-update-server' ), $aff['first'], $aff['renewal'], $aff['cookie'] ) ); ?></li>
 			<li><?php esc_html_e( 'Approve applications under SEMRS Updates → Affiliates. Approved partners get their link and private dashboard by email.', 'semrs-update-server' ); ?></li>
 			<li><?php esc_html_e( 'Commissions approve themselves after the refund window. Pay monthly (PayPal, Wise or bank) and click "Mark paid".', 'semrs-update-server' ); ?></li>
 		</ul>
@@ -501,7 +501,7 @@ function semrs_us_popup_entries() {
 			/* translators: 1: deal name, 2: deal */
 			$title = sprintf( __( '%1$s · every day · %2$s', 'semrs-update-server' ), $c['name'], $deal );
 		}
-		$out[ $id ] = array( $title, '<p>' . esc_html( sprintf( $c['headline'], (int) $c['percent'] ) ) . '</p><p>' . esc_html( sprintf( $c['text'], (int) $c['percent'] ) ) . '</p><p>' . esc_html( $bundle ) . '</p>' );
+		$out[ $id ] = array( $title, '<p>' . esc_html( semrs_us_fmt( $c['headline'], (int) $c['percent'] ) ) . '</p><p>' . esc_html( semrs_us_fmt( $c['text'], (int) $c['percent'] ) ) . '</p><p>' . esc_html( $bundle ) . '</p>' );
 	}
 	$out['lifetime']  = array( __( 'Lifetime nudge · pricing page · pay once', 'semrs-update-server' ), '<p>' . esc_html__( 'All Pro for unlimited websites with lifetime updates.', 'semrs-update-server' ) . '</p>' );
 	$out['proof']     = array( __( 'Social proof · pricing page · live site count', 'semrs-update-server' ), '<p>' . esc_html__( 'Real number of sites that ran SEMRS in the last 30 days.', 'semrs-update-server' ) . '</p>' );

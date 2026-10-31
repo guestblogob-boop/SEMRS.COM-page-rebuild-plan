@@ -270,7 +270,7 @@ function semrs_us_popup_items() {
 		$pv    = $c['id'] === $preview;
 		$s     = $pv ? 0 : $win[0] * 1000;
 		$e     = $pv ? 0 : $win[1] * 1000;
-		$title = sprintf( $ps['title'] ? $ps['title'] : $c['headline'], (int) $c['percent'] );
+		$title = semrs_us_fmt( $ps['title'] ? $ps['title'] : $c['headline'], (int) $c['percent'] );
 		$c['text'] = $ps['text'] ? $ps['text'] : $c['text'];
 		$ends  = sprintf( /* translators: %s: date */ __( 'Ends %s', 'semrs-update-server' ), wp_date( 'F j', $win[1] ) );
 		$code  = $c['auto'] ? sprintf( /* translators: %s: code */ __( 'Code %s is applied at checkout.', 'semrs-update-server' ), $c['code'] ) : '';
@@ -280,7 +280,7 @@ function semrs_us_popup_items() {
 			array( 'id' => $c['id'] . '-modal', 'k' => $c['id'] . '-' . $win[0], 'kind' => 'modal', 's' => $s, 'e' => $e, 'season' => 1, 'delay' => $ads ? 0 : $ps['delay'], 'scroll' => $ads ? 0 : $ps['scroll'], 'exit' => 1, 'dt' => $ads ? 1 : 0, 'days' => $ps['days'] ),
 			'<div class="semrs-pop__box' . ( $simg ? ' has-img' : '' ) . '" role="dialog" aria-modal="true" aria-labelledby="semrs-pop-t-' . esc_attr( $c['id'] ) . '">' . $close . $simg
 			. '<p class="semrs-pop__tag">' . esc_html( $c['name'] ) . '</p><h2 class="semrs-pop__h" id="semrs-pop-t-' . esc_attr( $c['id'] ) . '">' . esc_html( $title ) . '</h2>'
-			. '<p>' . esc_html( sprintf( $c['text'], (int) $c['percent'] ) ) . '</p>' . semrs_us_popup_price_line( (int) $c['percent'] ) . semrs_us_popup_price_line( (int) $c['life'] > 0 ? (int) $c['life'] : (int) $c['percent'], 'all-life-u' )
+			. '<p>' . esc_html( semrs_us_fmt( $c['text'], (int) $c['percent'] ) ) . '</p>' . semrs_us_popup_price_line( (int) $c['percent'] ) . semrs_us_popup_price_line( (int) $c['life'] > 0 ? (int) $c['life'] : (int) $c['percent'], 'all-life-u' )
 			. semrs_us_popup_deals( $c )
 			. '<p class="semrs-pop__ends">' . esc_html( $ends ) . ' · <span data-ends="' . esc_attr( $e ) . '"></span></p>'
 			. '<a class="semrs-pop__cta" href="' . esc_url( $url ) . '" data-close>' . esc_html( $ps['cta'] ) . '</a>'
@@ -288,7 +288,7 @@ function semrs_us_popup_items() {
 		);
 		}
 		if ( ! $ads && $pb['on'] ) {
-			$btitle = $pb['title'] ? sprintf( $pb['title'], (int) $c['percent'] ) : $title;
+			$btitle = $pb['title'] ? semrs_us_fmt( $pb['title'], (int) $c['percent'] ) : $title;
 			$add(
 				array( 'id' => $c['id'] . '-bar', 'k' => $c['id'] . '-bar-' . $win[0], 'kind' => 'bar', 's' => $s, 'e' => $e, 'season' => 1, 'delay' => max( 1, $pb['delay'] ), 'days' => 0 ),
 				'<div class="semrs-pop__bar" role="region" aria-label="' . esc_attr( $c['name'] ) . '"><strong>' . esc_html( $btitle ) . '</strong>' . ( $pb['text'] ? ' <span>' . esc_html( $pb['text'] ) . '</span>' : '' ) . ' <span class="semrs-pop__cd" data-ends="' . esc_attr( $e ) . '"></span> <a class="semrs-pop__cta semrs-pop__cta--sm" href="' . esc_url( $url ) . '">' . esc_html( $pb['cta'] ) . '</a>' . $close . '</div>'
@@ -310,8 +310,8 @@ function semrs_us_popup_items() {
 		if ( ! $p['on'] ) {
 			return;
 		}
-		$title = sprintf( $p['title'] ? $p['title'] : $c['headline'], (int) $c['percent'] );
-		$text  = sprintf( $p['text'] ? $p['text'] : $c['text'], (int) $c['percent'] );
+		$title = semrs_us_fmt( $p['title'] ? $p['title'] : $c['headline'], (int) $c['percent'] );
+		$text  = semrs_us_fmt( $p['text'] ? $p['text'] : $c['text'], (int) $c['percent'] );
 		$img   = semrs_us_popup_img_tag( $id );
 		$cls   = $img ? ' has-img' : '';
 		$body  = 'modal' === $kind ? '<div class="semrs-pop__box' . $cls . '" role="dialog" aria-modal="true"' : '<div class="semrs-pop__slide' . $cls . '" role="dialog"';
@@ -342,7 +342,7 @@ function semrs_us_popup_items() {
 		$life = semrs_us_plans()['all-life-u'];
 		$add(
 			array( 'id' => 'lifetime', 'k' => 'lifetime', 'kind' => 'slide', 'off' => 1, 'delay' => $pl['delay'], 'scroll' => $pl['scroll'], 'days' => $pl['days'] ),
-			'<div class="semrs-pop__slide' . ( semrs_us_popup_images( 'lifetime' ) ? ' has-img' : '' ) . '" role="dialog" aria-labelledby="semrs-pop-t-life">' . $close . semrs_us_popup_img_tag( 'lifetime' ) . '<h2 class="semrs-pop__h" id="semrs-pop-t-life">' . esc_html( $pl['title'] ) . '</h2><p>' . esc_html( sprintf( $pl['text'], semrs_us_money( $life['price'] ) ) ) . '</p><a class="semrs-pop__cta semrs-pop__cta--sm" href="' . esc_url( semrs_us_buy_url( $life ) ) . '" rel="nofollow" data-close>' . esc_html( $pl['cta'] ) . '</a></div>'
+			'<div class="semrs-pop__slide' . ( semrs_us_popup_images( 'lifetime' ) ? ' has-img' : '' ) . '" role="dialog" aria-labelledby="semrs-pop-t-life">' . $close . semrs_us_popup_img_tag( 'lifetime' ) . '<h2 class="semrs-pop__h" id="semrs-pop-t-life">' . esc_html( $pl['title'] ) . '</h2><p>' . esc_html( semrs_us_fmt( $pl['text'], semrs_us_money( $life['price'] ) ) ) . '</p><a class="semrs-pop__cta semrs-pop__cta--sm" href="' . esc_url( semrs_us_buy_url( $life ) ) . '" rel="nofollow" data-close>' . esc_html( $pl['cta'] ) . '</a></div>'
 		);
 	}
 	$pp = semrs_us_popup_conf( 'proof' );
@@ -350,7 +350,7 @@ function semrs_us_popup_items() {
 	if ( $n >= 20 ) {
 		$add(
 			array( 'id' => 'proof', 'k' => 'proof', 'kind' => 'toast', 'delay' => max( 1, $pp['delay'] ), 'days' => $pp['days'], 'hide' => 9 ),
-			'<div class="semrs-pop__toast" role="status">' . esc_html( sprintf( $pp['text'], number_format_i18n( $n ) ) ) . $close . '</div>'
+			'<div class="semrs-pop__toast" role="status">' . esc_html( semrs_us_fmt( $pp['text'], number_format_i18n( $n ) ) ) . $close . '</div>'
 		);
 	}
 	$pa  = semrs_us_popup_conf( 'affiliate' );
@@ -359,7 +359,7 @@ function semrs_us_popup_items() {
 		$rate = semrs_us_aff_settings();
 		$add(
 			array( 'id' => 'affiliate', 'k' => 'affiliate', 'kind' => 'slide', 'views' => 3, 'delay' => $pa['delay'], 'scroll' => $pa['scroll'], 'days' => $pa['days'] ),
-			'<div class="semrs-pop__slide' . ( semrs_us_popup_images( 'affiliate' ) ? ' has-img' : '' ) . '" role="dialog" aria-labelledby="semrs-pop-t-aff">' . $close . semrs_us_popup_img_tag( 'affiliate' ) . '<h2 class="semrs-pop__h" id="semrs-pop-t-aff">' . esc_html( sprintf( $pa['title'], (int) $rate['first'] ) ) . '</h2><p>' . esc_html( sprintf( $pa['text'], (int) $rate['renewal'], (int) $rate['cookie'] ) ) . '</p><a class="semrs-pop__cta semrs-pop__cta--sm" href="' . esc_url( $aff ) . '" data-close>' . esc_html( $pa['cta'] ) . '</a></div>'
+			'<div class="semrs-pop__slide' . ( semrs_us_popup_images( 'affiliate' ) ? ' has-img' : '' ) . '" role="dialog" aria-labelledby="semrs-pop-t-aff">' . $close . semrs_us_popup_img_tag( 'affiliate' ) . '<h2 class="semrs-pop__h" id="semrs-pop-t-aff">' . esc_html( semrs_us_fmt( $pa['title'], (int) $rate['first'] ) ) . '</h2><p>' . esc_html( semrs_us_fmt( $pa['text'], (int) $rate['renewal'], (int) $rate['cookie'] ) ) . '</p><a class="semrs-pop__cta semrs-pop__cta--sm" href="' . esc_url( $aff ) . '" data-close>' . esc_html( $pa['cta'] ) . '</a></div>'
 		);
 	}
 	return array( $items, $tpl );
