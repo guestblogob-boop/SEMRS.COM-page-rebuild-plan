@@ -55,6 +55,16 @@ const STEPS_SVG = (focus, items, works = false) => {
 	return `<!-- wp:html -->\n<figure class="semrs-steps-figure"><svg role="img" aria-label="${esc(label).replace(/"/g, '&quot;')}" viewBox="0 0 ${w} 180" width="100%" xmlns="http://www.w3.org/2000/svg" style="max-width:${w}px;height:auto">${cols}</svg></figure>\n<!-- /wp:html -->`;
 };
 const TOC = '<!-- wp:semrs/toc {"levels":"2","collapsed":true} /-->';
+// [glance: Label | point | point | point | point] → light inline-SVG summary (same look as the legal pages).
+const GLANCE = (label, pts) => {
+	const w = 640, col = w / pts.length;
+	const body = pts.map((p, i) => {
+		const x = col * i + 8;
+		const lines = wrapText(p, 16).map((l, j) => `<text x="${x + 14}" y="${76 + j * 20}" font-size="15" fill="currentColor">${esc(l)}</text>`).join('');
+		return `<rect x="${x}" y="8" width="${col - 16}" height="124" rx="14" fill="currentColor" fill-opacity=".06" stroke="var(--sp-accent,#f7941d)" stroke-width="2"/><circle cx="${x + 26}" cy="36" r="14" fill="var(--sp-primary,#0b2fd1)"/><text x="${x + 26}" y="41" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">${i + 1}</text>${lines}`;
+	}).join('');
+	return `<!-- wp:html -->\n<figure class="semrs-glance"><svg role="img" aria-label="${esc(label + ': ' + pts.join('; ')).replace(/"/g, '&quot;')}" viewBox="0 0 ${w} 140" width="100%" style="max-width:${w}px;height:auto" xmlns="http://www.w3.org/2000/svg">${body}</svg></figure>\n<!-- /wp:html -->`;
+};
 
 function parse(file) {
 	const raw = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
@@ -74,6 +84,7 @@ function parse(file) {
 		const count = (t) => { words += t.replace(/\[[^\]]*\]\([^)]*\)/g, (x) => x.replace(/\(.*\)/, '')).split(/\s+/).filter(Boolean).length; };
 		if (l === '[tool]') { blocks.push(SC(`[semrs_tool id="${slug}"]`)); continue; }
 		if (l === '[ad]') { blocks.push(SC('[semrs_ad slot="tool"]')); continue; }
+		if (/^\[glance: .+\]$/.test(l)) { const [label, ...pts] = l.slice(9, -1).split('|').map((x) => x.trim()); blocks.push(GLANCE(label, pts)); continue; }
 		if (/^\[semrs_[a-z_]+.*\]$/.test(l)) { blocks.push(SC(l)); continue; }
 		if (l.startsWith('### ')) { blocks.push(H(l.slice(4), 3)); count(l.slice(4)); continue; }
 		if (l.startsWith('## ')) { lastH2 = l.slice(3); blocks.push(H(lastH2, 2)); count(lastH2); continue; }
@@ -103,7 +114,7 @@ function parse(file) {
 		blocks.push(P(l)); count(l);
 	}
 	const h2s = blocks.filter((b) => b.startsWith('<!-- wp:heading -->')).length;
-	if (h2s >= 3 && words > 600) {
+	if ((h2s >= 3 && words > 600) || meta.toc === 'yes') {
 		blocks.splice(blocks.findIndex((b) => b.startsWith('<!-- wp:heading -->')), 0, TOC);
 	}
 	return { slug, meta, html: blocks.join('\n\n') + '\n', words };

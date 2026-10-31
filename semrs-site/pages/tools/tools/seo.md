@@ -5,7 +5,7 @@
 | URL | /tools/ |
 | Page title (H1) | Free SEO Tools |
 | SEO title (48 chars) | 13 Free SEO Tools – No Signup, No Limits | SEMRS |
-| Meta description (155 chars) | 12 free SEO tools for business owners and marketers: SERP preview, schema generators, robots.txt, redirect checker, UTM builder, image compressor and more. |
+| Meta description (155 chars) | 13 free SEO tools for business owners and marketers: SERP preview, schema generators, robots.txt, redirect checker, UTM builder, image compressor and more. |
 | Focus keyword | free seo tools |
 | Schema type | CollectionPage (+ FAQPage from the FAQ blocks, BreadcrumbList) |
 | Template | Default (no sidebar) |

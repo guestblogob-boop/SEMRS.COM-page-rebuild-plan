@@ -337,7 +337,7 @@ function semrs_portfolio_page_content() {
  * @return int Page ID, 0 when it already exists.
  */
 function semrs_portfolio_install() {
-	$found = get_posts( array( 'name' => 'portfolio', 'post_type' => 'page', 'post_status' => 'any', 'numberposts' => 1 ) );
+	$found = get_posts( array( 'post_name__in' => array( 'web-design-portfolio', 'portfolio' ), 'post_type' => 'page', 'post_status' => 'any', 'numberposts' => 1 ) );
 	if ( $found ) {
 		return 0;
 	}
@@ -347,7 +347,7 @@ function semrs_portfolio_install() {
 				'post_type'    => 'page',
 				'post_status'  => 'draft',
 				'post_title'   => __( 'Web Design Portfolio', 'semrs-site' ),
-				'post_name'    => 'portfolio',
+				'post_name'    => 'web-design-portfolio',
 				'post_content' => semrs_portfolio_page_content(),
 			)
 		)
@@ -391,7 +391,7 @@ add_action( 'admin_init', 'semrs_portfolio_save' );
  */
 function semrs_portfolio_admin_box() {
 	$s = semrs_portfolio_settings();
-	echo '<h2>' . esc_html__( 'Portfolio hub (portfolio.semrs.com)', 'semrs-site' ) . '</h2><p>' . esc_html__( 'Creates the Web Design Portfolio page at /portfolio/ as a draft: hero, every design with full-page desktop and phone previews, how it works and a quote button. Tick a design once its demo subdomain is live to show its "Live demo" button.', 'semrs-site' ) . '</p>';
+	echo '<h2>' . esc_html__( 'Portfolio hub (portfolio.semrs.com)', 'semrs-site' ) . '</h2><p>' . esc_html__( 'Creates the Web Design Portfolio page at /web-design-portfolio/ as a draft: hero, every design with full-page desktop and phone previews, how it works and a quote button. Tick a design once its demo subdomain is live to show its "Live demo" button.', 'semrs-site' ) . '</p>';
 	printf( '<p><label><strong>%s</strong><br><input class="regular-text" name="semrs_pf_pattern" value="%s"></label><br><span class="description">%s</span></p>', esc_html__( 'Demo address pattern', 'semrs-site' ), esc_attr( $s['pattern'] ), esc_html__( '{sub} is replaced with the demo name below, e.g. https://pets.demo.semrs.com/', 'semrs-site' ) );
 	printf( '<p><label><strong>%s</strong><br><input class="regular-text" type="url" name="semrs_pf_contact" value="%s"></label></p>', esc_html__( 'Quote / contact page', 'semrs-site' ), esc_attr( $s['contact'] ) );
 	echo '<fieldset><legend><strong>' . esc_html__( 'Live demos', 'semrs-site' ) . '</strong></legend><p style="columns:3;max-width:900px">';
@@ -405,8 +405,8 @@ function semrs_portfolio_admin_box() {
 }
 
 /**
- * The portfolio hub page owns /portfolio/: the SEMRS Pro portfolio post
- * type keeps its single-item addresses but gives up the archive there.
+ * The portfolio hub page is /web-design-portfolio/ (/portfolio/ redirects to it): the SEMRS Pro
+ * portfolio post type keeps its single-item addresses under /portfolio/ but has no archive.
  *
  * @param array  $args Post type arguments.
  * @param string $type Post type.

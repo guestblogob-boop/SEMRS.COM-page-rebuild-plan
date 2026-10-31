@@ -64,7 +64,7 @@ function semrs_ads_defaults() {
 		'min_gap_words'   => 250,
 		'exclude_front'   => true,
 		'exclude_search'  => true,
-		'exclude_paths'   => "/services/\n/pricing/\n/contact-us/\n/get-a-quote/\n/thank-you/\n/about/\n/how-we-work/\n/privacy-policy/\n/terms-and-conditions/\n/cookie-policy/\n/disclosure/\n/guest-post-submission-form/\n/registration-form/\n/portfolio/\n/checkout/\n/cart/\n/my-account/\n/semrs-pro/\n/my-licenses/",
+		'exclude_paths'   => "/services/\n/pricing/\n/contact-us/\n/get-a-quote/\n/thank-you/\n/about/\n/how-we-work/\n/privacy-policy/\n/terms-and-conditions/\n/cookie-policy/\n/disclosure/\n/guest-post-submission-form/\n/registration-form/\n/portfolio/\n/web-design-portfolio/\n/checkout/\n/cart/\n/my-account/\n/semrs-pro/\n/my-licenses/",
 		'exclude_ids'     => '',
 		'post_types'      => array( 'post', 'page' ),
 		'manage_adstxt'   => false,

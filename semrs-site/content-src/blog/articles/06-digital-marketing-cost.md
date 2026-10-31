@@ -36,7 +36,7 @@ Paid channels have two costs: what you pay the platform and what you pay someone
 
 ## Website design
 
-A small business website is usually a one-off project followed by monthly hosting and maintenance. Price depends on the number of pages, custom design, integrations such as booking or payments, and whether you need e-commerce. A fast, accessible site with clear calls to action pays for itself because every other channel sends visitors to it. See our [web design service](/services/web-design/) and [portfolio](/portfolio/) for examples.
+A small business website is usually a one-off project followed by monthly hosting and maintenance. Price depends on the number of pages, custom design, integrations such as booking or payments, and whether you need e-commerce. A fast, accessible site with clear calls to action pays for itself because every other channel sends visitors to it. See our [web design service](/services/web-design/) and [portfolio](/web-design-portfolio/) for examples.
 
 ## Content writing
 

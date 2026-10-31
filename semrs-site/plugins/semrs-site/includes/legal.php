@@ -489,7 +489,8 @@ function semrs_legal_install() {
 			)
 		);
 	}
-	$assets = get_page_by_path( 'semrs-assets' );
+	$assets = get_page_by_path( 'wordpress-themes-plugins' );
+	$assets = $assets ? $assets : get_page_by_path( 'semrs-assets' ); // Address before 1.2.24.
 	if ( $assets ) {
 		wp_update_post(
 			wp_slash(
@@ -499,6 +500,7 @@ function semrs_legal_install() {
 					'post_content' => semrs_legal_p( 'SEMRS makes free WordPress themes and plugins for SEO, speed, ads and page building. They are the same tools that run semrs.com. The theme and the Core, Blocks and Tools plugins are free. SEMRS Pro add-ons unlock extra features with one license key for 1, 5 or unlimited websites.' )
 						. semrs_legal_glance( 'SEMRS WordPress themes and plugins at a glance', array( '6 free themes & plugins', 'Pro from $15 a year', 'One key, all add-ons', '30-day refunds' ) )
 						. '<!-- wp:semrs/toc {"levels":"2","collapsed":true} /-->'
+						. semrs_legal_h( 'What SEMRS offers' )
 						. semrs_legal_sc( '[semrs_business]' )
 						. semrs_legal_h( 'Free WordPress themes and plugins' )
 						. semrs_legal_p( 'Download them, install them on as many sites as you like and keep them forever. Like WordPress itself, all SEMRS code uses the GPL, and the WordPress project explains what that means on its <a href="https://wordpress.org/about/license/" rel="noopener">license page</a>.' )

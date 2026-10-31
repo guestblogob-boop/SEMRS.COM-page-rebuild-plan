@@ -3,11 +3,14 @@ kind: hub
 order: 0
 h1: Free SEO Tools
 title: 13 Free SEO Tools – No Signup, No Limits | SEMRS
-description: 12 free SEO tools for business owners and marketers: SERP preview, schema generators, robots.txt, redirect checker, UTM builder, image compressor and more.
+description: 13 free SEO tools for business owners and marketers: SERP preview, schema generators, robots.txt, redirect checker, UTM builder, image compressor and more.
 focus: free seo tools
 schema: CollectionPage
+toc: yes
 ---
 These free SEO tools cover meta tags, technical checks, schema, content, local SEO, AI search, marketing and website speed. Free, practical SEO tools for business owners, marketers and web designers. Every tool works instantly in your browser, needs no account and has no daily limits. Pick a tool below, or read on to find the right one for the job.
+
+[glance: Free SEO tools at a glance | 13 free SEO tools | 8 tool groups | No signup needed | No usage limits]
 
 [semrs_tools]
 

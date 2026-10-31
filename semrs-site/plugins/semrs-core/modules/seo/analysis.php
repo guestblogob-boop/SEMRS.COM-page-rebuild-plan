@@ -62,9 +62,11 @@ function semrs_seo_title_printed( $id ) {
  */
 function semrs_seo_analysis_html( $d ) {
 	global $post;
-	if ( (int) $d['id'] && (int) $d['id'] === (int) get_option( 'page_for_posts' ) && '' === trim( wp_strip_all_tags( (string) $d['content'] ) ) ) {
-		// The posts page shows its title and the latest posts, so score what visitors see.
-		$html = '<p>' . esc_html( (string) $d['post_title'] ) . '</p>';
+	if ( (int) $d['id'] && (int) $d['id'] === (int) get_option( 'page_for_posts' ) ) {
+		// The posts page shows its title, its own text as an intro (SEMRS theme) and the latest posts,
+		// so score what visitors see.
+		$intro = (bool) apply_filters( 'semrs_seo_posts_page_intro', 'semrs' === get_template() ) ? trim( (string) $d['content'] ) : '';
+		$html  = '' !== trim( wp_strip_all_tags( $intro ) ) || false !== strpos( $intro, '<svg' ) ? (string) apply_filters( 'the_content', $intro ) : '<p>' . esc_html( (string) $d['post_title'] ) . '</p>'; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals -- core filter.
 		foreach ( get_posts( array( 'posts_per_page' => (int) get_option( 'posts_per_page', 10 ), 'post_status' => 'publish', 'no_found_rows' => true ) ) as $p ) {
 			$html .= '<h2><a href="' . esc_url( get_permalink( $p ) ) . '">' . esc_html( get_the_title( $p ) ) . '</a></h2><p>' . esc_html( get_the_excerpt( $p ) ) . '</p>';
 		}
@@ -196,7 +198,18 @@ function semrs_seo_analyze( $d ) {
 	$sub_txt = mb_strtolower( wp_strip_all_tags( implode( ' | ', $hm[1] ) ) );
 
 	// Sentences and paragraphs.
-	$sentences = array_values( array_filter( preg_split( '/(?<=[.!?。])\s+/u', $text ), function ( $x ) { return '' !== trim( $x ); } ) );
+	// Headings, list items, table cells, buttons and other blocks end a sentence even without a full stop,
+	// so a list of prices or features is not read as one very long sentence.
+	$blocky    = preg_replace( '/<(script|style|svg)[^>]*>.*?<\/\1>/is', '', $html );
+	$blocky    = preg_replace( '/<\/(?:p|li|h[1-6]|td|th|dt|dd|div|figcaption|summary|button|blockquote|section|article)>|<br\s*\/?>/i', "\n", $blocky );
+	$sentences = array();
+	foreach ( preg_split( '/\n+/', wp_strip_all_tags( $blocky ) ) as $chunk ) {
+		foreach ( preg_split( '/(?<=[.!?。])\s+/u', trim( preg_replace( '/\s+/u', ' ', $chunk ) ) ) as $x ) {
+			if ( '' !== trim( $x ) ) {
+				$sentences[] = $x;
+			}
+		}
+	}
 	$n_sent    = max( 1, count( $sentences ) );
 	$long_sent = 0;
 	foreach ( $sentences as $sent ) {

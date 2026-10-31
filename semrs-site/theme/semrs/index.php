@@ -11,6 +11,13 @@ get_header();
 <main id="primary" class="sp-main">
 	<?php if ( is_home() && ! is_front_page() ) : ?>
 		<header class="page-header"><h1 class="page-title"><?php single_post_title(); ?></h1></header>
+		<?php
+		// The posts page's own text, if any, is shown as an intro above the latest posts.
+		$semrs_intro = trim( (string) get_post_field( 'post_content', (int) get_option( 'page_for_posts' ) ) );
+		if ( '' !== $semrs_intro ) {
+			echo '<div class="entry-content sp-blog-intro">' . apply_filters( 'the_content', $semrs_intro ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- post content, core filter.
+		}
+		?>
 	<?php elseif ( is_search() ) : ?>
 		<header class="page-header">
 			<h1 class="page-title">

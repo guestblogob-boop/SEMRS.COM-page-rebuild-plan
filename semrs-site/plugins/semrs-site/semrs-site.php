@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       SEMRS Site (semrs.com only)
  * Description:       semrs.com-only additions that are never given to clients: the SEMRS Store (products, collection and product pages, pricing) and SEMRS Pro sales page installer, the Keyword Ideas Generator tool, the "Hero with photo and keyword tool" pattern and its photo, and the web design portfolio hub ([semrs_portfolio]). Needs SEMRS Tools for the tool.
- * Version:           1.2.23
+ * Version:           1.2.24
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            SEMRS
@@ -29,7 +29,7 @@ add_filter(
 	}
 );
 
-define( 'SEMRS_SITE_VERSION', '1.2.23' );
+define( 'SEMRS_SITE_VERSION', '1.2.24' );
 define( 'SEMRS_SITE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_SITE_URL', plugin_dir_url( __FILE__ ) );
 
@@ -195,7 +195,7 @@ function semrs_site_menu() {
 				echo '<div class="notice notice-success"><p>' . esc_html( sprintf( __( 'Legal pages: %1$d created, %2$d updated and published. The About page, SEMRS assets page and site tagline now describe both services and products.', 'semrs-site' ), $legal['created'], $legal['updated'] ) ) . '</p></div>';
 			}
 			if ( null !== $portfolio ) {
-				echo '<div class="notice notice-' . ( $portfolio ? 'success' : 'info' ) . '"><p>' . ( $portfolio ? esc_html__( 'Portfolio page created as a draft at /portfolio/. Review, then publish.', 'semrs-site' ) . ' <a href="' . esc_url( get_edit_post_link( $portfolio ) ) . '">' . esc_html__( 'Edit', 'semrs-site' ) . '</a>' : esc_html__( 'A page at /portfolio/ already exists, so nothing was changed.', 'semrs-site' ) ) . '</p></div>';
+				echo '<div class="notice notice-' . ( $portfolio ? 'success' : 'info' ) . '"><p>' . ( $portfolio ? esc_html__( 'Portfolio page created as a draft at /web-design-portfolio/. Review, then publish.', 'semrs-site' ) . ' <a href="' . esc_url( get_edit_post_link( $portfolio ) ) . '">' . esc_html__( 'Edit', 'semrs-site' ) . '</a>' : esc_html__( 'The portfolio page already exists, so nothing was changed.', 'semrs-site' ) ) . '</p></div>';
 			}
 			echo '<form method="post">';
 			wp_nonce_field( 'semrs_site_install' );
