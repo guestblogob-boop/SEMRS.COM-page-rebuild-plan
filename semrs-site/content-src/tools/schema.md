@@ -3,12 +3,12 @@ kind: category
 parent: tools
 order: 22
 h1: Free Schema Markup Tools
-title: Free Schema Markup Generators (JSON-LD) | SEMRS
+title: Free Schema Tools 2026: JSON-LD Markup Generators | SEMRS
 description: Free schema markup generators for JSON-LD: Organization, Article, FAQ, Breadcrumb, Product, Event, Service and LocalBusiness with address and opening hours.
-focus: schema markup tools
+focus: schema tools
 schema: CollectionPage
 ---
-Structured data tells search engines exactly what your pages are about: your business details, your articles, products, events and services. These free generators create valid JSON-LD that you can paste straight into your website.
+These free schema tools write structured data without code. Structured data tells search engines exactly what your pages are about: your business details, your articles, products, events and services. These free generators create valid JSON-LD that you can paste straight into your website.
 
 [semrs_tools category="schema"]
 
@@ -18,7 +18,7 @@ Search engines are good at reading pages, but they still have to guess what many
 
 Google recommends the JSON-LD format, which sits in a single block of code and does not change how your page looks.
 
-## Which generator to use
+## Which schema tools to use
 
 - **Schema Markup Generator** for Organization (your brand identity), Article and BlogPosting (guides and news), FAQPage (visible questions and answers), BreadcrumbList (page paths), Product (single products with a visible price), Event (dated events) and Service (service pages and areas served).
 - **Local Business Schema Generator** for shops, practices and service businesses with a physical location or service area. It adds the address, phone number, map coordinates and grouped opening hours, with 29 specific business types.
@@ -34,6 +34,8 @@ Google recommends the JSON-LD format, which sits in a single block of code and d
 ## Tips for local businesses
 
 Local businesses in the US, UK, Canada and Australia should start with LocalBusiness markup on the homepage or contact page, using the exact name, address and phone number on their Google Business Profile, written in the local address format. Add Service markup with the areas you genuinely serve, and keep opening hours in the markup in sync with your profile whenever they change.
+
+Every type and property is listed in the official vocabulary at [schema.org](https://schema.org/).
 
 ## Frequently asked questions
 

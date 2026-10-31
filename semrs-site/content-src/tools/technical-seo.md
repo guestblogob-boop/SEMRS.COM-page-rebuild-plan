@@ -3,12 +3,12 @@ kind: category
 parent: tools
 order: 21
 h1: Free Technical SEO Tools
-title: Free Technical SEO Tools – Robots.txt & Redirects | SEMRS
+title: Free Technical SEO Tools: Robots.txt & 301 Redirects
 description: Free technical SEO tools: generate a correct robots.txt with AI crawler rules and trace redirect chains, status codes and loops for any public URL.
 focus: technical seo tools
 schema: CollectionPage
 ---
-Technical SEO makes sure search engines can find, crawl and understand your website. These free tools cover two of the most common causes of lost traffic: crawler rules that block the wrong pages, and redirects that go wrong after a website change.
+These free technical SEO tools check robots.txt rules and redirects, two common causes of lost traffic. Technical SEO makes sure search engines can find, crawl and understand your website. These free tools cover two of the most common causes of lost traffic: crawler rules that block the wrong pages, and redirects that go wrong after a website change.
 
 [semrs_tools category="technical-seo"]
 
@@ -24,13 +24,15 @@ Great content cannot rank if search engines cannot reach it. A single wrong line
 - **Preferred version:** HTTP and HTTPS, www and non-www all end on one version.
 - **Old links** from your Google Business Profile, directories and social profiles still work after any URL change.
 
-## Which tool to use
+## Which technical SEO tools to use
 
 Use the **Robots.txt Generator** when you launch a site, move from a staging server, change platform or want to set rules for AI crawlers such as GPTBot and ClaudeBot. Use the **Redirect Checker** after any URL change, when an old link seems slow, or when Search Console reports redirect errors. Together they cover the first checks a technical SEO audit would make.
 
 ## A quick technical health routine
 
 Once a month, open your robots.txt in a browser to make sure it has not changed unexpectedly, test your homepage and two or three important old URLs in the Redirect Checker, and look at the Pages report in Google Search Console for new errors. It takes ten minutes and catches most problems before they cost traffic.
+
+Google's [crawling and indexing guide](https://developers.google.com/search/docs/crawling-indexing) covers the technical basics these tools check.
 
 ## Frequently asked questions
 

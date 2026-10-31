@@ -3,12 +3,12 @@ kind: tool
 parent: tools
 order: 2
 h1: Free Meta Title & Description Checker
-title: Free Meta Title & Description Checker | SEMRS
+title: Free Meta Title & Description Checker 2026 | SEMRS
 description: Check your meta title and description for length, pixel width and keyword use. Get instant fixes and copy ready-made title, description and Open Graph tags.
 focus: meta description checker
 schema: WebApplication
 ---
-Paste a title tag and meta description to get an instant checklist: length, pixel width, keyword placement and readability. When everything passes, copy ready-made HTML tags, including Open Graph tags for social sharing.
+This free meta description checker also tests your title tag, so both are ready for Google. Paste a title tag and meta description to get an instant checklist: length, pixel width, keyword placement and readability. When everything passes, copy ready-made HTML tags, including Open Graph tags for social sharing.
 
 [tool]
 
@@ -25,7 +25,7 @@ Most meta tag problems are simple, but they are easy to miss when you are writin
 - **Spammy patterns.** All-caps titles and words repeated three or more times.
 - **Clarity signals.** Whether the description ends in a complete sentence and includes a call to action.
 
-## How to use the checker
+## How to use the meta description checker
 
 1. Enter the **focus keyword**: the main phrase you want this page to be found for. Use one phrase per page.
 2. Paste the **title tag** you plan to use.
@@ -71,6 +71,8 @@ Think of the description as a short advert. State the benefit, add a specific de
 ## Tips for local businesses
 
 For businesses serving local customers in the US, UK, Canada or Australia, the location usually belongs in the title of each service page and in the description. Use the city or area name customers actually type, and the spelling they use ("neighbourhood" in the UK and Australia, "neighborhood" in the US). Add details that matter locally: emergency or same-day service, free parking, evening appointments, or the areas you cover. Make sure the phone number and address on the page match your Google Business Profile exactly.
+
+Google explains how it writes result snippets in its [guide to meta descriptions and snippets](https://developers.google.com/search/docs/appearance/snippet).
 
 ## Frequently asked questions
 

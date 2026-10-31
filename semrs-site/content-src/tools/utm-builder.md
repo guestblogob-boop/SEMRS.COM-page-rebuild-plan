@@ -3,12 +3,12 @@ kind: tool
 parent: tools
 order: 10
 h1: Free UTM Builder
-title: Free UTM Builder – Campaign URL Generator | SEMRS
+title: Free UTM Builder – Campaign URL Generator 2026 | SEMRS
 description: Build tracked campaign links for Google Analytics with presets for Google Ads, Facebook, email and QR codes. Bulk mode tags many URLs at once. CSV export.
 focus: utm builder
 schema: WebApplication
 ---
-Build tracked campaign links in seconds. Add your landing page, pick a preset such as Google Ads, Facebook ads, newsletter or QR code, name your campaign and copy a clean URL with UTM parameters. Bulk mode tags a whole list of URLs at once and exports them as CSV.
+This free UTM builder adds the tracking tags for you, so every campaign link is consistent. Build tracked campaign links in seconds. Add your landing page, pick a preset such as Google Ads, Facebook ads, newsletter or QR code, name your campaign and copy a clean URL with UTM parameters. Bulk mode tags a whole list of URLs at once and exports them as CSV.
 
 [tool]
 
@@ -73,7 +73,9 @@ A garden centre in Vancouver runs a spring promotion across three channels. For 
 
 Local businesses in the US, UK, Canada and Australia often market offline as well as online: flyers, vans, local newspapers, radio, events and shop windows. Give each one its own tagged link and QR code, for example source `flyer_eastside` and medium `offline`, so you can finally see which local promotion brings website visits. Your Google Business Profile website link can also be tagged (for example source `google`, medium `organic_gbp`) so you can measure visits from your profile separately from normal search traffic.
 
-## Frequently asked questions
+Google Analytics explains each campaign tag in [Collect campaign data with custom URLs](https://support.google.com/analytics/answer/10917952).
+
+## UTM builder: frequently asked questions
 
 Q: Do UTM parameters affect SEO?
 A: No, as long as you only use them on external links such as ads, emails and social posts. Do not add them to internal links. Your pages should also have a canonical tag pointing to the clean URL.

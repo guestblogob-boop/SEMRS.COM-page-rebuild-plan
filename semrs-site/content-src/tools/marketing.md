@@ -3,12 +3,12 @@ kind: category
 parent: tools
 order: 26
 h1: Free Ads & Marketing Tools
-title: Free Marketing Tools – UTM Builder & Tracking | SEMRS
+title: Free Marketing Tools – UTM Builder & Tracking 2026 | SEMRS
 description: Free marketing tools to track what works: build UTM campaign links for Google Ads, social, email and QR codes, in bulk, with CSV export for your team.
 focus: marketing tools
 schema: CollectionPage
 ---
-Marketing only improves when you can see what works. These free tools help you track every campaign link so your analytics show which ads, emails, posts and offline promotions actually bring visitors and customers.
+These free marketing tools track every campaign link, so you can see which channels bring results. Marketing only improves when you can see what works. These free tools help you track every campaign link so your analytics show which ads, emails, posts and offline promotions actually bring visitors and customers.
 
 [semrs_tools category="marketing"]
 
@@ -24,7 +24,7 @@ Many businesses spend on ads, newsletters, social media and flyers without knowi
 4. **Review results monthly** in Google Analytics 4 by source, medium and campaign.
 5. **Act on the data:** increase what brings enquiries, fix or stop what does not.
 
-## Which tool to use
+## Which marketing tools to use
 
 The **UTM Builder** creates tracked links with presets for Google Ads, Microsoft Ads, Facebook, Instagram, LinkedIn and TikTok ads, social posts, newsletters, your Google Business Profile and QR codes. Bulk mode applies the same tags to a list of URLs and exports a CSV for your team or ad platform. To put a value on organic traffic, use the [SEO ROI Calculator](/tools/seo-roi-calculator/).
 
@@ -35,6 +35,8 @@ Local businesses often rely on flyers, vehicle signs, local press, radio and eve
 ## Tips for local businesses
 
 If you serve customers in one area, compare channels by cost per enquiry, not by clicks. A local newspaper advert, a Facebook campaign aimed at nearby postcodes and a Google Business Profile post can all be tracked with their own tagged links. Tag your profile’s website link too (for example source google, medium organic_gbp) so you can see how many visits your profile sends compared with normal search results.
+
+Google Analytics explains campaign tags in [Collect campaign data with custom URLs](https://support.google.com/analytics/answer/10917952).
 
 ## Frequently asked questions
 

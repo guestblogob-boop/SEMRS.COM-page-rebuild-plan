@@ -3,18 +3,18 @@ kind: tool
 parent: tools
 order: 12
 h1: Free SEO ROI Calculator
-title: Free SEO ROI Calculator – Estimate Your Return | SEMRS
+title: Free SEO ROI Calculator – Estimate Your Return 2026
 description: Estimate what extra organic traffic is worth. Enter visits, conversion rate, close rate and customer value to see leads, revenue, ROI and break-even.
 focus: seo roi calculator
 schema: WebApplication
 ---
-Estimate what extra organic traffic could be worth to your business. Enter your current visits, the growth you are aiming for, your conversion and close rates, the value of a customer and your monthly SEO budget, and see estimated leads, revenue, ROI and break-even month over the first year.
+This free SEO ROI calculator turns traffic goals into leads, customers and revenue. Estimate what extra organic traffic could be worth to your business. Enter your current visits, the growth you are aiming for, your conversion and close rates, the value of a customer and your monthly SEO budget, and see estimated leads, revenue, ROI and break-even month over the first year.
 
 [tool]
 
 [ad]
 
-## How the calculator works
+## How the SEO ROI calculator works
 
 The calculator follows the same chain every business goes through:
 
@@ -68,6 +68,8 @@ This is a planning tool, not a promise. Real results depend on your market, comp
 ## Tips for local businesses
 
 For local service businesses in the US, UK, Canada and Australia, organic search often brings the highest-intent customers: people searching for a service in their town right now. Your visit numbers may be modest compared with national websites, but conversion and close rates are often much higher. Include phone calls in your lead count, because many local customers call rather than fill in forms. If you serve several towns, consider running the calculator for each genuine service area separately.
+
+Before you plan a budget, Google's [SEO Starter Guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide) shows what SEO work usually involves.
 
 ## Frequently asked questions
 

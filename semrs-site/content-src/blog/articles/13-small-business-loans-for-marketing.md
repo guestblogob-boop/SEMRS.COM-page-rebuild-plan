@@ -1,7 +1,7 @@
 ---
 title: Small Business Loans for Marketing and Growth: Options, Costs and When to Borrow
 slug: small-business-loans-for-marketing
-seo_title: Small Business Loans for Marketing: Options and Costs
+seo_title: Small Business Loans for Marketing: A Smart 6-Step Guide
 focus: small business loans
 description: Small business loans that can fund marketing and growth: SBA 7(a), microloans, lines of credit and cards compared, with costs and a payback check.
 category: 297

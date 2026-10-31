@@ -5,7 +5,7 @@
 		"order": 5,
 		"seo_title": "SEMRS Ads Manager: 6 Simple Steps to Safe AdSense",
 		"focus": "semrs ads",
-		"image": 6300
+		"image": 6384
 	},
 	"blocks": {
 		"title": "SEMRS Blocks Manual: Every Block Explained",
@@ -13,7 +13,7 @@
 		"order": 2,
 		"seo_title": "SEMRS Blocks Manual 2026: Easy Guide to Every Block",
 		"focus": "semrs blocks",
-		"image": 6297
+		"image": 6385
 	},
 	"policies": {
 		"title": "Policies: Google, AdSense, WordPress.org & Privacy",
@@ -21,7 +21,7 @@
 		"order": 8,
 		"seo_title": "SEMRS Policies 2026: Simple Google & AdSense Guide",
 		"focus": "semrs policies",
-		"image": 6303
+		"image": 6386
 	},
 	"pro-license": {
 		"title": "SEMRS Pro: Install, License Key & Updates",
@@ -29,7 +29,7 @@
 		"order": 7,
 		"seo_title": "SEMRS Pro License Key: Easy Setup & Updates 2026",
 		"focus": "semrs pro license",
-		"image": 6302
+		"image": 6387
 	},
 	"seo": {
 		"title": "SEMRS Core SEO Manual: Titles, Schema, Sitemaps",
@@ -37,7 +37,7 @@
 		"order": 4,
 		"seo_title": "SEMRS SEO Manual 2026: Easy Guide to Titles & Schema",
 		"focus": "semrs seo",
-		"image": 6299
+		"image": 6388
 	},
 	"speed": {
 		"title": "SEMRS Speed Optimization Manual",
@@ -45,7 +45,7 @@
 		"order": 6,
 		"seo_title": "SEMRS Speed Manual 2026: Easy Guide to a Faster Site",
 		"focus": "semrs speed",
-		"image": 6301
+		"image": 6389
 	},
 	"support": {
 		"title": "SEMRS Support & User Manual",
@@ -53,7 +53,7 @@
 		"order": 0,
 		"seo_title": "SEMRS Support: 8 Easy Step-by-Step User Guides",
 		"focus": "semrs support",
-		"image": 6295
+		"image": 6390
 	},
 	"templates": {
 		"title": "Templates & Starter Sites: Import a Complete Website",
@@ -61,7 +61,7 @@
 		"order": 3,
 		"seo_title": "SEMRS Templates: 23 Free & Pro Starter Sites Guide",
 		"focus": "semrs templates",
-		"image": 6298
+		"image": 6391
 	},
 	"theme": {
 		"title": "SEMRS Theme Manual: Header Builder, Layouts & Page Options",
@@ -69,6 +69,6 @@
 		"order": 1,
 		"seo_title": "SEMRS Theme Manual: Easy Header Builder Guide 2026",
 		"focus": "semrs theme",
-		"image": 6296
+		"image": 6392
 	}
 }

@@ -3,12 +3,12 @@ kind: category
 parent: tools
 order: 24
 h1: Free Local SEO Tools
-title: Free Local SEO Tools for Small Businesses | SEMRS
+title: Free Local SEO Tools for Small Businesses 2026 | SEMRS
 description: Free local SEO tools for small businesses: create a Google review link, build LocalBusiness schema and write local titles that win clicks in your area.
 focus: local seo tools
 schema: CollectionPage
 ---
-Local SEO helps nearby customers find you when they search for what you do. These free tools focus on the things that make the biggest difference for local businesses: genuine reviews, clear business information and search results that stand out in your area.
+These free local SEO tools help nearby customers find and review your business. Local SEO helps nearby customers find you when they search for what you do. These free tools focus on the things that make the biggest difference for local businesses: genuine reviews, clear business information and search results that stand out in your area.
 
 [semrs_tools category="local-seo"]
 
@@ -24,13 +24,15 @@ When someone searches for a service with local intent, such as "plumber near me"
 - **Clear service and location pages** on your website, written for real customers.
 - **Structured data** that states your business details precisely.
 
-## Tools for local businesses
+## Local SEO tools for local businesses
 
 The **Google Review Link Generator** creates a one-tap link to your review form, plus email and text templates, so asking every customer for a review becomes routine. For your website, the [Local Business Schema Generator](/tools/local-business-schema-generator/) produces LocalBusiness markup with your address, hours and service areas, and the [SERP Snippet Preview](/tools/serp-snippet-preview/) helps you write local page titles that fit and get clicked.
 
 ## Local SEO in the US, UK, Canada and Australia
 
 The principles are the same in every country, but the details differ: directories (Yelp in the US, Yell in the UK, Yellow Pages in Canada and Australia), address formats and spelling. Write the way your local customers search, list only areas you genuinely serve, and never use fake addresses or virtual offices to appear in other towns; Google suspends profiles that do.
+
+Google explains how local results are ranked in [Tips to improve your local ranking on Google](https://support.google.com/business/answer/7091).
 
 ## Frequently asked questions
 

@@ -3,12 +3,12 @@ kind: category
 parent: tools
 order: 27
 h1: Free Website & Design Tools
-title: Free Website Tools – Image Compressor & WebP | SEMRS
+title: Free Website Tools – Image Compressor & WebP 2026 | SEMRS
 description: Free website tools to make pages faster: compress images and convert them to WebP in your browser, resize for the web and download. Nothing is uploaded.
 focus: website tools
 schema: CollectionPage
 ---
-A fast, accessible website wins more visitors and more enquiries. These free tools help with the quick wins that make the biggest difference, starting with images, the heaviest part of most web pages.
+These free website tools start with the quickest win: lighter, faster images. A fast, accessible website wins more visitors and more enquiries. These free tools help with the quick wins that make the biggest difference, starting with images, the heaviest part of most web pages.
 
 [semrs_tools category="website"]
 
@@ -25,7 +25,7 @@ Visitors expect pages to load quickly, especially on phones. Slow pages lose peo
 - **Limit plugins, scripts and fonts** to the ones you really need.
 - **Use caching** through your host or a caching plugin.
 
-## Which tool to use
+## Which website tools to use
 
 The **Image Compressor & WebP Converter** shrinks JPG, PNG, WebP and GIF images and converts them to WebP, JPEG or PNG, with a quality slider and resize presets. It processes up to 20 images at a time entirely in your browser, so private photos never leave your device.
 
@@ -36,6 +36,8 @@ Test your important pages before and after with Google's PageSpeed Insights, and
 ## Tips for local businesses
 
 Most local searches happen on phones, often on mobile data, so speed matters even more for local businesses. Compress the photos on your homepage, service pages and gallery first, as they are usually the largest files. Use real photos of your team, premises and work rather than stock images, and give them descriptive file names and alt text. Compress the photos you upload to your Google Business Profile as well.
+
+Test the speed of any page for free with Google's [PageSpeed Insights](https://pagespeed.web.dev/).
 
 ## Frequently asked questions
 

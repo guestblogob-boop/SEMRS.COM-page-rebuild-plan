@@ -3,12 +3,12 @@ kind: category
 parent: tools
 order: 20
 h1: Free Meta Tag & SERP Tools
-title: Free Meta Tag & SERP Preview Tools | SEMRS
+title: Free Meta and SERP Tools 2026: Tags & Previews | SEMRS
 description: Free tools to write better title tags and meta descriptions. Preview your Google result on desktop and mobile, check pixel width and copy ready-made tags.
-focus: meta tag tools
+focus: meta and serp tools
 schema: CollectionPage
 ---
-Your title tag and meta description are your advert in Google. These free tools help you write them, check them against the limits Google uses and preview the result on desktop and mobile before you publish.
+These free meta and SERP tools help you write the title and description searchers see first. Your title tag and meta description are your advert in Google. These free tools help you write them, check them against the limits Google uses and preview the result on desktop and mobile before you publish.
 
 [semrs_tools category="meta-serp"]
 
@@ -26,11 +26,13 @@ Google usually builds your result from your title tag and meta description, but 
 - **The location** in titles of local service pages, where it helps the searcher.
 - **No duplicates** across pages, which are common on sites built from templates.
 
-## Which tool to use
+## Which meta and SERP tools to use
 
 Use the **SERP Snippet Preview** when you want to see the finished result and test different wording visually, including how a date or a long URL affects the layout. Use the **Meta Title & Description Checker** when you want a checklist that confirms length, pixel width and keyword placement, and gives you ready-to-paste HTML and Open Graph tags.
 
 A good workflow is to draft in the checker until everything passes, then confirm the look in the preview.
+
+Google explains how it chooses the blue headline in [Influencing title links in Google Search](https://developers.google.com/search/docs/appearance/title-link).
 
 ## Frequently asked questions
 

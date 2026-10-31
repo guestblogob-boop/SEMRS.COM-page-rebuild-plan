@@ -3,12 +3,12 @@ kind: tool
 parent: tools
 order: 6
 h1: Free Local Business Schema Generator
-title: Free Local Business Schema Generator | SEMRS
+title: Free Local Business Schema Generator 2026 | SEMRS
 description: Create LocalBusiness JSON-LD with your address, phone, opening hours, map location and service areas. Choose from 29 business types and copy the code. Free.
 focus: local business schema generator
 schema: WebApplication
 ---
-Create LocalBusiness structured data for your shop, practice or service business. Enter your address, phone number, opening hours and service areas, choose the most specific business type, and copy JSON-LD that is ready to paste into your website.
+This free local business schema generator builds the code Google uses to understand your business details. Create LocalBusiness structured data for your shop, practice or service business. Enter your address, phone number, opening hours and service areas, choose the most specific business type, and copy JSON-LD that is ready to paste into your website.
 
 [tool]
 
@@ -20,7 +20,7 @@ LocalBusiness schema is structured data that describes a business with a physica
 
 That precision matters for local search. Google cross-checks the details on your website against your Business Profile, directories and other mentions online. When your name, address and phone number (often called NAP) match everywhere, Google can be more confident it is showing the right business to someone nearby. Clean structured data on your own site is one of the clearest ways to state those facts.
 
-## How to use the generator
+## How to use the local business schema generator
 
 1. **Choose your business type.** Pick the most specific option, such as Plumber, Dentist, Attorney or Restaurant. Use LocalBusiness or ProfessionalService only if nothing more specific fits.
 2. **Enter your business name** exactly as it appears on your Google Business Profile and shopfront.
@@ -56,6 +56,8 @@ A family dental practice in Leeds is open 8:30–17:30 Monday to Friday and 9:00
 ## LocalBusiness schema in the US, UK, Canada and Australia
 
 The schema format is the same everywhere, but the details differ by country. Use the local address format and the correct region: a two-letter state in the US (TX, CA), a province in Canada (ON, BC), a state or territory in Australia (NSW, VIC) and, in the UK, the town and postcode. Write phone numbers in international format so they are unambiguous. Your areas served can be cities, counties, boroughs or postcodes, whatever your customers would recognise.
+
+Google lists the supported properties in its [local business structured data guide](https://developers.google.com/search/docs/appearance/structured-data/local-business).
 
 ## Frequently asked questions
 

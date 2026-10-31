@@ -3,12 +3,12 @@ kind: tool
 parent: tools
 order: 5
 h1: Free Schema Markup Generator
-title: Free Schema Markup Generator (JSON-LD) | SEMRS
+title: Free Schema Markup Generator (JSON-LD) 2026 | SEMRS
 description: Generate valid JSON-LD schema for Organization, Article, FAQ, Breadcrumb, Product, Event and Service pages. Copy the code and test it with Google. Free.
 focus: schema markup generator
 schema: WebApplication
 ---
-Choose a schema type, fill in the form and get valid JSON-LD structured data ready to paste into your page. The generator supports Organization, Article, FAQPage, BreadcrumbList, Product, Event and Service, and links straight to Google's Rich Results Test.
+This free schema markup generator writes valid JSON-LD you can paste straight into your page. Choose a schema type, fill in the form and get valid JSON-LD structured data ready to paste into your page. The generator supports Organization, Article, FAQPage, BreadcrumbList, Product, Event and Service, and links straight to Google's Rich Results Test.
 
 [tool]
 
@@ -32,7 +32,7 @@ Structured data can make a page eligible for rich results, such as product price
 
 For a physical local business, use our dedicated Local Business Schema Generator, which adds address, map coordinates and opening hours.
 
-## How to use the generator
+## How to use the schema markup generator
 
 1. Choose a schema type from the buttons at the top.
 2. Fill in the fields. Leave optional fields empty if they do not apply; empty fields are left out of the code.
@@ -65,6 +65,8 @@ A marketing agency in Toronto publishes a guide called "How to Choose a Web Desi
 ## Tips for local businesses
 
 If you serve customers locally in the US, UK, Canada or Australia, start with Organization or LocalBusiness markup on your homepage, using exactly the same business name, address and phone number as your Google Business Profile. Add Service markup on each service page with the areas you serve, and Event markup for workshops or open days. Structured data supports your local presence; it does not replace a verified Google Business Profile or genuine customer reviews.
+
+Google explains how structured data works in its [introduction to structured data](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data).
 
 ## Frequently asked questions
 

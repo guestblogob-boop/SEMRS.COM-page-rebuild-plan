@@ -41,6 +41,20 @@ function semrs_seo_analysis_input( $post, $over = array() ) {
 }
 
 /**
+ * Whether the theme prints the post title as the page H1. Templates that leave
+ * the title out (title-less landing templates, a hidden title) need one H1 in
+ * the content instead.
+ *
+ * @param int $id Post ID.
+ * @return bool
+ */
+function semrs_seo_title_printed( $id ) {
+	$template = (string) get_page_template_slug( $id );
+	$printed  = ! get_post_meta( $id, 'semrs_hide_title', true ) && ! preg_match( '#(?:^|/)(?:full-width|canvas|blank)[^/]*\.php$#', $template );
+	return (bool) apply_filters( 'semrs_seo_title_printed', $printed, $id, $template );
+}
+
+/**
  * Rendered HTML for analysis (blocks and shortcodes expanded).
  *
  * @param array $d Input.
@@ -161,7 +175,19 @@ function semrs_seo_analyze( $d ) {
 			$kw_alt = true;
 		}
 	}
-	$media = $imgs + preg_match_all( '/<video[\s>]|<iframe\s[^>]*(?:youtube|vimeo|wistia)/i', $html );
+	// Inline SVG pictures with role="img" and a label are real images for visitors and screen readers.
+	$svgs = 0;
+	if ( preg_match_all( '/<svg\s[^>]*>/i', $html, $svg_tags ) ) {
+		foreach ( $svg_tags[0] as $tag ) {
+			if ( preg_match( '/\srole=["\']img["\']/i', $tag ) && preg_match( '/\saria-label=["\']([^"\']+)["\']/i', $tag, $label ) ) {
+				$svgs++;
+				if ( '' !== $kw && false !== mb_strpos( mb_strtolower( html_entity_decode( $label[1] ) ), $kw ) ) {
+					$kw_alt = true;
+				}
+			}
+		}
+	}
+	$media = $imgs + $svgs + preg_match_all( '/<video[\s>]|<iframe\s[^>]*(?:youtube|vimeo|wistia)/i', $html );
 
 	// Headings.
 	$h1s = preg_match_all( '/<h1[\s>]/i', $html );
@@ -281,7 +307,12 @@ function semrs_seo_analyze( $d ) {
 	$add( count( $internal ) > 0, sprintf( __( 'Internal links to your other pages (%d)', 'semrs-core' ), count( $internal ) ), 'additional', 6 );
 	$add( ! empty( $d['thumb'] ), __( 'Featured image set (used for share cards and Google Discover)', 'semrs-core' ), 'additional', 3 );
 	$add( 0 === $no_alt, $imgs ? sprintf( /* translators: %d: images */ __( 'All images have alt text (%d missing)', 'semrs-core' ), $no_alt ) : __( 'Images: none in the content yet', 'semrs-core' ), 'additional', $imgs ? 4 : 1 );
-	$add( 0 === $h1s, __( 'No extra H1 in the content (the theme prints the title as H1)', 'semrs-core' ), 'additional', 3 );
+	if ( semrs_seo_title_printed( $d['id'] ) ) {
+		$add( 0 === $h1s, __( 'No extra H1 in the content (the theme prints the title as H1)', 'semrs-core' ), 'additional', 3 );
+	} else {
+		/* translators: %d: H1 headings */
+		$add( 1 === $h1s, sprintf( __( 'Exactly one H1 in the content, because this page hides its title (now %d)', 'semrs-core' ), $h1s ), 'additional', 3 );
+	}
 
 	// Title readability.
 	$tlow = mb_strtolower( $title );

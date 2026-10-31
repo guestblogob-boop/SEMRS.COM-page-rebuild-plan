@@ -243,7 +243,7 @@
   },
   "chart": {
    "file": "small-business-loan-approval-by-lender.webp",
-   "alt": "Bar chart: share of small business loan applicants fully approved was 54% at small banks, 45% at large banks and 30% at online lenders",
+   "alt": "Small business loans bar chart: share of applicants fully approved was 54% at small banks, 45% at large banks and 30% at online lenders",
    "caption": "Full approval rates differ widely by lender type, so where you apply matters.",
    "width": 1200,
    "height": 675,

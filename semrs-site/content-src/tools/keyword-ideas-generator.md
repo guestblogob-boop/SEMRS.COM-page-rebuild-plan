@@ -9,7 +9,7 @@ focus: keyword ideas generator
 schema: WebApplication
 site: semrs
 ---
-Enter what you sell or do and get 50+ keyword ideas grouped by what the searcher wants: questions, learning, comparing options, ready to buy, and local searches for your city. Everything runs in your browser, so nothing you type is sent anywhere.
+This free keyword ideas generator turns one topic into a full list of searches to target. It is one of our [free SEO tools](/tools/). Enter what you sell or do and get 50+ keyword ideas grouped by what the searcher wants: questions, learning, comparing options, ready to buy, and local searches for your city. Everything runs in your browser, so nothing you type is sent anywhere.
 
 [tool]
 
@@ -86,3 +86,5 @@ Usually 40 to 50 without a city and 50 or more with one, grouped into five inten
 ### Can I use these keywords for Google Ads?
 
 Yes, as a starting list. Paste them into Google Keyword Planner to see estimated volumes and costs before building ad groups.
+
+To compare how interest in your ideas changes over time, check them in [Google Trends](https://trends.google.com/trends/).

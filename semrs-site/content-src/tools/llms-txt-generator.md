@@ -3,12 +3,12 @@ kind: tool
 parent: tools
 order: 9
 h1: Free llms.txt Generator
-title: Free llms.txt Generator for AI Search | SEMRS
+title: Free llms.txt Generator for AI Search 2026 | SEMRS
 description: Create an llms.txt file that summarises your website and points AI tools to your most useful pages. Add sections and links, then download the file. Free.
 focus: llms.txt generator
 schema: WebApplication
 ---
-Create an llms.txt file in minutes. Describe your website in a sentence, add sections with links to your most useful pages, and download a clean Markdown file that follows the proposed llms.txt format, ready to upload to your site root.
+This free llms.txt generator writes a clean file for AI assistants in a few minutes. Create an llms.txt file in minutes. Describe your website in a sentence, add sections with links to your most useful pages, and download a clean Markdown file that follows the proposed llms.txt format, ready to upload to your site root.
 
 [tool]
 
@@ -34,7 +34,7 @@ An llms.txt file has a simple structure:
 
 The generator handles the formatting for you, so you only need to supply the content.
 
-## How to use the generator
+## How to use the llms.txt generator
 
 1. Enter your **site or company name**.
 2. Write a **one-sentence summary**: who you are, what you do and where. This is the most important line.
@@ -79,7 +79,9 @@ A tutoring company in Auckland writes this summary: "Qualified maths and science
 
 For local businesses in the US, UK, Canada and Australia, the summary should state your service and your area plainly, the way a customer would ask an assistant: "Family-run electricians serving Leeds and West Yorkshire." Include your contact page and any page that lists the towns or suburbs you serve. Consistent details across your website, llms.txt and Business Profile help any system, human or AI, describe your business correctly.
 
-## Frequently asked questions
+The llms.txt format is described in the public proposal at [llmstxt.org](https://llmstxt.org/).
+
+## llms.txt generator: frequently asked questions
 
 Q: Do Google or ChatGPT use llms.txt?
 A: There is no public commitment from the major AI search providers to use it. Some AI tools and developer assistants read it, and adoption may grow, so it is a cheap addition rather than a guaranteed benefit.

@@ -3,12 +3,12 @@ kind: tool
 parent: tools
 order: 3
 h1: Free Robots.txt Generator
-title: Free Robots.txt Generator with AI Crawler Rules | SEMRS
+title: Free Robots.txt Generator with AI Crawler Rules 2026
 description: Create a correct robots.txt in seconds: WordPress rules, blocked paths, sitemap links and AI crawler settings for GPTBot, ClaudeBot and more. Free download.
 focus: robots.txt generator
 schema: WebApplication
 ---
-Build a correct robots.txt file in seconds. Choose WordPress-friendly defaults, block private paths, add your sitemap and decide how AI crawlers such as GPTBot, ClaudeBot and PerplexityBot may use your site. Then copy or download the file.
+This free robots.txt generator writes the file for you, with safe defaults for WordPress. Build a correct robots.txt file in seconds. Choose WordPress-friendly defaults, block private paths, add your sitemap and decide how AI crawlers such as GPTBot, ClaudeBot and PerplexityBot may use your site. Then copy or download the file.
 
 [tool]
 
@@ -23,7 +23,7 @@ Two points cause most of the confusion:
 - **Robots.txt controls crawling, not indexing.** Blocking a URL stops compliant crawlers fetching it, but Google can still index the URL without its content if other pages link to it. To keep a page out of search results, let it be crawled and use a `noindex` meta tag instead.
 - **Robots.txt is not security.** The file is public and only polite bots follow it. Never rely on it to hide private files; use passwords or server rules for that.
 
-## How the generator works
+## How the robots.txt generator works
 
 1. **Default rule.** Choose "Allow all crawlers" for a normal public website. "Block all crawlers" is only for staging or private sites, because it stops Google crawling everything.
 2. **WordPress site.** Tick this to block the admin area while still allowing `admin-ajax.php`, which some themes and plugins need on the public site.
@@ -71,7 +71,9 @@ The owner uploads it to the site root and checks it in Google Search Console's r
 
 Most small local business websites in the US, UK, Canada and Australia need a very simple robots.txt: allow everything, block the admin area and internal search, and list the sitemap. Make sure your location, service and contact pages are never blocked, because Google uses them to understand where you operate. If you use a booking or quote system on a separate subdomain, that subdomain needs its own robots.txt.
 
-## Frequently asked questions
+Google explains what robots.txt can and cannot do in its [introduction to robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro).
+
+## Robots.txt generator: frequently asked questions
 
 Q: Where do I put the robots.txt file?
 A: In the root folder of your website so it opens at yourdomain.com/robots.txt. On WordPress you can upload it by FTP or your host's file manager, or manage it with an SEO plugin.

@@ -8,7 +8,7 @@ description: Check any URL for redirects. See every hop, status code and respons
 focus: redirect checker
 schema: WebApplication
 ---
-Enter any public URL to trace exactly what happens when a browser or search engine requests it. You will see every redirect hop, the status code at each step, the response time and the final destination, plus plain-English advice on what to fix.
+This free redirect checker shows the full path a URL takes before it loads. Enter any public URL to trace exactly what happens when a browser or search engine requests it. You will see every redirect hop, the status code at each step, the response time and the final destination, plus plain-English advice on what to fix.
 
 [tool]
 
@@ -68,7 +68,9 @@ Two problems stand out. The chain has three redirects where one would do, adding
 
 When a local business in the US, UK, Canada or Australia changes its website, the URL on its Google Business Profile, local directories (such as Yelp, Yell or Yellow Pages) and social profiles often still points to the old address. Test those exact links with this tool. If they go through several hops or end at an error, update the link at the source and fix the redirect. Also check that your domain with and without "www", and with "http", all land on the same final page in one step.
 
-## Frequently asked questions
+Google explains which redirects to use, and when, in its [guide to redirects and Google Search](https://developers.google.com/search/docs/crawling-indexing/301-redirects).
+
+## Redirect checker: frequently asked questions
 
 Q: Do redirects hurt SEO?
 A: A single, well-chosen permanent redirect passes visitors and search signals to the new page with little or no loss. Problems start with long chains, loops, redirects to irrelevant pages and temporary redirects used for permanent moves.

@@ -620,13 +620,12 @@ function semrs_store_pro_plans() {
 		__( 'One key for every add-on. Buy another later and it switches on by itself, with nothing to reinstall.', 'semrs-site' ),
 		__( 'Local and staging sites are free and never use a slot.', 'semrs-site' ),
 		__( 'Add-ons you paid for keep working even if you stop renewing. Renewing keeps updates and support coming.', 'semrs-site' ),
-		__( 'Pay by card or PayPal at checkout, or ask for an invoice and pay by bank transfer.', 'semrs-site' ),
-		__( 'Our order process is conducted by our online reseller Paddle.com. Paddle.com is the Merchant of Record for all our orders.', 'semrs-site' ),
+		__( 'Pay by bank transfer on invoice, or at the online checkout when one is shown.', 'semrs-site' ),
 		__( 'SEMRS Core, SEMRS Blocks, SEMRS Tools and the SEMRS theme stay free.', 'semrs-site' ),
 	);
 	if ( $sales['refund_days'] ) {
 		/* translators: %d: days */
-		array_unshift( $perks, sprintf( __( '%d-day money-back guarantee.', 'semrs-site' ), (int) $sales['refund_days'] ) );
+		array_unshift( $perks, sprintf( __( '%d-day refunds, no questions asked.', 'semrs-site' ), (int) $sales['refund_days'] ) );
 	}
 	$out .= '<ul class="semrs-pp__perks semrs-ticks">';
 	foreach ( $perks as $perk ) {

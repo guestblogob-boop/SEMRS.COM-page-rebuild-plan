@@ -38,6 +38,24 @@ const FAQ = (pairs) => `<!-- wp:group {"className":"semrs-faq","layout":{"type":
 	`<!-- wp:details -->\n<details class="wp-block-details"><summary>${inline(q)}</summary>${P(a)}</details>\n<!-- /wp:details -->`).join('\n\n')}</div>\n<!-- /wp:group -->`;
 const CTA = (t) => `<!-- wp:group {"className":"semrs-service-cta","layout":{"type":"default"}} -->\n<div class="wp-block-group semrs-service-cta">${P(t)}</div>\n<!-- /wp:group -->`;
 
+// Light inline-SVG picture of the "How to use" steps (no image file, theme colors, dark mode safe).
+const plain = (s) => s.replace(/\*\*|`/g, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1');
+const short = (s) => { const t = plain(s).split(/[.,;:(]/)[0].trim(); const w = t.split(/\s+/); return w.length > 7 ? w.slice(0, 7).join(' ') + '…' : t; };
+const wrapText = (t, max) => { const out = []; let line = ''; for (const w of t.split(' ')) { if ((line + ' ' + w).trim().length > max) { out.push(line.trim()); line = w; } else line += ' ' + w; } if (line.trim()) out.push(line.trim()); return out.slice(0, 3); };
+const STEPS_SVG = (focus, items, works = false) => {
+	const steps = items.slice(0, 5).map(short);
+	const n = steps.length, w = 640, colW = w / n;
+	const label = `${works ? `How the ${focus} works` : `How to use the ${focus}`} in ${n} steps: ${steps.map((s, i) => `${i + 1}. ${s}`).join('; ')}`;
+	const cols = steps.map((s, i) => {
+		const cx = colW * i + colW / 2;
+		const lines = wrapText(s, Math.floor(colW / 9)).map((l, j) => `<text x="${cx}" y="${108 + j * 20}" text-anchor="middle" font-size="15" fill="currentColor">${esc(l)}</text>`).join('');
+		const arrow = i < n - 1 ? `<path d="M${cx + 34} 52 H${cx + colW - 34}" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/>` : '';
+		return `${arrow}<circle cx="${cx}" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="${cx}" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">${i + 1}</text>${lines}`;
+	}).join('');
+	return `<!-- wp:html -->\n<figure class="semrs-steps-figure"><svg role="img" aria-label="${esc(label).replace(/"/g, '&quot;')}" viewBox="0 0 ${w} 180" width="100%" xmlns="http://www.w3.org/2000/svg" style="max-width:${w}px;height:auto">${cols}</svg></figure>\n<!-- /wp:html -->`;
+};
+const TOC = '<!-- wp:semrs/toc {"levels":"2","collapsed":true} /-->';
+
 function parse(file) {
 	const raw = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
 	const m = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
@@ -48,6 +66,8 @@ function parse(file) {
 	const lines = m[2].split('\n');
 	const blocks = [];
 	let words = 0;
+	let lastH2 = '';
+	let figured = false;
 	for (let i = 0; i < lines.length; i++) {
 		const l = lines[i].trim();
 		if (!l) { continue; }
@@ -56,13 +76,14 @@ function parse(file) {
 		if (l === '[ad]') { blocks.push(SC('[semrs_ad slot="tool"]')); continue; }
 		if (/^\[semrs_[a-z_]+.*\]$/.test(l)) { blocks.push(SC(l)); continue; }
 		if (l.startsWith('### ')) { blocks.push(H(l.slice(4), 3)); count(l.slice(4)); continue; }
-		if (l.startsWith('## ')) { blocks.push(H(l.slice(3), 2)); count(l.slice(3)); continue; }
+		if (l.startsWith('## ')) { lastH2 = l.slice(3); blocks.push(H(lastH2, 2)); count(lastH2); continue; }
 		if (l.startsWith('> ')) { blocks.push(CTA(l.slice(2))); count(l.slice(2)); continue; }
 		if (/^(- |\d+\. )/.test(l)) {
 			const ordered = /^\d+\. /.test(l);
 			const items = [];
 			while (i < lines.length && /^(- |\d+\. )/.test(lines[i].trim())) { const t = lines[i].trim().replace(/^(- |\d+\. )/, ''); items.push(t); count(t); i++; }
 			i--;
+			if (ordered && !figured && meta.focus && items.length >= 3 && /^how (to (use|find)|the .+ works)/i.test(lastH2)) { blocks.push(STEPS_SVG(meta.focus, items, /works$/i.test(lastH2))); figured = true; }
 			blocks.push(LIST(items, ordered));
 			continue;
 		}
@@ -80,6 +101,10 @@ function parse(file) {
 			continue;
 		}
 		blocks.push(P(l)); count(l);
+	}
+	const h2s = blocks.filter((b) => b.startsWith('<!-- wp:heading -->')).length;
+	if (h2s >= 3 && words > 600) {
+		blocks.splice(blocks.findIndex((b) => b.startsWith('<!-- wp:heading -->')), 0, TOC);
 	}
 	return { slug, meta, html: blocks.join('\n\n') + '\n', words };
 }

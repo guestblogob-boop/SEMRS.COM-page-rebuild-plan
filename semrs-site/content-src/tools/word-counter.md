@@ -3,12 +3,12 @@ kind: tool
 parent: tools
 order: 7
 h1: Free Word Counter
-title: Free Word Counter – Words, Reading Time & Keywords | SEMRS
+title: Free Word Counter – 8 Text Stats & Reading Time | SEMRS
 description: Count words, characters, sentences and paragraphs instantly. See reading and speaking time, average sentence length and keyword density. Private and free.
 focus: word counter
 schema: WebApplication
 ---
-Paste or type any text to count words, characters, sentences and paragraphs as you write. The counter also shows reading time, speaking time, average sentence length and your most-used keywords and phrases, all calculated privately in your browser.
+This free word counter updates live as you type and never stores your text. Paste or type any text to count words, characters, sentences and paragraphs as you write. The counter also shows reading time, speaking time, average sentence length and your most-used keywords and phrases, all calculated privately in your browser.
 
 [tool]
 
@@ -66,6 +66,8 @@ A home cleaning company in Brisbane drafts a 410-word service page. The counter 
 ## Tips for local businesses
 
 Local customers in the US, UK, Canada and Australia want quick, practical answers: what you do, where you work, what it costs and how to contact you. Use the counter to keep service pages focused and scannable, and make sure your town or area appears naturally where it helps the reader, for example in the service-area section. Avoid repeating city names over and over; one clear mention in the right places reads better and works better.
+
+Google says there is no ideal word count; its guide to [creating helpful content](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) explains what matters instead.
 
 ## Frequently asked questions
 

@@ -3,12 +3,12 @@ kind: tool
 parent: tools
 order: 11
 h1: Free Image Compressor & WebP Converter
-title: Free Image Compressor & WebP Converter | SEMRS
+title: Free Image Compressor & WebP Converter 2026 | SEMRS
 description: Compress JPG and PNG images and convert them to WebP in your browser. Resize to web-friendly widths and download. Files never leave your device. Free.
 focus: image compressor
 schema: WebApplication
 ---
-Compress images and convert them to WebP without uploading anything. Choose a format, quality and maximum width, drop in up to 20 images, and download smaller files that load faster on your website. All processing happens on your own device.
+This free image compressor works entirely in your browser. Compress images and convert them to WebP without uploading anything. Choose a format, quality and maximum width, drop in up to 20 images, and download smaller files that load faster on your website. All processing happens on your own device.
 
 [tool]
 
@@ -68,7 +68,9 @@ A café in Sydney adds a new menu page with eight photos taken on a phone. Each 
 
 For local businesses in the US, UK, Canada and Australia, real photos are powerful: your team, your premises, your work and your products help customers trust you. Compress them before adding them to your website and your Google Business Profile so they load quickly on phones, where most local searches happen. Use file names and alt text that describe the photo honestly, and mention the location only where it is genuinely relevant, such as a photo of your shopfront.
 
-## Frequently asked questions
+Google explains why WebP files are smaller on its [WebP image format page](https://developers.google.com/speed/webp).
+
+## Image compressor: frequently asked questions
 
 Q: Are my images uploaded anywhere?
 A: No. Compression happens entirely in your browser. Your images never leave your device.
