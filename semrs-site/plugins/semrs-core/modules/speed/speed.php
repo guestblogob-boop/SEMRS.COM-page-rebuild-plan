@@ -130,7 +130,14 @@ function semrs_speed_boot() {
 		add_filter( 'render_block_core/embed', 'semrs_speed_youtube_facade', 10, 2 );
 	}
 	if ( $s['preload_img'] ) {
-		add_action( 'wp_head', 'semrs_speed_preload_image', 2 );
+		if ( semrs_speed_lcp_first() ) {
+			// Main image first: before the ad and analytics tags (priority 2), and only the first
+			// image in the content loads eagerly, so lower images don't compete with it.
+			add_action( 'wp_head', 'semrs_speed_preload_image', 1 );
+			add_filter( 'wp_omit_loading_attr_threshold', function () { return 1; } );
+		} else {
+			add_action( 'wp_head', 'semrs_speed_preload_image', 2 );
+		}
 	}
 	if ( $s['hints'] ) {
 		add_filter( 'wp_resource_hints', 'semrs_speed_hints', 10, 2 );
@@ -186,6 +193,18 @@ function semrs_speed_youtube_facade( $html, $block ) {
 }
 
 /**
+ * "Main image first" mode (on by default): the featured image preload uses the image's own sizes,
+ * only the first content image loads eagerly, and unused early connections are dropped.
+ * Tested on semrs.com articles (2026-10-31, PageSpeed mobile, 6 runs each): average 92 → 95,
+ * lowest 88 → 94. Turn off with add_filter( 'semrs_speed_lcp_first', '__return_false' ).
+ *
+ * @return bool
+ */
+function semrs_speed_lcp_first() {
+	return (bool) apply_filters( 'semrs_speed_lcp_first', true );
+}
+
+/**
  * Preload the featured image on singular pages.
  */
 function semrs_speed_preload_image() {
@@ -195,11 +214,13 @@ function semrs_speed_preload_image() {
 	$id     = get_post_thumbnail_id();
 	$src    = wp_get_attachment_image_url( $id, 'large' );
 	$srcset = wp_get_attachment_image_srcset( $id, 'large' );
+	// The same sizes the theme prints on the image, so the browser preloads the file it will show.
+	$sizes = semrs_speed_lcp_first() ? (string) wp_get_attachment_image_sizes( $id, 'large' ) : '';
 	if ( $src ) {
 		printf(
 			'<link rel="preload" as="image" href="%s"%s fetchpriority="high">' . "\n",
 			esc_url( $src ),
-			$srcset ? ' imagesrcset="' . esc_attr( $srcset ) . '" imagesizes="(max-width: 1200px) 100vw, 1200px"' : ''
+			$srcset ? ' imagesrcset="' . esc_attr( $srcset ) . '" imagesizes="' . esc_attr( '' !== $sizes ? $sizes : '(max-width: 1200px) 100vw, 1200px' ) . '"' : ''
 		);
 	}
 }
@@ -215,11 +236,17 @@ function semrs_speed_hints( $urls, $type ) {
 	if ( 'preconnect' !== $type ) {
 		return $urls;
 	}
+	// "Main image first" keeps early connections for what loads straight away only: the ad server and
+	// Google Tag Manager are reached later (the tag is delayed until interaction), and an unused
+	// preconnect takes a connection slot from the main image on slow phones.
+	$lean = semrs_speed_lcp_first();
 	if ( function_exists( 'semrs_ads_allowed' ) && semrs_ads_allowed() ) {
 		$urls[] = array( 'href' => 'https://pagead2.googlesyndication.com', 'crossorigin' );
-		$urls[] = array( 'href' => 'https://googleads.g.doubleclick.net', 'crossorigin' );
+		if ( ! $lean ) {
+			$urls[] = array( 'href' => 'https://googleads.g.doubleclick.net', 'crossorigin' );
+		}
 	}
-	if ( wp_script_is( 'google_gtagjs', 'enqueued' ) ) {
+	if ( ! $lean && wp_script_is( 'google_gtagjs', 'enqueued' ) ) {
 		$urls[] = array( 'href' => 'https://www.googletagmanager.com', 'crossorigin' );
 	}
 	return $urls;

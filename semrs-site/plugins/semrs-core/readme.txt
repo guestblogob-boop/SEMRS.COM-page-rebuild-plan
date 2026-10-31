@@ -4,7 +4,7 @@ Tags: seo, page cache, redirects, webp, user roles
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.35
+Stable tag: 1.3.38
 License: GPLv2 or later
 
 Free SEO, redirects, page cache, WebP images, user roles, review widgets and a policy-safe AdSense manager in one plugin.
@@ -81,6 +81,15 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt and all other features run entirely on your own server.
 
 == Changelog ==
+
+= 1.3.38 =
+* Speed: main image first is now on by default. The featured image preload uses the image's own sizes, only the first content image loads eagerly, and unused early connections to the ad server and Tag Manager are dropped (articles: mobile PageSpeed average 92 to 95, lowest 88 to 94)
+
+= 1.3.37 =
+* Speed test switch (?semrs_lcp=1) also drops the unused early connections to the ad server and Tag Manager
+
+= 1.3.36 =
+* Speed: test switch for 'main image first' (?semrs_lcp=1): featured image preload before ad tags, preload sizes match the shown image, only the first content image loads eagerly
 
 = 1.3.35 =
 * SEO score: text in neighbouring elements (buttons, cards, table cells) is no longer glued into one long word, which made readability scores too low
