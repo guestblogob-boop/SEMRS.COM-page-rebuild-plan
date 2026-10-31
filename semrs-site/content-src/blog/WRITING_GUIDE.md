@@ -69,7 +69,7 @@ keyword: <primary keyword from the plan>
 
 | Image | Rule |
 |---|---|
-| Featured image | One photo, 1200 × 675, WebP, under 100 KB, file name `{slug}-featured.webp`. Own photos or CC0 / commercial-use license; record the credit in the media description. |
+| Featured image | One photo, 1200 × 675, WebP, under 100 KB (its 768 px phone copy under 30 KB), file name `{slug}-featured.webp`, uploaded to the Media Library (never by URL). It is the page's main image and loads first; see section 13. Own photos or CC0 / commercial-use license; record the credit in the media description. |
 | Data graphic | One per article, in the body, drawn in SEMRS colors (blue #0b2fd1, orange #f7941d) with `content-src/blog/graphics.mjs`. Use only cited figures or the article's own steps. Label examples as examples. |
 | Alt text | Describe what the image actually shows; include the topic naturally, never stuff keywords. |
 | Caption | One sentence that adds meaning (what the reader should take from it). |
@@ -171,6 +171,10 @@ The AdSense script itself costs ad pages 5–15 Performance points on PageSpeed 
 
 **Images and media**
 - WebP (or AVIF/SVG), sized to how they show: 1200 px wide at most for full-width images. Featured images under 100 KB, any image under 150 KB.
+- **The featured image is the main image (it decides Largest Contentful Paint on phones).** Upload it at 1200 × 675 through the Media Library, never by URL, so WordPress makes the 768 px and 1116 px copies. Phones load the 768 px copy: keep it under 30 KB (the October 2026 articles are 10–26 KB).
+- SEMRS Core (1.3.38+, "main image first") preloads the featured image in the exact size the theme shows, loads only that image straight away, and lets every image below it wait until the reader scrolls. Keep it working: one featured image per post, no second large image or slider above the first heading, and no image added to the top of the content with custom code.
+- Don't add `preconnect`, `preload` or third-party script tags to content or Custom HTML blocks: an unused early connection takes bandwidth from the main image on slow phones.
+- Measured result (PageSpeed mobile, 6 runs on 3 articles): average 92 → 95, lowest 88 → 94. On ad pages the AdSense script still costs a few points; that is expected (see the targets above).
 - No GIFs. Use a still image or a short, muted video.
 - Videos and maps are embedded with lazy loading (the default WordPress embed blocks do this).
 
@@ -242,7 +246,7 @@ These are the exact checks SEMRS Core scores (`modules/seo/analysis.php`). Meet 
 - Posts need **2+** images or graphics; pages need 1+. The featured image does not count, because it sits outside the content.
 - At least one image alt text or graphic label names the topic, which naturally contains the keyword (for example "Google Ads cost at a glance").
 - The easy way: a **summary graphic** after Key takeaways, written as `[glance: Topic at a glance | point | point | point | point]`. It is a light inline SVG in theme colors, with no file to load, so PageSpeed is unaffected. Points come from the article itself, each under about 30 characters.
-- A featured image is always set (share cards). Free-stock photos carry the plain-text SEMRS stamp, never the logo.
+- A featured image is always set (share cards). It is the page's main image: 1200 × 675 WebP from the Media Library, phone copy (768 px) under 30 KB, and nothing large above the first heading, so it loads first (section 13). Free-stock photos carry the plain-text SEMRS stamp, never the logo.
 
 **Links**
 - 3–5 internal links, plus **at least one outside link to an official source** (Google, government, regulator, standards body). Check that the URL opens before you use it.
