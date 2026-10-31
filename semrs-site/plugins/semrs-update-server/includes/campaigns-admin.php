@@ -481,3 +481,121 @@ function semrs_us_page_affiliates() {
 	</div>
 	<?php
 }
+
+/**
+ * The automatic popups as entries for the SEMRS → Popups list: id => title, content.
+ *
+ * @return array<string, string[]>
+ */
+function semrs_us_popup_entries() {
+	$out    = array();
+	$bundle = __( 'All Pro bundle: SEO + Speed + Ads + Theme in one key.', 'semrs-update-server' );
+	foreach ( semrs_us_campaigns() as $id => $c ) {
+		$deal = $c['percent'] . '%' . ( ! empty( $c['life'] ) ? ' / ' . $c['life'] . '% ' . __( 'lifetime', 'semrs-update-server' ) : '' ) . ' · ' . $c['code'];
+		if ( $c['season'] ) {
+			$win   = semrs_us_campaign_window( $c );
+			$when  = wp_date( 'M j', $win[0] ) . '–' . wp_date( 'M j, Y', $win[1] );
+			/* translators: 1: sale, 2: dates, 3: deal */
+			$title = sprintf( __( '%1$s · popup + sale bar · %2$s · %3$s', 'semrs-update-server' ), $c['name'], $when, $deal );
+		} else {
+			/* translators: 1: deal name, 2: deal */
+			$title = sprintf( __( '%1$s · every day · %2$s', 'semrs-update-server' ), $c['name'], $deal );
+		}
+		$out[ $id ] = array( $title, '<p>' . esc_html( sprintf( $c['headline'], (int) $c['percent'] ) ) . '</p><p>' . esc_html( sprintf( $c['text'], (int) $c['percent'] ) ) . '</p><p>' . esc_html( $bundle ) . '</p>' );
+	}
+	$out['lifetime']  = array( __( 'Lifetime nudge · pricing page · pay once', 'semrs-update-server' ), '<p>' . esc_html__( 'All Pro for unlimited websites with lifetime updates.', 'semrs-update-server' ) . '</p>' );
+	$out['proof']     = array( __( 'Social proof · pricing page · live site count', 'semrs-update-server' ), '<p>' . esc_html__( 'Real number of sites that ran SEMRS in the last 30 days.', 'semrs-update-server' ) . '</p>' );
+	$out['affiliate'] = array( __( 'Affiliate invite · 50% first order, 30% renewals', 'semrs-update-server' ), '<p>' . esc_html__( 'Invites visitors to the affiliate program.', 'semrs-update-server' ) . '</p>' );
+	return $out;
+}
+
+/**
+ * Keep one private entry per automatic popup in SEMRS → Popups (private, so
+ * the Pro popup engine never shows them a second time).
+ */
+function semrs_us_sync_popup_posts() {
+	if ( ! post_type_exists( 'semrs_popup' ) ) {
+		return;
+	}
+	$have = array();
+	foreach ( get_posts( array( 'post_type' => 'semrs_popup', 'post_status' => 'any', 'numberposts' => 100, 'meta_key' => '_semrs_us_popup', 'no_found_rows' => true ) ) as $p ) { // phpcs:ignore WordPress.DB.SlowDBQuery -- small set, admin only.
+		$have[ get_post_meta( $p->ID, '_semrs_us_popup', true ) ] = $p;
+	}
+	$order = 0;
+	foreach ( semrs_us_popup_entries() as $id => $e ) {
+		$order++;
+		$p = $have[ $id ] ?? null;
+		if ( $p && 'trash' === $p->post_status ) {
+			continue; // Removed from the list by an admin: leave it in the trash.
+		}
+		if ( $p ) {
+			if ( $p->post_title !== $e[0] || $p->post_content !== $e[1] || (int) $p->menu_order !== $order ) {
+				wp_update_post( array( 'ID' => $p->ID, 'post_title' => $e[0], 'post_content' => $e[1], 'menu_order' => $order ) );
+			}
+			continue;
+		}
+		$pid = wp_insert_post( array( 'post_type' => 'semrs_popup', 'post_status' => 'private', 'post_title' => $e[0], 'post_content' => $e[1], 'menu_order' => $order ) );
+		if ( $pid && ! is_wp_error( $pid ) ) {
+			update_post_meta( $pid, '_semrs_us_popup', $id );
+		}
+	}
+}
+add_action(
+	'load-edit.php',
+	function () {
+		if ( isset( $_GET['post_type'] ) && 'semrs_popup' === $_GET['post_type'] && current_user_can( 'manage_options' ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+			semrs_us_sync_popup_posts();
+		}
+	}
+);
+add_action( 'update_option_semrs_us_campaigns', 'semrs_us_sync_popup_posts' );
+add_action( 'update_option_semrs_us_popups', 'semrs_us_sync_popup_posts' );
+
+/**
+ * Label the automatic entries in the list.
+ *
+ * @param array   $states States.
+ * @param WP_Post $post   Post.
+ * @return array
+ */
+function semrs_us_popup_post_state( $states, $post ) {
+	if ( 'semrs_popup' === $post->post_type && get_post_meta( $post->ID, '_semrs_us_popup', true ) ) {
+		unset( $states['private'] );
+		$states['semrs_auto'] = __( 'Automatic: runs on its calendar dates', 'semrs-update-server' );
+	}
+	return $states;
+}
+add_filter( 'display_post_states', 'semrs_us_popup_post_state', 10, 2 );
+
+/**
+ * Row links for the automatic entries: edit in the sales calendar, preview.
+ *
+ * @param array   $actions Actions.
+ * @param WP_Post $post    Post.
+ * @return array
+ */
+function semrs_us_popup_row_actions( $actions, $post ) {
+	$id = 'semrs_popup' === $post->post_type ? get_post_meta( $post->ID, '_semrs_us_popup', true ) : '';
+	if ( ! $id ) {
+		return $actions;
+	}
+	$edit = admin_url( 'admin.php?page=' . ( defined( 'SEMRS_CORE_VERSION' ) ? 'semrs-sales-popups' : 'semrs-updates-campaigns' ) );
+	$out  = array( 'edit' => '<a href="' . esc_url( $edit . '#popups' ) . '">' . esc_html__( 'Edit dates, codes and texts', 'semrs-update-server' ) . '</a>' );
+	if ( isset( semrs_us_campaigns()[ $id ] ) ) {
+		$out['view'] = '<a href="' . esc_url( add_query_arg( 'semrs_preview', $id, strtok( semrs_us_pricing_url(), '#' ) ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'Preview', 'semrs-update-server' ) . '</a>';
+	}
+	return $out;
+}
+add_filter( 'post_row_actions', 'semrs_us_popup_row_actions', 10, 2 );
+
+/**
+ * Opening an automatic entry goes to the sales calendar, where it is edited.
+ */
+function semrs_us_popup_edit_redirect() {
+	$pid = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification
+	if ( $pid && 'semrs_popup' === get_post_type( $pid ) && get_post_meta( $pid, '_semrs_us_popup', true ) ) {
+		wp_safe_redirect( admin_url( 'admin.php?page=' . ( defined( 'SEMRS_CORE_VERSION' ) ? 'semrs-sales-popups' : 'semrs-updates-campaigns' ) . '#popups' ) );
+		exit;
+	}
+}
+add_action( 'load-post.php', 'semrs_us_popup_edit_redirect' );
