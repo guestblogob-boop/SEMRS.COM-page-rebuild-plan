@@ -2,7 +2,7 @@
 
 The house style and SEO checklist for every semrs.com article. Sections 13 (speed, accessibility and dark mode) and 14 (indexing and search engines) apply to every page and post on the site. The first articles (October 2026) follow it and score 98–100 on the SEMRS SEO check. Use it for every article in the content plan (`keywords/semrs-keywords.xlsx`, sheet "3-Month Plan").
 
-Last updated 2026-10-28, after the site-wide SEO audit (average score 87 across 61 pages), a PageSpeed Insights run on all 63 published pages, and a review of every SEMRS plugin setting.
+Last updated 2026-10-31: every indexed page and post on semrs.com now scores 100 on the SEMRS SEO check. **Section 15 is the strict 100-score checklist: follow it for every new article and page.** `build-blog.mjs` runs the same checks as SEMRS Core and must print `ok` before upload.
 
 ## 1. Who we write for
 
@@ -100,7 +100,7 @@ Build images with `node content-src/blog/blog-images.mjs` from the `semrs-site` 
 - FAQ section present (FAQPage schema is added by SEMRS automatically).
 - Article, BreadcrumbList and Organization schema come from SEMRS; nothing to add by hand.
 - Run `node content-src/blog/build-blog.mjs` from the `semrs-site` folder: every article must print `ok`.
-- After publishing, the SEMRS SEO score must be 98 or higher, with every **Speed & accessibility** check green.
+- After publishing, the SEMRS SEO score must be **100**, with every **Speed & accessibility** check green (section 15).
 - PageSpeed Insights 100 / 100 / 100 / 100 and Agentic Browsing 3/3, mobile and desktop: follow section 13.
 
 ## 9. Local SEO requirements
@@ -220,3 +220,35 @@ Site-wide settings, checked and set on 2026-10-28. Keep them this way; content w
 - SEO → Business: phone, street address, city and country, only if SEMRS has a real public address (never a virtual office).
 - SEO → Default share image (1200 × 630) for pages without a featured image.
 - AI SEO: an API key of your own (Claude, OpenAI or Gemini) if you want AI-written titles and descriptions; a person always reviews them.
+
+## 15. The 100-score checklist (strict, every article and page)
+
+These are the exact checks SEMRS Core scores (`modules/seo/analysis.php`). Meet all of them and the page scores 100; `build-blog.mjs` prints `FIX …` for any that fail. Never reach a number by stuffing keywords: use synonyms, and let the topic name carry the keyword.
+
+**Keyword (one specific focus keyword per URL)**
+- In the slug, the SEO title (near the start), the meta description, the first 10% of the text, and at least one H2/H3.
+- Density 0.5–2.5%. The table of contents repeats every H2, so headings that contain the keyword count twice: keep it in one or two headings, not all of them.
+
+**Title and description**
+- SEO title 30–60 characters with: the keyword near the start, a **number** (a real count, or the year), a **sentiment word** (easy, simple, smart, honest, real, helpful, avoid, mistakes…) and a **power word** (guide, simple, practical, essential, step-by-step, smart…). Only words that are true for the page: no "proven", "best" or "ultimate" without proof.
+- Meta description 120–160 characters, with the keyword, saying what the reader gets.
+
+**Content**
+- Posts 600+ words (pillar articles 1,500+), pages 300+. One H1 (the title; full-width pages carry their own single H1), headings in order, a subheading at least every 350 words.
+- No more than 25% of sentences over 25 words, paragraphs under 120 words, Flesch reading ease 50+.
+- A **collapsed table of contents** on anything over 600 words with 3+ H2 (`build-blog.mjs` adds it after the summary graphic; on pages, add the SEMRS Table of Contents block with "Start closed").
+
+**Images and graphics**
+- Posts need **2+** images or graphics; pages need 1+. The featured image does not count, because it sits outside the content.
+- At least one image alt text or graphic label names the topic, which naturally contains the keyword (for example "Google Ads cost at a glance").
+- The easy way: a **summary graphic** after Key takeaways, written as `[glance: Topic at a glance | point | point | point | point]`. It is a light inline SVG in theme colors, with no file to load, so PageSpeed is unaffected. Points come from the article itself, each under about 30 characters.
+- A featured image is always set (share cards). Free-stock photos carry the plain-text SEMRS stamp, never the logo.
+
+**Links**
+- 3–5 internal links, plus **at least one outside link to an official source** (Google, government, regulator, standards body). Check that the URL opens before you use it.
+
+**Before and after publishing**
+1. `node content-src/blog/build-blog.mjs` prints `ok` for the article.
+2. After upload, the SEMRS SEO box shows **100**, with every Speed & accessibility check green.
+3. PageSpeed Insights meets the section 13 targets (100/100/100/100 on ad-free pages).
+4. If you change a live page's text, copy the change back into its source file (`content-src/…`) the same day, so a rebuild never undoes it.

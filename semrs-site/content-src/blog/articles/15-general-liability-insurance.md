@@ -1,7 +1,7 @@
 ---
 title: General Liability Insurance for Small Business: Coverage, Cost and How to Buy
 slug: general-liability-insurance-small-business
-seo_title: General Liability Insurance for Small Business (2026)
+seo_title: General Liability Insurance: Simple 2026 Guide
 focus: general liability insurance
 description: What general liability insurance covers for a small business, what it leaves out, what it costs in 2026 and how to buy the right policy with confidence.
 category: 299
@@ -14,6 +14,8 @@ General liability insurance pays for claims that your business caused injury to 
 - General liability covers third-party bodily injury, property damage, and personal and advertising injury, plus legal defense costs.
 - It does not cover your own employees, your own property, professional mistakes or vehicles; those need other policies.
 - Small businesses with Insureon paid a median of about $45 a month in 2026, but your price depends on your industry, location and limits.
+
+[glance: General liability insurance at a glance | Covers injury and damage | Not employees or vehicles | Median about $45 a month | Price depends on your risk]
 
 ! This article is general information, not insurance or legal advice. Coverage depends on the exact policy wording and your state. Speak to a licensed insurance agent or broker before you buy or change a policy.
 

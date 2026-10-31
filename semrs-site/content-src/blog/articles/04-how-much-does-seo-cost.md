@@ -1,7 +1,7 @@
 ---
 title: How Much Does SEO Cost? Pricing Models, Typical Ranges and What You Get
 slug: how-much-does-seo-cost
-seo_title: How Much Does SEO Cost in 2026? Pricing Guide
+seo_title: How Much Does SEO Cost in 2026? Honest Pricing Guide
 focus: how much does seo cost
 description: How much does SEO cost in 2026? Retainer, project and hourly pricing, typical ranges from industry surveys, and how to judge what a quote includes.
 category: 292
@@ -14,6 +14,8 @@ How much does SEO cost? Most businesses pay for SEO as a monthly retainer, and t
 - Most SEO providers charge a monthly retainer; the most common band is $501–$1,000.
 - Agencies averaged about $3,209 a month and freelancers about $1,348 in the Ahrefs survey.
 - Budget for six to twelve months and judge SEO by leads, not rankings alone.
+
+[glance: How much does SEO cost? At a glance | Most common: $501–$1,000/mo | Agencies avg about $3,209 | Freelancers avg about $1,348 | Plan for 6–12 months]
 
 ## How much does SEO cost? The short answer
 

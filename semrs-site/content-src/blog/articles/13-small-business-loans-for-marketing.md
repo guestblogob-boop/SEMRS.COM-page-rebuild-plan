@@ -15,6 +15,8 @@ Small business loans can pay for a new website, a launch campaign or a steady SE
 - Lines of credit and business credit cards suit short, repeatable marketing costs; term loans suit one-off projects like a website.
 - Borrow for marketing only when your numbers show the spend can pay back the loan, interest and fees.
 
+[glance: Small business loans at a glance | SBA 7(a) and microloans | 504 loans cannot fund ads | Credit lines for short costs | Borrow only if it pays back]
+
 ! This article is general information, not financial, legal or tax advice. Loan terms, rates and eligibility change and depend on your lender and your business. Speak to your lender, accountant or a qualified advisor before you borrow.
 
 ## Can you use small business loans for marketing?

@@ -1,7 +1,7 @@
 ---
 title: Financial Advisor Marketing: How to Get More Qualified Clients in 2026
 slug: financial-advisor-marketing
-seo_title: Financial Advisor Marketing: Get More Qualified Clients
+seo_title: Financial Advisor Marketing: A Simple 6-Step Plan for 2026
 focus: financial advisor marketing
 description: A practical financial advisor marketing plan: niche positioning, SEO, Google Ads, referrals and lead generation that stay within SEC and FINRA rules.
 category: 25
@@ -14,6 +14,8 @@ Financial advisor marketing works best when it does three things at once: it mak
 - Pick a niche you can describe in one sentence; it makes SEO, ads and referrals easier.
 - Answer-first niche pages, local SEO and weekly content bring prospects who are already searching.
 - Every ad and page needs compliance review under the SEC Marketing Rule or FINRA Rule 2210.
+
+[glance: Financial advisor marketing at a glance | Pick one clear niche | Answer-first niche pages | Local SEO + weekly content | Compliance review first]
 
 ! This article is general marketing guidance, not legal or compliance advice. Ask your compliance officer or counsel to review any advertisement before you publish it.
 

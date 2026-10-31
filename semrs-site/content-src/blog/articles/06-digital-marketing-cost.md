@@ -1,7 +1,7 @@
 ---
 title: How Much Does Digital Marketing Cost? A Small Business Price Guide
 slug: how-much-does-digital-marketing-cost
-seo_title: Digital Marketing Cost: Small Business Price Guide
+seo_title: Digital Marketing Cost 2026: Honest Price Guide
 focus: digital marketing cost
 description: What digital marketing costs a small business: SEO, Google Ads, websites, content, social and email, how agencies charge and how to set a budget.
 category: 292
@@ -14,6 +14,8 @@ Your digital marketing cost can be almost nothing if you do it yourself, or many
 - Each channel is priced differently: retainers for SEO, ad spend plus fees for paid ads, projects for websites.
 - Fund one or two channels properly instead of spreading a small budget across six.
 - Measure cost per lead and cost per customer, then move budget to what works.
+
+[glance: Digital marketing cost at a glance | Each channel priced differently | Fund 1–2 channels well | Track cost per lead | Move budget to what works]
 
 ## Digital marketing cost by channel at a glance
 

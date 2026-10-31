@@ -1,7 +1,7 @@
 ---
 title: SEO for Small Business: A Step-by-Step Guide to Ranking on Google
 slug: seo-for-small-business
-seo_title: SEO for Small Business: Step-by-Step Ranking Guide
+seo_title: SEO for Small Business: Easy 9-Step Ranking Guide
 focus: seo for small business
 description: SEO for small business explained step by step: keyword research, on-page and local SEO, technical basics, content, links, AI search and results.
 category: 293
@@ -14,6 +14,8 @@ Search engine optimization (SEO) helps your website appear when people search fo
 - Start with the searches your customers make and give each main service its own page.
 - Local SEO and technical basics often bring the fastest results for small businesses.
 - Judge SEO by leads over months; results compound once pages rank.
+
+[glance: SEO for small business at a glance | Start with real searches | One page per service | Local + technical basics | Judge by leads over months]
 
 ## How SEO works in one paragraph
 

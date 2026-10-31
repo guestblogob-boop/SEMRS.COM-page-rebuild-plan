@@ -1,7 +1,7 @@
 ---
 title: ADA Website Compliance: A Practical Guide for Small Businesses
 slug: ada-website-compliance
-seo_title: ADA Website Compliance: Practical Guide for 2026
+seo_title: ADA Website Compliance: Simple, Practical Guide for 2026
 focus: ada website compliance
 description: ADA website compliance explained: what the law expects, WCAG standards, common accessibility problems, why overlays fall short and a fix plan.
 category: 24
@@ -14,6 +14,8 @@ An accessible website is one that people with disabilities can use, including pe
 - The US Department of Justice expects websites of businesses open to the public to be accessible.
 - WCAG 2.1 or 2.2 Level AA is the standard most settlements and rules refer to.
 - Fix templates and content; overlay widgets cannot guarantee compliance.
+
+[glance: ADA website compliance at a glance | Sites must be accessible | Target WCAG 2.2 AA | Fix templates and content | Overlays are not enough]
 
 ! This article is general information, not legal advice. Talk to a lawyer about your specific obligations.
 

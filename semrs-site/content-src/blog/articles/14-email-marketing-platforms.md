@@ -1,7 +1,7 @@
 ---
 title: Email Marketing Platforms for Small Business: Free Plans, Features and How to Choose
 slug: email-marketing-platforms
-seo_title: Email Marketing Platform Guide for Small Business
+seo_title: Email Marketing Platform Guide: 6 Smart Checks for 2026
 focus: email marketing platform
 description: How to choose an email marketing platform for small business: free plans compared, must-have features, pricing models and the email rules you must follow.
 category: 294
@@ -14,6 +14,8 @@ An email marketing platform lets you collect subscribers, design emails, automat
 - Start with the free plan that fits your list; most free plans cap contacts or sends, not features you need on day one.
 - Must-haves are signup forms, automation, segmentation, reporting and easy unsubscribes.
 - Every marketing email must follow the CAN-SPAM Act, and bulk senders to Gmail must authenticate their domain.
+
+[glance: Email marketing platform checklist at a glance | Start on a free plan | Forms, automation, segments | Follow CAN-SPAM | Authenticate your domain]
 
 ## What an email marketing platform does
 

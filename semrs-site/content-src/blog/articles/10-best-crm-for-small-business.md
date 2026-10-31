@@ -15,6 +15,8 @@ A customer relationship management (CRM) system keeps every lead, customer, conv
 - Look for pipelines, lead capture with source tracking, email integration and simple automation.
 - Trial two or three options with real leads before you commit.
 
+[glance: CRM for small business at a glance | Pick what your team uses | Pipelines + lead sources | Email sync, simple automation | Trial 2–3 with real leads]
+
 ## Signs you need a CRM
 
 - Leads arrive from your website, phone, email and social media, and some get missed.
@@ -82,6 +84,8 @@ A CRM becomes much more valuable when it knows where each customer came from. Tr
 - Building complex automation before the basics work.
 - Not training the team or checking adoption.
 - Not tracking lead source, which hides your best marketing channels.
+
+The U.S. Small Business Administration covers the basics of finding and keeping customers in its [marketing and sales guide](https://www.sba.gov/business-guide/manage-your-business/marketing-sales). A CRM is where that work gets tracked.
 
 ## Frequently asked questions
 

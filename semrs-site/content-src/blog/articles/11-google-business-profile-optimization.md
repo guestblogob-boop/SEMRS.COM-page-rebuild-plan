@@ -1,7 +1,7 @@
 ---
 title: Google Business Profile Optimization: The Complete Guide for Local Businesses
 slug: google-business-profile-optimization
-seo_title: Google Business Profile Optimization: Full Guide
+seo_title: Google Business Profile Optimization: Easy 2026 Guide
 focus: google business profile
 description: How to optimize your Google Business Profile: categories, services, photos, posts, reviews and the factors that help you rank in Google Maps.
 category: 26
@@ -14,6 +14,8 @@ Your Google Business Profile is the panel that appears when people search for yo
 - Google ranks local results on relevance, distance and prominence.
 - The right primary category, complete details and real photos improve relevance.
 - A steady flow of genuine reviews, with replies, builds prominence.
+
+[glance: Google Business Profile at a glance | Relevance, distance, prominence | Right primary category | Real photos, full details | Genuine reviews + replies]
 
 ## How Google ranks local results
 

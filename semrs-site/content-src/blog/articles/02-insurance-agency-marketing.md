@@ -1,7 +1,7 @@
 ---
 title: Insurance Agency Marketing: 12 Digital Marketing Ideas That Bring Real Leads
 slug: insurance-agency-marketing
-seo_title: Insurance Agency Marketing: 12 Ideas That Bring Leads
+seo_title: Insurance Agency Marketing: 12 Smart Ideas That Bring Leads
 focus: insurance agency marketing
 description: Insurance agency marketing that works: local SEO, Google Ads, lead generation, referrals and email ideas that win policyholders, plus rules to check.
 category: 25
@@ -14,6 +14,8 @@ Insurance is a crowded, expensive market to advertise in, and buying leads gets 
 - Start with free wins: a complete Google Business Profile, steady reviews and a fast quote path.
 - Use Google Ads and Local Services Ads with tight local targeting, then build leads you own with content and referrals.
 - Get written consent before marketing calls or texts and follow state insurance advertising rules.
+
+[glance: Insurance agency marketing at a glance | Complete Google profile | Local ads, tight targeting | Build leads you own | Consent before calls]
 
 ! This is general marketing guidance. Insurance advertising and telemarketing are regulated by state insurance departments and federal rules such as the TCPA. Check carrier agreements and state rules before you launch a campaign.
 

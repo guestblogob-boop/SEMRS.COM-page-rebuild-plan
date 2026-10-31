@@ -1,7 +1,7 @@
 ---
 title: Google Ads Cost in 2026: CPC by Industry and How to Set Your Budget
 slug: google-ads-cost
-seo_title: Google Ads Cost in 2026: CPC by Industry & Budgets
+seo_title: Google Ads Cost in 2026: Real CPCs & Smart Budgets
 focus: google ads cost
 description: Google Ads cost explained: average cost per click and cost per lead by industry, what drives pricing and how to set a budget that brings leads.
 category: 292
@@ -14,6 +14,8 @@ There is no fixed Google Ads cost or price list. You set a budget, Google runs a
 - The 2025 benchmarks put the average cost per click near $5.26 and the average cost per lead near $70.11.
 - Legal is the most expensive category at about $8.58 per click and $131.63 per lead.
 - Set your budget backwards from the value of a customer, then cut waste with negative keywords.
+
+[glance: Google Ads cost at a glance | Avg click about $5.26 | Avg lead about $70.11 | Legal: about $8.58 a click | Budget from customer value]
 
 ## How Google Ads pricing works
 

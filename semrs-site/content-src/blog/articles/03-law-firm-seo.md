@@ -1,7 +1,7 @@
 ---
 title: SEO for Attorneys: A Law Firm SEO Guide That Brings Signed Cases
 slug: seo-for-attorneys
-seo_title: SEO for Attorneys: Law Firm SEO Guide (2026)
+seo_title: SEO for Attorneys: Smart Law Firm SEO Guide (2026)
 focus: seo for attorneys
 description: SEO for attorneys and law firms: local SEO, practice area pages, content, links and tracking, plus the bar advertising rules to follow.
 category: 298
@@ -14,6 +14,8 @@ Legal keywords are some of the most expensive on the internet. The 2025 WordStre
 - Legal clicks are the most expensive on Google Ads, so every organic case saves real money.
 - Win the map pack first, then build one strong page per practice area and city you serve.
 - Follow your state bar advertising rules: no guarantees and no unsupported "expert" claims.
+
+[glance: SEO for attorneys at a glance | Win the map pack first | One page per practice area | Organic cases save ad spend | Follow state bar rules]
 
 This guide covers the parts of law firm SEO that move the needle, in the order most firms should tackle them.
 
