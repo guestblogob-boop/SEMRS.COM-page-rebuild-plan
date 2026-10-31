@@ -1,43 +1,64 @@
 ---
 title: SEMRS Support & User Manual
-description: How to install, set up and use the SEMRS theme, SEMRS Core, SEMRS Blocks, SEMRS Tools and SEMRS Pro, with policy guides for Google, AdSense and WordPress.org.
+description: SEMRS support and user manual: 8 step-by-step guides to install and use the SEMRS theme, Core, Blocks, Tools and Pro, plus Google and AdSense policy help.
 order: 0
+seo_title: SEMRS Support: 8 Easy Step-by-Step User Guides
+focus: semrs support
+image: support-support.webp
 ---
-Everything you need to set up a fast, policy-safe WordPress site with SEMRS. Each guide below is written step by step, with the exact menu names you will see in your dashboard.
+Welcome to SEMRS support. This user manual shows you how to build a fast, safe WordPress site with SEMRS. Every guide uses short steps and the same menu names you see in your dashboard. You do not need to know any code.
 
-## Start here: what each product does
+## What each SEMRS product does
 
-| Product | Type | Price | What it does |
-|---|---|---|---|
-| SEMRS | Theme (main) | Free | Light theme with a drag-and-drop header and footer builder, sticky and transparent header, blog features and section patterns. |
-| SEMRS Child SEO | Child theme | Free | Brand colours, a Call / WhatsApp bar on phones and a WhatsApp button. Needs the SEMRS theme. |
-| SEMRS Core | Plugin | Free | SEO (titles, schema, sitemaps), Speed optimization and a policy-safe Ads manager. Works with any theme. |
-| SEMRS Blocks | Plugin | Free | Extra blocks: icons, fancy headings, post grids, pricing, countdown, contact form and more. Works with any theme. |
-| SEMRS Tools | Plugin | Free | Free SEO tools your visitors can use on your site. |
-| SEMRS Pro | Plugin (add-on) | Paid | Unlocks Pro features in all of the above: Pro blocks, redirects, local SEO, mega menu and more. Needs SEMRS Core. |
+SEMRS is a set of free tools for WordPress, plus one paid add-on. Think of it like a house. The theme is the building. The plugins are the rooms. Pro adds the extras.
 
-## Recommended install order
+![How the SEMRS products fit together: theme at the base, Core, Blocks and Tools in the middle, Pro on top](product-stack)
 
-1. Appearance → Themes → Add New Theme → search "SEMRS" → Install → Activate. (Optional: upload SEMRS Child SEO and activate it instead.)
-2. Plugins → Add New Plugin → install and activate **SEMRS Core**, then **SEMRS Blocks**.
-3. Go to **SEMRS → Features** and switch on only what you need.
-4. Optional: upload **SEMRS Pro**, activate it and enter your key under **SEMRS → License**.
+| Product | Price | What it does for you |
+|---|---|---|
+| SEMRS theme | Free | The look of your site: header, footer, colors and layout. |
+| SEMRS Child SEO | Free | Adds a Call and WhatsApp bar on phones. Needs the SEMRS theme. |
+| SEMRS Core | Free | SEO, speed and a safe ads manager. Works with any theme. |
+| SEMRS Blocks | Free | Extra blocks for your pages, plus ready-made templates. |
+| SEMRS Tools | Free | Free SEO tools your visitors can use on your site. |
+| SEMRS Pro | Paid | Unlocks the Pro features in all of the above. |
 
-## Guides
+## Set up SEMRS in 4 steps
 
-- [Theme: header builder, layouts and page options](/support/theme/)
-- [SEMRS Blocks: every block explained](/support/blocks/)
-- [Templates & starter sites: import a complete website](/support/templates/)
-- [SEO module: titles, schema, sitemaps](/support/seo/)
-- [Ads manager and AdSense policy guide](/support/ads/)
-- [Speed optimization](/support/speed/)
-- [SEMRS Pro: license and updates](/support/pro/)
-- [Policies: Google, AdSense, WordPress.org and privacy](/support/policies/)
+![SEMRS support quick start: install the theme, add the plugins, pick features, add Pro if you need it](install-steps)
 
-## Free or Pro: how locked features look
+1. Go to **Appearance → Themes → Add New Theme**. Search for "SEMRS". Click **Install**, then **Activate**.
+2. Go to **Plugins → Add New Plugin**. Install and activate **SEMRS Core**. Then do the same for **SEMRS Blocks**.
+3. Open **SEMRS → Features**. Switch on only what you need. You can change this any time.
+4. Bought Pro? Upload **SEMRS Pro**, then paste your key in **SEMRS → License**.
 
-Pro features show a gold **PRO** badge and a lock icon in **SEMRS → Features**, **SEMRS → Blocks** and the block inserter. They stay locked until SEMRS Pro is installed and do nothing on your site until then. Free features never expire and never ask for a key.
+**Tip:** start small. Turn on one feature, check your site, then add the next one.
 
-## Need help?
+## Pick your guide
 
-Use the contact form on this site. Tell us your WordPress version, PHP version, which SEMRS products you use and what you expected to happen. We never ask for your WordPress password.
+- [Theme guide](/support/theme/): header, footer, colors and page options.
+- [Blocks guide](/support/blocks/): every block, with tips.
+- [Templates guide](/support/templates/): import a full website in one click.
+- [SEO guide](/support/seo/): titles, descriptions and the SEO score.
+- [Ads guide](/support/ads/): place ads safely and follow AdSense rules.
+- [Speed guide](/support/speed/): make your pages load fast.
+- [Pro guide](/support/pro-license/): your license key and updates.
+- [Policies guide](/support/policies/): Google, AdSense, WordPress.org and privacy.
+
+## Free or Pro: how to tell
+
+![Free or Pro: free features never expire, Pro features show a gold PRO badge](free-vs-pro)
+
+Pro features show a gold **PRO** badge and a small lock. They do nothing on your site until SEMRS Pro is active. Free features never stop working. They never ask for a key.
+
+## Need SEMRS support?
+
+Send us a message with the [contact form](/contact-us/). Please tell us:
+
+- your WordPress version and PHP version
+- which SEMRS products you use
+- what you did, and what you expected to happen
+
+We will never ask for your WordPress password.
+
+New to WordPress? The official [WordPress documentation](https://wordpress.org/documentation/) explains the basics of themes, plugins and the block editor.

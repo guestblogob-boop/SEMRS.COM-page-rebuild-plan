@@ -115,6 +115,9 @@ function semrs_us_sales() {
 	return array_merge(
 		array(
 			'ls_secret'        => '',
+			'paddle_token'     => '',
+			'paddle_secret'    => '',
+			'paddle_sandbox'   => 0,
 			'plans'            => array(),
 			'currency'         => 'USD',
 			'offer_code'       => '',
@@ -156,6 +159,7 @@ function semrs_us_plans() {
 			'term'     => $life ? 'life' : 'year',
 			'price'    => isset( $s['price'] ) && '' !== $s['price'] ? (float) $s['price'] : (float) $price,
 			'variant'  => isset( $s['variant'] ) ? (string) $s['variant'] : '',
+			'paddle'   => ! empty( $s['paddle'] ) ? (string) $s['paddle'] : ( semrs_us_paddle_default_prices()[ $id ] ?? '' ),
 			'checkout' => isset( $s['checkout'] ) ? (string) $s['checkout'] : '',
 		);
 	}
@@ -221,6 +225,9 @@ function semrs_us_offer_on() {
  * @return string
  */
 function semrs_us_buy_url( $p, $kid = '' ) {
+	if ( semrs_us_paddle_on() && '' !== $p['paddle'] ) {
+		return semrs_us_paddle_checkout_url( $p, $kid );
+	}
 	if ( '' === $p['checkout'] ) {
 		$s    = semrs_us_sales();
 		$page = $s['quote_page'] ? get_permalink( (int) $s['quote_page'] ) : '';

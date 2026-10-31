@@ -38,6 +38,18 @@ function semrs_us_support_manifest() {
 }
 
 /**
+ * Find a support page by path. get_page_by_path() also matches attachments,
+ * so a media file named "support" must not count as the hub.
+ *
+ * @param string $path Page path.
+ * @return WP_Post|null
+ */
+function semrs_us_support_find( $path ) {
+	$found = get_page_by_path( $path );
+	return $found && 'page' === $found->post_type ? $found : null;
+}
+
+/**
  * Install missing pages as drafts. The hub is /support/, the rest are children.
  *
  * @return int Pages created.
@@ -48,7 +60,7 @@ function semrs_us_install_support_pages() {
 	foreach ( semrs_us_support_manifest() as $slug => $p ) {
 		$is_hub = 'support' === $slug;
 		$path   = $is_hub ? 'support' : 'support/' . $slug;
-		$found  = get_page_by_path( $path );
+		$found  = semrs_us_support_find( $path );
 		if ( $found ) {
 			if ( $is_hub ) {
 				$parent = (int) $found->ID;
@@ -74,6 +86,14 @@ function semrs_us_install_support_pages() {
 			$parent = $id;
 		}
 		update_post_meta( $id, '_semrs_description', sanitize_text_field( $p['description'] ) );
+		if ( ! empty( $p['image'] ) && wp_attachment_is_image( (int) $p['image'] ) ) {
+			set_post_thumbnail( $id, (int) $p['image'] );
+		}
+		foreach ( array( 'seo_title' => '_semrs_title', 'focus' => '_semrs_focus' ) as $k => $meta ) {
+			if ( ! empty( $p[ $k ] ) ) {
+				update_post_meta( $id, $meta, sanitize_text_field( $p[ $k ] ) );
+			}
+		}
 		update_post_meta( $id, '_wp_page_template', 'default' );
 	}
 	return $made;
@@ -116,7 +136,7 @@ function semrs_us_support_page() {
 			<?php foreach ( $pages as $slug => $p ) : ?>
 				<?php
 				$path  = 'support' === $slug ? 'support' : 'support/' . $slug;
-				$found = get_page_by_path( $path );
+				$found = semrs_us_support_find( $path );
 				?>
 				<tr>
 					<td><?php echo esc_html( $p['title'] ); ?></td>

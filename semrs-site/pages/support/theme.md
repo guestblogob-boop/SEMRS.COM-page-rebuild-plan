@@ -1,78 +1,97 @@
 ---
 title: SEMRS Theme Manual: Header Builder, Layouts & Page Options
-description: Step-by-step guide to the free SEMRS theme: logo, header and footer builder, sticky and transparent header, colours, layouts, blog features, patterns and per-page options.
+description: SEMRS theme manual: set up the logo, the free header and footer builder, sticky and transparent headers, colors, layouts, blog features and page options.
 order: 1
+seo_title: SEMRS Theme Manual: Easy Header Builder Guide 2026
+focus: semrs theme
+image: support-theme.webp
 ---
-All theme settings live in **Appearance → Customize → SEMRS Theme**. Changes preview live and go public only when you click **Publish**.
+This guide shows you how to set up the free SEMRS theme, one step at a time. You can change everything with clicks. You never need to touch code.
 
-## 1. Logo and site identity
+## Where the SEMRS theme settings are
 
-1. Customize → Site Identity → Select logo. A square 512 × 512 px PNG or WebP works best; wide logos should be at least 320 px wide.
-2. Customize → SEMRS Theme → Logo & header button → set **Logo width on desktop** and **on mobile**. Square logos get compact sizes automatically.
-3. Header height controls the main header row.
+All settings are in one place: **Appearance → Customize → SEMRS Theme**. You see a live preview while you work. Nothing changes on your real site until you click **Publish**.
 
-## 2. Header builder
+![SEMRS theme settings path: Appearance, Customize, SEMRS Theme, then Publish](theme-customizer)
 
-Customize → SEMRS Theme → **Header builder**.
+## 1. Add your logo
 
-The header has three rows: **Top bar**, **Main header** and **Below header**. Each row has a Left, Centre and Right zone.
+1. Go to **Customize → Site Identity** and click **Select logo**.
+2. Pick your logo. A square logo of 512 × 512 pixels works best. A wide logo should be at least 320 pixels wide.
+3. Open **Logo & header button** in the same panel. Set the logo size for computers and for phones.
 
-- **Drag** an element from one zone to another, or use **+ Add element** in a zone.
-- Click **×** to remove an element. Each element can be used once.
-- A row with no elements is not printed at all (no extra code on your site).
+**Tip:** use a PNG or WebP file. They stay sharp and load fast.
 
-| Element | What it shows | Where to set it |
-|---|---|---|
-| Logo / site title | Your logo, or the site title if there is no logo | Site Identity |
-| Primary menu | The main menu (becomes the phone menu panel) | Appearance → Menus → Primary menu |
-| Secondary menu | Small one-level links, ideal in the top bar | Appearance → Menus → Secondary menu (top bar) |
-| Button / Second button | Call-to-action buttons | Logo & header button / Header builder |
-| Search | A search icon that opens a search box | – |
-| Social icons | Your social profiles in brand colours | Social profiles |
-| Phone & email | Click-to-call and click-to-email links | Header builder → Phone / Email |
-| Text / HTML 1 and 2 | Short text, such as opening hours or an offer | Header builder |
+## 2. Build your header
 
-**SEMRS Pro adds** two header elements: a dark / light switch and a language switcher (see [SEMRS Pro](/support/pro/)).
+Go to **SEMRS Theme → Header builder**. Your header has three rows. Each row has three zones: left, center and right.
 
-**Header options in the same section:** sticky header, shrink after scrolling, transparent header (Off, Front page only, All pages), white text while transparent, header background, top bar colours, show the top bar on phones, show the header button next to the menu icon on phones.
+![SEMRS theme header builder: three rows with left, center and right zones](theme-header-rows)
 
-### Phones and tablets
+- **Drag** an item to the zone you want.
+- Click **+ Add element** to add an item to a zone.
+- Click **×** to take an item away.
+- A row with nothing in it is not shown at all.
 
-Below 922 px wide the header shows the logo, search (if added) and the menu icon. The menu opens as a full-width panel with your header button at the bottom. Turn on **Show the top bar on phones** if you want contact details there too.
+| Item | What it shows |
+|---|---|
+| Logo | Your logo, or your site name if you have no logo |
+| Primary menu | Your main menu. On phones it opens as a full panel. |
+| Secondary menu | A few small links, good for the top bar |
+| Button | A call-to-action button, such as "Get a quote" |
+| Search | A search icon that opens a search box |
+| Social icons | Links to your social profiles |
+| Phone & email | Tap-to-call and tap-to-email links |
+| Text | A short note, such as your opening hours |
 
-## 3. Footer builder
+You can also make the header **sticky** (it stays at the top when people scroll) or **transparent** (it sits over your first image).
 
-Customize → SEMRS Theme → **Footer builder** arranges the bottom bar: copyright, social icons, footer menu, phone & email, and a text area. Widget columns above it are set in **Footer** (1 to 4 columns) and filled in Appearance → Widgets.
+**On phones** the header shows the logo, the search icon and the menu icon. Turn on **Show the top bar on phones** if you want your phone number there too.
 
-Copyright text accepts `{year}` and `{site}`.
+## 3. Set up the footer
 
-## 4. Colours, typography and layout
+In the same panel, open **Footer builder**. Here you choose what goes in the bottom bar: copyright, social icons, a footer menu, phone and email, or a short text.
 
-- **Colours:** primary, accent, text on accent, body text, links, background. Defaults pass WCAG AA contrast; check contrast again if you change them.
-- **Typography & width:** system fonts (fastest) or self-hosted Inter, base size, container width.
-- **Layout & sidebar:** right, left or no sidebar for posts, pages and archives; card grid or list archives; sticky sidebar.
+To add columns of widgets above it, go to **Footer**, choose 1 to 4 columns, then fill them in **Appearance → Widgets**.
+
+**Tip:** type `{year}` in the copyright text. It always shows the current year.
+
+## 4. Pick colors, fonts and layout
+
+- **Colors:** choose your main color, accent color, text color and link color. The default colors are easy to read. If you change them, make sure the text still stands out.
+- **Fonts:** system fonts load fastest. You can also use the Inter font.
+- **Layout:** choose a sidebar on the right, on the left, or no sidebar.
 
 ## 5. Blog features (all free)
 
-Customize → SEMRS Theme → Blog & posts: featured image on posts, previous/next links, reading progress bar, "Updated on" date, author box and related posts.
+In the same panel, open **Blog & posts**. You can switch on:
 
-The author box shows the author's name, avatar and biographical info from Users → Profile. To add "Reviewed by", add a custom field named `semrs_reviewed_by` to the post.
+- a featured image at the top of each post
+- links to the next and previous post
+- a reading progress bar
+- an "Updated on" date
+- an author box and related posts
 
-## 6. Page options (per page or post)
+The author box uses the name, photo and bio from **Users → Profile**.
 
-In the editor sidebar open **Page options**:
+## 6. Change one page only
 
-- Hide the page title (your content must then contain its own H1).
-- Hide the header or the footer on this page (useful for landing pages).
-- Transparent header: Default, On or Off.
-- Sidebar: Default, Right, Left or None.
+Open a page in the editor. In the sidebar, find **Page options**. These settings change only that page.
 
-Templates: **Full width** for landing and service pages, **Blank canvas** for a page with no header or footer at all.
+![SEMRS theme page options: hide title, hide header or footer, transparent header, sidebar](theme-page-options)
 
-## 7. Section patterns
+Want a page with no header or footer at all? Choose the **Blank canvas** template. For landing pages, choose **Full width**.
 
-In the editor click **+** → Patterns → **SEMRS sections**: Hero, Hero with illustration, Services, How it works, Pricing, FAQ and Call to action. Insert one, then replace the text with your own. Prices and claims in patterns are examples: change them to your real offers.
+## 7. Add ready-made sections
 
-## 8. Child theme
+In the editor, click **+** and open **Patterns → SEMRS sections**. You will find a hero, services, steps, pricing, questions and a call to action. Click one to add it. Then type your own words.
 
-SEMRS Child SEO adds brand colours, a Call / WhatsApp bar on phones and a WhatsApp button. Set the numbers in Customize → SEMRS Theme → Contact & conversion. Put your own CSS in the child theme so theme updates never overwrite it.
+**Remember:** prices in patterns are only examples. Change them to your real prices.
+
+## 8. The child theme
+
+SEMRS Child SEO adds a Call and WhatsApp bar on phones. Set your numbers in **SEMRS Theme → Contact & conversion**. Put any custom CSS in the child theme. Then theme updates never remove it.
+
+## SEMRS theme help and next steps
+
+This theme follows the [WordPress.org theme handbook](https://developer.wordpress.org/themes/), so normal WordPress menus and widgets work as usual. Next, add page sections with [SEMRS Blocks](/support/blocks/) or import a full site from the [templates guide](/support/templates/). Still stuck? [Contact us](/contact-us/).

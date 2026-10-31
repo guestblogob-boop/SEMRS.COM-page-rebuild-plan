@@ -21,6 +21,9 @@ function semrs_us_sales_save() {
 	$s   = array(
 		// An empty secret field keeps the saved secret (it is never shown again).
 		'ls_secret'        => '' !== trim( (string) ( $in['ls_secret'] ?? '' ) ) ? sanitize_text_field( $in['ls_secret'] ) : $old['ls_secret'],
+		'paddle_token'     => preg_replace( '/[^A-Za-z0-9_]/', '', (string) ( $in['paddle_token'] ?? '' ) ),
+		'paddle_secret'    => '' !== trim( (string) ( $in['paddle_secret'] ?? '' ) ) ? sanitize_text_field( $in['paddle_secret'] ) : $old['paddle_secret'],
+		'paddle_sandbox'   => empty( $in['paddle_sandbox'] ) ? 0 : 1,
 		'currency'         => preg_match( '/^[A-Z]{3}$/', strtoupper( (string) ( $in['currency'] ?? '' ) ) ) ? strtoupper( $in['currency'] ) : 'USD',
 		'offer_code'       => preg_replace( '/[^A-Za-z0-9_-]/', '', (string) ( $in['offer_code'] ?? '' ) ),
 		'offer_percent'    => min( 90, absint( $in['offer_percent'] ?? 0 ) ),
@@ -39,11 +42,15 @@ function semrs_us_sales_save() {
 	if ( ! empty( $in['ls_secret_clear'] ) ) {
 		$s['ls_secret'] = '';
 	}
+	if ( ! empty( $in['paddle_secret_clear'] ) ) {
+		$s['paddle_secret'] = '';
+	}
 	foreach ( array_keys( semrs_us_default_prices() ) as $id ) {
 		$p                  = (array) ( $in['plans'][ $id ] ?? array() );
 		$s['plans'][ $id ] = array(
 			'price'    => isset( $p['price'] ) && '' !== $p['price'] ? (string) round( (float) $p['price'], 2 ) : '',
 			'variant'  => preg_replace( '/[^0-9]/', '', (string) ( $p['variant'] ?? '' ) ),
+			'paddle'   => preg_replace( '/[^a-z0-9_]/', '', (string) ( $p['paddle'] ?? '' ) ),
 			'checkout' => esc_url_raw( (string) ( $p['checkout'] ?? '' ), array( 'https' ) ),
 		);
 	}
@@ -78,7 +85,20 @@ function semrs_us_page_sales() {
 			<?php wp_nonce_field( 'semrs_us_sales' ); ?>
 			<input type="hidden" name="action" value="semrs_us_sales">
 
-			<h2><?php esc_html_e( '1. Lemon Squeezy', 'semrs-update-server' ); ?></h2>
+			<h2><?php esc_html_e( '1. Paddle', 'semrs-update-server' ); ?></h2>
+			<ol>
+				<li><?php esc_html_e( 'The SEMRS products and prices are already in the Paddle catalog; their price IDs are filled in the table below.', 'semrs-update-server' ); ?></li>
+				<li><?php esc_html_e( 'Paddle → Checkout → Checkout settings: set the default payment link to this address (it must be on an approved domain):', 'semrs-update-server' ); ?><br><code><?php echo esc_html( add_query_arg( 'semrs_checkout', 'pay', home_url( '/' ) ) ); ?></code></li>
+				<li><?php esc_html_e( 'Developer tools → Authentication → Client-side tokens: create one and paste it below. Buy buttons switch to Paddle checkout as soon as it is saved.', 'semrs-update-server' ); ?></li>
+				<li><?php esc_html_e( 'Developer tools → Notifications → New destination: this URL, and tick customer.created, customer.updated, transaction.completed, subscription.updated, subscription.canceled, adjustment.created and adjustment.updated. Paste its secret key below.', 'semrs-update-server' ); ?><br><code><?php echo esc_html( rest_url( 'semrs-updates/v1/paddle' ) ); ?></code></li>
+			</ol>
+			<table class="form-table" role="presentation">
+				<tr><th><label for="paddle-token"><?php esc_html_e( 'Client-side token', 'semrs-update-server' ); ?></label></th><td><input id="paddle-token" name="paddle_token" value="<?php echo esc_attr( $s['paddle_token'] ); ?>" class="regular-text" placeholder="live_…"> <span class="description"><?php esc_html_e( 'Public by design (used in the browser). Empty = Paddle checkout off.', 'semrs-update-server' ); ?></span></td></tr>
+				<tr><th><label for="paddle-secret"><?php esc_html_e( 'Notification secret key', 'semrs-update-server' ); ?></label></th><td><input id="paddle-secret" type="password" name="paddle_secret" class="regular-text" autocomplete="new-password" placeholder="<?php echo $s['paddle_secret'] ? esc_attr__( 'Saved. Type a new one to replace it.', 'semrs-update-server' ) : ''; ?>"> <?php if ( $s['paddle_secret'] ) : ?><label><input type="checkbox" name="paddle_secret_clear" value="1"> <?php esc_html_e( 'Remove', 'semrs-update-server' ); ?></label><?php endif; ?></td></tr>
+				<tr><th><?php esc_html_e( 'Sandbox', 'semrs-update-server' ); ?></th><td><label><input type="checkbox" name="paddle_sandbox" value="1" <?php checked( ! empty( $s['paddle_sandbox'] ) ); ?>> <?php esc_html_e( 'Use Paddle sandbox (test token and test prices)', 'semrs-update-server' ); ?></label></td></tr>
+			</table>
+
+			<h2><?php esc_html_e( 'Lemon Squeezy (optional)', 'semrs-update-server' ); ?></h2>
 			<ol>
 				<li><?php esc_html_e( 'In Lemon Squeezy, create a product "SEMRS Pro" with one variant per yearly plan below (subscription, yearly), and a product "SEMRS Pro Lifetime" with the two lifetime variants (single payment). Use the prices from the table.', 'semrs-update-server' ); ?></li>
 				<li><?php esc_html_e( 'Settings → Webhooks → add this URL, pick a signing secret, and tick: order_created, order_refunded, subscription_created, subscription_updated, subscription_cancelled, subscription_resumed, subscription_expired.', 'semrs-update-server' ); ?><br><code><?php echo esc_html( rest_url( 'semrs-updates/v1/lemonsqueezy' ) ); ?></code></li>
@@ -92,11 +112,12 @@ function semrs_us_page_sales() {
 
 			<h2><?php esc_html_e( '2. Plans and prices', 'semrs-update-server' ); ?></h2>
 			<p><?php esc_html_e( 'Without a checkout link, the Buy button sends the customer to your quote page with the plan filled in, and you send an invoice.', 'semrs-update-server' ); ?></p>
-			<table class="widefat striped" style="max-width:1200px"><thead><tr><th><?php esc_html_e( 'Plan', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Price', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Lemon Squeezy variant ID', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Checkout link', 'semrs-update-server' ); ?></th></tr></thead><tbody>
+			<table class="widefat striped" style="max-width:1200px"><thead><tr><th><?php esc_html_e( 'Plan', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Price', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Paddle price ID', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Lemon Squeezy variant ID', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Checkout link', 'semrs-update-server' ); ?></th></tr></thead><tbody>
 			<?php foreach ( $plans as $id => $p ) : ?>
 				<tr>
 					<td><?php echo esc_html( semrs_us_plan_label( $p ) ); ?></td>
 					<td><input type="number" step="0.01" min="0" name="plans[<?php echo esc_attr( $id ); ?>][price]" value="<?php echo esc_attr( $p['price'] ); ?>" style="width:90px"></td>
+					<td><input name="plans[<?php echo esc_attr( $id ); ?>][paddle]" value="<?php echo esc_attr( $p['paddle'] ); ?>" style="width:250px" placeholder="pri_…"></td>
 					<td><input name="plans[<?php echo esc_attr( $id ); ?>][variant]" value="<?php echo esc_attr( $p['variant'] ); ?>" style="width:120px" inputmode="numeric"></td>
 					<td><input type="url" name="plans[<?php echo esc_attr( $id ); ?>][checkout]" value="<?php echo esc_attr( $p['checkout'] ); ?>" class="large-text" placeholder="https://semrs.lemonsqueezy.com/buy/…"></td>
 				</tr>
@@ -126,7 +147,7 @@ function semrs_us_page_sales() {
 			<?php submit_button(); ?>
 		</form>
 
-		<h2><?php esc_html_e( 'Recent Lemon Squeezy events', 'semrs-update-server' ); ?></h2>
+		<h2><?php esc_html_e( 'Recent payment events (Paddle and Lemon Squeezy)', 'semrs-update-server' ); ?></h2>
 		<table class="widefat striped" style="max-width:1000px"><thead><tr><th><?php esc_html_e( 'Time (UTC)', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Event', 'semrs-update-server' ); ?></th><th>ID</th><th><?php esc_html_e( 'Result', 'semrs-update-server' ); ?></th></tr></thead><tbody>
 		<?php if ( ! $log ) : ?><tr><td colspan="4"><?php esc_html_e( 'None yet. Use "Send test" on the webhook in Lemon Squeezy (test mode) to check the connection.', 'semrs-update-server' ); ?></td></tr><?php endif; ?>
 		<?php foreach ( (array) $log as $row ) : ?>

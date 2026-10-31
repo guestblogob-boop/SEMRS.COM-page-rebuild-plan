@@ -1,47 +1,74 @@
 {
 	"ads": {
 		"title": "SEMRS Ads Manager & AdSense Policy Guide",
-		"description": "Place AdSense, Ad Manager or other network ads with the free SEMRS Core ads manager, and keep your site within Google AdSense program policies.",
-		"order": 5
+		"description": "SEMRS ads manager guide: place AdSense, Ad Manager or other network ads in safe positions with the free SEMRS Core plugin and stay within AdSense policies.",
+		"order": 5,
+		"seo_title": "SEMRS Ads Manager: 6 Simple Steps to Safe AdSense",
+		"focus": "semrs ads",
+		"image": 6300
 	},
 	"blocks": {
 		"title": "SEMRS Blocks Manual: Every Block Explained",
-		"description": "How to use the free SEMRS Blocks plugin: containers, tabs, accordions, galleries, testimonials, table of contents, icons, post grids, pricing, contact form, visibility, and the Pro blocks, popups and display conditions.",
-		"order": 2
+		"description": "SEMRS Blocks manual: how to use containers, tabs, accordions, galleries, a table of contents, pricing, contact forms and the Pro blocks in any theme.",
+		"order": 2,
+		"seo_title": "SEMRS Blocks Manual 2026: Easy Guide to Every Block",
+		"focus": "semrs blocks",
+		"image": 6297
 	},
 	"policies": {
 		"title": "Policies: Google, AdSense, WordPress.org & Privacy",
-		"description": "How SEMRS products follow Google Search guidelines, AdSense policies, WordPress.org theme and plugin guidelines, GPL licensing and privacy rules, and what site owners must do.",
-		"order": 8
+		"description": "SEMRS policies guide: how SEMRS products follow Google Search, AdSense and WordPress.org rules, GPL licensing and privacy law, and what site owners must do.",
+		"order": 8,
+		"seo_title": "SEMRS Policies 2026: Simple Google & AdSense Guide",
+		"focus": "semrs policies",
+		"image": 6303
 	},
-	"pro": {
+	"pro-license": {
 		"title": "SEMRS Pro: Install, License Key & Updates",
-		"description": "How to install SEMRS Pro, activate or move your license key, get one-click updates, and what happens when a license expires.",
-		"order": 7
+		"description": "SEMRS Pro license guide: install the add-on, activate or move your license key, get one-click updates, and learn what happens when a license expires.",
+		"order": 7,
+		"seo_title": "SEMRS Pro License Key: Easy Setup & Updates 2026",
+		"focus": "semrs pro license",
+		"image": 6302
 	},
 	"seo": {
 		"title": "SEMRS Core SEO Manual: Titles, Schema, Sitemaps",
-		"description": "Set up SEO with SEMRS Core: titles and meta, SEO score and readability checks, site audit, schema, XML sitemaps, llms.txt and switching from Rank Math, Yoast or AIOSEO.",
-		"order": 4
+		"description": "SEMRS SEO manual: titles and meta, the SEO score and readability checks, site audit, schema, XML sitemaps, llms.txt and switching from another SEO plugin.",
+		"order": 4,
+		"seo_title": "SEMRS SEO Manual 2026: Easy Guide to Titles & Schema",
+		"focus": "semrs seo",
+		"image": 6299
 	},
 	"speed": {
 		"title": "SEMRS Speed Optimization Manual",
-		"description": "Make WordPress faster with the free SEMRS Core speed module: page cache, CSS and script optimization, hover prefetch, database cleanup and a built-in speed check.",
-		"order": 6
+		"description": "SEMRS speed manual: make WordPress faster with the free page cache, CSS and script optimization, hover prefetch, database cleanup and the built-in speed check.",
+		"order": 6,
+		"seo_title": "SEMRS Speed Manual 2026: Easy Guide to a Faster Site",
+		"focus": "semrs speed",
+		"image": 6301
 	},
 	"support": {
 		"title": "SEMRS Support & User Manual",
-		"description": "How to install, set up and use the SEMRS theme, SEMRS Core, SEMRS Blocks, SEMRS Tools and SEMRS Pro, with policy guides for Google, AdSense and WordPress.org.",
-		"order": 0
+		"description": "SEMRS support and user manual: 8 step-by-step guides to install and use the SEMRS theme, Core, Blocks, Tools and Pro, plus Google and AdSense policy help.",
+		"order": 0,
+		"seo_title": "SEMRS Support: 8 Easy Step-by-Step User Guides",
+		"focus": "semrs support",
+		"image": 6295
 	},
 	"templates": {
 		"title": "Templates & Starter Sites: Import a Complete Website",
-		"description": "Import a complete website in one click with SEMRS starter sites, insert ready-made pages and sections, and apply header and footer presets. Free and Pro templates.",
-		"order": 3
+		"description": "SEMRS templates guide: import a complete starter site in one click, insert ready-made pages and sections, and apply header and footer presets. Free and Pro.",
+		"order": 3,
+		"seo_title": "SEMRS Templates: 23 Free & Pro Starter Sites Guide",
+		"focus": "semrs templates",
+		"image": 6298
 	},
 	"theme": {
 		"title": "SEMRS Theme Manual: Header Builder, Layouts & Page Options",
-		"description": "Step-by-step guide to the free SEMRS theme: logo, header and footer builder, sticky and transparent header, colours, layouts, blog features, patterns and per-page options.",
-		"order": 1
+		"description": "SEMRS theme manual: set up the logo, the free header and footer builder, sticky and transparent headers, colors, layouts, blog features and page options.",
+		"order": 1,
+		"seo_title": "SEMRS Theme Manual: Easy Header Builder Guide 2026",
+		"focus": "semrs theme",
+		"image": 6296
 	}
 }

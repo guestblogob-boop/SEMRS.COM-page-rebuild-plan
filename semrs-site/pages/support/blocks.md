@@ -1,82 +1,93 @@
 ---
 title: SEMRS Blocks Manual: Every Block Explained
-description: How to use the free SEMRS Blocks plugin: containers, tabs, accordions, galleries, testimonials, table of contents, icons, post grids, pricing, contact form, visibility, and the Pro blocks, popups and display conditions.
+description: SEMRS Blocks manual: how to use containers, tabs, accordions, galleries, a table of contents, pricing, contact forms and the Pro blocks in any theme.
 order: 2
+seo_title: SEMRS Blocks Manual 2026: Easy Guide to Every Block
+focus: semrs blocks
+image: support-blocks.webp
 ---
-SEMRS Blocks adds blocks to the WordPress editor. They work in any theme. Each block is drawn on the server, so visitors and search engines get real HTML, and its CSS or script loads only on pages that use it.
+SEMRS Blocks adds new blocks to the WordPress editor. A block is one piece of a page, like a heading, a picture or a button. The blocks work with any theme. Each one loads its code only on pages that use it, so your site stays fast.
 
-## Find and manage blocks
+## How to add SEMRS Blocks to a page
 
-- In the editor click **+** and open the **SEMRS** category, or type `/` followed by the block name.
-- Select a block to see its settings in the right sidebar. The preview updates as you change settings.
-- **SEMRS → Blocks** lists every block with a short description. Use the switches to turn off blocks you never use, then click **Save changes**. Use the search box and the Free / Pro / category filters to find a block quickly.
+1. Open a page in the editor.
+2. Click the **+** button. Open the **SEMRS** group.
+3. Or type `/` and the block name, for example `/tabs`.
+4. Click the block to select it. Its settings appear in the right sidebar.
 
-## Free blocks
+To turn off blocks you never use, go to **SEMRS → Blocks**, switch them off and click **Save changes**.
 
-| Block | Use it for | Key settings |
-|---|---|---|
-| Icon | A single icon, optionally linked | 48 icons, size, colour, circle or rounded background, accessible label |
-| Icon List | Feature lists and checklists | One item per line, icon, colour, 1–4 columns |
-| Fancy Heading | Eye-catching headings | Typing (rotating words), gradient, marker highlight, curved underline, outline; heading level |
-| Posts | Blog sections on any page | Grid, list, masonry, overlay, compact; post type, category, number, order, offset; image shape; what to show |
-| Countdown Timer | Launches, offers, events | End date (your site time zone), boxes or inline, message when finished |
-| Pricing Card | Plans and packages | Price, period, features (start a line with - for "not included"), button, highlight, badge |
-| Service / Feature Card | Services and features | Icon or image, title, text, price line, link, three styles |
-| Contact Form | Enquiries and quotes | See below |
-| Free Media Sites | A resource list for your visitors | Photos, video, illustrations & icons, animations, 3D; each site has a licence note |
+![SEMRS Blocks at a glance: layout, content, sell and posts blocks are free; movement and control blocks are Pro](blocks-map)
+
+## Content blocks (free)
+
+| Block | Use it for |
+|---|---|
+| Icon | One icon, with or without a link |
+| Icon List | Lists with check marks or other icons |
+| Fancy Heading | Headings with typing words, gradients or highlights |
+| Posts | A grid or list of your latest posts |
+| Countdown Timer | Count down to a launch or an event |
+| Pricing Card | Show a plan with its price and features |
+| Service Card | Show a service with an icon, text and a link |
+| Contact Form | Let people send you a message |
 
 ## Layout blocks (free)
 
-| Block | Use it for | How it works |
-|---|---|---|
-| Container (Section / Row / Grid) | Full-width sections, rows and grids | Holds any blocks. Arrange them as a stack, a row that wraps on phones, or a grid (1–6 columns on desktop, 1–4 on tablets, 1 on phones). Background colour, ready-made gradients or an image with an overlay, padding, minimum height, rounded corners, content width (full, site container or reading width) and the HTML element (section, header, aside…). |
-| Tabs | Packages, features, before/after | Add a Tab for each tab and put any blocks inside it. Styles: underline, pills, boxed, vertical. Visitors can use the arrow keys, and search engines see the content of every tab. |
-| Accordion / FAQ | Questions and answers, long details | Add an Accordion item for each question. Opens and closes without JavaScript. Optional "only one open at a time". With SEMRS Core SEO the items become FAQ schema; switch "Use as FAQ schema" off for content that is not a real FAQ. |
-| Gallery & Lightbox | Portfolios, photo sets | Grid (same size) or masonry, 1–6 columns, image shape, rounded corners, captions. The lightbox works with the keyboard and swipe and returns focus to the image when it closes. |
-| Testimonial | Customer quotes | Quote, name, role, photo, optional stars and a link to the original review. Use only genuine testimonials you have permission to publish. No review schema is added: Google does not show stars for reviews a business publishes about itself. |
-| Table of Contents | Long guides | Lists the H2, H3 (and optionally H4) headings of the page with jump links and gives the headings matching ids. Save the page to refresh the list in the editor. |
+These blocks hold other blocks. Use them to build sections.
 
-In the editor, tabs and accordion items are shown one under another as cards so you can edit everything at once; on the site they turn into real tabs and accordions.
+| Block | What it does |
+|---|---|
+| Container | A section, row or grid. Add a background color or image. On phones, rows stack one under another. |
+| Tabs | Put content in tabs. Visitors click a tab to see it. |
+| Accordion / FAQ | Questions that open and close. They can also become FAQ schema for Google. |
+| Gallery | A photo grid. Click a photo to see it large. |
+| Testimonial | A quote from a real customer. Use only real reviews you may publish. |
+| Table of Contents | A list of the headings on the page, with jump links |
+| Website Showcase | Cards with a desktop and phone preview of a website |
 
-### Website Showcase
+**Tip:** in the editor, tabs and accordions show all their parts at once. This makes them easy to edit. On your site they work as real tabs.
 
-Cards like the WordPress.org theme directory: a large preview image with a **Desktop / Mobile** switch, a name, a badge (Free, Pro, New, Installed), a short description and two buttons. Add a **Showcase card** for each theme, template or client website, choose a desktop screenshot and, optionally, a phone screenshot (390 × 844 px or the same shape works best). Use 1–4 columns; set the block to Wide or Full width for the best look.
+## Hide a block on phones or computers (free)
 
-## Visibility (free, on every block)
+Select any block. Open **Visibility** in the sidebar. Choose to hide it on phones, tablets or computers. Hidden blocks look faded in the editor, so you can still find them.
 
-Select any block, open **Visibility** in the sidebar and hide it on phones (under 782 px), tablets (782–1023 px) or desktops (1024 px and wider). It works with page caching because it uses CSS. Hidden blocks look faded in the editor so you can still edit them.
+## Set up the contact form
 
-## Contact form
+![SEMRS Blocks contact form: visitor sends it, spam check, saved in Leads, email to you](blocks-contact-flow)
 
-The form has name, email, phone with a **country picker** (flag and dialling code), website, service and budget choices, project requirements, a WhatsApp opt-in and a consent box.
+1. Add the **Contact Form** block to your page.
+2. In the sidebar, type the email address that should get the messages.
+3. Write a short thank-you message.
+4. Publish the page. Send yourself a test message.
 
-1. Insert the **Contact Form** block.
-2. In the sidebar set: the recipient email (empty = the site admin email), email subject, success message, optional redirect to a thank-you page, default country, service and budget options, and the consent text.
-3. Publish and send a test message.
+Every message is saved under **Leads** in your dashboard. You also get an email. When you click Reply, your answer goes straight to the visitor.
 
-Every message is saved under **Leads** in the dashboard and emailed to you with Reply-To set to the visitor. If you use Google Analytics 4, a `generate_lead` event is sent.
+**Spam protection is built in.** Bots that send the form too fast are ignored. Each person can send only a few messages per hour.
 
-**Spam protection is built in:** a hidden honeypot field, a signed time check (bots that submit instantly are ignored), a limit of 5 messages per hour per connection, and no more than three links per message.
+**No email arriving?** Many web hosts block normal PHP mail. Install an SMTP plugin and connect your email account. Your messages are still saved in Leads either way.
 
-**Email delivery:** many hosts block PHP mail. If test messages do not arrive, install an SMTP plugin and connect your email provider; the leads are still saved in the dashboard either way.
-
-**Privacy:** the form stores what visitors type plus the page address. Mention this in your privacy policy and keep the consent box on. See [Policies](/support/policies/).
+**Privacy:** the form saves what people type. Say this in your privacy policy, and keep the consent box switched on.
 
 ## Pro blocks (need SEMRS Pro)
 
 | Block | What it adds |
 |---|---|
-| Slider / Carousel | Image slider or post carousel, 1–4 slides per view, arrows, dots, keyboard and swipe, autoplay that pauses on hover and for visitors who prefer reduced motion |
-| Animated Counter | Numbers that count up when scrolled into view; the real number is in the HTML for search engines |
-| 3D Model Viewer | .glb / .gltf models with rotate, zoom and "view in your room" AR on phones |
-| Scroll animations | Fade, zoom or slide on any block: block sidebar → Advanced → Scroll animation |
-| Display conditions | Show any block only to logged-in or logged-out visitors, certain roles, between two dates, or only on the front page, posts, pages, archives, search or 404 pages: block sidebar → Display conditions |
-| Popups | SEMRS → Popups: build a popup with any blocks, choose centred, bottom bar or corner slide-in, and open it after a delay, after scrolling, on exit intent or when a link to `#semrs-popup-ID` is clicked |
+| Slider / Carousel | Pictures or posts that slide |
+| Animated Counter | Numbers that count up when you scroll to them |
+| 3D Model Viewer | 3D models people can turn and zoom |
+| Scroll animations | Blocks that fade or slide in |
+| Display conditions | Show a block only to some visitors or on some dates |
+| Popups | A popup made from any blocks |
 
-Without SEMRS Pro these appear with a **PRO** badge. You can insert them to try the layout, but they print nothing on your site until Pro is active. To hide them, untick "Show SEMRS Pro blocks in the editor" in SEMRS → Blocks.
+Without SEMRS Pro, these blocks show a **PRO** badge. You can try them in the editor. They show nothing on your site until Pro is active.
 
-## Tips
+## Quick tips
 
-- Images: compress before uploading and always fill in the alt text.
-- Use one H1 per page. Fancy Heading defaults to H2; switch to H1 only for the page's main heading.
-- Countdown timers must be honest: do not reset them to create false urgency.
+- Make pictures small before you upload them. Always fill in the alt text.
+- Use only one main heading (H1) per page.
+- Be honest with countdown timers. Do not restart them to rush people.
+
+## SEMRS Blocks help and next steps
+
+SEMRS Blocks are normal WordPress blocks, so the [block editor guide on WordPress.org](https://wordpress.org/documentation/article/wordpress-block-editor/) works for them too. Want a finished design? See the [templates guide](/support/templates/). Questions? [Contact us](/contact-us/).

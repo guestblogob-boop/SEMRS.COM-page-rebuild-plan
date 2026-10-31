@@ -1,77 +1,73 @@
 ---
 title: SEMRS Ads Manager & AdSense Policy Guide
-description: Place AdSense, Ad Manager or other network ads with the free SEMRS Core ads manager, and keep your site within Google AdSense program policies.
+description: SEMRS ads manager guide: place AdSense, Ad Manager or other network ads in safe positions with the free SEMRS Core plugin and stay within AdSense policies.
 order: 5
+seo_title: SEMRS Ads Manager: 6 Simple Steps to Safe AdSense
+focus: semrs ads
+image: support-ads.webp
 ---
-The Ads manager is part of the free SEMRS Core plugin. It places your ad codes in safe positions and keeps them away from pages where ads break Google's rules or hurt conversions.
+This guide shows you how to set up SEMRS ads on your site. The ads manager is part of the free SEMRS Core plugin. It puts your ads in safe places. It also keeps ads off pages where they break Google's rules or scare away customers.
 
-## 1. Set up
+## 1. Switch on SEMRS ads
 
-1. **SEMRS → Features** → switch on **Ads Manager** → **Settings** (or **SEMRS → Ads**).
-2. Enter your AdSense publisher ID (`ca-pub-…`). Leave "Load the AdSense script" on unless another plugin already loads it.
-3. For each position choose the network (AdSense or custom code), paste the ad slot ID or the full code, pick the format and the devices.
-4. Switch on **Enable ads** and save.
-5. Optional: switch on **Manage ads.txt** and paste the lines your networks give you. Check that `yoursite.com/ads.txt` opens.
+1. Go to **SEMRS → Features** and switch on **Ads Manager**.
+2. Open **SEMRS → Ads**.
+3. Paste your AdSense publisher ID. It starts with `ca-pub-`.
+4. Choose where ads should show (see the next step).
+5. Switch on **Enable ads** and click **Save**.
 
-## 2. Positions
+**Tip:** switch on **Manage ads.txt** and paste the lines your ad network gives you. Then open `yoursite.com/ads.txt` to check it works.
 
-| Position | Where it appears |
+## 2. Choose where ads go
+
+![Where SEMRS ads can show in an article: before content, after paragraph 2, middle and end](ads-positions)
+
+| Position | Where it shows |
 |---|---|
 | Before content | Under the post title |
-| After paragraph N | After the paragraph number you choose (default 2) |
-| Middle of content | Halfway through long articles |
-| End of content | After the article |
-| Shortcodes | `[semrs_ad slot="tool"]`, `[semrs_ad slot="sidebar"]` and `[semrs_ad slot="manual"]` anywhere you place them |
+| After paragraph | After the paragraph number you pick |
+| Middle | Halfway down long articles |
+| End | After the article |
+| Shortcode | Anywhere you type `[semrs_ad slot="manual"]` |
 
-In-content ads are inserted only between normal paragraphs, never inside tables, lists, headings or blocks, and only on posts with at least 300 words (you can change this). A maximum number of in-content ads and a minimum gap between them stop overcrowding.
+Ads go only between normal paragraphs. They never go inside tables, lists or headings. Short posts (under 300 words) get no in-content ads.
 
-## 3. Built-in safety
+## 3. Safety is built in
 
-- **No ads on conversion and legal pages** by default: services, pricing, contact, quote, thank-you, about, privacy, terms, cookie and disclosure pages, plus the front page and search results. Edit the list in Excluded paths.
-- **Turn ads off for one post** in the editor's SEMRS Ads box.
-- **Labelled:** every slot shows a small "Advertisement" label (you can change the text).
-- **No layout shift:** space is reserved for each ad so content does not jump (good for Core Web Vitals).
-- **Lazy loading** for ads below the screen, and ads hidden for logged-in admins so you do not click your own ads by mistake.
+- **No ads on important pages.** Contact, pricing, services, thank-you, privacy and terms pages stay ad-free. So do your home page and search results.
+- **Turn ads off on one post** with the SEMRS Ads box in the editor.
+- **Every ad is labeled** "Advertisement".
+- **No jumping pages.** Space is saved for each ad, so the text does not move.
+- **You don't see your own ads** when you are logged in. This stops you clicking them by mistake.
 
-## 4. AdSense policy checklist
+## 4. Follow the AdSense rules
 
-Google's [AdSense Program policies](https://support.google.com/adsense/answer/48182) apply to every site. In short:
+![AdSense rules for SEMRS ads: do label ads and keep ads.txt; don't click your own ads](ads-do-dont)
 
-- Never click your own ads or ask anyone to click them. No "click here" or arrows pointing at ads.
-- Do not place ads where they can be mistaken for menus, downloads or buttons, or where they cover content.
-- No ads on pages without real content: empty pages, thank-you pages, login pages, error pages, or pages that are mostly ads.
-- Content must follow the [Google Publisher Policies](https://support.google.com/adsense/answer/10502938): no adult, violent, hateful, dangerous or copyrighted content you do not own.
-- Have a privacy policy that explains cookies and advertising, and use a Google-certified consent tool (CMP) for visitors in the EEA, UK and Switzerland.
-- Do not use pop-ups or redirects that force visitors to see ads.
-- Add `ads.txt` and keep it up to date.
+Google's [AdSense Program policies](https://support.google.com/adsense/answer/48182) apply to every site. The main rules are simple:
 
-SEMRS defaults follow these rules, but you are responsible for your content and placements. Google can change its policies at any time; check the official pages linked above.
+- Never click your own ads. Never ask anyone else to click them.
+- Do not make ads look like menus or buttons.
+- Do not put ads on empty pages, error pages or login pages.
+- Your content must follow the [Google Publisher Policies](https://support.google.com/adsense/answer/10502938).
+- Have a privacy policy. Use a Google-certified consent tool for visitors in Europe and the UK.
 
-## 5. Ad Manager (AdX) and other networks
+SEMRS follows these rules by default. You are still responsible for your own content.
 
-Choose **Custom code** for a position and paste the full tag from Google Ad Manager or your network. Put header scripts (for example GPT) in **Head code**. Use only networks you have an account with and add their lines to ads.txt.
+## 5. Other ad networks
 
-## 6. SEMRS Pro ad features
+Choose **Custom code** for a position. Then paste the ad code from Google Ad Manager or your network. Put any header script in **Head code**. Add each network's lines to ads.txt.
 
-With SEMRS Pro active, a **SEMRS Pro** section appears on **SEMRS → Ads**, and two extra rows appear in the positions table.
+## 6. Extra ad features in SEMRS Pro
 
-**More placements**
+- **More places:** repeat an ad every few paragraphs, or show ads between posts on blog pages.
+- **Targeting:** show an ad only in some categories, only on older posts, or only between two dates.
+- **A/B test:** show two ad versions at random. Keep the one that earns more.
+- **Click protection:** if someone clicks ads 3 times in a day, they see no ads for 7 days. This protects your AdSense account.
+- **Ad-blocker note:** a small, polite message. It never hides your content.
 
-- **Pro: repeat in content:** another ad every N paragraphs after the first one. Your "Maximum in-content ads per page" and "Minimum paragraphs between ads" still apply, so long articles never get crowded.
-- **Pro: between posts on blog and category pages:** an ad after every N posts in lists, at most 1–5 per page.
+SEMRS Pro never refreshes ads and never puts ads in popups. This keeps you within the AdSense rules.
 
-**Targeting and A/B rotation (per position)**
+## SEMRS ads help and next steps
 
-- **Only in categories / Never in categories:** for example, show a finance ad unit only in your money articles.
-- **Older than N days:** keep new posts ad-free while they collect links and shares, then start earning.
-- **From / Until:** run a position between two dates, for example a seasonal sponsor.
-- **Hide for logged-in users:** members or customers see fewer ads.
-- **Variant B:** a second AdSense slot ID or custom code. Each page view shows A or B at random; compare the two ad units in your AdSense reports and keep the better one.
-
-**Click protection** (on by default with Pro): if a visitor clicks ads 3 times within 24 hours (you can change both numbers), that visitor gets no ads for 7 days. Ad requests are paused for them, including Auto ads. This protects your AdSense account from accidental or deliberate invalid clicks. The count is kept only in the visitor's browser.
-
-**Ad-blocker message** (off by default): a small, dismissible note asking ad-blocker users to support the site. It never blocks or hides content, and once closed it stays away for 7 days.
-
-**Per-page position switches:** in the post editor, the **Ad positions on this page** box lets you turn single positions off for that page, for example keep the sidebar ad but drop in-content ads on a sensitive article. The free **Disable ads on this page** switch still turns everything off.
-
-SEMRS Pro never refreshes ads, never hides ads after they load, and never places ads in popups, which keeps these features within AdSense policies.
+Ads can slow pages down, so test your pages with the [speed guide](/support/speed/) after you add them. Read the full [policies guide](/support/policies/) too. Questions? [Contact us](/contact-us/).

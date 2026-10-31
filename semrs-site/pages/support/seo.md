@@ -1,70 +1,82 @@
 ---
 title: SEMRS Core SEO Manual: Titles, Schema, Sitemaps
-description: Set up SEO with SEMRS Core: titles and meta, SEO score and readability checks, site audit, schema, XML sitemaps, llms.txt and switching from Rank Math, Yoast or AIOSEO.
+description: SEMRS SEO manual: titles and meta, the SEO score and readability checks, site audit, schema, XML sitemaps, llms.txt and switching from another SEO plugin.
 order: 4
+seo_title: SEMRS SEO Manual 2026: Easy Guide to Titles & Schema
+focus: semrs seo
+image: support-seo.webp
 ---
-The SEO module is part of the free SEMRS Core plugin. Switch it on in **SEMRS → Features**, then open **SEMRS → SEO**.
+SEMRS SEO helps people find your site on Google. It writes the hidden page details that search engines read. It also checks each page and tells you what to fix, in plain words. It is part of the free SEMRS Core plugin.
 
-## 1. Site-wide settings (SEMRS → SEO)
+## Set up SEMRS SEO in 4 steps
 
-1. **Titles:** choose a separator and title templates. Variables such as `%title%`, `%site%` and `%sep%` are filled in for each page.
-2. **Homepage:** write the homepage title (under 60 characters) and description (under 160 characters).
-3. **Organisation or person:** your business name, type (LocalBusiness, ProfessionalService, Organization or Person), logo, address, area served and social profiles. This becomes your site's JSON-LD schema.
-4. **Robots:** search results and 404 pages are always kept out of Google; choose whether tag, author and date archives are indexed (tags and dates are noindexed by default).
-5. **Verification:** paste the Google Search Console and Bing Webmaster codes.
+![SEMRS SEO setup: switch it on, add site details, fill in each page, check the score](seo-setup)
 
-## 2. Each post and page (SEMRS SEO box in the editor)
+1. Go to **SEMRS → Features** and switch on **SEO**.
+2. Open **SEMRS → SEO**. Add your business name, logo, address and social profiles.
+3. Write a title and a short description for your home page.
+4. Paste your Google Search Console code under **Verification**.
 
-- **Focus keyword**, **SEO title** and **meta description** with live length counters and a Google preview.
-- **Canonical URL** (leave empty unless the page is a copy of another).
-- **Schema type**, **noindex** and **nofollow**.
-- **SEO score (0–100)** with checks in three groups:
-  - **Basic SEO:** focus keyword in the title, description, URL and first 100 words; the keyword not already used on another page (pages competing for the same keyword); title 30–60 and description 120–155 characters; a short URL.
-  - **Content:** enough words (300 for posts, 200 for pages); internal links; a link to a useful outside source; image alt text; a featured image; no extra H1; subheadings that break up long text; the keyword in a subheading; keyword density between 0.5% and 3%.
-  - **Readability:** short sentences, comfortable paragraph length and, for English sites, the Flesch reading-ease score.
-- **Re-check now** analyses your unsaved changes, so you can improve the score before you publish.
-- **Internal link ideas:** after a re-check, SEMRS lists your published pages on the same topic that this page does not link to yet, with a Copy link button.
+**Tip:** your home page title should be under 60 characters. The description should be under 160.
 
-The score also appears in an **SEO** column on the Posts and Pages lists (green 80+, orange 50–79, red under 50). Click the column title to sort by score.
+## Fill in each page
 
-Empty descriptions are filled from the excerpt or the first paragraph, so no page is left without one.
+When you edit a page or post, open the **SEMRS SEO** panel. Fill in three things:
 
-## 3. SEO Audit (SEMRS → SEO Audit)
+- **Focus keyword:** the main words people type into Google to find this page.
+- **SEO title:** the blue link people see in Google.
+- **Description:** the short text under the link.
 
-**Site checks** run instantly: search engines allowed, readable permalinks, HTTPS, your own tagline, a homepage description, the sitemap, a logo for search results, a site icon, robots.txt problems, a second SEO plugin, Search Console verification and leftover WordPress sample content. Each problem has a **Fix** link.
+You see a preview of how the page will look in Google. The counters show when your text is too long or too short.
 
-**Content audit:** click **Run the content audit**. SEMRS scores every published post and page (up to 2,000) in small steps, then shows:
+## The SEO score
 
-- average score and pages scoring under 50
-- missing meta descriptions, duplicate SEO titles and duplicate descriptions
-- thin content and noindexed pages
-- **orphan pages**: pages no other post or page links to (menus are not counted). Link to them from related articles so visitors and Google can find them.
+![SEMRS SEO score: red under 50, orange 50 to 79, green 80 and up](seo-score)
 
-Click a number to filter the table; each row lists what to fix, with an edit link.
+Every page gets a score from 0 to 100. The checks are in three groups:
 
-## 4. Schema
+- **Basic SEO:** is the keyword in the title, the description, the address and the first lines?
+- **Content:** does the page have enough words, links, picture alt text and subheadings?
+- **Readability:** are the sentences and paragraphs short?
 
-SEMRS Core outputs one connected JSON-LD graph: Organization or LocalBusiness, WebSite with search, WebPage, BreadcrumbList, Article/BlogPosting with the author, Service, WebApplication for tool pages, and FAQPage built automatically from visible FAQ (Details) blocks. Schema must describe what visitors can see on the page; never add reviews or ratings that are not shown.
+Click **Re-check** to test your changes before you publish. The score also shows in the **SEO** column of your Pages and Posts lists. Click the column name to sort by score.
 
-## 5. XML sitemap, robots.txt and llms.txt
+**Internal link ideas:** after a re-check, SEMRS lists your other pages on the same topic. Link to them to help readers and Google.
 
-The sitemap uses WordPress's own engine at `/wp-sitemap.xml`; noindexed pages are left out and old `/sitemap_index.xml` addresses redirect to it. Submit it in Google Search Console → Sitemaps. Extra robots.txt lines can be added in SEMRS → SEO.
+## Check your whole site
 
-**llms.txt** (on by default) is a short plain-text map of your site at `/llms.txt` for AI assistants such as ChatGPT, Perplexity and Claude: your site summary, main pages and latest articles with their descriptions. Noindexed and password-protected pages are left out, and it updates when you publish. A real llms.txt file in your site root always takes priority. Switch it off under SEMRS → SEO → Indexing.
+Go to **SEMRS → SEO Audit**.
 
-## 6. Switching from another SEO plugin
+- **Site checks** run at once. Each problem has a **Fix** link.
+- Click **Run the content audit** to score every page. You see missing descriptions, repeated titles, short pages and pages nobody links to.
 
-While Rank Math, Yoast, All in One SEO, SEOPress or The SEO Framework is active, SEMRS SEO pauses its output so you never get duplicate tags. Titles, descriptions, focus keywords, canonicals, noindex settings and share images saved by **Rank Math**, **Yoast SEO** or **All in One SEO** (post settings) are read automatically, including their title variables, so nothing is lost when you switch.
+**Tip:** pages that no other page links to are hard for Google to find. Link to them from related posts.
 
-1. Install SEMRS Core and check a few pages in the SEMRS SEO box.
-2. Deactivate the old SEO plugin.
-3. Open a few pages, right-click → View Source, and confirm there is one `<title>`, one meta description and one canonical tag.
-4. Re-submit your sitemap in Search Console.
+## Schema, sitemap and llms.txt
 
-## 7. SEMRS Pro SEO extras
+These run on their own. You do not need to set them up.
 
-Redirects with a 404 monitor, multi-location local SEO, IndexNow instant indexing, automatic image alt text, and the **Bulk SEO editor** (SEMRS → Bulk SEO): edit SEO titles, descriptions, focus keywords and noindex for 20 posts at a time, with length counters and a "missing description" filter. See [SEMRS Pro](/support/pro/).
+- **Schema** tells Google what your page is about: your business, an article, a service or FAQs. It only describes what visitors can really see.
+- **Sitemap** is a list of your pages for Google, at `/wp-sitemap.xml`. Send it to Google in Search Console → Sitemaps.
+- **llms.txt** is a short map of your site for AI assistants. You can switch it off in **SEMRS → SEO → Indexing**.
 
-## Good practice
+## Moving from another SEO plugin
 
-Write titles and descriptions for people, not for keyword counts. Google's guidelines ask for helpful, original content; tools can only make that content easier to find.
+![Moving to SEMRS SEO from another SEO plugin in 4 steps](seo-switch)
+
+SEMRS reads the titles and descriptions you saved in Rank Math, Yoast SEO or All in One SEO. Nothing is lost.
+
+1. Install SEMRS Core. Look at a few pages in the SEMRS SEO panel.
+2. Deactivate your old SEO plugin.
+3. Open a page and check that it still has its title and description.
+4. Send your sitemap to Google Search Console again.
+
+While another SEO plugin is active, SEMRS waits. You never get the same tags twice.
+
+## Extra SEO in SEMRS Pro
+
+Pro adds redirects, a 404 error log, local SEO for many locations, instant indexing, automatic alt text and a bulk editor for titles and descriptions. See the [Pro guide](/support/pro-license/).
+
+## SEMRS SEO help and next steps
+
+Write for people first. Our checks follow [Google Search Essentials](https://developers.google.com/search/docs/essentials), the rules Google shares for sites that want to rank. For faster pages, read the [speed guide](/support/speed/). Questions? [Contact us](/contact-us/).

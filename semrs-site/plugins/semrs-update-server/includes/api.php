@@ -52,6 +52,15 @@ function semrs_us_routes() {
 	);
 	register_rest_route(
 		'semrs-updates/v1',
+		'/paddle',
+		array(
+			'methods'             => 'POST',
+			'permission_callback' => '__return_true', // Checked by the webhook signature.
+			'callback'            => 'semrs_us_paddle_webhook',
+		)
+	);
+	register_rest_route(
+		'semrs-updates/v1',
 		'/deactivate',
 		array(
 			'methods'             => 'POST',
