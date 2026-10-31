@@ -154,15 +154,21 @@ The old `/category/industry-marketing/` URL redirects to Finance & Insurance Mar
 
 These rules apply to **every page and post** on semrs.com, not only articles. The SEMRS SEO box checks most of them automatically in its **Speed & accessibility** group.
 
-**Targets (PageSpeed Insights, mobile and desktop, measured 2026-10-28 on all 63 pages):**
+**Targets (PageSpeed Insights, mobile and desktop). Strict: every new or changed page must meet them before it counts as done.** Set on 2026-10-31 from a full check of all 75 published pages with SEMRS Core 1.3.38:
 
 | Page type | Performance | Accessibility, Best Practices, SEO | Agentic Browsing | CLS |
 |---|---|---|---|---|
-| Ad-free pages (home, services, pricing, about, contact, sales, legal) | 100 | 100 | 3/3 | under 0.01 |
-| Pages with ads (blog posts, tools) | 85+ mobile, 95+ desktop | 100 | 3/3 | under 0.1 |
-| Noindex pages | 100 | 100 (SEO 54–63 from the noindex tag) | 3/3 | under 0.01 |
+| Ad-free pages (home, services, pricing, about, contact, sales, legal, user manual, products, portfolio) | 100 mobile and desktop (measured: 100 on all 16 sales pages, 97–100 on legal and manual pages) | 100 | 3/3 | under 0.01 |
+| Tool pages and tool hubs (ads on) | 98+ mobile, 97+ desktop (measured: 98–100 / 97–100) | 100 | 3/3 | under 0.01 |
+| Blog articles (ads on) | 94+ mobile, 97+ desktop; most articles score 98–100 (measured average about 96 mobile) | 100 | 3/3 | under 0.01 |
+| Noindex pages (thank-you, forms, My Licenses) | 99+ | 100, except SEO 63 from the noindex tag (expected) | 3/3 | under 0.01 |
 
-The AdSense script itself costs ad pages 5–15 Performance points on PageSpeed Insights; that is expected and not a content problem. Anything else below target is: fix it before moving on. (Local Lighthouse runs block ad scripts and show 100 for ad pages too; always judge ad pages on PageSpeed Insights.)
+**How to judge a score (mobile scores move a few points between runs):**
+1. Run PageSpeed Insights on the live URL (not a URL with `?…`, which skips the page cache). If the page was just published or a plugin was just updated, open it once first so the cache is warm.
+2. Below target? Run it again. One low run is test noise (the same page scored 88 and then 100 in the same session).
+3. Below target on **two runs in a row** is a real problem: open the report and fix what it names before moving on.
+4. The only accepted loss is the AdSense script on ad pages ("Reduce unused JavaScript" and "cache lifetimes" for `googlesyndication.com`). Anything else flagged (layout shift, image size, render-blocking file, unlabeled control, low contrast) must be fixed.
+5. Local Lighthouse blocks ad scripts and shows 100 for ad pages; always judge on PageSpeed Insights.
 
 **Layout: nothing may jump (Cumulative Layout Shift 0)**
 - Every image has a `width` and `height` (WordPress adds them for Media Library images; never paste images by URL without them).
@@ -254,5 +260,5 @@ These are the exact checks SEMRS Core scores (`modules/seo/analysis.php`). Meet 
 **Before and after publishing**
 1. `node content-src/blog/build-blog.mjs` prints `ok` for the article.
 2. After upload, the SEMRS SEO box shows **100**, with every Speed & accessibility check green.
-3. PageSpeed Insights meets the section 13 targets (100/100/100/100 on ad-free pages).
+3. PageSpeed Insights meets the section 13 targets on mobile and desktop: 100 on ad-free pages, 98+ on tools, 94+ on articles, and 100 for Accessibility, Best Practices and SEO everywhere. Below target on two runs in a row means fix it before moving on.
 4. If you change a live page's text, copy the change back into its source file (`content-src/…`) the same day, so a rebuild never undoes it.
