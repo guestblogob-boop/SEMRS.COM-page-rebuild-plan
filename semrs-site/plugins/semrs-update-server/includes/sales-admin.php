@@ -30,6 +30,8 @@ function semrs_us_sales_save() {
 		'offer_ends'       => preg_match( '/^\d{4}-\d{2}-\d{2}$/', (string) ( $in['offer_ends'] ?? '' ) ) ? $in['offer_ends'] : '',
 		'offer_label'      => sanitize_text_field( (string) ( $in['offer_label'] ?? '' ) ),
 		'refund_days'      => min( 60, absint( $in['refund_days'] ?? 0 ) ),
+		'renew_percent'    => min( 90, absint( $in['renew_percent'] ?? 0 ) ),
+		'renew_code'       => preg_replace( '/[^A-Za-z0-9_-]/', '', (string) ( $in['renew_code'] ?? '' ) ),
 		'seller_name'      => sanitize_text_field( (string) ( $in['seller_name'] ?? '' ) ),
 		'seller_address'   => sanitize_textarea_field( (string) ( $in['seller_address'] ?? '' ) ),
 		'seller_email'     => sanitize_email( (string) ( $in['seller_email'] ?? '' ) ),
@@ -131,6 +133,7 @@ function semrs_us_page_sales() {
 				<tr><th><label for="offer-pct"><?php esc_html_e( 'Percent off (for display)', 'semrs-update-server' ); ?></label></th><td><input id="offer-pct" type="number" min="0" max="90" name="offer_percent" value="<?php echo esc_attr( $s['offer_percent'] ); ?>" style="width:80px"> %</td></tr>
 				<tr><th><label for="offer-ends"><?php esc_html_e( 'Ends', 'semrs-update-server' ); ?></label></th><td><input id="offer-ends" type="date" name="offer_ends" value="<?php echo esc_attr( $s['offer_ends'] ); ?>"></td></tr>
 				<tr><th><label for="offer-label"><?php esc_html_e( 'Offer text', 'semrs-update-server' ); ?></label></th><td><input id="offer-label" name="offer_label" value="<?php echo esc_attr( $s['offer_label'] ); ?>" class="large-text" placeholder="<?php esc_attr_e( 'Launch offer: 30% off your first year', 'semrs-update-server' ); ?>"></td></tr>
+				<tr><th><label for="renew-pct"><?php esc_html_e( 'Loyalty renewal discount', 'semrs-update-server' ); ?></label></th><td><input id="renew-pct" type="number" min="0" max="90" name="renew_percent" value="<?php echo esc_attr( $s['renew_percent'] ); ?>" style="width:80px"> % · <?php esc_html_e( 'code', 'semrs-update-server' ); ?> <input name="renew_code" value="<?php echo esc_attr( $s['renew_code'] ); ?>" style="width:120px"> <span class="description"><?php esc_html_e( 'Taken off renewal invoices and renewals bought from My Licenses. For online checkout, create the code there first (recurring, all prices). 0 = off.', 'semrs-update-server' ); ?></span></td></tr>
 				<tr><th><label for="refund"><?php esc_html_e( 'Money-back guarantee (days)', 'semrs-update-server' ); ?></label></th><td><input id="refund" type="number" min="0" max="60" name="refund_days" value="<?php echo esc_attr( $s['refund_days'] ); ?>" style="width:80px"> <span class="description"><?php esc_html_e( '0 hides it. Only set this if your refund policy says so.', 'semrs-update-server' ); ?></span></td></tr>
 			</table>
 

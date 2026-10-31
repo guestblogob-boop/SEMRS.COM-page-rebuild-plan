@@ -498,7 +498,7 @@ function semrs_legal_install() {
 					'ID'           => $assets->ID,
 					'post_title'   => 'SEMRS WordPress Themes & Plugins',
 					'post_content' => semrs_legal_p( 'SEMRS makes free WordPress themes and plugins for SEO, speed, ads and page building. They are the same tools that run semrs.com. The theme and the Core, Blocks and Tools plugins are free. SEMRS Pro add-ons unlock extra features with one license key for 1, 5 or unlimited websites.' )
-						. semrs_legal_glance( 'SEMRS WordPress themes and plugins at a glance', array( '6 free themes & plugins', 'Pro from $15 a year', 'One key, all add-ons', '30-day refunds' ) )
+						. semrs_legal_glance( 'SEMRS WordPress themes and plugins at a glance', array( '6 free themes & plugins', 'Pro from $19 a year', 'One key, all add-ons', '30-day refunds' ) )
 						. '<!-- wp:semrs/toc {"levels":"2","collapsed":true} /-->'
 						. semrs_legal_h( 'What SEMRS offers' )
 						. semrs_legal_sc( '[semrs_business]' )
@@ -514,7 +514,7 @@ function semrs_legal_install() {
 		);
 		update_post_meta( $assets->ID, '_semrs_ads_off', true );
 		if ( function_exists( 'semrs_store_set_seo' ) ) {
-			semrs_store_set_seo( $assets->ID, 'WordPress Themes and Plugins: 6 Free Tools + Pro | SEMRS', 'Free SEMRS WordPress themes and plugins for SEO, speed, ads and page building, plus Pro add-ons from $15 a year with 30-day refunds.', 'wordpress themes and plugins' );
+			semrs_store_set_seo( $assets->ID, 'WordPress Themes and Plugins: 6 Free Tools + Pro | SEMRS', 'Free SEMRS WordPress themes and plugins for SEO, speed, ads and page building, plus Pro add-ons from $19 a year with 30-day refunds.', 'wordpress themes and plugins' );
 		}
 	}
 

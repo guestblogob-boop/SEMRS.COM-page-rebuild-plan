@@ -73,35 +73,46 @@ function semrs_us_addon_names( $list ) {
  * @return array<string, int>
  */
 function semrs_us_tiers() {
-	return array( '1' => 1, '5' => 5, 'u' => 0 );
+	return array( '1' => 1, '3' => 3, '5' => 5, 'u' => 0 );
 }
 
 /**
  * Default prices in USD. Yearly plans renew each year; lifetime plans are one payment.
- * Set on 2026-10-28 below the public list prices of the main paid plugins and
- * themes each add-on replaces (see AUDIT_FREE_PRO.md).
+ * Set on 2026-10-31. 1 site and unlimited are 10–20% below the cheapest competitor
+ * at that tier, 3 sites 10–20% below the cheapest 3-site plan of the same kind where
+ * one exists, and 5 sites sits between (regular, not sale, prices; EUR at about 1.15):
+ * - SEO: SEOPress $49 (1) / $149 (unlimited); AIOSEO $99 (1) / $199 (3); Yoast $118.80 a site.
+ * - Speed: FlyingPress $59 / $109 (3) / $279 (unlimited); WP Rocket $60 / $120 (3) / $300 (50).
+ * - Ads: Ad Inserter Pro €20 (2) / €30 (5) / €100 (100); Advanced Ads Pro €59 (1).
+ * - Theme: Astra Pro $69 (any number of sites); GeneratePress One $99 (1) / $149 (10).
+ * - All Pro and lifetime: set by the owner on 2026-10-31.
  *
  * @return array<string, float>
  */
 function semrs_us_default_prices() {
 	return array(
-		'seo-1'      => 39,
-		'seo-5'      => 69,
+		'seo-1'      => 42,
+		'seo-3'      => 75,
+		'seo-5'      => 99,
 		'seo-u'      => 129,
-		'speed-1'    => 29,
-		'speed-5'    => 59,
-		'speed-u'    => 119,
-		'ads-1'      => 15,
-		'ads-5'      => 25,
-		'ads-u'      => 49,
-		'theme-1'    => 29,
-		'theme-5'    => 49,
-		'theme-u'    => 99,
-		'all-1'      => 69,
-		'all-5'      => 119,
-		'all-u'      => 199,
-		'all-life-1' => 199,
-		'all-life-u' => 499,
+		'speed-1'    => 49,
+		'speed-3'    => 89,
+		'speed-5'    => 119,
+		'speed-u'    => 229,
+		'ads-1'      => 19,
+		'ads-3'      => 27,
+		'ads-5'      => 31,
+		'ads-u'      => 99,
+		'theme-1'    => 39,
+		'theme-3'    => 49,
+		'theme-5'    => 55,
+		'theme-u'    => 62,
+		'all-1'      => 145,
+		'all-3'      => 230,
+		'all-5'      => 299,
+		'all-u'      => 499,
+		'all-life-1' => 299,
+		'all-life-u' => 695,
 	);
 }
 
@@ -130,6 +141,8 @@ function semrs_us_sales() {
 			'seller_email'     => get_option( 'admin_email' ),
 			'seller_tax'       => '',
 			'pay_instructions' => '',
+			'renew_percent'    => 20,
+			'renew_code'       => 'LOYAL20',
 			'account_page'     => 0,
 			'quote_page'       => 0,
 		),
@@ -233,15 +246,40 @@ function semrs_us_buy_url( $p, $kid = '' ) {
 		$page = $s['quote_page'] ? get_permalink( (int) $s['quote_page'] ) : '';
 		return add_query_arg( 'plan', $p['id'], $page ? $page : home_url( '/get-a-quote/' ) );
 	}
-	$args = array();
-	if ( semrs_us_offer_on() ) {
-		$args['checkout[discount_code]'] = semrs_us_sales()['offer_code'];
-	}
-	if ( $kid ) {
-		$args['checkout[custom][kid]'] = $kid;
-	}
-	return $args ? add_query_arg( array_map( 'rawurlencode', $args ), $p['checkout'] ) : $p['checkout'];
+	// Through semrs.com, so the offer running at click time and the partner
+	// code are added even when the page with the button came from the cache.
+	return add_query_arg( array_filter( array( 'semrs_buy' => $p['id'], 'kid' => $kid ) ), home_url( '/' ) );
 }
+
+/**
+ * /?semrs_buy=<plan>: send the visitor on to the plan's Lemon Squeezy
+ * checkout with the live offer code, their key ID and the partner code.
+ */
+function semrs_us_buy_redirect() {
+	if ( empty( $_GET['semrs_buy'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification -- public link.
+		return;
+	}
+	$p = semrs_us_plans()[ sanitize_key( wp_unslash( $_GET['semrs_buy'] ) ) ] ?? null; // phpcs:ignore WordPress.Security.NonceVerification
+	if ( ! $p || '' === $p['checkout'] ) {
+		wp_safe_redirect( $p ? semrs_us_buy_url( $p ) : home_url( '/' ) );
+		exit;
+	}
+	$kid   = isset( $_GET['kid'] ) ? preg_replace( '/[^a-f0-9]/', '', (string) wp_unslash( $_GET['kid'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+	$offer = semrs_us_offer_for( $p['id'], $kid );
+	$aff   = function_exists( 'semrs_us_aff_cookie' ) ? semrs_us_aff_cookie() : '';
+	$args  = array_filter(
+		array(
+			'checkout[discount_code]' => $offer ? $offer['code'] : '',
+			'checkout[custom][kid]'   => $kid,
+			'checkout[custom][aff]'   => $aff,
+		)
+	);
+	nocache_headers();
+	header( 'X-Robots-Tag: noindex, nofollow' );
+	wp_redirect( $args ? add_query_arg( array_map( 'rawurlencode', $args ), $p['checkout'] ) : $p['checkout'] ); // phpcs:ignore WordPress.Security.SafeRedirect -- the admin-set checkout link.
+	exit;
+}
+add_action( 'template_redirect', 'semrs_us_buy_redirect', 1 );
 
 /**
  * Short public ID for a key, safe to put in links (the key itself never is).
@@ -327,14 +365,21 @@ function semrs_us_grant( $ref, $src, $email, $name = '', $kid = '', $key = '' ) 
 		$k['sources']   = array( $ref => $src );
 		$k              = semrs_us_save_key( $key, $k );
 		semrs_us_mail_key( $key, $k, 'new' );
+		if ( function_exists( 'semrs_us_aff_on_grant' ) ) {
+			semrs_us_aff_on_grant( $key, $ref, $src, null );
+		}
 		return $key;
 	}
 	$k      = $all[ $key ];
 	$before = semrs_us_key_addons( $k );
-	$k['sources'][ $ref ] = array_merge( $k['sources'][ $ref ] ?? array(), $src );
+	$prev   = $k['sources'][ $ref ] ?? null;
+	$k['sources'][ $ref ] = array_merge( $prev ?? array(), $src );
 	$k = semrs_us_save_key( $key, $k );
 	if ( array_diff( semrs_us_key_addons( $k ), $before ) ) {
 		semrs_us_mail_key( $key, $k, 'added' );
+	}
+	if ( function_exists( 'semrs_us_aff_on_grant' ) ) {
+		semrs_us_aff_on_grant( $key, $ref, $k['sources'][ $ref ], $prev );
 	}
 	return $key;
 }
@@ -353,6 +398,9 @@ function semrs_us_refund( $ref ) {
 	$k                              = semrs_us_keys()[ $key ];
 	$k['sources'][ $ref ]['status'] = 'refunded';
 	semrs_us_save_key( $key, $k );
+	if ( function_exists( 'semrs_us_aff_on_refund' ) ) {
+		semrs_us_aff_on_refund( $ref );
+	}
 	return true;
 }
 
@@ -484,6 +532,7 @@ function semrs_us_renewal_reminders() {
 					__( 'Add-ons:', 'semrs-update-server' ) . ' ' . semrs_us_addon_names( $k['addons'] ),
 					'',
 					__( 'Your Pro features keep working either way. To keep updates coming, renew on your licenses page (or ask for an invoice there):', 'semrs-update-server' ),
+					semrs_us_renew_offer() ? sprintf( /* translators: %d: percent */ __( 'As a customer you get %d%% off every renewal.', 'semrs-update-server' ), semrs_us_renew_offer()['percent'] ) : '',
 					semrs_us_account_url(),
 					'',
 					semrs_us_sales()['seller_name'],
@@ -522,7 +571,9 @@ function semrs_us_quote_plan_note( $content ) {
 	$plan  = sanitize_key( wp_unslash( $_GET['plan'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
 	$plans = semrs_us_plans();
 	$what  = isset( $plans[ $plan ] ) ? 'SEMRS Pro: ' . semrs_us_plan_label( $plans[ $plan ] ) . ' (' . semrs_us_money( $plans[ $plan ]['price'] ) . ')' : __( 'SEMRS Pro by invoice', 'semrs-update-server' );
-	$note  = '<p class="semrs-quote-plan" role="note" style="border:2px solid var(--sp-accent,#d4a72c);border-radius:12px;padding:12px 16px"><strong>' . esc_html( $what ) . '</strong><br>' . esc_html__( 'Send the form with your name and email and we will email you an invoice (bank transfer, PayPal or card). Your license key arrives as soon as it is paid.', 'semrs-update-server' ) . '</p>';
+	$offer = semrs_us_offer_for( isset( $plans[ $plan ] ) ? $plan : 'all-1' );
+	$deal  = $offer ? ' ' . sprintf( /* translators: 1: offer, 2: percent */ __( 'The %1$s (%2$d%% off) is taken off your invoice.', 'semrs-update-server' ), $offer['name'], $offer['percent'] ) : '';
+	$note  = '<p class="semrs-quote-plan" role="note" style="border:2px solid var(--sp-accent,#d4a72c);border-radius:12px;padding:12px 16px"><strong>' . esc_html( $what ) . '</strong><br>' . esc_html__( 'Send the form with your name and email and we will email you an invoice (bank transfer, PayPal or card). Your license key arrives as soon as it is paid.', 'semrs-update-server' ) . esc_html( $deal ) . '</p>';
 	return $note . $content;
 }
 add_filter( 'the_content', 'semrs_us_quote_plan_note', 5 );

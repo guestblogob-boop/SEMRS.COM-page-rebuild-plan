@@ -111,8 +111,8 @@ function semrs_us_paddle_checkout_page() {
 	$open  = $plan && '' !== $plan['paddle'] ? array_filter(
 		array(
 			'items'        => array( array( 'priceId' => $plan['paddle'], 'quantity' => 1 ) ),
-			'customData'   => array_filter( array( 'plan' => $plan['id'], 'kid' => $kid ) ),
-			'discountCode' => semrs_us_offer_on() ? $s['offer_code'] : '',
+			'customData'   => array_filter( array( 'plan' => $plan['id'], 'kid' => $kid, 'aff' => function_exists( 'semrs_us_aff_cookie' ) ? semrs_us_aff_cookie() : '' ) ),
+			'discountCode' => semrs_us_offer_for( $plan['id'], $kid ) ? semrs_us_offer_for( $plan['id'], $kid )['code'] : '',
 		)
 	) : null;
 	$init  = array(
@@ -257,6 +257,7 @@ function semrs_us_paddle_handle( $event, $d, $test ) {
 		$sub    = sanitize_text_field( (string) ( $d['subscription_id'] ?? '' ) );
 		$ends   = (string) ( $d['billing_period']['ends_at'] ?? '' );
 		$items  = (array) ( $d['items'] ?? array() );
+		$lines  = (array) ( $d['details']['line_items'] ?? array() );
 		$notes  = array();
 		foreach ( array_values( $items ) as $i => $item ) {
 			$plan = semrs_us_plan_by_paddle_price( (array) ( $item['price'] ?? array() ) );
@@ -275,6 +276,8 @@ function semrs_us_paddle_handle( $event, $d, $test ) {
 					'expires' => $life ? '' : gmdate( 'Y-m-d', ( $ends ? strtotime( $ends ) : strtotime( '+1 year' ) ) + 7 * DAY_IN_SECONDS ),
 					'order'   => $txn,
 					'test'    => $test,
+					'aff'     => sanitize_key( (string) ( $custom['aff'] ?? '' ) ),
+					'amount'  => isset( $lines[ $i ]['totals']['total'] ) ? (int) $lines[ $i ]['totals']['total'] / 100 : null,
 				),
 				$email,
 				$name,

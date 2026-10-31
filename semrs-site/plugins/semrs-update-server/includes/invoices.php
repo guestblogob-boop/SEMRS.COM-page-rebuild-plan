@@ -52,7 +52,7 @@ function semrs_us_invoice_url( $inv ) {
 /**
  * Create an invoice.
  *
- * @param array $d name, email, address, plans[], discount (%), due (days), key, notes.
+ * @param array $d name, email, address, plans[], discount (%), due (days), key, notes, aff (partner code).
  * @return array The invoice.
  */
 function semrs_us_create_invoice( $d ) {
@@ -65,6 +65,9 @@ function semrs_us_create_invoice( $d ) {
 	}
 	$subtotal = array_sum( wp_list_pluck( $items, 'price' ) );
 	$discount = min( 100, max( 0, (float) $d['discount'] ) );
+	if ( ! $discount && ! empty( $d['loyalty'] ) && isset( semrs_us_keys()[ $d['key'] ] ) && semrs_us_renew_offer() ) {
+		$discount = semrs_us_renew_offer()['percent'];
+	}
 	$seq      = (int) get_option( 'semrs_us_invoice_seq', 0 ) + 1;
 	update_option( 'semrs_us_invoice_seq', $seq, false );
 	$inv = array(
@@ -82,6 +85,7 @@ function semrs_us_create_invoice( $d ) {
 		'currency' => semrs_us_sales()['currency'],
 		'key'      => isset( semrs_us_keys()[ $d['key'] ] ) ? $d['key'] : '',
 		'notes'    => sanitize_textarea_field( $d['notes'] ),
+		'aff'      => sanitize_key( (string) ( $d['aff'] ?? '' ) ),
 		'status'   => 'unpaid',
 		'paid'     => '',
 		'sent'     => '',
@@ -149,6 +153,8 @@ function semrs_us_invoice_paid( $inv ) {
 			'addons'  => $addons,
 			'sites'   => max( 0, $sites ),
 			'expires' => $life ? '' : gmdate( 'Y-m-d', strtotime( $from . ' +1 year' ) ),
+			'aff'     => (string) ( $inv['aff'] ?? '' ),
+			'amount'  => (float) $inv['total'],
 		),
 		$inv['email'],
 		$inv['name'],
@@ -182,9 +188,11 @@ function semrs_us_invoice_actions() {
 				'address'  => isset( $_POST['address'] ) ? wp_unslash( $_POST['address'] ) : '', // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 				'plans'    => isset( $_POST['plans'] ) ? array_map( 'sanitize_key', (array) wp_unslash( $_POST['plans'] ) ) : array(),
 				'discount' => isset( $_POST['discount'] ) ? (float) $_POST['discount'] : 0,
+				'loyalty'  => ! empty( $_POST['loyalty'] ),
 				'due'      => isset( $_POST['due'] ) ? absint( $_POST['due'] ) : 7,
 				'key'      => isset( $_POST['key'] ) ? preg_replace( '/[^A-Z0-9-]/', '', strtoupper( sanitize_text_field( wp_unslash( $_POST['key'] ) ) ) ) : '',
 				'notes'    => isset( $_POST['notes'] ) ? wp_unslash( $_POST['notes'] ) : '', // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+				'aff'      => isset( $_POST['aff'] ) ? sanitize_key( wp_unslash( $_POST['aff'] ) ) : '',
 			)
 		);
 		if ( ! empty( $_POST['send'] ) && $inv['items'] ) {
@@ -249,9 +257,12 @@ function semrs_us_page_invoices() {
 						<?php endforeach; ?>
 						<p class="description"><?php esc_html_e( 'Several add-ons on one invoice go on one key. The key gets the largest site limit of the plans picked.', 'semrs-update-server' ); ?></p>
 					</td></tr>
-					<tr><th><label for="inv-discount"><?php esc_html_e( 'Discount %', 'semrs-update-server' ); ?></label></th><td><input id="inv-discount" type="number" name="discount" min="0" max="100" step="0.01" value="0" style="width:90px"></td></tr>
+					<tr><th><label for="inv-discount"><?php esc_html_e( 'Discount %', 'semrs-update-server' ); ?></label></th><td><input id="inv-discount" type="number" name="discount" min="0" max="100" step="0.01" value="<?php echo esc_attr( semrs_us_sale_now() ? (int) semrs_us_sale_now()['percent'] : 0 ); ?>" style="width:90px"><?php if ( semrs_us_sale_now() ) : ?> <span class="description"><?php echo esc_html( sprintf( /* translators: %s: sale name */ __( 'Filled in from the running %s. Agency deal: 25%% on unlimited plans.', 'semrs-update-server' ), semrs_us_sale_now()['name'] ) ); ?></span><?php endif; ?></td></tr>
+					<?php if ( function_exists( 'semrs_us_affiliates' ) && semrs_us_affiliates() ) : ?>
+					<tr><th><label for="inv-aff"><?php esc_html_e( 'Referred by (affiliate)', 'semrs-update-server' ); ?></label></th><td><select id="inv-aff" name="aff"><option value="">—</option><?php foreach ( semrs_us_affiliates() as $code => $a ) : ?><?php if ( 'active' === $a['status'] ) : ?><option value="<?php echo esc_attr( $code ); ?>"><?php echo esc_html( $code . ' (' . $a['name'] . ')' ); ?></option><?php endif; ?><?php endforeach; ?></select> <span class="description"><?php esc_html_e( 'Pays the partner when the invoice is marked paid. Keys already tied to a partner pay them anyway.', 'semrs-update-server' ); ?></span></td></tr>
+					<?php endif; ?>
 					<tr><th><label for="inv-due"><?php esc_html_e( 'Due in (days)', 'semrs-update-server' ); ?></label></th><td><input id="inv-due" type="number" name="due" min="0" value="7" style="width:90px"></td></tr>
-					<tr><th><label for="inv-key"><?php esc_html_e( 'Existing key (renewal or add-on)', 'semrs-update-server' ); ?></label></th><td><input id="inv-key" name="key" class="regular-text code" value="<?php echo esc_attr( $prefill ); ?>" placeholder="XXXX-XXXX-XXXX-XXXX"><p class="description"><?php esc_html_e( 'Leave empty to create a new key when paid. With a key, its expiry moves one year past the current date or expiry, whichever is later.', 'semrs-update-server' ); ?></p></td></tr>
+					<tr><th><label for="inv-key"><?php esc_html_e( 'Existing key (renewal or add-on)', 'semrs-update-server' ); ?></label></th><td><input id="inv-key" name="key" class="regular-text code" value="<?php echo esc_attr( $prefill ); ?>" placeholder="XXXX-XXXX-XXXX-XXXX"><p class="description"><?php esc_html_e( 'Leave empty to create a new key when paid. With a key, its expiry moves one year past the current date or expiry, whichever is later.', 'semrs-update-server' ); ?></p><?php if ( semrs_us_renew_offer() ) : ?><label><input type="checkbox" name="loyalty" value="1" checked> <?php echo esc_html( sprintf( /* translators: %d: percent */ __( 'Loyalty renewal discount: %d%% off when a key is given and Discount is 0', 'semrs-update-server' ), semrs_us_renew_offer()['percent'] ) ); ?></label><?php endif; ?></td></tr>
 					<tr><th><label for="inv-notes"><?php esc_html_e( 'Notes on the invoice', 'semrs-update-server' ); ?></label></th><td><textarea id="inv-notes" name="notes" rows="2" class="large-text"></textarea></td></tr>
 					<tr><th></th><td><label><input type="checkbox" name="send" value="1" checked> <?php esc_html_e( 'Email the invoice to the customer now', 'semrs-update-server' ); ?></label></td></tr>
 				</table>

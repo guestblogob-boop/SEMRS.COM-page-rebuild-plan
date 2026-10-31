@@ -152,9 +152,9 @@ html[data-theme="dark"] .semrs-badge--pro { background: var(--sp-accent, #d4a72c
 .semrs-pp__tabs label { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; font-weight: 600; cursor: pointer; }
 .semrs-pp__r:checked + label { background: var(--sp-accent, #d4a72c); color: var(--sp-on-accent, #0b1f3a); }
 .semrs-pp__r:focus-visible + label { outline: 3px solid var(--sp-primary, #0b1f3a); outline-offset: 2px; }
-.semrs-pp .semrs-pp__t--5, .semrs-pp .semrs-pp__t--u { display: none; }
-.semrs-pp:has(#semrs-pp-5:checked) .semrs-pp__t--1, .semrs-pp:has(#semrs-pp-u:checked) .semrs-pp__t--1 { display: none; }
-.semrs-pp:has(#semrs-pp-5:checked) .semrs-pp__t--5, .semrs-pp:has(#semrs-pp-u:checked) .semrs-pp__t--u { display: block; }
+.semrs-pp .semrs-pp__t--3, .semrs-pp .semrs-pp__t--5, .semrs-pp .semrs-pp__t--u { display: none; }
+.semrs-pp:has(#semrs-pp-3:checked) .semrs-pp__t--1, .semrs-pp:has(#semrs-pp-5:checked) .semrs-pp__t--1, .semrs-pp:has(#semrs-pp-u:checked) .semrs-pp__t--1 { display: none; }
+.semrs-pp:has(#semrs-pp-3:checked) .semrs-pp__t--3, .semrs-pp:has(#semrs-pp-5:checked) .semrs-pp__t--5, .semrs-pp:has(#semrs-pp-u:checked) .semrs-pp__t--u { display: block; }
 .semrs-pp__grid { grid-auto-flow: row; grid-template-columns: 1fr; gap: 26px 18px; }
 @media (min-width: 700px) { .semrs-pp__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .semrs-pp__grid > .is-best { grid-column: 1 / -1; } }
 @media (min-width: 1040px) {
@@ -169,3 +169,24 @@ html[data-theme="dark"] .semrs-badge--pro { background: var(--sp-accent, #d4a72c
 .semrs-pp__life p { margin: 0; color: var(--sp-muted, #5b6575); }
 .semrs-pp__lifebtns { display: flex; flex-wrap: wrap; gap: 10px; }
 .semrs-pp__perks { max-width: 760px; margin: 18px auto; }
+
+/* Price check: SEMRS Pro vs the plugins it replaces */
+.semrs-cmp { margin: 48px 0 8px; }
+.semrs-cmp__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 16px; }
+.semrs-cmp__card { display: flex; flex-direction: column; gap: 8px; padding: 20px; border: 1px solid var(--sp-line, #e3e7ee); border-radius: 16px; background: var(--sp-surface, #fff); }
+.semrs-cmp__card:last-child { border: 2px solid var(--sp-accent, #d4a72c); }
+.semrs-cmp__h { margin: 0; font-size: 1.1rem; }
+.semrs-cmp__us { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.semrs-cmp__us span { flex-basis: 100%; font-weight: 600; color: var(--sp-muted, #5b6575); }
+.semrs-cmp__us strong { font-size: 1.8rem; line-height: 1.1; color: var(--sp-primary, #0b1f3a); }
+.semrs-cmp__deal { margin: 0; padding: 6px 10px; border-radius: 8px; background: var(--sp-accent-soft, #fbf3dc); color: var(--sp-accent-text, #6b5200); font-weight: 700; font-size: .9rem; }
+.semrs-cmp__them { margin: 0; padding: 8px 0 0; list-style: none; border-top: 1px dashed var(--sp-line, #e3e7ee); font-size: .92rem; }
+.semrs-cmp__them li { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0; color: var(--sp-muted, #5b6575); }
+.semrs-cmp__them li span:last-child { font-weight: 600; white-space: nowrap; }
+.semrs-cmp__save { margin: auto 0 0; font-weight: 700; color: var(--sp-primary, #0b1f3a); }
+.semrs-cmp__note { margin: 0; font-size: .82rem; color: var(--sp-muted, #5b6575); }
+.semrs-cmp__deals { margin: 20px 0 0; padding: 20px; border-radius: 16px; background: var(--sp-accent-soft, #fbf3dc); }
+.semrs-cmp__deals ul { margin: 10px 0 0; padding-left: 1.2em; }
+.semrs-cmp__deals li { margin: 4px 0; }
+.semrs-cmp__deals li.is-live { font-weight: 700; }
+.semrs-cmp__deals code { padding: 1px 6px; border: 1px dashed var(--sp-accent, #d4a72c); border-radius: 6px; background: transparent; font-weight: 700; }

@@ -552,15 +552,23 @@ function semrs_store_pro_plans() {
 	$cur    = $sales['currency'];
 	$tiers  = array(
 		'1' => __( '1 website', 'semrs-site' ),
+		'3' => __( '3 websites', 'semrs-site' ),
 		'5' => __( '5 websites', 'semrs-site' ),
 		'u' => __( 'Unlimited websites', 'semrs-site' ),
 	);
-	$offer  = semrs_us_offer_on() && $sales['offer_percent'] ? (int) $sales['offer_percent'] : 0;
+	// The offer each plan's Buy button carries (seasonal sale, agency deal or launch offer).
+	$offer_of = function ( $id ) use ( $sales ) {
+		if ( function_exists( 'semrs_us_offer_for' ) ) {
+			return semrs_us_offer_for( $id );
+		}
+		return semrs_us_offer_on() && $sales['offer_percent'] ? array( 'percent' => (int) $sales['offer_percent'], 'code' => $sales['offer_code'], 'label' => $sales['offer_label'], 'name' => __( 'launch offer', 'semrs-site' ), 'ends' => $sales['offer_ends'] ? strtotime( $sales['offer_ends'] ) : 0 ) : null;
+	};
+	$main   = $offer_of( 'all-1' );
 	$out    = '<section class="semrs-pp" id="plans" aria-labelledby="semrs-pp-title"><h2 id="semrs-pp-title" class="semrs-pp__title">' . esc_html__( 'Pay only for what you use', 'semrs-site' ) . '</h2>';
 	$out   .= '<p class="semrs-pp__lead">' . esc_html__( 'Pick one add-on or take All Pro for everything. One key, one plugin, and you can add more later.', 'semrs-site' ) . '</p>';
-	if ( semrs_us_offer_on() ) {
-		$label = $sales['offer_label'] ? $sales['offer_label'] : sprintf( /* translators: %d: percent */ __( 'Launch offer: %d%% off your first year', 'semrs-site' ), $offer );
-		$out  .= '<p class="semrs-pp__offer"><strong>' . esc_html( $label ) . '</strong> ' . esc_html( sprintf( /* translators: %s: code */ __( 'Code %s is applied at checkout.', 'semrs-site' ), $sales['offer_code'] ) ) . ( $sales['offer_ends'] ? ' ' . esc_html( sprintf( /* translators: %s: date */ __( 'Ends %s.', 'semrs-site' ), mysql2date( get_option( 'date_format' ), $sales['offer_ends'] ) ) ) : '' ) . '</p>';
+	if ( $main && $main['percent'] ) {
+		$label = $main['label'] ? $main['label'] : sprintf( /* translators: %d: percent */ __( 'Launch offer: %d%% off your first year', 'semrs-site' ), $main['percent'] );
+		$out  .= '<p class="semrs-pp__offer"><strong>' . esc_html( $label ) . '</strong> ' . esc_html( sprintf( /* translators: %s: code */ __( 'Code %s is applied at checkout.', 'semrs-site' ), $main['code'] ) ) . ( $main['ends'] ? ' ' . esc_html( sprintf( /* translators: %s: date */ __( 'Ends %s.', 'semrs-site' ), wp_date( get_option( 'date_format' ), $main['ends'] ) ) ) : '' ) . '</p>';
 	}
 	$out .= '<fieldset class="semrs-pp__tabs"><legend class="screen-reader-text">' . esc_html__( 'Number of websites', 'semrs-site' ) . '</legend>';
 	foreach ( $tiers as $t => $label ) {
@@ -580,17 +588,18 @@ function semrs_store_pro_plans() {
 				}
 				$save = $sum > 0 ? (int) round( ( 1 - $plans[ 'all-' . $t ]['price'] / $sum ) * 100 ) : 0;
 				/* translators: %d: percent */
-				$out .= '<span class="semrs-pp__t semrs-pp__t--' . esc_attr( $t ) . '">' . esc_html( sprintf( __( 'Best value: save %d%%', 'semrs-site' ), $save ) ) . '</span>';
+				$out .= '<span class="semrs-pp__t semrs-pp__t--' . esc_attr( $t ) . '">' . esc_html( $save > 0 ? sprintf( __( 'Best value: save %d%%', 'semrs-site' ), $save ) : __( 'Everything in one key', 'semrs-site' ) ) . '</span>';
 			}
 			$out .= '</span>';
 		}
 		$out .= '<h3 class="semrs-plan__name">' . esc_html( $name ) . '</h3><p class="semrs-pp__promise">' . esc_html( $info[0] ) . '</p>';
 		foreach ( array_keys( $tiers ) as $t ) {
 			$p    = $plans[ $addon . '-' . $t ];
+			$po   = $offer_of( $p['id'] );
 			$out .= '<div class="semrs-pp__t semrs-pp__t--' . esc_attr( $t ) . '"><p class="semrs-plan__price"><strong>' . esc_html( semrs_store_money( $p['price'], $cur ) ) . '</strong> <span>' . esc_html__( '/ year', 'semrs-site' ) . '</span></p>';
-			if ( $offer ) {
-				/* translators: %s: price */
-				$out .= '<p class="semrs-plan__per">' . esc_html( sprintf( __( 'First year %s with the launch offer', 'semrs-site' ), semrs_store_money( round( $p['price'] * ( 100 - $offer ) / 100, 2 ), $cur ) ) ) . '</p>';
+			if ( $po && $po['percent'] ) {
+				/* translators: 1: price, 2: offer name */
+				$out .= '<p class="semrs-plan__per">' . esc_html( sprintf( __( 'First year %1$s with the %2$s', 'semrs-site' ), semrs_store_money( round( $p['price'] * ( 100 - $po['percent'] ) / 100, 2 ), $cur ), $po['name'] ) ) . '</p>';
 			} elseif ( $p['sites'] > 1 ) {
 				/* translators: %s: price */
 				$out .= '<p class="semrs-plan__per">' . esc_html( sprintf( __( '%s per website', 'semrs-site' ), semrs_store_money( round( $p['price'] / $p['sites'], 2 ), $cur ) ) ) . '</p>';
@@ -610,11 +619,20 @@ function semrs_store_pro_plans() {
 
 	$l1   = $plans['all-life-1'];
 	$lu   = $plans['all-life-u'];
+	$life = function ( $p ) use ( $offer_of, $cur ) {
+		$o = $offer_of( $p['id'] );
+		return $o && $o['percent'] ? semrs_store_money( round( $p['price'] * ( 100 - $o['percent'] ) / 100, 2 ), $cur ) . ' (' . __( 'was', 'semrs-site' ) . ' ' . semrs_store_money( $p['price'], $cur ) . ')' : semrs_store_money( $p['price'], $cur );
+	};
 	$out .= '<div class="semrs-pp__life"><div><h3>' . esc_html__( 'Pay once, keep it forever', 'semrs-site' ) . '</h3><p>' . esc_html__( 'All Pro with lifetime updates and support. No renewals.', 'semrs-site' ) . '</p></div><div class="semrs-pp__lifebtns">';
 	/* translators: %s: price */
-	$out .= '<a class="semrs-btn semrs-btn--ghost" href="' . esc_url( semrs_us_buy_url( $l1 ) ) . '" rel="nofollow">' . esc_html( sprintf( __( '1 website: %s once', 'semrs-site' ), semrs_store_money( $l1['price'], $cur ) ) ) . '</a>';
+	$out .= '<a class="semrs-btn semrs-btn--ghost" href="' . esc_url( semrs_us_buy_url( $l1 ) ) . '" rel="nofollow">' . esc_html( sprintf( __( '1 website: %s once', 'semrs-site' ), $life( $l1 ) ) ) . '</a>';
 	/* translators: %s: price */
-	$out .= '<a class="semrs-btn semrs-btn--buy" href="' . esc_url( semrs_us_buy_url( $lu ) ) . '" rel="nofollow">' . esc_html( sprintf( __( 'Unlimited websites: %s once', 'semrs-site' ), semrs_store_money( $lu['price'], $cur ) ) ) . '</a></div></div>';
+	$out .= '<a class="semrs-btn semrs-btn--buy" href="' . esc_url( semrs_us_buy_url( $lu ) ) . '" rel="nofollow">' . esc_html( sprintf( __( 'Unlimited websites: %s once', 'semrs-site' ), $life( $lu ) ) ) . '</a></div></div>';
+	if ( function_exists( 'semrs_us_campaigns_live' ) && in_array( 'agency', wp_list_pluck( semrs_us_campaigns_live(), 'id' ), true ) ) {
+		/* translators: %d: percent */
+		$out .= '<p class="semrs-pp__offer"><strong>' . esc_html( sprintf( __( 'Agencies and freelancers: %d%% off All Pro for unlimited websites, every day.', 'semrs-site' ), (int) semrs_us_campaigns()['agency']['percent'] ) ) . '</strong> ' . esc_html__( 'Applied at checkout on the unlimited yearly and lifetime plans. A seasonal sale replaces it while it runs.', 'semrs-site' ) . '</p>';
+	}
+	$out .= semrs_store_compare_cards( $offer_of );
 
 	$perks = array(
 		__( 'One key for every add-on. Buy another later and it switches on by itself, with nothing to reinstall.', 'semrs-site' ),
@@ -623,6 +641,10 @@ function semrs_store_pro_plans() {
 		__( 'Pay by bank transfer on invoice, or at the online checkout when one is shown.', 'semrs-site' ),
 		__( 'SEMRS Core, SEMRS Blocks, SEMRS Tools and the SEMRS theme stay free.', 'semrs-site' ),
 	);
+	if ( ! empty( $sales['renew_percent'] ) ) {
+		/* translators: %d: percent */
+		array_unshift( $perks, sprintf( __( 'Loyalty renewals: %d%% off every year you renew, on every plan.', 'semrs-site' ), (int) $sales['renew_percent'] ) );
+	}
 	if ( $sales['refund_days'] ) {
 		/* translators: %d: days */
 		array_unshift( $perks, sprintf( __( '%d-day refunds, no questions asked.', 'semrs-site' ), (int) $sales['refund_days'] ) );
@@ -636,6 +658,136 @@ function semrs_store_pro_plans() {
 	return $out;
 }
 add_shortcode( 'semrs_pro_plans', 'semrs_store_pro_plans' );
+
+/**
+ * Competitor prices for the comparison cards: regular yearly prices for one
+ * website, from each vendor's own pricing page. Re-check them when prices
+ * change (filter: semrs_store_competitor_prices).
+ *
+ * @return array{checked: string, rows: array}
+ */
+function semrs_store_competitor_prices() {
+	return apply_filters(
+		'semrs_store_competitor_prices',
+		array(
+			'checked' => '2026-10-31',
+			'rows'    => array(
+				'seo'   => array( array( 'SEOPress PRO', 49, '$49' ), array( 'All in One SEO Basic', 99, '$99' ), array( 'Yoast SEO Premium', 118.8, '$118.80' ) ),
+				'speed' => array( array( 'FlyingPress Starter', 59, '$59' ), array( 'WP Rocket Single', 60, '$60' ) ),
+				'ads'   => array( array( 'Ad Inserter Pro Personal (2 sites)', 23, '€20' ), array( 'Advanced Ads Pro', 68, '€59' ) ),
+				'theme' => array( array( 'Astra Pro', 69, '$69' ), array( 'GeneratePress One', 99, '$99' ) ),
+			),
+		)
+	);
+}
+
+/**
+ * Price cards: each SEMRS Pro add-on (one website, yearly) next to the
+ * plugins and themes it replaces, with today's deal price and the saving.
+ *
+ * @param callable|null $offer_of Plan ID => running offer or null.
+ * @return string
+ */
+function semrs_store_compare_cards( $offer_of = null ) {
+	if ( ! function_exists( 'semrs_us_plans' ) ) {
+		return '';
+	}
+	$plans    = semrs_us_plans();
+	$cur      = semrs_us_sales()['currency'];
+	$data     = semrs_store_competitor_prices();
+	$offer_of = $offer_of ? $offer_of : ( function_exists( 'semrs_us_offer_for' ) ? 'semrs_us_offer_for' : '__return_null' );
+	$money    = function ( $v ) use ( $cur ) {
+		return semrs_store_money( $v, $cur );
+	};
+	$card     = function ( $title, $ours, $plan, $them, $note = '' ) use ( $offer_of, $money ) {
+		$o    = call_user_func( $offer_of, $plan['id'] );
+		$low  = min( wp_list_pluck( $them, 1 ) );
+		$save = $low - $plan['price'];
+		$out  = '<div class="semrs-cmp__card"><h3 class="semrs-cmp__h">' . esc_html( $title ) . '</h3>';
+		$out .= '<p class="semrs-cmp__us"><span>' . esc_html( $ours ) . '</span> <strong>' . esc_html( $money( $plan['price'] ) ) . '</strong> <small>' . esc_html__( '/ year', 'semrs-site' ) . '</small></p>';
+		if ( $o && $o['percent'] ) {
+			/* translators: 1: offer name, 2: price */
+			$out .= '<p class="semrs-cmp__deal">' . esc_html( sprintf( __( 'With the %1$s: %2$s first year', 'semrs-site' ), $o['name'], $money( round( $plan['price'] * ( 100 - $o['percent'] ) / 100, 2 ) ) ) ) . '</p>';
+		}
+		$out .= '<ul class="semrs-cmp__them">';
+		foreach ( $them as $t ) {
+			$out .= '<li><span>' . esc_html( $t[0] ) . '</span> <span>' . esc_html( $t[2] ) . '</span></li>';
+		}
+		$out .= '</ul>';
+		if ( $save > 0 ) {
+			/* translators: 1: amount, 2: percent */
+			$out .= '<p class="semrs-cmp__save">' . esc_html( sprintf( __( 'You save %1$s (%2$d%%) on the cheapest one', 'semrs-site' ), $money( round( $save, 2 ) ), (int) round( $save / $low * 100 ) ) ) . '</p>';
+		}
+		return $out . ( $note ? '<p class="semrs-cmp__note">' . esc_html( $note ) . '</p>' : '' ) . '</div>';
+	};
+	$names = array(
+		'seo'   => array( __( 'SEO', 'semrs-site' ), 'SEO Pro' ),
+		'speed' => array( __( 'Speed', 'semrs-site' ), 'Speed Pro' ),
+		'ads'   => array( __( 'Ads', 'semrs-site' ), 'Ads Pro' ),
+		'theme' => array( __( 'Theme and blocks', 'semrs-site' ), 'Theme & Blocks Pro' ),
+	);
+	$out  = '<section class="semrs-cmp" aria-labelledby="semrs-cmp-title"><h2 id="semrs-cmp-title" class="semrs-pp__title">' . esc_html__( 'Price check: SEMRS Pro vs the plugins it replaces', 'semrs-site' ) . '</h2>';
+	$out .= '<p class="semrs-pp__lead">' . esc_html__( 'One website, one year, regular prices. Deals below come on top.', 'semrs-site' ) . '</p><div class="semrs-cmp__grid">';
+	$set  = array();
+	foreach ( $names as $id => $n ) {
+		$them      = $data['rows'][ $id ];
+		$set[]     = array( $them[ array_search( min( wp_list_pluck( $them, 1 ) ), wp_list_pluck( $them, 1 ), true ) ][0], min( wp_list_pluck( $them, 1 ) ) );
+		$out      .= $card( $n[0], $n[1], $plans[ $id . '-1' ], $them );
+	}
+	$total = array_sum( wp_list_pluck( $set, 1 ) );
+	/* translators: %s: plugin names */
+	$out .= $card( __( 'Everything', 'semrs-site' ), 'All Pro', $plans['all-1'], array( array( __( 'The cheapest of each, bought together', 'semrs-site' ), $total, '≈ ' . $money( round( $total ) ) ) ), sprintf( __( 'That is %s.', 'semrs-site' ), implode( ' + ', wp_list_pluck( $set, 0 ) ) ) );
+	$out .= '</div>' . semrs_store_deals_box();
+	/* translators: %s: date */
+	$out .= '<p class="semrs-plans__note">' . esc_html( sprintf( __( 'Other prices are the regular yearly prices on each vendor\'s own website on %s (euro prices at about $1.15). They can change; names belong to their owners.', 'semrs-site' ), wp_date( get_option( 'date_format' ), strtotime( $data['checked'] ) ) ) ) . '</p></section>';
+	return $out;
+}
+add_shortcode(
+	'semrs_price_compare',
+	function () {
+		semrs_store_assets();
+		return semrs_store_compare_cards();
+	}
+);
+
+/**
+ * Deals box: the sale running now, the always-on deals and the next sale.
+ *
+ * @return string
+ */
+function semrs_store_deals_box() {
+	if ( ! function_exists( 'semrs_us_campaigns_live' ) ) {
+		return '';
+	}
+	$items = array();
+	foreach ( semrs_us_campaigns_live() as $c ) {
+		if ( $c['season'] ) {
+			/* translators: 1: sale, 2: percent, 3: date */
+			$items[] = array( 'is-live', sprintf( __( 'Now: %1$s, %2$d%% off every plan until %3$s', 'semrs-site' ), $c['name'], $c['percent'], wp_date( 'F j', $c['window'][1] ) ), $c['auto'] ? '' : $c['code'] );
+		} elseif ( 'agency' === $c['id'] ) {
+			/* translators: %d: percent */
+			$items[] = array( '', sprintf( __( 'Agency deal: %d%% off All Pro for unlimited websites, applied at checkout', 'semrs-site' ), $c['percent'] ), '' );
+		} else {
+			/* translators: 1: deal, 2: percent */
+			$items[] = array( '', sprintf( __( '%1$s: %2$d%% off your first order with code', 'semrs-site' ), $c['name'], $c['percent'] ), $c['code'] );
+		}
+	}
+	foreach ( semrs_us_campaign_schedule( 120 ) as $c ) {
+		if ( $c['window'][0] > time() && semrs_us_campaign_usable( $c ) ) {
+			/* translators: 1: sale, 2: start, 3: end, 4: percent */
+			$items[] = array( 'is-next', sprintf( __( 'Next: %1$s, %2$s to %3$s, %4$d%% off', 'semrs-site' ), $c['name'], wp_date( 'M j', $c['window'][0] ), wp_date( 'M j', $c['window'][1] ), $c['percent'] ), '' );
+			break;
+		}
+	}
+	if ( ! $items ) {
+		return '';
+	}
+	$out = '<div class="semrs-cmp__deals"><h3 class="semrs-cmp__h">' . esc_html__( 'Deals and discounts', 'semrs-site' ) . '</h3><ul>';
+	foreach ( $items as $i ) {
+		$out .= '<li class="' . esc_attr( $i[0] ) . '">' . esc_html( $i[1] ) . ( $i[2] ? ' <code>' . esc_html( $i[2] ) . '</code>' : '' ) . '</li>';
+	}
+	return $out . '</ul></div>';
+}
 
 /* -------------------------------------------------------------------------
  * Templates

@@ -160,7 +160,7 @@ function semrs_us_my_licenses() {
 	if ( 'free' === $done ) {
 		$out .= '<p class="semrs-ml__note" role="status">' . esc_html__( 'Site slot freed. You can now activate the key on another site.', 'semrs-update-server' ) . '</p>';
 	} elseif ( 'renew' === $done ) {
-		$out .= '<p class="semrs-ml__note" role="status">' . esc_html__( 'Thanks! We will email you a renewal invoice within one business day.', 'semrs-update-server' ) . '</p>';
+		$out .= '<p class="semrs-ml__note" role="status">' . esc_html( __( 'Thanks! We will email you a renewal invoice within one business day.', 'semrs-update-server' ) . ( semrs_us_renew_offer() ? ' ' . sprintf( /* translators: %d: percent */ __( 'Your %d%% loyalty discount is included.', 'semrs-update-server' ), semrs_us_renew_offer()['percent'] ) : '' ) ) . '</p>';
 	}
 
 	global $wpdb;
@@ -173,7 +173,7 @@ function semrs_us_my_licenses() {
 	foreach ( semrs_us_keys_for_email( $email ) as $key => $k ) {
 		$kid    = semrs_us_kid( $key );
 		$owned  = semrs_us_key_addons( $k );
-		$tier   = 0 === (int) $k['sites'] ? 'u' : ( (int) $k['sites'] > 1 ? '5' : '1' );
+		$tier   = 0 === (int) $k['sites'] ? 'u' : ( (int) $k['sites'] > 3 ? '5' : ( (int) $k['sites'] > 1 ? '3' : '1' ) );
 		$hosts  = $wpdb->get_col( $wpdb->prepare( "SELECT host FROM {$wpdb->prefix}semrs_sites WHERE slug = 'semrs-pro' AND license_key = %s AND last_seen > %s ORDER BY last_seen DESC", $key, gmdate( 'Y-m-d H:i:s', time() - 30 * DAY_IN_SECONDS ) ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
 		$expired = '' !== $k['expires'] && $k['expires'] < gmdate( 'Y-m-d' );
 		$portal  = '';
@@ -219,7 +219,7 @@ function semrs_us_my_licenses() {
 			// One plan covers the key: offer it as an online renewal (it extends this key).
 			$renew = count( $owned ) === count( $names ) ? 'all-' . $tier : ( 1 === count( $owned ) ? $owned[0] . '-' . $tier : '' );
 			if ( $renew && '' !== $plans[ $renew ]['checkout'] ) {
-				$out .= '<a class="semrs-btn semrs-btn--ghost" href="' . esc_url( semrs_us_buy_url( $plans[ $renew ], $kid ) ) . '" rel="nofollow">' . esc_html( sprintf( /* translators: %s: price */ __( 'Renew online (%s/yr)', 'semrs-update-server' ), semrs_us_money( $plans[ $renew ]['price'] ) ) ) . '</a>';
+				$out .= '<a class="semrs-btn semrs-btn--ghost" href="' . esc_url( semrs_us_buy_url( $plans[ $renew ], $kid ) ) . '" rel="nofollow">' . esc_html( sprintf( /* translators: %s: price */ __( 'Renew online (%s/yr)', 'semrs-update-server' ), semrs_us_money( semrs_us_renew_offer() ? round( $plans[ $renew ]['price'] * ( 100 - semrs_us_renew_offer()['percent'] ) / 100, 2 ) : $plans[ $renew ]['price'] ) ) ) . '</a>';
 			}
 			$out .= '<form method="post" action="' . $url . '">' . $hid( 'renew', $kid ) . '<button class="semrs-btn semrs-btn--ghost" type="submit">' . esc_html__( 'Request a renewal invoice', 'semrs-update-server' ) . '</button></form>';
 		}
