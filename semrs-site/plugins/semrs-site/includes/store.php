@@ -527,7 +527,7 @@ add_shortcode( 'semrs_pricing', 'semrs_store_pricing' );
  */
 function semrs_store_pro_addon_info() {
 	return array(
-		'all'   => array( __( 'Every Pro feature on one key: SEO, speed, ads, theme and blocks.', 'semrs-site' ), array( __( 'SEO Pro + Speed Pro + Ads Pro + Theme & Blocks Pro', 'semrs-site' ), __( 'Replaces a premium SEO plugin, a caching plugin, an image optimizer, an ad inserter and a theme Pro add-on', 'semrs-site' ), __( 'One plugin, one key, one place for updates', 'semrs-site' ), __( 'Every new Pro feature we add, included', 'semrs-site' ) ) ),
+		'all'   => array( __( 'Every Pro feature on one key: SEO, speed, ads, theme and blocks.', 'semrs-site' ), array( __( 'SEO Pro + Speed Pro + Ads Pro + Theme & Blocks Pro', 'semrs-site' ), __( 'Replaces a premium SEO plugin, a caching plugin, an image optimizer, an ad placement plugin and a theme Pro add-on', 'semrs-site' ), __( 'One plugin, one key, one place for updates', 'semrs-site' ), __( 'Every new Pro feature we add, included', 'semrs-site' ) ) ),
 		'seo'   => array( __( 'Rank and get indexed: the SEO tools other plugins charge most for.', 'semrs-site' ), array( __( 'AI titles, descriptions and alt text with your own AI key (no credit packs)', 'semrs-site' ), __( 'Automatic internal links and a broken link checker', 'semrs-site' ), __( 'Image, video and news sitemaps', 'semrs-site' ), __( 'Search Console stats and keyword rank tracking', 'semrs-site' ), __( 'Bulk SEO editor and custom schema', 'semrs-site' ), __( 'Multi-location local SEO', 'semrs-site' ) ) ),
 		'speed' => array( __( 'Faster pages without a separate caching or image plugin.', 'semrs-site' ), array( __( 'Delay analytics, pixel and chat scripts until the visitor interacts', 'semrs-site' ), __( 'Cache preload and CDN', 'semrs-site' ), __( 'Minify and remove unused CSS', 'semrs-site' ), __( 'Convert your whole media library to WebP or AVIF, no quota', 'semrs-site' ) ) ),
 		'ads'   => array( __( 'Earn more from AdSense while staying policy-safe.', 'semrs-site' ), array( __( 'More placements: repeat in content, between posts', 'semrs-site' ), __( 'Targeting by category, post age and dates', 'semrs-site' ), __( 'A/B rotation', 'semrs-site' ), __( 'Click protection and a polite ad-blocker message', 'semrs-site' ) ) ),
@@ -660,30 +660,31 @@ function semrs_store_pro_plans() {
 add_shortcode( 'semrs_pro_plans', 'semrs_store_pro_plans' );
 
 /**
- * Competitor prices for the comparison cards: regular yearly prices for one
- * website, from each vendor's own pricing page. Re-check them when prices
- * change (filter: semrs_store_competitor_prices).
+ * Regular yearly prices (USD, one website) of similar paid plugins and
+ * themes, for the savings on the price cards. Only the numbers are used:
+ * no product or company is named on the site. Re-check them when prices
+ * change (filter: semrs_store_market_prices).
  *
- * @return array{checked: string, rows: array}
+ * @return array{checked: string, rows: array<string, float[]>}
  */
-function semrs_store_competitor_prices() {
+function semrs_store_market_prices() {
 	return apply_filters(
-		'semrs_store_competitor_prices',
+		'semrs_store_market_prices',
 		array(
 			'checked' => '2026-10-31',
 			'rows'    => array(
-				'seo'   => array( array( 'SEOPress PRO', 49, '$49' ), array( 'All in One SEO Basic', 99, '$99' ), array( 'Yoast SEO Premium', 118.8, '$118.80' ) ),
-				'speed' => array( array( 'FlyingPress Starter', 59, '$59' ), array( 'WP Rocket Single', 60, '$60' ) ),
-				'ads'   => array( array( 'Ad Inserter Pro Personal (2 sites)', 23, '€20' ), array( 'Advanced Ads Pro', 68, '€59' ) ),
-				'theme' => array( array( 'Astra Pro', 69, '$69' ), array( 'GeneratePress One', 99, '$99' ) ),
+				'seo'   => array( 49, 99, 118.8 ),
+				'speed' => array( 59, 60 ),
+				'ads'   => array( 23, 68 ),
+				'theme' => array( 69, 99 ),
 			),
 		)
 	);
 }
 
 /**
- * Price cards: each SEMRS Pro add-on (one website, yearly) next to the
- * plugins and themes it replaces, with today's deal price and the saving.
+ * Price cards: each SEMRS Pro add-on (one website, yearly) with today's deal
+ * price and how much it saves against similar paid plugins (percent only).
  *
  * @param callable|null $offer_of Plan ID => running offer or null.
  * @return string
@@ -694,52 +695,44 @@ function semrs_store_compare_cards( $offer_of = null ) {
 	}
 	$plans    = semrs_us_plans();
 	$cur      = semrs_us_sales()['currency'];
-	$data     = semrs_store_competitor_prices();
+	$data     = semrs_store_market_prices();
 	$offer_of = $offer_of ? $offer_of : ( function_exists( 'semrs_us_offer_for' ) ? 'semrs_us_offer_for' : '__return_null' );
-	$money    = function ( $v ) use ( $cur ) {
-		return semrs_store_money( $v, $cur );
-	};
-	$card     = function ( $title, $ours, $plan, $them, $note = '' ) use ( $offer_of, $money ) {
+	$card     = function ( $title, $ours, $plan, $low, $high, $what ) use ( $offer_of, $cur ) {
 		$o    = call_user_func( $offer_of, $plan['id'] );
-		$low  = min( wp_list_pluck( $them, 1 ) );
-		$save = $low - $plan['price'];
 		$out  = '<div class="semrs-cmp__card"><h3 class="semrs-cmp__h">' . esc_html( $title ) . '</h3>';
-		$out .= '<p class="semrs-cmp__us"><span>' . esc_html( $ours ) . '</span> <strong>' . esc_html( $money( $plan['price'] ) ) . '</strong> <small>' . esc_html__( '/ year', 'semrs-site' ) . '</small></p>';
+		$out .= '<p class="semrs-cmp__us"><span>' . esc_html( $ours ) . '</span> <strong>' . esc_html( semrs_store_money( $plan['price'], $cur ) ) . '</strong> <small>' . esc_html__( '/ year', 'semrs-site' ) . '</small></p>';
 		if ( $o && $o['percent'] ) {
 			/* translators: 1: offer name, 2: price */
-			$out .= '<p class="semrs-cmp__deal">' . esc_html( sprintf( __( 'With the %1$s: %2$s first year', 'semrs-site' ), $o['name'], $money( round( $plan['price'] * ( 100 - $o['percent'] ) / 100, 2 ) ) ) ) . '</p>';
+			$out .= '<p class="semrs-cmp__deal">' . esc_html( sprintf( __( 'With the %1$s: %2$s first year', 'semrs-site' ), $o['name'], semrs_store_money( round( $plan['price'] * ( 100 - $o['percent'] ) / 100, 2 ), $cur ) ) ) . '</p>';
 		}
-		$out .= '<ul class="semrs-cmp__them">';
-		foreach ( $them as $t ) {
-			$out .= '<li><span>' . esc_html( $t[0] ) . '</span> <span>' . esc_html( $t[2] ) . '</span></li>';
+		$min = $low > $plan['price'] ? (int) round( ( 1 - $plan['price'] / $low ) * 100 ) : 0;
+		$max = $high > $plan['price'] ? (int) round( ( 1 - $plan['price'] / $high ) * 100 ) : 0;
+		if ( $min > 0 ) {
+			/* translators: %d: percent */
+			$out .= '<p class="semrs-cmp__save">' . esc_html( sprintf( __( 'Save %d%%', 'semrs-site' ), $min ) ) . ( $max > $min ? ' <small>' . esc_html( sprintf( /* translators: %d: percent */ __( 'and up to %d%%', 'semrs-site' ), $max ) ) . '</small>' : '' ) . '</p>';
 		}
-		$out .= '</ul>';
-		if ( $save > 0 ) {
-			/* translators: 1: amount, 2: percent */
-			$out .= '<p class="semrs-cmp__save">' . esc_html( sprintf( __( 'You save %1$s (%2$d%%) on the cheapest one', 'semrs-site' ), $money( round( $save, 2 ) ), (int) round( $save / $low * 100 ) ) ) . '</p>';
-		}
-		return $out . ( $note ? '<p class="semrs-cmp__note">' . esc_html( $note ) . '</p>' : '' ) . '</div>';
+		return $out . '<p class="semrs-cmp__note">' . esc_html( $what ) . '</p></div>';
 	};
 	$names = array(
-		'seo'   => array( __( 'SEO', 'semrs-site' ), 'SEO Pro' ),
-		'speed' => array( __( 'Speed', 'semrs-site' ), 'Speed Pro' ),
-		'ads'   => array( __( 'Ads', 'semrs-site' ), 'Ads Pro' ),
-		'theme' => array( __( 'Theme and blocks', 'semrs-site' ), 'Theme & Blocks Pro' ),
+		'seo'   => array( __( 'SEO', 'semrs-site' ), 'SEO Pro', __( 'Compared with similar paid SEO plugins.', 'semrs-site' ) ),
+		'speed' => array( __( 'Speed', 'semrs-site' ), 'Speed Pro', __( 'Compared with similar paid speed and caching plugins.', 'semrs-site' ) ),
+		'ads'   => array( __( 'Ads', 'semrs-site' ), 'Ads Pro', __( 'Compared with similar paid ad-placement plugins.', 'semrs-site' ) ),
+		'theme' => array( __( 'Theme and blocks', 'semrs-site' ), 'Theme & Blocks Pro', __( 'Compared with similar paid theme add-ons.', 'semrs-site' ) ),
 	);
-	$out  = '<section class="semrs-cmp" aria-labelledby="semrs-cmp-title"><h2 id="semrs-cmp-title" class="semrs-pp__title">' . esc_html__( 'Price check: SEMRS Pro vs the plugins it replaces', 'semrs-site' ) . '</h2>';
-	$out .= '<p class="semrs-pp__lead">' . esc_html__( 'One website, one year, regular prices. Deals below come on top.', 'semrs-site' ) . '</p><div class="semrs-cmp__grid">';
-	$set  = array();
+	$out  = '<section class="semrs-cmp" aria-labelledby="semrs-cmp-title"><h2 id="semrs-cmp-title" class="semrs-pp__title">' . esc_html__( 'How much SEMRS Pro saves', 'semrs-site' ) . '</h2>';
+	$out .= '<p class="semrs-pp__lead">' . esc_html__( 'One website, one year, against the regular prices of similar paid plugins. Deals below come on top.', 'semrs-site' ) . '</p><div class="semrs-cmp__grid">';
+	$low  = 0;
+	$high = 0;
 	foreach ( $names as $id => $n ) {
-		$them      = $data['rows'][ $id ];
-		$set[]     = array( $them[ array_search( min( wp_list_pluck( $them, 1 ) ), wp_list_pluck( $them, 1 ), true ) ][0], min( wp_list_pluck( $them, 1 ) ) );
-		$out      .= $card( $n[0], $n[1], $plans[ $id . '-1' ], $them );
+		$row   = $data['rows'][ $id ];
+		$low  += min( $row );
+		$high += max( $row );
+		$out  .= $card( $n[0], $n[1], $plans[ $id . '-1' ], min( $row ), max( $row ), $n[2] );
 	}
-	$total = array_sum( wp_list_pluck( $set, 1 ) );
-	/* translators: %s: plugin names */
-	$out .= $card( __( 'Everything', 'semrs-site' ), 'All Pro', $plans['all-1'], array( array( __( 'The cheapest of each, bought together', 'semrs-site' ), $total, '≈ ' . $money( round( $total ) ) ) ), sprintf( __( 'That is %s.', 'semrs-site' ), implode( ' + ', wp_list_pluck( $set, 0 ) ) ) );
+	$out .= $card( __( 'Everything', 'semrs-site' ), 'All Pro', $plans['all-1'], $low, $high, __( 'Compared with buying a similar SEO, speed, ads and theme plugin separately.', 'semrs-site' ) );
 	$out .= '</div>' . semrs_store_deals_box();
 	/* translators: %s: date */
-	$out .= '<p class="semrs-plans__note">' . esc_html( sprintf( __( 'Other prices are the regular yearly prices on each vendor\'s own website on %s (euro prices at about $1.15). They can change; names belong to their owners.', 'semrs-site' ), wp_date( get_option( 'date_format' ), strtotime( $data['checked'] ) ) ) ) . '</p></section>';
+	$out .= '<p class="semrs-plans__note">' . esc_html( sprintf( __( 'Savings use regular yearly prices published by similar plugins on %s. Their prices can change.', 'semrs-site' ), wp_date( get_option( 'date_format' ), strtotime( $data['checked'] ) ) ) ) . '</p></section>';
 	return $out;
 }
 add_shortcode(

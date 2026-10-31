@@ -41,7 +41,7 @@ function semrs_store_definitions() {
 					'Speed Pro: delay analytics, pixel and chat scripts until interaction',
 					'Cache preload and CDN support for the SEMRS page cache',
 					'Bulk SEO editor for titles, descriptions, keywords and noindex',
-					'Redirects with a 404 log and Rank Math import',
+					'Redirects with a 404 log and redirect import',
 					'Multi-location local SEO with LocalBusiness schema',
 					'IndexNow instant indexing and automatic image alt text',
 					'Language switcher with hreflang and optional Google Translate links',
@@ -89,7 +89,7 @@ function semrs_store_definitions() {
 			'cat'     => 'plugins',
 			'order'   => 2,
 			'excerpt' => 'Free SEO with a 0–100 score and site audit, a page cache and speed tools, and a policy-safe AdSense manager, for any WordPress theme.',
-			'content' => '<!-- wp:paragraph --><p>SEMRS Core replaces three plugins with one lightweight one. Switch each module on or off under SEMRS → Features; a switched-off module loads no code.</p><!-- /wp:paragraph --><!-- wp:heading --><h2 class="wp-block-heading">Switching is safe</h2><!-- /wp:heading --><!-- wp:paragraph --><p>While another SEO plugin is active, SEMRS pauses its output, and it reads the titles, descriptions, focus keywords, canonicals and noindex settings saved by Rank Math, Yoast SEO and All in One SEO, so nothing is lost when you switch.</p><!-- /wp:paragraph -->',
+			'content' => '<!-- wp:paragraph --><p>SEMRS Core replaces three plugins with one lightweight one. Switch each module on or off under SEMRS → Features; a switched-off module loads no code.</p><!-- /wp:paragraph --><!-- wp:heading --><h2 class="wp-block-heading">Switching is safe</h2><!-- /wp:heading --><!-- wp:paragraph --><p>While another SEO plugin is active, SEMRS pauses its output, and it reads the titles, descriptions, focus keywords, canonicals and noindex settings saved by other popular SEO plugins, so nothing is lost when you switch.</p><!-- /wp:paragraph -->',
 			'meta'    => array(
 				'kind'     => 'plugin',
 				'badge'    => 'Free',
@@ -128,7 +128,7 @@ function semrs_store_definitions() {
 					'16 free starter sites with 12 sections and header / footer presets',
 				),
 				'faq'      => array(
-					'Does it work with other themes? | Yes: block themes and classic themes such as Astra, GeneratePress and Kadence. Header and footer presets need the SEMRS theme.',
+					'Does it work with other themes? | Yes: block themes and popular classic themes. Header and footer presets need the SEMRS theme.',
 				),
 			),
 		),
