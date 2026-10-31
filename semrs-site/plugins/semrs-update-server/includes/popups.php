@@ -48,6 +48,53 @@ function semrs_us_popup_defaults() {
 }
 
 /**
+ * Default photos per popup (files in assets/popups/). Each popup shows one
+ * of its photos at random; they load only when the popup opens.
+ *
+ * @return array<string, string> popup ID => space-separated files or URLs.
+ */
+function semrs_us_popup_default_images() {
+	return array(
+		'sale'      => 'sale.webp sale-2.webp',
+		'welcome'   => 'welcome.webp welcome-2.webp',
+		'agency'    => 'agency.webp agency-2.webp',
+		'switch'    => 'switch.webp switch-2.webp',
+		'lifetime'  => 'lifetime.webp lifetime-2.webp',
+		'affiliate' => 'affiliate.webp affiliate-2.webp',
+	);
+}
+
+/**
+ * Photo URLs for a popup: its saved list, else the defaults that exist.
+ *
+ * @param string $id Popup ID.
+ * @return string[]
+ */
+function semrs_us_popup_images( $id ) {
+	$out = array();
+	foreach ( preg_split( '/[\s,|]+/', (string) semrs_us_popup_conf( $id )['img'], -1, PREG_SPLIT_NO_EMPTY ) as $f ) {
+		if ( preg_match( '#^https?://#', $f ) ) {
+			$out[] = esc_url_raw( $f );
+		} elseif ( file_exists( SEMRS_US_DIR . 'assets/popups/' . basename( $f ) ) ) {
+			$out[] = SEMRS_US_URL . 'assets/popups/' . rawurlencode( basename( $f ) );
+		}
+	}
+	return $out;
+}
+
+/**
+ * The photo tag for a popup ('' without photos). The browser picks one of
+ * the photos when the popup opens (src is set then, so nothing loads before).
+ *
+ * @param string $id Popup ID.
+ * @return string
+ */
+function semrs_us_popup_img_tag( $id ) {
+	$imgs = semrs_us_popup_images( $id );
+	return $imgs ? '<img class="semrs-pop__img" alt="" width="400" height="500" decoding="async" data-imgs="' . esc_attr( implode( '|', $imgs ) ) . '">' : '';
+}
+
+/**
  * One popup's settings: defaults with the saved changes (empty = default).
  *
  * @param string $id Popup ID.
@@ -56,7 +103,7 @@ function semrs_us_popup_defaults() {
 function semrs_us_popup_conf( $id ) {
 	$saved = get_option( 'semrs_us_popups', array() );
 	$saved = is_array( $saved ) && isset( $saved[ $id ] ) && is_array( $saved[ $id ] ) ? $saved[ $id ] : array();
-	$conf  = array_merge( array( 'on' => 1 ), semrs_us_popup_defaults()[ $id ], array_filter( $saved, 'semrs_us_campaign_keep' ) );
+	$conf  = array_merge( array( 'on' => 1, 'img' => semrs_us_popup_default_images()[ $id ] ?? '' ), semrs_us_popup_defaults()[ $id ], array_filter( $saved, 'semrs_us_campaign_keep' ) );
 	foreach ( array( 'delay', 'scroll', 'days' ) as $n ) {
 		$conf[ $n ] = (int) $conf[ $n ];
 	}
@@ -155,7 +202,8 @@ function semrs_us_popup_items() {
 			$soon[] = array( $c, $win );
 		}
 	}
-	$ps = semrs_us_popup_conf( 'sale' );
+	$ps   = semrs_us_popup_conf( 'sale' );
+	$simg = semrs_us_popup_img_tag( 'sale' );
 	$pb = semrs_us_popup_conf( 'bar' );
 	foreach ( $soon as $row ) {
 		list( $c, $win ) = $row;
@@ -170,7 +218,7 @@ function semrs_us_popup_items() {
 		if ( $ps['on'] ) {
 		$add(
 			array( 'id' => $c['id'] . '-modal', 'k' => $c['id'] . '-' . $win[0], 'kind' => 'modal', 's' => $s, 'e' => $e, 'season' => 1, 'delay' => $ads ? 0 : $ps['delay'], 'scroll' => $ads ? 0 : $ps['scroll'], 'exit' => 1, 'dt' => $ads ? 1 : 0, 'days' => $ps['days'] ),
-			'<div class="semrs-pop__box" role="dialog" aria-modal="true" aria-labelledby="semrs-pop-t-' . esc_attr( $c['id'] ) . '">' . $close
+			'<div class="semrs-pop__box' . ( $simg ? ' has-img' : '' ) . '" role="dialog" aria-modal="true" aria-labelledby="semrs-pop-t-' . esc_attr( $c['id'] ) . '">' . $close . $simg
 			. '<p class="semrs-pop__tag">' . esc_html( $c['name'] ) . '</p><h2 class="semrs-pop__h" id="semrs-pop-t-' . esc_attr( $c['id'] ) . '">' . esc_html( $title ) . '</h2>'
 			. '<p>' . esc_html( sprintf( $c['text'], (int) $c['percent'] ) ) . '</p>' . semrs_us_popup_price_line( (int) $c['percent'] ) . semrs_us_popup_price_line( (int) $c['life'] > 0 ? (int) $c['life'] : (int) $c['percent'], 'all-life-u' )
 			. '<p class="semrs-pop__ends">' . esc_html( $ends ) . ' · <span data-ends="' . esc_attr( $e ) . '"></span></p>'
@@ -203,8 +251,10 @@ function semrs_us_popup_items() {
 		}
 		$title = sprintf( $p['title'] ? $p['title'] : $c['headline'], (int) $c['percent'] );
 		$text  = sprintf( $p['text'] ? $p['text'] : $c['text'], (int) $c['percent'] );
-		$body  = 'modal' === $kind ? '<div class="semrs-pop__box" role="dialog" aria-modal="true"' : '<div class="semrs-pop__slide" role="dialog"';
-		$body .= ' aria-labelledby="semrs-pop-t-' . esc_attr( $id ) . '">' . $close;
+		$img   = semrs_us_popup_img_tag( $id );
+		$cls   = $img ? ' has-img' : '';
+		$body  = 'modal' === $kind ? '<div class="semrs-pop__box' . $cls . '" role="dialog" aria-modal="true"' : '<div class="semrs-pop__slide' . $cls . '" role="dialog"';
+		$body .= ' aria-labelledby="semrs-pop-t-' . esc_attr( $id ) . '">' . $close . $img;
 		if ( 'agency' === $id ) {
 			$body .= '<p class="semrs-pop__tag">' . esc_html__( 'For agencies and freelancers', 'semrs-update-server' ) . '</p>';
 		}
@@ -230,7 +280,7 @@ function semrs_us_popup_items() {
 		$life = semrs_us_plans()['all-life-u'];
 		$add(
 			array( 'id' => 'lifetime', 'k' => 'lifetime', 'kind' => 'slide', 'off' => 1, 'delay' => $pl['delay'], 'scroll' => $pl['scroll'], 'days' => $pl['days'] ),
-			'<div class="semrs-pop__slide" role="dialog" aria-labelledby="semrs-pop-t-life">' . $close . '<h2 class="semrs-pop__h" id="semrs-pop-t-life">' . esc_html( $pl['title'] ) . '</h2><p>' . esc_html( sprintf( $pl['text'], semrs_us_money( $life['price'] ) ) ) . '</p><a class="semrs-pop__cta semrs-pop__cta--sm" href="' . esc_url( semrs_us_buy_url( $life ) ) . '" rel="nofollow" data-close>' . esc_html( $pl['cta'] ) . '</a></div>'
+			'<div class="semrs-pop__slide' . ( semrs_us_popup_images( 'lifetime' ) ? ' has-img' : '' ) . '" role="dialog" aria-labelledby="semrs-pop-t-life">' . $close . semrs_us_popup_img_tag( 'lifetime' ) . '<h2 class="semrs-pop__h" id="semrs-pop-t-life">' . esc_html( $pl['title'] ) . '</h2><p>' . esc_html( sprintf( $pl['text'], semrs_us_money( $life['price'] ) ) ) . '</p><a class="semrs-pop__cta semrs-pop__cta--sm" href="' . esc_url( semrs_us_buy_url( $life ) ) . '" rel="nofollow" data-close>' . esc_html( $pl['cta'] ) . '</a></div>'
 		);
 	}
 	$pp = semrs_us_popup_conf( 'proof' );
@@ -247,7 +297,7 @@ function semrs_us_popup_items() {
 		$rate = semrs_us_aff_settings();
 		$add(
 			array( 'id' => 'affiliate', 'k' => 'affiliate', 'kind' => 'slide', 'views' => 3, 'delay' => $pa['delay'], 'scroll' => $pa['scroll'], 'days' => $pa['days'] ),
-			'<div class="semrs-pop__slide" role="dialog" aria-labelledby="semrs-pop-t-aff">' . $close . '<h2 class="semrs-pop__h" id="semrs-pop-t-aff">' . esc_html( sprintf( $pa['title'], (int) $rate['first'] ) ) . '</h2><p>' . esc_html( sprintf( $pa['text'], (int) $rate['renewal'], (int) $rate['cookie'] ) ) . '</p><a class="semrs-pop__cta semrs-pop__cta--sm" href="' . esc_url( $aff ) . '" data-close>' . esc_html( $pa['cta'] ) . '</a></div>'
+			'<div class="semrs-pop__slide' . ( semrs_us_popup_images( 'affiliate' ) ? ' has-img' : '' ) . '" role="dialog" aria-labelledby="semrs-pop-t-aff">' . $close . semrs_us_popup_img_tag( 'affiliate' ) . '<h2 class="semrs-pop__h" id="semrs-pop-t-aff">' . esc_html( sprintf( $pa['title'], (int) $rate['first'] ) ) . '</h2><p>' . esc_html( sprintf( $pa['text'], (int) $rate['renewal'], (int) $rate['cookie'] ) ) . '</p><a class="semrs-pop__cta semrs-pop__cta--sm" href="' . esc_url( $aff ) . '" data-close>' . esc_html( $pa['cta'] ) . '</a></div>'
 		);
 	}
 	return array( $items, $tpl );
@@ -274,13 +324,13 @@ function semrs_us_popups_print() {
 	echo $tpl; // phpcs:ignore WordPress.Security.EscapeOutput -- built from escaped parts above.
 	echo '<script type="application/json" id="semrs-pop-data">' . wp_json_encode( $cfg ) . '</script>';
 	?>
-<style id="semrs-pop-css">.semrs-pop{position:fixed;z-index:99990;font-size:1rem;line-height:1.5;color:var(--sp-text,#1f2937)}.semrs-pop *{box-sizing:border-box}.semrs-pop--modal{inset:0;display:grid;place-items:center;padding:16px;background:rgba(11,31,58,.55)}.semrs-pop__box,.semrs-pop__slide,.semrs-pop__toast{position:relative;background:var(--sp-surface,#fff);border:1px solid var(--sp-line,#e5e7eb);border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.25)}.semrs-pop__box{width:min(30rem,100%);padding:28px 24px 20px;text-align:center}.semrs-pop__h{margin:0 0 8px;font-size:1.45rem;line-height:1.25;color:var(--sp-primary,#0b1f3a)}.semrs-pop__box p,.semrs-pop__slide p{margin:0 0 10px}.semrs-pop__tag{display:inline-block;margin:0 0 8px!important;padding:2px 10px;border-radius:99px;background:var(--sp-accent-soft,#fbf3dc);color:var(--sp-accent-text,#6b5200);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}.semrs-pop__price s{color:var(--sp-muted,#5b6575)}.semrs-pop__price strong{font-size:1.15em;color:var(--sp-primary,#0b1f3a)}.semrs-pop__ends,.semrs-pop__fine{font-size:.85rem;color:var(--sp-muted,#5b6575)}.semrs-pop__cta{display:inline-block;margin:6px 0 10px;padding:12px 22px;border-radius:10px;background:var(--sp-accent,#d4a72c);color:var(--sp-on-accent,#0b1f3a)!important;font-weight:700;text-decoration:none}.semrs-pop__cta:hover,.semrs-pop__cta:focus-visible{filter:brightness(1.07)}.semrs-pop__cta--sm{margin:0;padding:8px 16px;font-size:.9rem}.semrs-pop__x{position:absolute;top:6px;right:8px;width:40px;height:40px;border:0;background:none;color:inherit;font-size:1.6rem;line-height:1;cursor:pointer;border-radius:8px}.semrs-pop__x:focus-visible,.semrs-pop__code:focus-visible{outline:2px solid var(--sp-accent,#d4a72c);outline-offset:2px}.semrs-pop__code{display:inline-flex;gap:10px;align-items:center;padding:8px 14px;border:2px dashed var(--sp-accent,#d4a72c);border-radius:10px;background:none;color:inherit;font:inherit;cursor:pointer}.semrs-pop__code span{font-weight:800;letter-spacing:.08em}.semrs-pop--bar{left:0;right:0;bottom:0}.semrs-pop__bar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:center;padding:10px 52px 10px 16px;background:var(--sp-primary,#0b1f3a);color:#fff;position:relative}.semrs-pop__bar .semrs-pop__x{top:50%;transform:translateY(-50%);color:#fff}.semrs-pop__cd{font-variant-numeric:tabular-nums;opacity:.9}.semrs-pop--slide{right:16px;bottom:16px;width:min(21rem,calc(100% - 32px))}.semrs-pop__slide{padding:20px 18px 16px}.semrs-pop__slide .semrs-pop__h{font-size:1.1rem;padding-right:28px}.semrs-pop--toast{left:16px;bottom:16px;max-width:calc(100% - 32px)}.semrs-pop__toast{padding:12px 48px 12px 16px;font-size:.92rem}.semrs-pop__toast .semrs-pop__x{top:50%;transform:translateY(-50%);width:36px;height:36px}.semrs-pop>*{animation:semrs-pop-in .25s ease-out}@keyframes semrs-pop-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}@media (prefers-reduced-motion:reduce){.semrs-pop>*{animation:none}}@media (max-width:768px){.semrs-pop--modal{align-items:end;padding:0;background:transparent;pointer-events:none}.semrs-pop--modal .semrs-pop__box{pointer-events:auto;width:100%;max-height:45vh;overflow:auto;border-radius:16px 16px 0 0;padding:20px 16px 12px}.semrs-pop__h{font-size:1.2rem}.semrs-pop--slide{right:0;bottom:0;width:100%}.semrs-pop__slide{border-radius:16px 16px 0 0}}</style>
+<style id="semrs-pop-css">.semrs-pop{position:fixed;z-index:99990;font-size:1rem;line-height:1.5;color:var(--sp-text,#1f2937)}.semrs-pop *{box-sizing:border-box}.semrs-pop--modal{inset:0;display:grid;place-items:center;padding:16px;background:rgba(11,31,58,.55)}.semrs-pop__box,.semrs-pop__slide,.semrs-pop__toast{position:relative;background:var(--sp-surface,#fff);border:1px solid var(--sp-line,#e5e7eb);border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.25)}.semrs-pop__box{width:min(30rem,100%);padding:28px 24px 20px;text-align:center}.semrs-pop__h{margin:0 0 8px;font-size:1.45rem;line-height:1.25;color:var(--sp-primary,#0b1f3a)}.semrs-pop__box p,.semrs-pop__slide p{margin:0 0 10px}.semrs-pop__tag{display:inline-block;margin:0 0 8px!important;padding:2px 10px;border-radius:99px;background:var(--sp-accent-soft,#fbf3dc);color:var(--sp-accent-text,#6b5200);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}.semrs-pop__price s{color:var(--sp-muted,#5b6575)}.semrs-pop__price strong{font-size:1.15em;color:var(--sp-primary,#0b1f3a)}.semrs-pop__ends,.semrs-pop__fine{font-size:.85rem;color:var(--sp-muted,#5b6575)}.semrs-pop__cta{display:inline-block;margin:6px 0 10px;padding:12px 22px;border-radius:10px;background:var(--sp-accent,#d4a72c);color:var(--sp-on-accent,#0b1f3a)!important;font-weight:700;text-decoration:none}.semrs-pop__cta:hover,.semrs-pop__cta:focus-visible{filter:brightness(1.07)}.semrs-pop__cta--sm{margin:0;padding:8px 16px;font-size:.9rem}.semrs-pop__x{position:absolute;top:6px;right:8px;width:40px;height:40px;border:0;background:none;color:inherit;font-size:1.6rem;line-height:1;cursor:pointer;border-radius:8px}.semrs-pop__x:focus-visible,.semrs-pop__code:focus-visible{outline:2px solid var(--sp-accent,#d4a72c);outline-offset:2px}.semrs-pop__code{display:inline-flex;gap:10px;align-items:center;padding:8px 14px;border:2px dashed var(--sp-accent,#d4a72c);border-radius:10px;background:none;color:inherit;font:inherit;cursor:pointer}.semrs-pop__code span{font-weight:800;letter-spacing:.08em}.semrs-pop--bar{left:0;right:0;bottom:0}.semrs-pop__bar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:center;padding:10px 52px 10px 16px;background:var(--sp-primary,#0b1f3a);color:#fff;position:relative}.semrs-pop__bar .semrs-pop__x{top:50%;transform:translateY(-50%);color:#fff}.semrs-pop__cd{font-variant-numeric:tabular-nums;opacity:.9}.semrs-pop--slide{right:16px;bottom:16px;width:min(21rem,calc(100% - 32px))}.semrs-pop__slide{padding:20px 18px 16px}.semrs-pop__slide .semrs-pop__h{font-size:1.1rem;padding-right:28px}.semrs-pop--toast{left:16px;bottom:16px;max-width:calc(100% - 32px)}.semrs-pop__toast{padding:12px 48px 12px 16px;font-size:.92rem}.semrs-pop__toast .semrs-pop__x{top:50%;transform:translateY(-50%);width:36px;height:36px}.semrs-pop>*{animation:semrs-pop-in .25s ease-out}.semrs-pop__x{z-index:2}.semrs-pop__box.has-img{width:min(44rem,100%);padding:28px 24px 20px calc(38% + 24px);text-align:left}.semrs-pop__box.has-img .semrs-pop__img{position:absolute;left:0;top:0;width:38%;height:100%;object-fit:cover;object-position:top;border-radius:16px 0 0 16px}.semrs-pop__slide.has-img .semrs-pop__img{float:left;width:64px;height:64px;margin:0 12px 6px 0;border-radius:50%;object-fit:cover;object-position:top;border:2px solid var(--sp-accent,#d4a72c)}.semrs-pop__box,.semrs-pop__slide{box-shadow:0 20px 50px rgba(0,0,0,.25),0 0 0 2px rgba(212,167,44,.6),0 0 30px rgba(212,167,44,.35)}.semrs-pop__cta{position:relative;overflow:hidden;background:linear-gradient(135deg,#f6d36b,#d4a72c 55%,#b8891a);box-shadow:0 6px 18px rgba(212,167,44,.45)}.semrs-pop__cta::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.7),transparent);transform:skewX(-20deg);animation:semrs-pop-shine 2.8s ease-in-out infinite}@keyframes semrs-pop-shine{0%,55%{left:-60%}100%{left:130%}}.semrs-pop__bar strong{background:linear-gradient(90deg,#fff,#ffe39a,#fff);-webkit-background-clip:text;background-clip:text;color:transparent}@keyframes semrs-pop-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}@media (prefers-reduced-motion:reduce){.semrs-pop>*{animation:none}.semrs-pop__cta::after{animation:none;display:none}}@media (max-width:768px){.semrs-pop--modal{align-items:end;padding:0;background:transparent;pointer-events:none}.semrs-pop--modal .semrs-pop__box{pointer-events:auto;width:100%;max-height:45vh;overflow:auto;border-radius:16px 16px 0 0;padding:20px 16px 12px}.semrs-pop__h{font-size:1.2rem}.semrs-pop__box.has-img{padding:20px 16px 12px}.semrs-pop__box.has-img .semrs-pop__img{position:static;float:left;width:64px;height:64px;margin:0 12px 6px 0;border-radius:50%;border:2px solid var(--sp-accent,#d4a72c)}.semrs-pop--slide{right:0;bottom:0;width:100%}.semrs-pop__slide{border-radius:16px 16px 0 0}}</style>
 <script id="semrs-pop-js">(function(){function run(){var d=document,w=window,c=JSON.parse(d.getElementById('semrs-pop-data').textContent),open=0,bar=0;
 function st(s,k,v){try{if(v===undefined)return s.getItem(k);s.setItem(k,v)}catch(e){return null}}
 function L(k,v){return st(w.localStorage,k,v)}function S(k,v){return st(w.sessionStorage,k,v)}
 function cd(){var n=Date.now();d.querySelectorAll('.semrs-pop [data-ends]').forEach(function(el){var t=+el.getAttribute('data-ends')-n;if(!(+el.getAttribute('data-ends'))){el.textContent='';return}if(t<0)t=0;t=Math.floor(t/1e3);var u=c.units,x=[Math.floor(t/86400),Math.floor(t%86400/3600),Math.floor(t%3600/60),t%60];el.textContent=(x[0]?x[0]+u[0]+' ':'')+[x[1],x[2],x[3]].map(function(v,i){return(v<10?'0':'')+v+u[i+1]}).join(' ')})}
 function show(i){if(i.kind!=='bar'){if(open)return;open=1;if(!c.preview)S('semrs-pop-shown','1')}else{if(bar)return;bar=1}
-var t=d.getElementById('semrs-pop-'+i.id);if(!t)return;var wrap=d.createElement('div'),last=d.activeElement;wrap.className='semrs-pop semrs-pop--'+i.kind;wrap.appendChild(t.content.cloneNode(true));d.body.appendChild(wrap);cd();
+var t=d.getElementById('semrs-pop-'+i.id);if(!t)return;var wrap=d.createElement('div'),last=d.activeElement;wrap.className='semrs-pop semrs-pop--'+i.kind;wrap.appendChild(t.content.cloneNode(true));d.body.appendChild(wrap);wrap.querySelectorAll('img[data-imgs]').forEach(function(m){var l=m.getAttribute('data-imgs').split('|');m.src=l[Math.floor(Math.random()*l.length)]});cd();
 function close(){wrap.remove();d.removeEventListener('keydown',key);if(!c.preview)L('semrs-pop-'+i.k,String(i.kind==='bar'&&i.e?i.e:Date.now()+(i.days||1)*864e5));if(last&&last.focus&&i.kind==='modal')last.focus()}
 function key(e){if(e.key==='Escape')close();if(e.key==='Tab'&&i.kind==='modal'){var f=wrap.querySelectorAll('a,button'),a=f[0],z=f[f.length-1];if(e.shiftKey&&d.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&d.activeElement===z){e.preventDefault();a.focus()}}}
 d.addEventListener('keydown',key);wrap.addEventListener('click',function(e){var b=e.target.closest('[data-copy]');if(b){e.preventDefault();var s=b.querySelector('small'),v=b.getAttribute('data-copy');(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(function(){s.textContent=c.copied},function(){});return}if(e.target===wrap&&i.kind==='modal'||e.target.closest('[data-close]'))close()});

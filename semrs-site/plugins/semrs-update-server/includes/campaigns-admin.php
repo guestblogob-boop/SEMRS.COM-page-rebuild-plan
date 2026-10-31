@@ -59,6 +59,7 @@ function semrs_us_campaigns_save() {
 			'title'  => sanitize_text_field( (string) ( $p['title'] ?? '' ) ),
 			'text'   => sanitize_text_field( (string) ( $p['text'] ?? '' ) ),
 			'cta'    => sanitize_text_field( (string) ( $p['cta'] ?? '' ) ),
+			'img'    => sanitize_text_field( (string) ( $p['img'] ?? '' ) ),
 			'delay'  => $num( 'delay' ),
 			'scroll' => '' === $num( 'scroll' ) ? '' : min( 100, $num( 'scroll' ) ),
 			'days'   => $num( 'days' ),
@@ -158,15 +159,16 @@ function semrs_us_page_campaigns() {
 
 			<h2 id="popups"><?php esc_html_e( 'Popups', 'semrs-update-server' ); ?></h2>
 			<p><?php esc_html_e( 'Every popup switches on and off by itself with the calendar above. Change any wording, button, timing or frequency here; leave a box empty to keep the default (shown in grey). In the sale popup and bar, %d is the percent; empty title and text use the headline and text of each campaign, so one setting covers every sale.', 'semrs-update-server' ); ?></p>
-			<table class="widefat striped" style="max-width:1400px"><thead><tr><th><?php esc_html_e( 'On', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Popup', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Title', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Text', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Button', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Delay (s)', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Scroll %', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Hide for (days)', 'semrs-update-server' ); ?></th></tr></thead><tbody>
+			<table class="widefat striped" style="max-width:1400px"><thead><tr><th><?php esc_html_e( 'On', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Popup', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Title', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Text', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Button', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Photos (files or URLs, space-separated)', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Delay (s)', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Scroll %', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Hide for (days)', 'semrs-update-server' ); ?></th></tr></thead><tbody>
 			<?php $psaved = get_option( 'semrs_us_popups', array() ); ?>
 			<?php foreach ( semrs_us_popup_defaults() as $id => $def ) : ?>
 				<?php $pc = semrs_us_popup_conf( $id ); $pv = is_array( $psaved ) && isset( $psaved[ $id ] ) ? $psaved[ $id ] : array(); $pn = 'p[' . $id . ']'; ?>
 				<tr>
 					<td><input type="checkbox" name="<?php echo esc_attr( $pn ); ?>[on]" value="1" <?php checked( ! empty( $pc['on'] ) ); ?> aria-label="<?php echo esc_attr( $def['name'] ); ?>"></td>
 					<td><strong><?php echo esc_html( $def['name'] ); ?></strong></td>
-					<?php foreach ( array( 'title', 'text', 'cta' ) as $k ) : ?>
-						<td><input type="text" name="<?php echo esc_attr( $pn . '[' . $k . ']' ); ?>" value="<?php echo esc_attr( $pv[ $k ] ?? '' ); ?>" placeholder="<?php echo esc_attr( '' !== $def[ $k ] ? $def[ $k ] : ( in_array( $id, array( 'sale', 'bar', 'welcome', 'agency', 'switch' ), true ) && 'cta' !== $k ? __( '(campaign text)', 'semrs-update-server' ) : '' ) ); ?>"></td>
+					<?php $def['img'] = semrs_us_popup_default_images()[ $id ] ?? ''; ?>
+					<?php foreach ( array( 'title', 'text', 'cta', 'img' ) as $k ) : ?>
+						<td><input type="text" name="<?php echo esc_attr( $pn . '[' . $k . ']' ); ?>" value="<?php echo esc_attr( $pv[ $k ] ?? '' ); ?>" placeholder="<?php echo esc_attr( '' !== $def[ $k ] ? $def[ $k ] : ( in_array( $id, array( 'sale', 'bar', 'welcome', 'agency', 'switch' ), true ) && ! in_array( $k, array( 'cta', 'img' ), true ) ? __( '(campaign text)', 'semrs-update-server' ) : '' ) ); ?>"></td>
 					<?php endforeach; ?>
 					<?php foreach ( array( 'delay', 'scroll', 'days' ) as $k ) : ?>
 						<td><input type="number" min="0" name="<?php echo esc_attr( $pn . '[' . $k . ']' ); ?>" value="<?php echo esc_attr( $pv[ $k ] ?? '' ); ?>" placeholder="<?php echo esc_attr( $def[ $k ] ); ?>" style="width:70px"></td>
