@@ -15,8 +15,68 @@ defined( 'ABSPATH' ) || exit;
 function semrs_us_campaign_menu() {
 	add_submenu_page( 'semrs-updates', __( 'Campaigns & popups', 'semrs-update-server' ), __( 'Campaigns & popups', 'semrs-update-server' ), 'manage_options', 'semrs-updates-campaigns', 'semrs_us_page_campaigns' );
 	add_submenu_page( 'semrs-updates', __( 'Affiliates', 'semrs-update-server' ), __( 'Affiliates', 'semrs-update-server' ), 'manage_options', 'semrs-updates-affiliates', 'semrs_us_page_affiliates' );
+	// Same screen in the SEMRS menu, next to Popups.
+	if ( defined( 'SEMRS_CORE_VERSION' ) ) {
+		add_submenu_page( 'semrs', __( 'Sales popups & calendar', 'semrs-update-server' ), __( 'Sales popups & calendar', 'semrs-update-server' ), 'manage_options', 'semrs-sales-popups', 'semrs_us_page_campaigns' );
+	}
 }
 add_action( 'admin_menu', 'semrs_us_campaign_menu', 20 );
+
+/**
+ * SEMRS → Popups list: show the automatic sales popups and their calendar on
+ * top, so every popup the site runs is in one place.
+ */
+function semrs_us_popups_screen_panel() {
+	$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+	if ( ! $screen || 'edit-semrs_popup' !== $screen->id || ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	$url = admin_url( 'admin.php?page=' . ( defined( 'SEMRS_CORE_VERSION' ) ? 'semrs-sales-popups' : 'semrs-updates-campaigns' ) );
+	echo '<div class="notice notice-info"><h2 style="margin:.6em 0 .3em">' . esc_html__( 'Automatic sales popups', 'semrs-update-server' ) . '</h2><p>' . esc_html__( 'These popups run by themselves on their dates, with their codes and prices. The popups you build below run alongside them.', 'semrs-update-server' ) . '</p>';
+	echo '<table class="widefat striped" style="max-width:900px;margin-bottom:10px"><thead><tr><th>' . esc_html__( 'Popup', 'semrs-update-server' ) . '</th><th>' . esc_html__( 'Runs', 'semrs-update-server' ) . '</th><th>' . esc_html__( 'Discount', 'semrs-update-server' ) . '</th><th>' . esc_html__( 'Code', 'semrs-update-server' ) . '</th></tr></thead><tbody>';
+	$n = 0;
+	foreach ( semrs_us_campaign_schedule( 366 ) as $c ) {
+		if ( ++$n > 6 ) {
+			break;
+		}
+		echo '<tr><td>' . esc_html( $c['name'] ) . '</td><td>' . esc_html( wp_date( 'M j', $c['window'][0] ) . ' – ' . wp_date( 'M j, Y', $c['window'][1] ) ) . '</td><td>' . esc_html( $c['percent'] . '%' . ( ! empty( $c['life'] ) ? ' · ' . $c['life'] . '% lifetime' : '' ) ) . '</td><td><code>' . esc_html( $c['code'] ) . '</code></td></tr>';
+	}
+	foreach ( semrs_us_campaigns() as $c ) {
+		if ( ! $c['season'] && ! empty( $c['enabled'] ) ) {
+			echo '<tr><td>' . esc_html( $c['name'] ) . '</td><td>' . esc_html__( 'Every day', 'semrs-update-server' ) . ( $c['nosale'] ? ' ' . esc_html__( '(paused during sales)', 'semrs-update-server' ) : '' ) . '</td><td>' . esc_html( $c['percent'] . '%' ) . '</td><td><code>' . esc_html( $c['code'] ) . '</code></td></tr>';
+		}
+	}
+	echo '</tbody></table><p><a class="button button-primary" href="' . esc_url( $url ) . '">' . esc_html__( 'Open sales popups & calendar', 'semrs-update-server' ) . '</a></p></div>';
+}
+add_action( 'admin_notices', 'semrs_us_popups_screen_panel' );
+
+/**
+ * Year view: the next 12 months with the sales that run in each.
+ */
+function semrs_us_campaign_year_grid() {
+	$runs = semrs_us_campaign_schedule( 366 );
+	$tz   = wp_timezone();
+	$m    = new DateTimeImmutable( 'first day of this month 00:00', $tz );
+	echo '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;max-width:1100px;margin:10px 0 6px">';
+	for ( $i = 0; $i < 12; $i++, $m = $m->modify( '+1 month' ) ) {
+		$from = $m->getTimestamp();
+		$to   = $m->modify( '+1 month' )->getTimestamp() - 1;
+		echo '<div style="background:#fff;border:1px solid #dcdcde;border-radius:8px;padding:10px 12px"><strong>' . esc_html( wp_date( 'F Y', $from ) ) . '</strong>';
+		$any = false;
+		foreach ( $runs as $c ) {
+			if ( $c['window'][0] <= $to && $c['window'][1] >= $from ) {
+				$any = true;
+				$live = $c['window'][0] <= time() && $c['window'][1] >= time();
+				echo '<div style="margin-top:6px;padding:4px 8px;border-radius:6px;background:' . ( $live ? '#d1fae5' : '#fbf3dc' ) . ';font-size:12px"><b>' . esc_html( $c['name'] ) . '</b><br>' . esc_html( wp_date( 'M j', $c['window'][0] ) . '–' . wp_date( 'M j', $c['window'][1] ) . ' · ' . $c['percent'] . '% · ' . $c['code'] ) . '</div>';
+			}
+		}
+		if ( ! $any ) {
+			echo '<div style="margin-top:6px;font-size:12px;color:#646970">' . esc_html__( 'Always-on deals only', 'semrs-update-server' ) . '</div>';
+		}
+		echo '</div>';
+	}
+	echo '</div>';
+}
 
 /**
  * Save campaign settings.
@@ -110,6 +170,8 @@ function semrs_us_page_campaigns() {
 		</div>
 
 		<h2><?php esc_html_e( 'Sales calendar (next 12 months)', 'semrs-update-server' ); ?></h2>
+		<p><?php esc_html_e( 'Every popup switches on and off by itself on these dates. Green = running now.', 'semrs-update-server' ); ?></p>
+		<?php semrs_us_campaign_year_grid(); ?>
 		<table class="widefat striped" style="max-width:1100px"><thead><tr><th><?php esc_html_e( 'Campaign', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Starts', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Ends', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Discount', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Code', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Status', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Popups', 'semrs-update-server' ); ?></th></tr></thead><tbody>
 		<?php foreach ( semrs_us_campaign_schedule( 366 ) as $c ) : ?>
 			<?php
