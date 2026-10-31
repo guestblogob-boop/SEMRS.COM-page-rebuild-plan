@@ -4,7 +4,7 @@ Tags: seo, page cache, redirects, webp, user roles
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.34
+Stable tag: 1.3.35
 License: GPLv2 or later
 
 Free SEO, redirects, page cache, WebP images, user roles, review widgets and a policy-safe AdSense manager in one plugin.
@@ -81,6 +81,9 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt and all other features run entirely on your own server.
 
 == Changelog ==
+
+= 1.3.35 =
+* SEO score: text in neighbouring elements (buttons, cards, table cells) is no longer glued into one long word, which made readability scores too low
 
 = 1.3.34 =
 * SEO score: headings, list items, table cells and buttons end a sentence, so price lists and feature lists are not read as one long sentence

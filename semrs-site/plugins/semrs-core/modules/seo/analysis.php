@@ -136,7 +136,8 @@ function semrs_seo_analyze( $d ) {
 	$title = '' !== (string) $d['title'] ? (string) $d['title'] : semrs_seo_fill( $s['tpl_singular'], array( 'title' => $d['post_title'] ) );
 	$desc  = (string) $d['description'];
 	$html  = semrs_seo_analysis_html( $d );
-	$text  = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( preg_replace( '/<(script|style)[^>]*>.*?<\/\1>/is', '', $html ) ) ) );
+	// Tags become spaces, so text in neighbouring elements (buttons, cards, cells) is not glued into one long word.
+	$text  = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( preg_replace( array( '/<(script|style)[^>]*>.*?<\/\1>/is', '/<[^>]+>/' ), array( '', ' ' ), $html ) ) ) );
 	$lower = mb_strtolower( $text );
 	$wlist = '' === $text ? array() : preg_split( '/\s+/u', $text );
 	$words = count( $wlist );
@@ -203,7 +204,7 @@ function semrs_seo_analyze( $d ) {
 	$blocky    = preg_replace( '/<(script|style|svg)[^>]*>.*?<\/\1>/is', '', $html );
 	$blocky    = preg_replace( '/<\/(?:p|li|h[1-6]|td|th|dt|dd|div|figcaption|summary|button|blockquote|section|article)>|<br\s*\/?>/i', "\n", $blocky );
 	$sentences = array();
-	foreach ( preg_split( '/\n+/', wp_strip_all_tags( $blocky ) ) as $chunk ) {
+	foreach ( preg_split( '/\n+/', wp_strip_all_tags( preg_replace( '/<[^>]+>/', ' ', $blocky ) ) ) as $chunk ) {
 		foreach ( preg_split( '/(?<=[.!?。])\s+/u', trim( preg_replace( '/\s+/u', ' ', $chunk ) ) ) as $x ) {
 			if ( '' !== trim( $x ) ) {
 				$sentences[] = $x;

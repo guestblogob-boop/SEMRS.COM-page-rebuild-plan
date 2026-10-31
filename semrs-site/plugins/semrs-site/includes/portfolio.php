@@ -62,6 +62,31 @@ function semrs_portfolio_settings() {
 }
 
 /**
+ * Short card text for the portfolio. The shop templates carry long product lists in their
+ * library descriptions; the portfolio cards show one or two short sentences instead.
+ *
+ * @param string $title Design title.
+ * @param string $desc  Library description.
+ * @return string
+ */
+function semrs_portfolio_short_text( $title, $desc ) {
+	$shops = array(
+		'Digital Downloads Shop' => __( 'A ready-made shop for printables, SVGs, planners and Canva templates. It has 35 products with sizes, formats and bundles.', 'semrs-site' ),
+		'Crochet Pattern Shop'   => __( 'A ready-made shop for crochet patterns. It has 36 pattern pages, a beginner guide and a crochet help page.', 'semrs-site' ),
+	);
+	foreach ( $shops as $name => $text ) {
+		if ( 0 === strpos( $title, $name ) ) {
+			if ( preg_match( '/\((\w+) style\)/', $title, $m ) ) {
+				/* translators: 1: shop name, 2: marketplace style (Etsy, eBay, Amazon) */
+				return sprintf( __( 'The %1$s with a %2$s-style storefront. Same products, a different look.', 'semrs-site' ), strtolower( $name ), $m[1] );
+			}
+			return $text;
+		}
+	}
+	return $desc;
+}
+
+/**
  * Designs with their previews, newest data from the templates library.
  *
  * @return array id => title, category, description, tier, desktop, mobile
@@ -89,7 +114,7 @@ function semrs_portfolio_designs() {
 		$designs[ $id ] = array(
 			'title'       => $d[0],
 			'category'    => $d[1],
-			'description' => $d[2],
+			'description' => semrs_portfolio_short_text( $d[0], $d[2] ),
 			'tier'        => $d[3],
 			'desktop'     => $desk,
 			'mobile'      => semrs_blocks_template_preview( $id, 'mobile', $d[4] ),
