@@ -17,10 +17,15 @@ fs.mkdirSync(OUT_SITE, { recursive: true });
 const sitePages = {};
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const inline = (s) => esc(s)
-	.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-	.replace(/`([^`]+)`/g, '<code>$1</code>')
-	.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, u) => `<a href="${u.replace(/"/g, '&quot;')}">${t}</a>`);
+// Code spans are set aside first, so examples like `[title](URL)` stay text, not links.
+const inline = (s) => {
+	const codes = [];
+	return esc(s)
+		.replace(/`([^`]+)`/g, (m, c) => `\u0000${codes.push(c) - 1}\u0000`)
+		.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+		.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, u) => `<a href="${u.replace(/"/g, '&quot;')}">${t}</a>`)
+		.replace(/\u0000(\d+)\u0000/g, (m, i) => `<code>${codes[i]}</code>`);
+};
 
 const P = (t, cls) => cls
 	? `<!-- wp:paragraph {"className":"${cls}"} -->\n<p class="${cls}">${inline(t)}</p>\n<!-- /wp:paragraph -->`
