@@ -297,9 +297,9 @@ function semrs_us_campaign_guide() {
 
 		<h3><?php esc_html_e( '4. Affiliate program', 'semrs-update-server' ); ?></h3>
 		<ul>
-			<li><?php echo esc_html( sprintf( /* translators: 1: first percent, 2: renewal percent, 3: cookie days */ __( 'Partners earn %1$d%% of the first order and %2$d%% of every renewal and add-on for life, with a %3$d-day cookie. Most WordPress programs pay 20–30%% with a 30–60 day cookie.', 'semrs-update-server' ), $aff['first'], $aff['renewal'], $aff['cookie'] ) ); ?></li>
+			<li><?php echo esc_html( __( 'First orders:', 'semrs-update-server' ) . ' ' . implode( '; ', semrs_us_aff_tier_lines() ) . '. ' . sprintf( /* translators: 1: renewal terms, 2: cookie days */ __( 'Plus %1$s, with a %2$d-day cookie. Most WordPress programs pay 20–30%% with a 30–60 day cookie.', 'semrs-update-server' ), semrs_us_aff_renewal_text(), $aff['cookie'] ) ); ?></li>
 			<li><?php esc_html_e( 'Approve applications under SEMRS Updates → Affiliates. Approved partners get their link and private dashboard by email.', 'semrs-update-server' ); ?></li>
-			<li><?php esc_html_e( 'Commissions approve themselves after the refund window. Pay monthly (PayPal, Wise or bank) and click "Mark paid".', 'semrs-update-server' ); ?></li>
+			<li><?php esc_html_e( 'Commissions approve themselves after the refund window. Pay monthly by bank transfer or SadaPay and click "Mark paid".', 'semrs-update-server' ); ?></li>
 		</ul>
 
 		<h3><?php esc_html_e( '5. Rules we never break', 'semrs-update-server' ); ?></h3>
@@ -330,7 +330,9 @@ function semrs_us_aff_admin_post() {
 			array(
 				'on'      => empty( $_POST['on'] ) ? 0 : 1,
 				'first'   => min( 90, absint( $_POST['first'] ?? 50 ) ),
-				'renewal' => min( 90, absint( $_POST['renewal'] ?? 30 ) ),
+				'renewal' => min( 90, absint( $_POST['renewal'] ?? 15 ) ),
+				'tiers'   => preg_replace( '/[^0-9:,]/', '', (string) wp_unslash( $_POST['tiers'] ?? '' ) ),
+				'ren_yrs' => min( 10, absint( $_POST['ren_yrs'] ?? 1 ) ),
 				'cookie'  => max( 1, min( 365, absint( $_POST['cookie'] ?? 90 ) ) ),
 				'min'     => absint( $_POST['min'] ?? 50 ),
 				'hold'    => min( 90, absint( $_POST['hold'] ?? 30 ) ),
@@ -433,7 +435,7 @@ function semrs_us_page_affiliates() {
 		</tbody></table>
 
 		<h3><?php esc_html_e( 'Add a partner by hand', 'semrs-update-server' ); ?></h3>
-		<?php echo $form( 'add', __( 'Add and email their links', 'semrs-update-server' ), '<input name="name" placeholder="' . esc_attr__( 'Name', 'semrs-update-server' ) . '"> <input type="email" name="email" required placeholder="' . esc_attr__( 'Email', 'semrs-update-server' ) . '"> <input name="code" placeholder="' . esc_attr__( 'Code (optional)', 'semrs-update-server' ) . '" style="width:130px"> <input name="payout" placeholder="' . esc_attr__( 'PayPal / Wise email', 'semrs-update-server' ) . '"> ', 'button' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+		<?php echo $form( 'add', __( 'Add and email their links', 'semrs-update-server' ), '<input name="name" placeholder="' . esc_attr__( 'Name', 'semrs-update-server' ) . '"> <input type="email" name="email" required placeholder="' . esc_attr__( 'Email', 'semrs-update-server' ) . '"> <input name="code" placeholder="' . esc_attr__( 'Code (optional)', 'semrs-update-server' ) . '" style="width:130px"> <input name="payout" placeholder="' . esc_attr__( 'Bank transfer or SadaPay', 'semrs-update-server' ) . '"> ', 'button' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 
 		<h2><?php esc_html_e( 'Commissions (latest 200)', 'semrs-update-server' ); ?></h2>
 		<table class="widefat striped" style="max-width:1300px"><thead><tr><th><?php esc_html_e( 'Date', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Partner', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Order', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Plan', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Sale', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Commission', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Status', 'semrs-update-server' ); ?></th><th></th></tr></thead><tbody>
@@ -469,8 +471,10 @@ function semrs_us_page_affiliates() {
 			<input type="hidden" name="action" value="semrs_us_aff"><input type="hidden" name="semrs_do" value="settings">
 			<table class="form-table" role="presentation">
 				<tr><th><?php esc_html_e( 'Program', 'semrs-update-server' ); ?></th><td><label><input type="checkbox" name="on" value="1" <?php checked( $s['on'] ); ?>> <?php esc_html_e( 'Open (tracking, applications and commissions)', 'semrs-update-server' ); ?></label></td></tr>
-				<tr><th><label for="aff-first"><?php esc_html_e( 'First order commission', 'semrs-update-server' ); ?></label></th><td><input id="aff-first" type="number" min="0" max="90" name="first" value="<?php echo esc_attr( $s['first'] ); ?>" style="width:70px"> % <span class="description"><?php esc_html_e( 'Market: 20–30% for most WordPress plugins and themes.', 'semrs-update-server' ); ?></span></td></tr>
-				<tr><th><label for="aff-ren"><?php esc_html_e( 'Renewals and add-ons, for life', 'semrs-update-server' ); ?></label></th><td><input id="aff-ren" type="number" min="0" max="90" name="renewal" value="<?php echo esc_attr( $s['renewal'] ); ?>" style="width:70px"> % <span class="description"><?php esc_html_e( 'Most programs pay nothing on renewals.', 'semrs-update-server' ); ?></span></td></tr>
+				<tr><th><label for="aff-first"><?php esc_html_e( 'First order commission', 'semrs-update-server' ); ?></label></th><td><input id="aff-first" type="number" min="0" max="90" name="first" value="<?php echo esc_attr( $s['first'] ); ?>" style="width:70px"> % <span class="description"><?php esc_html_e( 'Used when no tier applies. Market: 20–30% for most WordPress plugins and themes.', 'semrs-update-server' ); ?></span></td></tr>
+				<tr><th><label for="aff-tiers"><?php esc_html_e( 'Monthly sales tiers', 'semrs-update-server' ); ?></label></th><td><input id="aff-tiers" name="tiers" value="<?php echo esc_attr( $s['tiers'] ); ?>" class="regular-text code"> <p class="description"><?php echo esc_html( __( 'from sale number:percent, comma-separated. Now:', 'semrs-update-server' ) . ' ' . implode( '; ', semrs_us_aff_tier_lines() ) ); ?></p></td></tr>
+				<tr><th><label for="aff-ren"><?php esc_html_e( 'Renewals and add-ons', 'semrs-update-server' ); ?></label></th><td><input id="aff-ren" type="number" min="0" max="90" name="renewal" value="<?php echo esc_attr( $s['renewal'] ); ?>" style="width:70px"> % <span class="description"><?php esc_html_e( 'Most programs pay nothing on renewals.', 'semrs-update-server' ); ?></span></td></tr>
+				<tr><th><label for="aff-ren-yrs"><?php esc_html_e( 'Pay renewals for (years)', 'semrs-update-server' ); ?></label></th><td><input id="aff-ren-yrs" type="number" min="0" max="10" name="ren_yrs" value="<?php echo esc_attr( $s['ren_yrs'] ); ?>" style="width:70px"> <span class="description"><?php esc_html_e( '1 = renewals and add-ons in the first year only. 0 = for life.', 'semrs-update-server' ); ?></span></td></tr>
 				<tr><th><label for="aff-cookie"><?php esc_html_e( 'Cookie length (days)', 'semrs-update-server' ); ?></label></th><td><input id="aff-cookie" type="number" min="1" max="365" name="cookie" value="<?php echo esc_attr( $s['cookie'] ); ?>" style="width:70px"> <span class="description"><?php esc_html_e( 'Market: 30–60 days.', 'semrs-update-server' ); ?></span></td></tr>
 				<tr><th><label for="aff-hold"><?php esc_html_e( 'Approve after (days)', 'semrs-update-server' ); ?></label></th><td><input id="aff-hold" type="number" min="0" max="90" name="hold" value="<?php echo esc_attr( $s['hold'] ); ?>" style="width:70px"> <span class="description"><?php esc_html_e( 'Match the refund window.', 'semrs-update-server' ); ?></span></td></tr>
 				<tr><th><label for="aff-min"><?php esc_html_e( 'Minimum payout', 'semrs-update-server' ); ?></label></th><td><input id="aff-min" type="number" min="0" name="min" value="<?php echo esc_attr( $s['min'] ); ?>" style="width:90px"></td></tr>

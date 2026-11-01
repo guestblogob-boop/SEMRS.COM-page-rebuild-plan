@@ -573,7 +573,7 @@ function semrs_us_quote_plan_note( $content ) {
 	$what  = isset( $plans[ $plan ] ) ? 'SEMRS Pro: ' . semrs_us_plan_label( $plans[ $plan ] ) . ' (' . semrs_us_money( $plans[ $plan ]['price'] ) . ')' : __( 'SEMRS Pro by invoice', 'semrs-update-server' );
 	$offer = semrs_us_offer_for( isset( $plans[ $plan ] ) ? $plan : 'all-1' );
 	$deal  = $offer ? ' ' . sprintf( /* translators: 1: offer, 2: percent */ __( 'The %1$s (%2$d%% off) is taken off your invoice.', 'semrs-update-server' ), $offer['name'], $offer['percent'] ) : '';
-	$note  = '<p class="semrs-quote-plan" role="note" style="border:2px solid var(--sp-accent,#d4a72c);border-radius:12px;padding:12px 16px"><strong>' . esc_html( $what ) . '</strong><br>' . esc_html__( 'Send the form with your name and email and we will email you an invoice (bank transfer, PayPal or card). Your license key arrives as soon as it is paid.', 'semrs-update-server' ) . esc_html( $deal ) . '</p>';
+	$note  = '<p class="semrs-quote-plan" role="note" style="border:2px solid var(--sp-accent,#d4a72c);border-radius:12px;padding:12px 16px"><strong>' . esc_html( $what ) . '</strong><br>' . esc_html__( 'Send the form with your name and email and we will email you an invoice (bank transfer or SadaPay). Your license key arrives as soon as it is paid.', 'semrs-update-server' ) . esc_html( $deal ) . '</p>';
 	return $note . $content;
 }
 add_filter( 'the_content', 'semrs_us_quote_plan_note', 5 );

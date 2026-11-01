@@ -12,7 +12,11 @@
  * - The first paid order ties the customer's key to the partner for good:
  *   later renewals and add-ons pay the renewal rate.
  * - Commissions wait out the refund window, then turn "approved" by
- *   themselves. Payouts are made by hand (PayPal, Wise, bank) and marked paid.
+ *   themselves. Payouts are made by hand (bank transfer or SadaPay) and marked paid.
+ * - First-order rates rise with a partner's sales in the calendar month
+ *   (tiers, e.g. 40% for sales 1–10, 45% for 11–30, 50% for 31–60, 60% from
+ *   61); each sale gets the rate of its place in the month. Renewals and
+ *   add-ons pay the renewal rate during the first renewal year(s) only.
  *
  * @package semrs-update-server
  */
@@ -30,8 +34,10 @@ function semrs_us_aff_settings() {
 	return array_merge(
 		array(
 			'on'      => 1,
-			'first'   => 50,
-			'renewal' => 30,
+			'first'   => 40,
+			'tiers'   => '1:40,11:45,31:50,61:60',
+			'renewal' => 15,
+			'ren_yrs' => 1,
 			'cookie'  => 90,
 			'min'     => 50,
 			'hold'    => 30,
@@ -200,8 +206,32 @@ function semrs_us_aff_on_grant( $key, $ref, $src, $prev ) {
 			return $r['key'] === semrs_us_kid( $key ) && 'rejected' !== $r['status'];
 		}
 	);
-	$s     = semrs_us_aff_settings();
-	$rate  = $first ? (int) $s['first'] : (int) $s['renewal'];
+	$s = semrs_us_aff_settings();
+	if ( $first ) {
+		$month = gmdate( 'Y-m' );
+		$n     = 1 + count(
+			array_filter(
+				$rows,
+				function ( $r ) use ( $code, $month ) {
+					return $r['aff'] === $code && 'first' === $r['kind'] && 'rejected' !== $r['status'] && 0 === strpos( $r['date'], $month );
+				}
+			)
+		);
+		$rate = semrs_us_aff_tier_rate( $n );
+	} else {
+		// Renewals and add-ons pay only in the first renewal year(s), plus 45 days for late payments.
+		$start = '';
+		foreach ( $rows as $r ) {
+			if ( $r['key'] === semrs_us_kid( $key ) && 'first' === $r['kind'] && 'rejected' !== $r['status'] ) {
+				$start = $r['date'];
+			}
+		}
+		$yrs = (int) $s['ren_yrs'];
+		if ( $yrs > 0 && ( '' === $start || strtotime( $start . ' +' . $yrs . ' year +45 days' ) < time() ) ) {
+			return;
+		}
+		$rate = (int) $s['renewal'];
+	}
 	array_unshift(
 		$rows,
 		array(
@@ -220,6 +250,81 @@ function semrs_us_aff_on_grant( $key, $ref, $src, $prev ) {
 		)
 	);
 	semrs_us_referrals_save( array_slice( $rows, 0, 5000 ) );
+}
+
+/**
+ * Commission tiers: [ [ from sale number, percent ], … ] sorted by sale number.
+ *
+ * @return array[]
+ */
+function semrs_us_aff_tiers() {
+	$out = array();
+	foreach ( explode( ',', (string) semrs_us_aff_settings()['tiers'] ) as $pair ) {
+		$p = array_map( 'absint', explode( ':', $pair ) );
+		if ( 2 === count( $p ) && $p[0] > 0 ) {
+			$out[] = array( $p[0], min( 90, $p[1] ) );
+		}
+	}
+	usort(
+		$out,
+		function ( $a, $b ) {
+			return $a[0] <=> $b[0];
+		}
+	);
+	return $out ? $out : array( array( 1, (int) semrs_us_aff_settings()['first'] ) );
+}
+
+/**
+ * First-order rate for a partner's Nth sale this month.
+ *
+ * @param int $n Sale number in the month (1 = first).
+ * @return int Percent.
+ */
+function semrs_us_aff_tier_rate( $n ) {
+	$rate = (int) semrs_us_aff_settings()['first'];
+	foreach ( semrs_us_aff_tiers() as $t ) {
+		if ( $n >= $t[0] ) {
+			$rate = $t[1];
+		}
+	}
+	return $rate;
+}
+
+/**
+ * Human list of the tiers, e.g. "40% (sales 1–10), 45% (11–30), …".
+ *
+ * @return string[] One line per tier.
+ */
+function semrs_us_aff_tier_lines() {
+	$t   = semrs_us_aff_tiers();
+	$out = array();
+	foreach ( $t as $i => $row ) {
+		$to    = isset( $t[ $i + 1 ] ) ? $t[ $i + 1 ][0] - 1 : 0;
+		/* translators: 1: percent, 2: from, 3: to */
+		$out[] = $to ? sprintf( __( '%1$d%% for sales %2$d–%3$d in a month', 'semrs-update-server' ), $row[1], $row[0], $to ) : sprintf( /* translators: 1: percent, 2: from */ __( '%1$d%% from sale %2$d in a month', 'semrs-update-server' ), $row[1], $row[0] );
+	}
+	return $out;
+}
+
+/**
+ * Renewal terms in words, e.g. "15% in the first year".
+ *
+ * @return string
+ */
+function semrs_us_aff_renewal_text() {
+	$s   = semrs_us_aff_settings();
+	$yrs = (int) $s['ren_yrs'];
+	/* translators: 1: percent, 2: years */
+	return $yrs ? sprintf( _n( '%1$d%% on renewals and add-ons in the first year', '%1$d%% on renewals and add-ons in the first %2$d years', $yrs, 'semrs-update-server' ), (int) $s['renewal'], $yrs ) : sprintf( /* translators: %d: percent */ __( '%d%% on renewals and add-ons, for life', 'semrs-update-server' ), (int) $s['renewal'] );
+}
+
+/**
+ * Highest first-order rate (for headlines such as "up to 60%").
+ *
+ * @return int
+ */
+function semrs_us_aff_top_rate() {
+	return (int) max( wp_list_pluck( semrs_us_aff_tiers(), 1 ) );
 }
 
 /**
@@ -332,7 +437,9 @@ function semrs_us_aff_mail_welcome( $code, $a ) {
 				__( 'Add ?ref=', 'semrs-update-server' ) . $code . ' ' . __( 'to any semrs.com address to link there.', 'semrs-update-server' ),
 				'',
 				/* translators: 1: first percent, 2: renewal percent, 3: cookie days */
-				sprintf( __( 'You earn %1$d%% of the first order and %2$d%% of every renewal and add-on after it, for life. Cookie: %3$d days.', 'semrs-update-server' ), $s['first'], $s['renewal'], $s['cookie'] ),
+				__( 'First orders:', 'semrs-update-server' ) . ' ' . implode( '; ', semrs_us_aff_tier_lines() ) . '.',
+				/* translators: 1: renewal terms, 2: cookie days */
+				sprintf( __( 'Plus %1$s. Cookie: %2$d days.', 'semrs-update-server' ), semrs_us_aff_renewal_text(), $s['cookie'] ),
 				/* translators: 1: days, 2: minimum */
 				sprintf( __( 'Commissions are approved %1$d days after the sale (the refund window) and paid monthly once you reach %2$s.', 'semrs-update-server' ), $s['hold'], semrs_us_money( $s['min'] ) ),
 				'',
@@ -469,11 +576,11 @@ function semrs_us_aff_shortcode() {
 		$out .= '<p class="semrs-aff__note" role="alert">' . esc_html__( 'Please fill in your email and accept the terms.', 'semrs-update-server' ) . '</p>';
 	}
 	$rows = array(
-		array( __( 'First order', 'semrs-update-server' ), $s['first'] . '%' ),
-		array( __( 'Every renewal and add-on, for life', 'semrs-update-server' ), $s['renewal'] . '%' ),
+		array( __( 'First order', 'semrs-update-server' ), implode( ' · ', semrs_us_aff_tier_lines() ) ),
+		array( __( 'Renewals and add-ons', 'semrs-update-server' ), ucfirst( semrs_us_aff_renewal_text() ) ),
 		array( __( 'Cookie length', 'semrs-update-server' ), sprintf( /* translators: %d: days */ _n( '%d day', '%d days', (int) $s['cookie'], 'semrs-update-server' ), (int) $s['cookie'] ) ),
 		array( __( 'Approval', 'semrs-update-server' ), sprintf( /* translators: %d: days */ __( '%d days after the sale (refund window)', 'semrs-update-server' ), (int) $s['hold'] ) ),
-		array( __( 'Payouts', 'semrs-update-server' ), sprintf( /* translators: %s: amount */ __( 'Monthly by PayPal, Wise or bank, from %s', 'semrs-update-server' ), semrs_us_money( $s['min'] ) ) ),
+		array( __( 'Payouts', 'semrs-update-server' ), sprintf( /* translators: %s: amount */ __( 'Monthly by bank transfer or SadaPay, from %s', 'semrs-update-server' ), semrs_us_money( $s['min'] ) ) ),
 	);
 	$out .= '<table class="semrs-aff__rates"><caption>' . esc_html__( 'SEMRS affiliate rates', 'semrs-update-server' ) . '</caption><tbody>';
 	foreach ( $rows as $r ) {
@@ -488,7 +595,7 @@ function semrs_us_aff_shortcode() {
 		. $f( 'email', __( 'Email', 'semrs-update-server' ), '<input id="semrs-aff-email" type="email" name="email" required autocomplete="email">' )
 		. $f( 'site', __( 'Website or channel', 'semrs-update-server' ), '<input id="semrs-aff-site" type="url" name="site" placeholder="https://" autocomplete="url">' )
 		. $f( 'how', __( 'How will you share SEMRS?', 'semrs-update-server' ), '<textarea id="semrs-aff-how" name="how" rows="3"></textarea>' )
-		. $f( 'payout', __( 'PayPal or Wise email for payouts', 'semrs-update-server' ), '<input id="semrs-aff-payout" name="payout">' )
+		. $f( 'payout', __( 'How should we pay you? (bank transfer or SadaPay; we confirm the details by email)', 'semrs-update-server' ), '<select id="semrs-aff-payout" name="payout"><option>' . esc_html__( 'Bank transfer', 'semrs-update-server' ) . '</option><option>SadaPay</option></select>' )
 		. '<p class="semrs-aff__hp" aria-hidden="true"><label>Website URL <input name="website_url" tabindex="-1" autocomplete="off"></label></p>'
 		. '<p><label><input type="checkbox" name="terms" value="1" required> ' . esc_html__( 'I will say I am an affiliate where I share my link, and I will not bid on SEMRS brand terms in ads or use spam.', 'semrs-update-server' ) . '</label></p>'
 		. '<p><button class="semrs-btn semrs-btn--buy" type="submit">' . esc_html__( 'Send application', 'semrs-update-server' ) . '</button></p></form>';

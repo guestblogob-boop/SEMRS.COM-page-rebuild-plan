@@ -43,7 +43,7 @@ function semrs_us_popup_defaults() {
 		'switch'    => array( 'name' => __( 'Switch deal', 'semrs-update-server' ), 'title' => '', 'text' => '', 'cta' => __( 'Compare plans', 'semrs-update-server' ), 'delay' => 25, 'scroll' => 0, 'days' => 21 ),
 		'lifetime'  => array( 'name' => __( 'Lifetime nudge', 'semrs-update-server' ), 'title' => __( 'Pay once, never renew', 'semrs-update-server' ), 'text' => __( 'All Pro for unlimited websites with lifetime updates: %s once.', 'semrs-update-server' ), 'cta' => __( 'Get lifetime access', 'semrs-update-server' ), 'delay' => 0, 'scroll' => 70, 'days' => 14 ),
 		'proof'     => array( 'name' => __( 'Social proof', 'semrs-update-server' ), 'title' => '', 'text' => __( '%s websites ran SEMRS in the last 30 days.', 'semrs-update-server' ), 'cta' => '', 'delay' => 6, 'scroll' => 0, 'days' => 7 ),
-		'affiliate' => array( 'name' => __( 'Affiliate invite', 'semrs-update-server' ), 'title' => __( 'Earn %d%% recommending SEMRS', 'semrs-update-server' ), 'text' => __( 'Plus %1$d%% of every renewal for life, with a %2$d-day cookie.', 'semrs-update-server' ), 'cta' => __( 'Join the affiliate program', 'semrs-update-server' ), 'delay' => 20, 'scroll' => 0, 'days' => 30 ),
+		'affiliate' => array( 'name' => __( 'Affiliate invite', 'semrs-update-server' ), 'title' => __( 'Earn up to %d%% recommending SEMRS', 'semrs-update-server' ), 'text' => __( 'Plus %1$d%% on first-year renewals, with a %2$d-day cookie.', 'semrs-update-server' ), 'cta' => __( 'Join the affiliate program', 'semrs-update-server' ), 'delay' => 20, 'scroll' => 0, 'days' => 30 ),
 	);
 }
 
@@ -359,7 +359,7 @@ function semrs_us_popup_items() {
 		$rate = semrs_us_aff_settings();
 		$add(
 			array( 'id' => 'affiliate', 'k' => 'affiliate', 'kind' => 'slide', 'views' => 3, 'delay' => $pa['delay'], 'scroll' => $pa['scroll'], 'days' => $pa['days'] ),
-			'<div class="semrs-pop__slide' . ( semrs_us_popup_images( 'affiliate' ) ? ' has-img' : '' ) . '" role="dialog" aria-labelledby="semrs-pop-t-aff">' . $close . semrs_us_popup_img_tag( 'affiliate' ) . '<h2 class="semrs-pop__h" id="semrs-pop-t-aff">' . esc_html( semrs_us_fmt( $pa['title'], (int) $rate['first'] ) ) . '</h2><p>' . esc_html( semrs_us_fmt( $pa['text'], (int) $rate['renewal'], (int) $rate['cookie'] ) ) . '</p><a class="semrs-pop__cta semrs-pop__cta--sm" href="' . esc_url( $aff ) . '" data-close>' . esc_html( $pa['cta'] ) . '</a></div>'
+			'<div class="semrs-pop__slide' . ( semrs_us_popup_images( 'affiliate' ) ? ' has-img' : '' ) . '" role="dialog" aria-labelledby="semrs-pop-t-aff">' . $close . semrs_us_popup_img_tag( 'affiliate' ) . '<h2 class="semrs-pop__h" id="semrs-pop-t-aff">' . esc_html( semrs_us_fmt( $pa['title'], semrs_us_aff_top_rate() ) ) . '</h2><p>' . esc_html( semrs_us_fmt( $pa['text'], (int) $rate['renewal'], (int) $rate['cookie'] ) ) . '</p><a class="semrs-pop__cta semrs-pop__cta--sm" href="' . esc_url( $aff ) . '" data-close>' . esc_html( $pa['cta'] ) . '</a></div>'
 		);
 	}
 	return array( $items, $tpl );

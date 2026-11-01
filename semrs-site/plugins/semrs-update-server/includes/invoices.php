@@ -1,6 +1,6 @@
 <?php
 /**
- * Manual invoices (bank transfer, PayPal, Wise…): SEMRS Updates → Invoices.
+ * Manual invoices (bank transfer, SadaPay…): SEMRS Updates → Invoices.
  *
  * Create an invoice from the plan catalogue, send the customer a link to a
  * printable invoice page, and click "Mark paid" when the money arrives: the
@@ -241,7 +241,7 @@ function semrs_us_page_invoices() {
 		<?php if ( isset( $notes[ $msg ] ) ) : ?>
 			<div class="notice notice-<?php echo in_array( $msg, array( 'empty', 'mailfail' ), true ) ? 'warning' : 'success'; ?>"><p><?php echo esc_html( $notes[ $msg ] ); ?></p></div>
 		<?php endif; ?>
-		<p><?php esc_html_e( 'For customers who pay by bank transfer, PayPal, Wise or another manual method. When the money arrives, click Mark paid: the key is created (or extended by one year) and emailed automatically.', 'semrs-update-server' ); ?></p>
+		<p><?php esc_html_e( 'For customers who pay by bank transfer, SadaPay or another manual method. When the money arrives, click Mark paid: the key is created (or extended by one year) and emailed automatically.', 'semrs-update-server' ); ?></p>
 		<details <?php echo $prefill ? 'open' : ''; ?> style="max-width:900px;background:#fff;border:1px solid #c3c4c7;padding:12px 16px;margin:12px 0">
 			<summary style="cursor:pointer;font-weight:600"><?php esc_html_e( 'New invoice', 'semrs-update-server' ); ?></summary>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
