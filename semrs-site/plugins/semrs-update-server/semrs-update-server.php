@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       SEMRS Update Server
  * Description:       Runs on semrs.com only. Publishes theme and plugin releases, sells SEMRS Pro add-ons (Lemon Squeezy and manual invoices), manages license keys and the My Licenses page, runs the yearly sales calendar, sales popups and the affiliate program, answers update checks from every site using SEMRS products, and lists the live sites with their versions.
- * Version:           1.4.23
+ * Version:           1.4.24
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            SEMRS
@@ -17,15 +17,28 @@ defined( 'ABSPATH' ) || exit;
 // WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
 add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
 
-define( 'SEMRS_US_VERSION', '1.4.23' );
+define( 'SEMRS_US_VERSION', '1.4.24' );
 define( 'SEMRS_US_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_US_URL', plugin_dir_url( __FILE__ ) );
 
-// Deleted media goes to a Trash that can be restored, instead of being
-// removed at once.
-if ( ! defined( 'MEDIA_TRASH' ) ) {
-	define( 'MEDIA_TRASH', true );
+/**
+ * Deleted media goes to a Trash that can be restored, instead of being
+ * removed at once. WordPress reads MEDIA_TRASH before normal plugins load,
+ * so the setting lives in a small must-use plugin that we write once.
+ */
+function semrs_us_media_trash_mu() {
+	$file = WPMU_PLUGIN_DIR . '/semrs-media-trash.php';
+	if ( file_exists( $file ) || ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	if ( ! is_dir( WPMU_PLUGIN_DIR ) ) {
+		wp_mkdir_p( WPMU_PLUGIN_DIR );
+	}
+	if ( is_writable( WPMU_PLUGIN_DIR ) ) {
+		file_put_contents( $file, "<?php\n/**\n * Plugin Name: SEMRS Media Trash\n * Description: Deleted media goes to a Trash that can be restored (added by SEMRS Update Server).\n */\n\nif ( ! defined( 'MEDIA_TRASH' ) ) {\n\tdefine( 'MEDIA_TRASH', true );\n}\n" ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
+	}
 }
+add_action( 'admin_init', 'semrs_us_media_trash_mu' );
 
 /**
  * Products served: slug => [name, type, needs license].
