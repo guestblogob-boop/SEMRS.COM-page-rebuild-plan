@@ -348,6 +348,7 @@ function semrs_us_aff_admin_post() {
 				'bonus'     => absint( $_POST['bonus'] ?? 50 ),
 				'bonus_n'   => max( 1, absint( $_POST['bonus_n'] ?? 33 ) ),
 				'min_intl'  => absint( $_POST['min_intl'] ?? 100 ),
+				'post_cta'  => empty( $_POST['post_cta'] ) ? 0 : 1,
 				'send_intl' => min( 30, max( 0, (float) ( $_POST['send_intl'] ?? 7 ) ) ),
 				'send_pk'   => min( 30, max( 0, (float) ( $_POST['send_pk'] ?? 7 ) ) ),
 			),
@@ -510,6 +511,7 @@ function semrs_us_page_affiliates() {
 				<tr><th><label for="aff-min"><?php esc_html_e( 'Minimum payout', 'semrs-update-server' ); ?></label></th><td><?php esc_html_e( 'Pakistan', 'semrs-update-server' ); ?> $<input id="aff-min" type="number" min="0" name="min" value="<?php echo esc_attr( $s['min'] ); ?>" style="width:80px"> &nbsp; <?php esc_html_e( 'International', 'semrs-update-server' ); ?> $<input type="number" min="0" name="min_intl" value="<?php echo esc_attr( $s['min_intl'] ); ?>" style="width:80px" aria-label="<?php esc_attr_e( 'International minimum payout', 'semrs-update-server' ); ?>"></td></tr>
 				<tr><th><label for="aff-send"><?php esc_html_e( 'Exchange and transfer fee per payout', 'semrs-update-server' ); ?></label></th><td><?php esc_html_e( 'International', 'semrs-update-server' ); ?> <input id="aff-send" type="number" step="0.1" min="0" max="30" name="send_intl" value="<?php echo esc_attr( $s['send_intl'] ); ?>" style="width:70px"> % &nbsp; <?php esc_html_e( 'Pakistan (SadaPay or bank)', 'semrs-update-server' ); ?> <input type="number" step="0.1" min="0" max="30" name="send_pk" value="<?php echo esc_attr( $s['send_pk'] ); ?>" style="width:70px" aria-label="<?php esc_attr_e( 'Exchange and transfer fee in Pakistan, percent', 'semrs-update-server' ); ?>"> % <span class="description"><?php esc_html_e( 'Taken off each payout before sending; partners see what they will receive.', 'semrs-update-server' ); ?></span></td></tr>
 				<tr><th><label for="aff-page"><?php esc_html_e( 'Affiliates page', 'semrs-update-server' ); ?></label></th><td><?php wp_dropdown_pages( array( 'name' => 'page', 'id' => 'aff-page', 'selected' => (int) $s['page'], 'show_option_none' => __( '— /affiliates/ —', 'semrs-update-server' ), 'option_none_value' => 0 ) ); ?></td></tr>
+				<tr><th><?php esc_html_e( 'Banner under blog posts', 'semrs-update-server' ); ?></th><td><label><input type="checkbox" name="post_cta" value="1" <?php checked( ! empty( $s['post_cta'] ) ); ?>> <?php esc_html_e( 'Show a small affiliate program banner at the end of every blog post', 'semrs-update-server' ); ?></label></td></tr>
 			</table>
 			<?php submit_button(); ?>
 		</form>

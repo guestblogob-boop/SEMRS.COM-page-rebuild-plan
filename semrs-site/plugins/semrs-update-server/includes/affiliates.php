@@ -63,6 +63,7 @@ function semrs_us_aff_settings() {
 			'bonus'     => 50,
 			'bonus_n'   => 33,
 			'min_intl'  => 100,
+			'post_cta'  => 0,
 			'send_intl' => 7,
 			'send_pk'   => 7,
 		),
@@ -944,7 +945,7 @@ function semrs_us_aff_dashboard( $code, $a ) {
 	if ( ! $n ) {
 		$out .= '<tr><td colspan="4">' . esc_html__( 'No sales yet. Share your link to get started.', 'semrs-update-server' ) . '</td></tr>';
 	}
-	return $out . '</tbody></table></div>';
+	return $out . '</tbody></table>' . semrs_us_aff_creatives_html( $code ) . '</div>';
 }
 
 /**
@@ -1070,3 +1071,84 @@ function semrs_us_aff_calc_shortcode() {
 	return $out;
 }
 add_shortcode( 'semrs_aff_calc', 'semrs_us_aff_calc_shortcode' );
+
+/**
+ * Promo kit shipped with the plugin (assets/promo), built by
+ * build-promo-kit.mjs: one entry per design with its size and file URLs.
+ *
+ * @param string $set Folder: product, cards or affiliate.
+ * @return array[] name, w, h, png, webp.
+ */
+function semrs_us_aff_creatives( $set ) {
+	$out = array();
+	foreach ( (array) glob( SEMRS_US_DIR . 'assets/promo/' . $set . '/*.png' ) as $file ) {
+		$name = basename( $file, '.png' );
+		$size = preg_match( '/-(\d+)x(\d+)$/', $name, $m ) ? array( (int) $m[1], (int) $m[2] ) : ( 'semrs-affiliate-partner-badge' === $name ? array( 400, 400 ) : array( 1080, 1080 ) );
+		$url  = SEMRS_US_URL . 'assets/promo/' . $set . '/' . $name;
+		$out[] = array( 'name' => $name, 'w' => $size[0], 'h' => $size[1], 'png' => $url . '.png', 'webp' => $url . '.webp' );
+	}
+	return $out;
+}
+
+/**
+ * Dashboard section: banners with ready-made HTML that carries the
+ * partner's link, plus cards and images for social posts.
+ *
+ * @param string $code Partner code.
+ * @return string
+ */
+function semrs_us_aff_creatives_html( $code ) {
+	$pricing = semrs_us_aff_link( $code, strtok( semrs_us_pricing_url(), '#' ) );
+	$home    = semrs_us_aff_link( $code );
+	$alt     = __( 'SEMRS Pro: SEO, speed and ads for WordPress in one key', 'semrs-update-server' );
+	$social  = array( 'social-post', 'square', 'story', 'video-thumbnail', 'x-header' );
+	$groups  = array( 'web' => array(), 'social' => array(), 'cards' => semrs_us_aff_creatives( 'cards' ) );
+	foreach ( semrs_us_aff_creatives( 'product' ) as $c ) {
+		$is_social = (bool) array_filter( $social, function ( $k ) use ( $c ) { return false !== strpos( $c['name'], '-' . $k . '-' ); } );
+		$groups[ $is_social ? 'social' : 'web' ][] = $c;
+	}
+	$item = function ( $c, $href, $alt, $code_box ) {
+		$scale = min( 1, 280 / $c['w'], 220 / $c['h'] );
+		$html  = '<a href="' . esc_url( $href ) . '" rel="sponsored noopener"><img src="' . esc_url( $c['png'] ) . '" width="' . $c['w'] . '" height="' . $c['h'] . '" alt="' . esc_attr( $alt ) . '"></a>';
+		$out   = '<figure class="semrs-aff__cr"><img src="' . esc_url( $c['webp'] ) . '" width="' . round( $c['w'] * $scale ) . '" height="' . round( $c['h'] * $scale ) . '" alt="" loading="lazy" decoding="async"><figcaption>' . esc_html( $c['w'] . '×' . $c['h'] ) . ' · <a href="' . esc_url( $c['png'] ) . '" download>' . esc_html__( 'Download PNG', 'semrs-update-server' ) . '</a></figcaption>';
+		if ( $code_box ) {
+			$out .= '<textarea readonly rows="3" onclick="this.select()" aria-label="' . esc_attr__( 'HTML code with your link', 'semrs-update-server' ) . '">' . esc_textarea( $html ) . '</textarea>';
+		}
+		return $out . '</figure>';
+	};
+	$out  = '<h3 id="creatives">' . esc_html__( 'Banners and creatives', 'semrs-update-server' ) . '</h3>';
+	$out .= '<p>' . esc_html__( 'Copy the code under a banner into your site: it already carries your link and is marked rel="sponsored". Images for social posts and videos are for download. Please say you are an affiliate wherever you use them.', 'semrs-update-server' ) . '</p>';
+	$out .= '<details open><summary>' . esc_html__( 'Website banners', 'semrs-update-server' ) . '</summary><div class="semrs-aff__crs">';
+	foreach ( $groups['web'] as $c ) {
+		$out .= $item( $c, $pricing, $alt, true );
+	}
+	$out .= '</div></details><details><summary>' . esc_html__( 'Social posts, stories and video thumbnails', 'semrs-update-server' ) . '</summary><div class="semrs-aff__crs">';
+	foreach ( $groups['social'] as $c ) {
+		$out .= $item( $c, $pricing, $alt, false );
+	}
+	$out .= '</div></details><details><summary>' . esc_html__( 'Add-on cards and partner badge', 'semrs-update-server' ) . '</summary><div class="semrs-aff__crs">';
+	foreach ( $groups['cards'] as $c ) {
+		$badge = 'semrs-affiliate-partner-badge' === $c['name'];
+		$out  .= $item( $c, $badge ? $home : $pricing, $badge ? __( 'SEMRS affiliate partner', 'semrs-update-server' ) : $alt, true );
+	}
+	$out .= '</div></details>';
+	return $out . '<style>.semrs-aff__crs{display:flex;flex-wrap:wrap;gap:16px;margin:12px 0 20px}.semrs-aff__cr{margin:0;width:300px;max-width:100%}.semrs-aff__cr img{display:block;max-width:100%;height:auto;border-radius:8px}.semrs-aff__cr figcaption{font-size:.9em;margin:6px 0}.semrs-aff__cr textarea{width:100%;font:12px/1.4 ui-monospace,monospace;padding:6px;border:1px solid var(--sp-line,#d1d5db);border-radius:6px}.semrs-aff details summary{cursor:pointer;font-weight:700;margin:8px 0}</style>';
+}
+
+/**
+ * A light affiliate banner under single blog posts (setting: post_cta).
+ *
+ * @param string $content Post content.
+ * @return string
+ */
+function semrs_us_aff_post_cta( $content ) {
+	$s = semrs_us_aff_settings();
+	if ( ! $s['on'] || empty( $s['post_cta'] ) || ! is_singular( 'post' ) || ! in_the_loop() || ! is_main_query() || ! semrs_us_aff_page_url() ) {
+		return $content;
+	}
+	$base = SEMRS_US_URL . 'assets/promo/affiliate/semrs-affiliate-';
+	/* translators: %d: top percent */
+	$alt  = sprintf( __( 'SEMRS affiliate program: earn up to %d%% recommending SEMRS', 'semrs-update-server' ), semrs_us_aff_top_rate() );
+	return $content . '<aside class="semrs-aff-cta" style="margin:32px 0 0"><a href="' . esc_url( semrs_us_aff_page_url() ) . '"><picture><source media="(min-width:768px)" srcset="' . esc_url( $base . 'leaderboard-728x90.webp' ) . '" width="728" height="90"><img src="' . esc_url( $base . 'mobile-banner-320x100.webp' ) . '" width="320" height="100" alt="' . esc_attr( $alt ) . '" loading="lazy" decoding="async" style="display:block;max-width:100%;height:auto;margin:0 auto;border-radius:10px"></picture></a></aside>';
+}
+add_filter( 'the_content', 'semrs_us_aff_post_cta', 20 );
