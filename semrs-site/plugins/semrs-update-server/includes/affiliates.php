@@ -1136,14 +1136,24 @@ function semrs_us_aff_creatives_html( $code ) {
 }
 
 /**
- * A light affiliate banner under single blog posts (setting: post_cta).
+ * A light affiliate banner at the end of posts and pages that show no ads
+ * (setting: post_cta). Pages with AdSense never get it, so it can't sit
+ * next to an ad unit.
  *
  * @param string $content Post content.
  * @return string
  */
 function semrs_us_aff_post_cta( $content ) {
 	$s = semrs_us_aff_settings();
-	if ( ! $s['on'] || empty( $s['post_cta'] ) || ! is_singular( 'post' ) || ! in_the_loop() || ! is_main_query() || ! semrs_us_aff_page_url() ) {
+	if ( ! $s['on'] || empty( $s['post_cta'] ) || ! is_singular( array( 'post', 'page' ) ) || is_front_page() || ! in_the_loop() || ! is_main_query() || ! semrs_us_aff_page_url() ) {
+		return $content;
+	}
+	if ( ! function_exists( 'semrs_ads_allowed' ) || semrs_ads_allowed() ) {
+		return $content; // Ads may run here (or we can't tell): no banner.
+	}
+	$skip = function_exists( 'semrs_us_popup_excluded_slugs' ) ? semrs_us_popup_excluded_slugs() : array();
+	$skip = array_merge( $skip, array( 'affiliate-program', 'affiliates', 'semrs-pro' ) );
+	if ( in_array( (string) get_post_field( 'post_name', get_queried_object_id() ), $skip, true ) || (int) $s['page'] === get_queried_object_id() ) {
 		return $content;
 	}
 	$base = SEMRS_US_URL . 'assets/promo/affiliate/semrs-affiliate-';
