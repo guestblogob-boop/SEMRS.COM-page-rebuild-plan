@@ -190,3 +190,10 @@ html[data-theme="dark"] .semrs-badge--pro { background: var(--sp-accent, #d4a72c
 .semrs-cmp__deals li { margin: 4px 0; }
 .semrs-cmp__deals li.is-live { font-weight: 700; }
 .semrs-cmp__deals code { padding: 1px 6px; border: 1px dashed var(--sp-accent, #d4a72c); border-radius: 6px; background: transparent; font-weight: 700; }
+.semrs-cmp__pc { margin: 16px 0 0; padding: 14px 0 0; border-top: 1px dashed var(--sp-accent, #d4a72c); }
+.semrs-cmp__pc label { display: block; font-weight: 700; margin: 0 0 6px; }
+.semrs-cmp__pc span { display: flex; flex-wrap: wrap; gap: 8px; }
+.semrs-cmp__pc input { flex: 1 1 10rem; min-width: 0; padding: 10px 12px; border: 1px solid var(--sp-line, #d1d5db); border-radius: 8px; font: inherit; text-transform: uppercase; }
+.semrs-cmp__pc output { display: block; margin: 8px 0 0; font-weight: 700; }
+.semrs-cmp__pc output.partner-ok { color: var(--sp-success, #15803d); }
+.semrs-cmp__pc output.partner-bad { color: var(--sp-danger, #b91c1c); }

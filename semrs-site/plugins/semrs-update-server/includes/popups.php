@@ -43,7 +43,7 @@ function semrs_us_popup_defaults() {
 		'switch'    => array( 'name' => __( 'Switch deal', 'semrs-update-server' ), 'title' => '', 'text' => '', 'cta' => __( 'Compare plans', 'semrs-update-server' ), 'delay' => 25, 'scroll' => 0, 'days' => 21 ),
 		'lifetime'  => array( 'name' => __( 'Lifetime nudge', 'semrs-update-server' ), 'title' => __( 'Pay once, never renew', 'semrs-update-server' ), 'text' => __( 'All Pro for unlimited websites with lifetime updates: %s once.', 'semrs-update-server' ), 'cta' => __( 'Get lifetime access', 'semrs-update-server' ), 'delay' => 0, 'scroll' => 70, 'days' => 14 ),
 		'proof'     => array( 'name' => __( 'Social proof', 'semrs-update-server' ), 'title' => '', 'text' => __( '%s websites ran SEMRS in the last 30 days.', 'semrs-update-server' ), 'cta' => '', 'delay' => 6, 'scroll' => 0, 'days' => 7 ),
-		'affiliate' => array( 'name' => __( 'Affiliate invite', 'semrs-update-server' ), 'title' => __( 'Earn up to %d%% recommending SEMRS', 'semrs-update-server' ), 'text' => __( 'Plus %1$d%% on first-year renewals, with a %2$d-day cookie.', 'semrs-update-server' ), 'cta' => __( 'Join the affiliate program', 'semrs-update-server' ), 'delay' => 20, 'scroll' => 0, 'days' => 30 ),
+		'affiliate' => array( 'name' => __( 'Affiliate invite', 'semrs-update-server' ), 'title' => __( 'Earn up to %d%% recommending SEMRS, wherever you are', 'semrs-update-server' ), 'text' => __( 'Plus %1$d%% on first-year renewals, a %2$d-day cookie and a code that saves your audience money. Paid worldwide.', 'semrs-update-server' ), 'cta' => __( 'Join the affiliate program', 'semrs-update-server' ), 'delay' => 20, 'scroll' => 0, 'days' => 30 ),
 	);
 }
 

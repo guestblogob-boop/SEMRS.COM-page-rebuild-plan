@@ -267,6 +267,9 @@ function semrs_us_buy_redirect() {
 	$kid   = isset( $_GET['kid'] ) ? preg_replace( '/[^a-f0-9]/', '', (string) wp_unslash( $_GET['kid'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 	$offer = semrs_us_offer_for( $p['id'], $kid );
 	$aff   = function_exists( 'semrs_us_aff_cookie' ) ? semrs_us_aff_cookie() : '';
+	// Partner code: best price wins, one discount per order.
+	$pc    = $aff && function_exists( 'semrs_us_aff_code_offer' ) ? semrs_us_aff_code_offer( $offer ) : null;
+	$offer = $pc ? $pc : $offer;
 	$args  = array_filter(
 		array(
 			'checkout[discount_code]' => $offer ? $offer['code'] : '',

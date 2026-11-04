@@ -772,14 +772,37 @@ function semrs_store_deals_box() {
 			break;
 		}
 	}
+	$pc = semrs_store_partner_code_box();
 	if ( ! $items ) {
-		return '';
+		return $pc;
 	}
 	$out = '<div class="semrs-cmp__deals"><h3 class="semrs-cmp__h">' . esc_html__( 'Deals and discounts', 'semrs-site' ) . '</h3><ul>';
 	foreach ( $items as $i ) {
 		$out .= '<li class="' . esc_attr( $i[0] ) . '">' . esc_html( $i[1] ) . ( $i[2] ? ' <code>' . esc_html( $i[2] ) . '</code>' : '' ) . '</li>';
 	}
-	return $out . '</ul></div>';
+	return $out . '</ul>' . $pc . '</div>';
+}
+
+/**
+ * "Have a partner code?" box: the code goes through the affiliate link
+ * handler (?ref=), which sets the partner cookie and comes back with
+ * #partner-ok or #partner-bad. Best price wins at checkout.
+ *
+ * @return string
+ */
+function semrs_store_partner_code_box() {
+	if ( ! function_exists( 'semrs_us_aff_settings' ) ) {
+		return '';
+	}
+	$s = semrs_us_aff_settings();
+	if ( ! $s['on'] || '' === (string) $s['pcode'] || (int) $s['pcode_pct'] <= 0 ) {
+		return '';
+	}
+	/* translators: %d: percent */
+	$ok  = sprintf( __( 'Partner code added: %d%% off at checkout, or the sale price if it is bigger.', 'semrs-site' ), (int) $s['pcode_pct'] );
+	$bad = __( 'We could not find that partner code. Please check the spelling.', 'semrs-site' );
+	return '<form class="semrs-cmp__pc" method="get" action="' . esc_url( strtok( semrs_us_pricing_url(), '#' ) ) . '"><input type="hidden" name="pcf" value="1"><label for="semrs-pc">' . esc_html__( 'Have a partner code?', 'semrs-site' ) . '</label> <span><input id="semrs-pc" name="ref" required maxlength="20" autocomplete="off" spellcheck="false"> <button class="semrs-btn" type="submit">' . esc_html__( 'Apply', 'semrs-site' ) . '</button></span><output id="semrs-pc-msg" role="status"></output></form>'
+		. '<script>(function(){var h=location.hash,m=document.getElementById("semrs-pc-msg");if(m&&(h==="#partner-ok"||h==="#partner-bad")){m.textContent=h==="#partner-ok"?' . wp_json_encode( $ok ) . ':' . wp_json_encode( $bad ) . ';m.className=h.slice(1);m.scrollIntoView({block:"center"});}})();</script>';
 }
 
 /* -------------------------------------------------------------------------
