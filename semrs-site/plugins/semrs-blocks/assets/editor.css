@@ -9,6 +9,8 @@
 .semrs-ed-media, .semrs-ed-color, .semrs-ed-date { margin-bottom: 16px; }
 .semrs-ed-empty { padding: 16px; border: 1px dashed #ccc; color: #757575; }
 .wp-block .semrs-block a { pointer-events: none; }
+/* Free Media Sites: the site cards stay clickable and open in a new tab. */
+.wp-block .semrs-block a.semrs-source { pointer-events: auto; cursor: pointer; }
 
 /* Locked Pro block placeholder (SEMRS Pro not installed). */
 .semrs-locked { padding: 20px; text-align: center; background: #fbf7ea; border: 1px dashed #d4a72c; border-radius: 10px; }

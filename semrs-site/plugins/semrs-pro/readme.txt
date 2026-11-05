@@ -4,7 +4,7 @@ Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: semrs-core
-Stable tag: 1.5.4
+Stable tag: 1.5.7
 License: GPLv2 or later
 
 Premium add-on for the free SEMRS theme and the free SEMRS Core plugin. Every module can be switched off under SEMRS → Modules.
@@ -116,6 +116,14 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 SEMRS → License: paste your key and click Activate (Deactivate frees the site so you can move the key). Updates come from semrs.com (SEMRS Update Server): with a valid key, WordPress shows "Update available" and installs new versions in one click. Features never switch off when a license expires; the license controls updates and support.
 
 == Changelog ==
+
+= 1.5.7 =
+* Pricing Table with Switch shows only the chosen period's prices.
+* Reviews Slider ignores the theme's quote styling; Content Switcher alignment no longer floats the block.
+
+= 1.5.6 =
+* 13 new Pro blocks: Popup / Modal, Pricing Table with monthly / yearly switch, Sticky Bar, Before / After, Image Hotspots, Lottie Animation, Logo / Text Marquee, Video Popup, Content Switcher, Data Table (sort and search), Animated Timeline, Reviews Slider and Trust Badges. One small shared script loads only on pages that use them.
+* Theme Pro options have their own Customizer section.
 
 = 1.5.4 =
 * Automatic internal links use focus keywords of two words or more; one-word keywords such as "blog" or "pricing" no longer link common words across the site.

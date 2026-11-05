@@ -4,7 +4,7 @@ Tags: blocks, icons, pricing table, contact form, post grid
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.9
+Stable tag: 1.3.12
 License: GPLv2 or later
 
 Free blocks for any block theme or classic theme: SEMRS, Astra, GeneratePress, Kadence, Twenty Twenty-Five.
@@ -141,6 +141,15 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 * travel-blog-post3.jpg: rawpixel, CC0 1.0 – https://www.rawpixel.com/image/3285498/free-photo-image-plane-window-boat
 
 == Changelog ==
+
+= 1.3.12 =
+* Buttons, Star Rating, Social Icons and Share Buttons: the alignment setting no longer floats the block (it clashed with the editor's own alignment).
+* Team Member card keeps a tidy width.
+
+= 1.3.11 =
+* 18 new free blocks: Call to Action, Buttons, Notice / Alert, Divider, Star Rating, Team Member, Business Hours, Map (loads on click, no API key), Social Icons, Logo Grid, Steps, Timeline, Progress Bars, Comparison Table, Share Buttons, How-To Guide (HowTo schema), Review Box (Review schema) and Breadcrumbs. Each prints its own small CSS only on pages that use it.
+* Free Media Sites: site cards open in a new tab from the editor too.
+* Blocks screen: every card has Try it and How to use.
 
 = 1.3.9 =
 * Pro blocks and Pro starter sites follow the Theme & Blocks Pro add-on of SEMRS Pro 1.5.

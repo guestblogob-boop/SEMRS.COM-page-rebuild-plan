@@ -157,7 +157,7 @@ function semrs_theme_customize_register( $wpc ) {
 	// Recommend a square 512×512 logo in the core Site Identity section.
 	$logo = $wpc->get_control( 'custom_logo' );
 	if ( $logo ) {
-		$logo->description = __( 'Recommended: 512 × 512 px (square) or a wide logo at least 320 px wide, PNG, SVG-converted PNG or WebP. Set the display size under SEMRS Theme → Logo & header.', 'semrs' );
+		$logo->description = __( 'Recommended: 512 × 512 px (square) or a wide logo at least 320 px wide, PNG, SVG-converted PNG or WebP. Set the display size under SEMRS Theme → Logo & header button.', 'semrs' );
 	}
 	$layouts = array(
 		'right' => __( 'Right sidebar', 'semrs' ),
@@ -214,6 +214,55 @@ function semrs_theme_customize_register( $wpc ) {
 	}
 }
 add_action( 'customize_register', 'semrs_theme_customize_register' );
+
+/**
+ * Logo upload and site icon inside SEMRS Theme → Logo & header button, so
+ * the logo is set next to its size options (WordPress keeps the same
+ * controls under Site Identity too; both edit the same setting).
+ *
+ * @param WP_Customize_Manager $wpc Customizer.
+ */
+function semrs_theme_logo_controls( $wpc ) {
+	$core = $wpc->get_control( 'custom_logo' );
+	if ( $core && $wpc->get_setting( 'custom_logo' ) ) {
+		$wpc->add_control(
+			new WP_Customize_Cropped_Image_Control(
+				$wpc,
+				'semrs_theme_logo_upload',
+				array(
+					'label'         => __( 'Logo', 'semrs' ),
+					'description'   => $core->description,
+					'section'       => 'semrs_theme_header',
+					'settings'      => 'custom_logo',
+					'priority'      => 1,
+					'height'        => $core->height,
+					'width'         => $core->width,
+					'flex_height'   => $core->flex_height,
+					'flex_width'    => $core->flex_width,
+					'button_labels' => $core->button_labels,
+				)
+			)
+		);
+	}
+	if ( $wpc->get_setting( 'site_icon' ) ) {
+		$wpc->add_control(
+			new WP_Customize_Site_Icon_Control(
+				$wpc,
+				'semrs_theme_site_icon',
+				array(
+					'label'       => __( 'Site icon (browser tab)', 'semrs' ),
+					'description' => __( 'Square image, at least 512 × 512 px.', 'semrs' ),
+					'section'     => 'semrs_theme_header',
+					'settings'    => 'site_icon',
+					'priority'    => 2,
+					'height'      => 512,
+					'width'       => 512,
+				)
+			)
+		);
+	}
+}
+add_action( 'customize_register', 'semrs_theme_logo_controls', 20 );
 
 /**
  * Live preview for logo width, header height and icon size (no reload).

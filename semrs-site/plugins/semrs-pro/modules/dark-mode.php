@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
  */
 function semrs_pro_dark_settings( $map ) {
 	$map['dark_mode'] = array(
-		'hbuilder',
+		'pro',
 		'select',
 		__( 'Dark mode switch (Pro): add the "Dark / light switch" element to a header row', 'semrs-pro' ),
 		'toggle',

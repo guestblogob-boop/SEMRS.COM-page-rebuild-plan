@@ -24,12 +24,59 @@ function semrs_pro_theme_settings( $map ) {
 	return array_merge(
 		$map,
 		array(
-			'toc'               => array( 'blog', 'checkbox', __( 'Table of contents on posts, 3+ headings (Pro)', 'semrs-pro' ), true ),
-			'white_label'       => array( 'footer', 'text', __( 'White label: theme name shown in Appearance → Themes (Pro)', 'semrs-pro' ), '' ),
+			'toc'               => array( 'pro', 'checkbox', __( 'Table of contents on posts, 3+ headings (Pro)', 'semrs-pro' ), true ),
+			'white_label'       => array( 'pro', 'text', __( 'White label: theme name shown in Appearance → Themes (Pro)', 'semrs-pro' ), '' ),
 		)
 	);
 }
 add_filter( 'semrs_theme_settings', 'semrs_pro_theme_settings' );
+
+/**
+ * A "Theme Pro" section in Customize → SEMRS Theme for every Pro option.
+ *
+ * @param array $sections Section id => title.
+ * @return array
+ */
+function semrs_pro_theme_section( $sections ) {
+	$sections['pro'] = __( 'Theme Pro', 'semrs-pro' );
+	return $sections;
+}
+add_filter( 'semrs_theme_sections', 'semrs_pro_theme_section' );
+
+/**
+ * How-to notes in the Theme Pro section: mega menu and dark mode colours.
+ *
+ * @param WP_Customize_Manager $wpc Customizer.
+ */
+function semrs_pro_theme_notes( $wpc ) {
+	if ( ! $wpc->get_section( 'semrs_theme_pro' ) ) {
+		return;
+	}
+	$wpc->get_section( 'semrs_theme_pro' )->description = __( 'Premium features for the SEMRS theme. Each one is free to switch off.', 'semrs-pro' );
+	$wpc->add_control(
+		'semrs_pro_mega_note',
+		array(
+			'section'     => 'semrs_theme_pro',
+			'settings'    => array(),
+			'type'        => 'hidden',
+			'priority'    => 200,
+			'label'       => __( 'Mega menu', 'semrs-pro' ),
+			'description' => __( 'In Appearance → Menus, open Screen Options and tick "CSS Classes". Give a top-level menu item the class semrs-mega: its sub-items show in 2 to 4 columns.', 'semrs-pro' ),
+		)
+	);
+	$wpc->add_control(
+		'semrs_pro_dark_note',
+		array(
+			'section'     => 'semrs_theme_pro',
+			'settings'    => array(),
+			'type'        => 'hidden',
+			'priority'    => 210,
+			'label'       => __( 'Dark mode colours', 'semrs-pro' ),
+			'description' => __( 'Set them in SEMRS Theme → Colours (the "Dark mode" colours). Add the "Dark / light switch" element to a header row in the Header builder.', 'semrs-pro' ),
+		)
+	);
+}
+add_action( 'customize_register', 'semrs_pro_theme_notes', 20 );
 
 /**
  * Read a theme option (works before the theme's helper exists).

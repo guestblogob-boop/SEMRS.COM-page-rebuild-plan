@@ -283,3 +283,5 @@ function semrs_pro_animate_render( $html, $block ) {
 	return semrs_pro_blocks_css() . $p->get_updated_html();
 }
 add_filter( 'render_block', 'semrs_pro_animate_render', 10, 2 );
+
+require __DIR__ . '/blocks-pro-more.php';

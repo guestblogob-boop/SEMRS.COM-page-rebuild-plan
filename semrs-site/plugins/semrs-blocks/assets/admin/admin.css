@@ -61,3 +61,5 @@
 .semrs-viewer__devices [aria-pressed="true"]{background:#2271b1;border-color:#2271b1;color:#fff}
 .semrs-viewer__stage{display:flex;justify-content:center;background:#e9edf3;border:1px solid #dcdcde;border-radius:6px;padding:12px}
 .semrs-viewer__frame{width:100%;height:calc(100vh - 230px);min-height:520px;border:0;border-radius:4px;background:#fff;box-shadow:0 6px 24px rgba(15,23,42,.14);transition:width .25s}
+.semrs-card__foot { flex-wrap: wrap; align-items: center; }
+.semrs-card__off { align-self: center; color: #646970; font-style: italic; margin-right: auto; }

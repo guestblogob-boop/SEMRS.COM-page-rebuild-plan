@@ -4,7 +4,7 @@ Tags: seo, page cache, redirects, webp, user roles
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.38
+Stable tag: 1.3.40
 License: GPLv2 or later
 
 Free SEO, redirects, page cache, WebP images, user roles, review widgets and a policy-safe AdSense manager in one plugin.

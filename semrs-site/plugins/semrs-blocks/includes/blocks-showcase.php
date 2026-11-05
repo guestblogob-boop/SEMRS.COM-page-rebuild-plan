@@ -94,7 +94,7 @@ function semrs_blocks_render_showcase_item( $a ) {
 	$desk  = (int) semrs_blocks_a( $a, 'desktop', 0 ) ? wp_get_attachment_image( (int) $a['desktop'], 'large', false, array( 'alt' => $alt, 'loading' => 'lazy', 'class' => 'semrs-show__img', 'sizes' => '(min-width: 1024px) 420px, (min-width: 640px) 50vw, 100vw' ) ) : '';
 	$mob   = (int) semrs_blocks_a( $a, 'mobile', 0 ) ? wp_get_attachment_image( (int) $a['mobile'], 'medium_large', false, array( 'alt' => $alt . ' – ' . __( 'mobile', 'semrs-blocks' ), 'loading' => 'lazy', 'class' => 'semrs-show__img', 'sizes' => '200px' ) ) : '';
 	if ( ! $desk ) {
-		$desk = '<span class="semrs-show__placeholder">' . esc_html__( 'Choose a desktop preview image', 'semrs-blocks' ) . '</span>';
+		$desk = '<span class="semrs-show__placeholder">' . ( current_user_can( 'edit_posts' ) ? esc_html__( 'Choose a desktop preview image', 'semrs-blocks' ) : '' ) . '</span>';
 	}
 	$badges = array( 'free' => __( 'Free', 'semrs-blocks' ), 'pro' => __( 'Pro', 'semrs-blocks' ), 'new' => __( 'New', 'semrs-blocks' ), 'installed' => __( 'Installed', 'semrs-blocks' ) );
 	$badge  = semrs_blocks_a( $a, 'badge' );

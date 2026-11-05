@@ -62,10 +62,78 @@ function semrs_blocks_card_info() {
 			'semrs/toc'           => array( 'posts', __( 'Automatic table of contents from the headings on the page.', 'semrs-blocks' ) ),
 			'semrs/slider'        => array( 'media', __( 'Image slider or post carousel with arrows, dots, swipe and autoplay.', 'semrs-blocks' ) ),
 			'semrs/counter'       => array( 'marketing', __( 'Numbers that count up when they scroll into view.', 'semrs-blocks' ) ),
+			'semrs/cta'         => array( 'marketing', __( 'Headline, text and one or two buttons in a coloured box.', 'semrs-blocks' ) ),
+			'semrs/buttons'     => array( 'design', __( 'A row of buttons with icons in three styles.', 'semrs-blocks' ) ),
+			'semrs/alert'       => array( 'design', __( 'Info, success, warning or error notice, optionally dismissible.', 'semrs-blocks' ) ),
+			'semrs/divider'     => array( 'design', __( 'Separator line with optional text or icon.', 'semrs-blocks' ) ),
+			'semrs/rating'      => array( 'marketing', __( 'Star rating with half stars and a label.', 'semrs-blocks' ) ),
+			'semrs/team'        => array( 'marketing', __( 'Team member with photo, role, bio and profile links.', 'semrs-blocks' ) ),
+			'semrs/hours'       => array( 'marketing', __( 'Opening hours table.', 'semrs-blocks' ) ),
+			'semrs/map'         => array( 'media', __( 'Google Map of an address, loaded only on click. No API key.', 'semrs-blocks' ) ),
+			'semrs/social'      => array( 'marketing', __( 'Follow links to your social profiles.', 'semrs-blocks' ) ),
+			'semrs/logos'       => array( 'media', __( 'Client and partner logos in a grid.', 'semrs-blocks' ) ),
+			'semrs/steps'       => array( 'posts', __( 'Numbered steps that explain a process.', 'semrs-blocks' ) ),
+			'semrs/timeline'    => array( 'posts', __( 'Dates and events on a vertical line.', 'semrs-blocks' ) ),
+			'semrs/progress'    => array( 'design', __( 'Labelled progress bars.', 'semrs-blocks' ) ),
+			'semrs/table'       => array( 'posts', __( 'Comparison table with ticks and a highlighted column.', 'semrs-blocks' ) ),
+			'semrs/share'       => array( 'marketing', __( 'Share buttons for the current page, no tracking scripts.', 'semrs-blocks' ) ),
+			'semrs/howto'       => array( 'posts', __( 'Step-by-step guide with HowTo schema.', 'semrs-blocks' ) ),
+			'semrs/review'      => array( 'posts', __( 'Review box with score, pros, cons and Review schema.', 'semrs-blocks' ) ),
+			'semrs/breadcrumbs' => array( 'posts', __( 'Breadcrumb trail for the current page.', 'semrs-blocks' ) ),
+			'semrs/modal'       => array( 'marketing', __( 'Popup with any blocks inside, opened by a button or after a delay.', 'semrs-blocks' ) ),
+			'semrs/pricing-switch' => array( 'marketing', __( 'Plans with a monthly / yearly switch.', 'semrs-blocks' ) ),
+			'semrs/sticky-bar'  => array( 'marketing', __( 'Sticky announcement bar with a button.', 'semrs-blocks' ) ),
+			'semrs/before-after' => array( 'media', __( 'Drag to compare two images.', 'semrs-blocks' ) ),
+			'semrs/hotspots'    => array( 'media', __( 'Points on an image with notes.', 'semrs-blocks' ) ),
+			'semrs/lottie'      => array( 'media', __( 'Lottie vector animations.', 'semrs-blocks' ) ),
+			'semrs/marquee'     => array( 'media', __( 'Endless scrolling logos or phrases.', 'semrs-blocks' ) ),
+			'semrs/video-popup' => array( 'media', __( 'Video that opens in a popup on click.', 'semrs-blocks' ) ),
+			'semrs/switcher'    => array( 'layout', __( 'Toggle between two contents.', 'semrs-blocks' ) ),
+			'semrs/data-table'  => array( 'posts', __( 'Sortable, searchable data table.', 'semrs-blocks' ) ),
+			'semrs/timeline-pro' => array( 'posts', __( 'Timeline with icons and scroll animation.', 'semrs-blocks' ) ),
+			'semrs/reviews'     => array( 'marketing', __( 'Slider of real reviews with stars.', 'semrs-blocks' ) ),
+			'semrs/badges'      => array( 'marketing', __( 'Trust badges: secure checkout, refunds, support.', 'semrs-blocks' ) ),
+			'semrs/product'       => array( 'marketing', __( 'Product with price, options, swatches, bundles and a buy box.', 'semrs-blocks' ) ),
 			'semrs/model-3d'      => array( 'media', __( '3D models with rotate, zoom and AR on phones.', 'semrs-blocks' ) ),
 		)
 	);
 }
+
+/**
+ * The Blocks manual section that covers a block.
+ *
+ * @param string $name  Block name.
+ * @param string $tier  free or pro.
+ * @param string $group Card group.
+ * @return string
+ */
+function semrs_blocks_manual_url( $name, $tier, $group ) {
+	$base = apply_filters( 'semrs_docs_url', 'https://semrs.com/support/' ) . 'blocks/';
+	if ( 'pro' === $tier ) {
+		$anchor = 'pro-blocks-need-semrs-pro';
+	} elseif ( 'semrs/contact-form' === $name ) {
+		$anchor = 'set-up-the-contact-form';
+	} elseif ( in_array( $name, array( 'semrs/container', 'semrs/tabs', 'semrs/accordion', 'semrs/gallery', 'semrs/testimonial', 'semrs/toc', 'semrs/showcase' ), true ) ) {
+		$anchor = 'layout-blocks-free';
+	} else {
+		$anchor = 'content-blocks-free';
+	}
+	return $base . '#' . $anchor;
+}
+
+/**
+ * "Try it" from the Blocks screen: a new draft page opens with the block
+ * already inserted and its settings sidebar open.
+ */
+function semrs_blocks_try_script() {
+	$name = isset( $_GET['semrs_try'] ) ? sanitize_text_field( wp_unslash( $_GET['semrs_try'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification -- read-only: only inserts a block into the editor.
+	if ( ! preg_match( '#^semrs/[a-z0-9-]+$#', $name ) ) {
+		return;
+	}
+	$js = '(function(){var n=' . wp_json_encode( $name ) . ',done=false;var d=wp.data;var u=d.subscribe(function(){if(done||!d.select("core/editor").getCurrentPostId()||!wp.blocks.getBlockType(n))return;done=true;u();setTimeout(function(){var b=wp.blocks.createBlock(n);d.dispatch("core/block-editor").insertBlocks(b);d.dispatch("core/block-editor").selectBlock(b.clientId);try{d.dispatch("core/edit-post").openGeneralSidebar("edit-post/block");}catch(e){}},300);});})();';
+	wp_add_inline_script( 'wp-edit-post', $js );
+}
+add_action( 'enqueue_block_editor_assets', 'semrs_blocks_try_script' );
 
 /**
  * Save the Blocks screen.
@@ -184,7 +252,14 @@ function semrs_blocks_admin_page() {
 					echo '</div><h3>' . esc_html( $title ) . '</h3><p>' . esc_html( $desc ) . '</p><div class="semrs-card__foot">';
 					if ( $locked ) {
 						echo '<a class="button button-primary" href="' . esc_url( semrs_blocks_pro_url() ) . '" target="_blank" rel="noopener">' . esc_html__( 'Unlock with Pro', 'semrs-blocks' ) . '</a>';
+					} elseif ( $on ) {
+						/* translators: %s: block name */
+						echo '<a class="button button-primary" href="' . esc_url( add_query_arg( array( 'post_type' => 'page', 'semrs_try' => $name ), admin_url( 'post-new.php' ) ) ) . '" aria-label="' . esc_attr( sprintf( __( 'Try %s in a new draft page', 'semrs-blocks' ), $title ) ) . '">' . esc_html__( 'Try it', 'semrs-blocks' ) . '</a>';
+					} else {
+						echo '<span class="semrs-card__off">' . esc_html__( 'Switched off', 'semrs-blocks' ) . '</span>';
 					}
+					/* translators: %s: block name */
+					echo '<a class="button" href="' . esc_url( semrs_blocks_manual_url( $name, $tier, $group ) ) . '" target="_blank" rel="noopener" aria-label="' . esc_attr( sprintf( __( 'How to use %s (opens the manual)', 'semrs-blocks' ), $title ) ) . '">' . esc_html__( 'How to use', 'semrs-blocks' ) . '</a>';
 					echo '</div></div>';
 				}
 				?>

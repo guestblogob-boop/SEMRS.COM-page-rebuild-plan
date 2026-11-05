@@ -124,3 +124,13 @@ function semrs_theme_related_posts() {
 	wp_reset_postdata();
 }
 add_action( 'semrs_after_entry', 'semrs_theme_related_posts', 20 );
+
+/**
+ * Show the "Preview" button in the editor top bar. WordPress hides it on
+ * wide screens and keeps preview inside the View (screen icon) menu, which
+ * is easy to miss; both stay available.
+ */
+function semrs_theme_editor_preview_button() {
+	wp_add_inline_style( 'wp-edit-post', '@media (min-width:600px){.editor-header__post-preview-button{display:inline-flex!important}}' );
+}
+add_action( 'enqueue_block_editor_assets', 'semrs_theme_editor_preview_button' );

@@ -107,7 +107,7 @@ function semrs_core_module_meta() {
 			'proof'      => array( 'design', 'awards', '' ),
 			'leads'      => array( 'leads', 'email-alt', '' ),
 			'blocks_pro' => array( 'design', 'block-default', admin_url( 'admin.php?page=semrs-blocks' ) ),
-			'theme_pro'  => array( 'design', 'admin-appearance', admin_url( 'customize.php' ) ),
+			'theme_pro'  => array( 'design', 'admin-appearance', admin_url( 'customize.php?autofocus[section]=semrs_theme_pro' ) ),
 			'conditions' => array( 'design', 'visibility', '' ),
 			'popups'     => array( 'leads', 'feedback', admin_url( 'edit.php?post_type=semrs_popup' ) ),
 			'languages'  => array( 'seo', 'translation', admin_url( 'admin.php?page=semrs-languages' ) ),

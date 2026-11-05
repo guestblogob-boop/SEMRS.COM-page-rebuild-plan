@@ -2,7 +2,8 @@
 /**
  * semrs.com logo: the original SEMRS emblem (SE·MR·S lettering, rocket,
  * gears, search lens and swooshes) redrawn as inline SVG. It replaces the
- * uploaded logo image wherever the theme prints the custom logo: no extra
+ * built-in logo wherever the theme prints the custom logo, until a new logo
+ * is uploaded in the Customizer (a newly uploaded logo always wins): no extra
  * request, no web fonts, sharp at every size. A 3D depth is drawn with
  * five <use> references to the same shapes (a few hundred bytes, not five
  * copies), with separate colours for light and dark mode.
@@ -33,20 +34,44 @@ function semrs_site_logo_svg( $class = '' ) {
 }
 
 /**
+ * True while the built-in SVG should show: no logo uploaded, or still the
+ * logo that was saved when this rule shipped (remembered once).
+ *
+ * @return bool
+ */
+function semrs_site_use_svg_logo() {
+	$id   = (int) get_theme_mod( 'custom_logo' );
+	$kept = get_option( 'semrs_site_svg_logo_for', null );
+	if ( null === $kept ) {
+		$kept = $id;
+		update_option( 'semrs_site_svg_logo_for', $kept, false );
+	}
+	return ! $id || $id === (int) $kept;
+}
+
+/**
  * Replace the theme's custom logo output.
  *
  * @return string
  */
-function semrs_site_custom_logo() {
+function semrs_site_custom_logo( $html = '' ) {
+	if ( ! semrs_site_use_svg_logo() ) {
+		return $html;
+	}
 	$current = is_front_page() && ! is_paged() ? ' aria-current="page"' : '';
 	return '<a href="' . esc_url( home_url( '/' ) ) . '" class="custom-logo-link" rel="home"' . $current . '>' . semrs_site_logo_svg() . '</a>';
 }
 add_filter( 'get_custom_logo', 'semrs_site_custom_logo', 20 );
 
 /**
- * The theme only prints the logo when one is set: count the SVG as set.
+ * The theme only prints the logo when one is set: count the built-in SVG as set.
  */
-add_filter( 'has_custom_logo', '__return_true' );
+add_filter(
+	'has_custom_logo',
+	function ( $has ) {
+		return $has || semrs_site_use_svg_logo();
+	}
+);
 
 /**
  * Colours, size and dark-mode colours.

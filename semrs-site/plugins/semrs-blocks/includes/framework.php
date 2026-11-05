@@ -47,6 +47,19 @@ function semrs_blocks_pro_teasers() {
 	return array(
 		'semrs/slider'   => array( __( 'Slider / Carousel', 'semrs-blocks' ), 'slides', __( 'Image slider or post carousel with arrows, dots, swipe and autoplay.', 'semrs-blocks' ) ),
 		'semrs/counter'  => array( __( 'Animated Counter', 'semrs-blocks' ), 'chart-bar', __( 'Numbers that count up when they scroll into view.', 'semrs-blocks' ) ),
+		'semrs/modal' => array( __( 'Popup / Modal', 'semrs-blocks' ), 'external', __( 'A button that opens a popup with any blocks, or a popup that opens by itself.', 'semrs-blocks' ) ),
+		'semrs/pricing-switch' => array( __( 'Pricing Table with Switch', 'semrs-blocks' ), 'money-alt', __( 'Plans side by side with a monthly / yearly switch.', 'semrs-blocks' ) ),
+		'semrs/sticky-bar' => array( __( 'Sticky Bar', 'semrs-blocks' ), 'align-full-width', __( 'A slim bar fixed to the top or bottom with a message and a button.', 'semrs-blocks' ) ),
+		'semrs/before-after' => array( __( 'Before / After', 'semrs-blocks' ), 'image-flip-horizontal', __( 'Drag a handle to compare two images.', 'semrs-blocks' ) ),
+		'semrs/hotspots' => array( __( 'Image Hotspots', 'semrs-blocks' ), 'location', __( 'Clickable points on an image that open a short note.', 'semrs-blocks' ) ),
+		'semrs/lottie' => array( __( 'Lottie Animation', 'semrs-blocks' ), 'controls-play', __( 'Lightweight vector animations from Lottie files.', 'semrs-blocks' ) ),
+		'semrs/marquee' => array( __( 'Logo / Text Marquee', 'semrs-blocks' ), 'leftright', __( 'Logos or phrases scrolling sideways in an endless loop.', 'semrs-blocks' ) ),
+		'semrs/video-popup' => array( __( 'Video Popup', 'semrs-blocks' ), 'video-alt3', __( 'A thumbnail; the YouTube or Vimeo video opens in a popup only when clicked.', 'semrs-blocks' ) ),
+		'semrs/switcher' => array( __( 'Content Switcher', 'semrs-blocks' ), 'randomize', __( 'A switch between two contents, e.g. For shops / For agencies.', 'semrs-blocks' ) ),
+		'semrs/data-table' => array( __( 'Data Table', 'semrs-blocks' ), 'database', __( 'Sortable, searchable table from pasted rows or CSV.', 'semrs-blocks' ) ),
+		'semrs/timeline-pro' => array( __( 'Animated Timeline', 'semrs-blocks' ), 'backup', __( 'Timeline with icons; events slide in as they scroll into view.', 'semrs-blocks' ) ),
+		'semrs/reviews' => array( __( 'Reviews Slider', 'semrs-blocks' ), 'format-quote', __( 'Real reviews in a swipeable slider with stars and links to the originals.', 'semrs-blocks' ) ),
+		'semrs/badges' => array( __( 'Trust Badges', 'semrs-blocks' ), 'shield', __( 'Guarantees row: secure checkout, refunds, support.', 'semrs-blocks' ) ),
 		'semrs/model-3d' => array( __( '3D Model Viewer', 'semrs-blocks' ), 'visibility', __( 'Rotate and zoom 3D models (.glb / .gltf), with "view in your room" AR on phones.', 'semrs-blocks' ) ),
 	);
 }
@@ -290,4 +303,20 @@ function semrs_blocks_lines( $text ) {
 function semrs_blocks_color( $c ) {
 	$c = trim( (string) $c );
 	return preg_match( '/^(#[0-9a-fA-F]{3,8}|rgba?\([\d\s.,%]+\)|var\(--[a-z0-9-]+\)|[a-z]+)$/', $c ) ? $c : '';
+}
+
+/**
+ * Print a block's own CSS once per page (only pages that use the block get it).
+ *
+ * @param string $key Unique key.
+ * @param string $css CSS.
+ * @return string
+ */
+function semrs_blocks_css_part( $key, $css ) {
+	static $done = array();
+	if ( isset( $done[ $key ] ) || ! semrs_blocks_page_output() ) {
+		return '';
+	}
+	$done[ $key ] = true;
+	return '<style id="semrs-css-' . esc_attr( $key ) . '">' . wp_strip_all_tags( $css ) . '</style>';
 }

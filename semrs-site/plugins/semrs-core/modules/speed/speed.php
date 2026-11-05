@@ -261,6 +261,10 @@ function semrs_speed_hints( $urls, $type ) {
  * @return string
  */
 function semrs_speed_defer( $tag, $handle, $src ) {
+	// The Customizer preview needs its own scripts in their normal order.
+	if ( is_customize_preview() || 0 === strpos( $handle, 'customize-' ) ) {
+		return $tag;
+	}
 	$exclude = array_filter( array_map( 'trim', preg_split( '/\R/', (string) semrs_speed_settings()['defer_exclude'] ) ) );
 	if ( ! $src || in_array( $handle, $exclude, true ) || false !== strpos( $tag, ' defer' ) || false !== strpos( $tag, ' async' ) || false !== strpos( $tag, 'type="module"' ) ) {
 		return $tag;

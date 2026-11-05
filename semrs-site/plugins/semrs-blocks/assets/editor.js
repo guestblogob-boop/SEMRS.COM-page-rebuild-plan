@@ -144,12 +144,12 @@
 						img && a.overlay ? el('span', { className: 'semrs-container__overlay', style: { background: a.overlay, opacity: (a.overlayOpacity || 0) / 100 } }) : null,
 						el('div', ib))));
 			}
-			if (name === 'semrs/tab' || name === 'semrs/accordion-item') {
+			if (name === 'semrs/tab' || name === 'semrs/accordion-item' || name === 'semrs/switch-panel') {
 				var cbp = be.useBlockProps({ className: 'semrs-ed-child ' + (name === 'semrs/tab' ? 'semrs-ed-tab' : 'semrs-ed-acc') });
 				var cib = be.useInnerBlocksProps({ className: 'semrs-ed-child__body' }, { template: [['core/paragraph', { placeholder: __('Write the content…', 'semrs-blocks') }]] });
 				return el(Fragment, null, insp, el('div', cbp,
 					el('div', { className: 'semrs-ed-child__head' },
-						el('span', { className: 'semrs-ed-child__label' }, name === 'semrs/tab' ? __('Tab', 'semrs-blocks') : __('Question', 'semrs-blocks')),
+						el('span', { className: 'semrs-ed-child__label' }, name === 'semrs/tab' ? __('Tab', 'semrs-blocks') : (name === 'semrs/switch-panel' ? __('Option', 'semrs-blocks') : __('Question', 'semrs-blocks'))),
 						el(be.PlainText, { value: a.title || '', onChange: function (v) { set({ title: v }); }, placeholder: name === 'semrs/tab' ? __('Tab title', 'semrs-blocks') : __('Question?', 'semrs-blocks'), className: 'semrs-ed-child__title', 'aria-label': __('Title', 'semrs-blocks') })),
 					el('div', cib)));
 			}
@@ -217,4 +217,21 @@
 			save: function () { return null; }
 		});
 	});
+	// Free Media Sites: open a site card in a new tab from the editor (the editor
+	// blocks normal link clicks inside the page canvas).
+	function bindSources(doc) {
+		if (!doc || doc.semrsSources) { return; }
+		doc.semrsSources = true;
+		doc.addEventListener('click', function (e) {
+			var a = e.target && e.target.closest ? e.target.closest('a.semrs-source') : null;
+			if (!a) { return; }
+			e.preventDefault();
+			window.open(a.href, '_blank', 'noopener');
+		}, true);
+	}
+	bindSources(document);
+	setInterval(function () {
+		var f = document.querySelector('iframe[name="editor-canvas"]');
+		if (f && f.contentDocument) { bindSources(f.contentDocument); }
+	}, 1000);
 })(window.wp, window.SEMRS_BLOCKS);
