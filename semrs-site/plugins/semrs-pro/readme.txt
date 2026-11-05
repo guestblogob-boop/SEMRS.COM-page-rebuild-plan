@@ -4,7 +4,7 @@ Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: semrs-core
-Stable tag: 1.5.7
+Stable tag: 1.5.8
 License: GPLv2 or later
 
 Premium add-on for the free SEMRS theme and the free SEMRS Core plugin. Every module can be switched off under SEMRS → Modules.
@@ -50,6 +50,12 @@ Redirects and the 404 log, and IndexNow, moved to the free SEMRS Core plugin in 
 * Animated counter: counts up on scroll; the real number is in the HTML for search engines.
 * 3D model viewer: .glb/.gltf with rotate, zoom and "view in your room" AR on phones (script loads only where used).
 * Scroll animations: fade, zoom and slide on any block (Advanced panel); respects reduced motion.
+* Popup / modal: any blocks inside, opened by a button or after a delay, optionally once per visitor; native dialog with Esc and focus handling.
+* Pricing table with a monthly / yearly switch; sticky top or bottom bar that visitors can close.
+* Before / after image slider; image hotspots that work without JavaScript; Lottie animations (lottie-web loads only where used).
+* Logo / text marquee (pauses on hover, stops for reduced motion); video popup for YouTube (privacy-enhanced mode) and Vimeo that loads the player only on click.
+* Content switcher between two contents; data table with sorting and search; animated timeline with icons.
+* Reviews slider for real reviews with links to the originals (Review schema off by default) and trust badges.
 
 * Display conditions: show any block only to logged-in or logged-out visitors, certain roles, between two dates, or on certain kinds of page.
 
@@ -71,6 +77,17 @@ The Ads Manager moved to the free SEMRS Core plugin in 1.1.0.
 * Site Layouts: block content at any theme position with display rules.
 * Case Studies, Portfolio and Testimonials with permission gates.
 * Contact Form 7 → GA4 generate_lead → thank-you page.
+
+== External services ==
+
+SEMRS Pro connects to these services only when stated:
+
+* **SEMRS license and update server (semrs.com)** – checks your license and new versions. Sends the license key, plugin version, your site address and the WordPress and PHP versions, about twice a day and when you open the Updates or License screen. [Terms](https://semrs.com/terms-and-conditions/), [Privacy policy](https://semrs.com/privacy-policy/).
+* **AI providers (only if you turn on AI SEO and add your own API key)** – Anthropic (api.anthropic.com), OpenAI (api.openai.com) or Google Gemini (generativelanguage.googleapis.com). When you press an AI button, or turn on autofill, the post title, up to the first 1,200 words of the content and, for alt text, the image are sent to the provider you chose. Their terms apply: [Anthropic](https://www.anthropic.com/legal/commercial-terms) ([privacy](https://www.anthropic.com/legal/privacy)), [OpenAI](https://openai.com/policies/terms-of-use) ([privacy](https://openai.com/policies/privacy-policy)), [Google](https://ai.google.dev/gemini-api/terms) ([privacy](https://policies.google.com/privacy)).
+* **YouTube and Vimeo** – only on pages with the Video Popup block. The YouTube thumbnail (i.ytimg.com) loads with the page; the video player loads only when a visitor clicks play, from youtube-nocookie.com (privacy-enhanced mode) or player.vimeo.com with "do not track". [YouTube Terms](https://www.youtube.com/t/terms), [Google Privacy Policy](https://policies.google.com/privacy), [Vimeo Terms](https://vimeo.com/terms), [Vimeo Privacy](https://vimeo.com/privacy).
+* **cdnjs (Cloudflare)** – only on pages with the Lottie Animation block: loads the open-source lottie-web player from cdnjs.cloudflare.com, and the animation file from the address you enter. [cdnjs Terms](https://www.cloudflare.com/website-terms/), [Cloudflare Privacy](https://www.cloudflare.com/privacypolicy/).
+* **jsDelivr** – only on pages with the 3D Model Viewer block: loads Google's open-source model-viewer from cdn.jsdelivr.net. [jsDelivr Terms and Privacy](https://www.jsdelivr.com/terms).
+* **Google Search Console data** – SEO Performance reads it through the free Site Kit by Google plugin you connect yourself; SEMRS Pro does not sign in to Google on its own.
 
 == Photo credits ==
 
@@ -116,6 +133,9 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 SEMRS → License: paste your key and click Activate (Deactivate frees the site so you can move the key). Updates come from semrs.com (SEMRS Update Server): with a valid key, WordPress shows "Update available" and installs new versions in one click. Features never switch off when a license expires; the license controls updates and support.
 
 == Changelog ==
+
+= 1.5.8 =
+* Readme lists every external service and what is sent: license and update checks, AI providers (your own key), YouTube / Vimeo, cdnjs and jsDelivr.
 
 = 1.5.7 =
 * Pricing Table with Switch shows only the chosen period's prices.

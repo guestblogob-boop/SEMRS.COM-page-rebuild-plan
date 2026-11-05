@@ -115,6 +115,10 @@ function semrs_blocks_manual_url( $name, $tier, $group ) {
 		$anchor = 'set-up-the-contact-form';
 	} elseif ( in_array( $name, array( 'semrs/container', 'semrs/tabs', 'semrs/accordion', 'semrs/gallery', 'semrs/testimonial', 'semrs/toc', 'semrs/showcase' ), true ) ) {
 		$anchor = 'layout-blocks-free';
+	} elseif ( in_array( $name, array( 'semrs/cta', 'semrs/team', 'semrs/hours', 'semrs/map', 'semrs/social', 'semrs/logos', 'semrs/share' ), true ) ) {
+		$anchor = 'business-and-trust-blocks-free';
+	} elseif ( in_array( $name, array( 'semrs/howto', 'semrs/review', 'semrs/breadcrumbs' ), true ) ) {
+		$anchor = 'seo-blocks-free';
 	} else {
 		$anchor = 'content-blocks-free';
 	}

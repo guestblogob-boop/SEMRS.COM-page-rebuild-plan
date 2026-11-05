@@ -4,10 +4,10 @@ Tags: blocks, icons, pricing table, contact form, post grid
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.12
+Stable tag: 1.3.13
 License: GPLv2 or later
 
-Free blocks for any block theme or classic theme: SEMRS, Astra, GeneratePress, Kadence, Twenty Twenty-Five.
+35 free blocks for any block or classic theme: layout, content, business, SEO and a product block, fast and accessible.
 
 == Description ==
 
@@ -22,7 +22,16 @@ Every block is rendered on the server, so pages stay fast and search engines see
 * Pricing Card: features with included and not-included items, highlight, badge.
 * Service / Feature Card: icon or image, three styles.
 * Contact Form: phone with a country picker (flags and dialling codes), WhatsApp opt-in, company, website, service and budget choices, project requirements, consent. Leads are saved under Leads and emailed to you. Built-in spam protection (honeypot, time check, rate limit, link limit). Sends the GA4 generate_lead event.
-* Free Media Sites: a directory of free photo, video, illustration, icon, animation and 3D sites, with a licence note for each.
+* Free Media Sites: a directory of free photo, video, illustration, icon, animation and 3D sites, with a license note for each.
+* Buttons, Notice / Alert, Divider, Star Rating, Steps / Process, Timeline, Progress Bars and Comparison Table (ticks, crosses and a highlighted column).
+
+= Business and trust blocks =
+* Call to Action, Team Member, Business Hours, Social Icons and Logo Grid.
+* Map: Google Maps of any address without an API key; loads only when a visitor clicks, so no Google code or cookies before that.
+* Share Buttons: plain share links (Facebook, X, LinkedIn, WhatsApp, Pinterest, Telegram, email, copy link) with no tracking scripts.
+
+= SEO blocks =
+* How-To Guide with HowTo schema; Review Box (score, pros, cons, verdict) with Review schema for honest reviews of other companies' products; Breadcrumbs with optional BreadcrumbList schema.
 
 = Product block =
 * Product page, buy box or shop-grid card layouts.
@@ -48,12 +57,21 @@ SEMRS → Templates: 16 free starter sites (Agency, SEO Services, Digital Market
 Hide any block on phones, tablets or desktops from the block sidebar. CSS-based, so it works with page caching.
 
 = SEMRS Pro adds =
-Slider / carousel (images or posts), animated counter, 3D model viewer with AR, scroll animations and display conditions (login, role, schedule, page type) on every block, and popups.
+Slider / carousel, animated counter, 3D model viewer with AR, popup / modal, pricing table with monthly / yearly switch, sticky bar, before / after, image hotspots, Lottie animation, logo / text marquee, video popup, content switcher, data table, animated timeline, reviews slider and trust badges, plus scroll animations and display conditions (login, role, schedule, page type) on every block.
 
 = Manage blocks =
 SEMRS → Blocks (or SEMRS Blocks in the menu when SEMRS Core is not installed) lists every block with a short description, search and Free / Pro / category filters. Switch off blocks you do not use; a switched-off block is not loaded at all.
 
 Pro blocks appear with a PRO label until SEMRS Pro is installed. They print nothing on your site, and you can hide them from the inserter on the same screen.
+
+== External services ==
+
+SEMRS Blocks connects to these services only when stated:
+
+* **SEMRS update server (semrs.com)** – checks for new versions of the plugin. Sends the plugin version, your site address and the WordPress and PHP versions, about twice a day and when you open the Updates screen. No personal data. [Terms](https://semrs.com/terms-and-conditions/), [Privacy policy](https://semrs.com/privacy-policy/).
+* **Google Maps (maps.google.com)** – only on pages with the Map block. By default the map loads only after a visitor clicks it; then their browser sends the address you entered and the usual browser data (IP address, browser type) to Google. [Google Terms](https://policies.google.com/terms), [Google Privacy Policy](https://policies.google.com/privacy).
+* **Share links** – the Share Buttons block links to Facebook, X, LinkedIn, WhatsApp, Pinterest and Telegram share pages. Nothing is loaded from those sites until a visitor clicks a button; then the page address and title go to that site. Each site's own terms and privacy policy apply.
+* Free Media Sites, Social Icons and Team Member only show links you or the block list provide; nothing is loaded from those sites.
 
 == Photo credits ==
 
@@ -141,6 +159,11 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 * travel-blog-post3.jpg: rawpixel, CC0 1.0 – https://www.rawpixel.com/image/3285498/free-photo-image-plane-window-boat
 
 == Changelog ==
+
+= 1.3.13 =
+* How to use links go to the new Business and trust, and SEO sections of the Blocks manual.
+* Product block has its description on the Blocks screen.
+* Readme lists the external services the blocks use (update checks, Google Maps on click, share links).
 
 = 1.3.12 =
 * Buttons, Star Rating, Social Icons and Share Buttons: the alignment setting no longer floats the block (it clashed with the editor's own alignment).
