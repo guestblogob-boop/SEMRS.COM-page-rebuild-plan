@@ -360,3 +360,30 @@ function semrs_core_render_dashboard() {
 	</div>
 	<?php
 }
+
+/**
+ * Folding for long tables and long settings screens on every SEMRS screen
+ * (Core, Pro and add-on pages, Tools → Search & replace, Users → Roles).
+ */
+function semrs_core_fold_assets() {
+	$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification -- only picks which screens get the script.
+	if ( 0 !== strpos( $page, 'semrs' ) ) {
+		return;
+	}
+	wp_enqueue_script( 'semrs-fold', SEMRS_CORE_URL . 'admin/fold.js', array(), SEMRS_CORE_VERSION, true );
+	wp_localize_script(
+		'semrs-fold',
+		'semrsFoldText',
+		array(
+			/* translators: %d: number of rows. */
+			'all'     => __( 'Show all %d rows', 'semrs-core' ),
+			'less'    => __( 'Show fewer', 'semrs-core' ),
+			'foldAll' => __( 'Fold all', 'semrs-core' ),
+			'openAll' => __( 'Unfold all', 'semrs-core' ),
+		)
+	);
+	wp_register_style( 'semrs-fold', false, array(), SEMRS_CORE_VERSION );
+	wp_enqueue_style( 'semrs-fold' );
+	wp_add_inline_style( 'semrs-fold', '.semrs-fold-more{margin:8px 0 16px}.semrs-folded{display:none!important}.semrs-fold-bar{display:flex;gap:6px;margin:8px 0}.semrs-fold-head{display:inline-flex;align-items:center;gap:8px;padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer;text-align:left}.semrs-fold-head:hover{color:#2271b1}.semrs-fold-head:focus-visible{outline:2px solid #2271b1;outline-offset:2px}.semrs-fold-ico{display:inline-block;width:0;height:0;border-left:6px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent;transform:rotate(90deg);transition:transform .15s}.semrs-fold-head[aria-expanded=false] .semrs-fold-ico{transform:none}' );
+}
+add_action( 'admin_enqueue_scripts', 'semrs_core_fold_assets' );
