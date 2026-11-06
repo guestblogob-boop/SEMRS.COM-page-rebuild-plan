@@ -111,6 +111,8 @@ function semrs_blocks_banner_css() {
 		. '.semrs-banner__h{margin:0;font-size:clamp(1.5rem,3.4vw,2.6rem);font-weight:800;line-height:1.15;color:inherit}.semrs-banner__t{margin:0;font-size:clamp(1rem,1.6vw,1.2rem);opacity:.9}.semrs-banner__btn{align-self:flex-start;margin-top:.5rem}'
 		. '.semrs-banner__img{width:100%;height:100%;min-height:0;object-fit:cover;display:block}'
 		. '.semrs-banners--cover .semrs-banner__slide{grid-template-columns:1fr;grid-template-rows:1fr}.semrs-banners--cover .semrs-banner__img{position:absolute;inset:0}.semrs-banners--cover .semrs-banner__text{background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,0) 75%);color:#fff;height:100%}'
+		. '@media(min-width:782px){.semrs-banners--arrows .semrs-banner__text{padding-left:max(clamp(1.25rem,4vw,3rem),72px)}.semrs-banners--arrows.semrs-banners--cover .semrs-banner__text,.semrs-banners--arrows.semrs-banners--text .semrs-banner__text{padding-right:max(clamp(1.25rem,4vw,3rem),72px)}}'
+		. '@media(max-width:781px){.semrs-banners__nav{display:none}}'
 		. '.semrs-banners__nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#111;font-size:1.6rem;line-height:1;cursor:pointer;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.15)}.semrs-banners__prev{left:12px}.semrs-banners__next{right:12px}'
 		. '.semrs-banners__bar{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;align-items:center;gap:6px;z-index:2}'
 		. '.semrs-banners__dot{width:24px;height:24px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center}.semrs-banners__dot::before{content:"";width:9px;height:9px;border-radius:50%;background:rgba(0,0,0,.3)}.semrs-banners__dot[aria-current="true"]::before{background:var(--b-primary);width:22px;border-radius:5px}'
@@ -141,7 +143,7 @@ function semrs_blocks_render_banners( $a ) {
 		$items .= str_replace( '<div class="semrs-banner__slide"', '<div class="semrs-banner__slide" role="group" aria-roledescription="slide" aria-label="' . esc_attr( sprintf( __( '%1$d of %2$d', 'semrs-blocks' ), $n + 1, count( $slides ) ) ) . '"', $html );
 	}
 	return semrs_blocks_banner_css() . sprintf(
-		'<div class="semrs-banners semrs-banners--%1$s" role="region" aria-roledescription="carousel" aria-label="%2$s" data-autoplay="%3$s" data-interval="%4$d"%5$s><div class="semrs-banners__track" tabindex="0">%6$s</div>%7$s%8$s</div>',
+		'<div class="semrs-banners semrs-banners--%1$s%9$s" role="region" aria-roledescription="carousel" aria-label="%2$s" data-autoplay="%3$s" data-interval="%4$d"%5$s><div class="semrs-banners__track" tabindex="0">%6$s</div>%7$s%8$s</div>',
 		esc_attr( $layout ),
 		esc_attr__( 'Promotions', 'semrs-blocks' ),
 		$many && ! empty( $a['autoplay'] ) ? '1' : '0',
@@ -155,6 +157,7 @@ function semrs_blocks_render_banners( $a ) {
 		),
 		$items,
 		$many && ! empty( $a['arrows'] ) ? '<button type="button" class="semrs-banners__nav semrs-banners__prev" aria-label="' . esc_attr__( 'Previous slide', 'semrs-blocks' ) . '">‹</button><button type="button" class="semrs-banners__nav semrs-banners__next" aria-label="' . esc_attr__( 'Next slide', 'semrs-blocks' ) . '">›</button>' : '',
-		$many && ( ! empty( $a['dots'] ) || ! empty( $a['autoplay'] ) ) ? '<div class="semrs-banners__bar"' . ( empty( $a['dots'] ) ? ' data-nodots' : '' ) . '></div>' : ''
+		$many && ( ! empty( $a['dots'] ) || ! empty( $a['autoplay'] ) ) ? '<div class="semrs-banners__bar"' . ( empty( $a['dots'] ) ? ' data-nodots' : '' ) . '></div>' : '',
+		$many && ! empty( $a['arrows'] ) ? ' semrs-banners--arrows' : '' // Text keeps clear of the arrows.
 	);
 }

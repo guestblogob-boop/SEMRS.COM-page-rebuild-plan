@@ -4,7 +4,7 @@ Tags: blog, portfolio, grid-layout, full-width-template, block-patterns
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.21
+Stable tag: 1.3.23
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,12 @@ Appearance → Customize → SEMRS Theme → Header builder.
 Edit the page, open "Page options" in the sidebar and set Transparent header to On.
 
 == Changelog ==
+
+= 1.3.23 =
+* Header: the button keeps its full width and a long menu wraps to a second line, instead of the button being cut off ("Shop now" in the shop starter sites) or the menu running under a long site name
+
+= 1.3.22 =
+* The body clips sideways overflow too, so the page cannot be dragged or scrolled sideways on any device
 
 = 1.3.21 =
 * No sideways scroll on Windows: full-width blocks on normal-width pages no longer stick out by the scrollbar's width (html overflow-x: clip, which keeps the sticky header working)

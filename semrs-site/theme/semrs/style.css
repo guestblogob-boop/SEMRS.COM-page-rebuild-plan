@@ -4,7 +4,7 @@ Theme URI:         https://semrs.com/
 Author:            SEMRS
 Author URI:        https://semrs.com/
 Description:       Lightweight, SEO-first theme for businesses, agencies and blogs. Drag-and-drop header and footer builder with top bar, sticky and transparent header, header search and a mobile menu panel. Seven section patterns, sidebar layouts, blog grid or list, reading progress bar, author box, related posts and per-page header, footer and sidebar options. No jQuery: one stylesheet and one small script.
-Version:           1.3.21
+Version:           1.3.23
 Requires at least: 6.5
 Tested up to:      7.1
 Requires PHP:      7.4
@@ -57,6 +57,7 @@ Tags:              blog, news, portfolio, one-column, two-columns, right-sidebar
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--sp-header-h) + 16px); overflow-x: clip; }
 body {
+	overflow-x: clip; /* With html: full-width (100vw) blocks never make the page scroll sideways. */
 	margin: 0;
 	font-family: var(--sp-font);
 	font-size: var(--sp-font-size);
@@ -169,7 +170,8 @@ th { background: var(--sp-surface); }
 	.main-navigation > div > ul > li > a, .main-navigation > ul > li > a { padding: .5rem .3rem; font-size: .8rem; }
 }
 .menu-item-description { display: block; font-size: .8rem; font-weight: 400; color: var(--sp-muted); }
-.header-cta { white-space: nowrap; }
+.header-cta { white-space: nowrap; flex-shrink: 0; } /* The button keeps its full width; a long menu wraps or shrinks instead. */
+@media (min-width: 922px) { .sp-hb-main .sp-hb-zone { min-width: 0; } .sp-hb-main .main-navigation { min-width: 0; flex: 0 1 auto; } .sp-hb-main .main-navigation > div > ul, .sp-hb-main .main-navigation > ul { flex-wrap: wrap; justify-content: flex-end; row-gap: 0; } } /* A long menu wraps to a second line instead of running under the site name. */
 
 /* Navigation (mobile + tablet) */
 @media (max-width: 921px) {

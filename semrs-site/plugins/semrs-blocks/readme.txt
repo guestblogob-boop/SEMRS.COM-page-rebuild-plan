@@ -4,7 +4,7 @@ Tags: blocks, icons, pricing table, contact form, post grid
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.15
+Stable tag: 1.3.16
 License: GPLv2 or later
 
 35 free blocks for any block or classic theme: layout, content, business, SEO and a product block, fast and accessible.
@@ -159,6 +159,9 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 * travel-blog-post3.jpg: rawpixel, CC0 1.0 – https://www.rawpixel.com/image/3285498/free-photo-image-plane-window-boat
 
 == Changelog ==
+
+= 1.3.16 =
+* Banner Slider: slide text keeps clear of the arrows; on phones the arrows hide (swipe and dots instead) so they never cover the text or button
 
 = 1.3.15 =
 * Banner Slider: slides move with a transform (exact and smooth on every browser, no layout shift), swipe on touch screens, the next image loads ahead of time

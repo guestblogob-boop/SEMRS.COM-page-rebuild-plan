@@ -5,7 +5,7 @@ Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: semrs-blocks
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,9 @@ Shop home, all-products page, category pages, FAQ and contact are included. All 
 3. Go to SEMRS → Templates, choose Digital Downloads Shop or Crochet Pattern Shop and click Import.
 
 == Changelog ==
+
+= 1.1.1 =
+* New Maker shop previews (desktop and phone) with the banner slider
 
 = 1.1.0 =
 * Maker shop home opens with an auto-rotating banner slider (shop welcome and featured items); needs SEMRS Blocks 1.3.14
