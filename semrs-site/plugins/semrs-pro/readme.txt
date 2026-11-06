@@ -4,7 +4,7 @@ Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: semrs-core
-Stable tag: 1.5.9
+Stable tag: 1.5.10
 License: GPLv2 or later
 
 Premium add-on for the free SEMRS theme and the free SEMRS Core plugin. Every module can be switched off under SEMRS → Modules.
@@ -99,6 +99,9 @@ SEMRS Pro connects to these services only when stated:
 * Login security, the activity log, search & replace and social images run entirely on your own server.
 * **Google Search Console data** – SEO Performance reads it through the free Site Kit by Google plugin you connect yourself; SEMRS Pro does not sign in to Google on its own.
 
+== Font credits ==
+* Noto Sans Bold (assets/fonts/NotoSans-Bold.ttf), used for automatic social images: Copyright 2022 The Noto Project Authors, SIL Open Font License 1.1 (assets/fonts/NotoSans-OFL.txt).
+
 == Photo credits ==
 
 Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https://creativecommons.org/publicdomain/zero/1.0/), found through Openverse. They were cropped and compressed for the templates. No attribution is required; sources are listed for transparency.
@@ -143,6 +146,9 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 SEMRS → License: paste your key and click Activate (Deactivate frees the site so you can move the key). Updates come from semrs.com (SEMRS Update Server): with a valid key, WordPress shows "Update available" and installs new versions in one click. Features never switch off when a license expires; the license controls updates and support.
 
 == Changelog ==
+
+= 1.5.10 =
+* Social images work on every server: Noto Sans Bold (open-source) is bundled for when the server has no font.
 
 = 1.5.9 =
 * New with every Pro key: Login security (two-factor log-in, backup codes, custom log-in address), Activity log and Search & replace with undo.

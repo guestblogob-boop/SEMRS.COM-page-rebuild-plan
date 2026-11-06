@@ -5,8 +5,8 @@
  * share image. Made once on your own server with PHP GD and saved in
  * uploads/semrs-og/; remade when the title or design changes.
  *
- * Needs a TrueType font on the server: most hosts have DejaVu or Liberation
- * Sans; you can also enter the path or Media Library address of a .ttf file.
+ * Uses the bundled Noto Sans Bold (SIL Open Font License, assets/fonts/), a
+ * font you choose, or DejaVu / Liberation Sans when the server has them.
  *
  * @package semrs-pro
  */
@@ -61,6 +61,7 @@ function semrs_og_font() {
 			'/usr/share/fonts/liberation-sans/LiberationSans-Bold.ttf',
 			'/usr/share/fonts/truetype/freefont/FreeSansBold.ttf',
 			'/usr/share/fonts/gnu-free/FreeSansBold.ttf',
+			SEMRS_PRO_DIR . 'assets/fonts/NotoSans-Bold.ttf',
 		)
 	);
 	foreach ( $list as $f ) {
