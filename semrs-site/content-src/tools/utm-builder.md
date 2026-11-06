@@ -98,4 +98,4 @@ A: The campaign is a readable name. The ID is a code that can connect your analy
 - [SEO ROI Calculator](/tools/seo-roi-calculator/): put a value on your organic traffic.
 - [Google Review Link Generator](/tools/google-review-link-generator/): turn campaign customers into reviews.
 
-> Want campaigns that are tracked, measured and improved every month? [See SEMRS Paid Ads Management →](/services/paid-ads/)
+> Want campaigns that are tracked, measured and improved every month? [See SEMRS Paid Ads & Lead Generation →](/services/paid-ads-lead-generation/)

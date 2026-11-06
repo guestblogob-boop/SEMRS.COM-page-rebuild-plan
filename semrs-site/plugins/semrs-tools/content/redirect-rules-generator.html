@@ -1,0 +1,191 @@
+<!-- wp:paragraph -->
+<p>This free redirect rules generator turns a list of old and new URLs into ready-to-use redirect rules. Paste your URL pairs straight from a spreadsheet, choose Apache (.htaccess), Nginx or CSV, pick the redirect type, and copy or download the result. While you type, the tool warns you about redirect loops, chains and duplicate rules, the mistakes that cause most redirect problems after a website change.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:shortcode -->
+[semrs_tool id="redirect-rules-generator"]
+<!-- /wp:shortcode -->
+
+<!-- wp:shortcode -->
+[semrs_ad slot="tool"]
+<!-- /wp:shortcode -->
+
+<!-- wp:semrs/toc {"levels":"2","collapsed":true} /-->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">When you need redirects</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Every time a page's address changes, the old address should send visitors and search engines to the new one. Common reasons include a website redesign, a new URL structure, moving from HTTP to HTTPS, merging two similar pages, renaming products or categories, and moving to a new domain. Without redirects, old links, bookmarks and search results lead to error pages, and the search signals the old page earned are lost.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Which redirect type to choose</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>301 Permanent:</strong> the page has moved for good. Use this for almost all website changes.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>308 Permanent:</strong> like 301, but forms and other requests keep their method. Useful for apps and APIs.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>302 Temporary:</strong> the move is short-term, such as a seasonal page or maintenance.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>410 Gone:</strong> the page was removed on purpose and has no replacement. Search engines drop it faster than a 404.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to use the redirect rules generator</h2>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<figure class="semrs-steps-figure"><svg role="img" aria-label="How to use the redirect generator in 5 steps: 1. Paste one redirect per line; 2. Use paths such as /old-page/ or full…; 3. Choose your server; 4. Pick the redirect type; 5. Read the warnings and fix any loops" viewBox="0 0 640 180" width="100%" xmlns="http://www.w3.org/2000/svg" style="max-width:640px;height:auto"><path d="M98 52 H158" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/><circle cx="64" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="64" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">1</text><text x="64" y="108" text-anchor="middle" font-size="15" fill="currentColor">Paste one</text><text x="64" y="128" text-anchor="middle" font-size="15" fill="currentColor">redirect per</text><text x="64" y="148" text-anchor="middle" font-size="15" fill="currentColor">line</text><path d="M226 52 H286" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/><circle cx="192" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="192" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">2</text><text x="192" y="108" text-anchor="middle" font-size="15" fill="currentColor">Use paths such</text><text x="192" y="128" text-anchor="middle" font-size="15" fill="currentColor">as /old-page/</text><text x="192" y="148" text-anchor="middle" font-size="15" fill="currentColor">or full…</text><path d="M354 52 H414" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/><circle cx="320" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="320" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">3</text><text x="320" y="108" text-anchor="middle" font-size="15" fill="currentColor">Choose your</text><text x="320" y="128" text-anchor="middle" font-size="15" fill="currentColor">server</text><path d="M482 52 H542" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/><circle cx="448" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="448" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">4</text><text x="448" y="108" text-anchor="middle" font-size="15" fill="currentColor">Pick the</text><text x="448" y="128" text-anchor="middle" font-size="15" fill="currentColor">redirect type</text><circle cx="576" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="576" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">5</text><text x="576" y="108" text-anchor="middle" font-size="15" fill="currentColor">Read the</text><text x="576" y="128" text-anchor="middle" font-size="15" fill="currentColor">warnings and</text><text x="576" y="148" text-anchor="middle" font-size="15" fill="currentColor">fix any loops</text></svg></figure>
+<!-- /wp:html -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Paste one redirect per line: the old URL, then the new URL. Separate them with a space, tab, comma or an arrow.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Use paths such as /old-page/ or full URLs. Query strings such as ?id=5 are supported.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Choose your server: Apache for most shared hosting, Nginx for many cloud servers, or CSV to import into a redirect plugin.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Pick the redirect type, usually 301.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Read the warnings and fix any loops, chains or duplicates.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Copy or download the rules and add them to your server or plugin, then test a few old URLs.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Where to put the rules</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Apache (.htaccess):</strong> add the rules near the top of the .htaccess file in your site's root folder, above the WordPress block. Keep a backup first; one typo can take the site offline.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Nginx:</strong> add the rules inside the server block of your site's configuration and reload Nginx. Your host may need to do this for you.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>CSV:</strong> import the file into your redirect plugin. On WordPress with SEMRS Core, paste it under SEMRS → Redirects → Import from CSV.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Worked example</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A garden center is moving from an old shop to a new website. Its spreadsheet has 120 old product URLs in column A and the new ones in column B. The owner pastes both columns into the tool and chooses CSV.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The tool reports two problems. /roses/ points to /plants/roses/, but /plants/roses/ also appears as an old URL pointing to /flowers/roses/, which is a chain. And one line points /gift-cards/ to itself. The owner points /roses/ straight to /flowers/roses/, removes the self-redirect, imports the CSV into the redirect plugin, and tests ten old URLs with the Redirect Checker. All land on the right page in one step.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Best practices</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Redirect each old URL to its closest equivalent, not to the homepage.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Point every redirect straight to the final URL. Update old rules when you change URLs again.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Keep redirects in place for at least a year; for important pages, keep them indefinitely.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Update internal links and your sitemap to the new URLs, so visitors do not rely on redirects.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Test a sample of old URLs, including ones with query strings, after publishing the rules.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Common mistakes</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Loops, where two rules send a URL back and forth.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Chains created by adding new rules on top of old ones.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Redirecting all old pages to the homepage, which search engines often treat like a 404.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Using 302 for a permanent move.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Mixing up trailing slashes, so /page and /page/ behave differently.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Tips for local businesses</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>When you change your website, the address on your Google Business Profile, local directories and social profiles often stays the same. Include those old URLs in your list, especially service and location pages. After the move, update the links at the source as well, so customers reach the new page directly.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Google explains how redirects affect search in <a href="https://developers.google.com/search/docs/crawling-indexing/301-redirects">Redirects and Google Search</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Redirect rules generator: frequently asked questions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:group {"className":"semrs-faq","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-faq"><!-- wp:details -->
+<details class="wp-block-details"><summary>Should I use .htaccess or a plugin?</summary><!-- wp:paragraph -->
+<p>A plugin is easier to manage and safer for most site owners. Server rules are faster and work for every file, which helps on large sites and during migrations.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Do redirects slow down my site?</summary><!-- wp:paragraph -->
+<p>A single redirect adds a small delay. Chains of several hops add more, so always point straight to the final URL.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>How many redirects can I have?</summary><!-- wp:paragraph -->
+<p>Thousands are fine in a plugin or server configuration. Very long .htaccess files can slow Apache down, so move large lists into the main server configuration or a plugin.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>What about pages I deleted with no replacement?</summary><!-- wp:paragraph -->
+<p>Use 410 Gone if the page was removed on purpose, or let it return a helpful 404 page. Do not redirect it to an unrelated page.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Why does my browser still go to the old place?</summary><!-- wp:paragraph -->
+<p>Browsers cache permanent redirects. Test in a private window or with the Redirect Checker, which makes a fresh request every time.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details --></div>
+<!-- /wp:group -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Related free tools</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="/tools/redirect-checker/">Redirect Checker</a>: test that each old URL lands on the new page in one step.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="/tools/robots-txt-tester/">Robots.txt Tester</a>: make sure crawlers may reach your new URLs.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="/tools/on-page-seo-checker/">On-Page SEO Checker</a>: check the new pages for titles, canonicals and noindex.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:group {"className":"semrs-service-cta","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-service-cta"><!-- wp:paragraph -->
+<p>Planning a redesign or migration? We map and test every redirect. <a href="/services/seo/">See SEMRS SEO &amp; GEO services →</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

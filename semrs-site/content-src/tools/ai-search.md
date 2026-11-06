@@ -46,4 +46,4 @@ A: It depends on your goals. Blocking training crawlers keeps your content out o
 Q: Does llms.txt guarantee AI visibility?
 A: No. It is a simple, low-risk addition that some tools read. Content quality and consistency matter far more.
 
-> Want your business described accurately in AI answers? [See SEMRS AI Search Optimization →](/services/ai-search-optimization/)
+> Want your business described accurately in AI answers? [See SEMRS SEO & GEO services →](/services/seo/)

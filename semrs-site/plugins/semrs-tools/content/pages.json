@@ -19,6 +19,16 @@
 		"parent": "tools",
 		"order": 28
 	},
+	"color-contrast-checker": {
+		"h1": "Free Color Contrast Checker",
+		"title": "Free Color Contrast Checker – WCAG AA & AAA | SEMRS",
+		"description": "Check text and background color contrast against WCAG 2.2 AA and AAA for text, large text and buttons, and get the nearest passing color. Free.",
+		"focus": "color contrast checker",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 20
+	},
 	"content-keywords": {
 		"h1": "Free Content & Keyword Tools",
 		"title": "Free Content & Keyword Tools for SEO Writing 2026 | SEMRS",
@@ -38,6 +48,16 @@
 		"kind": "tool",
 		"parent": "tools",
 		"order": 8
+	},
+	"hreflang-generator": {
+		"h1": "Free Hreflang Tag Generator",
+		"title": "Free Hreflang Tag Generator – HTML & Sitemap | SEMRS",
+		"description": "Create correct hreflang tags for every language and country version of a page, with x-default, as HTML, sitemap entries or headers. Free.",
+		"focus": "hreflang generator",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 16
 	},
 	"image-compressor": {
 		"h1": "Free Image Compressor & WebP Converter",
@@ -109,6 +129,36 @@
 		"parent": "tools",
 		"order": 20
 	},
+	"on-page-seo-checker": {
+		"h1": "Free On-Page SEO Checker",
+		"title": "Free On-Page SEO Checker – Score Any Page Fast | SEMRS",
+		"description": "Check any page for on-page SEO: title, description, headings, images, links, canonical, noindex, schema and social tags, with a score and fixes. Free.",
+		"focus": "on-page seo checker",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 13
+	},
+	"open-graph-generator": {
+		"h1": "Free Social Share Preview & Open Graph Generator",
+		"title": "Free Open Graph Generator & Social Share Preview | SEMRS",
+		"description": "Preview how your link looks on Facebook, X and LinkedIn, check image size and text length, then copy ready-made Open Graph and Twitter card tags. Free.",
+		"focus": "open graph generator",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 14
+	},
+	"readability-checker": {
+		"h1": "Free Readability Checker",
+		"title": "Free Readability Checker – Flesch Score & Grade | SEMRS",
+		"description": "Check how easy your text is to read: Flesch score, grade level, long sentences, passive voice and simpler words, highlighted in your text. Free.",
+		"focus": "readability checker",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 18
+	},
 	"redirect-checker": {
 		"h1": "Free Redirect Checker",
 		"title": "Free Redirect Checker – Trace 301 & 302 Chains | SEMRS",
@@ -119,6 +169,26 @@
 		"parent": "tools",
 		"order": 4
 	},
+	"redirect-rules-generator": {
+		"h1": "Free Redirect Rules Generator",
+		"title": "Free Redirect Generator – .htaccess, Nginx, CSV | SEMRS",
+		"description": "Turn old and new URL lists into 301 redirect rules for Apache .htaccess, Nginx or a CSV for redirect plugins. Spots loops and chains. Free.",
+		"focus": "redirect generator",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 17
+	},
+	"roas-calculator": {
+		"h1": "Free ROAS & Break-Even Calculator",
+		"title": "Free ROAS Calculator – Break-Even ROAS & Ad Profit | SEMRS",
+		"description": "Calculate ROAS, break-even ROAS, profit after ad spend, cost per sale, cost per click and conversion rate for any campaign, from your own margins. Free.",
+		"focus": "roas calculator",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 19
+	},
 	"robots-txt-generator": {
 		"h1": "Free Robots.txt Generator",
 		"title": "Free Robots.txt Generator with AI Crawler Rules 2026",
@@ -128,6 +198,16 @@
 		"kind": "tool",
 		"parent": "tools",
 		"order": 3
+	},
+	"robots-txt-tester": {
+		"h1": "Free Robots.txt Tester",
+		"title": "Free Robots.txt Tester – Google & AI Crawlers | SEMRS",
+		"description": "Fetch any live robots.txt and test if Googlebot, Bingbot or AI crawlers such as GPTBot may open a URL. Edit the rules to test changes first. Free.",
+		"focus": "robots.txt tester",
+		"schema": "WebApplication",
+		"kind": "tool",
+		"parent": "tools",
+		"order": 15
 	},
 	"schema-markup-generator": {
 		"h1": "Free Schema Markup Generator",
@@ -171,8 +251,8 @@
 	},
 	"technical-seo": {
 		"h1": "Free Technical SEO Tools",
-		"title": "Free Technical SEO Tools: Robots.txt & 301 Redirects",
-		"description": "Free technical SEO tools: generate a correct robots.txt with AI crawler rules and trace redirect chains, status codes and loops for any public URL.",
+		"title": "Free Technical SEO Tools: Robots.txt, Redirects | SEMRS",
+		"description": "Free technical SEO tools: build and test robots.txt, write and check 301 redirects, and create hreflang tags for language and country versions.",
 		"focus": "technical seo tools",
 		"schema": "CollectionPage",
 		"kind": "category",
@@ -181,8 +261,8 @@
 	},
 	"tools": {
 		"h1": "Free SEO Tools",
-		"title": "13 Free SEO Tools – No Signup, No Limits | SEMRS",
-		"description": "13 free SEO tools for business owners and marketers: SERP preview, schema generators, robots.txt, redirect checker, UTM builder, image compressor and more.",
+		"title": "21 Free SEO Tools – No Signup, No Limits | SEMRS",
+		"description": "21 free SEO tools for business owners and marketers: on-page checker, SERP preview, schema, robots.txt, redirects, readability, UTM, ROAS and more.",
 		"focus": "free seo tools",
 		"schema": "CollectionPage",
 		"kind": "hub",

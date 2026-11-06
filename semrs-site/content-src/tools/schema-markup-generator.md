@@ -91,4 +91,4 @@ A: Many do, for example basic Organization, WebPage and Article data. Check your
 - [SERP Snippet Preview](/tools/serp-snippet-preview/): see how your result looks in Google.
 - [llms.txt Generator](/tools/llms-txt-generator/): help AI tools understand your site.
 
-> Want structured data set up and validated across your whole site? [See SEMRS Technical SEO →](/services/technical-seo/)
+> Want structured data set up and validated across your whole site? [See SEMRS SEO & GEO services →](/services/seo/)

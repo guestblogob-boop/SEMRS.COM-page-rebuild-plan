@@ -10,4 +10,4 @@
 | Schema type | WebApplication (+ FAQPage from the FAQ blocks, BreadcrumbList) |
 | Template | Default (no sidebar) |
 | Parent page | /tools/ |
-| Words | 1029 |
+| Words | 1031 |

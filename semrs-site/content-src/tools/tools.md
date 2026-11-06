@@ -2,15 +2,15 @@
 kind: hub
 order: 0
 h1: Free SEO Tools
-title: 13 Free SEO Tools – No Signup, No Limits | SEMRS
-description: 13 free SEO tools for business owners and marketers: SERP preview, schema generators, robots.txt, redirect checker, UTM builder, image compressor and more.
+title: 21 Free SEO Tools – No Signup, No Limits | SEMRS
+description: 21 free SEO tools for business owners and marketers: on-page checker, SERP preview, schema, robots.txt, redirects, readability, UTM, ROAS and more.
 focus: free seo tools
 schema: CollectionPage
 toc: yes
 ---
 These free SEO tools cover meta tags, technical checks, schema, content, local SEO, AI search, marketing and website speed. Free, practical SEO tools for business owners, marketers and web designers. Every tool works instantly in your browser, needs no account and has no daily limits. Pick a tool below, or read on to find the right one for the job.
 
-[glance: Free SEO tools at a glance | 13 free SEO tools | 8 tool groups | No signup needed | No usage limits]
+[glance: Free SEO tools at a glance | 21 free SEO tools | 8 tool groups | No signup needed | No usage limits]
 
 [semrs_tools]
 
@@ -18,13 +18,14 @@ These free SEO tools cover meta tags, technical checks, schema, content, local S
 
 Start with the problem you are trying to solve:
 
-- **Your pages do not get clicked in Google.** Use the [SERP Snippet Preview](/tools/serp-snippet-preview/) and the [Meta Title & Description Checker](/tools/meta-description-checker/) to write titles and descriptions that fit and stand out.
-- **Pages are missing from Google, or you changed your website.** Use the [Robots.txt Generator](/tools/robots-txt-generator/) to check crawler rules and the [Redirect Checker](/tools/redirect-checker/) to make sure old URLs lead to the right new pages.
+- **You want a quick health check of one page.** Use the [On-Page SEO Checker](/tools/on-page-seo-checker/) for a score and a list of fixes.
+- **Your pages do not get clicked in Google.** Use the [SERP Snippet Preview](/tools/serp-snippet-preview/) and the [Meta Title & Description Checker](/tools/meta-description-checker/) to write titles and descriptions that fit and stand out, and the [Open Graph Generator](/tools/open-graph-generator/) for links shared on social media.
+- **Pages are missing from Google, or you changed your website.** Use the [Robots.txt Generator](/tools/robots-txt-generator/) and [Robots.txt Tester](/tools/robots-txt-tester/) to check crawler rules, the [Redirect Rules Generator](/tools/redirect-rules-generator/) to write redirects and the [Redirect Checker](/tools/redirect-checker/) to make sure old URLs lead to the right new pages. Serving several countries or languages? Use the [Hreflang Tag Generator](/tools/hreflang-generator/).
 - **You want search engines and AI tools to understand your business.** Use the [Schema Markup Generator](/tools/schema-markup-generator/), the [Local Business Schema Generator](/tools/local-business-schema-generator/) and the [llms.txt Generator](/tools/llms-txt-generator/).
-- **You are writing or improving content.** Use the [Word Counter](/tools/word-counter/) to check length, readability and keyword use.
+- **You are writing or improving content.** Use the [Word Counter](/tools/word-counter/) to check length and keyword use, and the [Readability Checker](/tools/readability-checker/) to make the text easier to read.
 - **You need more reviews.** Use the [Google Review Link Generator](/tools/google-review-link-generator/) to give customers a one-tap review link.
-- **You want to know which marketing works.** Use the [UTM Builder](/tools/utm-builder/) to track campaigns and the [SEO ROI Calculator](/tools/seo-roi-calculator/) to estimate the value of organic traffic.
-- **Your website is slow.** Use the [Image Compressor & WebP Converter](/tools/image-compressor/) to shrink images without uploading them anywhere.
+- **You want to know which marketing works.** Use the [UTM Builder](/tools/utm-builder/) to track campaigns the [SEO ROI Calculator](/tools/seo-roi-calculator/) to estimate the value of organic traffic, and the [ROAS & Break-Even Calculator](/tools/roas-calculator/) to see whether your ads make money.
+- **Your website is slow or hard to read.** Use the [Image Compressor & WebP Converter](/tools/image-compressor/) to shrink images without uploading them anywhere, and the [Color Contrast Checker](/tools/color-contrast-checker/) to make text readable for everyone.
 
 ## Built for real businesses
 

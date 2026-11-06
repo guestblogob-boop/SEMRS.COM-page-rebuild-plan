@@ -93,4 +93,4 @@ A: Browsers cache redirects, especially 301s, so your browser may skip steps it 
 - [SERP Snippet Preview](/tools/serp-snippet-preview/): check how your new pages will look in Google.
 - [UTM Builder](/tools/utm-builder/): track campaign links so redirects do not hide your traffic sources.
 
-> Planning a redesign or migration? We map and test every redirect. [See SEMRS Technical SEO →](/services/technical-seo/)
+> Planning a redesign or migration? We map and test every redirect. [See SEMRS SEO & GEO services →](/services/seo/)

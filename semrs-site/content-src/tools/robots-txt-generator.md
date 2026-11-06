@@ -96,4 +96,4 @@ A: Reputable search engines and many AI companies do. Malicious bots ignore it, 
 - [llms.txt Generator](/tools/llms-txt-generator/): point AI tools to your most useful pages.
 - [Schema Markup Generator](/tools/schema-markup-generator/): help search engines understand your content.
 
-> Want a full crawl and indexing check of your website? [See SEMRS Technical SEO →](/services/technical-seo/)
+> Want a full crawl and indexing check of your website? [See SEMRS SEO & GEO services →](/services/seo/)

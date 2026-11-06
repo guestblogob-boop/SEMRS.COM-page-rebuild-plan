@@ -26,7 +26,7 @@ Search engines reward pages that satisfy the person searching. That means coveri
 
 ## What the Word Counter shows
 
-The **Word Counter** gives you words, characters, sentences and paragraphs as you type, plus reading and speaking time, average sentence length and your top keywords and two-word phrases with their density. It runs privately in your browser, so you can paste client drafts or unpublished work safely.
+The **Word Counter** gives you words, characters, sentences and paragraphs as you type, plus reading and speaking time, average sentence length and your top keywords and two-word phrases with their density. It runs privately in your browser, so you can paste client drafts or unpublished work safely. The **Readability Checker** adds a Flesch reading ease score and grade level, and highlights long sentences, passive voice and words with simpler alternatives right in your text.
 
 ## Common content mistakes
 

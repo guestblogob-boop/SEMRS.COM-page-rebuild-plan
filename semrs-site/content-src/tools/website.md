@@ -27,7 +27,7 @@ Visitors expect pages to load quickly, especially on phones. Slow pages lose peo
 
 ## Which website tools to use
 
-The **Image Compressor & WebP Converter** shrinks JPG, PNG, WebP and GIF images and converts them to WebP, JPEG or PNG, with a quality slider and resize presets. It processes up to 20 images at a time entirely in your browser, so private photos never leave your device.
+The **Image Compressor & WebP Converter** shrinks JPG, PNG, WebP and GIF images and converts them to WebP, JPEG or PNG, with a quality slider and resize presets. It processes up to 20 images at a time entirely in your browser, so private photos never leave your device. The **Color Contrast Checker** tests text and background colors against WCAG 2.2 AA and AAA and suggests the nearest color that passes, so every visitor can read your pages.
 
 ## Measuring the result
 

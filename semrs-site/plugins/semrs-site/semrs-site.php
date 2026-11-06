@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       SEMRS Site (semrs.com only)
  * Description:       semrs.com-only additions that are never given to clients: the SEMRS Store (products, collection and product pages, pricing) and SEMRS Pro sales page installer, the Keyword Ideas Generator tool, the "Hero with photo and keyword tool" pattern and its photo, and the web design portfolio hub ([semrs_portfolio]). Needs SEMRS Tools for the tool.
- * Version:           1.2.31
+ * Version:           1.2.32
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            SEMRS
@@ -29,7 +29,7 @@ add_filter(
 	}
 );
 
-define( 'SEMRS_SITE_VERSION', '1.2.31' );
+define( 'SEMRS_SITE_VERSION', '1.2.32' );
 define( 'SEMRS_SITE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_SITE_URL', plugin_dir_url( __FILE__ ) );
 
@@ -88,6 +88,36 @@ function semrs_site_tools( $tools ) {
 	return $tools;
 }
 add_filter( 'semrs_tools_list', 'semrs_site_tools' );
+
+/**
+ * Expert-help box under each tool: point every category at a real semrs.com
+ * service page (the SEMRS Tools defaults are generic paths, and some of them
+ * redirect elsewhere on this site).
+ *
+ * @param array $cats Categories: slug => [name, description, CTA label, CTA path].
+ * @return array
+ */
+function semrs_site_tool_categories( $cats ) {
+	$map = array(
+		'meta-serp'        => array( 'SEO & GEO services', '/services/seo/' ),
+		'technical-seo'    => array( 'SEO & GEO services', '/services/seo/' ),
+		'schema'           => array( 'SEO & GEO services', '/services/seo/' ),
+		'content-keywords' => array( 'SEO Content Writing', '/services/seo-content-writing/' ),
+		'local-seo'        => array( 'SEO & GEO services', '/services/seo/' ),
+		'ai-search'        => array( 'SEO & GEO services', '/services/seo/' ),
+		'marketing'        => array( 'Paid Ads & Lead Generation', '/services/paid-ads-lead-generation/' ),
+		'website'          => array( 'Website Design', '/services/web-design/' ),
+		'calculators'      => array( 'free SEO review', '/get-a-quote/' ),
+	);
+	foreach ( $map as $slug => $cta ) {
+		if ( isset( $cats[ $slug ] ) ) {
+			$cats[ $slug ][2] = $cta[0];
+			$cats[ $slug ][3] = $cta[1];
+		}
+	}
+	return $cats;
+}
+add_filter( 'semrs_tools_categories', 'semrs_site_tool_categories' );
 
 /**
  * The tool's script lives in this plugin, not in SEMRS Tools.

@@ -1,0 +1,185 @@
+<!-- wp:paragraph -->
+<p>This free color contrast checker tells you whether text on your website is easy to read for everyone. Enter a text color and a background color as hex codes, RGB values or color names, or pick them with the color pickers. You see the contrast ratio, a live sample, a pass or fail for each WCAG 2.2 level, and, when a color fails, the nearest shade that passes.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:shortcode -->
+[semrs_tool id="color-contrast-checker"]
+<!-- /wp:shortcode -->
+
+<!-- wp:shortcode -->
+[semrs_ad slot="tool"]
+<!-- /wp:shortcode -->
+
+<!-- wp:semrs/toc {"levels":"2","collapsed":true} /-->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Why contrast matters</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Low-contrast text, such as light gray on white, is hard to read for people with low vision or color blindness, for older readers and for anyone using a phone in bright sunlight. Good contrast makes your site easier for everyone to use.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>It also matters for your business. Accessibility laws such as the Americans with Disabilities Act in the US and the European Accessibility Act in the EU apply to many websites, low contrast is one of the most common accessibility errors, and tools such as Lighthouse and PageSpeed Insights lower the accessibility score when they find it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The WCAG contrast levels</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The Web Content Accessibility Guidelines (WCAG) 2.2 set minimum contrast ratios between text and its background:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Normal text, level AA:</strong> at least 4.5:1. This is the level most laws and policies refer to.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Large text, level AA:</strong> at least 3:1. Large means about 24 pixels (18 point) and larger, or about 19 pixels (14 point) bold and larger.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Normal text, level AAA:</strong> at least 7:1, the enhanced level.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Large text, level AAA:</strong> at least 4.5:1.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Buttons, icons and form borders:</strong> at least 3:1 against what is around them (WCAG 1.4.11, non-text contrast).</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The ratio runs from 1:1 (no contrast, the same color) to 21:1 (black on white).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to use the color contrast checker</h2>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<figure class="semrs-steps-figure"><svg role="img" aria-label="How to use the color contrast checker in 5 steps: 1. Enter the text color; 2. Enter the background color in the same…; 3. Read the contrast ratio and the level…; 4. Check the table for large text and…; 5. If a level fails" viewBox="0 0 640 180" width="100%" xmlns="http://www.w3.org/2000/svg" style="max-width:640px;height:auto"><path d="M98 52 H158" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/><circle cx="64" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="64" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">1</text><text x="64" y="108" text-anchor="middle" font-size="15" fill="currentColor">Enter the text</text><text x="64" y="128" text-anchor="middle" font-size="15" fill="currentColor">color</text><path d="M226 52 H286" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/><circle cx="192" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="192" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">2</text><text x="192" y="108" text-anchor="middle" font-size="15" fill="currentColor">Enter the</text><text x="192" y="128" text-anchor="middle" font-size="15" fill="currentColor">background</text><text x="192" y="148" text-anchor="middle" font-size="15" fill="currentColor">color in the</text><path d="M354 52 H414" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/><circle cx="320" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="320" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">3</text><text x="320" y="108" text-anchor="middle" font-size="15" fill="currentColor">Read the</text><text x="320" y="128" text-anchor="middle" font-size="15" fill="currentColor">contrast ratio</text><text x="320" y="148" text-anchor="middle" font-size="15" fill="currentColor">and the level…</text><path d="M482 52 H542" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/><circle cx="448" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="448" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">4</text><text x="448" y="108" text-anchor="middle" font-size="15" fill="currentColor">Check the</text><text x="448" y="128" text-anchor="middle" font-size="15" fill="currentColor">table for</text><text x="448" y="148" text-anchor="middle" font-size="15" fill="currentColor">large text</text><circle cx="576" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="576" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">5</text><text x="576" y="108" text-anchor="middle" font-size="15" fill="currentColor">If a level</text><text x="576" y="128" text-anchor="middle" font-size="15" fill="currentColor">fails</text></svg></figure>
+<!-- /wp:html -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Enter the text color: a hex code such as #5b6575, an RGB value such as rgb(91, 101, 117) or a color name. Or use the color picker.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Enter the background color in the same way.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Read the contrast ratio and the level it reaches for normal text.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Check the table for large text and for buttons and icons.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>If a level fails, use the suggested color, which keeps your shade but darkens or lightens it just enough to pass.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Use <strong>Swap</strong> to test light text on a dark background the other way around.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Worked example</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A yoga studio's website uses light gray text (#999999) on white for its class descriptions. The checker shows 2.84:1, which fails AA for normal text. The suggested color is #767676, which reaches 4.54:1 and still looks like the same soft gray. The studio updates the color in its theme settings, and the PageSpeed accessibility warning about low contrast disappears.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Best practices</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Check every text and background pair in your brand palette once and save the passing combinations.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Pay attention to text on colored buttons, links on colored backgrounds and placeholder text in forms.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Check text placed over photos at its weakest point, or add a dark overlay behind it.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Test both light and dark mode if your website offers both.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Do not rely on color alone to show meaning. Add a label, an icon or an underline to links and errors.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Common mistakes</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Light gray body text chosen because it "looks elegant".</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>White text on bright yellow, orange or light green buttons.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Checking only the main text color and forgetting links, captions and footers.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Assuming a font is large enough to count as "large text" when it is not.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Tips for local businesses</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Many local customers find you on a phone, sometimes outdoors. Make your phone number, address and call-to-action buttons high contrast so they are easy to read in any light. If your logo colors are pale, use a darker shade of the same color for text and buttons instead of changing your brand.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The rule is explained in detail in <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html">Understanding Success Criterion 1.4.3: Contrast (Minimum)</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Color contrast checker: frequently asked questions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:group {"className":"semrs-faq","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-faq"><!-- wp:details -->
+<details class="wp-block-details"><summary>What contrast ratio do I need?</summary><!-- wp:paragraph -->
+<p>At least 4.5:1 for normal text and 3:1 for large text and for buttons, icons and form borders. That is WCAG level AA, the usual legal and policy standard.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Is AAA required?</summary><!-- wp:paragraph -->
+<p>Usually not. AAA (7:1 for normal text) is an enhanced level. Aim for AA everywhere and AAA for long reading content where you can.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>How is the ratio calculated?</summary><!-- wp:paragraph -->
+<p>WCAG compares the relative luminance of the two colors: (lighter + 0.05) ÷ (darker + 0.05). The checker uses the same formula.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Does contrast affect SEO?</summary><!-- wp:paragraph -->
+<p>Not directly, but it affects accessibility scores in Lighthouse and PageSpeed Insights and how easily visitors can read and act on your page.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Can I check transparent colors?</summary><!-- wp:paragraph -->
+<p>The checker works with solid colors. For semi-transparent text or backgrounds, check the final visible color as it appears on the page.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details --></div>
+<!-- /wp:group -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Related free tools</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="/tools/image-compressor/">Image Compressor &amp; WebP Converter</a>: make images lighter for faster pages.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="/tools/on-page-seo-checker/">On-Page SEO Checker</a>: check images for alt text and other page basics.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="/tools/readability-checker/">Readability Checker</a>: make the words as easy to read as the colors.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:group {"className":"semrs-service-cta","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-service-cta"><!-- wp:paragraph -->
+<p>Want a fast, accessible website that turns visitors into customers? <a href="/services/web-design/">See SEMRS Website Design →</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

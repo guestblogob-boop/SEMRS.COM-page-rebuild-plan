@@ -28,7 +28,7 @@ Google usually builds your result from your title tag and meta description, but 
 
 ## Which meta and SERP tools to use
 
-Use the **SERP Snippet Preview** when you want to see the finished result and test different wording visually, including how a date or a long URL affects the layout. Use the **Meta Title & Description Checker** when you want a checklist that confirms length, pixel width and keyword placement, and gives you ready-to-paste HTML and Open Graph tags.
+Use the **SERP Snippet Preview** when you want to see the finished result and test different wording visually, including how a date or a long URL affects the layout. Use the **Meta Title & Description Checker** when you want a checklist that confirms length, pixel width and keyword placement, and gives you ready-to-paste HTML and Open Graph tags. Use the **On-Page SEO Checker** to check a live page from top to bottom, and the **Social Share Preview & Open Graph Generator** to see and fix how the page looks when it is shared.
 
 A good workflow is to draft in the checker until everything passes, then confirm the look in the preview.
 

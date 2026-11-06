@@ -1,0 +1,193 @@
+<!-- wp:paragraph -->
+<p>This free hreflang tag generator builds the tags that tell Google which language and country version of a page to show each searcher. Add one row for each version of the page, choose an x-default page for everyone else, and copy the result as HTML link tags, XML sitemap entries or an HTTP header. The tool also catches the mistakes that break hreflang most often, such as invalid codes and duplicate versions.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:shortcode -->
+[semrs_tool id="hreflang-generator"]
+<!-- /wp:shortcode -->
+
+<!-- wp:shortcode -->
+[semrs_ad slot="tool"]
+<!-- /wp:shortcode -->
+
+<!-- wp:semrs/toc {"levels":"2","collapsed":true} /-->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What hreflang does</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If your website has the same page in several languages, or in one language for several countries, Google needs to know they belong together. Hreflang annotations link the versions and say who each one is for: English for the United States, English for the United Kingdom, Spanish for Mexico and so on. Google then shows the best match in each country's results, and the versions stop competing with each other.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Hreflang does not translate anything and does not move a page up in rankings by itself. It makes sure the right existing page appears for the right audience.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How hreflang codes work</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Language first:</strong> a two-letter ISO 639-1 code such as en, es, fr, de, ar or ur.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Country optional:</strong> add a two-letter ISO 3166-1 country code after a hyphen, such as en-us, en-gb or es-mx. A country code alone, such as "us", is not valid.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>x-default:</strong> a special value for the page to show when no version matches, often a language picker or your main international page.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Case does not matter:</strong> en-GB and en-gb mean the same thing.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to use the hreflang generator</h2>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<figure class="semrs-steps-figure"><svg role="img" aria-label="How to use the hreflang generator in 5 steps: 1. Add one row for each version of…; 2. Use + Add version for more languages…; 3. Add an x-default URL for visitors whose…; 4. Choose the output; 5. Fix anything the warnings list" viewBox="0 0 640 180" width="100%" xmlns="http://www.w3.org/2000/svg" style="max-width:640px;height:auto"><path d="M98 52 H158" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/><circle cx="64" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="64" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">1</text><text x="64" y="108" text-anchor="middle" font-size="15" fill="currentColor">Add one row</text><text x="64" y="128" text-anchor="middle" font-size="15" fill="currentColor">for each</text><text x="64" y="148" text-anchor="middle" font-size="15" fill="currentColor">version of…</text><path d="M226 52 H286" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/><circle cx="192" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="192" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">2</text><text x="192" y="108" text-anchor="middle" font-size="15" fill="currentColor">Use + Add</text><text x="192" y="128" text-anchor="middle" font-size="15" fill="currentColor">version for</text><text x="192" y="148" text-anchor="middle" font-size="15" fill="currentColor">more</text><path d="M354 52 H414" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/><circle cx="320" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="320" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">3</text><text x="320" y="108" text-anchor="middle" font-size="15" fill="currentColor">Add an</text><text x="320" y="128" text-anchor="middle" font-size="15" fill="currentColor">x-default URL</text><text x="320" y="148" text-anchor="middle" font-size="15" fill="currentColor">for visitors</text><path d="M482 52 H542" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/><circle cx="448" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="448" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">4</text><text x="448" y="108" text-anchor="middle" font-size="15" fill="currentColor">Choose the</text><text x="448" y="128" text-anchor="middle" font-size="15" fill="currentColor">output</text><circle cx="576" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="576" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">5</text><text x="576" y="108" text-anchor="middle" font-size="15" fill="currentColor">Fix anything</text><text x="576" y="128" text-anchor="middle" font-size="15" fill="currentColor">the warnings</text><text x="576" y="148" text-anchor="middle" font-size="15" fill="currentColor">list</text></svg></figure>
+<!-- /wp:html -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Add one row for each version of the page: the hreflang code and the full URL of that version.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Use <strong>+ Add version</strong> for more languages or countries, and the ✕ button to remove one.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Add an x-default URL for visitors whose language or country you do not cover.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Choose the output: HTML tags for the page head, XML sitemap entries, or an HTTP header for PDFs and other files.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Fix anything the warnings list, then copy the result and add it to every version of the page.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The three rules that make hreflang work</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Every version lists every version,</strong> including itself. If the US page lists the UK page, the UK page must list the US page too. Google ignores annotations without these return links.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Each version has a self-referencing canonical.</strong> Do not point the canonical of the UK page to the US page, or Google may drop the UK page.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Use one method per page.</strong> HTML tags, sitemap entries or headers all work, but mixing them makes mistakes more likely.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Worked example</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>An online course provider has a pricing page in US English, UK English and Spanish for Mexico. The UK page shows prices in pounds, but British searchers keep landing on the US page with dollar prices.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The team adds three rows (en-us, en-gb, es-mx) with each page's URL, plus an x-default pointing to the US page. The generator gives four link tags, which the team adds to all three pages, and each page keeps a canonical to itself. Within a few weeks the UK page appears for British searches and complaints about currency stop.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Best practices</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Use full, absolute URLs including https.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Only link pages that are true equivalents. A page in another language should have the same purpose and content.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Use a country code only when the content really differs, such as prices, spelling, delivery or legal details.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Keep hreflang in sync when you add, move or delete a version.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>For large sites, put hreflang in the XML sitemap so page HTML stays light.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Common mistakes</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Using en-uk instead of en-gb. The country code for the United Kingdom is GB.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Missing return links, so the annotations are ignored.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Pointing hreflang at URLs that redirect, are blocked by robots.txt or carry a noindex tag.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Canonicalizing every language version to one page.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Creating country versions with identical content and calling them different pages.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Tips for local businesses</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If you serve one country in one language, you do not need hreflang. It becomes useful when you serve, for example, English and Spanish speakers in the US, or customers in both Canada and the US with different prices. In those cases, create genuinely localized pages with the right currency, phone numbers and contact details, then link them with hreflang.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Google explains the rules in <a href="https://developers.google.com/search/docs/specialty/international/localized-versions">Tell Google about localized versions of your page</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Hreflang generator: frequently asked questions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:group {"className":"semrs-faq","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-faq"><!-- wp:details -->
+<details class="wp-block-details"><summary>Do I need x-default?</summary><!-- wp:paragraph -->
+<p>It is optional but recommended. It tells Google which page to show when none of your versions match the searcher's language or country.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Is hreflang case-sensitive?</summary><!-- wp:paragraph -->
+<p>No. en-GB and en-gb are the same. The tool writes the common form, with the country in capitals.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Can I use hreflang for regions such as Latin America?</summary><!-- wp:paragraph -->
+<p>Region codes such as es-419 are valid in some systems, but Google supports only language codes and two-letter country codes. Use es for general Spanish, or specific countries such as es-mx and es-ar.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Where should I put the tags?</summary><!-- wp:paragraph -->
+<p>In the head of every version of the page, or in your XML sitemap, or in an HTTP Link header for files such as PDFs. Pick one method.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Does hreflang work on Bing?</summary><!-- wp:paragraph -->
+<p>Bing pays more attention to the page's language and its content-language settings. Hreflang does no harm there, but Google is where it matters most.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details --></div>
+<!-- /wp:group -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Related free tools</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="/tools/on-page-seo-checker/">On-Page SEO Checker</a>: check each version's canonical, title and indexing.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="/tools/redirect-checker/">Redirect Checker</a>: make sure every hreflang URL loads directly with a 200 status.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="/tools/serp-snippet-preview/">SERP Snippet Preview</a>: write a strong title and description for each language.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:group {"className":"semrs-service-cta","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-service-cta"><!-- wp:paragraph -->
+<p>Taking your website into new countries or languages? <a href="/services/seo/">See SEMRS SEO &amp; GEO services →</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

@@ -1,0 +1,197 @@
+<!-- wp:paragraph -->
+<p>This free robots.txt tester fetches the live robots.txt file of any website and shows whether a crawler may open a specific URL. Enter a page address, choose a crawler such as Googlebot, Bingbot, GPTBot or ClaudeBot, and see at once whether the page is allowed or blocked, which rule decided it, and how twelve common crawlers are treated. You can also edit the rules in the box to test a change before you upload it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:shortcode -->
+[semrs_tool id="robots-txt-tester"]
+<!-- /wp:shortcode -->
+
+<!-- wp:shortcode -->
+[semrs_ad slot="tool"]
+<!-- /wp:shortcode -->
+
+<!-- wp:semrs/toc {"levels":"2","collapsed":true} /-->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What robots.txt does</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Robots.txt is a plain text file at the root of a website, such as example.com/robots.txt. It tells crawlers which parts of the site they may visit. Well-behaved crawlers, including Google, Bing and the main AI companies, read it before crawling. It is a set of instructions, not a lock: it does not hide pages from people, and badly behaved bots can ignore it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Robots.txt controls crawling, not indexing. A blocked page can still appear in Google, usually without a description, if other sites link to it. To keep a page out of search results, allow crawling and use a noindex tag instead.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How crawlers read the rules</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The tester follows the same rules Google documents:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Groups:</strong> rules are grouped under one or more User-agent lines. A crawler uses only the group that matches its name most specifically, and falls back to the group for all crawlers (<code>User-agent: *</code>) if none matches.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Longest match wins:</strong> within the group, the rule with the longest matching path decides. "Allow: /blog/news/" beats "Disallow: /blog/".</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Ties go to Allow:</strong> if an Allow and a Disallow rule are equally long, the page is allowed.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>Wildcards:</strong> <code>*</code> matches any characters and <code>$</code> marks the end of the URL, so <code>Disallow: /*.pdf$</code> blocks all PDF files.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>No rule, no block:</strong> an empty Disallow line, or no matching rule, means the page is allowed.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to use the robots.txt tester</h2>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<figure class="semrs-steps-figure"><svg role="img" aria-label="How to use the robots.txt tester in 5 steps: 1. Enter the full address of the page…; 2. Choose the crawler you care about; 3. Click Fetch robots; 4. Check the table to see how all…; 5. To try a change" viewBox="0 0 640 180" width="100%" xmlns="http://www.w3.org/2000/svg" style="max-width:640px;height:auto"><path d="M98 52 H158" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/><circle cx="64" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="64" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">1</text><text x="64" y="108" text-anchor="middle" font-size="15" fill="currentColor">Enter the full</text><text x="64" y="128" text-anchor="middle" font-size="15" fill="currentColor">address of the</text><text x="64" y="148" text-anchor="middle" font-size="15" fill="currentColor">page…</text><path d="M226 52 H286" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/><circle cx="192" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="192" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">2</text><text x="192" y="108" text-anchor="middle" font-size="15" fill="currentColor">Choose the</text><text x="192" y="128" text-anchor="middle" font-size="15" fill="currentColor">crawler you</text><text x="192" y="148" text-anchor="middle" font-size="15" fill="currentColor">care about</text><path d="M354 52 H414" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/><circle cx="320" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="320" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">3</text><text x="320" y="108" text-anchor="middle" font-size="15" fill="currentColor">Click Fetch</text><text x="320" y="128" text-anchor="middle" font-size="15" fill="currentColor">robots</text><path d="M482 52 H542" stroke="var(--sp-accent,#f7941d)" stroke-width="3" stroke-dasharray="6 6"/><circle cx="448" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="448" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">4</text><text x="448" y="108" text-anchor="middle" font-size="15" fill="currentColor">Check the</text><text x="448" y="128" text-anchor="middle" font-size="15" fill="currentColor">table to see</text><text x="448" y="148" text-anchor="middle" font-size="15" fill="currentColor">how all…</text><circle cx="576" cy="52" r="26" fill="var(--sp-primary,#0b2fd1)"/><text x="576" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">5</text><text x="576" y="108" text-anchor="middle" font-size="15" fill="currentColor">To try a</text><text x="576" y="128" text-anchor="middle" font-size="15" fill="currentColor">change</text></svg></figure>
+<!-- /wp:html -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Enter the full address of the page you want to test, for example a product page or a PDF.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Choose the crawler you care about. Googlebot is the most important for search; GPTBot, ClaudeBot and PerplexityBot are common AI crawlers.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Click <strong>Fetch robots.txt &amp; test</strong>. The tool loads the site's current file and shows Allowed or Blocked with the matching rule.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Check the table to see how all twelve crawlers are treated for the same URL.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>To try a change, edit the text in the robots.txt box. The result updates as you type. Copy your tested rules into the real file when you are happy.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Worked example</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>An online shop notices that its product images have disappeared from Google Images. The owner tests a product photo URL with Googlebot-Image and the tool shows <strong>Blocked</strong> by "Disallow: /wp-content/". That rule was added years ago to hide plugin files, but it also blocks the uploads folder where every product photo lives.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>In the box, the owner replaces it with "Disallow: /wp-content/plugins/" and adds "Allow: /wp-content/uploads/". The image URL now shows <strong>Allowed</strong> for Googlebot-Image, and pages that need the theme's CSS still render correctly. The owner uploads the corrected file and asks Google to recrawl a few key pages.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What the status of robots.txt means</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>200 with rules:</strong> crawlers follow the rules in the file.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>404 or 410:</strong> there is no robots.txt, so crawlers may visit everything. This is fine if you want everything crawled.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><strong>5xx server error:</strong> Google treats this as "do not crawl anything" for a while and slows down crawling. Fix server errors on robots.txt quickly.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Best practices</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Block only what you must: admin areas, internal search results, carts and checkout pages.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Never block the CSS, JavaScript and image files that pages need to display.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Add a Sitemap line with the full address of your XML sitemap.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Decide on AI crawlers on purpose. Blocking AI search crawlers can stop your business being cited in AI answers; blocking training crawlers only affects model training.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Test the exact URLs that matter after every change.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Common mistakes</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>"Disallow: /" left in place after launching a site from a staging server, which blocks everything.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Blocking pages that also carry a noindex tag. If Google cannot crawl the page, it never sees the noindex.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Typos in crawler names, which make the group match nothing.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Expecting robots.txt to protect private content. Use passwords or server rules for that.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Tips for local businesses</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Most small business websites need only a few rules. If your site runs on WordPress, a typical file allows everything except the admin area and lists your sitemap. Test your homepage, your main service page and your contact page with Googlebot after any website change, and make sure your location and service pages are never blocked.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Google explains exactly how it reads the file in <a href="https://developers.google.com/search/docs/crawling-indexing/robots/robots_txt">How Google interprets the robots.txt specification</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Robots.txt tester: frequently asked questions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:group {"className":"semrs-faq","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-faq"><!-- wp:details -->
+<details class="wp-block-details"><summary>Is the result the same as Google's?</summary><!-- wp:paragraph -->
+<p>The tester follows Google's documented rules for groups, longest match, wildcards and ties, so results match Google in normal cases. Search Console's robots.txt report shows the version of the file Google last fetched.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Does blocking a page remove it from Google?</summary><!-- wp:paragraph -->
+<p>No. It stops crawling, not indexing. Use a noindex tag or remove the page to keep it out of results.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Should I block AI crawlers?</summary><!-- wp:paragraph -->
+<p>It depends on your goals. Blocking training crawlers keeps your content out of model training; blocking AI search crawlers can also stop your pages being cited in AI answers.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Can I test a robots.txt before uploading it?</summary><!-- wp:paragraph -->
+<p>Yes. Edit the text in the box and the results update instantly, without changing the live file.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>How big can a robots.txt file be?</summary><!-- wp:paragraph -->
+<p>Google reads up to 500 KiB. Keep it short and simple; most sites need fewer than 20 lines.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details --></div>
+<!-- /wp:group -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Related free tools</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="/tools/robots-txt-generator/">Robots.txt Generator</a>: build a correct file with sitemap and AI crawler rules.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="/tools/redirect-checker/">Redirect Checker</a>: make sure your important URLs load in one step.</li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="/tools/on-page-seo-checker/">On-Page SEO Checker</a>: check a page for noindex, canonical and other indexing problems.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:group {"className":"semrs-service-cta","layout":{"type":"default"}} -->
+<div class="wp-block-group semrs-service-cta"><!-- wp:paragraph -->
+<p>Want a full crawl and indexing check of your website? <a href="/services/seo/">See SEMRS SEO &amp; GEO services →</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

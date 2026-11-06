@@ -26,7 +26,7 @@ Many businesses spend on ads, newsletters, social media and flyers without knowi
 
 ## Which marketing tools to use
 
-The **UTM Builder** creates tracked links with presets for Google Ads, Microsoft Ads, Facebook, Instagram, LinkedIn and TikTok ads, social posts, newsletters, your Google Business Profile and QR codes. Bulk mode applies the same tags to a list of URLs and exports a CSV for your team or ad platform. To put a value on organic traffic, use the [SEO ROI Calculator](/tools/seo-roi-calculator/).
+The **UTM Builder** creates tracked links with presets for Google Ads, Microsoft Ads, Facebook, Instagram, LinkedIn and TikTok ads, social posts, newsletters, your Google Business Profile and QR codes. Bulk mode applies the same tags to a list of URLs and exports a CSV for your team or ad platform. The **ROAS & Break-Even Calculator** shows whether a campaign makes money: return on ad spend, the break-even ROAS for your margins and profit after ads. To put a value on organic traffic, use the [SEO ROI Calculator](/tools/seo-roi-calculator/).
 
 ## Offline marketing counts too
 
@@ -49,4 +49,4 @@ A: Not when they are used on external links only. Never add them to internal lin
 Q: What should I call my campaigns?
 A: Short, lowercase names that include the topic and date, such as spring_sale_2026, used consistently across channels.
 
-> Want campaigns that are tracked, tested and improved every month? [See SEMRS Paid Ads Management →](/services/paid-ads/)
+> Want campaigns that are tracked, tested and improved every month? [See SEMRS Paid Ads & Lead Generation →](/services/paid-ads-lead-generation/)

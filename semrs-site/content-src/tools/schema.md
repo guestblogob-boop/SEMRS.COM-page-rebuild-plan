@@ -48,4 +48,4 @@ A: Yes. A typical local business uses LocalBusiness markup on its homepage or co
 Q: Where do I paste the code in WordPress?
 A: In a Custom HTML block on the page, in your theme's header settings, or through your SEO plugin's schema feature.
 
-> Want structured data designed and validated across your whole website? [See SEMRS Technical SEO →](/services/technical-seo/)
+> Want structured data designed and validated across your whole website? [See SEMRS SEO & GEO services →](/services/seo/)

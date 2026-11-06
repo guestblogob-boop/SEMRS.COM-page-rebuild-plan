@@ -104,4 +104,4 @@ A: Whenever you add or remove important pages, change services or prices, or upd
 - [Schema Markup Generator](/tools/schema-markup-generator/): describe your business and content with structured data.
 - [Word Counter](/tools/word-counter/): keep your page summaries tight.
 
-> Want your business to show up accurately in AI answers? [See SEMRS AI Search Optimization →](/services/ai-search-optimization/)
+> Want your business to show up accurately in AI answers? [See SEMRS SEO & GEO services →](/services/seo/)

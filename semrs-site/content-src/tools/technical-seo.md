@@ -3,12 +3,12 @@ kind: category
 parent: tools
 order: 21
 h1: Free Technical SEO Tools
-title: Free Technical SEO Tools: Robots.txt & 301 Redirects
-description: Free technical SEO tools: generate a correct robots.txt with AI crawler rules and trace redirect chains, status codes and loops for any public URL.
+title: Free Technical SEO Tools: Robots.txt, Redirects | SEMRS
+description: Free technical SEO tools: build and test robots.txt, write and check 301 redirects, and create hreflang tags for language and country versions.
 focus: technical seo tools
 schema: CollectionPage
 ---
-These free technical SEO tools check robots.txt rules and redirects, two common causes of lost traffic. Technical SEO makes sure search engines can find, crawl and understand your website. These free tools cover two of the most common causes of lost traffic: crawler rules that block the wrong pages, and redirects that go wrong after a website change.
+These free technical SEO tools check robots.txt rules, redirects and hreflang, common causes of lost traffic. Technical SEO makes sure search engines can find, crawl and understand your website. These free tools cover the most common problems: crawler rules that block the wrong pages, redirects that go wrong after a website change, and language versions that show to the wrong country.
 
 [semrs_tools category="technical-seo"]
 
@@ -26,7 +26,7 @@ Great content cannot rank if search engines cannot reach it. A single wrong line
 
 ## Which technical SEO tools to use
 
-Use the **Robots.txt Generator** when you launch a site, move from a staging server, change platform or want to set rules for AI crawlers such as GPTBot and ClaudeBot. Use the **Redirect Checker** after any URL change, when an old link seems slow, or when Search Console reports redirect errors. Together they cover the first checks a technical SEO audit would make.
+Use the **Robots.txt Generator** when you launch a site, move from a staging server, change platform or want to set rules for AI crawlers such as GPTBot and ClaudeBot. Use the **Redirect Checker** after any URL change, when an old link seems slow, or when Search Console reports redirect errors. Use the **Robots.txt Tester** to check whether Googlebot or an AI crawler may open a specific URL on a live site, and to test changes before you upload them. Use the **Redirect Rules Generator** to turn a list of old and new URLs into .htaccess, Nginx or CSV rules, and the **Hreflang Tag Generator** when a page exists in several languages or for several countries. Together they cover the first checks a technical SEO audit would make.
 
 ## A quick technical health routine
 
@@ -45,4 +45,4 @@ A: Not always. Many content management systems and SEO plugins include a redirec
 Q: How do I know if Google can crawl my site?
 A: Use the URL Inspection tool and the Pages report in Google Search Console, and check your robots.txt with the generator's rules in mind.
 
-> Want a full technical audit with fixes, not just a report? [See SEMRS Technical SEO →](/services/technical-seo/)
+> Want a full technical audit with fixes, not just a report? [See SEMRS SEO & GEO services →](/services/seo/)
