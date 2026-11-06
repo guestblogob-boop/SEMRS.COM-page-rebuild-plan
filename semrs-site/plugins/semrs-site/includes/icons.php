@@ -57,6 +57,18 @@ function semrs_site_icons() {
 		'clipboard'  => array( __( 'Review', 'semrs-site' ), '<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path class="a" d="M9 13l2 2 4-4"/>' ),
 		'book'       => array( __( 'Book', 'semrs-site' ), '<path d="M4 19V5a2 2 0 0 1 2-2h14v15H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h14"/><path class="a" d="M9 7.5h7"/>' ),
 		'lock'       => array( __( 'Lock', 'semrs-site' ), '<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle class="a" cx="12" cy="15.5" r="1.5"/>' ),
+		'handshake'  => array( __( 'Partnership', 'semrs-site' ), '<path d="M2 11l4-4 3 1 3-2 3 1 3-1 4 4"/><path d="M6 7v6l5 5a1.5 1.5 0 0 0 2.1-2.1"/><path class="a" d="M18 7v6l-5 5M9.5 14.5l2 2M11.5 12.5l2 2"/>' ),
+		'lifebuoy'   => array( __( 'Help', 'semrs-site' ), '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path class="a" d="M5.6 5.6l3.9 3.9M14.5 14.5l3.9 3.9M18.4 5.6l-3.9 3.9M9.5 14.5l-3.9 3.9"/>' ),
+		'palette'    => array( __( 'Design', 'semrs-site' ), '<path d="M12 3a9 9 0 0 0 0 18c1.2 0 1.8-.9 1.8-1.8 0-1.4-1.3-1.7-1.3-2.9 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4c0-4.2-4-7.5-9-7.5z"/><circle class="a" cx="7.5" cy="11" r="1.2"/><circle class="a" cx="10.5" cy="7.2" r="1.2"/><circle class="a" cx="15" cy="7.8" r="1.2"/>' ),
+		'gauge'      => array( __( 'Speed', 'semrs-site' ), '<path d="M4.5 18a9 9 0 1 1 15 0"/><path class="a" d="M12 14l4-5"/><circle cx="12" cy="14" r="1.6"/>' ),
+		'key'        => array( __( 'Key', 'semrs-site' ), '<circle cx="8" cy="15" r="4.5"/><path d="M11.2 11.8L20 3"/><path class="a" d="M16.5 6.5l2.5 2.5M14 9l2 2"/>' ),
+		'crown'      => array( __( 'Pro', 'semrs-site' ), '<path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 10H5z"/><path class="a" d="M5 21h14"/>' ),
+		'receipt'    => array( __( 'Refund', 'semrs-site' ), '<path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path class="a" d="M9 8h6M9 12h6M9 16h3"/>' ),
+		'alert'      => array( __( 'Notice', 'semrs-site' ), '<path d="M12 3.5L2.5 20h19z"/><path class="a" d="M12 10v4.5M12 17.5h.01"/>' ),
+		'cookie'     => array( __( 'Cookie', 'semrs-site' ), '<path d="M21 12.5A9 9 0 1 1 11.5 3a3 3 0 0 0 3.5 3.5 3 3 0 0 0 3.5 3.5 3 3 0 0 0 2.5 2.5z"/><path class="a" d="M8.5 9.5h.01M8 15h.01M12.5 13h.01M15.5 16.5h.01"/>' ),
+		'share'      => array( __( 'Share', 'semrs-site' ), '<circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path class="a" d="M8.2 10.8l7.6-4M8.2 13.2l7.6 4"/>' ),
+		'globe'      => array( __( 'Languages', 'semrs-site' ), '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path class="a" d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>' ),
+		'contrast'   => array( __( 'Contrast', 'semrs-site' ), '<circle cx="12" cy="12" r="9"/><path class="a" d="M12 3v18a9 9 0 0 0 0-18z"/>' ),
 		'folder'     => array( __( 'Folder', 'semrs-site' ), '<path d="M3 6a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path class="a" d="M3 10h18"/>' ),
 	);
 }
@@ -99,6 +111,31 @@ function semrs_site_page_icon_map() {
 		'/tools/website/'                          => 'browser',
 		'/tools/calculators/'                      => 'calculator',
 		'/tools/seo-roi-calculator/'               => 'growth',
+		'/tools/on-page-seo-checker/'              => 'clipboard',
+		'/tools/open-graph-generator/'             => 'share',
+		'/tools/robots-txt-tester/'                => 'robot',
+		'/tools/hreflang-generator/'               => 'globe',
+		'/tools/redirect-rules-generator/'         => 'redirect',
+		'/tools/readability-checker/'              => 'type',
+		'/tools/roas-calculator/'                  => 'calculator',
+		'/tools/color-contrast-checker/'           => 'contrast',
+		'/semrs-pro/'                              => 'crown',
+		'/my-licenses/'                            => 'key',
+		'/support/'                                => 'lifebuoy',
+		'/support/theme/'                          => 'palette',
+		'/support/blocks/'                         => 'layers',
+		'/support/templates/'                      => 'browser',
+		'/support/seo/'                            => 'search',
+		'/support/ads/'                            => 'megaphone',
+		'/support/speed/'                          => 'gauge',
+		'/support/free-tools/'                     => 'grid',
+		'/support/privacy-security/'               => 'shield',
+		'/support/pro-license/'                    => 'key',
+		'/support/policies/'                       => 'scales',
+		'/affiliate-program/'                      => 'handshake',
+		'/refund-policy/'                          => 'receipt',
+		'/disclaimer/'                             => 'alert',
+		'/cookie-policy/'                          => 'cookie',
 		'/semrs-os/'                               => 'dashboard',
 		'/wordpress-themes-plugins/'               => 'puzzle',
 		'/pricing/'                                => 'tag',
@@ -222,7 +259,7 @@ add_action(
 	}
 );
 
-// Menus: categories anywhere, services, tools and pages in dropdowns (top bar and footer stay text only).
+// Menus: categories anywhere, services, tools and pages in dropdowns (top bar and footer menu stay text only; footer columns get icons below).
 add_filter(
 	'nav_menu_item_title',
 	function ( $title, $item, $args, $depth ) {
@@ -235,6 +272,36 @@ add_filter(
 	},
 	10,
 	4
+);
+
+// Footer columns: the same icons before page, service and tool links in list blocks.
+add_action(
+	'dynamic_sidebar_before',
+	function ( $index ) {
+		$GLOBALS['semrs_site_footer_col'] = 0 === strpos( (string) $index, 'footer-' );
+	}
+);
+add_action(
+	'dynamic_sidebar_after',
+	function () {
+		$GLOBALS['semrs_site_footer_col'] = false;
+	}
+);
+add_filter(
+	'widget_block_content',
+	function ( $html ) {
+		if ( empty( $GLOBALS['semrs_site_footer_col'] ) || false === strpos( $html, '<li' ) ) {
+			return $html;
+		}
+		return preg_replace_callback(
+			'#(<li\b[^>]*>\s*<a\b[^>]*href="([^"]+)"[^>]*>)(?!\s*<svg)#',
+			function ( $m ) {
+				$icon = semrs_site_icon( semrs_site_url_icon_key( html_entity_decode( $m[2] ) ) );
+				return $icon ? $m[1] . $icon : $m[1];
+			},
+			$html
+		);
+	}
 );
 
 // Category lists: the Categories widget and block (not the dropdown version).
@@ -320,6 +387,7 @@ add_action(
 	function () {
 		$css = '.semrs-cat-icon{flex:none;width:1.15em;height:1.15em;margin-right:.5em;vertical-align:-.2em;color:var(--sp-primary,#0b2fd1)}.semrs-cat-icon .a{stroke:var(--sp-accent,#f7941d)}'
 			. '.main-navigation a:has(>.semrs-cat-icon){display:flex;align-items:center}'
+			. '.site-footer li>a:has(>.semrs-cat-icon){display:inline-flex;align-items:center}.site-footer .semrs-cat-icon{color:inherit;opacity:.9}'
 			. '.wp-block-categories .cat-item>a,.widget_categories .cat-item>a{display:inline-flex;align-items:center}'
 			. '.page-title:has(>.semrs-cat-icon),.entry-title:has(>.semrs-cat-icon){display:flex;align-items:center;gap:.15em}'
 			. '.page-title>.semrs-cat-icon,.entry-title>.semrs-cat-icon,.semrs-page-icon{width:1.5em;height:1.5em;padding:.28em;background:var(--sp-accent-soft,#fef0dd);border-radius:var(--sp-radius-sm,8px);box-sizing:border-box;margin-right:.35em}'

@@ -42,6 +42,7 @@ SEMRS is a set of free tools for WordPress, plus one paid add-on. Think of it li
 - [SEO guide](/support/seo/): titles, descriptions and the SEO score.
 - [Ads guide](/support/ads/): place ads safely and follow AdSense rules.
 - [Speed guide](/support/speed/): make your pages load fast.
+- [Free Tools guide](/support/free-tools/): put 20 free SEO tools on your site.
 - [Pro guide](/support/pro-license/): your license key and updates.
 - [Policies guide](/support/policies/): Google, AdSense, WordPress.org and privacy.
 
