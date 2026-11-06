@@ -53,6 +53,42 @@ function semrs_tools_enqueue_head_style() {
 add_action( 'wp_enqueue_scripts', 'semrs_tools_enqueue_head_style', 20 );
 
 /**
+ * Height each tool takes once it has loaded (px, [phone, desktop]), measured
+ * in its default state. The box reserves this space before the script runs,
+ * so nothing below it moves (no layout shift, CLS 0).
+ *
+ * @return array<string, int[]>
+ */
+function semrs_tools_heights() {
+	return apply_filters(
+		'semrs_tools_heights',
+		array(
+			'serp-snippet-preview'            => array( 1390, 700 ),
+			'meta-description-checker'        => array( 720, 640 ),
+			'robots-txt-generator'            => array( 2320, 1340 ),
+			'redirect-checker'                => array( 620, 640 ),
+			'schema-markup-generator'         => array( 1570, 1100 ),
+			'local-business-schema-generator' => array( 4100, 2830 ),
+			'word-counter'                    => array( 1160, 670 ),
+			'keyword-ideas-generator'         => array( 590, 460 ),
+			'google-review-link-generator'    => array( 530, 430 ),
+			'llms-txt-generator'              => array( 2390, 1810 ),
+			'utm-builder'                     => array( 1540, 950 ),
+			'image-compressor'                => array( 740, 490 ),
+			'seo-roi-calculator'              => array( 2240, 1170 ),
+			'on-page-seo-checker'             => array( 740, 730 ),
+			'open-graph-generator'            => array( 2500, 2490 ),
+			'robots-txt-tester'               => array( 870, 890 ),
+			'hreflang-generator'              => array( 1220, 930 ),
+			'redirect-rules-generator'        => array( 1070, 1100 ),
+			'readability-checker'             => array( 700, 1230 ),
+			'roas-calculator'                 => array( 1670, 730 ),
+			'color-contrast-checker'          => array( 1300, 830 ),
+		)
+	);
+}
+
+/**
  * [semrs_tool id="…"]
  *
  * @param array $atts Attributes.
@@ -72,15 +108,18 @@ function semrs_tools_tool_shortcode( $atts ) {
 	wp_enqueue_script( 'semrs-tool-' . $id );
 
 	$cta = semrs_tools_cta( $tools[ $id ][1] );
+	$hts = semrs_tools_heights()[ $id ] ?? null;
+	$css = $hts ? sprintf( ' style="--semrs-tool-h:%dpx;--semrs-tool-hd:%dpx"', (int) $hts[0], (int) $hts[1] ) : '';
 
 	return sprintf(
-		'<div class="semrs-tool-app" data-semrs-tool="%1$s" data-service-label="%2$s" data-service-url="%3$s" data-service-text="%6$s"><noscript><p>%4$s</p></noscript><p class="semrs-tool-loading">%5$s</p></div>',
+		'<div class="semrs-tool-app"%7$s data-semrs-tool="%1$s" data-service-label="%2$s" data-service-url="%3$s" data-service-text="%6$s"><noscript><p>%4$s</p></noscript><p class="semrs-tool-loading">%5$s</p></div>',
 		esc_attr( $id ),
 		esc_attr( $cta ? $cta[0] : '' ),
 		esc_url( $cta ? $cta[2] : '' ),
 		esc_html__( 'This free tool needs JavaScript. Please enable it in your browser.', 'semrs-tools' ),
 		esc_html__( 'Loading tool…', 'semrs-tools' ),
-		esc_attr( $cta ? $cta[1] : '' )
+		esc_attr( $cta ? $cta[1] : '' ),
+		$css // Built from integers above.
 	);
 }
 add_shortcode( 'semrs_tool', 'semrs_tools_tool_shortcode' );

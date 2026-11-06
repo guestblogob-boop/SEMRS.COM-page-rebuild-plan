@@ -19,7 +19,7 @@ fs.mkdirSync(OUT, { recursive: true });
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 function inline(s) {
 	return esc(s)
-		.replace(/`([^`]+)`/g, '<code>$1</code>')
+		.replace(/`([^`]+)`/g, (m, c) => '<code>' + c.replace(/\[/g, '&#91;').replace(/\]/g, '&#93;') + '</code>') // Shortcodes in examples show as text, never run.
 		.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
 		.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, t, u) => `<a href="${u.replace(/"/g, '&quot;')}"${/^https?:/.test(u) ? ' target="_blank" rel="noopener"' : ''}>${t}</a>`);
 }

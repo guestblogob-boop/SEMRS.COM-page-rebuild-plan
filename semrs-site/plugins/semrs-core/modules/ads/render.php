@@ -49,6 +49,9 @@ function semrs_ads_enqueue_adsense() {
 	if ( ! semrs_ads_loads_tag() || ! semrs_ads_allowed() ) {
 		return;
 	}
+	if ( $s['lazy'] ) {
+		return; // The footer loader adds the tag on the first scroll, tap or key press (or after 5 s): faster first paint.
+	}
 	wp_enqueue_script(
 		'semrs-adsense',
 		add_query_arg( 'client', $s['publisher_id'], 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' ),
@@ -334,14 +337,35 @@ add_action( 'admin_bar_menu', 'semrs_ads_admin_bar', 90 );
  * Loader: activates templates for the matching device, lazily if enabled.
  */
 function semrs_ads_loader() {
-	if ( empty( $GLOBALS['semrs_ads_printed'] ) ) {
+	$s   = semrs_ads_settings();
+	$tag = $s['lazy'] && semrs_ads_loads_tag() && semrs_ads_allowed() ? add_query_arg( 'client', $s['publisher_id'], 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' ) : '';
+	if ( empty( $GLOBALS['semrs_ads_printed'] ) && ! $tag ) {
 		return;
 	}
-	$lazy = semrs_ads_settings()['lazy'] ? 'true' : 'false';
+	$lazy = $s['lazy'] ? 'true' : 'false';
 	?>
-	<script>
+	<script data-no-delay>
 	(function () {
 		var lazy = <?php echo $lazy; // phpcs:ignore WordPress.Security.EscapeOutput -- boolean literal. ?>;
+		var tag = <?php echo wp_json_encode( $tag ); ?>;
+		/* With lazy loading, the AdSense tag (and Auto ads) waits for the first scroll, tap, key press or mouse move, or 5 seconds. */
+		function start(run) {
+			if (!lazy) { run(); return; }
+			var done = false, evs = ['scroll', 'pointerdown', 'keydown', 'touchstart', 'mousemove'];
+			function go() {
+				if (done) { return; }
+				done = true;
+				evs.forEach(function (e) { window.removeEventListener(e, go, { passive: true }); });
+				if (tag && !document.getElementById('semrs-adsense-js')) {
+					var s = document.createElement('script');
+					s.id = 'semrs-adsense-js'; s.async = true; s.crossOrigin = 'anonymous'; s.src = tag;
+					document.head.appendChild(s);
+				}
+				run();
+			}
+			evs.forEach(function (e) { window.addEventListener(e, go, { passive: true }); });
+			setTimeout(go, 5000);
+		}
 		var mq = { all: '(min-width:0px)', mobile: '(max-width:921px)', desktop: '(min-width:922px)', wide: '(min-width:1200px)' };
 		if (window.semrsAdsBlocked) { // Set by SEMRS Pro click protection.
 			document.querySelectorAll('[data-semrs-ad]').forEach(function (b) { b.remove(); });
@@ -379,6 +403,7 @@ function semrs_ads_loader() {
 			});
 			mo.observe(ins, { attributes: true, attributeFilter: ['data-ad-status'] });
 		}
+		start(function () {
 		var boxes = [].slice.call(document.querySelectorAll('[data-semrs-ad]')).filter(function (b) {
 			var q = mq[b.dataset.device] || mq.all;
 			if (window.matchMedia(q).matches) { return true; }
@@ -393,6 +418,7 @@ function semrs_ads_loader() {
 		} else {
 			boxes.forEach(activate);
 		}
+		});
 	})();
 	</script>
 	<?php

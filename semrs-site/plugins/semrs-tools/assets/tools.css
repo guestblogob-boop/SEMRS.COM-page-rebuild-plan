@@ -10,9 +10,10 @@
 	--st-ok: var(--sp-ok, #0f7b4d);
 	--st-bad: var(--sp-bad, #b42318);
 	--st-warn: var(--sp-warn, #8a5a00);
-	min-height: 380px;
+	min-height: var(--semrs-tool-h, 380px);
 	margin: 1.5rem 0;
 }
+@media (min-width: 922px) { .semrs-tool-app { min-height: var(--semrs-tool-hd, 380px); } }
 .semrs-tool-loading { color: var(--st-muted); padding: 2rem; text-align: center; }
 /* On wide screens the tool breaks out of the reading column (guide text keeps its width). */
 @media (min-width: 922px) {
