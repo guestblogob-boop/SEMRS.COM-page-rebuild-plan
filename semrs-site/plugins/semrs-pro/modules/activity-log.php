@@ -155,7 +155,9 @@ add_action(
 		if ( ! $items && $up instanceof Plugin_Upgrader && ! empty( $up->result['destination_name'] ) ) {
 			$items = array( $up->result['destination_name'] );
 		}
-		semrs_act_add( ( $data['action'] ?? 'update' ) . 'd', $type, 0, implode( ', ', $items ) );
+		$verbs = array( 'install' => 'installed', 'update' => 'updated' );
+		$act   = (string) ( $data['action'] ?? 'update' );
+		semrs_act_add( $verbs[ $act ] ?? $act, $type, 0, implode( ', ', $items ) );
 	},
 	10,
 	2
