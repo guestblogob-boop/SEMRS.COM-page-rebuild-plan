@@ -248,7 +248,11 @@ function semrs_shops_etsy_rows( $cid ) {
 add_action(
 	'admin_menu',
 	function () {
-		add_management_page( __( 'Shop exports', 'semrs-shops' ), __( 'Shop exports', 'semrs-shops' ), 'manage_options', 'semrs-shops-exports', 'semrs_shops_exports_page' );
+		if ( function_exists( 'semrs_core_modules' ) ) {
+			add_submenu_page( 'semrs', __( 'Shops', 'semrs-shops' ), __( 'Shops', 'semrs-shops' ), 'manage_options', 'semrs-shops', 'semrs_shops_admin_page' );
+		} else {
+			add_management_page( __( 'SEMRS Shops', 'semrs-shops' ), __( 'SEMRS Shops', 'semrs-shops' ), 'manage_options', 'semrs-shops', 'semrs_shops_admin_page' );
+		}
 	}
 );
 
@@ -277,10 +281,31 @@ add_action(
 );
 
 /**
- * Exports screen.
+ * Shops screen: Settings and Exports tabs.
+ */
+function semrs_shops_admin_page() {
+	$tab  = isset( $_GET['tab'] ) && 'exports' === $_GET['tab'] ? 'exports' : 'settings'; // phpcs:ignore WordPress.Security.NonceVerification
+	$base = menu_page_url( 'semrs-shops', false );
+	echo '<div class="wrap"><h1>' . esc_html__( 'SEMRS Shops', 'semrs-shops' ) . '</h1>';
+	echo '<p>' . esc_html__( 'Import a ready-made shop under SEMRS → Templates (Digital Downloads Shop or Crochet Pattern Shop, in four storefront styles). Then set the currency and checkout here.', 'semrs-shops' ) . '</p>';
+	echo '<nav class="nav-tab-wrapper">';
+	foreach ( array( 'settings' => __( 'Settings', 'semrs-shops' ), 'exports' => __( 'Exports', 'semrs-shops' ) ) as $k => $label ) {
+		echo '<a class="nav-tab' . ( $k === $tab ? ' nav-tab-active' : '' ) . '"' . ( $k === $tab ? ' aria-current="page"' : '' ) . ' href="' . esc_url( add_query_arg( 'tab', $k, $base ) ) . '">' . esc_html( $label ) . '</a>';
+	}
+	echo '</nav>';
+	if ( 'exports' === $tab ) {
+		semrs_shops_exports_page();
+	} else {
+		semrs_shops_settings_tab();
+	}
+	echo '</div>';
+}
+
+/**
+ * Exports tab.
  */
 function semrs_shops_exports_page() {
-	echo '<div class="wrap"><h1>' . esc_html__( 'Shop exports', 'semrs-shops' ) . '</h1>';
+	echo '<h2>' . esc_html__( 'Marketplace files', 'semrs-shops' ) . '</h2>';
 	echo '<p>' . esc_html__( 'Download the SEMRS Shops catalogues as marketplace files. Prices are 2026 marketplace estimates: check them against current listings before you publish.', 'semrs-shops' ) . '</p>';
 	echo '<table class="widefat striped" style="max-width:900px"><thead><tr><th>' . esc_html__( 'Catalogue', 'semrs-shops' ) . '</th><th>' . esc_html__( 'Products', 'semrs-shops' ) . '</th><th>Shopify</th><th>Etsy</th></tr></thead><tbody>';
 	foreach ( array_keys( semrs_blocks_shop_catalogs() ) as $cid ) {
@@ -295,7 +320,7 @@ function semrs_shops_exports_page() {
 	echo '<li>' . esc_html__( 'Shopify: Products → Import → choose the CSV. Products arrive as drafts with "requires shipping" off. Attach each digital file with a digital-downloads app, and add a personalisation app if a product asks for names.', 'semrs-shops' ) . '</li>';
 	echo '<li>' . esc_html__( 'Etsy: Etsy has no CSV upload of its own. Use the sheet to create listings in Shop Manager, or import it with a listing tool you trust. Set each listing to "Digital" and upload the file.', 'semrs-shops' ) . '</li>';
 	echo '<li>' . esc_html__( 'Image URLs point to this site. If it is not public yet, upload the images from the plugin\'s images folder instead.', 'semrs-shops' ) . '</li>';
-	echo '</ol><p class="description">' . esc_html__( 'eBay and Amazon files are not offered: both marketplaces restrict downloadable products such as printables and patterns.', 'semrs-shops' ) . '</p></div>';
+	echo '</ol><p class="description">' . esc_html__( 'eBay and Amazon files are not offered: both marketplaces restrict downloadable products such as printables and patterns.', 'semrs-shops' ) . '</p>';
 }
 
 /**
@@ -305,9 +330,9 @@ function semrs_shops_exports_page() {
  * @return string[]
  */
 function semrs_shops_action_links( $links ) {
-	$url = menu_page_url( 'semrs-shops-exports', false );
+	$url = menu_page_url( 'semrs-shops', false );
 	if ( $url ) {
-		array_unshift( $links, '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Exports', 'semrs-shops' ) . '</a>' );
+		array_unshift( $links, '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Settings', 'semrs-shops' ) . '</a>' );
 	}
 	$url = menu_page_url( 'semrs-templates', false );
 	if ( $url ) {

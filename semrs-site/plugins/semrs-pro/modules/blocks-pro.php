@@ -35,12 +35,14 @@ function semrs_pro_blocks( $blocks ) {
 		'keywords' => array( 'slider', 'carousel', 'gallery', 'slideshow', 'posts' ),
 		'render'   => 'semrs_pro_render_slider',
 		'panels'   => array(
-			__( 'Content', 'semrs-pro' )  => array( 'source', 'images', 'postType', 'category', 'count' ),
+			__( 'Content', 'semrs-pro' )  => array( 'source', 'images', 'banners', 'bannerLayout', 'postType', 'category', 'count' ),
 			__( 'Display', 'semrs-pro' )  => array( 'perView', 'height', 'showCaption', 'arrows', 'dots' ),
 			__( 'Motion', 'semrs-pro' )   => array( 'autoplay', 'interval', 'loop' ),
 		),
 		'controls' => array(
-			'source'      => array( 'type' => 'select', 'label' => __( 'Slides from', 'semrs-pro' ), 'default' => 'images', 'options' => array( 'images' => __( 'Images', 'semrs-pro' ), 'posts' => __( 'Posts (carousel)', 'semrs-pro' ) ) ),
+			'source'      => array( 'type' => 'select', 'label' => __( 'Slides from', 'semrs-pro' ), 'default' => 'images', 'options' => array( 'images' => __( 'Images', 'semrs-pro' ), 'posts' => __( 'Posts (carousel)', 'semrs-pro' ), 'banners' => __( 'Banners (promo slides with heading, text and button)', 'semrs-pro' ) ) ),
+			'banners'     => array( 'type' => 'textarea', 'label' => __( 'Banners, one per line: Heading | Text | Button text | Button link | Image URL | Background colour', 'semrs-pro' ), 'default' => '' ),
+			'bannerLayout' => array( 'type' => 'select', 'label' => __( 'Banner layout', 'semrs-pro' ), 'default' => 'split', 'options' => array( 'split' => __( 'Text beside image', 'semrs-pro' ), 'cover' => __( 'Image behind text', 'semrs-pro' ), 'text' => __( 'Text only', 'semrs-pro' ) ) ),
 			'images'      => array( 'type' => 'gallery', 'label' => __( 'Images', 'semrs-pro' ) ),
 			'postType'    => array( 'type' => 'posttype', 'label' => __( 'Post type', 'semrs-pro' ), 'default' => 'post' ),
 			'category'    => array( 'type' => 'category', 'label' => __( 'Category', 'semrs-pro' ), 'default' => '' ),
@@ -128,6 +130,22 @@ function semrs_pro_blocks_script( $handle, $file ) {
  * @return string
  */
 function semrs_pro_render_slider( $a ) {
+	if ( 'banners' === semrs_blocks_a( $a, 'source', 'images' ) && function_exists( 'semrs_blocks_render_banners' ) ) {
+		// Same promo banners as the free Banner Slider block, with this block's motion settings.
+		$h = (int) semrs_blocks_a( $a, 'height', 0 );
+		return semrs_blocks_render_banners(
+			array(
+				'slides'       => semrs_blocks_a( $a, 'banners', '' ),
+				'layout'       => semrs_blocks_a( $a, 'bannerLayout', 'split' ),
+				'height'       => $h ? $h : 360,
+				'heightMobile' => $h ? $h : 420,
+				'arrows'       => ! empty( $a['arrows'] ),
+				'dots'         => ! empty( $a['dots'] ),
+				'autoplay'     => ! empty( $a['autoplay'] ),
+				'interval'     => (int) semrs_blocks_a( $a, 'interval', 5 ),
+			)
+		);
+	}
 	$slides = array();
 	if ( 'posts' === semrs_blocks_a( $a, 'source', 'images' ) ) {
 		$q = new WP_Query(

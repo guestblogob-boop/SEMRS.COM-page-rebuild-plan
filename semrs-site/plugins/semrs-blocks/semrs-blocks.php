@@ -3,7 +3,7 @@
  * Plugin Name:       SEMRS Blocks
  * Plugin URI:        https://semrs.com/
  * Description:       Free blocks for any theme (SEMRS, Astra, GeneratePress, Kadence…): SVG icons, icon lists, fancy headings, post grids and lists, countdown timer, pricing and service cards, contact form with country picker, and a free-media sites directory. SEMRS Pro adds sliders, carousels, 3D models, counters, scroll animations and more.
- * Version:           1.3.13
+ * Version:           1.3.14
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-blocks
@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
 // WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
 add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
 
-define( 'SEMRS_BLOCKS_VERSION', '1.3.13' );
+define( 'SEMRS_BLOCKS_VERSION', '1.3.14' );
 define( 'SEMRS_BLOCKS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_BLOCKS_URL', plugin_dir_url( __FILE__ ) );
 
@@ -39,6 +39,7 @@ require SEMRS_BLOCKS_DIR . 'includes/blocks-free.php';
 require SEMRS_BLOCKS_DIR . 'includes/blocks-more.php';
 require SEMRS_BLOCKS_DIR . 'includes/blocks-layout.php';
 require SEMRS_BLOCKS_DIR . 'includes/blocks-showcase.php';
+require SEMRS_BLOCKS_DIR . 'includes/blocks-banners.php';
 require SEMRS_BLOCKS_DIR . 'includes/blocks-product.php';
 require SEMRS_BLOCKS_DIR . 'includes/visibility.php';
 require SEMRS_BLOCKS_DIR . 'includes/contact.php';

@@ -388,7 +388,7 @@
 			"key": "tumbler-cup-designs",
 			"cat": "designs",
 			"title": "Tumbler & Cup Wrap Designs",
-			"badge": "Trending",
+			"badge": "Featured",
 			"price": "3.99",
 			"options": "select Template: 20 oz skinny tumbler, 30 oz tumbler +1, 16 oz glass can +1, 40 oz tumbler with handle +2\nplan License: Personal use =3.99, Commercial (up to 500 items) =9.99",
 			"bundles": "Matching straw-topper charm design | 2",
@@ -504,7 +504,7 @@
 			"key": "digital-planner",
 			"cat": "planners",
 			"title": "2027 ADHD-Friendly Digital Planner",
-			"badge": "Trending",
+			"badge": "Featured",
 			"price": "8.99",
 			"options": "Color: Sage #9bb39a, Blush #e8b4b8, Sand #d8c7a3, Night #1f2937\nselect Start day: Monday, Sunday\nselect App: GoodNotes, Notability, Any PDF app",
 			"bundles": "Digital sticker pack (500 stickers) | 5 | 8",
@@ -711,7 +711,7 @@
 			"key": "nursery-wall-art",
 			"cat": "printables",
 			"title": "Nursery Wall Art – Set of 3 Prints",
-			"badge": "Trending",
+			"badge": "Featured",
 			"price": "8.99",
 			"options": "Color: Sage #9bb39a, Blush #e8b4b8, Neutral #d8c7a3\nplan Size: 8 × 10 in =8.99, 11 × 14 in =11.99, A3 =11.99",
 			"bundles": "Matching name print | 6 | 8",
@@ -826,7 +826,7 @@
 	"site": {
 		"id": "digital-shop",
 		"title": "Digital Downloads Shop",
-		"description": "Etsy-style shop for printables, SVGs, pet and animal designs, shirt, hat, cup, wall and car decal designs, crochet patterns, planners, templates and custom portraits: 35 product pages with colour, size and licence options, personalisation and bundles.",
+		"description": "Maker-style shop for printables, SVGs, pet and animal designs, shirt, hat, cup, wall and car decal designs, crochet patterns, planners, templates and custom portraits: 35 product pages with colour, size and licence options, personalisation and bundles.",
 		"hero_title": "Digital downloads and personalised gifts for every season",
 		"hero_text": "Christmas SVGs, printables, crochet patterns, planners and custom portraits. Download instantly or have it made just for you.",
 		"hero_image": "christmas-wall-art",
@@ -840,7 +840,7 @@
 				"/custom/"
 			]
 		],
-		"trending_title": "Trending this season",
+		"trending_title": "Featured this season",
 		"trending_text": "Planners, wall art, SVG bundles and personalised gifts.",
 		"featured": [
 			"christmas-svg-bundle",

@@ -39,6 +39,7 @@ To turn off blocks you never use, go to **SEMRS → Blocks**, switch them off an
 | Timeline | Dates and events on a line: your history or a roadmap |
 | Progress Bars | Bars with a label and a percentage |
 | Comparison Table | Compare features with ticks and crosses. One column can stand out. |
+| Banner Slider | Promo banners that change by themselves at the top of a shop or landing page: heading, text, button and picture. They stop when a visitor points at them, and visitors can pause them. |
 
 **How to fill in lists:** many blocks use one line per item, with parts split by a `|` sign. For example, Buttons uses `Text | Link | style | icon`. The hint under each box in the sidebar shows the order.
 
@@ -111,7 +112,7 @@ Every message is saved under **Leads** in your dashboard. You also get an email.
 
 | Block | What it adds |
 |---|---|
-| Slider / Carousel | Pictures or posts that slide |
+| Slider / Carousel | Pictures, posts or promo banners that slide |
 | Animated Counter | Numbers that count up when you scroll to them |
 | 3D Model Viewer | 3D models people can turn and zoom |
 | Scroll animations | Blocks that fade or slide in |

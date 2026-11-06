@@ -53,10 +53,11 @@ function semrs_blocks_shop_catalogs() {
  */
 function semrs_shops_styles() {
 	return array(
-		'shopify' => array( 'Shopify style', 'Brand storefront: big hero, collection tiles and a featured grid.', 'Add to cart' ),
-		'etsy'    => array( 'Etsy style', 'Maker shop: shop header with announcement, sections sidebar beside all listings, about and shop policies.', 'Buy it now' ),
-		'ebay'    => array( 'eBay style', 'Store: store categories beside listing rows, and store information.', 'Buy It Now' ),
-		'amazon'  => array( 'Amazon style', 'Brand store: category bar, product rows per category, comparison chart and Q&A.', 'Buy Now' ),
+		// Keys stay as they are (saved pages use them in CSS classes); labels name the layout, not a company.
+		'shopify' => array( __( 'Brand store', 'semrs-shops' ), __( 'Brand storefront: big hero, collection tiles and a featured grid.', 'semrs-shops' ), __( 'Add to cart', 'semrs-shops' ) ),
+		'etsy'    => array( __( 'Maker shop', 'semrs-shops' ), __( 'Maker shop: shop header with announcement, sections sidebar beside all listings, about and shop policies.', 'semrs-shops' ), __( 'Buy it now', 'semrs-shops' ) ),
+		'ebay'    => array( __( 'Listing store', 'semrs-shops' ), __( 'Listing store: categories beside listing rows, and store information.', 'semrs-shops' ), __( 'Buy now', 'semrs-shops' ) ),
+		'amazon'  => array( __( 'Catalog store', 'semrs-shops' ), __( 'Catalog store: category bar, product rows per category, comparison chart and Q&A.', 'semrs-shops' ), __( 'Buy now', 'semrs-shops' ) ),
 	);
 }
 
@@ -143,6 +144,44 @@ function semrs_blocks_shop_grid( $cid, $products, $style = 'shopify', $cols = 4 
 		$out .= semrs_blocks_shop_block( $cid, $p, 'card', $style );
 	}
 	return $out . '<!-- /wp:semrs/container -->';
+}
+
+/**
+ * Banner Slider block for the top of a shop: the shop's welcome, then
+ * featured products with their images (falls back to a plain banner when
+ * SEMRS Blocks is older than 1.3.14).
+ *
+ * @param string $cid      Catalogue ID.
+ * @param array  $site     Catalogue site data.
+ * @param array  $featured Featured products.
+ * @return string
+ */
+function semrs_blocks_shop_banners( $cid, $site, $featured ) {
+	$clean = function ( $t ) {
+		$t = trim( preg_replace( '/\s+/', ' ', str_replace( '|', '-', (string) $t ) ) );
+		$t = preg_split( '/(?<=[.!?])\s/', $t )[0];
+		return strlen( $t ) > 90 ? rtrim( substr( $t, 0, 88 ) ) . '…' : $t;
+	};
+	$bgs   = array( '#fde7d9', '#e3efe6', '#e6e9f7', '#f8e6ef' );
+	$first = $featured ? '{{img:' . $cid . '-' . $featured[0]['key'] . '}}' : '';
+	$lines = array( $clean( $site['hero_title'] ?? '' ) . ' | ' . $clean( $site['hero_text'] ?? '' ) . ' | ' . __( 'Shop all', 'semrs-shops' ) . ' | /shop/ | ' . $first . ' | ' . $bgs[0] );
+	foreach ( array_slice( $featured, 1, 3 ) as $i => $p ) {
+		$lines[] = $clean( $p['title'] ) . ' | ' . $clean( $p['text'] ?? '' ) . ' | ' . __( 'See this item', 'semrs-shops' ) . ' | /' . $p['key'] . '/ | {{img:' . $cid . '-' . $p['key'] . '}} | ' . $bgs[ ( $i + 1 ) % 4 ];
+	}
+	if ( ! function_exists( 'semrs_blocks_render_banners' ) ) {
+		return '<!-- wp:semrs/container {"className":"semrs-sf-banner","gradient":"sunrise","minHeight":160,"padTop":24,"padBottom":24} --><!-- wp:paragraph --><p> </p><!-- /wp:paragraph --><!-- /wp:semrs/container -->';
+	}
+	return '<!-- wp:semrs/banner-slider ' . wp_json_encode(
+		array(
+			'slides'       => implode( "\n", $lines ),
+			'layout'       => 'split',
+			'height'       => 340,
+			'heightMobile' => 460,
+			'autoplay'     => true,
+			'interval'     => 6,
+		),
+		JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+	) . ' /-->';
 }
 
 /**
@@ -485,7 +524,8 @@ function semrs_blocks_shop_section_html( $html, $id ) {
 			$tiles = '<!-- wp:semrs/container {"layout":"grid","columns":4,"columnsTablet":2,"gap":16} -->' . $cats . '<!-- /wp:semrs/container -->';
 
 			if ( 'etsy' === $style ) {
-				$header = '<!-- wp:semrs/container {"align":"full","tag":"section","className":"semrs-sf semrs-sf-etsy semrs-sf-banner","gradient":"sunrise","minHeight":160,"padTop":24,"padBottom":24} --><!-- wp:paragraph --><p> </p><!-- /wp:paragraph --><!-- /wp:semrs/container -->'
+				// Top of a maker shop: auto-rotating promo banners (shop welcome + featured items).
+				$header = semrs_blocks_shop_section( semrs_blocks_shop_banners( $cid, $site, $featured ), 'etsy', array( 'padTop' => 16, 'padBottom' => 0 ) )
 					. semrs_blocks_shop_section(
 						'<!-- wp:columns {"className":"semrs-sf-shophead"} --><div class="wp-block-columns semrs-sf-shophead"><!-- wp:column {"width":"140px"} --><div class="wp-block-column" style="flex-basis:140px">' . str_replace( 'is-style-rounded semrs-sf-hero-img', 'semrs-sf-avatar', $img_tag ) . '</div><!-- /wp:column --><!-- wp:column --><div class="wp-block-column">'
 						. '<!-- wp:heading {"level":1} --><h1 class="wp-block-heading">{{name}}</h1><!-- /wp:heading -->'
@@ -526,7 +566,7 @@ function semrs_blocks_shop_section_html( $html, $id ) {
 				}
 				$compare = array();
 				foreach ( array_slice( $featured, 0, 5 ) as $f ) {
-					$compare[] = array( $f['title'], '$' . $f['price'], $d['categories'][ $f['cat'] ] ?? '', $f['included'][0] ?? '' );
+					$compare[] = array( $f['title'], function_exists( 'semrs_shops_settings' ) ? semrs_blocks_money( (float) $f['price'], semrs_shops_settings()['currency'] ) : '$' . $f['price'], $d['categories'][ $f['cat'] ] ?? '', $f['included'][0] ?? '' );
 				}
 				return $hero
 					. semrs_blocks_shop_section( $rows, 'amazon' )
@@ -534,7 +574,7 @@ function semrs_blocks_shop_section_html( $html, $id ) {
 					. semrs_blocks_shop_section_html( '', $cid . '-faq~amazon' );
 			}
 
-			// Shopify style.
+			// Brand store style.
 			$hero = '<!-- wp:semrs/container {"align":"full","tag":"section","className":"semrs-sf semrs-sf-shopify","layout":"row","gap":40,"padTop":72,"padBottom":72,"gradient":"sunrise","valign":"center"} -->'
 				. '<!-- wp:group {"layout":{"type":"default"}} --><div class="wp-block-group"><!-- wp:paragraph {"className":"semrs-eyebrow"} --><p class="semrs-eyebrow">{{name}}</p><!-- /wp:paragraph -->'
 				. '<!-- wp:heading {"level":1} --><h1 class="wp-block-heading">' . esc_html( $site['hero_title'] ?? '' ) . '</h1><!-- /wp:heading -->'

@@ -4,7 +4,7 @@ Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: semrs-core
-Stable tag: 1.5.12
+Stable tag: 1.5.13
 License: GPLv2 or later
 
 Premium add-on for the free SEMRS theme and the free SEMRS Core plugin. Every module can be switched off under SEMRS → Modules.
@@ -146,6 +146,9 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 SEMRS → License: paste your key and click Activate (Deactivate frees the site so you can move the key). Updates come from semrs.com (SEMRS Update Server): with a valid key, WordPress shows "Update available" and installs new versions in one click. Features never switch off when a license expires; the license controls updates and support.
 
 == Changelog ==
+
+= 1.5.13 =
+* Slider / Carousel: new "Banners" source: promo slides with heading, text, button, image and background colour (the same banners as the free Banner Slider block)
 
 = 1.5.12 =
 * Free Tools Pro (SEO Pro add-on): bulk checks of up to 25 URLs in the SEMRS Tools redirect and on-page checkers, your own expert-help box per category, a tool usage report and higher hourly limits.

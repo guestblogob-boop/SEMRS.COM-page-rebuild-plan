@@ -5,29 +5,35 @@ Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: semrs-blocks
-Stable tag: 1.0.3
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Ready-made digital-download and crochet-pattern shops for SEMRS Blocks, in Shopify, Etsy, eBay and Amazon storefront styles.
+Ready-made digital-download and crochet-pattern shops for SEMRS Blocks, in four storefront styles: brand store, maker shop, listing store and catalog store.
 
 == Description ==
 
 SEMRS Shops adds two complete shops to SEMRS → Templates, each in four storefront styles (8 starter sites). They are kept in this separate plugin so SEMRS Blocks stays light for sites that do not sell.
 
 = Storefront styles =
-* Shopify style: brand storefront with a big hero, collection tiles and a featured grid.
-* Etsy style: maker shop with a shop header, announcement, sections sidebar beside all listings, about and shop policies.
-* eBay style: store with store categories beside listing rows and store information.
-* Amazon style: brand store with a category bar, product rows per category, a comparison chart and Q&A.
+* Brand store: a big hero, collection tiles and a featured grid.
+* Maker shop: an auto-rotating banner slider, a shop header, announcement, sections sidebar beside all listings, about and shop policies.
+* Listing store: categories beside listing rows and store information.
+* Catalog store: a category bar, product rows per category, a comparison chart and Q&A.
 
 Every style is a complete site: home, shop, category pages, a page for every product, about, policies, FAQ, blog and contact.
 
+= Settings =
+SEMRS → Shops (or Tools → SEMRS Shops without SEMRS Core):
+* Currency for every shop product (USD, EUR, GBP, CAD, AUD, NZD, INR, PKR, AED, JPY).
+* Checkout link for every buy button, with {product} (page slug) and {title} placeholders; the chosen options are added to the link. A link set on a single Product block wins.
+* Before a checkout is connected, buy buttons show "Ask about this item" and link to your contact page with the product name, instead of a disabled button.
+
 = Marketplace exports =
-Tools → Shop exports downloads each catalogue as a Shopify product CSV (one row per variant, digital settings, draft status) and an Etsy listing sheet (13 tags per listing, variations, personalisation notes). eBay and Amazon files are not offered because both marketplaces restrict downloadable products such as printables and patterns.
+SEMRS → Shops → Exports downloads each catalogue as a Shopify product CSV (one row per variant, digital settings, draft status) and an Etsy listing sheet (13 tags per listing, variations, personalisation notes). eBay and Amazon files are not offered because both marketplaces restrict downloadable products such as printables and patterns.
 
 = Prices =
-Example prices follow 2026 marketplace medians (mostly Etsy keyword-tool data): crochet patterns about $3.49–$9.99, SVG and design bundles from $3.99, planners about $8.99, custom pet portraits from $24.99. Check them against current listings before publishing.
+Example prices are rough estimates from typical 2026 marketplace listings: crochet patterns about $3.49–$9.99, SVG and design bundles from $3.99, planners about $8.99, custom pet portraits from $24.99. Check them against current listings before publishing.
 
 = Digital Downloads Shop =
 Product pages for Christmas SVG bundles, printable party packs, gift tags, Christmas cards, personalised family shirt designs, crochet patterns, custom family and pet portraits, personalised wall art and name prints, dog breed and cat SVGs, watercolour bird clipart, pet memorial prints, pet party printables, t-shirt, cap and hat, tumbler, mug, wall decal and car decal designs, planner stickers, coloring pages, worksheets, digital workbooks and planners, budget spreadsheets, holiday bundles, nursery wall art, wedding invitations, Canva and Notion templates.
@@ -50,6 +56,14 @@ Shop home, all-products page, category pages, FAQ and contact are included. All 
 3. Go to SEMRS → Templates, choose Digital Downloads Shop or Crochet Pattern Shop and click Import.
 
 == Changelog ==
+
+= 1.1.0 =
+* Maker shop home opens with an auto-rotating banner slider (shop welcome and featured items); needs SEMRS Blocks 1.3.14
+* Settings: shop currency, one checkout link for all products, and "Ask about this item" instead of a disabled button before checkout is connected
+* Shops screen with Settings and Exports tabs (under SEMRS, or Tools without SEMRS Core)
+* Storefront styles renamed to brand store, maker shop, listing store and catalog store (no company names)
+* Example badges and headings say "Featured" instead of "Trending" or "Popular right now", so a new shop makes no claims it cannot back up
+* Comparison chart prices use the shop currency
 
 = 1.0.3 =
 * Design previews are WebP (about 25% lighter); JPG previews still work

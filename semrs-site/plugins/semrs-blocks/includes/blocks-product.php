@@ -479,6 +479,9 @@ function semrs_blocks_render_product( $a ) {
 			'bundles'  => semrs_blocks_product_bundles( semrs_blocks_a( $a, 'bundles', '' ) ),
 			'url'      => semrs_blocks_a( $a, 'url', '' ),
 			'button'   => semrs_blocks_a( $a, 'button', __( 'Add to cart', 'semrs-blocks' ) ),
+			// Link when there is no checkout yet (e.g. "Ask about this item" → contact page). Set by SEMRS Shops.
+			'fallback'      => esc_url_raw( (string) semrs_blocks_a( $a, 'fallback', '' ) ),
+			'fallback_text' => semrs_blocks_a( $a, 'fallback_text', __( 'Not available yet', 'semrs-blocks' ) ),
 		)
 	);
 	$head = '<h2 class="semrs-product__title">' . esc_html( $title ) . '</h2>' . ( semrs_blocks_a( $a, 'text' ) ? '<p class="semrs-product__text">' . esc_html( $a['text'] ) . '</p>' : '' );

@@ -4,7 +4,7 @@ Tags: blocks, icons, pricing table, contact form, post grid
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.13
+Stable tag: 1.3.14
 License: GPLv2 or later
 
 35 free blocks for any block or classic theme: layout, content, business, SEO and a product block, fast and accessible.
@@ -159,6 +159,10 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 * travel-blog-post3.jpg: rawpixel, CC0 1.0 – https://www.rawpixel.com/image/3285498/free-photo-image-plane-window-boat
 
 == Changelog ==
+
+= 1.3.14 =
+* New free Banner Slider block: auto-rotating promo banners (heading, text, button, image, background) for the top of a shop or landing page. Pauses on hover, focus and when the tab is hidden, has a pause button, respects reduce motion, keeps its height (no layout shift) and loads the first image with high priority
+* Product block: a fallback link and text (for example "Ask about this item" to the contact page) can replace the disabled button when there is no checkout link yet (used by SEMRS Shops)
 
 = 1.3.13 =
 * How to use links go to the new Business and trust, and SEO sections of the Blocks manual.
