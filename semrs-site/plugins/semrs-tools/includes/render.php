@@ -21,9 +21,13 @@ function semrs_tools_register_assets() {
 		'semrs-tools-core',
 		'window.SEMRS_TOOLS=' . wp_json_encode(
 			array(
-				'rest'  => esc_url_raw( rest_url( 'semrs-tools/v1/' ) ),
-				'home'  => esc_url_raw( home_url( '/' ) ),
-				'site'  => get_bloginfo( 'name' ),
+				'rest'     => esc_url_raw( rest_url( 'semrs-tools/v1/' ) ),
+				'home'     => esc_url_raw( home_url( '/' ) ),
+				'site'     => get_bloginfo( 'name' ),
+				'remember' => '1' === semrs_tools_options()['remember'],
+				'track'    => '1' === semrs_tools_options()['track'],
+				'bulk'     => semrs_tools_bulk_on() ? 25 : 0,
+				'usage'    => semrs_tools_is_pro() && '1' === semrs_tools_options()['usage'],
 			)
 		) . ';',
 		'before'
@@ -61,22 +65,50 @@ function semrs_tools_tool_shortcode( $atts ) {
 	if ( ! isset( $tools[ $id ] ) ) {
 		return current_user_can( 'edit_posts' ) ? '<p><strong>SEMRS Tools:</strong> unknown tool id "' . esc_html( $id ) . '".</p>' : '';
 	}
+	if ( ! semrs_tools_enabled( $id ) ) {
+		return current_user_can( 'edit_posts' ) ? '<p><strong>SEMRS Tools:</strong> "' . esc_html( $tools[ $id ][0] ) . '" is switched off in the Free Tools settings. Visitors see nothing here.</p>' : '';
+	}
 	wp_enqueue_style( 'semrs-tools' );
 	wp_enqueue_script( 'semrs-tool-' . $id );
 
-	$cats = semrs_tools_categories();
-	$cat  = isset( $cats[ $tools[ $id ][1] ] ) ? $cats[ $tools[ $id ][1] ] : null;
+	$cta = semrs_tools_cta( $tools[ $id ][1] );
 
 	return sprintf(
-		'<div class="semrs-tool-app" data-semrs-tool="%1$s" data-service-label="%2$s" data-service-url="%3$s"><noscript><p>%4$s</p></noscript><p class="semrs-tool-loading">%5$s</p></div>',
+		'<div class="semrs-tool-app" data-semrs-tool="%1$s" data-service-label="%2$s" data-service-url="%3$s" data-service-text="%6$s"><noscript><p>%4$s</p></noscript><p class="semrs-tool-loading">%5$s</p></div>',
 		esc_attr( $id ),
-		esc_attr( $cat ? $cat[2] : '' ),
-		esc_url( $cat ? home_url( $cat[3] ) : '' ),
+		esc_attr( $cta ? $cta[0] : '' ),
+		esc_url( $cta ? $cta[2] : '' ),
 		esc_html__( 'This free tool needs JavaScript. Please enable it in your browser.', 'semrs-tools' ),
-		esc_html__( 'Loading tool…', 'semrs-tools' )
+		esc_html__( 'Loading tool…', 'semrs-tools' ),
+		esc_attr( $cta ? $cta[1] : '' )
 	);
 }
 add_shortcode( 'semrs_tool', 'semrs_tools_tool_shortcode' );
+
+/**
+ * Tools shown in the directory: switched on, and with a published page at
+ * /tools/<id>/ (so new tools never link to a missing page). Sites with their
+ * own URLs can change the list with the semrs_tools_listed filter.
+ *
+ * @return string[]
+ */
+function semrs_tools_listed_ids() {
+	$ids = array_values( array_filter( array_keys( semrs_tools_list() ), 'semrs_tools_enabled' ) );
+	$hub = get_page_by_path( 'tools' );
+	if ( $hub ) {
+		$slugs = wp_list_pluck(
+			get_pages(
+				array(
+					'parent'      => $hub->ID,
+					'post_status' => 'publish',
+				)
+			),
+			'post_name'
+		);
+		$ids   = array_values( array_intersect( $ids, $slugs ) );
+	}
+	return apply_filters( 'semrs_tools_listed', $ids );
+}
 
 /**
  * [semrs_tools category=""] directory.
@@ -91,6 +123,7 @@ function semrs_tools_directory_shortcode( $atts ) {
 	$tools   = semrs_tools_list();
 	$only    = sanitize_key( $atts['category'] );
 	$exclude = array_map( 'sanitize_key', array_filter( explode( ',', $atts['exclude'] ) ) );
+	$listed  = semrs_tools_listed_ids();
 	$out     = '<div class="semrs-tools-dir">';
 
 	foreach ( $cats as $slug => $cat ) {
@@ -99,7 +132,7 @@ function semrs_tools_directory_shortcode( $atts ) {
 		}
 		$cards = '';
 		foreach ( $tools as $id => $t ) {
-			if ( $t[1] !== $slug || in_array( $id, $exclude, true ) ) {
+			if ( $t[1] !== $slug || in_array( $id, $exclude, true ) || ! in_array( $id, $listed, true ) ) {
 				continue;
 			}
 			$cards .= sprintf(

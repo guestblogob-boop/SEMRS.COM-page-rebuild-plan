@@ -4,7 +4,7 @@ Tags: seo, cookie consent, smtp, security, page cache
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.44
+Stable tag: 1.3.45
 License: GPLv2 or later
 
 Free SEO, cookie consent, SMTP email, security, page cache, redirects, WebP images and a policy-safe ads manager in one plugin.
@@ -108,6 +108,11 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt, cookie banner, consent log, security options and all other features run entirely on your own server. Google Consent Mode only passes the visitor's choice to Google tags you already use; it does not load anything itself.
 
 == Changelog ==
+
+= 1.3.45 =
+* Redirects: import redirects from CSV (source,target,code) and export them as CSV. URLs already in the list are skipped.
+* Site tools: settings renamed internally so they can never clash with the SEMRS Tools plugin (saved settings carry over).
+* Features screen: Free Tools Pro card.
 
 = 1.3.44 =
 * Folding on every SEMRS screen: long tables (activity log, consent log, mail log, redirects, 404 log, roles…) show 10 rows with a Show all button; settings screens with many sections get fold buttons on each heading and Fold all / Unfold all. Remembered per screen.

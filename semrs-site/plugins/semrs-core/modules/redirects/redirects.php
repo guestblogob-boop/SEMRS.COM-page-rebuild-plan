@@ -1,6 +1,6 @@
 <?php
 /**
- * Redirect manager (301/302/307/410), 404 log, Rank Math redirect import.
+ * Redirect manager (301/302/307/410), 404 log, Rank Math and CSV import, CSV export.
  *
  * Works even while another SEO plugin is active, but redirects only run when
  * SEMRS SEO output is active (so two plugins never redirect the same URL).
@@ -126,6 +126,25 @@ function semrs_redirect_menu() {
 add_action( 'admin_menu', 'semrs_redirect_menu', 21 );
 
 /**
+ * Clean a "from" path: keep URL-path characters, percent-encode non-ASCII
+ * (non-English slugs), leading slash, no host.
+ *
+ * @param string $from Raw path or URL.
+ * @return string
+ */
+function semrs_redirect_clean_from( $from ) {
+	$from = preg_replace_callback(
+		'/[^\x20-\x7e]+/',
+		function ( $m ) {
+			return rawurlencode( $m[0] );
+		},
+		trim( (string) $from )
+	);
+	$from = preg_replace( '#[^A-Za-z0-9\-._~%/*:]#', '', $from );
+	return '/' . ltrim( (string) wp_parse_url( $from, PHP_URL_PATH ), '/' );
+}
+
+/**
  * Handle add / delete / import / clear actions.
  */
 function semrs_redirect_actions() {
@@ -140,17 +159,9 @@ function semrs_redirect_actions() {
 	if ( 'add' === $do ) {
 		// Keep percent-encoded octets (non-English slugs); sanitize_text_field() would strip them.
 		$from = isset( $_POST['from'] ) ? trim( (string) wp_unslash( $_POST['from'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- reduced to URL-path characters below.
-		$from = preg_replace_callback(
-			'/[^\x20-\x7e]+/',
-			function ( $m ) {
-				return rawurlencode( $m[0] );
-			},
-			$from
-		);
-		$from = preg_replace( '#[^A-Za-z0-9\-._~%/*]#', '', $from );
+		$from = semrs_redirect_clean_from( $from );
 		$to   = isset( $_POST['to'] ) ? esc_url_raw( wp_unslash( $_POST['to'] ) ) : '';
 		$code = isset( $_POST['code'] ) ? absint( $_POST['code'] ) : 301;
-		$from = '/' . ltrim( (string) wp_parse_url( $from, PHP_URL_PATH ), '/' );
 		if ( '/' !== $from && ( $to || 410 === $code ) ) {
 			$rules[] = array( 'from' => $from, 'to' => $to, 'code' => in_array( $code, array( 301, 302, 307, 410 ), true ) ? $code : 301 );
 			$msg     = 'added';
@@ -162,6 +173,31 @@ function semrs_redirect_actions() {
 	} elseif ( 'clear404' === $do ) {
 		delete_option( 'semrs_404_log' );
 		$msg = 'cleared';
+	} elseif ( 'import_csv' === $do ) {
+		// Lines: source,target,code (header row optional). 308 becomes 301; unknown codes become 301.
+		$csv   = isset( $_POST['csv'] ) ? (string) wp_unslash( $_POST['csv'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- each field is sanitized below.
+		$have  = array();
+		$count = 0;
+		foreach ( $rules as $r ) {
+			$have[ semrs_redirect_norm( $r['from'] ) ] = true;
+		}
+		foreach ( preg_split( '/\R/', $csv ) as $line ) {
+			$f = str_getcsv( trim( $line ) );
+			if ( empty( $f[0] ) || 'source' === strtolower( trim( $f[0] ) ) ) {
+				continue;
+			}
+			$from = semrs_redirect_clean_from( $f[0] );
+			$to   = esc_url_raw( trim( $f[1] ?? '' ) );
+			$code = absint( $f[2] ?? 301 );
+			$code = 308 === $code ? 301 : ( in_array( $code, array( 301, 302, 307, 410 ), true ) ? $code : 301 );
+			if ( '/' === $from || isset( $have[ semrs_redirect_norm( $from ) ] ) || ( ! $to && 410 !== $code ) || count( $rules ) >= 5000 ) {
+				continue;
+			}
+			$rules[]                              = array( 'from' => $from, 'to' => $to, 'code' => $code );
+			$have[ semrs_redirect_norm( $from ) ] = true;
+			$count++;
+		}
+		$msg = 'csv-' . $count;
 	} elseif ( 'import_rm' === $do ) {
 		global $wpdb;
 		$table = $wpdb->prefix . 'rank_math_redirections';
@@ -190,6 +226,27 @@ function semrs_redirect_actions() {
 	exit;
 }
 add_action( 'admin_post_semrs_redirects', 'semrs_redirect_actions' );
+
+/**
+ * Download all redirects as CSV (source,target,code).
+ */
+function semrs_redirect_export() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( esc_html__( 'Not allowed.', 'semrs-core' ) );
+	}
+	check_admin_referer( 'semrs_redirects_csv' );
+	nocache_headers();
+	header( 'Content-Type: text/csv; charset=utf-8' );
+	header( 'Content-Disposition: attachment; filename=semrs-redirects-' . gmdate( 'Y-m-d' ) . '.csv' );
+	$out = fopen( 'php://output', 'w' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	fputcsv( $out, array( 'source', 'target', 'code' ) );
+	foreach ( semrs_redirect_rules() as $r ) {
+		fputcsv( $out, array( $r['from'], $r['to'], (int) $r['code'] ) );
+	}
+	fclose( $out ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	exit;
+}
+add_action( 'admin_post_semrs_redirects_csv', 'semrs_redirect_export' );
 
 /**
  * Small POST form helper.
@@ -221,7 +278,7 @@ function semrs_redirect_page() {
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Redirects', 'semrs-core' ); ?></h1>
 		<?php if ( $msg ) : ?>
-			<div class="notice notice-success is-dismissible"><p><?php echo esc_html( 0 === strpos( $msg, 'imported-' ) ? sprintf( /* translators: %d: count */ __( 'Imported %d redirects from Rank Math.', 'semrs-core' ), (int) substr( $msg, 9 ) ) : __( 'Saved.', 'semrs-core' ) ); ?></p></div>
+			<div class="notice notice-success is-dismissible"><p><?php echo esc_html( 0 === strpos( $msg, 'imported-' ) ? sprintf( /* translators: %d: count */ __( 'Imported %d redirects from Rank Math.', 'semrs-core' ), (int) substr( $msg, 9 ) ) : ( 0 === strpos( $msg, 'csv-' ) ? sprintf( /* translators: %d: count */ __( 'Imported %d redirects from CSV.', 'semrs-core' ), (int) substr( $msg, 4 ) ) : __( 'Saved.', 'semrs-core' ) ) ); ?></p></div>
 		<?php endif; ?>
 		<?php if ( ! semrs_seo_active() ) : ?>
 			<div class="notice notice-warning inline"><p><?php echo esc_html( sprintf( /* translators: %s: plugin */ __( '%s is active, so these redirects are paused. Import its redirects now; they start working when you deactivate it.', 'semrs-core' ), semrs_seo_conflict() ) ); ?></p></div>
@@ -247,7 +304,16 @@ function semrs_redirect_page() {
 		<?php if ( ! $rules ) : ?><tr><td colspan="4"><?php esc_html_e( 'No redirects yet.', 'semrs-core' ); ?></td></tr><?php endif; ?>
 		</tbody></table>
 		</details>
-		<p><?php semrs_redirect_button( 'import_rm', __( 'Import active redirects from Rank Math', 'semrs-core' ) ); ?></p>
+		<p><?php semrs_redirect_button( 'import_rm', __( 'Import active redirects from Rank Math', 'semrs-core' ) ); ?>
+		<?php if ( $rules ) : ?><a class="button" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=semrs_redirects_csv' ), 'semrs_redirects_csv' ) ); ?>"><?php esc_html_e( 'Export CSV', 'semrs-core' ); ?></a><?php endif; ?></p>
+		<details><summary style="cursor:pointer"><strong><?php esc_html_e( 'Import from CSV', 'semrs-core' ); ?></strong></summary>
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+			<?php wp_nonce_field( 'semrs_redirects' ); ?>
+			<input type="hidden" name="action" value="semrs_redirects"><input type="hidden" name="semrs_do" value="import_csv">
+			<p><label for="semrs-redirect-csv"><?php esc_html_e( 'Paste lines as: source,target,code (for example /old-page/,/new-page/,301). A header row is fine. URLs already in the list are skipped.', 'semrs-core' ); ?></label><br>
+			<textarea id="semrs-redirect-csv" name="csv" rows="6" class="large-text code" style="max-width:1000px" placeholder="source,target,code&#10;/old-page/,/new-page/,301&#10;/deleted-page/,,410"></textarea></p>
+			<p><button class="button"><?php esc_html_e( 'Import redirects', 'semrs-core' ); ?></button></p>
+		</form></details>
 
 		<h2><?php esc_html_e( '404 log', 'semrs-core' ); ?></h2>
 		<p class="description"><?php esc_html_e( 'Recent "not found" URLs. Redirect the ones that had real content or real links; ignore random junk.', 'semrs-core' ); ?></p>

@@ -4,30 +4,65 @@ Tags: seo tools, serp preview, schema generator, utm builder, image compressor
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.6
+Stable tag: 1.4.1
 License: GPLv2 or later
 
-12 free SEO tools for any WordPress site. Each page loads only its own small script (core ~2 KB + tool 2-6 KB gzipped).
+20 free SEO tools for any WordPress site. Each page loads only its own small script (core ~2 KB + tool 2-6 KB gzipped).
 
 == Tools ==
-Meta Tags & SERP: SERP Snippet Preview, Meta Title & Description Checker
-Technical SEO: Robots.txt Generator (AI crawler rules), Redirect Checker (server, rate-limited, private/internal addresses blocked)
+Meta Tags & SERP: SERP Snippet Preview, Meta Title & Description Checker, On-Page SEO Checker (server), Social Share Preview & Open Graph Generator
+Technical SEO: Robots.txt Generator (AI crawler rules), Robots.txt Tester (server: fetches the live file, tests Google and AI crawlers), Redirect Checker (server), Redirect Rules Generator (.htaccess, Nginx, CSV), Hreflang Tag Generator
 Schema: Schema Markup Generator (Organization, Article, FAQ, Breadcrumb, Product, Event, Service), Local Business Schema Generator
-Content: Word Counter (reading time, keyword density)
+Content: Word Counter (reading time, keyword density), Readability Checker (reading ease, grade, long sentences, passive voice)
 Local SEO: Google Review Link Generator
 AI Search: llms.txt Generator
-Marketing: UTM Builder (bulk + CSV)
-Website: Image Compressor & WebP Converter (in the browser; files never upload)
+Marketing: UTM Builder (bulk + CSV), ROAS & Break-Even Calculator
+Website: Image Compressor & WebP Converter (in the browser; files never upload), Color Contrast Checker (WCAG 2.2)
 Calculators: SEO ROI Calculator
+
+Server tools fetch other websites from your server. Every hop is checked: http(s) only, standard ports, public IP addresses only; private and internal addresses are always blocked. Visitors get a set number of checks per hour (Settings) and repeat checks of the same URL are answered from a short cache.
+
+== Settings ==
+SEMRS → Free Tools → Settings (or Tools → SEMRS Free Tools without SEMRS Core):
+* Switch each tool on or off. Off tools show nothing, leave the directory and stop answering server requests.
+* Expert-help box under each tool on or off.
+* Remember visitor inputs in their own browser on or off.
+* GA4 events on or off.
+* Server checks per visitor per hour (up to 60; 500 with Pro) and how long a result is reused.
+
+Free Tools Pro (SEMRS Pro, SEO Pro add-on; switch it on under SEMRS → Features):
+* Bulk checks: up to 25 URLs at once with CSV download in the Redirect Checker and On-Page SEO Checker.
+* Your own expert-help box per category: text, link text and link.
+* Usage report: which tools visitors use, runs, copies, downloads and expert-box clicks (7 and 30 days; totals only, no personal data).
+* Higher hourly limit.
 
 == Usage ==
 * [semrs_tool id="word-counter"] on any page. IDs are listed under SEMRS → Free Tools (or Tools → SEMRS Free Tools).
-* [semrs_tools] for a directory of all tools, [semrs_tools category="technical-seo"] for one category.
-* "Create draft pages" builds the /tools/ hub, 9 category pages and 12 tool pages as drafts. Write each tool's guide (800-1,500 words) before publishing; pages that are only a widget are thin content for Google and AdSense.
+* [semrs_tools] for a directory of all tools, [semrs_tools category="technical-seo"] for one category. The directory lists a tool once its page at /tools/<id>/ is published, so visitors never reach a missing page (filter: semrs_tools_listed).
+* "Create the missing tool pages as drafts" builds the /tools/ hub, category pages and tool pages as drafts. Tools with a bundled guide get the full text; newer tools get a draft with a reminder to write the guide. Write each tool's guide (800-1,500 words) before publishing; pages that are only a widget are thin content for Google and AdSense.
 * With SEMRS Core Ads: put [semrs_ad slot="tool"] under the tool. With SEMRS Core SEO: tool pages get WebApplication schema.
 * GA4 events: tool_used, tool_run, tool_copy, tool_download, cta_click.
 
+== External services ==
+* **SEMRS update server (semrs.com)**: checks for new versions of the plugin about twice a day and when you open the Updates screen. Sends the plugin version, your site address and the WordPress and PHP versions. No personal data. Not present in WordPress.org builds. [Terms](https://semrs.com/terms-and-conditions/), [Privacy](https://semrs.com/privacy-policy/).
+* Server tools (Redirect Checker, On-Page SEO Checker, Robots.txt Tester) fetch only the address a visitor types in, from your server, when they click the button. Nothing is sent to SEMRS.
+* Social Share Preview shows the image URL the visitor types in, loaded by their own browser.
+
 == Changelog ==
+
+= 1.4.1 =
+* Settings: the first save no longer switches every tool off (WordPress checks a new setting twice)
+* Saving settings clears the SEMRS page cache, so tool pages and the directory update at once
+* On-Page SEO Checker: skips hidden images without a source, and counts links named by an icon's label
+* Color Contrast Checker: suggests the exact nearest passing color
+
+= 1.4.0 =
+* 8 new free tools: On-Page SEO Checker, Social Share Preview & Open Graph Generator, Robots.txt Tester, Hreflang Tag Generator, Redirect Rules Generator, Readability Checker, ROAS & Break-Even Calculator, Color Contrast Checker
+* Settings screen: tools on/off, expert-help box, remember inputs, GA4 events, hourly limit and result cache for server tools
+* Directory lists only tools whose page is published (no links to missing pages)
+* Free Tools Pro (with SEMRS Pro): bulk checks with CSV, your own expert-help box per category, usage report, higher limits
+* SERP preview: the copied title tag is escaped
+* Admin: tabs (Tools, Settings, Usage report) and live counts on the "Create pages" button
 
 = 1.3.6 =
 * Tool pages: table of contents, a light step diagram and an official source link

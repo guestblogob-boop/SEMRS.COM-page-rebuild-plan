@@ -37,9 +37,19 @@
 			hint ? h('p', { class: 'semrs-tool__hint', text: hint }) : null);
 	}
 
-	/** GA4 event if gtag exists. */
+	var counted = {};
+	/** GA4 event if gtag exists (and events are on); Pro usage report counts runs, copies and downloads. */
 	function track(name, params) {
-		try { if (typeof window.gtag === 'function') { window.gtag('event', name, params || {}); } } catch (e) {}
+		params = params || {};
+		if (cfg.track !== false) {
+			try { if (typeof window.gtag === 'function') { window.gtag('event', name, params); } } catch (e) {}
+		}
+		var ev = { tool_used: 'use', tool_run: 'run', tool_copy: 'copy', tool_download: 'download', cta_click: 'cta' }[name];
+		var key = params.tool_id + ':' + ev;
+		if (cfg.usage && ev && params.tool_id && !counted[key] && navigator.sendBeacon) {
+			counted[key] = 1; // Once per page view and action, so reloads of results don't inflate counts.
+			try { navigator.sendBeacon(cfg.rest + 'usage?tool=' + encodeURIComponent(params.tool_id) + '&ev=' + ev); } catch (e) {}
+		}
 	}
 
 	function flash(btn, text) {
@@ -85,8 +95,8 @@
 	}
 
 	/** Remember inputs per tool (per-visitor convenience only). */
-	function store(id, data) { try { localStorage.setItem('semrs-tool-' + id, JSON.stringify(data)); } catch (e) {} }
-	function load(id) { try { return JSON.parse(localStorage.getItem('semrs-tool-' + id) || 'null'); } catch (e) { return null; } }
+	function store(id, data) { if (cfg.remember === false) { return; } try { localStorage.setItem('semrs-tool-' + id, JSON.stringify(data)); } catch (e) {} }
+	function load(id) { if (cfg.remember === false) { return null; } try { return JSON.parse(localStorage.getItem('semrs-tool-' + id) || 'null'); } catch (e) { return null; } }
 
 	var canvas;
 	/** Rendered text width in px for a CSS font (e.g. '20px Arial'). */
@@ -110,6 +120,16 @@
 		return h('span', { class: cls, text: n + ' / ' + max + (unit ? ' ' + unit : '') });
 	}
 
+	/** GET a plugin REST route; resolves {ok, j}. */
+	function get(route, params) {
+		var q = Object.keys(params || {}).map(function (k) { return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]); }).join('&');
+		return fetch(cfg.rest + route + (q ? '?' + q : ''), { headers: { Accept: 'application/json' } })
+			.then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }, function () { return { ok: false, j: {} }; }); });
+	}
+	function stat(v, label) { return h('div', { class: 'semrs-tool__stat' }, h('b', { text: v }), h('span', { text: label })); }
+	/** Checks list from [[state ok|warn|bad, text], …]. */
+	function checks(list) { var ul = h('ul', { class: 'semrs-tool__checks' }); list.forEach(function (c) { ul.append(h('li', { class: c[0], text: c[1] })); }); return ul; }
+
 	function mount(root) {
 		var id = root.getAttribute('data-semrs-tool');
 		if (root.__semrs || !registry[id]) { return; }
@@ -121,16 +141,21 @@
 		var api = {
 			id: id, cfg: cfg, h: h, field: field, track: track, copyBtn: copyBtn, downloadBtn: downloadBtn,
 			store: store, load: load, textWidth: textWidth, debounce: debounce, esc: esc, counter: counter,
+			get: get, stat: stat, checks: checks,
 			panel: function (title) { return h('div', { class: 'semrs-tool__panel' }, title ? h('h2', { class: 'semrs-tool__title', text: title }) : null); }
 		};
 		registry[id](root, api);
 		var label = root.getAttribute('data-service-label');
 		var url = root.getAttribute('data-service-url');
-		if (label && url) {
+		var text = root.getAttribute('data-service-text');
+		if (url && (label || text)) {
+			var go = function () { track('cta_click', { tool_id: id, destination: url }); };
 			root.parentNode.insertBefore(
 				h('div', { class: 'semrs-service-cta' },
-					h('p', null, h('strong', { text: 'Want an expert to handle this? ' }), 'SEMRS ' + label + ' ',
-						h('a', { href: url, onclick: function () { track('cta_click', { tool_id: id, destination: url }); }, text: 'See how we can help →' }))),
+					text
+						? h('p', null, text + ' ', h('a', { href: url, onclick: go, text: (label || 'Learn more') + ' →' }))
+						: h('p', null, h('strong', { text: 'Want an expert to handle this? ' }), 'SEMRS ' + label + ' ',
+							h('a', { href: url, onclick: go, text: 'See how we can help →' }))),
 				root.nextSibling);
 		}
 	}

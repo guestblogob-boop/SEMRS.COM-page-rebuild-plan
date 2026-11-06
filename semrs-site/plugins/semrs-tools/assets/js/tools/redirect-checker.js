@@ -3,10 +3,12 @@ SemrsTools.register('redirect-checker', function (root, api) {
 	var h = api.h;
 	root.classList.add('semrs-tool--wide');
 	var url = h('input', { type: 'url', placeholder: 'https://example.com/old-page/', required: true, inputmode: 'url' });
+	var bulkBox = h('textarea', { rows: 5, placeholder: 'https://example.com/old-1/\nhttps://example.com/old-2/' });
 	var btn = h('button', { type: 'submit', class: 'wp-element-button semrs-btn', text: 'Check redirects' });
 	var form = h('form', { class: 'semrs-tool__panel', novalidate: true },
 		h('h2', { class: 'semrs-tool__title', text: 'Enter a URL' }),
 		api.field('URL to check', url, 'Checks up to 10 hops. Public websites only.'),
+		api.cfg.bulk ? api.field('Bulk check (optional)', bulkBox, 'One URL per line, up to ' + api.cfg.bulk + '. Gives a table you can download as CSV.') : null,
 		btn);
 	var out = h('div', { class: 'semrs-tool__panel', 'aria-live': 'polite' }, h('p', { class: 'semrs-tool__hint', text: 'Results appear here.' }));
 	root.append(form, out);
@@ -21,6 +23,8 @@ SemrsTools.register('redirect-checker', function (root, api) {
 	form.addEventListener('submit', function (e) {
 		e.preventDefault();
 		var v = url.value.trim();
+		var many = api.cfg.bulk ? bulkBox.value.split(/\n/).map(function (l) { return l.trim(); }).filter(Boolean).slice(0, api.cfg.bulk) : [];
+		if (many.length) { return bulk(many); }
 		if (!v) { url.focus(); return; }
 		btn.disabled = true;
 		btn.textContent = 'Checking…';
@@ -33,6 +37,37 @@ SemrsTools.register('redirect-checker', function (root, api) {
 			.catch(function () { fail('Could not reach the checker. Please try again.'); })
 			.then(function () { btn.disabled = false; btn.textContent = 'Check redirects'; });
 	});
+
+	function bulk(urls) {
+		btn.disabled = true;
+		btn.textContent = 'Checking…';
+		api.track('tool_run', { tool_id: api.id });
+		var rows = [], i = 0;
+		var body = h('tbody'), status = h('p', { class: 'semrs-tool__hint' });
+		out.innerHTML = '';
+		out.append(status, h('div', { style: 'overflow-x:auto' }, h('table', { class: 'semrs-tool__table' },
+			h('thead', null, h('tr', null, ['URL', 'Redirects', 'Final status', 'Final URL'].map(function (t) { return h('th', { text: t }); }))), body)));
+		(function next() {
+			if (i >= urls.length) {
+				status.textContent = 'Checked ' + rows.length + ' URLs.';
+				out.append(h('div', { class: 'semrs-tool__actions' }, api.downloadBtn(function () {
+					return 'url,redirects,final_status,final_url\n' + rows.map(function (r) { return r.map(function (c) { return '"' + String(c).replace(/"/g, '""') + '"'; }).join(','); }).join('\n') + '\n';
+				}, 'redirects-report.csv', 'text/csv', 'Download CSV', api.id)));
+				btn.disabled = false;
+				btn.textContent = 'Check redirects';
+				return;
+			}
+			var u = urls[i++];
+			status.textContent = 'Checking ' + i + ' of ' + urls.length + '…';
+			api.get('redirects', { url: u }).then(function (res) {
+				var hops = (res.j && res.j.hops) || [], last = hops[hops.length - 1] || {};
+				var row = res.ok ? [u, hops.filter(function (x) { return x.status >= 300 && x.status < 400; }).length, last.status || 'error', last.url || ''] : [u, '', 'error', res.j && res.j.message ? res.j.message : ''];
+				rows.push(row);
+				body.append(h('tr', null, h('td', { text: row[0] }), h('td', { text: String(row[1]) }), h('td', null, typeof row[2] === 'number' ? badge(row[2]) : h('b', { style: 'color:var(--st-bad)', text: 'Error' })), h('td', { text: row[3] })));
+				if (res.j && res.j.code === 'semrs_rate') { i = urls.length; }
+			}).catch(function () { rows.push([u, '', 'error', '']); }).then(next);
+		})();
+	}
 
 	function fail(msg) { out.innerHTML = ''; out.append(h('p', { class: 'semrs-tool__count is-over', text: msg })); }
 

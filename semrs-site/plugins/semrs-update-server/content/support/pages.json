@@ -15,6 +15,14 @@
 		"focus": "semrs blocks",
 		"image": 6385
 	},
+	"free-tools": {
+		"title": "SEMRS Free Tools Guide",
+		"description": "SEMRS Free Tools guide: put 20 free SEO tools on your WordPress site, switch tools on or off, set limits, and use the Free Tools Pro features.",
+		"order": 9,
+		"seo_title": "SEMRS Free Tools 2026: Set Up 20 SEO Tools on WordPress",
+		"focus": "semrs free tools",
+		"image": 0
+	},
 	"policies": {
 		"title": "Policies: Google, AdSense, WordPress.org & Privacy",
 		"description": "SEMRS policies guide: how SEMRS products follow Google Search, AdSense and WordPress.org rules, GPL licensing and privacy law, and what site owners must do.",

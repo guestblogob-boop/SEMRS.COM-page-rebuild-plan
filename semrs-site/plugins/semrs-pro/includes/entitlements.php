@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
  */
 function semrs_pro_addon_modules() {
 	return array(
-		'seo'   => array( 'local', 'image_seo', 'seo_bulk', 'schema_pro', 'ai_seo', 'links_pro', 'sitemaps_pro', 'rank_tracker', 'og_images' ),
+		'seo'   => array( 'local', 'image_seo', 'seo_bulk', 'schema_pro', 'ai_seo', 'links_pro', 'sitemaps_pro', 'rank_tracker', 'og_images', 'tools_pro' ),
 		'speed' => array( 'speed_pro', 'image_library' ),
 		'ads'   => array( 'ads_pro' ),
 		'theme' => array( 'theme_pro', 'layouts', 'proof', 'leads', 'blocks_pro', 'conditions', 'popups', 'languages', 'templates_pro' ),

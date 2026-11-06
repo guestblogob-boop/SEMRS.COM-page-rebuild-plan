@@ -14,9 +14,9 @@ defined( 'ABSPATH' ) || exit;
  *
  * @return array
  */
-function semrs_tools_settings() {
+function semrs_sitetools_settings() {
 	return wp_parse_args(
-		(array) get_option( 'semrs_tools', array() ),
+		(array) get_option( 'semrs_site_tools', get_option( 'semrs_tools', array() ) ), // Saved as 'semrs_tools' before Core 1.3.45.
 		array(
 			'maint'     => '',
 			'mode'      => 'maintenance',
@@ -36,8 +36,8 @@ function semrs_tools_settings() {
 /**
  * Show the maintenance page to visitors who cannot edit.
  */
-function semrs_tools_maintenance() {
-	$s = semrs_tools_settings();
+function semrs_sitetools_maintenance() {
+	$s = semrs_sitetools_settings();
 	if ( '1' !== $s['maint'] || current_user_can( 'edit_posts' ) || is_admin() || wp_doing_ajax() || wp_doing_cron() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
 		return;
 	}
@@ -75,19 +75,19 @@ function semrs_tools_maintenance() {
 	<?php
 	exit;
 }
-add_action( 'template_redirect', 'semrs_tools_maintenance', -100 );
+add_action( 'template_redirect', 'semrs_sitetools_maintenance', -100 );
 
 /**
  * Admin bar reminder while maintenance is on.
  *
  * @param WP_Admin_Bar $bar Bar.
  */
-function semrs_tools_admin_bar( $bar ) {
-	if ( '1' === semrs_tools_settings()['maint'] && current_user_can( 'manage_options' ) ) {
+function semrs_sitetools_admin_bar( $bar ) {
+	if ( '1' === semrs_sitetools_settings()['maint'] && current_user_can( 'manage_options' ) ) {
 		$bar->add_node( array( 'id' => 'semrs-maint', 'title' => '<span style="color:#f5b83d">' . esc_html__( 'Maintenance mode is ON', 'semrs-core' ) . '</span>', 'href' => admin_url( 'admin.php?page=semrs-site-tools' ) ) );
 	}
 }
-add_action( 'admin_bar_menu', 'semrs_tools_admin_bar', 999 );
+add_action( 'admin_bar_menu', 'semrs_sitetools_admin_bar', 999 );
 
 /*
  * Duplicate.
@@ -100,24 +100,24 @@ add_action( 'admin_bar_menu', 'semrs_tools_admin_bar', 999 );
  * @param WP_Post $post    Post.
  * @return array
  */
-function semrs_tools_row_action( $actions, $post ) {
-	if ( '1' === semrs_tools_settings()['duplicate'] && current_user_can( 'edit_post', $post->ID ) && 'trash' !== $post->post_status ) {
+function semrs_sitetools_row_action( $actions, $post ) {
+	if ( '1' === semrs_sitetools_settings()['duplicate'] && current_user_can( 'edit_post', $post->ID ) && 'trash' !== $post->post_status ) {
 		$url                      = wp_nonce_url( admin_url( 'admin-post.php?action=semrs_duplicate&post=' . $post->ID ), 'semrs_duplicate_' . $post->ID );
 		$actions['semrs_duplicate'] = '<a href="' . esc_url( $url ) . '" aria-label="' . esc_attr( sprintf( /* translators: %s: title. */ __( 'Duplicate “%s”', 'semrs-core' ), get_the_title( $post ) ) ) . '">' . esc_html__( 'Duplicate', 'semrs-core' ) . '</a>';
 	}
 	return $actions;
 }
-add_filter( 'post_row_actions', 'semrs_tools_row_action', 10, 2 );
-add_filter( 'page_row_actions', 'semrs_tools_row_action', 10, 2 );
+add_filter( 'post_row_actions', 'semrs_sitetools_row_action', 10, 2 );
+add_filter( 'page_row_actions', 'semrs_sitetools_row_action', 10, 2 );
 
 /**
  * Create the copy as a draft, with terms and custom fields.
  */
-function semrs_tools_duplicate() {
+function semrs_sitetools_duplicate() {
 	$id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification -- checked below.
 	check_admin_referer( 'semrs_duplicate_' . $id );
 	$post = get_post( $id );
-	if ( ! $post || ! current_user_can( 'edit_post', $id ) || '1' !== semrs_tools_settings()['duplicate'] ) {
+	if ( ! $post || ! current_user_can( 'edit_post', $id ) || '1' !== semrs_sitetools_settings()['duplicate'] ) {
 		wp_die( esc_html__( 'Not allowed.', 'semrs-core' ) );
 	}
 	$new = wp_insert_post(
@@ -156,12 +156,12 @@ function semrs_tools_duplicate() {
 	wp_safe_redirect( admin_url( 'post.php?action=edit&post=' . $new ) );
 	exit;
 }
-add_action( 'admin_post_semrs_duplicate', 'semrs_tools_duplicate' );
+add_action( 'admin_post_semrs_duplicate', 'semrs_sitetools_duplicate' );
 
 /*
  * Comments off everywhere.
  */
-if ( '1' === semrs_tools_settings()['comments'] ) {
+if ( '1' === semrs_sitetools_settings()['comments'] ) {
 	add_filter( 'comments_open', '__return_false', 99 );
 	add_filter( 'pings_open', '__return_false', 99 );
 	add_filter( 'comments_array', '__return_empty_array', 99 );
@@ -207,7 +207,7 @@ if ( is_admin() ) {
 	add_action(
 		'admin_menu',
 		function () {
-			add_submenu_page( 'semrs', __( 'Site tools', 'semrs-core' ), __( 'Site tools', 'semrs-core' ), 'manage_options', 'semrs-site-tools', 'semrs_tools_page' );
+			add_submenu_page( 'semrs', __( 'Site tools', 'semrs-core' ), __( 'Site tools', 'semrs-core' ), 'manage_options', 'semrs-site-tools', 'semrs_sitetools_page' );
 		},
 		33
 	);
@@ -215,8 +215,8 @@ if ( is_admin() ) {
 		'admin_init',
 		function () {
 			register_setting(
-				'semrs_tools',
-				'semrs_tools',
+				'semrs_site_tools',
+				'semrs_site_tools',
 				array(
 					'type'              => 'array',
 					'sanitize_callback' => function ( $in ) {
@@ -243,14 +243,14 @@ if ( is_admin() ) {
 /**
  * Settings page.
  */
-function semrs_tools_page() {
-	$s = semrs_tools_settings();
-	$n = 'semrs_tools';
+function semrs_sitetools_page() {
+	$s = semrs_sitetools_settings();
+	$n = 'semrs_site_tools';
 	?>
 	<div class="wrap semrs-wrap">
 		<h1><?php esc_html_e( 'Site tools', 'semrs-core' ); ?></h1>
 		<form method="post" action="options.php">
-			<?php settings_fields( 'semrs_tools' ); ?>
+			<?php settings_fields( 'semrs_site_tools' ); ?>
 			<h2><?php esc_html_e( 'Maintenance or coming-soon page', 'semrs-core' ); ?></h2>
 			<table class="form-table" role="presentation">
 				<tr><th><?php esc_html_e( 'Turn on', 'semrs-core' ); ?></th><td><label><input type="checkbox" name="<?php echo esc_attr( $n ); ?>[maint]" value="1" <?php checked( $s['maint'], '1' ); ?>> <?php esc_html_e( 'Visitors see the page below; you and your editors see the normal site when logged in', 'semrs-core' ); ?></label></td></tr>

@@ -126,6 +126,7 @@ function semrs_core_module_meta() {
 			'activity'   => array( 'privacy', 'list-view', admin_url( 'admin.php?page=semrs-activity' ) ),
 			'search_replace' => array( 'design', 'search', admin_url( 'tools.php?page=semrs-search-replace' ) ),
 			'og_images'  => array( 'seo', 'format-image', admin_url( 'admin.php?page=semrs-og-images' ) ),
+			'tools_pro'  => array( 'seo', 'admin-tools', admin_url( 'admin.php?page=semrs-tools&tab=settings' ), __( 'Free Tools', 'semrs-core' ) ),
 			'image_library' => array( 'speed', 'images-alt2', admin_url( 'admin.php?page=semrs-images' ) ),
 			'schema_pro' => array( 'seo', 'editor-code', admin_url( 'edit.php?post_type=page' ), __( 'Pages', 'semrs-core' ) ),
 			'ai_seo'     => array( 'seo', 'superhero-alt', admin_url( 'admin.php?page=semrs-ai' ) ),
@@ -167,6 +168,7 @@ function semrs_core_module_docs( $key ) {
 		'activity'      => 'privacy-security/#activity-log-pro',
 		'search_replace' => 'privacy-security/#search-and-replace-pro',
 		'og_images'     => 'privacy-security/#social-images-pro',
+		'tools_pro'     => 'free-tools/#free-tools-pro',
 	);
 	if ( isset( $map[ $key ] ) ) {
 		$path = $map[ $key ];
@@ -211,6 +213,7 @@ function semrs_core_pro_teasers() {
 		'activity'   => array( __( 'Activity log', 'semrs-core' ), __( 'See who changed which post, page, setting, plugin or user, and when. Filter and export.', 'semrs-core' ) ),
 		'search_replace' => array( __( 'Search & replace', 'semrs-core' ), __( 'Find and replace text or links across posts, custom fields and settings, with a preview and undo.', 'semrs-core' ) ),
 		'og_images'  => array( __( 'Social images', 'semrs-core' ), __( 'Automatic share images with the post title for posts without a featured image.', 'semrs-core' ) ),
+		'tools_pro'  => array( __( 'Free Tools Pro', 'semrs-core' ), __( 'Bulk checks in the server tools, your own expert-help box per category, a tool usage report and higher limits (needs the free SEMRS Tools plugin).', 'semrs-core' ) ),
 		'leads'      => array( __( 'Lead tracking', 'semrs-core' ), __( 'Form submissions sent to Google Analytics 4 as generate_lead, then a thank-you page.', 'semrs-core' ) ),
 	);
 }

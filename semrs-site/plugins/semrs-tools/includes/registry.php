@@ -51,6 +51,14 @@ function semrs_tools_list() {
 			'utm-builder'                     => array( __( 'UTM Builder', 'semrs-tools' ), 'marketing', __( 'Build tracked campaign links, one at a time or in bulk.', 'semrs-tools' ), 'browser' ),
 			'image-compressor'                => array( __( 'Image Compressor & WebP Converter', 'semrs-tools' ), 'website', __( 'Compress and convert images in your browser. Files never leave your device.', 'semrs-tools' ), 'browser' ),
 			'seo-roi-calculator'              => array( __( 'SEO ROI Calculator', 'semrs-tools' ), 'calculators', __( 'Estimate what extra organic traffic could be worth.', 'semrs-tools' ), 'browser' ),
+			'on-page-seo-checker'             => array( __( 'On-Page SEO Checker', 'semrs-tools' ), 'meta-serp', __( 'Scan any page: title, description, headings, images, links, canonical, schema and social tags.', 'semrs-tools' ), 'server' ),
+			'open-graph-generator'            => array( __( 'Social Share Preview & Open Graph Generator', 'semrs-tools' ), 'meta-serp', __( 'See your link on Facebook, X and LinkedIn, then copy the Open Graph tags.', 'semrs-tools' ), 'browser' ),
+			'robots-txt-tester'               => array( __( 'Robots.txt Tester', 'semrs-tools' ), 'technical-seo', __( 'Fetch a live robots.txt and test whether Google or AI crawlers may open a URL.', 'semrs-tools' ), 'server' ),
+			'hreflang-generator'              => array( __( 'Hreflang Tag Generator', 'semrs-tools' ), 'technical-seo', __( 'Correct hreflang tags for every language and country version, with x-default.', 'semrs-tools' ), 'browser' ),
+			'redirect-rules-generator'        => array( __( 'Redirect Rules Generator', 'semrs-tools' ), 'technical-seo', __( 'Turn old → new URL lists into .htaccess, Nginx or CSV redirect rules.', 'semrs-tools' ), 'browser' ),
+			'readability-checker'             => array( __( 'Readability Checker', 'semrs-tools' ), 'content-keywords', __( 'Reading ease, grade level, long sentences, passive voice and hard words.', 'semrs-tools' ), 'browser' ),
+			'roas-calculator'                 => array( __( 'ROAS & Break-Even Calculator', 'semrs-tools' ), 'marketing', __( 'ROAS, cost per sale and the break-even ROAS for your margins.', 'semrs-tools' ), 'browser' ),
+			'color-contrast-checker'          => array( __( 'Color Contrast Checker', 'semrs-tools' ), 'website', __( 'WCAG AA and AAA contrast for text and buttons, with a fix suggestion.', 'semrs-tools' ), 'browser' ),
 		)
 	);
 }

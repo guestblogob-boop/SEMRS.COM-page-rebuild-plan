@@ -74,7 +74,7 @@ SemrsTools.register('serp-snippet-preview', function (root, api) {
 			h('p', { class: 'semrs-serp__label', text: 'Mobile' }), snippet(true),
 			h('p', { class: 'semrs-tool__hint', text: 'Pixel limits are approximate. Google may also rewrite titles and descriptions.' }),
 			h('div', { class: 'semrs-tool__actions' },
-				api.copyBtn(function () { return '<title>' + title.value + '</title>\n<meta name="description" content="' + api.esc(desc.value) + '">'; }, 'Copy HTML tags', api.id)));
+				api.copyBtn(function () { return '<title>' + api.esc(title.value) + '</title>\n<meta name="description" content="' + api.esc(desc.value) + '">'; }, 'Copy HTML tags', api.id)));
 		api.store(api.id, { title: title.value, desc: desc.value, url: url.value, kw: kw.value, date: date.checked });
 	}
 	root.addEventListener('input', api.debounce(render, 80));

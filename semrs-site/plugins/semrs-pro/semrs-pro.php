@@ -3,7 +3,7 @@
  * Plugin Name:       SEMRS Pro
  * Plugin URI:        https://semrs.com/
  * Description:       Premium add-on for the SEMRS theme and SEMRS Core: sticky/transparent header, mega menu, table of contents, author box, related posts, extra section patterns, white label; multi-location local SEO, image SEO, custom schema; image library conversion; speed extras; ads manager; site layouts; case studies, portfolio and testimonials; lead tracking.
- * Version:           1.5.11
+ * Version:           1.5.12
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-pro
@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 // WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
 add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
 
-define( 'SEMRS_PRO_VERSION', '1.5.11' );
+define( 'SEMRS_PRO_VERSION', '1.5.12' );
 define( 'SEMRS_PRO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_PRO_URL', plugin_dir_url( __FILE__ ) );
 
@@ -57,6 +57,7 @@ function semrs_pro_module_files( $files ) {
 			'sitemaps_pro' => SEMRS_PRO_DIR . 'modules/sitemaps-pro.php',
 			'rank_tracker' => SEMRS_PRO_DIR . 'modules/rank-tracker.php',
 			'og_images'  => SEMRS_PRO_DIR . 'modules/og-images.php',
+			'tools_pro'  => SEMRS_PRO_DIR . 'modules/tools-pro.php',
 			'two_factor' => SEMRS_PRO_DIR . 'modules/two-factor.php',
 			'activity'   => SEMRS_PRO_DIR . 'modules/activity-log.php',
 			'search_replace' => SEMRS_PRO_DIR . 'modules/search-replace.php',
@@ -103,6 +104,7 @@ function semrs_pro_module_labels( $mods ) {
 			'activity'   => array( __( 'Activity log', 'semrs-pro' ), __( 'Who published, changed or deleted posts and pages, changed settings, plugins, themes or users, and who logged in or failed to. Filter, export to CSV, auto-delete after a set time. Included with every Pro key.', 'semrs-pro' ), 'pro' ),
 			'search_replace' => array( __( 'Search & replace', 'semrs-pro' ), __( 'Find and replace text or links in posts, custom fields and settings (safe for serialized data), with a dry-run preview and one-click undo. Included with every Pro key.', 'semrs-pro' ), 'pro' ),
 			'og_images'  => array( __( 'Social images', 'semrs-pro' ), __( 'Automatic 1200 × 630 share images with the post title and your colours for posts without a featured image, made on your own server.', 'semrs-pro' ), 'pro' ),
+			'tools_pro'  => array( __( 'Free Tools Pro', 'semrs-pro' ), __( 'Pro features for the free SEMRS Tools plugin: bulk checks (up to 25 URLs) in the redirect and on-page checkers, your own expert-help box per category, a tool usage report and higher hourly limits.', 'semrs-pro' ), 'pro' ),
 			'schema_pro' => array( __( 'Custom schema', 'semrs-pro' ), __( 'Add your own JSON-LD (Event, Product, Course, HowTo, Recipe, Video…) to any page from the editor, with starters and a JSON check.', 'semrs-pro' ), 'pro' ),
 		)
 	);
