@@ -236,6 +236,7 @@ function semrs_tools_create_pages() {
 	wp_safe_redirect( add_query_arg( array( 'page' => 'semrs-tools', 'made' => $made ), admin_url( function_exists( 'semrs_core_modules' ) ? 'admin.php' : 'tools.php' ) ) );
 	exit;
 }
+add_action( 'admin_post_semrs_tools_pages', 'semrs_tools_create_pages' );
 
 /**
  * Admin page with tabs: Tools, Settings, Usage report (Pro).

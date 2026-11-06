@@ -4,7 +4,7 @@ Tags: seo tools, serp preview, schema generator, utm builder, image compressor
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.4.4
+Stable tag: 1.4.5
 License: GPLv2 or later
 
 20 free SEO tools for any WordPress site. Each page loads only its own small script (core ~2 KB + tool 2-6 KB gzipped).
@@ -49,6 +49,9 @@ Free Tools Pro (SEMRS Pro, SEO Pro add-on; switch it on under SEMRS → Features
 * Social Share Preview shows the image URL the visitor types in, loaded by their own browser.
 
 == Changelog ==
+
+= 1.4.5 =
+* Fix: "Create the missing tool pages" works again (the button's handler was lost in 1.4.0 and the request ended with an empty error)
 
 = 1.4.4 =
 * Full guides bundled for the 8 newer tools (On-Page SEO Checker, Open Graph Generator, Robots.txt Tester, Hreflang, Redirect Rules, Readability, ROAS, Color Contrast): "Create the missing tool pages" now builds them with complete text, SEO title, description, focus keyword and schema
