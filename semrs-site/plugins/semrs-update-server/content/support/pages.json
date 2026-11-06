@@ -23,6 +23,14 @@
 		"focus": "semrs policies",
 		"image": 6386
 	},
+	"privacy-security": {
+		"title": "SEMRS Privacy, Email & Security Guide",
+		"description": "SEMRS privacy and security guide: set up the cookie banner with Google Consent Mode, SMTP email, login limits, security headers and Pro login security.",
+		"order": 7,
+		"seo_title": "SEMRS Privacy & Security 2026: Simple Setup Guide",
+		"focus": "semrs privacy security",
+		"image": 0
+	},
 	"pro-license": {
 		"title": "SEMRS Pro: Install, License Key & Updates",
 		"description": "SEMRS Pro license guide: install the add-on, activate or move your license key, get one-click updates, and learn what happens when a license expires.",

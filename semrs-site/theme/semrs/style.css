@@ -4,7 +4,7 @@ Theme URI:         https://semrs.com/
 Author:            SEMRS
 Author URI:        https://semrs.com/
 Description:       Lightweight, SEO-first theme for businesses, agencies and blogs. Drag-and-drop header and footer builder with top bar, sticky and transparent header, header search and a mobile menu panel. Seven section patterns, sidebar layouts, blog grid or list, reading progress bar, author box, related posts and per-page header, footer and sidebar options. No jQuery: one stylesheet and one small script.
-Version:           1.3.19
+Version:           1.3.20
 Requires at least: 6.5
 Tested up to:      7.1
 Requires PHP:      7.4
@@ -614,14 +614,15 @@ html[data-theme="dark"] .semrs-hero-cover .semrs-eyebrow { color: var(--sp-accen
 .semrs-chart { margin: 0; padding: 1.25rem; color: var(--sp-text); background: var(--sp-bg); border: 1px solid var(--sp-line); border-radius: 16px; box-shadow: 0 12px 32px rgba(11,31,58,.08); }
 .semrs-chart svg { display: block; height: auto; }
 .semrs-chart figcaption { margin-top: .5rem; font-size: .85rem; color: var(--sp-muted); }
-.semrs-chart__line { stroke-dasharray: 900; stroke-dashoffset: 900; animation: semrs-draw 2.2s ease-out .3s forwards; }
-@keyframes semrs-draw { to { stroke-dashoffset: 0; } }
+/* Grows from the left with transform and opacity only, so the browser animates it on the GPU (no layout or paint work). */
+.semrs-chart__line { transform-box: fill-box; transform-origin: 0 100%; animation: semrs-draw 1.6s cubic-bezier(.2,.7,.2,1) .3s both; }
+@keyframes semrs-draw { from { opacity: 0; transform: scaleX(.02); } to { opacity: 1; transform: none; } }
 .semrs-compare table { border-collapse: separate; border-spacing: 0; overflow: hidden; border: 1px solid var(--sp-line); border-radius: 12px; }
 .semrs-compare thead th { color: #fff; background: var(--sp-primary); }
 .semrs-compare thead th:last-child, .semrs-compare td:last-child { font-weight: 700; }
 .semrs-compare thead th:last-child { color: var(--sp-on-accent); background: var(--sp-accent); }
 .semrs-compare th, .semrs-compare td { padding: .75rem .9rem; text-align: left; vertical-align: top; }
-@media (prefers-reduced-motion: reduce) { .semrs-tilt .semrs-block, .semrs-tilt > .semrs-container__inner > * { transition: none; } .semrs-tilt .semrs-block:hover { transform: none; } .semrs-chart__line { animation: none; stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .semrs-tilt .semrs-block, .semrs-tilt > .semrs-container__inner > * { transition: none; } .semrs-tilt .semrs-block:hover { transform: none; } .semrs-chart__line { animation: none; opacity: 1; transform: none; } }
 html[data-theme="dark"] .semrs-chart { background: #13233d; border-color: #2a3d5c; }
 /* Dark mode tables: the primary colour turns light, so headers keep the navy; core's striped rows are light grey. */
 html[data-theme="dark"] .semrs-compare thead th:not(:last-child) { background: var(--sp-dark-header, #0b1f3a); }

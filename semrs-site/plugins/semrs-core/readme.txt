@@ -1,20 +1,20 @@
 === SEMRS Core ===
 Contributors: semrs
-Tags: seo, page cache, redirects, webp, user roles
+Tags: seo, cookie consent, smtp, security, page cache
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.40
+Stable tag: 1.3.43
 License: GPLv2 or later
 
-Free SEO, redirects, page cache, WebP images, user roles, review widgets and a policy-safe AdSense manager in one plugin.
+Free SEO, cookie consent, SMTP email, security, page cache, redirects, WebP images and a policy-safe ads manager in one plugin.
 
 == Description ==
 
-Free SEO with an SEO score and site audit, redirects and a 404 log, IndexNow, a page cache and speed optimization, WebP/AVIF image optimization on your own server, a user role editor, review widgets and a policy-safe ads manager for any WordPress site. SEMRS Pro adds multi-location local SEO, image SEO, custom schema, a bulk SEO editor, delayed scripts, stylesheet minification, cache preload, CDN, media library conversion, Pro blocks and more.
+Free SEO with an SEO score and site audit, redirects and a 404 log, IndexNow, a page cache and speed optimization, WebP/AVIF image optimization on your own server, a user role editor, review widgets, a policy-safe ads manager, a cookie consent banner with Google Consent Mode v2 and the WP Consent API built in, SMTP email, login and header security, and site tools (maintenance mode, duplicate posts, comments off) for any WordPress site. SEMRS Pro adds multi-location local SEO, image SEO, custom schema, a bulk SEO editor, delayed scripts, stylesheet minification, cache preload, CDN, media library conversion, Pro blocks and more.
 
 == Features screen ==
-SEMRS → Features shows every SEMRS feature, free and Pro, as cards with search, filters (Free, Pro, SEO, Speed, Ads, Design, Leads), on/off switches and a Settings link. A switched-off feature loads no code. Pro features are marked PRO and stay locked until SEMRS Pro is installed.
+SEMRS → Features shows every SEMRS feature, free and Pro, as cards with search, filters (Free, Pro, SEO, Speed, Ads, Design, Leads, Privacy & security), on/off switches, a Settings button and a How to use link to the manual. A switched-off feature loads no code. Pro features are marked PRO and stay locked until SEMRS Pro is installed.
 
 == Modules ==
 
@@ -67,10 +67,37 @@ SEMRS → Features shows every SEMRS feature, free and Pro, as cards with search
 * Database cleanup: old revisions and auto-drafts, trash, spam, expired transients, orphaned post meta.
 * Speed check: server response, cache, compression, page weight, render-blocking files, images without sizes, oversized uploads, PHP, object cache, autoload size, with fixes.
 
+= Privacy & consent (SEMRS → Privacy) =
+* Cookie banner (off until you switch it on): Accept, Reject and Preferences with equal prominence; categories Necessary, Preferences, Statistics and Marketing; bar or corner box; light and dark; a cookie settings button, [semrs_cookie_settings] shortcode or any link to #cookie-settings to change the choice.
+* Opt-in (GDPR, UK) or opt-out (US states) consent; choice remembered for a set number of days; "ask everyone again" after a policy change.
+* Google Consent Mode v2: defaults before any tag, updates after the choice, ads data redaction and optional URL passthrough. Works with Site Kit, Google tag and Tag Manager.
+* WP Consent API built in: the same functions, cookies and events as the WP Consent API plugin, so plugins that support it read the visitor's choice without the extra plugin.
+* Header and footer scripts per category: statistics and marketing codes stay inactive until the visitor agrees.
+* Consent log as proof of consent: random visitor ID, choices, policy version and a shortened IP hash, with CSV export and automatic deletion.
+* Note: AdSense and Ad Manager in the EEA, UK and Switzerland need a Google-certified CMP (IAB TCF); use Google's free Privacy & messaging there for ads.
+
+= Email (SMTP) (SEMRS → Email) =
+* Send WordPress mail through any SMTP server (host, Google Workspace, Microsoft 365, Zoho, Brevo, Mailgun, SendGrid, Amazon SES). Password saved encrypted, or set in wp-config.php.
+* From address and name, test email, and a log of the last 50 sends (recipient, subject, result; never the message).
+
+= Security (SEMRS → Security) =
+* Limit log-in attempts with an allow list and a lockout log; one generic log-in error.
+* Hide usernames (author scans, REST users list, users sitemap) and the WordPress version.
+* Security headers (nosniff, SAMEORIGIN, Referrer-Policy, Permissions-Policy) and optional HSTS.
+* Safe SVG uploads for administrators, cleaned of scripts and outside links.
+* Turn off the theme and plugin file editor. Emergency switch: SEMRS_SECURITY_OFF.
+
+= Site tools (SEMRS → Site tools) =
+* Maintenance mode (503 with Retry-After, so rankings are kept) or coming-soon page; logged-in editors see the site; optional reopening date.
+* Duplicate any post, page or custom post as a draft with terms, featured image and custom fields.
+* Comments off everywhere: forms, existing comments, menus, feeds and the REST endpoint.
+
 == External services ==
 
 SEMRS Core works without any outside service. These connections happen only when you use the related feature:
 
+* **SEMRS update server (semrs.com)**: checks for new versions of the plugin about twice a day and when you open the Updates screen. Sends the plugin version, your site address and the WordPress and PHP versions. No personal data. [Terms](https://semrs.com/terms-and-conditions/), [Privacy](https://semrs.com/privacy-policy/).
+* **Your SMTP server** (Email module, only after you enter a server and switch it on): every email WordPress sends (recipient, subject, message) goes to the SMTP server you choose, under that provider's terms.
 * **Google AdSense** (Ads module, only after you enter your publisher ID and switch ads on): the AdSense script is loaded from pagead2.googlesyndication.com on pages where ads are allowed, and Google serves the ads. Google receives the visitor's IP address, browser details and cookies as described in its policies. [Terms](https://policies.google.com/terms), [Privacy](https://policies.google.com/privacy), [AdSense terms](https://www.google.com/adsense/new/localized-terms).
 * **Other ad networks** (Ads module, custom code): only the code you paste is loaded, from the network you choose, under that network's terms.
 * **YouTube** (Speed → YouTube click-to-play, on by default for pages that already embed YouTube videos): the video thumbnail is loaded from i.ytimg.com, and the player loads from youtube-nocookie.com only when the visitor clicks Play. [Terms](https://www.youtube.com/t/terms), [Privacy](https://policies.google.com/privacy).
@@ -78,9 +105,23 @@ SEMRS Core works without any outside service. These connections happen only when
 * **Trustpilot** (Review widgets, only on pages where you add [semrs_reviews] with your business unit ID): the TrustBox script is loaded from widget.trustpilot.com and Trustpilot shows your reviews. [Terms](https://legal.trustpilot.com/for-everyone/end-user-terms-and-conditions), [Privacy](https://legal.trustpilot.com/for-reviewers/end-user-privacy-terms).
 * **Google PageSpeed Insights** (Speed → Speed check): an "Open PageSpeed Insights" link opens pagespeed.web.dev with your homepage address when you click it. Nothing is sent automatically. [Terms](https://policies.google.com/terms), [Privacy](https://policies.google.com/privacy).
 
-The speed check, SEO audit, page cache, llms.txt and all other features run entirely on your own server.
+The speed check, SEO audit, page cache, llms.txt, cookie banner, consent log, security options and all other features run entirely on your own server. Google Consent Mode only passes the visitor's choice to Google tags you already use; it does not load anything itself.
 
 == Changelog ==
+
+= 1.3.43 =
+* Site tools screen moved to its own address (SEMRS → Site tools), so it no longer clashes with the SEMRS Tools plugin.
+* Display conditions and Custom schema cards open the Pages list, where both are used in the editor.
+
+= 1.3.42 =
+* Security headers are also sent on pages served from the SEMRS page cache.
+* The cookie banner and Google Consent Mode defaults are never delayed by Speed Pro, so the banner shows at once and consent defaults run before any Google tag.
+
+= 1.3.41 =
+* New: Privacy & consent – cookie banner, Google Consent Mode v2, the WP Consent API built in (no extra plugin needed), consent-aware header and footer scripts and a consent log.
+* New: Email (SMTP) with test email and mail log; Security (log-in limits, security headers, safe SVG, hidden usernames and version, no file editor); Site tools (maintenance / coming soon, duplicate, comments off).
+* Features screen: every card has a button to its screen, a How to use link to the manual and a "Switched off" note; new Privacy & security filter; Pro cards for login security, activity log, search & replace and social images.
+* SEO: semrs_seo_auto_image filter for automatic share images.
 
 = 1.3.38 =
 * Speed: main image first is now on by default. The featured image preload uses the image's own sizes, only the first content image loads eagerly, and unused early connections to the ad server and Tag Manager are dropped (articles: mobile PageSpeed average 92 to 95, lowest 88 to 94)

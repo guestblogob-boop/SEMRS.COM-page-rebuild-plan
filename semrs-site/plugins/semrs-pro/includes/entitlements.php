@@ -22,11 +22,33 @@ defined( 'ABSPATH' ) || exit;
  */
 function semrs_pro_addon_modules() {
 	return array(
-		'seo'   => array( 'local', 'image_seo', 'seo_bulk', 'schema_pro', 'ai_seo', 'links_pro', 'sitemaps_pro', 'rank_tracker' ),
+		'seo'   => array( 'local', 'image_seo', 'seo_bulk', 'schema_pro', 'ai_seo', 'links_pro', 'sitemaps_pro', 'rank_tracker', 'og_images' ),
 		'speed' => array( 'speed_pro', 'image_library' ),
 		'ads'   => array( 'ads_pro' ),
 		'theme' => array( 'theme_pro', 'layouts', 'proof', 'leads', 'blocks_pro', 'conditions', 'popups', 'languages', 'templates_pro' ),
 	);
+}
+
+/**
+ * Modules included with every SEMRS Pro key, whatever the add-on.
+ *
+ * @return string[]
+ */
+function semrs_pro_common_modules() {
+	return array( 'two_factor', 'activity', 'search_replace' );
+}
+
+/**
+ * May this site load a module (its add-on, or any add-on for common modules)?
+ *
+ * @param string $module Module key.
+ * @return bool
+ */
+function semrs_pro_module_allowed( $module ) {
+	if ( in_array( $module, semrs_pro_common_modules(), true ) ) {
+		return (bool) semrs_pro_addons();
+	}
+	return semrs_pro_has( semrs_pro_module_addon( $module ) );
 }
 
 /**
@@ -219,6 +241,9 @@ add_filter(
 add_filter(
 	'semrs_core_module_locked',
 	function ( $locked, $key ) {
+		if ( in_array( $key, semrs_pro_common_modules(), true ) ) {
+			return ! semrs_pro_addons();
+		}
 		$addon = semrs_pro_module_addon( $key );
 		return $addon ? ! semrs_pro_has( $addon ) : $locked;
 	},

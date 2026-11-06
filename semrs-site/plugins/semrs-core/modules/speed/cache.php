@@ -146,6 +146,17 @@ function semrs_cache_serve() {
 	}
 	header( 'Content-Type: text/html; charset=' . get_option( 'blog_charset', 'UTF-8' ) );
 	header( 'X-SEMRS-Cache: HIT' );
+	// Cached copies are served before the Security module loads: send its headers here too.
+	$sec = (array) get_option( 'semrs_security', array() );
+	if ( ! empty( $sec['headers'] ) && ! ( defined( 'SEMRS_SECURITY_OFF' ) && SEMRS_SECURITY_OFF ) ) {
+		header( 'X-Content-Type-Options: nosniff' );
+		header( 'X-Frame-Options: SAMEORIGIN' );
+		header( 'Referrer-Policy: strict-origin-when-cross-origin' );
+		header( 'Permissions-Policy: camera=(), microphone=(), payment=(), usb=(), interest-cohort=()' );
+		if ( ! empty( $sec['hsts'] ) && is_ssl() ) {
+			header( 'Strict-Transport-Security: max-age=31536000; includeSubDomains' );
+		}
+	}
 	header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s', $stat['mtime'] ) . ' GMT' );
 	if ( 'HEAD' !== ( isset( $_SERVER['REQUEST_METHOD'] ) ? strtoupper( sanitize_key( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) ) : 'GET' ) ) {
 		fpassthru( $fh );

@@ -4,7 +4,7 @@ Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: semrs-core
-Stable tag: 1.5.8
+Stable tag: 1.5.9
 License: GPLv2 or later
 
 Premium add-on for the free SEMRS theme and the free SEMRS Core plugin. Every module can be switched off under SEMRS → Modules.
@@ -78,6 +78,15 @@ The Ads Manager moved to the free SEMRS Core plugin in 1.1.0.
 * Case Studies, Portfolio and Testimonials with permission gates.
 * Contact Form 7 → GA4 generate_lead → thank-you page.
 
+== Login security, activity log and search & replace (every Pro key) ==
+* Two-factor log-in with any authenticator app (TOTP) and 10 one-time backup codes; each person turns it on in their profile; administrators can reset a user; reminder for administrators without it. Emergency switch: SEMRS_2FA_OFF.
+* Custom log-in address: wp-login.php shows "not found" to visitors. Emergency switch: SEMRS_LOGIN_SLUG_OFF.
+* Activity log: publishing, updates, deletions, uploads, log-ins and failed log-ins, users and roles, plugins, themes, updates and SEMRS settings; filters, CSV export, automatic deletion; IP addresses shortened.
+* Search & replace in content, custom fields, comments and settings, safe for serialized data; dry run, samples of each match and one-click undo; site address, plugins, roles, cron and keys are never touched.
+
+== Social images (SEO Pro) ==
+* Automatic 1200 × 630 share images with the post title, site name and your colours for posts without a featured or custom share image; made once on your server with PHP GD and remade when the title changes.
+
 == External services ==
 
 SEMRS Pro connects to these services only when stated:
@@ -87,6 +96,7 @@ SEMRS Pro connects to these services only when stated:
 * **YouTube and Vimeo** – only on pages with the Video Popup block. The YouTube thumbnail (i.ytimg.com) loads with the page; the video player loads only when a visitor clicks play, from youtube-nocookie.com (privacy-enhanced mode) or player.vimeo.com with "do not track". [YouTube Terms](https://www.youtube.com/t/terms), [Google Privacy Policy](https://policies.google.com/privacy), [Vimeo Terms](https://vimeo.com/terms), [Vimeo Privacy](https://vimeo.com/privacy).
 * **cdnjs (Cloudflare)** – only on pages with the Lottie Animation block: loads the open-source lottie-web player from cdnjs.cloudflare.com, and the animation file from the address you enter. [cdnjs Terms](https://www.cloudflare.com/website-terms/), [Cloudflare Privacy](https://www.cloudflare.com/privacypolicy/).
 * **jsDelivr** – only on pages with the 3D Model Viewer block: loads Google's open-source model-viewer from cdn.jsdelivr.net. [jsDelivr Terms and Privacy](https://www.jsdelivr.com/terms).
+* Login security, the activity log, search & replace and social images run entirely on your own server.
 * **Google Search Console data** – SEO Performance reads it through the free Site Kit by Google plugin you connect yourself; SEMRS Pro does not sign in to Google on its own.
 
 == Photo credits ==
@@ -133,6 +143,11 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 SEMRS → License: paste your key and click Activate (Deactivate frees the site so you can move the key). Updates come from semrs.com (SEMRS Update Server): with a valid key, WordPress shows "Update available" and installs new versions in one click. Features never switch off when a license expires; the license controls updates and support.
 
 == Changelog ==
+
+= 1.5.9 =
+* New with every Pro key: Login security (two-factor log-in, backup codes, custom log-in address), Activity log and Search & replace with undo.
+* New in SEO Pro: automatic social share images.
+* Feature descriptions updated (Pro Blocks, Lead tracking).
 
 = 1.5.8 =
 * Readme lists every external service and what is sent: license and update checks, AI providers (your own key), YouTube / Vimeo, cdnjs and jsDelivr.

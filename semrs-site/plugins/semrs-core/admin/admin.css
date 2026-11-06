@@ -38,3 +38,6 @@
 .semrs-empty-msg { padding: 24px; text-align: center; color: #50575e; }
 @media (max-width: 600px) { .semrs-toolbar input[type="search"] { min-width: 0; width: 100%; } }
 .semrs-ui .wp-header-end { margin: 0; border: 0; }
+
+.semrs-card__foot { flex-wrap: wrap; align-items: center; }
+.semrs-card__off { color: #757575; font-style: italic; margin-right: auto; }

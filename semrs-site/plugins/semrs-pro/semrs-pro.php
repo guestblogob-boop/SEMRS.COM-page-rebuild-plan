@@ -3,7 +3,7 @@
  * Plugin Name:       SEMRS Pro
  * Plugin URI:        https://semrs.com/
  * Description:       Premium add-on for the SEMRS theme and SEMRS Core: sticky/transparent header, mega menu, table of contents, author box, related posts, extra section patterns, white label; multi-location local SEO, image SEO, custom schema; image library conversion; speed extras; ads manager; site layouts; case studies, portfolio and testimonials; lead tracking.
- * Version:           1.5.8
+ * Version:           1.5.9
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-pro
@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 // WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
 add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
 
-define( 'SEMRS_PRO_VERSION', '1.5.8' );
+define( 'SEMRS_PRO_VERSION', '1.5.9' );
 define( 'SEMRS_PRO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_PRO_URL', plugin_dir_url( __FILE__ ) );
 
@@ -56,9 +56,13 @@ function semrs_pro_module_files( $files ) {
 			'links_pro'  => SEMRS_PRO_DIR . 'modules/links-pro.php',
 			'sitemaps_pro' => SEMRS_PRO_DIR . 'modules/sitemaps-pro.php',
 			'rank_tracker' => SEMRS_PRO_DIR . 'modules/rank-tracker.php',
+			'og_images'  => SEMRS_PRO_DIR . 'modules/og-images.php',
+			'two_factor' => SEMRS_PRO_DIR . 'modules/two-factor.php',
+			'activity'   => SEMRS_PRO_DIR . 'modules/activity-log.php',
+			'search_replace' => SEMRS_PRO_DIR . 'modules/search-replace.php',
 		),
 		function ( $key ) {
-			return semrs_pro_has( semrs_pro_module_addon( $key ) );
+			return semrs_pro_module_allowed( $key );
 		},
 		ARRAY_FILTER_USE_KEY
 	);
@@ -81,8 +85,8 @@ function semrs_pro_module_labels( $mods ) {
 			'image_seo' => array( __( 'Image SEO', 'semrs-pro' ), __( 'Fills missing alt text and titles from clean file names on upload, and adds missing alt text to images in content.', 'semrs-pro' ), 'pro' ),
 			'layouts'   => array( __( 'Site Layouts', 'semrs-pro' ), __( 'Show any block content at a theme position with display rules (custom hooks).', 'semrs-pro' ), 'pro' ),
 			'proof'     => array( __( 'Proof', 'semrs-pro' ), __( 'Case Studies, Portfolio and Testimonials with permission gates.', 'semrs-pro' ), 'pro' ),
-			'leads'     => array( __( 'Lead tracking', 'semrs-pro' ), __( 'Contact Form 7 → GA4 generate_lead → thank-you page.', 'semrs-pro' ), 'pro' ),
-			'blocks_pro' => array( __( 'Pro Blocks', 'semrs-pro' ), __( 'Slider / carousel, animated counter, 3D model viewer and scroll animations on every block (needs the free SEMRS Blocks plugin).', 'semrs-pro' ), 'pro' ),
+			'leads'     => array( __( 'Lead tracking', 'semrs-pro' ), __( 'Contact Form 7 sends become a GA4 generate_lead event, then visitors go to your thank-you page (Settings → General).', 'semrs-pro' ), 'pro' ),
+			'blocks_pro' => array( __( 'Pro Blocks', 'semrs-pro' ), __( '16 Pro blocks (slider, counter, 3D model, popup, pricing switch, sticky bar, before / after, hotspots, Lottie, marquee, video popup, switcher, data table, animated timeline, reviews slider, trust badges) and scroll animations on every block. Needs the free SEMRS Blocks plugin.', 'semrs-pro' ), 'pro' ),
 			'conditions' => array( __( 'Display conditions', 'semrs-pro' ), __( 'Show any block only to logged-in or logged-out visitors, certain roles, between dates or on certain pages.', 'semrs-pro' ), 'pro' ),
 			'popups'     => array( __( 'Popups', 'semrs-pro' ), __( 'Popups built with the block editor: centred, bottom bar or slide-in; delay, scroll, exit-intent or click triggers; frequency and page targeting. Phone-friendly and ad-free by design.', 'semrs-pro' ), 'pro' ),
 			'languages'  => array( __( 'Languages', 'semrs-pro' ), __( 'Language switcher with linked translations, hreflang tags and the right html lang; optional Google Translate for untranslated pages. Works with Polylang and WPML.', 'semrs-pro' ), 'pro' ),
@@ -95,6 +99,10 @@ function semrs_pro_module_labels( $mods ) {
 			'sitemaps_pro' => array( __( 'Sitemaps Pro', 'semrs-pro' ), __( 'Image, video and Google News sitemaps, and VideoObject schema for pages with YouTube, Vimeo or uploaded videos (needs the SEO module).', 'semrs-pro' ), 'pro' ),
 			'links_pro'  => array( __( 'Link Assistant', 'semrs-pro' ), __( 'Automatic internal links from your keywords and focus keywords (once per page, never stuffed) and a broken link checker that scans your content in the background.', 'semrs-pro' ), 'pro' ),
 			'ai_seo'     => array( __( 'AI SEO', 'semrs-pro' ), __( 'AI writes SEO titles, meta descriptions, focus keywords, social text and image alt text from your content, with your own Claude, OpenAI or Gemini key; autofill on publish and bulk fill (needs the SEO module).', 'semrs-pro' ), 'pro' ),
+			'two_factor' => array( __( 'Login security', 'semrs-pro' ), __( 'Two-factor log-in with any authenticator app (Google Authenticator, Microsoft Authenticator, 1Password…) and backup codes, a reminder for administrators, and an optional custom log-in address. Included with every Pro key.', 'semrs-pro' ), 'pro' ),
+			'activity'   => array( __( 'Activity log', 'semrs-pro' ), __( 'Who published, changed or deleted posts and pages, changed settings, plugins, themes or users, and who logged in or failed to. Filter, export to CSV, auto-delete after a set time. Included with every Pro key.', 'semrs-pro' ), 'pro' ),
+			'search_replace' => array( __( 'Search & replace', 'semrs-pro' ), __( 'Find and replace text or links in posts, custom fields and settings (safe for serialized data), with a dry-run preview and one-click undo. Included with every Pro key.', 'semrs-pro' ), 'pro' ),
+			'og_images'  => array( __( 'Social images', 'semrs-pro' ), __( 'Automatic 1200 × 630 share images with the post title and your colours for posts without a featured image, made on your own server.', 'semrs-pro' ), 'pro' ),
 			'schema_pro' => array( __( 'Custom schema', 'semrs-pro' ), __( 'Add your own JSON-LD (Event, Product, Course, HowTo, Recipe, Video…) to any page from the editor, with starters and a JSON check.', 'semrs-pro' ), 'pro' ),
 		)
 	);

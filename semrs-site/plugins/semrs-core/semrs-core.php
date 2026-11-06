@@ -3,7 +3,7 @@
  * Plugin Name:       SEMRS Core
  * Plugin URI:        https://semrs.com/
  * Description:       Free SEO, speed, images, roles and ads for any WordPress site: titles, meta, schema, sitemaps, SEO score and site audit, llms.txt, redirects and 404 log, IndexNow (reads Rank Math, Yoast and AIOSEO data); WebP/AVIF image optimization, user role editor, review widgets; page cache, CSS and script optimization, prefetch, database cleanup, speed check; AdSense/AdX/ad network code with policy-safe placement and ads.txt. SEMRS Pro adds Pro modules.
- * Version:           1.3.40
+ * Version:           1.3.43
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-core
@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
 // WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
 add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
 
-define( 'SEMRS_CORE_VERSION', '1.3.40' );
+define( 'SEMRS_CORE_VERSION', '1.3.43' );
 define( 'SEMRS_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_CORE_FILE', __FILE__ );
 define( 'SEMRS_CORE_URL', plugin_dir_url( __FILE__ ) );
@@ -41,6 +41,10 @@ function semrs_core_module_files() {
 			'images'    => SEMRS_CORE_DIR . 'modules/images/images.php',
 			'roles'     => SEMRS_CORE_DIR . 'modules/roles/roles.php',
 			'reviews'   => SEMRS_CORE_DIR . 'modules/reviews/reviews.php',
+			'privacy'   => SEMRS_CORE_DIR . 'modules/privacy/privacy.php',
+			'email'     => SEMRS_CORE_DIR . 'modules/email/email.php',
+			'security'  => SEMRS_CORE_DIR . 'modules/security/security.php',
+			'tools'     => SEMRS_CORE_DIR . 'modules/tools/tools.php',
 		)
 	);
 }
@@ -62,6 +66,10 @@ function semrs_core_modules() {
 			'indexnow'  => array( __( 'IndexNow', 'semrs-core' ), __( 'Once you switch it on, tells Bing, Yandex, Seznam and other IndexNow search engines when you publish, update or delete content.', 'semrs-core' ), 'free' ),
 			'images'    => array( __( 'Image Optimization', 'semrs-core' ), __( 'New uploads are compressed, resized to a maximum size and saved as WebP (or AVIF) on your own server. No outside service and no quota.', 'semrs-core' ), 'free' ),
 			'roles'     => array( __( 'User Roles', 'semrs-core' ), __( 'Edit what each role can do, add roles copied from an existing one, delete custom roles and give a user extra roles.', 'semrs-core' ), 'free' ),
+			'privacy'   => array( __( 'Privacy & consent', 'semrs-core' ), __( 'Cookie banner with categories, Google Consent Mode v2, the WP Consent API built in (no extra plugin), header and footer scripts that wait for consent, and a consent log.', 'semrs-core' ), 'free' ),
+			'email'     => array( __( 'Email (SMTP)', 'semrs-core' ), __( 'Send WordPress mail through your email provider so forms and notices arrive, with a test email and a log of recent sends.', 'semrs-core' ), 'free' ),
+			'security'  => array( __( 'Security', 'semrs-core' ), __( 'Limit log-in attempts, security headers, safe SVG uploads, hidden usernames and WordPress version, and no file editor.', 'semrs-core' ), 'free' ),
+			'tools'     => array( __( 'Site tools', 'semrs-core' ), __( 'Maintenance or coming-soon page with the right signal for Google, duplicate posts and pages, and comments off everywhere.', 'semrs-core' ), 'free' ),
 			'reviews'   => array( __( 'Review Widgets', 'semrs-core' ), __( 'Show your real Trustpilot or Google review widget with a shortcode. Its script loads only on pages that use it.', 'semrs-core' ), 'free' ),
 		)
 	);

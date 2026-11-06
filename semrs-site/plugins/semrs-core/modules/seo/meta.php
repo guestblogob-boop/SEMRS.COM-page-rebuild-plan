@@ -115,6 +115,16 @@ function semrs_seo_image() {
 		if ( has_post_thumbnail( $id ) ) {
 			return (string) get_the_post_thumbnail_url( $id, 'full' );
 		}
+		/**
+		 * Share image for a post without its own image (SEMRS Pro Social images).
+		 *
+		 * @param string $url Default image ('' = site default).
+		 * @param int    $id  Post ID.
+		 */
+		$auto = (string) apply_filters( 'semrs_seo_auto_image', '', $id );
+		if ( '' !== $auto ) {
+			return $auto;
+		}
 	}
 	return (string) semrs_seo_settings()['og_image'];
 }

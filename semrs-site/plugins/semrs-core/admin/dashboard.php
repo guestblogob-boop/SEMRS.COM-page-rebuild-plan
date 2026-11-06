@@ -102,13 +102,13 @@ function semrs_core_module_meta() {
 			'redirects'  => array( 'seo', 'randomize', admin_url( 'admin.php?page=semrs-redirects' ) ),
 			'local'      => array( 'seo', 'location', admin_url( 'edit.php?post_type=semrs_location' ) ),
 			'indexnow'   => array( 'seo', 'update', admin_url( 'admin.php?page=semrs-indexnow' ) ),
-			'image_seo'  => array( 'seo', 'format-image', '' ),
-			'layouts'    => array( 'design', 'layout', '' ),
-			'proof'      => array( 'design', 'awards', '' ),
-			'leads'      => array( 'leads', 'email-alt', '' ),
+			'image_seo'  => array( 'seo', 'format-image', admin_url( 'upload.php' ), __( 'Media Library', 'semrs-core' ) ),
+			'layouts'    => array( 'design', 'layout', admin_url( 'edit.php?post_type=semrs_layout' ), __( 'Site Layouts', 'semrs-core' ) ),
+			'proof'      => array( 'design', 'awards', admin_url( 'edit.php?post_type=semrs_case_study' ), __( 'Case studies', 'semrs-core' ) ),
+			'leads'      => array( 'leads', 'email-alt', admin_url( 'options-general.php#semrs_thank_you_path' ), __( 'Thank-you page', 'semrs-core' ) ),
 			'blocks_pro' => array( 'design', 'block-default', admin_url( 'admin.php?page=semrs-blocks' ) ),
 			'theme_pro'  => array( 'design', 'admin-appearance', admin_url( 'customize.php?autofocus[section]=semrs_theme_pro' ) ),
-			'conditions' => array( 'design', 'visibility', '' ),
+			'conditions' => array( 'design', 'visibility', admin_url( 'edit.php?post_type=page' ), __( 'Pages', 'semrs-core' ) ),
 			'popups'     => array( 'leads', 'feedback', admin_url( 'edit.php?post_type=semrs_popup' ) ),
 			'languages'  => array( 'seo', 'translation', admin_url( 'admin.php?page=semrs-languages' ) ),
 			'templates_pro' => array( 'design', 'layout', admin_url( 'admin.php?page=semrs-templates' ) ),
@@ -118,14 +118,66 @@ function semrs_core_module_meta() {
 			'images'     => array( 'speed', 'format-gallery', admin_url( 'admin.php?page=semrs-images' ) ),
 			'roles'      => array( 'design', 'groups', admin_url( 'users.php?page=semrs-roles' ) ),
 			'reviews'    => array( 'leads', 'star-filled', admin_url( 'admin.php?page=semrs-reviews' ) ),
+			'privacy'    => array( 'privacy', 'privacy', admin_url( 'admin.php?page=semrs-privacy' ) ),
+			'email'      => array( 'privacy', 'email', admin_url( 'admin.php?page=semrs-email' ) ),
+			'security'   => array( 'privacy', 'shield', admin_url( 'admin.php?page=semrs-security' ) ),
+			'tools'      => array( 'design', 'admin-tools', admin_url( 'admin.php?page=semrs-site-tools' ) ),
+			'two_factor' => array( 'privacy', 'lock', admin_url( 'admin.php?page=semrs-login-security' ) ),
+			'activity'   => array( 'privacy', 'list-view', admin_url( 'admin.php?page=semrs-activity' ) ),
+			'search_replace' => array( 'design', 'search', admin_url( 'tools.php?page=semrs-search-replace' ) ),
+			'og_images'  => array( 'seo', 'format-image', admin_url( 'admin.php?page=semrs-og-images' ) ),
 			'image_library' => array( 'speed', 'images-alt2', admin_url( 'admin.php?page=semrs-images' ) ),
-			'schema_pro' => array( 'seo', 'editor-code', '' ),
+			'schema_pro' => array( 'seo', 'editor-code', admin_url( 'edit.php?post_type=page' ), __( 'Pages', 'semrs-core' ) ),
 			'ai_seo'     => array( 'seo', 'superhero-alt', admin_url( 'admin.php?page=semrs-ai' ) ),
 			'links_pro'  => array( 'seo', 'admin-links', admin_url( 'admin.php?page=semrs-links' ) ),
 			'sitemaps_pro' => array( 'seo', 'networking', admin_url( 'admin.php?page=semrs-sitemaps-pro' ) ),
 			'rank_tracker' => array( 'seo', 'chart-line', admin_url( 'admin.php?page=semrs-performance' ) ),
 		)
 	);
+}
+
+/**
+ * Manual section for each feature card.
+ *
+ * @param string $key Module key.
+ * @return string
+ */
+function semrs_core_module_docs( $key ) {
+	$map = array(
+		'seo'           => 'seo/',
+		'redirects'     => 'seo/#moving-from-another-seo-plugin',
+		'indexnow'      => 'seo/#schema-sitemap-and-llms-txt',
+		'ads'           => 'ads/',
+		'ads_pro'       => 'ads/#6-extra-ad-features-in-semrs-pro',
+		'speed'         => 'speed/',
+		'speed_pro'     => 'speed/#extra-speed-in-semrs-pro',
+		'images'        => 'speed/',
+		'image_library' => 'speed/#extra-speed-in-semrs-pro',
+		'theme_pro'     => 'theme/',
+		'templates_pro' => 'templates/',
+		'languages'     => 'pro-license/#add-more-languages',
+		'blocks_pro'    => 'blocks/#pro-blocks-need-semrs-pro',
+		'conditions'    => 'blocks/#pro-blocks-need-semrs-pro',
+		'popups'        => 'blocks/#pro-blocks-need-semrs-pro',
+		'privacy'       => 'privacy-security/#cookie-consent',
+		'email'         => 'privacy-security/#email-smtp',
+		'security'      => 'privacy-security/#security',
+		'tools'         => 'privacy-security/#site-tools',
+		'two_factor'    => 'privacy-security/#login-security-pro',
+		'activity'      => 'privacy-security/#activity-log-pro',
+		'search_replace' => 'privacy-security/#search-and-replace-pro',
+		'og_images'     => 'privacy-security/#social-images-pro',
+	);
+	if ( isset( $map[ $key ] ) ) {
+		$path = $map[ $key ];
+	} elseif ( in_array( $key, array( 'local', 'rank_tracker', 'sitemaps_pro', 'links_pro', 'ai_seo', 'schema_pro', 'seo_bulk', 'image_seo' ), true ) ) {
+		$path = 'seo/#extra-seo-in-semrs-pro';
+	} elseif ( in_array( $key, array( 'layouts', 'proof', 'leads' ), true ) ) {
+		$path = 'pro-license/#what-pro-unlocks';
+	} else {
+		$path = '#what-each-semrs-product-does';
+	}
+	return apply_filters( 'semrs_docs_url', 'https://semrs.com/support/' ) . $path;
 }
 
 /**
@@ -147,7 +199,7 @@ function semrs_core_pro_teasers() {
 		'speed_pro'  => array( __( 'Speed Pro', 'semrs-core' ), __( 'Delay analytics, pixel and chat scripts until the visitor interacts, load form plugins only where used, minify stylesheets, add image sizes, lazy-load iframes, preload the page cache and serve files from a CDN.', 'semrs-core' ) ),
 		'ads_pro'    => array( __( 'Ads Pro', 'semrs-core' ), __( 'More placements, targeting by category, post age and dates, A/B rotation, click protection and a polite ad-blocker message.', 'semrs-core' ) ),
 		'image_seo'  => array( __( 'Image SEO', 'semrs-core' ), __( 'Fills missing alt text and titles automatically from clean file names.', 'semrs-core' ) ),
-		'blocks_pro' => array( __( 'Pro Blocks', 'semrs-core' ), __( 'Slider and carousel, animated counter, 3D model viewer and scroll animations on every block.', 'semrs-core' ) ),
+		'blocks_pro' => array( __( 'Pro Blocks', 'semrs-core' ), __( '16 Pro blocks: slider, counter, 3D model, popup, pricing switch, sticky bar, before / after, hotspots, Lottie, marquee, video popup, switcher, data table, animated timeline, reviews slider and trust badges, plus scroll animations.', 'semrs-core' ) ),
 		'theme_pro'  => array( __( 'Theme Pro', 'semrs-core' ), __( 'Dark mode switch, mega menu, automatic table of contents, extra section patterns and white label for the SEMRS theme.', 'semrs-core' ) ),
 		'layouts'    => array( __( 'Site Layouts (custom hooks)', 'semrs-core' ), __( 'Show any block content at a theme position with display rules.', 'semrs-core' ) ),
 		'proof'      => array( __( 'Case studies & portfolio', 'semrs-core' ), __( 'Case Studies, Portfolio and Testimonials with permission checks.', 'semrs-core' ) ),
@@ -155,6 +207,10 @@ function semrs_core_pro_teasers() {
 		'languages'  => array( __( 'Languages & switcher', 'semrs-core' ), __( 'Language switcher with linked translations and hreflang tags, plus optional Google Translate for untranslated pages.', 'semrs-core' ) ),
 		'popups'     => array( __( 'Popups', 'semrs-core' ), __( 'Popups built with the block editor: centred, bottom bar or slide-in, with delay, scroll, exit-intent or click triggers and page targeting.', 'semrs-core' ) ),
 		'conditions' => array( __( 'Display conditions', 'semrs-core' ), __( 'Show any block only to logged-in visitors, certain roles, between dates or on certain pages.', 'semrs-core' ) ),
+		'two_factor' => array( __( 'Login security', 'semrs-core' ), __( 'Two-factor log-in with an authenticator app and backup codes, and a custom log-in address.', 'semrs-core' ) ),
+		'activity'   => array( __( 'Activity log', 'semrs-core' ), __( 'See who changed which post, page, setting, plugin or user, and when. Filter and export.', 'semrs-core' ) ),
+		'search_replace' => array( __( 'Search & replace', 'semrs-core' ), __( 'Find and replace text or links across posts, custom fields and settings, with a preview and undo.', 'semrs-core' ) ),
+		'og_images'  => array( __( 'Social images', 'semrs-core' ), __( 'Automatic share images with the post title for posts without a featured image.', 'semrs-core' ) ),
 		'leads'      => array( __( 'Lead tracking', 'semrs-core' ), __( 'Form submissions sent to Google Analytics 4 as generate_lead, then a thank-you page.', 'semrs-core' ) ),
 	);
 }
@@ -171,6 +227,7 @@ function semrs_core_groups() {
 		'ads'    => __( 'Ads', 'semrs-core' ),
 		'design' => __( 'Design', 'semrs-core' ),
 		'leads'  => __( 'Leads', 'semrs-core' ),
+		'privacy' => __( 'Privacy & security', 'semrs-core' ),
 	);
 }
 
@@ -229,8 +286,12 @@ function semrs_core_card( $key, $label, $desc, $tier, $locked ) {
 	if ( $locked ) {
 		echo '<a class="button button-primary" href="' . esc_url( $unlock[0] ) . '" target="_blank" rel="noopener">' . esc_html( $unlock[1] ) . '</a>';
 	} elseif ( $meta[2] && $on ) {
-		echo '<a class="button" href="' . esc_url( $meta[2] ) . '">' . esc_html__( 'Settings', 'semrs-core' ) . '</a>';
+		echo '<a class="button button-primary" href="' . esc_url( $meta[2] ) . '">' . esc_html( $meta[3] ?? __( 'Settings', 'semrs-core' ) ) . '</a>';
+	} elseif ( ! $on ) {
+		echo '<span class="semrs-card__off">' . esc_html__( 'Switched off', 'semrs-core' ) . '</span>';
 	}
+	/* translators: %s: feature name */
+	echo '<a class="button" href="' . esc_url( semrs_core_module_docs( $key ) ) . '" target="_blank" rel="noopener" aria-label="' . esc_attr( sprintf( __( 'How to use %s (opens in a new tab)', 'semrs-core' ), $label ) ) . '">' . esc_html__( 'How to use', 'semrs-core' ) . '</a>';
 	echo '</div></div>';
 }
 

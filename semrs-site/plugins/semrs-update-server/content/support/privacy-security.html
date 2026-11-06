@@ -1,0 +1,215 @@
+<!-- wp:paragraph -->
+<p>SEMRS Core has four free tools that most sites need: a cookie banner, reliable email, light security and site tools. SEMRS Pro adds two-factor log-in, an activity log, search and replace, and automatic share images. Everything starts switched off, so nothing changes for your visitors until you choose it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:semrs/toc {"levels":"2"} /-->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Cookie consent</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Go to <strong>SEMRS → Privacy</strong> and tick <strong>Show the banner</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Choose <strong>Opt-in</strong> if you have visitors from Europe or the UK. Nothing that tracks runs until they agree.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Keep the four categories: Necessary, Preferences, Statistics and Marketing.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Leave <strong>Google Consent Mode</strong> on. Google Analytics, Site Kit and Google Ads then follow the visitor's choice.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Click <strong>Save Changes</strong> and open your site in a private window to see the banner.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>You do not need the WP Consent API plugin.</strong> SEMRS has the same functions built in, so plugins that support it, such as Site Kit and WooCommerce, read the choice from SEMRS. You can deactivate and delete that plugin.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Tracking codes:</strong> paste Google Analytics, Clarity, Meta pixel or chat codes into the matching box under <strong>Header and footer scripts</strong>. Statistics and marketing codes wait until the visitor agrees. Do not paste a Google tag that Site Kit already adds.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Proof of consent:</strong> keep <strong>Consent log</strong> on. It saves a random visitor ID, the choices and a shortened IP hash, never names. Download it as CSV at the bottom of the screen.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Ads in Europe:</strong> AdSense and Ad Manager need a Google-certified consent message for visitors from the EEA, the UK and Switzerland. Turn on Google's free <strong>Privacy &amp; messaging</strong> message in AdSense for that. The SEMRS banner then covers everything else.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Speed:</strong> the banner is a few kilobytes of code in the page, with no extra file to download, and it never moves the page content.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Email (SMTP)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Many hosts send WordPress email in a way that fails or lands in spam. Send it through your email provider instead.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Go to <strong>SEMRS → Email</strong> and tick <strong>Use SMTP</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Enter the SMTP server, port and encryption your provider gives you (usually TLS and port 587).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Enter the username and password. For Gmail and Microsoft 365, create an app password.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Use a <strong>From email</strong> on your own domain.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Click <strong>Save Changes</strong>, then <strong>Send test</strong>.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The password is saved encrypted. Safer still, add <code>define( 'SEMRS_SMTP_PASSWORD', '…' );</code> to wp-config.php. The log shows the last 50 emails with their result, never the message itself.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Security</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Go to <strong>SEMRS → Security</strong>. These settings are safe for almost every site:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table -->
+<figure class="wp-block-table"><table><thead><tr><th>Setting</th><th>What it does</th><th>Turn on?</th></tr></thead><tbody><tr><td>Limit log-in attempts</td><td>Locks out an IP after 5 wrong passwords for 15 minutes</td><td>Yes</td></tr><tr><td>Same error for wrong user or password</td><td>Bots cannot learn which usernames exist</td><td>Yes</td></tr><tr><td>Hide the WordPress version</td><td>Removes the version number from the page code</td><td>Yes</td></tr><tr><td>Security headers</td><td>Adds browser protections against clickjacking and file sniffing</td><td>Yes</td></tr><tr><td>Turn off the file editor</td><td>Removes the theme and plugin code editors</td><td>Yes</td></tr><tr><td>Hide usernames</td><td>Blocks author scans and the public users list</td><td>Only if you have no author pages to rank</td></tr><tr><td>HSTS</td><td>Forces HTTPS for a year</td><td>Only when every page and subdomain uses HTTPS</td></tr><tr><td>Safe SVG uploads</td><td>Lets administrators upload cleaned SVG files</td><td>When you need SVG logos or icons</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p><strong>Locked out?</strong> Add <code>define( 'SEMRS_SECURITY_OFF', true );</code> to wp-config.php, log in, fix the setting and remove the line.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Site tools</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Go to <strong>SEMRS → Site tools</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Maintenance page:</strong> for short work on a live site. Google is told the site is "temporarily unavailable", so your rankings stay. You and your editors still see the site when logged in. Set a reopening time if you know it.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Coming soon page:</strong> for a new site that is not launched yet.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Duplicate:</strong> a "Duplicate" link under every post and page makes a draft copy with its categories, featured image and SEO settings.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Comments off:</strong> turns comments off everywhere and stops comment spam.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Login security (Pro)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Included with every SEMRS Pro key. Go to <strong>SEMRS → Login security</strong> and click <strong>Set up two-factor for my account</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Install an authenticator app on your phone, such as Google Authenticator, Microsoft Authenticator or 1Password.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Add an account with <strong>Enter a setup key</strong> and type the key shown in your profile.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Type the 6-digit code from the app and click <strong>Update Profile</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Save the 10 backup codes somewhere safe. Each works once.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>From then on, the log-in form asks for the code after your password. An administrator can turn two-factor off for a user who lost their phone. If you lock yourself out, add <code>define( 'SEMRS_2FA_OFF', true );</code> to wp-config.php.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Custom log-in address:</strong> bots that try wp-login.php get "not found". Bookmark the new address before you save. To undo it, add <code>define( 'SEMRS_LOGIN_SLUG_OFF', true );</code> to wp-config.php.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Activity log (Pro)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Included with every SEMRS Pro key. <strong>SEMRS → Activity log</strong> shows who published, changed or deleted content, changed settings, plugins, themes or users, and who logged in or failed to. Filter by person or event, export to CSV, and choose after how many days old entries are deleted. IP addresses are stored shortened.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Search and replace (Pro)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Included with every SEMRS Pro key. Go to <strong>Tools → Search &amp; replace</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Make a backup first.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Type what to find and what to replace it with, for example an old phone number or <code>http://</code> links.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Keep <strong>Dry run</strong> ticked and click <strong>Run</strong>. Check the count and the examples.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Untick <strong>Dry run</strong> and run it again.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>If the result is wrong, click <strong>Undo last change</strong>. The site address, plugins, user roles and security keys are never changed.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Social images (Pro)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Part of SEO Pro. When a post or page has no featured image, Facebook, LinkedIn, X and WhatsApp show an automatic image with the post title and your colors instead of a blank box. Choose the colors under <strong>SEMRS → Social images</strong>. The image is made once on your own server.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Keep your 100 PageSpeed score</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>None of these tools slow your site: they run on your server, and only the cookie banner adds a few kilobytes to the page. After turning features on, test again with <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener">PageSpeed Insights</a> and keep the speed settings from the <a href="/support/speed/">speed guide</a>. Questions? <a href="/contact-us/">Contact us</a>.</p>
+<!-- /wp:paragraph -->
