@@ -1,4 +1,4 @@
-# SEMRS Speed settings that scored 100 / 100 / 100 / 100 (PageSpeed Insights, 25 Oct 2026)
+# SEMRS Speed settings that scored 100 / 100 / 100 / 100 (PageSpeed Insights, 25 Oct and 6 Nov 2026)
 
 Mobile: FCP 1.1 s, LCP 1.1 s, TBT 0 ms, CLS 0, SI 2.0 s. Desktop: FCP 0.3 s, LCP 0.3 s, TBT 60 ms, CLS 0.002, SI 0.9 s. Agentic Browsing 3/3.
 Keep these on. Re-check after every release (Core 1.3.41 / Pro 1.5.9 live 5 Nov 2026; new modules are off by default and do not change these).
@@ -13,6 +13,11 @@ Keep these on. Re-check after every release (Core 1.3.41 / Pro 1.5.9 live 5 Nov 
 - Unload unused plugin files: ON
 - Remove unused CSS: ON, safelist starts: is-*, has-*, sp-scrolled, sp-submenu*, semrs-pfv*, semrs-lightbox*, semrs-cf*, semrs-cd*, semrs-anim*, semrs-ad*, adsbygoogle, active, open, show, visible, toggled, current*, focus* … (rest not captured; read the live screen before changing)
 
+## Re-test 6 Nov 2026 (Core 1.3.43, Pro 1.5.10, theme 1.3.20, cookie banner and security on)
+- Mobile: 100 / 100 / 100 / 100 – FCP 1.2 s, LCP 1.2 s, TBT 0 ms, CLS 0, SI 2.1 s.
+- Desktop: 100 / 100 / 100 / 100 – FCP 0.3 s, LCP 0.3 s, TBT 20 ms, CLS 0.004, SI 0.9 s. Agentic Browsing 3/3.
+- Social images: working with the bundled Noto Sans Bold (1200 × 630, WebP after Core image conversion).
+
 ## Warnings from the 25 Oct report (status 6 Nov 2026)
 - Unused preconnect to www.googletagmanager.com: gone (only a dns-prefetch hint remains).
 - Non-composited chart animation: fixed in theme 1.3.20 (transform + opacity instead of stroke-dashoffset).
@@ -22,4 +27,4 @@ Keep these on. Re-check after every release (Core 1.3.41 / Pro 1.5.9 live 5 Nov 
 ## New settings switched on (6 Nov 2026)
 - Security: limit log-ins (5 tries / 15 min), generic log-in error, hide WordPress version, security headers (also on cached pages from Core 1.3.43), file editor off. Off: HSTS, hide usernames, SVG.
 - Privacy: cookie banner on, opt-in, Consent Mode v2 + ads data redaction, consent log, cookie settings button. Banner and Consent Mode scripts carry data-no-delay so Speed Pro never delays them.
-- Social images: on, but inactive until a .ttf font is set (the server has none).
+- Social images: on, using the bundled Noto Sans Bold (Pro 1.5.10).
