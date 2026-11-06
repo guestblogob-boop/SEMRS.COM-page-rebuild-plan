@@ -104,8 +104,8 @@ function semrs_blocks_banner_css() {
 		'banner-slider',
 		'.semrs-banners{position:relative;overflow:hidden;border-radius:var(--b-radius);height:var(--bn-hm,420px);color:var(--bn-fg,var(--b-text))}'
 		. '@media(min-width:782px){.semrs-banners{height:var(--bn-h,360px)}}'
-		. '.semrs-banners__track{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}.semrs-banners__track::-webkit-scrollbar{display:none}'
-		. '.semrs-banner__slide{flex:0 0 100%;height:100%;scroll-snap-align:start;display:grid;grid-template-rows:auto 1fr;background:var(--bn-bg,var(--b-surface));position:relative;overflow:hidden}'
+		. '.semrs-banners__track{display:flex;height:100%;transition:transform .55s cubic-bezier(.2,.7,.2,1);outline-offset:-3px}'
+		. '.semrs-banner__slide{flex:0 0 100%;min-width:0;height:100%;display:grid;grid-template-rows:auto 1fr;background:var(--bn-bg,var(--b-surface));position:relative;overflow:hidden}'
 		. '@media(min-width:782px){.semrs-banners--split .semrs-banner__slide{grid-template-columns:1fr 1fr;grid-template-rows:1fr}}'
 		. '.semrs-banner__text{display:flex;flex-direction:column;justify-content:center;gap:.6rem;padding:clamp(1.25rem,4vw,3rem);position:relative;z-index:1}'
 		. '.semrs-banner__h{margin:0;font-size:clamp(1.5rem,3.4vw,2.6rem);font-weight:800;line-height:1.15;color:inherit}.semrs-banner__t{margin:0;font-size:clamp(1rem,1.6vw,1.2rem);opacity:.9}.semrs-banner__btn{align-self:flex-start;margin-top:.5rem}'
@@ -115,7 +115,7 @@ function semrs_blocks_banner_css() {
 		. '.semrs-banners__bar{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;align-items:center;gap:6px;z-index:2}'
 		. '.semrs-banners__dot{width:24px;height:24px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center}.semrs-banners__dot::before{content:"";width:9px;height:9px;border-radius:50%;background:rgba(0,0,0,.3)}.semrs-banners__dot[aria-current="true"]::before{background:var(--b-primary);width:22px;border-radius:5px}'
 		. '.semrs-banners__pause{width:28px;height:28px;border:0;border-radius:50%;background:rgba(255,255,255,.92);color:#111;font-size:.75rem;cursor:pointer}'
-		. '@media(prefers-reduced-motion:reduce){.semrs-banners__track{scroll-behavior:auto}}'
+		. '@media(prefers-reduced-motion:reduce){.semrs-banners__track{transition:none}}'
 	);
 }
 

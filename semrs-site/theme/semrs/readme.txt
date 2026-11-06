@@ -4,7 +4,7 @@ Tags: blog, portfolio, grid-layout, full-width-template, block-patterns
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.20
+Stable tag: 1.3.21
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,9 @@ Appearance → Customize → SEMRS Theme → Header builder.
 Edit the page, open "Page options" in the sidebar and set Transparent header to On.
 
 == Changelog ==
+
+= 1.3.21 =
+* No sideways scroll on Windows: full-width blocks on normal-width pages no longer stick out by the scrollbar's width (html overflow-x: clip, which keeps the sticky header working)
 
 = 1.3.20 =
 * Chart line animation uses transform and opacity only (GPU-composited, no layout or paint work).
