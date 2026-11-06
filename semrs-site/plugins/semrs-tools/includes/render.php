@@ -48,9 +48,40 @@ function semrs_tools_enqueue_head_style() {
 		if ( has_shortcode( $content, 'semrs_tool' ) || has_shortcode( $content, 'semrs_tools' ) ) {
 			wp_enqueue_style( 'semrs-tools' );
 		}
+		// Tools on this page: their scripts are preloaded from <head> so the tool appears sooner.
+		if ( preg_match_all( '/\[semrs_tool\s+id=["\']?([a-z0-9-]+)/', $content, $m ) ) {
+			$GLOBALS['semrs_tools_preload'] = array_values( array_filter( array_unique( $m[1] ), 'semrs_tools_enabled' ) );
+		}
 	}
 }
 add_action( 'wp_enqueue_scripts', 'semrs_tools_enqueue_head_style', 20 );
+
+/**
+ * Preload the core and tool scripts (same URLs WordPress prints, so they are
+ * fetched once). Scripts stay deferred; they just start downloading early.
+ *
+ * @param array $res Preload resources.
+ * @return array
+ */
+function semrs_tools_preload( $res ) {
+	$ids   = $GLOBALS['semrs_tools_preload'] ?? array();
+	$tools = semrs_tools_list();
+	if ( ! $ids ) {
+		return $res;
+	}
+	$handles = array_merge( array( 'semrs-tools-core' ), array_map( function ( $id ) { return 'semrs-tool-' . $id; }, array_slice( array_intersect( $ids, array_keys( $tools ) ), 0, 3 ) ) );
+	foreach ( $handles as $h ) {
+		$reg = wp_scripts()->registered[ $h ] ?? null;
+		if ( $reg && $reg->src ) {
+			$res[] = array(
+				'href' => add_query_arg( 'ver', $reg->ver ? $reg->ver : get_bloginfo( 'version' ), $reg->src ),
+				'as'   => 'script',
+			);
+		}
+	}
+	return $res;
+}
+add_filter( 'wp_preload_resources', 'semrs_tools_preload' );
 
 /**
  * Height each tool takes once it has loaded (px, [phone, desktop]), measured
