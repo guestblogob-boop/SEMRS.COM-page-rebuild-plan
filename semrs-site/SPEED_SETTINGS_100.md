@@ -28,3 +28,9 @@ Keep these on. Re-check after every release (Core 1.3.41 / Pro 1.5.9 live 5 Nov 
 - Security: limit log-ins (5 tries / 15 min), generic log-in error, hide WordPress version, security headers (also on cached pages from Core 1.3.43), file editor off. Off: HSTS, hide usernames, SVG.
 - Privacy: cookie banner on, opt-in, Consent Mode v2 + ads data redaction, consent log, cookie settings button. Banner and Consent Mode scripts carry data-no-delay so Speed Pro never delays them.
 - Social images: on, using the bundled Noto Sans Bold (Pro 1.5.10).
+
+## semrs.com settings check (6 Nov 2026, Core 1.3.43 / Pro 1.5.10)
+- Every Core and Pro feature on the Features screen is switched on (none off or locked).
+- Changed today: Ads → "Hide for logged-in users" on all 9 positions (stops accidental clicks on your own ads; visitors unchanged).
+- Already correct: SEO (7/7 options on), Link Assistant (4/4), Sitemaps Pro (images + video on; Google News off – not a news site), IndexNow on, Images WebP q82 max 2560 px with the library converted, SEO Performance reading Search Console (75 tracked keywords).
+- Waiting for the owner: AI SEO needs an API key (none saved); SMTP needs provider details; two-factor needs the owner's phone; AdSense Privacy & messaging for EEA/UK/CH.
