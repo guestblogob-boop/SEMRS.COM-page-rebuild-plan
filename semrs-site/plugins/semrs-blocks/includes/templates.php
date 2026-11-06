@@ -887,8 +887,10 @@ function semrs_blocks_template_preview( $sid, $view, $site = array() ) {
 	}
 	foreach ( $dirs as $d ) {
 		foreach ( array( 'webp', 'jpg' ) as $ext ) { // WebP first (lighter); JPG for older custom previews.
-			if ( file_exists( $d[0] . $sid . '-' . $view . '.' . $ext ) ) {
-				return $d[1] . $sid . '-' . $view . '.' . $ext;
+			$file = $d[0] . $sid . '-' . $view . '.' . $ext;
+			if ( file_exists( $file ) ) {
+				// Version from the file date: an updated preview shows at once, even behind a CDN that caches images for months.
+				return $d[1] . $sid . '-' . $view . '.' . $ext . '?v=' . (int) filemtime( $file );
 			}
 		}
 	}
