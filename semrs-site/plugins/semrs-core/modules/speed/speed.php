@@ -240,7 +240,10 @@ function semrs_speed_hints( $urls, $type ) {
 	// Google Tag Manager are reached later (the tag is delayed until interaction), and an unused
 	// preconnect takes a connection slot from the main image on slow phones.
 	$lean = semrs_speed_lcp_first();
-	if ( function_exists( 'semrs_ads_allowed' ) && semrs_ads_allowed() ) {
+	// With Ads → Lazy-load the AdSense tag waits for the first interaction, so an early
+	// connection to the ad server would sit unused (PageSpeed flags it).
+	$ads_lazy = function_exists( 'semrs_ads_settings' ) && ! empty( semrs_ads_settings()['lazy'] );
+	if ( function_exists( 'semrs_ads_allowed' ) && semrs_ads_allowed() && ! $ads_lazy ) {
 		$urls[] = array( 'href' => 'https://pagead2.googlesyndication.com', 'crossorigin' );
 		if ( ! $lean ) {
 			$urls[] = array( 'href' => 'https://googleads.g.doubleclick.net', 'crossorigin' );
