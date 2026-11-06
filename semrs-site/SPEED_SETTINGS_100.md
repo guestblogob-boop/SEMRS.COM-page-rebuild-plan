@@ -34,3 +34,9 @@ Keep these on. Re-check after every release (Core 1.3.41 / Pro 1.5.9 live 5 Nov 
 - Changed today: Ads → "Hide for logged-in users" on all 9 positions (stops accidental clicks on your own ads; visitors unchanged).
 - Already correct: SEO (7/7 options on), Link Assistant (4/4), Sitemaps Pro (images + video on; Google News off – not a news site), IndexNow on, Images WebP q82 max 2560 px with the library converted, SEO Performance reading Search Console (75 tracked keywords).
 - Waiting for the owner: AI SEO needs an API key (none saved); SMTP needs provider details; two-factor needs the owner's phone; AdSense Privacy & messaging for EEA/UK/CH.
+
+## Tool pages (6 Nov 2026, Tools 1.4.3 / Core 1.3.46 / Pro 1.5.12)
+- Before: /tools/redirect-checker/ mobile Performance 83 (FCP 3.5 s, CLS 0.047; desktop CLS 0.103). Causes: tools reserved 380 px but load at 430–4,100 px; AdSense tag in the head.
+- Fixes: each tool reserves its measured height (Tools 1.4.2); AdSense tag loads on first scroll/tap/key or after 5 s when Ads → Lazy-load is on (Core 1.3.46); tool scripts preloaded from the head (Tools 1.4.3).
+- After: /tools/redirect-checker/, /tools/seo-roi-calculator/ and /tools/ all 100 / 100 / 100 / 100 on mobile (FCP 1.1 s, CLS 0, TBT 0) and desktop (FCP 0.3 s, CLS 0, TBT 0).
+- Keep Ads → Lazy-load on. When adding a tool, add its phone/desktop height to semrs_tools_heights().
