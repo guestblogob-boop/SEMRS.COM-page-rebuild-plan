@@ -33,6 +33,9 @@ What is ready, what to do yourself, and the honest open points before you submit
 
 ## Steps for you
 
+Full step-by-step upload guide: `dist/WORDPRESS_ORG_UPLOAD_GUIDE.md` (account, Plugin/Theme Check, theme upload, plugin submission, SVN with `dist/wporg-assets/<slug>/` artwork, later updates).
+
+
 1. Create (or use) your WordPress.org account. Use the same account for all SEMRS submissions.
 2. Run `node build-wporg.mjs` (current versions) or `node release.mjs` (new versions) to build fresh zips. Readme checks done 2026-11-07: Stable tag = version, Tested up to 7.1, max 5 tags, short descriptions under 150 characters, US spelling.
 3. Install the **Theme Check** and **Plugin Check** plugins on a staging site, activate each SEMRS product and fix anything they report as an error.
