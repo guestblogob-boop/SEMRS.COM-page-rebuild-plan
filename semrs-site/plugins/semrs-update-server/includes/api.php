@@ -90,6 +90,41 @@ function semrs_us_routes() {
 add_action( 'rest_api_init', 'semrs_us_routes' );
 
 /**
+ * Updates on the update server itself (semrs.com): WordPress's bulk updater switches on
+ * maintenance mode BEFORE downloading, and in maintenance mode this site answers every request,
+ * including its own download link, with "503 Service Unavailable". So when the package is one of
+ * our signed download links, hand WordPress a temporary copy of the release zip from disk instead
+ * (same token check as the download endpoint). WordPress deletes the copy after unpacking.
+ *
+ * @param bool|string|WP_Error $reply   Short-circuit value.
+ * @param string               $package Package URL.
+ * @return bool|string|WP_Error
+ */
+function semrs_us_local_package( $reply, $package ) {
+	$base = rest_url( 'semrs-updates/v1/download' );
+	if ( false !== $reply || ! is_string( $package ) || 0 !== strpos( $package, $base ) ) {
+		return $reply;
+	}
+	parse_str( (string) wp_parse_url( $package, PHP_URL_QUERY ), $q );
+	$slug    = sanitize_key( $q['slug'] ?? '' );
+	$version = preg_replace( '/[^0-9A-Za-z.\-]/', '', (string) ( $q['version'] ?? '' ) );
+	$key     = preg_replace( '/[^A-Za-z0-9-]/', '', (string) ( $q['key'] ?? '' ) );
+	$host    = substr( (string) ( $q['host'] ?? '' ), 0, 191 );
+	$expires = (int) ( $q['expires'] ?? 0 );
+	if ( $expires < time() || ! hash_equals( semrs_us_token( $slug, $version, $key, $host, $expires ), (string) ( $q['token'] ?? '' ) ) ) {
+		return $reply; // Not valid: let WordPress try the normal download (and fail normally).
+	}
+	$all  = semrs_us_releases();
+	$file = empty( $all[ $slug ][ $version ]['file'] ) ? '' : semrs_us_dir() . basename( $all[ $slug ][ $version ]['file'] );
+	if ( '' === $file || ! file_exists( $file ) ) {
+		return $reply;
+	}
+	$tmp = wp_tempnam( $slug . '.zip' );
+	return $tmp && copy( $file, $tmp ) ? $tmp : $reply; // phpcs:ignore WordPress.WP.AlternativeFunctions
+}
+add_filter( 'upgrader_pre_download', 'semrs_us_local_package', 10, 2 );
+
+/**
  * Per-visitor counters for the public API (one hour window).
  *
  * - "badkey": wrong or empty license keys. After 30 in an hour, key checks from that address
