@@ -74,7 +74,7 @@ For each approved plugin (example: semrs-core):
 
 1. Make an empty folder, for example `D:\wporg-svn\semrs-core`. Right-click it → **SVN Checkout** → URL `https://plugins.svn.wordpress.org/semrs-core/` → OK. You get three folders: `trunk`, `tags`, `assets`.
 2. **trunk** = the plugin code. Unzip `dist/wporg/semrs-core.zip`. Copy everything **inside** the `semrs-core` folder (not the folder itself) into `trunk`.
-3. **tags** = one copy per version. Make the folder `tags\1.3.55` and copy the same files into it. (The version must match `Stable tag:` in `readme.txt`.)
+3. **tags** = one copy per version. Make the folder `tags\1.3.56` and copy the same files into it. (The version must match `Stable tag:` in `readme.txt`.)
 4. **assets** = the plugin page artwork (not part of the plugin). Copy the files from `dist/wporg-assets/semrs-core/` into `assets`:
    `banner-772x250.png`, `banner-1544x500.png`, `icon-128x128.png`, `icon-256x256.png`, `icon.svg`.
    Optional screenshots: add `screenshot-1.png`, `screenshot-2.png`… and a matching `== Screenshots ==` section in readme.txt (ask us to add it).
