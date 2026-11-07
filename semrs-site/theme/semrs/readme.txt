@@ -4,7 +4,7 @@ Tags: blog, portfolio, grid-layout, full-width-template, block-patterns
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.23
+Stable tag: 1.3.24
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,10 @@ Appearance → Customize → SEMRS Theme → Header builder.
 Edit the page, open "Page options" in the sidebar and set Transparent header to On.
 
 == Changelog ==
+
+= 1.3.24 =
+* Sticky header with shrink: the page content no longer jumps when the header shrinks on scroll (no layout shift)
+* US spelling in Customizer labels and readme
 
 = 1.3.23 =
 * Header: the button keeps its full width and a long menu wraps to a second line, instead of the button being cut off ("Shop now" in the shop starter sites) or the menu running under a long site name

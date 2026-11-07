@@ -57,9 +57,17 @@
 	var article = d.querySelector('.single-post .entry-content');
 	var top = d.querySelector('.sp-to-top');
 	var ticking = false;
+	var header = d.querySelector('.site-header');
+	var shrink = sticky && header && body.classList.contains('sp-sticky-shrink');
 	function update() {
 		var y = window.pageYOffset;
-		if (sticky) { body.classList.toggle('sp-scrolled', y > 40); }
+		if (sticky && body.classList.contains('sp-scrolled') !== y > 40) {
+			// A shrinking sticky header sits in the page flow: give back the height it loses as
+			// space below it, so the content under it never jumps (no layout shift).
+			var before = shrink ? header.offsetHeight : 0;
+			body.classList.toggle('sp-scrolled', y > 40);
+			if (shrink) { header.style.marginBottom = y > 40 && window.getComputedStyle(header).position === 'sticky' ? Math.max(0, before - header.offsetHeight) + 'px' : ''; }
+		}
 		if (bar && article) {
 			var span = Math.max(article.offsetHeight - window.innerHeight, 1);
 			bar.style.transform = 'scaleX(' + Math.min(Math.max((y - article.offsetTop) / span, 0), 1) + ')';
