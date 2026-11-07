@@ -49,7 +49,7 @@
 	},
 	"seo": {
 		"title": "SEMRS Core SEO Manual: Titles, Schema, Sitemaps",
-		"description": "SEMRS SEO manual: titles and meta, the SEO score and readability checks, site audit, schema, XML sitemaps, llms.txt and switching from another SEO plugin.",
+		"description": "SEMRS SEO manual: titles and meta, the SEO score, share previews, redirects, link settings, site audit, schema, sitemaps, llms.txt and switching from another SEO plugin.",
 		"order": 4,
 		"seo_title": "SEMRS SEO Manual 2026: Easy Guide to Titles & Schema",
 		"focus": "semrs seo",
@@ -57,7 +57,7 @@
 	},
 	"speed": {
 		"title": "SEMRS Speed Optimization Manual",
-		"description": "SEMRS speed manual: make WordPress faster with the free page cache, CSS and script optimization, hover prefetch, database cleanup and the built-in speed check.",
+		"description": "SEMRS speed manual: make WordPress faster with the free page cache, server rules, an early page cache, CSS and script optimization, database cleanup and a speed check.",
 		"order": 6,
 		"seo_title": "SEMRS Speed Manual 2026: Easy Guide to a Faster Site",
 		"focus": "semrs speed",

@@ -1,6 +1,6 @@
 ---
 title: SEMRS Core SEO Manual: Titles, Schema, Sitemaps
-description: SEMRS SEO manual: titles and meta, the SEO score and readability checks, site audit, schema, XML sitemaps, llms.txt and switching from another SEO plugin.
+description: SEMRS SEO manual: titles and meta, the SEO score, share previews, redirects, link settings, site audit, schema, sitemaps, llms.txt and switching from another SEO plugin.
 order: 4
 seo_title: SEMRS SEO Manual 2026: Easy Guide to Titles & Schema
 focus: semrs seo
@@ -29,6 +29,10 @@ When you edit a page or post, open the **SEMRS SEO** panel. Fill in three things
 
 You see a preview of how the page will look in Google. The counters show when your text is too long or too short.
 
+**Not sure which keyword to pick?** Under the keyword box, click **Check interest in Google Trends**. With more than one keyword, it compares them side by side.
+
+**Share previews:** the **Social** tab shows how the page will look when someone shares it on Facebook and X. Change the title, text or picture there. With no picture of its own, the page uses its featured image.
+
 ## The SEO score
 
 ![SEMRS SEO score: red under 50, orange 50 to 79, green 80 and up](seo-score)
@@ -51,6 +55,32 @@ Go to **SEMRS → SEO Audit**.
 - Click **Run the content audit** to score every page. You see missing descriptions, repeated titles, short pages and pages nobody links to.
 
 **Tip:** pages that no other page links to are hard for Google to find. Link to them from related posts.
+
+## Redirects and 404 errors
+
+![SEMRS redirect types: exact page, whole folder, regex pattern and automatic redirects when a page address changes](seo-redirects)
+
+Open **SEMRS → Redirects**. A redirect sends visitors and Google from an old address to a new one, so you keep your traffic and links.
+
+- **Exact page:** `/old-page/` to `/new-page/`.
+- **Whole folder:** `/old-folder/*` sends every page below it. End the target with `*` to keep the rest of the address.
+- **Regex:** tick **Regex** for patterns, like `^/blog/(\d{4})/(.+)$` to `/news/$2/`.
+- **Automatic:** change the address of a published page and SEMRS adds the 301 for you.
+- **410 Gone** and **451** tell Google a page was removed on purpose.
+
+Each rule shows how often it was used. The **404 log** lists addresses that were not found. Click **Redirect** next to one to fix it. You can also import redirects from Rank Math or a CSV file, and export them.
+
+**Tip:** adding the same old address again updates its rule. You never get two rules for one address.
+
+## Links, addresses and feeds
+
+Open **SEMRS → SEO → Links, URLs & feeds**.
+
+- **External links:** add nofollow or open them in a new tab. Most sites leave both off. Links you marked sponsored keep their mark.
+- **Remove /category/:** `/category/news/` becomes `/news/`. Old addresses redirect for you. Do not use it if a page has the same name as a category.
+- **RSS credit line:** sites that copy your feed then link back to your post. It is on by default.
+
+Your **Pages** and **Posts** lists get a **Links** column. It shows the links inside each page and how many other pages link to it. A red **0** means no page links there yet.
 
 ## Schema, sitemap and llms.txt
 
@@ -75,7 +105,7 @@ While another SEO plugin is active, SEMRS waits. You never get the same tags twi
 
 ## Extra SEO in SEMRS Pro
 
-Pro adds redirects, a 404 error log, local SEO for many locations, instant indexing, automatic alt text and a bulk editor for titles and descriptions. See the [Pro guide](/support/pro-license/).
+Pro adds automatic internal links and a broken link checker, AI-written titles and descriptions, automatic share images, image, video and news sitemaps, custom schema, local SEO for many locations, automatic alt text and a bulk editor for titles and descriptions. See the [Pro guide](/support/pro-license/).
 
 ## SEMRS SEO help and next steps
 

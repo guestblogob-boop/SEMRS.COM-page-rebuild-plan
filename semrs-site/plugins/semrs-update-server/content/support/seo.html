@@ -64,6 +64,14 @@
 <p>You see a preview of how the page will look in Google. The counters show when your text is too long or too short.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p><strong>Not sure which keyword to pick?</strong> Under the keyword box, click <strong>Check interest in Google Trends</strong>. With more than one keyword, it compares them side by side.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Share previews:</strong> the <strong>Social</strong> tab shows how the page will look when someone shares it on Facebook and X. Change the title, text or picture there. With no picture of its own, the page uses its featured image.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:heading -->
 <h2 class="wp-block-heading">The SEO score</h2>
 <!-- /wp:heading -->
@@ -118,6 +126,74 @@
 
 <!-- wp:paragraph -->
 <p><strong>Tip:</strong> pages that no other page links to are hard for Google to find. Link to them from related posts.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Redirects and 404 errors</h2>
+<!-- /wp:heading -->
+
+<!-- wp:image {"id":6848,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://semrs.com/wp-content/uploads/2026/11/support-seo-redirects.webp" alt="SEMRS redirect types: exact page, whole folder, regex pattern and automatic redirects when a page address changes" class="wp-image-6848"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Open <strong>SEMRS → Redirects</strong>. A redirect sends visitors and Google from an old address to a new one, so you keep your traffic and links.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Exact page:</strong> <code>/old-page/</code> to <code>/new-page/</code>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Whole folder:</strong> <code>/old-folder/*</code> sends every page below it. End the target with <code>*</code> to keep the rest of the address.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Regex:</strong> tick <strong>Regex</strong> for patterns, like <code>^/blog/(\d{4})/(.+)$</code> to <code>/news/$2/</code>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Automatic:</strong> change the address of a published page and SEMRS adds the 301 for you.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>410 Gone</strong> and <strong>451</strong> tell Google a page was removed on purpose.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Each rule shows how often it was used. The <strong>404 log</strong> lists addresses that were not found. Click <strong>Redirect</strong> next to one to fix it. You can also import redirects from Rank Math or a CSV file, and export them.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Tip:</strong> adding the same old address again updates its rule. You never get two rules for one address.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Links, addresses and feeds</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Open <strong>SEMRS → SEO → Links, URLs &amp; feeds</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>External links:</strong> add nofollow or open them in a new tab. Most sites leave both off. Links you marked sponsored keep their mark.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Remove /category/:</strong> <code>/category/news/</code> becomes <code>/news/</code>. Old addresses redirect for you. Do not use it if a page has the same name as a category.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>RSS credit line:</strong> sites that copy your feed then link back to your post. It is on by default.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Your <strong>Pages</strong> and <strong>Posts</strong> lists get a <strong>Links</strong> column. It shows the links inside each page and how many other pages link to it. A red <strong>0</strong> means no page links there yet.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -181,7 +257,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Pro adds redirects, a 404 error log, local SEO for many locations, instant indexing, automatic alt text and a bulk editor for titles and descriptions. See the <a href="/support/pro-license/">Pro guide</a>.</p>
+<p>Pro adds automatic internal links and a broken link checker, AI-written titles and descriptions, automatic share images, image, video and news sitemaps, custom schema, local SEO for many locations, automatic alt text and a bulk editor for titles and descriptions. See the <a href="/support/pro-license/">Pro guide</a>.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->

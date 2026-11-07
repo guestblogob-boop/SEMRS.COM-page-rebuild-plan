@@ -13,11 +13,11 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Go to <strong>SEMRS → Features</strong> and switch on <strong>Speed</strong>. Then open <strong>SEMRS → Speed</strong>. You will see four tabs.</p>
+<p>Go to <strong>SEMRS → Features</strong> and switch on <strong>Speed</strong>. Then open <strong>SEMRS → Speed</strong>. You will see five tabs.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:image {"id":6330,"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full"><img src="https://semrs.com/wp-content/uploads/2026/10/support-speed-tabs.webp" alt="The four SEMRS speed tabs: Optimize, Page cache, Database and Speed check" class="wp-image-6330"/></figure>
+<!-- wp:image {"id":6846,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://semrs.com/wp-content/uploads/2026/11/support-speed-tabs-v2.webp" alt="The five SEMRS speed tabs: Optimize, Page cache, Database, Server and Speed check" class="wp-image-6846"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading -->
@@ -87,7 +87,41 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
-<h2 class="wp-block-heading">4. Speed check</h2>
+<h2 class="wp-block-heading">4. Server: a faster server</h2>
+<!-- /wp:heading -->
+
+<!-- wp:image {"id":6847,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://semrs.com/wp-content/uploads/2026/11/support-speed-server.webp" alt="SEMRS speed Server tab in 3 clicks: remove old cache plugin leftovers, add server rules, switch on the early page cache" class="wp-image-6847"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>This tab works on the web server itself. Nothing changes until you click a button. Before each change, SEMRS saves a dated copy of the old file in a protected folder.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Remove leftovers.</strong> Did you use another cache plugin before (WP Rocket, LiteSpeed Cache, W3 Total Cache and others)? Their rules often stay behind after you delete the plugin. SEMRS finds them and removes them in one click.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Add server rules.</strong> Turns on compression (Brotli and gzip) and tells browsers to keep pictures, fonts, styles and scripts for a year. Updates still show at once, because WordPress gives each new file version its own address.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Switch on the early page cache.</strong> Cached pages are sent before any plugin or the theme loads, so your server answers faster. You need the page cache (tab 2) switched on first.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>Uses Nginx?</strong> The tab tells you. Ask your host to switch on compression and browser caching. Click <strong>Show the rules</strong> to see what to set.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Something wrong?</strong> Click <strong>Remove rules</strong> or <strong>Switch off</strong>. In an emergency, add <code>define( 'SEMRS_CACHE_OFF', true );</code> to wp-config.php. If you deactivate SEMRS Core, the early cache file is removed for you.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">5. Speed check</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -153,6 +187,26 @@
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
 <li><strong>Delay scripts:</strong> chat and tracking scripts wait until the visitor scrolls or taps. Ads are never delayed.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Remove unused CSS:</strong> each page gets only the styles it uses. The full styles load after the first scroll or tap.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Minify styles:</strong> smaller style files.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Unused plugin files:</strong> form and block plugin files load only on pages that use them.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Image sizes and lazy iframes:</strong> pictures get a set size so the page does not jump, and maps and videos load when the visitor scrolls near them.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Lazy rendering:</strong> the browser skips drawing parts far down the page until the visitor gets close.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->

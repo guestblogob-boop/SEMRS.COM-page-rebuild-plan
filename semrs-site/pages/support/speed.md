@@ -1,6 +1,6 @@
 ---
 title: SEMRS Speed Optimization Manual
-description: SEMRS speed manual: make WordPress faster with the free page cache, CSS and script optimization, hover prefetch, database cleanup and the built-in speed check.
+description: SEMRS speed manual: make WordPress faster with the free page cache, server rules, an early page cache, CSS and script optimization, database cleanup and a speed check.
 order: 6
 seo_title: SEMRS Speed Manual 2026: Easy Guide to a Faster Site
 focus: semrs speed
@@ -10,9 +10,9 @@ Fast pages keep visitors happy, and Google likes them too. The SEMRS Speed modul
 
 ## Open the SEMRS speed settings
 
-Go to **SEMRS → Features** and switch on **Speed**. Then open **SEMRS → Speed**. You will see four tabs.
+Go to **SEMRS → Features** and switch on **Speed**. Then open **SEMRS → Speed**. You will see five tabs.
 
-![The four SEMRS speed tabs: Optimize, Page cache, Database and Speed check](speed-tabs)
+![The five SEMRS speed tabs: Optimize, Page cache, Database, Server and Speed check](speed-tabs-v2)
 
 ## 1. Optimize: remove extra code
 
@@ -53,7 +53,21 @@ This tab shows old drafts, spam comments and other leftovers. Click **Clean** to
 
 **Careful:** cleaned items cannot come back. Make a backup first if your host does not do it for you.
 
-## 4. Speed check
+## 4. Server: a faster server
+
+![SEMRS speed Server tab in 3 clicks: remove old cache plugin leftovers, add server rules, switch on the early page cache](speed-server)
+
+This tab works on the web server itself. Nothing changes until you click a button. Before each change, SEMRS saves a dated copy of the old file in a protected folder.
+
+1. **Remove leftovers.** Did you use another cache plugin before (WP Rocket, LiteSpeed Cache, W3 Total Cache and others)? Their rules often stay behind after you delete the plugin. SEMRS finds them and removes them in one click.
+2. **Add server rules.** Turns on compression (Brotli and gzip) and tells browsers to keep pictures, fonts, styles and scripts for a year. Updates still show at once, because WordPress gives each new file version its own address.
+3. **Switch on the early page cache.** Cached pages are sent before any plugin or the theme loads, so your server answers faster. You need the page cache (tab 2) switched on first.
+
+**Uses Nginx?** The tab tells you. Ask your host to switch on compression and browser caching. Click **Show the rules** to see what to set.
+
+**Something wrong?** Click **Remove rules** or **Switch off**. In an emergency, add `define( 'SEMRS_CACHE_OFF', true );` to wp-config.php. If you deactivate SEMRS Core, the early cache file is removed for you.
+
+## 5. Speed check
 
 Click **Run speed check**. SEMRS tests your home page and lists simple fixes. It checks:
 
@@ -78,6 +92,11 @@ For Google's own phone score, click **Open PageSpeed Insights**.
 ## Extra speed in SEMRS Pro
 
 - **Delay scripts:** chat and tracking scripts wait until the visitor scrolls or taps. Ads are never delayed.
+- **Remove unused CSS:** each page gets only the styles it uses. The full styles load after the first scroll or tap.
+- **Minify styles:** smaller style files.
+- **Unused plugin files:** form and block plugin files load only on pages that use them.
+- **Image sizes and lazy iframes:** pictures get a set size so the page does not jump, and maps and videos load when the visitor scrolls near them.
+- **Lazy rendering:** the browser skips drawing parts far down the page until the visitor gets close.
 - **Cache preload:** after the cache clears, your main pages are saved again in the background.
 - **CDN:** pictures and files load from your CDN.
 
