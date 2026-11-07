@@ -649,14 +649,14 @@ add_action(
 			if ( ! empty( $_POST['virtual'] ) ) {
 				// Use the SEMRS virtual robots.txt: keep the old file as a backup.
 				if ( file_exists( $file ) ) {
-					rename( $file, ABSPATH . 'robots.txt.bak-' . gmdate( 'Ymd-His' ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions -- site root file.
+					rename( $file, ( function_exists( 'semrs_server_backup_dir' ) ? semrs_server_backup_dir() . 'robots.txt.' . gmdate( 'Ymd-His' ) . '.bak' : ABSPATH . 'robots.txt.bak-' . gmdate( 'Ymd-His' ) ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions -- site root file.
 				}
 				$s                 = (array) get_option( 'semrs_seo', array() );
 				$s['robots_extra'] = $body;
 				update_option( 'semrs_seo', $s );
 			} else {
 				if ( file_exists( $file ) ) {
-					copy( $file, ABSPATH . 'robots.txt.bak-' . gmdate( 'Ymd-His' ) );
+					copy( $file, ( function_exists( 'semrs_server_backup_dir' ) ? semrs_server_backup_dir() . 'robots.txt.' . gmdate( 'Ymd-His' ) . '.bak' : ABSPATH . 'robots.txt.bak-' . gmdate( 'Ymd-His' ) ) );
 				}
 				$ok  = false !== file_put_contents( $file, rtrim( $body ) . "\n" ); // phpcs:ignore WordPress.WP.AlternativeFunctions -- site root file.
 				$msg = $ok ? 'robots' : 'robots-failed';

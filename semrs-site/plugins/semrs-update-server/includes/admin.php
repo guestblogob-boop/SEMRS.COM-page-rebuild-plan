@@ -93,6 +93,10 @@ function semrs_us_actions() {
 				$msg = 'published-' . $info['slug'] . '-' . $info['version'];
 			}
 		}
+	} elseif ( 'trash_old' === $do ) {
+		$msg = 'trashed-' . semrs_us_trash_old( 2 );
+	} elseif ( 'restore_trash' === $do ) {
+		$msg = 'restored-' . semrs_us_restore_trash();
 	} elseif ( 'key_create' === $do ) {
 		$key  = semrs_us_create_key(
 			isset( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '',
@@ -157,6 +161,10 @@ function semrs_us_page_releases() {
 		<h1><?php esc_html_e( 'SEMRS Releases', 'semrs-update-server' ); ?></h1>
 		<?php if ( 0 === strpos( $msg, 'published-' ) ) : ?>
 			<div class="notice notice-success"><p><?php echo esc_html( sprintf( /* translators: %s: product and version */ __( 'Published %s. Every site using it will see "Update available" at its next update check (within about 12 hours, or right away with Dashboard → Updates → Check again).', 'semrs-update-server' ), substr( $msg, 10 ) ) ); ?></p></div>
+		<?php elseif ( 0 === strpos( $msg, 'trashed-' ) ) : ?>
+			<div class="notice notice-success"><p><?php echo esc_html( sprintf( /* translators: %d: versions */ __( '%d older versions moved to the Trash. The latest and one previous version of each product stay published.', 'semrs-update-server' ), (int) substr( $msg, 8 ) ) ); ?></p></div>
+		<?php elseif ( 0 === strpos( $msg, 'restored-' ) ) : ?>
+			<div class="notice notice-success"><p><?php echo esc_html( sprintf( /* translators: %d: versions */ __( '%d versions restored from the Trash.', 'semrs-update-server' ), (int) substr( $msg, 9 ) ) ); ?></p></div>
 		<?php elseif ( 'badzip' === $msg ) : ?>
 			<div class="notice notice-error"><p><?php esc_html_e( 'That zip is not a known SEMRS package (folder name + Version header not found).', 'semrs-update-server' ); ?></p></div>
 		<?php endif; ?>
@@ -181,6 +189,16 @@ function semrs_us_page_releases() {
 			<tr><td><strong><?php echo esc_html( $p[0] ); ?></strong><?php echo $p[2] ? ' <em>(license)</em>' : ''; ?></td><td><?php echo esc_html( $l ? $l['version'] : '—' ); ?></td><td><?php echo esc_html( $l ? $l['date'] . ' UTC' : '' ); ?></td><td><?php echo esc_html( isset( $all[ $slug ] ) ? implode( ', ', array_diff( array_keys( $all[ $slug ] ), array( $l ? $l['version'] : '' ) ) ) : '' ); ?></td></tr>
 		<?php endforeach; ?>
 		</tbody></table>
+		<?php
+		$semrs_trash = (array) get_option( 'semrs_us_releases_trash', array() );
+		$semrs_trash_n = array_sum( array_map( 'count', $semrs_trash ) );
+		?>
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="margin:12px 0">
+			<?php wp_nonce_field( 'semrs_us' ); ?><input type="hidden" name="action" value="semrs_us">
+			<button class="button" name="semrs_do" value="trash_old"><?php esc_html_e( 'Move older versions to Trash', 'semrs-update-server' ); ?></button>
+			<?php if ( $semrs_trash_n ) : ?><button class="button" name="semrs_do" value="restore_trash"><?php echo esc_html( sprintf( /* translators: %d: versions */ __( 'Restore %d trashed versions', 'semrs-update-server' ), $semrs_trash_n ) ); ?></button><?php endif; ?>
+			<span class="description"><?php esc_html_e( 'Keeps the latest and one previous version of each product (for a quick rollback). Trashed files stay in a protected folder and can be restored.', 'semrs-update-server' ); ?></span>
+		</form>
 		<p class="description"><?php echo esc_html( sprintf( /* translators: %s: URL */ __( 'Update API: %s', 'semrs-update-server' ), rest_url( 'semrs-updates/v1/check' ) ) ); ?></p>
 	</div>
 	<?php

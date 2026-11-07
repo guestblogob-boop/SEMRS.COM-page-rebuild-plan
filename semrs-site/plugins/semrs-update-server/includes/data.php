@@ -258,3 +258,62 @@ function semrs_us_record( $slug, $host, $version, $wp, $php, $key ) {
 function semrs_us_token( $slug, $version, $key, $host, $expires ) {
 	return hash_hmac( 'sha256', implode( '|', array( $slug, $version, $key, $host, $expires ) ), wp_salt( 'auth' ) );
 }
+
+/**
+ * Move older release versions to the Trash (a folder inside the protected releases folder),
+ * keeping the newest $keep versions of each product so a release can still be rolled back.
+ * Nothing is deleted; semrs_us_restore_trash() puts everything back.
+ *
+ * @param int $keep Versions to keep per product.
+ * @return int Versions moved.
+ */
+function semrs_us_trash_old( $keep = 2 ) {
+	$all   = semrs_us_releases();
+	$trash = (array) get_option( 'semrs_us_releases_trash', array() );
+	$tdir  = semrs_us_dir() . 'trash/';
+	wp_mkdir_p( $tdir );
+	$moved = 0;
+	foreach ( $all as $slug => $versions ) {
+		$list = array_keys( $versions );
+		usort( $list, 'version_compare' );
+		foreach ( array_slice( $list, 0, max( 0, count( $list ) - max( 1, (int) $keep ) ) ) as $v ) {
+			$rel  = $versions[ $v ];
+			$file = ! empty( $rel['file'] ) ? basename( $rel['file'] ) : '';
+			if ( $file && file_exists( semrs_us_dir() . $file ) && ! rename( semrs_us_dir() . $file, $tdir . $file ) ) { // phpcs:ignore WordPress.WP.AlternativeFunctions
+				continue;
+			}
+			$trash[ $slug ][ $v ] = array_merge( $rel, array( 'trashed' => gmdate( 'Y-m-d H:i:s' ) ) );
+			unset( $all[ $slug ][ $v ] );
+			$moved++;
+		}
+	}
+	update_option( 'semrs_us_releases', $all, false );
+	update_option( 'semrs_us_releases_trash', $trash, false );
+	return $moved;
+}
+
+/**
+ * Put every trashed release version back.
+ *
+ * @return int Versions restored.
+ */
+function semrs_us_restore_trash() {
+	$all   = semrs_us_releases();
+	$trash = (array) get_option( 'semrs_us_releases_trash', array() );
+	$tdir  = semrs_us_dir() . 'trash/';
+	$back  = 0;
+	foreach ( $trash as $slug => $versions ) {
+		foreach ( $versions as $v => $rel ) {
+			$file = ! empty( $rel['file'] ) ? basename( $rel['file'] ) : '';
+			if ( $file && file_exists( $tdir . $file ) ) {
+				rename( $tdir . $file, semrs_us_dir() . $file ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+			}
+			unset( $rel['trashed'] );
+			$all[ $slug ][ $v ] = $rel;
+			$back++;
+		}
+	}
+	update_option( 'semrs_us_releases', $all, false );
+	update_option( 'semrs_us_releases_trash', array(), false );
+	return $back;
+}

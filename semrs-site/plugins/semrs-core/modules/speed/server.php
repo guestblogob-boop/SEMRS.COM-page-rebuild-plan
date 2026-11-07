@@ -51,14 +51,59 @@ function semrs_server_reads_htaccess() {
 }
 
 /**
- * Copy a file next to itself as file.semrs-bak-YYYYMMDD-HHMMSS before changing it.
+ * Backups folder: wp-content/semrs-backups-<random>/ with access denied. A random name, so the
+ * files cannot be fetched even on servers that ignore .htaccess (a wp-config.php backup holds
+ * the database password).
+ *
+ * @return string
+ */
+function semrs_server_backup_dir() {
+	$key = (string) get_option( 'semrs_backup_dir_key', '' );
+	if ( ! preg_match( '/^[a-f0-9]{24}$/', $key ) ) {
+		$key = bin2hex( random_bytes( 12 ) );
+		update_option( 'semrs_backup_dir_key', $key, false );
+	}
+	$dir = trailingslashit( WP_CONTENT_DIR ) . 'semrs-backups-' . $key . '/';
+	if ( ! is_dir( $dir ) ) {
+		wp_mkdir_p( $dir );
+	}
+	if ( ! file_exists( $dir . '.htaccess' ) ) {
+		file_put_contents( $dir . '.htaccess', "Require all denied\nDeny from all\n" ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+		file_put_contents( $dir . 'index.php', "<?php\n// Silence.\n" ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+		file_put_contents( $dir . 'web.config', '<?xml version="1.0"?><configuration><system.webServer><authorization><deny users="*" /></authorization></system.webServer></configuration>' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	}
+	return $dir;
+}
+
+/**
+ * Copy a file into the backups folder as name.YYYYMMDD-HHMMSS.bak before changing it.
  *
  * @param string $file File.
  * @return bool
  */
 function semrs_server_backup( $file ) {
-	return ! file_exists( $file ) || copy( $file, $file . '.semrs-bak-' . gmdate( 'Ymd-His' ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions -- site root file.
+	return ! file_exists( $file ) || copy( $file, semrs_server_backup_dir() . basename( $file ) . '.' . gmdate( 'Ymd-His' ) . '.bak' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 }
+
+/**
+ * Move backups that older versions saved next to the files (name.semrs-bak-…) into the
+ * protected backups folder.
+ */
+function semrs_server_move_old_backups() {
+	if ( get_option( 'semrs_backups_moved' ) ) {
+		return;
+	}
+	$dirs = array_unique( array( ABSPATH, dirname( ABSPATH ) . '/', trailingslashit( WP_CONTENT_DIR ), trailingslashit( function_exists( 'get_home_path' ) ? get_home_path() : ABSPATH ) ) );
+	foreach ( $dirs as $d ) {
+		foreach ( array_merge( (array) glob( $d . '*.semrs-bak-*' ), (array) glob( $d . '.*.semrs-bak-*' ), (array) glob( $d . 'robots.txt.bak-*' ) ) as $f ) {
+			if ( is_file( $f ) && preg_match( '/^(.+?)\.(?:semrs-)?bak-(\d{8}-\d{6})$/', basename( $f ), $m ) ) {
+				rename( $f, semrs_server_backup_dir() . $m[1] . '.' . $m[2] . '.bak' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+			}
+		}
+	}
+	update_option( 'semrs_backups_moved', 1, false );
+}
+add_action( 'admin_init', 'semrs_server_move_old_backups' );
 
 /* -------------------------------------------------------------------------
  * 1. Server rules
@@ -263,7 +308,7 @@ function semrs_server_clean_leftovers() {
 	}
 	if ( $left['dropin'] ) {
 		$drop = trailingslashit( WP_CONTENT_DIR ) . 'advanced-cache.php';
-		if ( rename( $drop, $drop . '.semrs-bak-' . gmdate( 'Ymd-His' ) ) ) { // phpcs:ignore WordPress.WP.AlternativeFunctions
+		if ( rename( $drop, semrs_server_backup_dir() . 'advanced-cache.php.' . gmdate( 'Ymd-His' ) . '.bak' ) ) { // phpcs:ignore WordPress.WP.AlternativeFunctions
 			$done[] = $left['dropin'] . ' (advanced-cache.php)';
 		}
 	}
@@ -561,7 +606,7 @@ function semrs_speed_server_tab() {
 	);
 	if ( 'cleaned' === $msg ) {
 		/* translators: %s: removed items */
-		echo '<div class="notice notice-success"><p>' . esc_html( sprintf( __( 'Removed: %s. Backups were kept next to each file.', 'semrs-core' ), implode( ', ', (array) get_transient( 'semrs_server_cleaned' ) ) ) ) . '</p></div>';
+		echo '<div class="notice notice-success"><p>' . esc_html( sprintf( __( 'Removed: %s. Backups were kept in the protected backups folder.', 'semrs-core' ), implode( ', ', (array) get_transient( 'semrs_server_cleaned' ) ) ) ) . '</p></div>';
 	} elseif ( 'error' === $msg ) {
 		echo '<div class="notice notice-warning"><p>' . esc_html( (string) get_transient( 'semrs_server_error' ) ) . '</p></div>';
 	} elseif ( isset( $notes[ $msg ] ) ) {
@@ -571,7 +616,7 @@ function semrs_speed_server_tab() {
 	$left  = semrs_server_leftovers();
 	$early = semrs_server_dropin_is_ours() && semrs_server_wp_cache_on();
 	?>
-	<p style="max-width:820px"><?php esc_html_e( 'Speed settings for the web server itself. Each change is made only when you click its button, and a dated backup of the file is kept (for example .htaccess.semrs-bak-20261107-101500).', 'semrs-core' ); ?></p>
+	<p style="max-width:820px"><?php esc_html_e( 'Speed settings for the web server itself. Each change is made only when you click its button, and a dated copy of the old file is kept first in a protected backups folder (wp-content/semrs-backups-…).', 'semrs-core' ); ?></p>
 
 	<h2><?php esc_html_e( 'Leftovers of old cache plugins', 'semrs-core' ); ?></h2>
 	<?php if ( ! $left['htaccess'] && '' === $left['dropin'] ) : ?>
