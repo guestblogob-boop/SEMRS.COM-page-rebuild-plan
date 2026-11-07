@@ -818,6 +818,32 @@ function semrs_store_is_store() {
 	return is_singular( 'semrs_product' ) || is_post_type_archive( 'semrs_product' ) || is_tax( 'semrs_product_cat' );
 }
 
+/*
+ * An empty store is a thin page: until a product is published, /store/, its categories and its
+ * feed send visitors (302, temporary) to the Themes & Plugins page. The store opens by itself
+ * with the first published product. Change the target with the semrs_store_empty_redirect filter
+ * ('' = show the empty store).
+ */
+add_action(
+	'template_redirect',
+	function () {
+		if ( ! ( is_post_type_archive( 'semrs_product' ) || is_tax( 'semrs_product_cat' ) ) || is_user_logged_in() ) {
+			return;
+		}
+		$count = wp_count_posts( 'semrs_product' );
+		if ( ! empty( $count->publish ) ) {
+			return;
+		}
+		$hub    = get_page_by_path( 'wordpress-themes-plugins' );
+		$target = (string) apply_filters( 'semrs_store_empty_redirect', $hub && 'publish' === $hub->post_status ? get_permalink( $hub ) : '' );
+		if ( '' !== $target ) {
+			wp_safe_redirect( $target, 302, 'SEMRS' );
+			exit;
+		}
+	},
+	5
+);
+
 add_filter(
 	'template_include',
 	function ( $template ) {

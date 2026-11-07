@@ -4,7 +4,7 @@ Tags: seo, cookie consent, smtp, security, page cache
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.52
+Stable tag: 1.3.53
 License: GPLv2 or later
 
 Free SEO, cookie consent, SMTP email, security, page cache, redirects, WebP images and a policy-safe ads manager in one plugin.
@@ -108,6 +108,9 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt, cookie banner, consent log, security options and all other features run entirely on your own server. Google Consent Mode only passes the visitor's choice to Google tags you already use; it does not load anything itself.
 
 == Changelog ==
+
+= 1.3.53 =
+* SEO: the blog page shares its own image, and archives without a site-wide default share image use the homepage image instead of none
 
 = 1.3.52 =
 * SEO sidebar: the share previews show the automatic social image (SEMRS Pro) when the post has no featured image

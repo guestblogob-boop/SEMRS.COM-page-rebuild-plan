@@ -106,8 +106,13 @@ function semrs_seo_description() {
  * @return string
  */
 function semrs_seo_image() {
+	$id = 0;
 	if ( is_singular() ) {
-		$id  = get_queried_object_id();
+		$id = get_queried_object_id();
+	} elseif ( is_home() && get_option( 'page_for_posts' ) ) {
+		$id = (int) get_option( 'page_for_posts' ); // The blog page shares like a normal page.
+	}
+	if ( $id ) {
 		$img = semrs_seo_meta( $id, 'og_image' );
 		if ( $img ) {
 			return $img;
@@ -126,7 +131,16 @@ function semrs_seo_image() {
 			return $auto;
 		}
 	}
-	return (string) semrs_seo_settings()['og_image'];
+	$default = (string) semrs_seo_settings()['og_image'];
+	if ( '' === $default && 'page' === get_option( 'show_on_front' ) && get_option( 'page_on_front' ) && (int) get_option( 'page_on_front' ) !== $id ) {
+		// No site default set: archives share the homepage's image instead of none.
+		$front   = (int) get_option( 'page_on_front' );
+		$default = (string) semrs_seo_meta( $front, 'og_image' );
+		if ( '' === $default && has_post_thumbnail( $front ) ) {
+			$default = (string) get_the_post_thumbnail_url( $front, 'full' );
+		}
+	}
+	return $default;
 }
 
 /**
