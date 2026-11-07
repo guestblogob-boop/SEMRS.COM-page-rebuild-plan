@@ -89,8 +89,8 @@ Free Tools Pro (SEMRS Pro, SEO Pro add-on; switch it on under SEMRS → Features
 
 = 1.3.3 =
 * Service box, image drop zone, tool tabs and tool cards follow dark mode
-* Tool tab hover uses the theme button hover colours
-* ROI calculator and redirect checker status colours readable in dark mode
+* Tool tab hover uses the theme button hover colors
+* ROI calculator and redirect checker status colors readable in dark mode
 
 = 1.3.2 =
 * Declares WP Consent API support (functional storage only, no trackers)
@@ -108,7 +108,7 @@ Free Tools Pro (SEMRS Pro, SEO Pro add-on; switch it on under SEMRS → Features
 = 1.2.0 =
 * Automatic update notices from semrs.com (WordPress 'Update available' + one-click update)
 * Logo width controls for desktop and mobile; 512×512 square logos detected automatically
-* Footer social icons in brand colours (9 networks)
+* Footer social icons in brand colors (9 networks)
 * Free/Pro split: premium modules moved to the SEMRS Pro plugin
 * Pro: license status checked with semrs.com
 

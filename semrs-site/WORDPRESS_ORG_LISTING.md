@@ -16,7 +16,7 @@ What is ready, what to do yourself, and the honest open points before you submit
 | SEMRS Site | **No** (semrs.com only) | – | Store, SEMRS Pro sales page, Keyword Ideas Generator, photo hero, AI photo |
 | SEMRS Update Server | **No** | `dist/server/…` | Runs only on semrs.com |
 
-`node release.mjs` builds the `dist/wporg/` zips without the semrs.com updater and without the `Update URI` header, as WordPress.org requires.
+`node release.mjs` builds the `dist/wporg/` zips without the semrs.com updater and without the `Update URI` header, as WordPress.org requires. To rebuild them at the current versions (no version bump), run `node build-wporg.mjs`: it also checks each zip for a leftover updater, `Update URI` or update-server call.
 
 ## Already done in the code
 
@@ -34,7 +34,7 @@ What is ready, what to do yourself, and the honest open points before you submit
 ## Steps for you
 
 1. Create (or use) your WordPress.org account. Use the same account for all SEMRS submissions.
-2. Run `node release.mjs` to build fresh zips.
+2. Run `node build-wporg.mjs` (current versions) or `node release.mjs` (new versions) to build fresh zips. Readme checks done 2026-11-07: Stable tag = version, Tested up to 7.1, max 5 tags, short descriptions under 150 characters, US spelling.
 3. Install the **Theme Check** and **Plugin Check** plugins on a staging site, activate each SEMRS product and fix anything they report as an error.
 4. Theme: upload `dist/wporg/semrs.zip` at wordpress.org/themes/upload/. Answer reviewer comments in the Trac ticket within 7 days.
 5. Plugins: submit each zip at wordpress.org/plugins/developers/add/. Check that the slugs `semrs-core`, `semrs-blocks` and `semrs-tools` are free; if one is taken, the reviewer will offer another slug, and the text domain must then be changed to match.

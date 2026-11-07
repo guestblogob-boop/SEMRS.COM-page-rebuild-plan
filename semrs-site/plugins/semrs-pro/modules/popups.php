@@ -98,9 +98,9 @@ function semrs_pro_popup_box_render( $post ) {
 	?>
 	<table class="form-table" role="presentation">
 		<tr><th><?php esc_html_e( 'Style', 'semrs-pro' ); ?></th><td>
-			<?php $sel( 'position', array( 'center' => __( 'Centred box (bottom sheet on phones)', 'semrs-pro' ), 'bar' => __( 'Bottom bar', 'semrs-pro' ), 'corner' => __( 'Slide-in, bottom right', 'semrs-pro' ) ), $s['position'] ); ?>
+			<?php $sel( 'position', array( 'center' => __( 'Centered box (bottom sheet on phones)', 'semrs-pro' ), 'bar' => __( 'Bottom bar', 'semrs-pro' ), 'corner' => __( 'Slide-in, bottom right', 'semrs-pro' ) ), $s['position'] ); ?>
 			<label style="margin-left:12px"><?php esc_html_e( 'Width (px)', 'semrs-pro' ); ?> <input type="number" min="280" max="1100" name="semrs_popup[width]" value="<?php echo esc_attr( $s['width'] ); ?>" style="width:90px"></label>
-			<label style="margin-left:12px"><input type="checkbox" name="semrs_popup[overlay]" value="1" <?php checked( $s['overlay'] ); ?>> <?php esc_html_e( 'Dark overlay behind (centred only)', 'semrs-pro' ); ?></label>
+			<label style="margin-left:12px"><input type="checkbox" name="semrs_popup[overlay]" value="1" <?php checked( $s['overlay'] ); ?>> <?php esc_html_e( 'Dark overlay behind (centered only)', 'semrs-pro' ); ?></label>
 		</td></tr>
 		<tr><th><?php esc_html_e( 'Open', 'semrs-pro' ); ?></th><td>
 			<?php $sel( 'trigger', array( 'delay' => __( 'After a delay', 'semrs-pro' ), 'scroll' => __( 'After scrolling', 'semrs-pro' ), 'exit' => __( 'When leaving (exit intent, desktop)', 'semrs-pro' ), 'click' => __( 'Only when a link is clicked', 'semrs-pro' ) ), $s['trigger'] ); ?>

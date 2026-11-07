@@ -7,13 +7,13 @@ Stable tag: 1.2.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Brand layer for the SEMRS theme: navy and gold colours, a sticky Call / WhatsApp bar on phones and a WhatsApp button.
+Brand layer for the SEMRS theme: navy and gold colors, a sticky Call / WhatsApp bar on phones and a WhatsApp button.
 
 == Description ==
 
 SEMRS Child SEO is a child theme of the free SEMRS theme. It adds a navy and gold brand palette, a sticky call and WhatsApp bar on phones and a floating WhatsApp button. Everything else (header and footer builder, layouts, patterns) comes from the SEMRS parent theme, which must be installed.
 
-To use your own brand colours, edit the colour tokens at the top of style.css. Set the phone and WhatsApp numbers under Customize → Contact & conversion.
+To use your own brand colors, edit the color tokens at the top of style.css. Set the phone and WhatsApp numbers under Customize → Contact & conversion.
 
 == Installation ==
 
@@ -35,7 +35,7 @@ Images: screenshot.png is original artwork by SEMRS, GPLv2 or later.
 == Changelog ==
 
 = 1.2.7 =
-* Brand colours now match the SEMRS logo: royal blue #0b2fd1 and orange #f7941d, with dark-blue text on orange buttons for contrast.
+* Brand colors now match the SEMRS logo: royal blue #0b2fd1 and orange #f7941d, with dark-blue text on orange buttons for contrast.
 
 = 1.2.6 =
 * Theme screenshot refreshed

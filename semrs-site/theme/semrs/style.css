@@ -42,7 +42,7 @@ Tags:              blog, news, portfolio, one-column, two-columns, right-sidebar
 	--sp-logo-w-m: 120px;
 	--sp-social: 40px;
 	--sp-accent-text: #8c6a0e;
-	--sp-accent-text: color-mix(in srgb, var(--sp-accent) 62%, #000); /* follows any accent colour, readable on white */
+	--sp-accent-text: color-mix(in srgb, var(--sp-accent) 62%, #000); /* follows any accent color, readable on white */
 	--sp-accent-soft: #fbf4e0;
 	--sp-accent-soft: color-mix(in srgb, var(--sp-accent) 14%, #fff);
 	--sp-on-dark: #e8eef7;
@@ -234,7 +234,7 @@ html[data-theme="dark"] .sp-action-bar a:not(.sp-action-bar__primary) { color: #
 :is(.sp-button, .wp-block-button__link, .wp-element-button, button[type="submit"], input[type="submit"], .semrs-btn, .semrs-pf__btn):active { transform: translateY(1px) scale(.98); box-shadow: 0 2px 6px rgba(11,31,58,.2); filter: brightness(.92); }
 :is(.sp-button, .wp-block-button__link, .wp-element-button, button, input[type="submit"], .semrs-btn, .semrs-pf__btn, a):focus-visible { outline: 3px solid var(--sp-accent); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { :is(.sp-button, .wp-block-button__link, .wp-element-button, .semrs-btn, .semrs-pf__btn) { transition: background-color .2s, color .2s; } :is(.sp-button, .wp-block-button__link, .wp-element-button, .semrs-btn, .semrs-pf__btn):hover { transform: none; } :is(.sp-button, .wp-block-button__link, .wp-element-button, .semrs-btn, .semrs-pf__btn)::after { display: none; } }
-/* Same colours when core block styles load after the theme (blocks rendered late, per-block CSS). */
+/* Same colors when core block styles load after the theme (blocks rendered late, per-block CSS). */
 .wp-block-button > .wp-block-button__link:not(.has-background) { color: var(--sp-on-accent); background: var(--sp-accent); border-color: var(--sp-accent); }
 .wp-block-button > .wp-block-button__link:not(.has-background):hover { color: var(--sp-btn-hover-text); background: var(--sp-btn-hover); border-color: var(--sp-btn-hover); }
 .wp-block-button.is-style-outline > .wp-block-button__link:not(.has-background) { color: var(--sp-btn-outline); background: transparent; border-color: var(--sp-btn-outline); }
@@ -513,7 +513,7 @@ label { font-weight: 600; color: var(--sp-primary); }
 .semrs-cta-band h2 { color: #fff; margin-top: 0; }
 .semrs-cta-band .wp-block-buttons { justify-content: center; }
 .semrs-cta-band .wp-block-button.is-style-outline > .wp-block-button__link:not(.has-background) { color: #fff; border-color: #fff; }
-/* The usual hover colour is the band colour itself, so buttons on the band turn white on hover. */
+/* The usual hover color is the band color itself, so buttons on the band turn white on hover. */
 .semrs-cta-band .wp-block-button > .wp-block-button__link:not(.has-background):hover { color: #0b1f3a; background: #fff; border-color: #fff; }
 @media (max-width: 544px) {
 	.semrs-cta-band { padding: 2rem 1.25rem; }
@@ -626,7 +626,7 @@ html[data-theme="dark"] .semrs-hero-cover .semrs-eyebrow { color: var(--sp-accen
 .semrs-compare th, .semrs-compare td { padding: .75rem .9rem; text-align: left; vertical-align: top; }
 @media (prefers-reduced-motion: reduce) { .semrs-tilt .semrs-block, .semrs-tilt > .semrs-container__inner > * { transition: none; } .semrs-tilt .semrs-block:hover { transform: none; } .semrs-chart__line { animation: none; opacity: 1; transform: none; } }
 html[data-theme="dark"] .semrs-chart { background: #13233d; border-color: #2a3d5c; }
-/* Dark mode tables: the primary colour turns light, so headers keep the navy; core's striped rows are light grey. */
+/* Dark mode tables: the primary color turns light, so headers keep the navy; core's striped rows are light gray. */
 html[data-theme="dark"] .semrs-compare thead th:not(:last-child) { background: var(--sp-dark-header, #0b1f3a); }
 html[data-theme="dark"] .wp-block-table.is-style-stripes tbody tr:nth-child(odd) { background-color: var(--sp-surface); }
 html[data-theme="dark"] .wp-block-table.is-style-stripes { border-bottom-color: var(--sp-line); }

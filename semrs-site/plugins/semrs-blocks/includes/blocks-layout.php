@@ -21,7 +21,7 @@ function semrs_blocks_layout( $blocks ) {
 
 	$blocks['semrs/container'] = array(
 		'title'       => __( 'Container (Section / Row / Grid)', 'semrs-blocks' ),
-		'description' => __( 'Group blocks in a full-width section, a row or a grid, with background colour, gradient or image, spacing and width.', 'semrs-blocks' ),
+		'description' => __( 'Group blocks in a full-width section, a row or a grid, with background color, gradient or image, spacing and width.', 'semrs-blocks' ),
 		'icon'        => 'layout',
 		'keywords'    => array( 'section', 'container', 'row', 'grid', 'columns', 'background', 'wrapper' ),
 		'render'      => 'semrs_blocks_render_container',
@@ -37,7 +37,7 @@ function semrs_blocks_layout( $blocks ) {
 			'columnsTablet'  => array( 'type' => 'range', 'label' => __( 'Grid columns (tablet; phones use 1)', 'semrs-blocks' ), 'default' => 2, 'min' => 1, 'max' => 4 ),
 			'gap'            => array( 'type' => 'range', 'label' => __( 'Gap between blocks (px)', 'semrs-blocks' ), 'default' => 24, 'min' => 0, 'max' => 96 ),
 			'valign'         => array( 'type' => 'select', 'label' => __( 'Vertical alignment', 'semrs-blocks' ), 'default' => 'stretch', 'options' => array( 'stretch' => __( 'Stretch', 'semrs-blocks' ), 'start' => __( 'Top', 'semrs-blocks' ), 'center' => __( 'Middle', 'semrs-blocks' ), 'end' => __( 'Bottom', 'semrs-blocks' ) ) ),
-			'justify'        => array( 'type' => 'select', 'label' => __( 'Horizontal alignment (row)', 'semrs-blocks' ), 'default' => 'start', 'options' => array( 'start' => __( 'Left', 'semrs-blocks' ), 'center' => __( 'Centre', 'semrs-blocks' ), 'end' => __( 'Right', 'semrs-blocks' ), 'space-between' => __( 'Space between', 'semrs-blocks' ) ) ),
+			'justify'        => array( 'type' => 'select', 'label' => __( 'Horizontal alignment (row)', 'semrs-blocks' ), 'default' => 'start', 'options' => array( 'start' => __( 'Left', 'semrs-blocks' ), 'center' => __( 'Center', 'semrs-blocks' ), 'end' => __( 'Right', 'semrs-blocks' ), 'space-between' => __( 'Space between', 'semrs-blocks' ) ) ),
 			'width'          => array( 'type' => 'select', 'label' => __( 'Content width', 'semrs-blocks' ), 'default' => 'container', 'options' => array( 'full' => __( 'Full width', 'semrs-blocks' ), 'container' => __( 'Site container', 'semrs-blocks' ), 'narrow' => __( 'Narrow (reading width)', 'semrs-blocks' ) ) ),
 			'tag'            => array( 'type' => 'select', 'label' => __( 'HTML element', 'semrs-blocks' ), 'default' => 'div', 'options' => array( 'div' => 'div', 'section' => 'section', 'header' => 'header', 'footer' => 'footer', 'aside' => 'aside', 'article' => 'article' ) ),
 			'padTop'         => array( 'type' => 'range', 'label' => __( 'Padding top (px)', 'semrs-blocks' ), 'default' => 0, 'min' => 0, 'max' => 240 ),
@@ -45,13 +45,13 @@ function semrs_blocks_layout( $blocks ) {
 			'padSides'       => array( 'type' => 'range', 'label' => __( 'Padding left & right (px)', 'semrs-blocks' ), 'default' => 0, 'min' => 0, 'max' => 120 ),
 			'minHeight'      => array( 'type' => 'range', 'label' => __( 'Minimum height (px, 0 = auto)', 'semrs-blocks' ), 'default' => 0, 'min' => 0, 'max' => 1000 ),
 			'radius'         => array( 'type' => 'range', 'label' => __( 'Rounded corners (px)', 'semrs-blocks' ), 'default' => 0, 'min' => 0, 'max' => 48 ),
-			'bg'             => array( 'type' => 'color', 'label' => __( 'Background colour', 'semrs-blocks' ), 'default' => '' ),
-			'gradient'       => array( 'type' => 'select', 'label' => __( 'Background gradient', 'semrs-blocks' ), 'default' => '', 'options' => array( '' => __( 'None', 'semrs-blocks' ), 'navy' => __( 'Navy', 'semrs-blocks' ), 'sunrise' => __( 'Sunrise', 'semrs-blocks' ), 'ocean' => __( 'Ocean', 'semrs-blocks' ), 'mint' => __( 'Mint', 'semrs-blocks' ), 'soft' => __( 'Soft grey', 'semrs-blocks' ) ) ),
+			'bg'             => array( 'type' => 'color', 'label' => __( 'Background color', 'semrs-blocks' ), 'default' => '' ),
+			'gradient'       => array( 'type' => 'select', 'label' => __( 'Background gradient', 'semrs-blocks' ), 'default' => '', 'options' => array( '' => __( 'None', 'semrs-blocks' ), 'navy' => __( 'Navy', 'semrs-blocks' ), 'sunrise' => __( 'Sunrise', 'semrs-blocks' ), 'ocean' => __( 'Ocean', 'semrs-blocks' ), 'mint' => __( 'Mint', 'semrs-blocks' ), 'soft' => __( 'Soft gray', 'semrs-blocks' ) ) ),
 			'image'          => array( 'type' => 'media', 'label' => __( 'Background image', 'semrs-blocks' ), 'default' => 0 ),
 			'imageUrl'       => array( 'type' => 'text', 'label' => __( 'Background image address (used when no image is chosen above)', 'semrs-blocks' ), 'default' => '' ),
-			'overlay'        => array( 'type' => 'color', 'label' => __( 'Overlay colour (over the image)', 'semrs-blocks' ), 'default' => '' ),
+			'overlay'        => array( 'type' => 'color', 'label' => __( 'Overlay color (over the image)', 'semrs-blocks' ), 'default' => '' ),
 			'overlayOpacity' => array( 'type' => 'range', 'label' => __( 'Overlay opacity (%)', 'semrs-blocks' ), 'default' => 50, 'min' => 0, 'max' => 100 ),
-			'textColor'      => array( 'type' => 'color', 'label' => __( 'Text colour', 'semrs-blocks' ), 'default' => '' ),
+			'textColor'      => array( 'type' => 'color', 'label' => __( 'Text color', 'semrs-blocks' ), 'default' => '' ),
 			'fixed'          => array( 'type' => 'toggle', 'label' => __( 'Fixed background (parallax feel, desktop only)', 'semrs-blocks' ), 'default' => false ),
 		),
 	);
@@ -67,8 +67,8 @@ function semrs_blocks_layout( $blocks ) {
 		'template'    => array( array( 'semrs/tab', array( 'title' => 'Tab one' ) ), array( 'semrs/tab', array( 'title' => 'Tab two' ) ) ),
 		'controls'    => array(
 			'style'    => array( 'type' => 'select', 'label' => __( 'Style', 'semrs-blocks' ), 'default' => 'underline', 'options' => array( 'underline' => __( 'Underline', 'semrs-blocks' ), 'pills' => __( 'Pills', 'semrs-blocks' ), 'boxed' => __( 'Boxed', 'semrs-blocks' ), 'vertical' => __( 'Vertical (tabs on the left)', 'semrs-blocks' ) ) ),
-			'tabAlign' => array( 'type' => 'select', 'label' => __( 'Tab alignment', 'semrs-blocks' ), 'default' => 'start', 'options' => array( 'start' => __( 'Left', 'semrs-blocks' ), 'center' => __( 'Centre', 'semrs-blocks' ), 'stretch' => __( 'Full width', 'semrs-blocks' ) ) ),
-			'accent'   => array( 'type' => 'color', 'label' => __( 'Active tab colour', 'semrs-blocks' ), 'default' => '' ),
+			'tabAlign' => array( 'type' => 'select', 'label' => __( 'Tab alignment', 'semrs-blocks' ), 'default' => 'start', 'options' => array( 'start' => __( 'Left', 'semrs-blocks' ), 'center' => __( 'Center', 'semrs-blocks' ), 'stretch' => __( 'Full width', 'semrs-blocks' ) ) ),
+			'accent'   => array( 'type' => 'color', 'label' => __( 'Active tab color', 'semrs-blocks' ), 'default' => '' ),
 		),
 	);
 	$blocks['semrs/tab'] = array(
@@ -141,7 +141,7 @@ function semrs_blocks_layout( $blocks ) {
 			'photo'   => array( 'type' => 'media', 'label' => __( 'Photo (with permission)', 'semrs-blocks' ), 'default' => 0 ),
 			'rating'  => array( 'type' => 'range', 'label' => __( 'Star rating (0 = hide)', 'semrs-blocks' ), 'default' => 0, 'min' => 0, 'max' => 5 ),
 			'source'  => array( 'type' => 'url', 'label' => __( 'Link to the original review (e.g. Google)', 'semrs-blocks' ), 'default' => '' ),
-			'style'   => array( 'type' => 'select', 'label' => __( 'Style', 'semrs-blocks' ), 'default' => 'card', 'options' => array( 'card' => __( 'Card', 'semrs-blocks' ), 'centered' => __( 'Centred', 'semrs-blocks' ), 'quote' => __( 'Big quote mark', 'semrs-blocks' ) ) ),
+			'style'   => array( 'type' => 'select', 'label' => __( 'Style', 'semrs-blocks' ), 'default' => 'card', 'options' => array( 'card' => __( 'Card', 'semrs-blocks' ), 'centered' => __( 'Centered', 'semrs-blocks' ), 'quote' => __( 'Big quote mark', 'semrs-blocks' ) ) ),
 		),
 	);
 

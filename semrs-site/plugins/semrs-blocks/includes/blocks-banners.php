@@ -35,14 +35,14 @@ function semrs_blocks_banners_def( $blocks ) {
 		'controls'    => array(
 			'slides'       => array(
 				'type'    => 'textarea',
-				'label'   => __( 'One slide per line: Heading | Text | Button text | Button link | Image URL | Background colour', 'semrs-blocks' ),
+				'label'   => __( 'One slide per line: Heading | Text | Button text | Button link | Image URL | Background color', 'semrs-blocks' ),
 				'default' => "Holiday prints are here | Ready to download in minutes | Shop now | /shop/ |  | #fde7d9\nNew patterns every week | Clear steps for every skill level | See what is new | /shop/ |  | #e3efe6\nMade just for you | Personalised gifts with names and dates | Start yours | /shop/ |  | #e6e9f7",
 				'help'    => __( 'Leave a part empty to skip it. The image shows beside the text (or behind it with the "Image behind text" layout).', 'semrs-blocks' ),
 			),
 			'layout'       => array( 'type' => 'select', 'label' => __( 'Layout', 'semrs-blocks' ), 'default' => 'split', 'options' => array( 'split' => __( 'Text beside image', 'semrs-blocks' ), 'cover' => __( 'Image behind text', 'semrs-blocks' ), 'text' => __( 'Text only', 'semrs-blocks' ) ) ),
 			'height'       => array( 'type' => 'range', 'label' => __( 'Height on desktop (px)', 'semrs-blocks' ), 'default' => 360, 'min' => 200, 'max' => 700 ),
 			'heightMobile' => array( 'type' => 'range', 'label' => __( 'Height on phones (px)', 'semrs-blocks' ), 'default' => 420, 'min' => 200, 'max' => 800 ),
-			'textColor'    => array( 'type' => 'color', 'label' => __( 'Text colour', 'semrs-blocks' ), 'default' => '' ),
+			'textColor'    => array( 'type' => 'color', 'label' => __( 'Text color', 'semrs-blocks' ), 'default' => '' ),
 			'arrows'       => array( 'type' => 'toggle', 'label' => __( 'Arrows', 'semrs-blocks' ), 'default' => true ),
 			'dots'         => array( 'type' => 'toggle', 'label' => __( 'Dots', 'semrs-blocks' ), 'default' => true ),
 			'autoplay'     => array( 'type' => 'toggle', 'label' => __( 'Rotate automatically (pauses on hover and focus)', 'semrs-blocks' ), 'default' => true ),

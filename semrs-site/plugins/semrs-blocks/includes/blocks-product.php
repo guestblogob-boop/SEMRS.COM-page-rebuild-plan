@@ -381,7 +381,7 @@ add_filter(
 	function ( $blocks ) {
 		$blocks['semrs/product'] = array(
 			'title'       => __( 'Product', 'semrs-blocks' ),
-			'description' => __( 'Product with colour swatches, size buttons, quantity and bulk discounts, bundles, live price and a checkout link. Use "Card" in grids.', 'semrs-blocks' ),
+			'description' => __( 'Product with color swatches, size buttons, quantity and bulk discounts, bundles, live price and a checkout link. Use "Card" in grids.', 'semrs-blocks' ),
 			'icon'        => 'cart',
 			'keywords'    => array( 'product', 'shop', 'store', 'buy', 'price', 'variant', 'color', 'size', 'bundle', 'bulk', 'quantity', 'ecommerce' ),
 			'render'      => 'semrs_blocks_render_product',
@@ -572,12 +572,12 @@ function semrs_blocks_store_patterns() {
 	return array(
 		'shop-grid'    => array(
 			__( 'Shop grid', 'semrs-blocks' ),
-			__( 'Section heading and four product cards with colour dots and prices.', 'semrs-blocks' ),
+			__( 'Section heading and four product cards with color dots and prices.', 'semrs-blocks' ),
 			'<!-- wp:semrs/container {"align":"full","tag":"section","padTop":48,"padBottom":48} -->' . $head( 'Shop the collection', 'Replace these sample products with your own. Each card links to its product page.' ) . $grid . '<!-- /wp:semrs/container -->',
 		),
 		'product-page' => array(
 			__( 'Product page', 'semrs-blocks' ),
-			__( 'Product image and buy box with colour, size and quantity, then details accordions and related products.', 'semrs-blocks' ),
+			__( 'Product image and buy box with color, size and quantity, then details accordions and related products.', 'semrs-blocks' ),
 			'<!-- wp:semrs/container {"align":"full","tag":"section","padTop":32,"padBottom":32} -->'
 				. $prod( array( 'layout' => 'full', 'title' => 'Classic Cotton T-Shirt', 'text' => 'Soft, breathable everyday tee. Replace this text with your own product details.', 'price' => '24', 'options' => "Color: Navy #1e3a66, Sand #d8c7a3, White #ffffff\nSize: S, M, L, XL +2, XXL +4 (sold out)", 'qty' => true, 'max' => 20, 'button' => 'Add to cart', 'schema' => false ) )
 				. '<!-- wp:semrs/accordion --><!-- wp:semrs/accordion-item {"title":"Details"} --><!-- wp:paragraph --><p>Describe materials, fit, care and what is included.</p><!-- /wp:paragraph --><!-- /wp:semrs/accordion-item --><!-- wp:semrs/accordion-item {"title":"Shipping"} --><!-- wp:paragraph --><p>Write your own shipping times, costs and regions.</p><!-- /wp:paragraph --><!-- /wp:semrs/accordion-item --><!-- wp:semrs/accordion-item {"title":"Returns"} --><!-- wp:paragraph --><p>Write your own returns and refund policy.</p><!-- /wp:paragraph --><!-- /wp:semrs/accordion-item --><!-- /wp:semrs/accordion -->'

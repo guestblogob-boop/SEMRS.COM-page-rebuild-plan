@@ -67,7 +67,7 @@ Redirects and the 404 log, and IndexNow, moved to the free SEMRS Core plugin in 
 * Seven extra starter sites for the SEMRS templates library: Consultant, Clinic, Travel Agency, Camping & Outdoors, School & Admissions (with registration form), Online Courses (student registration) and AI & LLM Services, with Pro sections (services in tabs, latest-articles slider).
 
 == Popups ==
-* SEMRS → Popups: popups built with the block editor; centred box (bottom sheet on phones), bottom bar or corner slide-in.
+* SEMRS → Popups: popups built with the block editor; centered box (bottom sheet on phones), bottom bar or corner slide-in.
 * Open after a delay, after scrolling, on exit intent (desktop) or when a link to #semrs-popup-ID is clicked. Every view, once per visit or once every N days (local storage, no cookies).
 * Device and page targeting. Focus kept inside, Esc to close; ad shortcodes are never rendered inside popups.
 
@@ -85,7 +85,7 @@ The Ads Manager moved to the free SEMRS Core plugin in 1.1.0.
 * Search & replace in content, custom fields, comments and settings, safe for serialized data; dry run, samples of each match and one-click undo; site address, plugins, roles, cron and keys are never touched.
 
 == Social images (SEO Pro) ==
-* Automatic 1200 × 630 share images with the post title, site name and your colours for posts without a featured or custom share image; made once on your server with PHP GD and remade when the title changes.
+* Automatic 1200 × 630 share images with the post title, site name and your colors for posts without a featured or custom share image; made once on your server with PHP GD and remade when the title changes.
 
 == External services ==
 
@@ -160,7 +160,7 @@ SEMRS → License: paste your key and click Activate (Deactivate frees the site 
 * Sitemaps Pro: robots.txt lists the video sitemap only when at least one page has a video (an empty sitemap is reported in Search Console)
 
 = 1.5.13 =
-* Slider / Carousel: new "Banners" source: promo slides with heading, text, button, image and background colour (the same banners as the free Banner Slider block)
+* Slider / Carousel: new "Banners" source: promo slides with heading, text, button, image and background color (the same banners as the free Banner Slider block)
 
 = 1.5.12 =
 * Free Tools Pro (SEO Pro add-on): bulk checks of up to 25 URLs in the SEMRS Tools redirect and on-page checkers, your own expert-help box per category, a tool usage report and higher hourly limits.
@@ -220,7 +220,7 @@ SEMRS → License: paste your key and click Activate (Deactivate frees the site 
 
 = 1.4.6 =
 * Dark mode: light backgrounds set in page content switch to dark surfaces
-* Dark mode: readable success, error and warning colours
+* Dark mode: readable success, error and warning colors
 * Slider markup uses valid ARIA (no role on list items)
 
 = 1.4.5 =
@@ -234,10 +234,10 @@ SEMRS → License: paste your key and click Activate (Deactivate frees the site 
 * Ads: rectangle, vertical (half-page) and Multiplex formats
 
 = 1.4.2 =
-* Mega menu: column headings with accent underline, accent hover; dark-mode dropdowns use the theme's dark colours.
+* Mega menu: column headings with accent underline, accent hover; dark-mode dropdowns use the theme's dark colors.
 
 = 1.4.1 =
-* Dark mode: accent text and soft backgrounds follow the accent colour; pagination and mobile bar use the dark header colour.
+* Dark mode: accent text and soft backgrounds follow the accent color; pagination and mobile bar use the dark header color.
 
 = 1.4.0 =
 * New: Image library conversion (WebP/AVIF copies of existing images, originals kept), Custom schema per page, and Speed Pro stylesheet minification, missing image sizes and lazy iframes. Redirects and IndexNow moved to free SEMRS Core 1.3.0.
@@ -247,13 +247,13 @@ SEMRS → License: paste your key and click Activate (Deactivate frees the site 
 
 = 1.3.2 =
 * Dark mode: readable button hovers (white with navy text by default)
-* Dark mode colour settings: background, cards, text, links, header bar, top bar and buttons
+* Dark mode color settings: background, cards, text, links, header bar, top bar and buttons
 
 = 1.3.1 =
 * Settings links on the Plugins screen
 
 = 1.3.0 =
-* Pro starter sites with real CC0 photos, example posts, legal pages, niche colours and footers
+* Pro starter sites with real CC0 photos, example posts, legal pages, niche colors and footers
 
 = 1.2.0 =
 * SEO: 0–100 SEO score with readability checks, Re-check and internal link ideas; SEO Audit screen; llms.txt; reads Yoast and AIOSEO data
@@ -265,7 +265,7 @@ SEMRS → License: paste your key and click Activate (Deactivate frees the site 
 = 1.1.0 =
 * Automatic update notices from semrs.com (WordPress 'Update available' + one-click update)
 * Logo width controls for desktop and mobile; 512×512 square logos detected automatically
-* Footer social icons in brand colours (9 networks)
+* Footer social icons in brand colors (9 networks)
 * Free/Pro split: premium modules moved to the SEMRS Pro plugin
 * Pro: license status checked with semrs.com
 

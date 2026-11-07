@@ -162,7 +162,7 @@ function semrs_pro_seo_bulk_page() {
 			<?php endforeach; ?>
 			</tbody>
 		</table>
-		<p class="description"><?php esc_html_e( 'Grey text is what is used now (from the title template or data imported from Rank Math, Yoast or AIOSEO). Leave a field empty to keep using it. Scores update when you save.', 'semrs-pro' ); ?></p>
+		<p class="description"><?php esc_html_e( 'Gray text is what is used now (from the title template or data imported from Rank Math, Yoast or AIOSEO). Leave a field empty to keep using it. Scores update when you save.', 'semrs-pro' ); ?></p>
 		<?php submit_button( __( 'Save changes', 'semrs-pro' ) ); ?>
 	</form>
 	<?php

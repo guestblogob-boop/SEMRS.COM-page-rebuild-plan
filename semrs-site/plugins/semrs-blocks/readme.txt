@@ -14,7 +14,7 @@ License: GPLv2 or later
 Every block is rendered on the server, so pages stay fast and search engines see the real content. CSS and JavaScript load only on pages that use a block.
 
 = Free blocks =
-* Icon: 48 original SVG icons, colour, size, circle or rounded background, optional link.
+* Icon: 48 original SVG icons, color, size, circle or rounded background, optional link.
 * Icon List: checklists and feature lists in 1 to 4 columns.
 * Fancy Heading: typing (rotating words), gradient, marker highlight, curved underline and outline styles.
 * Posts: card grid, list, masonry, overlay and compact layouts, with category, post type, order, offset and display options.
@@ -35,14 +35,14 @@ Every block is rendered on the server, so pages stay fast and search engines see
 
 = Product block =
 * Product page, buy box or shop-grid card layouts.
-* Colour swatches, size buttons, dropdowns and plan cards from a simple text format ("Color: Navy #1e3a66, Sand #d8c7a3", "Size: S, M, L +2", "(sold out)").
+* Color swatches, size buttons, dropdowns and plan cards from a simple text format ("Color: Navy #1e3a66, Sand #d8c7a3", "Size: S, M, L +2", "(sold out)").
 * Personalisation fields (names, dates) with character limits, quantity with bulk discounts, bundle add-ons, live price, savings and total.
 * The button opens your own checkout (WooCommerce, Shopify, Stripe Payment Links…) with the choices as URL parameters; chosen options are kept in the page address for sharing.
 * Optional Product schema with price and availability only. Store patterns: shop grid, product page, bundle offer, bulk pricing and store promises.
 * Ready-made shops (digital downloads, crochet patterns) are in the separate SEMRS Shops plugin.
 
 = Layout blocks =
-* Container: section, row or grid (1–6 columns) with background colour, gradient or image and overlay, padding, minimum height, width and HTML element. Holds any blocks.
+* Container: section, row or grid (1–6 columns) with background color, gradient or image and overlay, padding, minimum height, width and HTML element. Holds any blocks.
 * Tabs: any blocks in each tab; underline, pills, boxed or vertical; keyboard accessible; all content visible to search engines.
 * Accordion / FAQ: native open/close, optional one-at-a-time, FAQ schema with SEMRS Core SEO.
 * Gallery & Lightbox: grid or masonry, accessible lightbox with keyboard and swipe.
@@ -51,7 +51,7 @@ Every block is rendered on the server, so pages stay fast and search engines see
 * Website Showcase: theme, template or portfolio cards with desktop and mobile previews and a Desktop / Mobile switch, like the WordPress.org theme directory.
 
 = Templates & starter sites =
-SEMRS → Templates: 16 free starter sites (Agency, SEO Services, Digital Marketing, Content Marketing, Social Media, Guest Blogging, Local Business, Cleaning, Handyman, Repair Shop, Gardening, Pet Care, Dentist, Blog, Top 10 Lists, Travel Blog), imported in one click with your business name, phone, email and city filled in. Sets the home page, blog page and menu. Every page is also an editor pattern, plus 12 single sections and 6 header / 3 footer presets for the SEMRS theme. Every starter site is a complete website: home, services, about, blog with 3 example posts, contact, privacy policy and terms, with its own colours, header, footer columns and real photos. Preview every page (desktop, tablet, phone) before importing. Everything is bundled: nothing is downloaded.
+SEMRS → Templates: 16 free starter sites (Agency, SEO Services, Digital Marketing, Content Marketing, Social Media, Guest Blogging, Local Business, Cleaning, Handyman, Repair Shop, Gardening, Pet Care, Dentist, Blog, Top 10 Lists, Travel Blog), imported in one click with your business name, phone, email and city filled in. Sets the home page, blog page and menu. Every page is also an editor pattern, plus 12 single sections and 6 header / 3 footer presets for the SEMRS theme. Every starter site is a complete website: home, services, about, blog with 3 example posts, contact, privacy policy and terms, with its own colors, header, footer columns and real photos. Preview every page (desktop, tablet, phone) before importing. Everything is bundled: nothing is downloaded.
 
 = Visibility =
 Hide any block on phones, tablets or desktops from the block sidebar. CSS-based, so it works with page caching.
@@ -200,7 +200,7 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 * Typing headings no longer shift the layout: the heading reserves the height of its longest word and starts on it (fixes Cumulative Layout Shift)
 
 = 1.3.4 =
-* Contact form errors and pricing crosses use the theme error colour (readable in dark mode)
+* Contact form errors and pricing crosses use the theme error color (readable in dark mode)
 
 = 1.3.3 =
 * Declares WP Consent API support (functional storage only, no trackers)
@@ -214,13 +214,13 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 = 1.3.0 =
 * Starter sites with real CC0 photos (hero, about, blog)
 * Every site: home, services, about, blog with 3 example posts, contact, privacy policy and terms
-* Niche colours, header style and 4 footer columns per site
+* Niche colors, header style and 4 footer columns per site
 * Live preview of every page (desktop, tablet, phone) before importing
-* Import options: example posts, colours, site title, footer credit and demo notice
+* Import options: example posts, colors, site title, footer credit and demo notice
 * Full-page previews that scroll on hover
 
 = 1.2.0 =
-* Product block: colour swatches, sizes, plan cards, personalisation fields, quantity with bulk discounts, bundles, live total and checkout link
+* Product block: color swatches, sizes, plan cards, personalisation fields, quantity with bulk discounts, bundles, live total and checkout link
 * Store patterns: shop grid, product page, bundle offer, bulk pricing, store promises
 * Ready-made shops (digital downloads, crochet patterns) are now in the separate free SEMRS Shops plugin, keeping SEMRS Blocks light
 

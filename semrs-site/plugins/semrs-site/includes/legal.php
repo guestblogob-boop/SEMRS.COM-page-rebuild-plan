@@ -88,8 +88,8 @@ function semrs_legal_business_shortcode() {
 			__( 'Digital products you download and install on your own WordPress website.', 'semrs-site' ),
 			array(
 				esc_html__( 'Free: the SEMRS theme, SEMRS Child SEO theme and the SEMRS Core, Blocks and Tools plugins (GPL).', 'semrs-site' ),
-				esc_html__( 'Paid: SEMRS Pro add-ons (SEO Pro, Speed Pro, Ads Pro, Theme Pro or All Pro), sold as yearly or lifetime licence keys for 1, 5 or unlimited websites.', 'semrs-site' ),
-				esc_html__( 'Delivered instantly: download link and licence key by email, updates inside WordPress.', 'semrs-site' ),
+				esc_html__( 'Paid: SEMRS Pro add-ons (SEO Pro, Speed Pro, Ads Pro, Theme Pro or All Pro), sold as yearly or lifetime license keys for 1, 5 or unlimited websites.', 'semrs-site' ),
+				esc_html__( 'Delivered instantly: download link and license key by email, updates inside WordPress.', 'semrs-site' ),
 			),
 			esc_html__( 'Confirmed by invoice. Your license key and download link arrive by email.', 'semrs-site' )
 			. ( $pro ? ' <a href="' . esc_url( get_permalink( $pro ) ) . '">' . esc_html__( 'SEMRS Pro plans and prices', 'semrs-site' ) . '</a>' : '' )

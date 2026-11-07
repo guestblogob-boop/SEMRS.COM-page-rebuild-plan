@@ -424,7 +424,7 @@ function semrs_theme_builder_customize_assets() {
 			'remove' => __( 'Remove', 'semrs' ),
 			'none'   => __( 'All elements are in use', 'semrs' ),
 			'left'   => __( 'Left', 'semrs' ),
-			'center' => __( 'Centre', 'semrs' ),
+			'center' => __( 'Center', 'semrs' ),
 			'right'  => __( 'Right', 'semrs' ),
 		)
 	);

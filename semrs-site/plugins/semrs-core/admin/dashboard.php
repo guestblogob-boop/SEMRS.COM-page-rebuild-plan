@@ -207,7 +207,7 @@ function semrs_core_pro_teasers() {
 		'proof'      => array( __( 'Case studies & portfolio', 'semrs-core' ), __( 'Case Studies, Portfolio and Testimonials with permission checks.', 'semrs-core' ) ),
 		'templates_pro' => array( __( 'Pro starter sites', 'semrs-core' ), __( 'Extra one-click starter sites (Consultant, Clinic) with Pro sections.', 'semrs-core' ) ),
 		'languages'  => array( __( 'Languages & switcher', 'semrs-core' ), __( 'Language switcher with linked translations and hreflang tags, plus optional Google Translate for untranslated pages.', 'semrs-core' ) ),
-		'popups'     => array( __( 'Popups', 'semrs-core' ), __( 'Popups built with the block editor: centred, bottom bar or slide-in, with delay, scroll, exit-intent or click triggers and page targeting.', 'semrs-core' ) ),
+		'popups'     => array( __( 'Popups', 'semrs-core' ), __( 'Popups built with the block editor: centered, bottom bar or slide-in, with delay, scroll, exit-intent or click triggers and page targeting.', 'semrs-core' ) ),
 		'conditions' => array( __( 'Display conditions', 'semrs-core' ), __( 'Show any block only to logged-in visitors, certain roles, between dates or on certain pages.', 'semrs-core' ) ),
 		'two_factor' => array( __( 'Login security', 'semrs-core' ), __( 'Two-factor log-in with an authenticator app and backup codes, and a custom log-in address.', 'semrs-core' ) ),
 		'activity'   => array( __( 'Activity log', 'semrs-core' ), __( 'See who changed which post, page, setting, plugin or user, and when. Filter and export.', 'semrs-core' ) ),

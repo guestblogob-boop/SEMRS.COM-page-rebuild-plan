@@ -228,7 +228,7 @@ The speed check, SEO audit, page cache, llms.txt, cookie banner, consent log, se
 * Index Status: live and indexed status with remarks for every page, indexing tasks (Request indexing in Google, IndexNow), auto-indexing switch, robots.txt editor
 * Content Calendar: month calendar with Previous/Today/Next, scheduled posts with Add to Google Calendar and .ics
 * One-click sharing to Facebook, X, LinkedIn, Pinterest, Reddit, WhatsApp, Telegram and email (post lists, calendar, SEO sidebar); auto-post on publish through a webhook (Pro)
-* SEO Audit: recognises a robots.txt file with your sitemap and Site Kit verification; menu and footer links count as internal links; the posts page and noindex pages don't lower the average
+* SEO Audit: recognizes a robots.txt file with your sitemap and Site Kit verification; menu and footer links count as internal links; the posts page and noindex pages don't lower the average
 * Focus keyword in URL check reads the full page address
 
 = 1.3.17 =
@@ -253,7 +253,7 @@ The speed check, SEO audit, page cache, llms.txt, cookie banner, consent log, se
 * Pro items (more keywords, advanced robots, X details) unlock with a SEMRS Pro license
 
 = 1.3.12 =
-* SEO box: new Speed & accessibility checks (image size and format, no GIFs, lazy embeds, valid lists and ARIA roles, link text, heading order, theme colours for dark mode) to keep pages at PageSpeed 100
+* SEO box: new Speed & accessibility checks (image size and format, no GIFs, lazy embeds, valid lists and ARIA roles, link text, heading order, theme colors for dark mode) to keep pages at PageSpeed 100
 
 = 1.3.11 =
 * Redirects: the list of active redirects folds; click its heading to show or hide it
@@ -310,7 +310,7 @@ The speed check, SEO audit, page cache, llms.txt, cookie banner, consent log, se
 = 1.1.0 =
 * Automatic update notices from semrs.com (WordPress 'Update available' + one-click update)
 * Logo width controls for desktop and mobile; 512×512 square logos detected automatically
-* Footer social icons in brand colours (9 networks)
+* Footer social icons in brand colors (9 networks)
 * Free/Pro split: premium modules moved to the SEMRS Pro plugin
 * Pro: license status checked with semrs.com
 

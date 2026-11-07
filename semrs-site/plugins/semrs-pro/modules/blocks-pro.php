@@ -41,7 +41,7 @@ function semrs_pro_blocks( $blocks ) {
 		),
 		'controls' => array(
 			'source'      => array( 'type' => 'select', 'label' => __( 'Slides from', 'semrs-pro' ), 'default' => 'images', 'options' => array( 'images' => __( 'Images', 'semrs-pro' ), 'posts' => __( 'Posts (carousel)', 'semrs-pro' ), 'banners' => __( 'Banners (promo slides with heading, text and button)', 'semrs-pro' ) ) ),
-			'banners'     => array( 'type' => 'textarea', 'label' => __( 'Banners, one per line: Heading | Text | Button text | Button link | Image URL | Background colour', 'semrs-pro' ), 'default' => '' ),
+			'banners'     => array( 'type' => 'textarea', 'label' => __( 'Banners, one per line: Heading | Text | Button text | Button link | Image URL | Background color', 'semrs-pro' ), 'default' => '' ),
 			'bannerLayout' => array( 'type' => 'select', 'label' => __( 'Banner layout', 'semrs-pro' ), 'default' => 'split', 'options' => array( 'split' => __( 'Text beside image', 'semrs-pro' ), 'cover' => __( 'Image behind text', 'semrs-pro' ), 'text' => __( 'Text only', 'semrs-pro' ) ) ),
 			'images'      => array( 'type' => 'gallery', 'label' => __( 'Images', 'semrs-pro' ) ),
 			'postType'    => array( 'type' => 'posttype', 'label' => __( 'Post type', 'semrs-pro' ), 'default' => 'post' ),
@@ -71,7 +71,7 @@ function semrs_pro_blocks( $blocks ) {
 			'label'    => array( 'type' => 'text', 'label' => __( 'Label', 'semrs-pro' ), 'default' => 'Pages optimized' ),
 			'icon'     => array( 'type' => 'icon', 'label' => __( 'Icon', 'semrs-pro' ), 'default' => 'trending-up' ),
 			'duration' => array( 'type' => 'range', 'label' => __( 'Animation length (seconds)', 'semrs-pro' ), 'default' => 2, 'min' => 1, 'max' => 6 ),
-			'color'    => array( 'type' => 'color', 'label' => __( 'Number colour', 'semrs-pro' ), 'default' => '' ),
+			'color'    => array( 'type' => 'color', 'label' => __( 'Number color', 'semrs-pro' ), 'default' => '' ),
 		),
 	);
 

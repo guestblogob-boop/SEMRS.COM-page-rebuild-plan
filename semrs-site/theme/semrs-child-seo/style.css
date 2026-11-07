@@ -20,7 +20,7 @@ Text Domain:  semrs-child-seo
    WCAG AA checked: see README.md
    ========================================================= */
 :root {
-	/* Logo colours: royal blue #0b2fd1 and orange #f7941d. */
+	/* Logo colors: royal blue #0b2fd1 and orange #f7941d. */
 	--semrs-navy-900: #0b2fd1; /* brand blue: headings, menu, footer (9:1 on white) */
 	--semrs-navy-700: #0b2fd1; /* links */
 	--semrs-navy-100: #e6ebff;

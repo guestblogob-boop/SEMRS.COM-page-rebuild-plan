@@ -9,7 +9,7 @@ Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Ready-made digital-download and crochet-pattern shops for SEMRS Blocks, in four storefront styles: brand store, maker shop, listing store and catalog store.
+Ready-made digital-download and crochet-pattern shops for SEMRS Blocks, in four styles: brand, maker, listing and catalog store.
 
 == Description ==
 
@@ -42,9 +42,9 @@ Product pages for Christmas SVG bundles, printable party packs, gift tags, Chris
 Pattern pages for amigurumi animals and birds (bear, bunny, dinosaur, reindeer, cat, puppy, owl, parrot, chicken), pet accessories (dog sweater, bandana, cat toys, pet bed), blankets (chunky, granny square, temperature, baby), wearables (beanie, cardigan, scarf, bucket hat, baby booties), home decor, Christmas and seasonal, bags, car accessories (mirror charm, steering wheel cover, seat belt covers, cup holder coasters), a beginner's guide and a bundle. Includes a Crochet help page with US/UK stitch terms, hook sizes and skill levels.
 
 = Every product page =
-* SEMRS Product block with colour swatches, sizes, formats, licences or plan cards, personalisation fields (names, dates), bundle add-ons and bulk prices; live price, savings and total.
+* SEMRS Product block with color swatches, sizes, formats, licenses or plan cards, personalisation fields (names, dates), bundle add-ons and bulk prices; live price, savings and total.
 * The buy button opens your own checkout (WooCommerce, Shopify, Stripe Payment Links, Lemon Squeezy, Gumroad…) with the chosen options added to the link.
-* "What you get", "How it works", licence and refund sections, and "You may also like" products.
+* "What you get", "How it works", license and refund sections, and "You may also like" products.
 * Product schema with price and availability only (no ratings).
 
 Shop home, all-products page, category pages, FAQ and contact are included. All pages are also editor patterns. Prices, policies and delivery times are examples: replace them with your own before publishing. Product images are original SEMRS artwork (GPL).

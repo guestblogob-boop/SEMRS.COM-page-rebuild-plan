@@ -59,7 +59,7 @@ function semrs_pro_blocks_more( $blocks ) {
 				'yearly'   => array( 'type' => 'text', 'label' => __( 'Yearly label', 'semrs-pro' ), 'default' => 'Yearly' ),
 				'save'     => array( 'type' => 'text', 'label' => __( 'Yearly note (optional)', 'semrs-pro' ), 'default' => '2 months free' ),
 				'start'    => array( 'type' => 'select', 'label' => __( 'Show first', 'semrs-pro' ), 'default' => 'yearly', 'options' => array( 'monthly' => __( 'Monthly', 'semrs-pro' ), 'yearly' => __( 'Yearly', 'semrs-pro' ) ) ),
-				'accent'   => array( 'type' => 'color', 'label' => __( 'Accent colour', 'semrs-pro' ), 'default' => '' ),
+				'accent'   => array( 'type' => 'color', 'label' => __( 'Accent color', 'semrs-pro' ), 'default' => '' ),
 			),
 		)
 	);
@@ -110,7 +110,7 @@ function semrs_pro_blocks_more( $blocks ) {
 			'controls'    => array(
 				'image' => array( 'type' => 'media', 'label' => __( 'Image', 'semrs-pro' ), 'default' => 0 ),
 				'spots' => array( 'type' => 'textarea', 'label' => __( 'One point per line: left % | top % | Title | Text', 'semrs-pro' ), 'default' => "25 | 30 | Fast pages | Every page loads in under a second.\n70 | 60 | Clear calls to action | Visitors always know the next step.", 'help' => __( 'Left and top are percentages from the image\'s top-left corner.', 'semrs-pro' ) ),
-				'color' => array( 'type' => 'color', 'label' => __( 'Point colour', 'semrs-pro' ), 'default' => '' ),
+				'color' => array( 'type' => 'color', 'label' => __( 'Point color', 'semrs-pro' ), 'default' => '' ),
 			),
 		)
 	);
@@ -145,7 +145,7 @@ function semrs_pro_blocks_more( $blocks ) {
 				'speed'     => array( 'type' => 'range', 'label' => __( 'Seconds per loop', 'semrs-pro' ), 'default' => 30, 'min' => 8, 'max' => 120 ),
 				'reverse'   => array( 'type' => 'toggle', 'label' => __( 'Scroll left to right', 'semrs-pro' ), 'default' => false ),
 				'height'    => array( 'type' => 'range', 'label' => __( 'Logo height (px)', 'semrs-pro' ), 'default' => 40, 'min' => 20, 'max' => 120 ),
-				'grayscale' => array( 'type' => 'toggle', 'label' => __( 'Grey logos', 'semrs-pro' ), 'default' => true ),
+				'grayscale' => array( 'type' => 'toggle', 'label' => __( 'Gray logos', 'semrs-pro' ), 'default' => true ),
 			),
 		)
 	);
@@ -177,8 +177,8 @@ function semrs_pro_blocks_more( $blocks ) {
 			'allowed'     => array( 'semrs/switch-panel' ),
 			'template'    => array( array( 'semrs/switch-panel', array( 'title' => 'Option one' ) ), array( 'semrs/switch-panel', array( 'title' => 'Option two' ) ) ),
 			'controls'    => array(
-				'accent' => array( 'type' => 'color', 'label' => __( 'Switch colour', 'semrs-pro' ), 'default' => '' ),
-				'position' => array( 'type' => 'select', 'label' => __( 'Switch alignment', 'semrs-pro' ), 'default' => 'center', 'options' => array( 'left' => __( 'Left', 'semrs-pro' ), 'center' => __( 'Centre', 'semrs-pro' ) ) ),
+				'accent' => array( 'type' => 'color', 'label' => __( 'Switch color', 'semrs-pro' ), 'default' => '' ),
+				'position' => array( 'type' => 'select', 'label' => __( 'Switch alignment', 'semrs-pro' ), 'default' => 'center', 'options' => array( 'left' => __( 'Left', 'semrs-pro' ), 'center' => __( 'Center', 'semrs-pro' ) ) ),
 			),
 		)
 	);
@@ -220,7 +220,7 @@ function semrs_pro_blocks_more( $blocks ) {
 			'render'      => 'semrs_pro_render_timeline',
 			'controls'    => array(
 				'items'  => array( 'type' => 'textarea', 'label' => __( 'One per line: Date | Title | Text | icon', 'semrs-pro' ), 'default' => "2024 | Started | Where it began. | rocket\n2025 | Grew | What changed. | trending-up\n2026 | Today | Where we are now. | award" ),
-				'accent' => array( 'type' => 'color', 'label' => __( 'Accent colour', 'semrs-pro' ), 'default' => '' ),
+				'accent' => array( 'type' => 'color', 'label' => __( 'Accent color', 'semrs-pro' ), 'default' => '' ),
 			),
 		)
 	);
@@ -252,7 +252,7 @@ function semrs_pro_blocks_more( $blocks ) {
 			'controls'    => array(
 				'items'   => array( 'type' => 'textarea', 'label' => __( 'One per line: icon | Title | Short text', 'semrs-pro' ), 'default' => "lock | Secure checkout | Encrypted payments\nshield | 14-day refund | No questions asked\nchat | Real support | Answers within a day" ),
 				'style'   => array( 'type' => 'select', 'label' => __( 'Style', 'semrs-pro' ), 'default' => 'cards', 'options' => array( 'cards' => __( 'Cards', 'semrs-pro' ), 'inline' => __( 'Inline row', 'semrs-pro' ) ) ),
-				'color'   => array( 'type' => 'color', 'label' => __( 'Icon colour', 'semrs-pro' ), 'default' => '' ),
+				'color'   => array( 'type' => 'color', 'label' => __( 'Icon color', 'semrs-pro' ), 'default' => '' ),
 			),
 		)
 	);

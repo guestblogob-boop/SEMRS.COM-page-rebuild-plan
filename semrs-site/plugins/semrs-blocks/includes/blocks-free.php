@@ -26,8 +26,8 @@ function semrs_blocks_free( $blocks ) {
 		'controls' => array(
 			'icon'      => array( 'type' => 'icon', 'label' => __( 'Icon', 'semrs-blocks' ), 'default' => 'rocket' ),
 			'size'      => array( 'type' => 'range', 'label' => __( 'Size (px)', 'semrs-blocks' ), 'default' => 48, 'min' => 16, 'max' => 200 ),
-			'color'     => array( 'type' => 'color', 'label' => __( 'Icon colour', 'semrs-blocks' ), 'default' => '' ),
-			'bg'        => array( 'type' => 'color', 'label' => __( 'Background colour', 'semrs-blocks' ), 'default' => '' ),
+			'color'     => array( 'type' => 'color', 'label' => __( 'Icon color', 'semrs-blocks' ), 'default' => '' ),
+			'bg'        => array( 'type' => 'color', 'label' => __( 'Background color', 'semrs-blocks' ), 'default' => '' ),
 			'shape'     => array( 'type' => 'select', 'label' => __( 'Background shape', 'semrs-blocks' ), 'default' => 'none', 'options' => array( 'none' => __( 'None', 'semrs-blocks' ), 'circle' => __( 'Circle', 'semrs-blocks' ), 'rounded' => __( 'Rounded square', 'semrs-blocks' ) ) ),
 			'url'       => array( 'type' => 'url', 'label' => __( 'Link (optional)', 'semrs-blocks' ), 'default' => '' ),
 			'label'     => array( 'type' => 'text', 'label' => __( 'Accessible label (empty = decorative)', 'semrs-blocks' ), 'default' => '' ),
@@ -43,7 +43,7 @@ function semrs_blocks_free( $blocks ) {
 		'controls' => array(
 			'items'   => array( 'type' => 'textarea', 'label' => __( 'Items (one per line)', 'semrs-blocks' ), 'default' => "Free SEO review\nPublic prices\nHuman approval on every change" ),
 			'icon'    => array( 'type' => 'icon', 'label' => __( 'Icon', 'semrs-blocks' ), 'default' => 'check-circle' ),
-			'color'   => array( 'type' => 'color', 'label' => __( 'Icon colour', 'semrs-blocks' ), 'default' => '' ),
+			'color'   => array( 'type' => 'color', 'label' => __( 'Icon color', 'semrs-blocks' ), 'default' => '' ),
 			'size'    => array( 'type' => 'range', 'label' => __( 'Icon size', 'semrs-blocks' ), 'default' => 20, 'min' => 12, 'max' => 48 ),
 			'columns' => array( 'type' => 'range', 'label' => __( 'Columns (desktop)', 'semrs-blocks' ), 'default' => 1, 'min' => 1, 'max' => 4 ),
 		),
@@ -60,8 +60,8 @@ function semrs_blocks_free( $blocks ) {
 			'after'   => array( 'type' => 'text', 'label' => __( 'Text after', 'semrs-blocks' ), 'default' => '' ),
 			'style'   => array( 'type' => 'select', 'label' => __( 'Style', 'semrs-blocks' ), 'default' => 'typing', 'options' => array( 'typing' => __( 'Typing (rotating words)', 'semrs-blocks' ), 'gradient' => __( 'Gradient text', 'semrs-blocks' ), 'highlight' => __( 'Marker highlight', 'semrs-blocks' ), 'underline' => __( 'Curved underline', 'semrs-blocks' ), 'outline' => __( 'Outline text', 'semrs-blocks' ) ) ),
 			'level'   => array( 'type' => 'select', 'label' => __( 'Heading level', 'semrs-blocks' ), 'default' => 'h2', 'options' => array( 'h1' => 'H1', 'h2' => 'H2', 'h3' => 'H3', 'h4' => 'H4', 'p' => __( 'Paragraph', 'semrs-blocks' ) ) ),
-			'color1'  => array( 'type' => 'color', 'label' => __( 'Colour 1 (fancy words / gradient start)', 'semrs-blocks' ), 'default' => '' ),
-			'color2'  => array( 'type' => 'color', 'label' => __( 'Colour 2 (gradient end / highlight)', 'semrs-blocks' ), 'default' => '' ),
+			'color1'  => array( 'type' => 'color', 'label' => __( 'Color 1 (fancy words / gradient start)', 'semrs-blocks' ), 'default' => '' ),
+			'color2'  => array( 'type' => 'color', 'label' => __( 'Color 2 (gradient end / highlight)', 'semrs-blocks' ), 'default' => '' ),
 			'size'    => array( 'type' => 'range', 'label' => __( 'Font size (px, 0 = theme)', 'semrs-blocks' ), 'default' => 0, 'min' => 0, 'max' => 96 ),
 			'textAlign' => $align,
 		),
@@ -104,8 +104,8 @@ function semrs_blocks_free( $blocks ) {
 			'expired'  => array( 'type' => 'text', 'label' => __( 'Message when finished', 'semrs-blocks' ), 'default' => 'This offer has ended.' ),
 			'style'    => array( 'type' => 'select', 'label' => __( 'Style', 'semrs-blocks' ), 'default' => 'boxes', 'options' => array( 'boxes' => __( 'Boxes', 'semrs-blocks' ), 'inline' => __( 'Inline text', 'semrs-blocks' ) ) ),
 			'showDays' => array( 'type' => 'toggle', 'label' => __( 'Show days', 'semrs-blocks' ), 'default' => true ),
-			'bg'       => array( 'type' => 'color', 'label' => __( 'Box colour', 'semrs-blocks' ), 'default' => '' ),
-			'color'    => array( 'type' => 'color', 'label' => __( 'Number colour', 'semrs-blocks' ), 'default' => '' ),
+			'bg'       => array( 'type' => 'color', 'label' => __( 'Box color', 'semrs-blocks' ), 'default' => '' ),
+			'color'    => array( 'type' => 'color', 'label' => __( 'Number color', 'semrs-blocks' ), 'default' => '' ),
 			'position' => $align,
 		),
 	);
@@ -126,7 +126,7 @@ function semrs_blocks_free( $blocks ) {
 			'url'         => array( 'type' => 'url', 'label' => __( 'Button link', 'semrs-blocks' ), 'default' => '/get-a-quote/' ),
 			'featured'    => array( 'type' => 'toggle', 'label' => __( 'Highlight this plan', 'semrs-blocks' ), 'default' => false ),
 			'badge'       => array( 'type' => 'text', 'label' => __( 'Badge (e.g. Most popular)', 'semrs-blocks' ), 'default' => '' ),
-			'accent'      => array( 'type' => 'color', 'label' => __( 'Accent colour', 'semrs-blocks' ), 'default' => '' ),
+			'accent'      => array( 'type' => 'color', 'label' => __( 'Accent color', 'semrs-blocks' ), 'default' => '' ),
 		),
 	);
 
@@ -144,7 +144,7 @@ function semrs_blocks_free( $blocks ) {
 			'link'    => array( 'type' => 'text', 'label' => __( 'Link text', 'semrs-blocks' ), 'default' => 'Learn more' ),
 			'url'     => array( 'type' => 'url', 'label' => __( 'Link URL', 'semrs-blocks' ), 'default' => '' ),
 			'style'   => array( 'type' => 'select', 'label' => __( 'Style', 'semrs-blocks' ), 'default' => 'card', 'options' => array( 'card' => __( 'Card', 'semrs-blocks' ), 'plain' => __( 'Plain', 'semrs-blocks' ), 'side' => __( 'Icon on the side', 'semrs-blocks' ) ) ),
-			'color'   => array( 'type' => 'color', 'label' => __( 'Icon colour', 'semrs-blocks' ), 'default' => '' ),
+			'color'   => array( 'type' => 'color', 'label' => __( 'Icon color', 'semrs-blocks' ), 'default' => '' ),
 		),
 	);
 
@@ -408,19 +408,19 @@ function semrs_blocks_render_media_sources( $a ) {
 		array( 'Pixabay', 'https://pixabay.com/', 'photos', __( 'Photos, illustrations, vectors, videos and music. Free under the Pixabay Content License.', 'semrs-blocks' ) ),
 		array( 'Pexels', 'https://www.pexels.com/', 'photos', __( 'High-quality photos and videos, free to use under the Pexels License.', 'semrs-blocks' ) ),
 		array( 'Unsplash', 'https://unsplash.com/', 'photos', __( 'Large photo library under the Unsplash License (some Unsplash+ images are paid).', 'semrs-blocks' ) ),
-		array( 'Openverse', 'https://openverse.org/', 'photos', __( 'Search engine for openly licensed images and audio. Check each item\'s licence.', 'semrs-blocks' ) ),
+		array( 'Openverse', 'https://openverse.org/', 'photos', __( 'Search engine for openly licensed images and audio. Check each item\'s license.', 'semrs-blocks' ) ),
 		array( 'Wikimedia Commons', 'https://commons.wikimedia.org/', 'photos', __( 'Millions of freely licensed files. Attribution is often required.', 'semrs-blocks' ) ),
 		array( 'StockSnap', 'https://stocksnap.io/', 'photos', __( 'CC0 photos.', 'semrs-blocks' ) ),
 		array( 'Burst by Shopify', 'https://burst.shopify.com/', 'photos', __( 'Free business and product photos.', 'semrs-blocks' ) ),
 		array( 'Coverr', 'https://coverr.co/', 'video', __( 'Free stock videos for websites and backgrounds.', 'semrs-blocks' ) ),
-		array( 'Mixkit', 'https://mixkit.co/', 'video', __( 'Free videos, music and sound effects under the Mixkit licence.', 'semrs-blocks' ) ),
+		array( 'Mixkit', 'https://mixkit.co/', 'video', __( 'Free videos, music and sound effects under the Mixkit license.', 'semrs-blocks' ) ),
 		array( 'unDraw', 'https://undraw.co/', 'illustrations', __( 'Open-source illustrations you can recolour to your brand.', 'semrs-blocks' ) ),
-		array( 'Lucide', 'https://lucide.dev/', 'illustrations', __( 'Open-source line icons (ISC licence).', 'semrs-blocks' ) ),
+		array( 'Lucide', 'https://lucide.dev/', 'illustrations', __( 'Open-source line icons (ISC license).', 'semrs-blocks' ) ),
 		array( 'Tabler Icons', 'https://tabler.io/icons', 'illustrations', __( 'Thousands of open-source SVG icons (MIT).', 'semrs-blocks' ) ),
-		array( 'LottieFiles (free animations)', 'https://lottiefiles.com/free-animations', 'animation', __( 'Free lightweight animations; check each file\'s licence.', 'semrs-blocks' ) ),
+		array( 'LottieFiles (free animations)', 'https://lottiefiles.com/free-animations', 'animation', __( 'Free lightweight animations; check each file\'s license.', 'semrs-blocks' ) ),
 		array( 'GIPHY', 'https://giphy.com/', 'animation', __( 'GIFs and stickers. Use their embed or share options and follow GIPHY\'s terms.', 'semrs-blocks' ) ),
 		array( 'Poly Haven', 'https://polyhaven.com/', '3d', __( 'CC0 3D models, textures and HDRIs.', 'semrs-blocks' ) ),
-		array( 'Sketchfab (downloadable)', 'https://sketchfab.com/features/free-3d-models', '3d', __( 'Free 3D models; licence varies by model (often CC BY).', 'semrs-blocks' ) ),
+		array( 'Sketchfab (downloadable)', 'https://sketchfab.com/features/free-3d-models', '3d', __( 'Free 3D models; license varies by model (often CC BY).', 'semrs-blocks' ) ),
 		array( 'Kenney', 'https://kenney.nl/assets', '3d', __( 'CC0 game and 3D assets.', 'semrs-blocks' ) ),
 	);
 	$group = semrs_blocks_a( $a, 'group', 'all' );
@@ -432,5 +432,5 @@ function semrs_blocks_render_media_sources( $a ) {
 		}
 		$out .= '<a class="semrs-source" href="' . esc_url( $s[1] ) . '" target="_blank" rel="noopener nofollow">' . semrs_blocks_icon_svg( $icons[ $s[2] ], 22 ) . '<span><b>' . esc_html( $s[0] ) . '</b><small>' . esc_html( $s[3] ) . '</small></span></a>';
 	}
-	return $out . '</div><p class="semrs-sources__note">' . esc_html__( 'Licences change: always check the licence shown on each file before using it.', 'semrs-blocks' ) . '</p>';
+	return $out . '</div><p class="semrs-sources__note">' . esc_html__( 'Licenses change: always check the license shown on each file before using it.', 'semrs-blocks' ) . '</p>';
 }

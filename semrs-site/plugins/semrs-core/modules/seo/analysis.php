@@ -552,7 +552,7 @@ function semrs_seo_speed_checks( $html, $imgs, $add ) {
 		}
 	}
 	/* translators: %d: elements */
-	$add( 0 === $fixed, sprintf( __( 'Background colours come from the theme, not fixed light colours (%d fixed; they break dark mode)', 'semrs-core' ), $fixed ), 'speed', 2 );
+	$add( 0 === $fixed, sprintf( __( 'Background colors come from the theme, not fixed light colors (%d fixed; they break dark mode)', 'semrs-core' ), $fixed ), 'speed', 2 );
 }
 
 /**

@@ -15,9 +15,9 @@ Lightweight, SEO-first theme for businesses, agencies and blogs, with a free dra
 SEMRS is fast by design: one stylesheet, one small script, no jQuery, no icon or web fonts by default. Everything below is free.
 
 = Header & footer builder =
-* Customizer → SEMRS Theme → Header builder: drag elements into the left, centre and right of three rows (top bar, main header, below header).
+* Customizer → SEMRS Theme → Header builder: drag elements into the left, center and right of three rows (top bar, main header, below header).
 * Elements: logo, primary menu, secondary menu, two buttons, search, social icons, phone & email, two text/HTML areas.
-* Sticky header with optional shrink, transparent header (front page or all pages, light text option), top bar colours, header background.
+* Sticky header with optional shrink, transparent header (front page or all pages, light text option), top bar colors, header background.
 * Phones: logo and menu icon with a full-width menu panel; optional header button and top bar.
 * Quick contact: Call, WhatsApp and your header button in a bar at the bottom of phone screens, plus a floating WhatsApp button on larger screens (off by default).
 * Footer builder: copyright, social icons, footer menu, phone & email and a text area in the bottom bar; up to 4 widget columns above it.
@@ -29,8 +29,8 @@ Hide the title, header or footer, turn the transparent header on or off, and cho
 Card grid or list archives, reading progress bar, "Updated on" date, author box (with optional "Reviewed by" from the semrs_reviewed_by custom field), related posts, previous/next links, back-to-top button, numbered pagination.
 
 = Design =
-* Logo width for desktop and mobile (512 × 512 px recommended; square logos detected), header height, colours, font size and container width.
-* Footer social icons for 9 networks in brand colours or one colour.
+* Logo width for desktop and mobile (512 × 512 px recommended; square logos detected), header height, colors, font size and container width.
+* Footer social icons for 9 networks in brand colors or one color.
 * 7 section patterns: Hero, Hero with illustration, Services, How it works, Pricing, FAQ, Call to action.
 * Right / left / no sidebar for posts, pages and archives. Templates: Full width and Blank canvas.
 
@@ -82,26 +82,26 @@ Edit the page, open "Page options" in the sidebar and set Transparent header to 
 * Footer and top-bar link hover uses a lighter tint of the accent so it stays readable (5:1) on dark blue backgrounds.
 
 = 1.3.13 =
-* Front-page hero background follows the brand colours (accent and primary) in light and dark mode; hero eyebrow uses the accent text colour.
+* Front-page hero background follows the brand colors (accent and primary) in light and dark mode; hero eyebrow uses the accent text color.
 
 = 1.3.12 =
-* Accent text and soft accent backgrounds now follow the chosen accent colour; clearer menu hover (tint and accent underline); footer and top-bar links use the accent colour on hover so they stay readable on dark backgrounds.
+* Accent text and soft accent backgrounds now follow the chosen accent color; clearer menu hover (tint and accent underline); footer and top-bar links use the accent color on hover so they stay readable on dark backgrounds.
 
 = 1.3.11 =
 * Home showcase styles: 3D dashboard, Core Web Vitals gauges, portfolio strip
 
 = 1.3.10 =
 * Visible button hover, pressed and focus states with a lift and light-sweep animation
-* New colour settings: links on hover, button hover background and text, outline buttons
+* New color settings: links on hover, button hover background and text, outline buttons
 
 = 1.3.9 =
 * 3D tilt cards, animated charts and comparison table styles
 
 = 1.3.8 =
-* Search icon in the top bar uses the top bar text colour
+* Search icon in the top bar uses the top bar text color
 
 = 1.3.7 =
-* Block buttons always use the theme accent colour
+* Block buttons always use the theme accent color
 * No sideways scrolling on full-width pages
 
 = 1.3.6 =
@@ -109,7 +109,7 @@ Edit the page, open "Page options" in the sidebar and set Transparent header to 
 * Theme screenshot shows the WhatsApp button
 
 = 1.3.5 =
-* Hero with cover image: brighter background with soft colour glows and a light shine; retouched photo on a sky-blue background
+* Hero with cover image: brighter background with soft color glows and a light shine; retouched photo on a sky-blue background
 * New theme screenshot
 
 = 1.3.4 =
@@ -142,7 +142,7 @@ Edit the page, open "Page options" in the sidebar and set Transparent header to 
 * Script and head clean-up moved to the SEMRS Core plugin (Speed), where it belongs.
 
 = 1.1.0 =
-* Logo width controls, footer social icons in brand colours, automatic updates from semrs.com.
+* Logo width controls, footer social icons in brand colors, automatic updates from semrs.com.
 
 = 1.0.0 =
 * First release.

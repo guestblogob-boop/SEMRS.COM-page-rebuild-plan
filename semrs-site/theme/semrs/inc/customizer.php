@@ -103,7 +103,7 @@ function semrs_theme_settings_map() {
 		'copyright'        => array( 'footer', 'text', __( 'Copyright text ({year}, {site})', 'semrs' ), '© {year} {site}. All rights reserved.' ),
 		'footer_note'      => array( 'footer', 'text', __( 'Note line under the footer (disclaimer)', 'semrs' ), '' ),
 		'social_size'      => array( 'social', 'number', __( 'Social icon size (px)', 'semrs' ), 40, array( 'min' => 28, 'max' => 64, 'step' => 2 ) ),
-		'social_style'     => array( 'social', 'select', __( 'Social icon style', 'semrs' ), 'brand', array( 'brand' => __( 'Brand colours (filled)', 'semrs' ), 'mono' => __( 'Single colour', 'semrs' ) ) ),
+		'social_style'     => array( 'social', 'select', __( 'Social icon style', 'semrs' ), 'brand', array( 'brand' => __( 'Brand colors (filled)', 'semrs' ), 'mono' => __( 'Single color', 'semrs' ) ) ),
 		'to_top'           => array( 'footer', 'checkbox', __( 'Back-to-top button', 'semrs' ), true ),
 	);
 	foreach ( semrs_theme_social_networks() as $key => $net ) {
@@ -142,7 +142,7 @@ function semrs_theme_customize_register( $wpc ) {
 		array(
 			'hbuilder' => __( 'Header builder', 'semrs' ),
 			'header' => __( 'Logo & header button', 'semrs' ),
-			'colors' => __( 'Colours', 'semrs' ),
+			'colors' => __( 'Colors', 'semrs' ),
 			'type'   => __( 'Typography & width', 'semrs' ),
 			'layout' => __( 'Layout & sidebar', 'semrs' ),
 			'blog'   => __( 'Blog & posts', 'semrs' ),

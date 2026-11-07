@@ -71,8 +71,8 @@ function semrs_pro_theme_notes( $wpc ) {
 			'settings'    => array(),
 			'type'        => 'hidden',
 			'priority'    => 210,
-			'label'       => __( 'Dark mode colours', 'semrs-pro' ),
-			'description' => __( 'Set them in SEMRS Theme → Colours (the "Dark mode" colours). Add the "Dark / light switch" element to a header row in the Header builder.', 'semrs-pro' ),
+			'label'       => __( 'Dark mode colors', 'semrs-pro' ),
+			'description' => __( 'Set them in SEMRS Theme → Colors (the "Dark mode" colors). Add the "Dark / light switch" element to a header row in the Header builder.', 'semrs-pro' ),
 		)
 	);
 }

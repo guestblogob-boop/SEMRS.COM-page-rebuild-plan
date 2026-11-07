@@ -55,11 +55,11 @@ function semrs_blocks_networks() {
  * @return array
  */
 function semrs_blocks_more( $blocks ) {
-	$align = array( 'left' => __( 'Left', 'semrs-blocks' ), 'center' => __( 'Centre', 'semrs-blocks' ), 'right' => __( 'Right', 'semrs-blocks' ) );
+	$align = array( 'left' => __( 'Left', 'semrs-blocks' ), 'center' => __( 'Center', 'semrs-blocks' ), 'right' => __( 'Right', 'semrs-blocks' ) );
 
 	$blocks['semrs/cta'] = array(
 		'title'       => __( 'Call to Action', 'semrs-blocks' ),
-		'description' => __( 'Headline, short text and one or two buttons in a coloured box.', 'semrs-blocks' ),
+		'description' => __( 'Headline, short text and one or two buttons in a colored box.', 'semrs-blocks' ),
 		'icon'        => 'megaphone',
 		'keywords'    => array( 'cta', 'call to action', 'banner', 'box', 'button' ),
 		'render'      => 'semrs_blocks_render_cta',
@@ -74,9 +74,9 @@ function semrs_blocks_more( $blocks ) {
 			'url'       => array( 'type' => 'url', 'label' => __( 'Button link', 'semrs-blocks' ), 'default' => '' ),
 			'button2'   => array( 'type' => 'text', 'label' => __( 'Second button text (optional)', 'semrs-blocks' ), 'default' => '' ),
 			'url2'      => array( 'type' => 'url', 'label' => __( 'Second button link', 'semrs-blocks' ), 'default' => '' ),
-			'layout'    => array( 'type' => 'select', 'label' => __( 'Layout', 'semrs-blocks' ), 'default' => 'center', 'options' => array( 'center' => __( 'Centred', 'semrs-blocks' ), 'split' => __( 'Text left, buttons right', 'semrs-blocks' ) ) ),
+			'layout'    => array( 'type' => 'select', 'label' => __( 'Layout', 'semrs-blocks' ), 'default' => 'center', 'options' => array( 'center' => __( 'Centered', 'semrs-blocks' ), 'split' => __( 'Text left, buttons right', 'semrs-blocks' ) ) ),
 			'bg'        => array( 'type' => 'color', 'label' => __( 'Background', 'semrs-blocks' ), 'default' => '' ),
-			'textColor' => array( 'type' => 'color', 'label' => __( 'Text colour', 'semrs-blocks' ), 'default' => '' ),
+			'textColor' => array( 'type' => 'color', 'label' => __( 'Text color', 'semrs-blocks' ), 'default' => '' ),
 		),
 	);
 
@@ -91,7 +91,7 @@ function semrs_blocks_more( $blocks ) {
 			'position' => array( 'type' => 'select', 'label' => __( 'Alignment', 'semrs-blocks' ), 'default' => 'left', 'options' => $align ),
 			'size'   => array( 'type' => 'select', 'label' => __( 'Size', 'semrs-blocks' ), 'default' => 'md', 'options' => array( 'sm' => __( 'Small', 'semrs-blocks' ), 'md' => __( 'Medium', 'semrs-blocks' ), 'lg' => __( 'Large', 'semrs-blocks' ) ) ),
 			'newTab' => array( 'type' => 'toggle', 'label' => __( 'Open links in a new tab', 'semrs-blocks' ), 'default' => false ),
-			'accent' => array( 'type' => 'color', 'label' => __( 'Button colour', 'semrs-blocks' ), 'default' => '' ),
+			'accent' => array( 'type' => 'color', 'label' => __( 'Button color', 'semrs-blocks' ), 'default' => '' ),
 		),
 	);
 
@@ -121,7 +121,7 @@ function semrs_blocks_more( $blocks ) {
 			'icon'      => array( 'type' => 'icon', 'label' => __( 'Icon in the middle (optional)', 'semrs-blocks' ), 'default' => '' ),
 			'width'     => array( 'type' => 'range', 'label' => __( 'Width (%)', 'semrs-blocks' ), 'default' => 100, 'min' => 10, 'max' => 100 ),
 			'thickness' => array( 'type' => 'range', 'label' => __( 'Thickness (px)', 'semrs-blocks' ), 'default' => 1, 'min' => 1, 'max' => 10 ),
-			'color'     => array( 'type' => 'color', 'label' => __( 'Colour', 'semrs-blocks' ), 'default' => '' ),
+			'color'     => array( 'type' => 'color', 'label' => __( 'Color', 'semrs-blocks' ), 'default' => '' ),
 		),
 	);
 
@@ -136,7 +136,7 @@ function semrs_blocks_more( $blocks ) {
 			'max'    => array( 'type' => 'range', 'label' => __( 'Out of', 'semrs-blocks' ), 'default' => 5, 'min' => 3, 'max' => 10 ),
 			'label'  => array( 'type' => 'text', 'label' => __( 'Label (optional)', 'semrs-blocks' ), 'default' => '' ),
 			'size'   => array( 'type' => 'range', 'label' => __( 'Star size (px)', 'semrs-blocks' ), 'default' => 22, 'min' => 12, 'max' => 60 ),
-			'color'  => array( 'type' => 'color', 'label' => __( 'Star colour', 'semrs-blocks' ), 'default' => '' ),
+			'color'  => array( 'type' => 'color', 'label' => __( 'Star color', 'semrs-blocks' ), 'default' => '' ),
 			'position' => array( 'type' => 'select', 'label' => __( 'Alignment', 'semrs-blocks' ), 'default' => 'left', 'options' => $align ),
 		),
 	);
@@ -153,7 +153,7 @@ function semrs_blocks_more( $blocks ) {
 			'role'  => array( 'type' => 'text', 'label' => __( 'Role', 'semrs-blocks' ), 'default' => 'Role or job title' ),
 			'bio'   => array( 'type' => 'textarea', 'label' => __( 'Short bio', 'semrs-blocks' ), 'default' => '' ),
 			'links' => array( 'type' => 'textarea', 'label' => __( 'Profile links, one per line: network | URL', 'semrs-blocks' ), 'default' => '', 'help' => __( 'Networks: facebook, x, linkedin, instagram, youtube, tiktok, github, website, email, phone.', 'semrs-blocks' ) ),
-			'style' => array( 'type' => 'select', 'label' => __( 'Style', 'semrs-blocks' ), 'default' => 'card', 'options' => array( 'card' => __( 'Card', 'semrs-blocks' ), 'side' => __( 'Photo on the side', 'semrs-blocks' ), 'round' => __( 'Round photo, centred', 'semrs-blocks' ) ) ),
+			'style' => array( 'type' => 'select', 'label' => __( 'Style', 'semrs-blocks' ), 'default' => 'card', 'options' => array( 'card' => __( 'Card', 'semrs-blocks' ), 'side' => __( 'Photo on the side', 'semrs-blocks' ), 'round' => __( 'Round photo, centered', 'semrs-blocks' ) ) ),
 		),
 	);
 
@@ -194,7 +194,7 @@ function semrs_blocks_more( $blocks ) {
 			'links' => array( 'type' => 'textarea', 'label' => __( 'One per line: network | URL', 'semrs-blocks' ), 'default' => '', 'help' => __( 'Networks: facebook, x, linkedin, instagram, youtube, tiktok, pinterest, telegram, whatsapp, github, website, email, phone.', 'semrs-blocks' ) ),
 			'style' => array( 'type' => 'select', 'label' => __( 'Style', 'semrs-blocks' ), 'default' => 'round', 'options' => array( 'plain' => __( 'Icon only', 'semrs-blocks' ), 'round' => __( 'Round', 'semrs-blocks' ), 'square' => __( 'Rounded square', 'semrs-blocks' ), 'label' => __( 'Icon and name', 'semrs-blocks' ) ) ),
 			'size'  => array( 'type' => 'range', 'label' => __( 'Icon size (px)', 'semrs-blocks' ), 'default' => 20, 'min' => 14, 'max' => 48 ),
-			'color' => array( 'type' => 'color', 'label' => __( 'Colour', 'semrs-blocks' ), 'default' => '' ),
+			'color' => array( 'type' => 'color', 'label' => __( 'Color', 'semrs-blocks' ), 'default' => '' ),
 			'position' => array( 'type' => 'select', 'label' => __( 'Alignment', 'semrs-blocks' ), 'default' => 'left', 'options' => $align ),
 		),
 	);
@@ -209,7 +209,7 @@ function semrs_blocks_more( $blocks ) {
 			'images'    => array( 'type' => 'gallery', 'label' => __( 'Logos', 'semrs-blocks' ) ),
 			'columns'   => array( 'type' => 'range', 'label' => __( 'Columns (desktop)', 'semrs-blocks' ), 'default' => 5, 'min' => 2, 'max' => 8 ),
 			'height'    => array( 'type' => 'range', 'label' => __( 'Logo height (px)', 'semrs-blocks' ), 'default' => 48, 'min' => 20, 'max' => 120 ),
-			'grayscale' => array( 'type' => 'toggle', 'label' => __( 'Grey until hovered', 'semrs-blocks' ), 'default' => true ),
+			'grayscale' => array( 'type' => 'toggle', 'label' => __( 'Gray until hovered', 'semrs-blocks' ), 'default' => true ),
 		),
 	);
 
@@ -222,7 +222,7 @@ function semrs_blocks_more( $blocks ) {
 		'controls'    => array(
 			'items'  => array( 'type' => 'textarea', 'label' => __( 'One step per line: Title | Text', 'semrs-blocks' ), 'default' => "Tell us your goal | A short call about your site and customers.\nGet your plan | A clear list of fixes and content, with costs.\nSee results | We do the work and report every month." ),
 			'layout' => array( 'type' => 'select', 'label' => __( 'Layout', 'semrs-blocks' ), 'default' => 'row', 'options' => array( 'row' => __( 'Side by side', 'semrs-blocks' ), 'column' => __( 'Stacked', 'semrs-blocks' ) ) ),
-			'accent' => array( 'type' => 'color', 'label' => __( 'Number colour', 'semrs-blocks' ), 'default' => '' ),
+			'accent' => array( 'type' => 'color', 'label' => __( 'Number color', 'semrs-blocks' ), 'default' => '' ),
 		),
 	);
 
@@ -235,7 +235,7 @@ function semrs_blocks_more( $blocks ) {
 		'controls'    => array(
 			'items'  => array( 'type' => 'textarea', 'label' => __( 'One per line: Date | Title | Text', 'semrs-blocks' ), 'default' => "2024 | Started | Where it began.\n2025 | Grew | What changed.\n2026 | Today | Where we are now." ),
 			'layout' => array( 'type' => 'select', 'label' => __( 'Layout', 'semrs-blocks' ), 'default' => 'left', 'options' => array( 'left' => __( 'Line on the left', 'semrs-blocks' ), 'alternate' => __( 'Alternating sides (desktop)', 'semrs-blocks' ) ) ),
-			'accent' => array( 'type' => 'color', 'label' => __( 'Dot and line colour', 'semrs-blocks' ), 'default' => '' ),
+			'accent' => array( 'type' => 'color', 'label' => __( 'Dot and line color', 'semrs-blocks' ), 'default' => '' ),
 		),
 	);
 
@@ -248,7 +248,7 @@ function semrs_blocks_more( $blocks ) {
 		'controls'    => array(
 			'items'   => array( 'type' => 'textarea', 'label' => __( 'One per line: Label | Percent', 'semrs-blocks' ), 'default' => "Technical SEO | 90\nContent | 80\nLink building | 70" ),
 			'height'  => array( 'type' => 'range', 'label' => __( 'Bar height (px)', 'semrs-blocks' ), 'default' => 10, 'min' => 4, 'max' => 30 ),
-			'color'   => array( 'type' => 'color', 'label' => __( 'Bar colour', 'semrs-blocks' ), 'default' => '' ),
+			'color'   => array( 'type' => 'color', 'label' => __( 'Bar color', 'semrs-blocks' ), 'default' => '' ),
 			'percent' => array( 'type' => 'toggle', 'label' => __( 'Show the percentage', 'semrs-blocks' ), 'default' => true ),
 		),
 	);

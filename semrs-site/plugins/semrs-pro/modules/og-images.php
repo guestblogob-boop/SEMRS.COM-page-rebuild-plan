@@ -267,7 +267,7 @@ function semrs_og_page() {
 			<?php settings_fields( 'semrs_og' ); ?>
 			<table class="form-table" role="presentation">
 				<tr><th><?php esc_html_e( 'Automatic images', 'semrs-pro' ); ?></th><td><label><input type="checkbox" name="semrs_og[on]" value="1" <?php checked( $s['on'], '1' ); ?>> <?php esc_html_e( 'Make share images for posts without one', 'semrs-pro' ); ?></label></td></tr>
-				<tr><th><?php esc_html_e( 'Colours', 'semrs-pro' ); ?></th><td>
+				<tr><th><?php esc_html_e( 'Colors', 'semrs-pro' ); ?></th><td>
 					<label><?php esc_html_e( 'Background', 'semrs-pro' ); ?> <input type="color" name="semrs_og[bg]" value="<?php echo esc_attr( $s['bg'] ); ?>"></label>&nbsp;
 					<label><?php esc_html_e( 'Title', 'semrs-pro' ); ?> <input type="color" name="semrs_og[text]" value="<?php echo esc_attr( $s['text'] ); ?>"></label>&nbsp;
 					<label><?php esc_html_e( 'Accent', 'semrs-pro' ); ?> <input type="color" name="semrs_og[accent]" value="<?php echo esc_attr( $s['accent'] ); ?>"></label>

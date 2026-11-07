@@ -220,7 +220,7 @@ function semrs_us_page_campaigns() {
 			</tbody></table>
 
 			<h2 id="popups"><?php esc_html_e( 'Popups', 'semrs-update-server' ); ?></h2>
-			<p><?php esc_html_e( 'Every popup switches on and off by itself with the calendar above. Change any wording, button, timing or frequency here; leave a box empty to keep the default (shown in grey). In the sale popup and bar, %d is the percent; empty title and text use the headline and text of each campaign, so one setting covers every sale.', 'semrs-update-server' ); ?></p>
+			<p><?php esc_html_e( 'Every popup switches on and off by itself with the calendar above. Change any wording, button, timing or frequency here; leave a box empty to keep the default (shown in gray). In the sale popup and bar, %d is the percent; empty title and text use the headline and text of each campaign, so one setting covers every sale.', 'semrs-update-server' ); ?></p>
 			<table class="widefat striped" style="max-width:1400px"><thead><tr><th><?php esc_html_e( 'On', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Popup', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Title', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Text', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Button', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Photos (files or URLs, space-separated)', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Delay (s)', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Scroll %', 'semrs-update-server' ); ?></th><th><?php esc_html_e( 'Hide for (days)', 'semrs-update-server' ); ?></th></tr></thead><tbody>
 			<?php $psaved = get_option( 'semrs_us_popups', array() ); ?>
 			<?php foreach ( semrs_us_popup_defaults() as $id => $def ) : ?>

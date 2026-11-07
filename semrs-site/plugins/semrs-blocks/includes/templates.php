@@ -1037,7 +1037,7 @@ function semrs_blocks_templates_page() {
 		}
 		if ( 'semrs' === get_template() ) {
 			echo '<label><input type="checkbox" name="theme" value="1" checked> ' . esc_html__( 'Apply the header, footer columns, button and contact details (SEMRS theme)', 'semrs-blocks' ) . '</label><br>';
-			echo '<label><input type="checkbox" name="colors" value="1" checked> ' . esc_html__( 'Use the template colours (changes the theme colours)', 'semrs-blocks' ) . '</label>';
+			echo '<label><input type="checkbox" name="colors" value="1" checked> ' . esc_html__( 'Use the template colors (changes the theme colors)', 'semrs-blocks' ) . '</label>';
 			echo '</p><details><summary><strong>' . esc_html__( 'Demo and portfolio sites (optional)', 'semrs-blocks' ) . '</strong></summary><p>';
 			echo '<label><input type="checkbox" name="demo" value="1"> ' . esc_html__( 'Show a "Demo website" notice in the top bar', 'semrs-blocks' ) . '</label></p>';
 			$field( 'credit_text', __( 'Footer credit text (e.g. "Website by Your Agency")', 'semrs-blocks' ), '' );
@@ -1104,7 +1104,7 @@ function semrs_blocks_header_presets() {
 		array(
 			'classic'     => array( __( 'Classic', 'semrs-blocks' ), __( 'Logo left; menu, button and search right.', 'semrs-blocks' ), array( 'top' => $empty, 'main' => array( 'left' => array( 'logo' ), 'center' => array(), 'right' => array( 'menu', 'button', 'search' ) ), 'bottom' => $empty ), array() ),
 			'topbar'      => array( __( 'Top bar + classic', 'semrs-blocks' ), __( 'Phone and email above the header, social icons on the right.', 'semrs-blocks' ), array( 'top' => array( 'left' => array( 'contact' ), 'center' => array(), 'right' => array( 'social' ) ), 'main' => array( 'left' => array( 'logo' ), 'center' => array(), 'right' => array( 'menu', 'button', 'search' ) ), 'bottom' => $empty ), array() ),
-			'centered'    => array( __( 'Centred logo', 'semrs-blocks' ), __( 'Menu left, logo in the middle, button right.', 'semrs-blocks' ), array( 'top' => $empty, 'main' => array( 'left' => array( 'menu' ), 'center' => array( 'logo' ), 'right' => array( 'search', 'button' ) ), 'bottom' => $empty ), array() ),
+			'centered'    => array( __( 'Centered logo', 'semrs-blocks' ), __( 'Menu left, logo in the middle, button right.', 'semrs-blocks' ), array( 'top' => $empty, 'main' => array( 'left' => array( 'menu' ), 'center' => array( 'logo' ), 'right' => array( 'search', 'button' ) ), 'bottom' => $empty ), array() ),
 			'two-row'     => array( __( 'Two rows', 'semrs-blocks' ), __( 'Logo and contact on top, full menu on a second row.', 'semrs-blocks' ), array( 'top' => $empty, 'main' => array( 'left' => array( 'logo' ), 'center' => array(), 'right' => array( 'contact', 'button' ) ), 'bottom' => array( 'left' => array( 'menu' ), 'center' => array(), 'right' => array( 'search' ) ) ), array() ),
 			'minimal'     => array( __( 'Minimal', 'semrs-blocks' ), __( 'Just the logo and menu: ideal for blogs.', 'semrs-blocks' ), array( 'top' => $empty, 'main' => array( 'left' => array( 'logo' ), 'center' => array(), 'right' => array( 'menu', 'search' ) ), 'bottom' => $empty ), array() ),
 			'transparent' => array( __( 'Transparent hero', 'semrs-blocks' ), __( 'Classic layout floating over the first section on the home page.', 'semrs-blocks' ), array( 'top' => $empty, 'main' => array( 'left' => array( 'logo' ), 'center' => array(), 'right' => array( 'menu', 'button' ) ), 'bottom' => $empty ), array( 'transparent' => 'front', 'transparent_light' => false ) ),
@@ -1121,9 +1121,9 @@ function semrs_blocks_footer_presets() {
 	return apply_filters(
 		'semrs_blocks_footer_presets',
 		array(
-			'simple'   => array( __( 'Simple', 'semrs-blocks' ), __( 'Copyright left, social icons centre, footer menu right.', 'semrs-blocks' ), array( 'bottom' => array( 'left' => array( 'copyright' ), 'center' => array( 'social' ), 'right' => array( 'footer_menu' ) ) ) ),
-			'centered' => array( __( 'Centred', 'semrs-blocks' ), __( 'Everything stacked in the middle.', 'semrs-blocks' ), array( 'bottom' => array( 'left' => array(), 'center' => array( 'social', 'footer_menu', 'copyright' ), 'right' => array() ) ) ),
-			'contact'  => array( __( 'Contact', 'semrs-blocks' ), __( 'Phone and email left, copyright centre, social right.', 'semrs-blocks' ), array( 'bottom' => array( 'left' => array( 'contact' ), 'center' => array( 'copyright' ), 'right' => array( 'social' ) ) ) ),
+			'simple'   => array( __( 'Simple', 'semrs-blocks' ), __( 'Copyright left, social icons center, footer menu right.', 'semrs-blocks' ), array( 'bottom' => array( 'left' => array( 'copyright' ), 'center' => array( 'social' ), 'right' => array( 'footer_menu' ) ) ) ),
+			'centered' => array( __( 'Centered', 'semrs-blocks' ), __( 'Everything stacked in the middle.', 'semrs-blocks' ), array( 'bottom' => array( 'left' => array(), 'center' => array( 'social', 'footer_menu', 'copyright' ), 'right' => array() ) ) ),
+			'contact'  => array( __( 'Contact', 'semrs-blocks' ), __( 'Phone and email left, copyright center, social right.', 'semrs-blocks' ), array( 'bottom' => array( 'left' => array( 'contact' ), 'center' => array( 'copyright' ), 'right' => array( 'social' ) ) ) ),
 		)
 	);
 }
