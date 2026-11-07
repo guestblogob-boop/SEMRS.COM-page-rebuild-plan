@@ -90,6 +90,43 @@ function semrs_us_routes() {
 add_action( 'rest_api_init', 'semrs_us_routes' );
 
 /**
+ * Per-visitor counters for the public API (one hour window).
+ *
+ * - "badkey": wrong or empty license keys. After 30 in an hour, key checks from that address
+ *   answer "invalid" (or 429) without looking the key up, so keys cannot be guessed.
+ * - "record": new rows in the live-sites list. After 300 in an hour the update answer is still
+ *   sent, but no more sites are recorded, so the list cannot be flooded with fake addresses.
+ *
+ * Real sites never get near these numbers: a site checks a few products twice a day.
+ *
+ * @param string $bucket badkey|record.
+ * @param bool   $add    Count one more.
+ * @return bool Over the limit.
+ */
+function semrs_us_api_limited( $bucket, $add = false ) {
+	$limits = (array) apply_filters( 'semrs_us_api_limits', array( 'badkey' => 30, 'record' => 300 ) );
+	$ip     = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+	$name   = 'semrs_us_rl_' . $bucket . '_' . md5( $ip );
+	$hits   = (int) get_transient( $name );
+	if ( $add ) {
+		set_transient( $name, ++$hits, HOUR_IN_SECONDS );
+	}
+	return $hits >= (int) ( $limits[ $bucket ] ?? 100 );
+}
+
+/**
+ * "Too many tries" answer for the key endpoints.
+ *
+ * @return WP_REST_Response
+ */
+function semrs_us_api_slow_down() {
+	$r = rest_ensure_response( array( 'license' => 'invalid', 'message' => 'Too many wrong license keys from this address. Try again in an hour.' ) );
+	$r->set_status( 429 );
+	$r->header( 'Retry-After', '3600' );
+	return $r;
+}
+
+/**
  * Update check.
  *
  * @param WP_REST_Request $req Request.
@@ -106,8 +143,16 @@ function semrs_us_check( $req ) {
 	$key     = preg_replace( '/[^A-Za-z0-9-]/', '', (string) $req->get_param( 'key' ) );
 	// Check the license BEFORE recording this visit, otherwise a new site would
 	// already count as one of the key's sites and pass the site limit.
-	$license = $products[ $slug ][2] ? semrs_us_license_status( $key, $host ) : 'free';
-	if ( $host ) {
+	if ( $products[ $slug ][2] ) {
+		$license = '' !== $key && semrs_us_api_limited( 'badkey' ) ? 'invalid' : semrs_us_license_status( $key, $host );
+		if ( '' !== $key && 'invalid' === $license ) {
+			semrs_us_api_limited( 'badkey', true );
+		}
+	} else {
+		$license = 'free';
+	}
+	if ( $host && ! semrs_us_api_limited( 'record' ) ) {
+		semrs_us_api_limited( 'record', true );
 		// Sites over the limit are listed, but not tied to the key (so they never take a slot).
 		$record_key = $products[ $slug ][2] && 'valid' === $license ? $key : '';
 		semrs_us_record( $slug, $host, $version, sanitize_text_field( (string) $req->get_param( 'wp' ) ), sanitize_text_field( (string) $req->get_param( 'php' ) ), $record_key );
@@ -220,7 +265,13 @@ function semrs_us_activate( $req ) {
 	if ( ! $host ) {
 		return rest_ensure_response( array( 'license' => 'invalid', 'message' => 'Missing site address.' ) );
 	}
+	if ( semrs_us_api_limited( 'badkey' ) ) {
+		return semrs_us_api_slow_down();
+	}
 	$status = semrs_us_license_status( $key, $host );
+	if ( in_array( $status, array( 'invalid', 'missing' ), true ) ) {
+		semrs_us_api_limited( 'badkey', true );
+	}
 	if ( 'valid' === $status ) {
 		semrs_us_record( 'semrs-pro', $host, $version, '', '', $key );
 	}
@@ -255,7 +306,13 @@ function semrs_us_license( $req ) {
 	$key     = preg_replace( '/[^A-Za-z0-9-]/', '', (string) $req->get_param( 'key' ) );
 	$host    = semrs_us_host( (string) $req->get_param( 'site' ) );
 	$version = preg_replace( '/[^0-9A-Za-z.\-]/', '', (string) $req->get_param( 'version' ) );
-	$status  = $host ? semrs_us_license_status( $key, $host ) : 'invalid';
+	if ( semrs_us_api_limited( 'badkey' ) ) {
+		return semrs_us_api_slow_down();
+	}
+	$status = $host ? semrs_us_license_status( $key, $host ) : 'invalid';
+	if ( 'invalid' === $status || 'missing' === $status ) {
+		semrs_us_api_limited( 'badkey', true );
+	}
 	if ( 'valid' === $status ) {
 		semrs_us_record( 'semrs-pro', $host, $version, '', '', $key ); // Keeps the slot.
 	}
@@ -282,8 +339,14 @@ function semrs_us_deactivate( $req ) {
 	$key  = preg_replace( '/[^A-Za-z0-9-]/', '', (string) $req->get_param( 'key' ) );
 	$host = semrs_us_host( (string) $req->get_param( 'site' ) );
 	$done = 0;
+	if ( semrs_us_api_limited( 'badkey' ) ) {
+		return semrs_us_api_slow_down();
+	}
 	if ( $key && $host ) {
 		$done = (int) $wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->prefix}semrs_sites SET license_key = '' WHERE slug = 'semrs-pro' AND host = %s AND license_key = %s", $host, $key ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+	}
+	if ( ! $done ) {
+		semrs_us_api_limited( 'badkey', true );
 	}
 	return rest_ensure_response( array( 'deactivated' => $done > 0, 'message' => $done ? 'License deactivated on this site. The slot is free.' : 'This key was not active on this site.' ) );
 }
