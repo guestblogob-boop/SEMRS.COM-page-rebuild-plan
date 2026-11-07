@@ -13,3 +13,6 @@ node_modules/
 Thumbs.db
 semrs-site/dist/.upgrade/
 backups/
+
+# Local preview pages (the real sources sit next to them)
+semrs-site/pages/**/draft-preview.html
