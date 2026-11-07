@@ -86,6 +86,12 @@ function semrs_seo_defaults() {
 		'breadcrumb_home'  => 'Home',
 		'breadcrumbs'      => true,
 		'llms'             => true,
+		'ext_nofollow'     => false,
+		'ext_blank'        => false,
+		'ext_exclude'      => '',
+		'strip_category_base' => false,
+		'rss_footer_on'    => true,
+		'rss_footer'       => 'The post %postlink% appeared first on %sitelink%.',
 	);
 }
 
@@ -320,6 +326,7 @@ require __DIR__ . '/terms.php';
 require __DIR__ . '/schema.php';
 require __DIR__ . '/sitemap.php';
 require __DIR__ . '/analysis.php';
+require __DIR__ . '/links.php';
 require __DIR__ . '/llms.php';
 require __DIR__ . '/index-status.php';
 require __DIR__ . '/calendar.php';

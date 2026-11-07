@@ -46,6 +46,12 @@ function semrs_seo_fields() {
 		'sitemap'          => array( __( 'XML sitemap (/wp-sitemap.xml)', 'semrs-core' ), 'checkbox', 'indexing', __( 'Old /sitemap_index.xml and /sitemap.xml URLs redirect here. Submit /wp-sitemap.xml in Search Console.', 'semrs-core' ) ),
 		'llms'             => array( __( 'llms.txt for AI assistants (/llms.txt)', 'semrs-core' ), 'checkbox', 'indexing', __( 'A plain-text map of your important pages for ChatGPT, Perplexity, Claude and other AI tools. Noindexed pages are left out.', 'semrs-core' ) ),
 		'robots_extra'     => array( __( 'Extra robots.txt lines', 'semrs-core' ), 'textarea', 'indexing', __( 'Only for the virtual robots.txt (no physical file in the site root).', 'semrs-core' ) ),
+		'ext_nofollow'     => array( __( 'Add nofollow to external links', 'semrs-core' ), 'checkbox', 'links', __( 'In post and page content. Links you already marked sponsored or ugc are left alone.', 'semrs-core' ) ),
+		'ext_blank'        => array( __( 'Open external links in a new tab', 'semrs-core' ), 'checkbox', 'links', __( 'Adds rel="noopener" for safety.', 'semrs-core' ) ),
+		'ext_exclude'      => array( __( 'Leave links to these domains as they are', 'semrs-core' ), 'textarea', 'links', __( 'One domain per line, for example partner.com (its subdomains count too).', 'semrs-core' ) ),
+		'strip_category_base' => array( __( 'Remove /category/ from category addresses', 'semrs-core' ), 'checkbox', 'links', __( '/category/news/ becomes /news/. Old addresses redirect (301) to the new ones. Do not use when a page has the same address as a category.', 'semrs-core' ) ),
+		'rss_footer_on'    => array( __( 'Add a credit line to the RSS feed', 'semrs-core' ), 'checkbox', 'links', __( 'Sites that copy your feed then link back to your post.', 'semrs-core' ) ),
+		'rss_footer'       => array( __( 'RSS credit line', 'semrs-core' ), 'text', 'links', __( 'Variables:', 'semrs-core' ) . ' %postlink% %sitelink% %title% %site%' ),
 		'org_type'         => array( __( 'Entity type', 'semrs-core' ), 'select', 'entity', '' ),
 		'org_name'         => array( __( 'Name', 'semrs-core' ), 'text', 'entity', '' ),
 		'org_logo'         => array( __( 'Logo URL', 'semrs-core' ), 'url', 'entity', __( 'Empty = the site logo from the Customizer.', 'semrs-core' ) ),
@@ -106,6 +112,7 @@ function semrs_seo_settings_page() {
 	$sections = array(
 		'titles'   => __( 'Titles & meta', 'semrs-core' ),
 		'indexing' => __( 'Indexing & sitemap', 'semrs-core' ),
+		'links'    => __( 'Links, URLs & feeds', 'semrs-core' ),
 		'entity'   => __( 'Business / organization (schema)', 'semrs-core' ),
 		'social'   => __( 'Social, verification & breadcrumbs', 'semrs-core' ),
 	);
@@ -209,6 +216,8 @@ function semrs_seo_sidebar_assets() {
 			'sep'         => $s['sep'],
 			'tpl'         => str_replace( '%site%', '%sitename%', $s['tpl_singular'] ),
 			'category'    => $cats ? $cats[0]->name : '',
+			'ogDefault'   => (string) $s['og_image'],
+			'ogAuto'      => has_post_thumbnail( $post ) ? '' : (string) apply_filters( 'semrs_seo_auto_image', '', $post->ID ), // SEMRS Pro social images.
 			'phTitle'     => '' === (string) get_post_meta( $post->ID, '_semrs_title', true ) ? (string) semrs_seo_meta( $post->ID, 'title' ) : '',
 			'phDesc'      => '' === (string) get_post_meta( $post->ID, '_semrs_description', true ) ? (string) semrs_seo_meta( $post->ID, 'description' ) : '',
 			'phFocus'     => '' === (string) get_post_meta( $post->ID, '_semrs_focus', true ) ? (string) semrs_seo_meta( $post->ID, 'focus' ) : '',

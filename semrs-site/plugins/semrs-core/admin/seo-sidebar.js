@@ -25,7 +25,7 @@
 	function usePost() {
 		return useSelect(function (s) {
 			var e = s('core/editor');
-			return { title: e.getEditedPostAttribute('title') || '', slug: e.getEditedPostAttribute('slug') || '', excerpt: e.getEditedPostAttribute('excerpt') || '', content: e.getEditedPostContent ? e.getEditedPostContent() : '', thumb: !!e.getEditedPostAttribute('featured_media'), link: e.getPermalink ? e.getPermalink() : '' };
+			return { title: e.getEditedPostAttribute('title') || '', slug: e.getEditedPostAttribute('slug') || '', excerpt: e.getEditedPostAttribute('excerpt') || '', content: e.getEditedPostContent ? e.getEditedPostContent() : '', thumb: !!e.getEditedPostAttribute('featured_media'), thumbUrl: (function () { var id = e.getEditedPostAttribute('featured_media'), m = id && s('core').getMedia ? s('core').getMedia(id) : null; return m ? ((m.media_details && m.media_details.sizes && m.media_details.sizes.large && m.media_details.sizes.large.source_url) || m.source_url || '') : ''; })(), link: e.getPermalink ? e.getPermalink() : '' };
 		}, []);
 	}
 	function fill(tpl, post, get) {
@@ -146,6 +146,7 @@
 				el(AiSuggest, { field: 'focus', post: post, get: get, onPick: function (v) { set('focus', v); } }),
 				el('div', { className: 'semrs-sb-sub' }, __('More focus keywords (comma separated, up to 4)', 'semrs-core'), el(ProBadge)),
 				el(C.TextControl, { __nextHasNoMarginBottom: true, disabled: !cfg.pro, value: get('focus_more'), onChange: function (v) { set('focus_more', v); } }),
+				el(Trends, { get: get }),
 				el(C.CheckboxControl, { __nextHasNoMarginBottom: true, label: __('This post is Pillar Content', 'semrs-core'), checked: get('pillar') === '1', onChange: function (v) { set('pillar', v ? '1' : '0'); } })),
 			el('div', { className: 'semrs-sb-score' }, el('span', { className: 'semrs-sb-pill ' + props.cls }, props.result ? props.result.score + ' / 100' : '… / 100'), el(C.Button, { variant: 'link', onClick: props.recheck }, __('Re-check now', 'semrs-core'))),
 			el(Checks, { result: props.result, onFix: function (field) {
@@ -210,7 +211,9 @@
 				el(AiSuggest, { field: 'og_title', post: post, get: get, onPick: function (v) { set('og_title', v); } }),
 				el(C.TextareaControl, { __nextHasNoMarginBottom: true, label: __('Description', 'semrs-core'), rows: 3, value: get('og_description'), placeholder: seoDesc, onChange: function (v) { set('og_description', v); } }),
 				el(AiSuggest, { field: 'og_description', post: post, get: get, onPick: function (v) { set('og_description', v); } }),
-				el(ImageField, { label: __('Image (empty = featured image)', 'semrs-core'), value: get('og_image'), onChange: function (v) { set('og_image', v); } })),
+				el(ImageField, { label: __('Image (empty = featured image)', 'semrs-core'), value: get('og_image'), onChange: function (v) { set('og_image', v); } }),
+				el('div', { className: 'semrs-sb-sub' }, __('Preview', 'semrs-core')),
+				el(SharePreview, { net: 'fb', title: get('og_title') || seoTitle, desc: get('og_description') || seoDesc, image: get('og_image') || post.thumbUrl || cfg.ogAuto || cfg.ogDefault })),
 			el(C.PanelBody, { title: el('span', null, __('X (Twitter)', 'semrs-core'), el(ProBadge)), initialOpen: true },
 				el(C.ToggleControl, { __nextHasNoMarginBottom: true, disabled: !cfg.pro, label: __('Use the Facebook details on X', 'semrs-core'), checked: !custom, onChange: function (v) { set('tw_custom', v ? '0' : '1'); } }),
 				custom || !cfg.pro ? el(Fragment, null,
@@ -218,7 +221,29 @@
 					el(C.TextControl, { __nextHasNoMarginBottom: true, disabled: !cfg.pro, label: __('Title', 'semrs-core'), value: get('tw_title'), placeholder: get('og_title') || seoTitle, onChange: function (v) { set('tw_title', v); } }),
 					el(C.TextareaControl, { __nextHasNoMarginBottom: true, disabled: !cfg.pro, label: __('Description', 'semrs-core'), rows: 3, value: get('tw_description'), placeholder: get('og_description') || seoDesc, onChange: function (v) { set('tw_description', v); } }),
 					el(ImageField, { disabled: !cfg.pro, label: __('Image', 'semrs-core'), value: get('tw_image'), placeholder: get('og_image'), onChange: function (v) { set('tw_image', v); } })) : null,
+				el('div', { className: 'semrs-sb-sub' }, __('Preview', 'semrs-core')),
+				el(SharePreview, { net: 'x', card: custom && cfg.pro ? get('tw_card') : '', title: (custom && cfg.pro && get('tw_title')) || get('og_title') || seoTitle, image: (custom && cfg.pro && get('tw_image')) || get('og_image') || post.thumbUrl || cfg.ogAuto || cfg.ogDefault }),
 				el(ProNote)));
+	}
+
+	// Compare the focus keywords' search interest in Google Trends (opens trends.google.com).
+	function Trends(props) {
+		var kws = [props.get('focus') || cfg.phFocus].concat(String(props.get('focus_more') || '').split(',')).map(function (k) { return k.trim(); }).filter(Boolean).slice(0, 5);
+		if (!kws.length) { return null; }
+		return el('p', { className: 'semrs-sb-help' }, el(C.ExternalLink, { href: 'https://trends.google.com/trends/explore?q=' + kws.map(encodeURIComponent).join(',') }, kws.length > 1 ? __('Compare keywords in Google Trends', 'semrs-core') : __('Check interest in Google Trends', 'semrs-core')));
+	}
+
+	// How the share looks on Facebook and X (same proportions and text limits as the networks).
+	function SharePreview(props) {
+		var host = (cfg.home || '').replace(/^https?:\/\//, '').replace(/\/.*$/, '');
+		var cut = function (t, n) { t = String(t || ''); return t.length > n ? t.slice(0, n - 1).trim() + '…' : t; };
+		var small = props.card === 'summary';
+		return el('div', { className: 'semrs-sb-sp semrs-sb-sp--' + props.net + (small ? ' is-small' : '') },
+			el('div', { className: 'semrs-sb-sp__img' }, props.image ? el('img', { src: props.image, alt: '' }) : el('span', null, __('No image: add a featured image or a share image', 'semrs-core'))),
+			el('div', { className: 'semrs-sb-sp__body' },
+				el('div', { className: 'semrs-sb-sp__host' }, 'x' === props.net ? host : host.toUpperCase()),
+				el('div', { className: 'semrs-sb-sp__title' }, cut(props.title, 'x' === props.net ? 70 : 88)),
+				'fb' === props.net ? el('div', { className: 'semrs-sb-sp__desc' }, cut(props.desc, 110)) : null));
 	}
 
 	function scoreClass(r) { return !r ? '' : (r.score >= 80 ? 'good' : (r.score >= 50 ? 'ok' : 'bad')); }

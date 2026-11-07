@@ -4,7 +4,7 @@ Tags: seo, cookie consent, smtp, security, page cache
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.50
+Stable tag: 1.3.52
 License: GPLv2 or later
 
 Free SEO, cookie consent, SMTP email, security, page cache, redirects, WebP images and a policy-safe ads manager in one plugin.
@@ -108,6 +108,16 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt, cookie banner, consent log, security options and all other features run entirely on your own server. Google Consent Mode only passes the visitor's choice to Google tags you already use; it does not load anything itself.
 
 == Changelog ==
+
+= 1.3.52 =
+* SEO sidebar: the share previews show the automatic social image (SEMRS Pro) when the post has no featured image
+* SEO: the RSS credit line is on by default (best practice: copies of your feed link back to you)
+
+= 1.3.51 =
+* Redirects: regex rules with $1 placeholders, 451 (unavailable for legal reasons), hit counts with the last hit, and automatic 301s when a published page, post or product gets a new address (slug or parent change). Adding the same address again updates its rule instead of adding a duplicate; the Rank Math import skips addresses already redirected
+* SEO → Links, URLs & feeds (new): nofollow and/or new tab for external links (with an exception list), remove /category/ from category addresses (old addresses 301), and an RSS credit line linking back to each post
+* Post lists: new Links column with internal and external links per post and how many posts link to it (orphans in red); older posts are counted in the background
+* SEO sidebar: Facebook and X share previews, and a Google Trends link to compare the focus keywords
 
 = 1.3.50 =
 * Speed → Server: the tab now shows the server rules as On after they are added (WordPress adds its own comment lines inside the block)
