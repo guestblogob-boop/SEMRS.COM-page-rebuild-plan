@@ -108,6 +108,7 @@ add_action(
 		if ( wp_is_post_revision( $post_id ) || 'publish' !== $post->post_status || ! in_array( $post->post_type, semrs_smp_types(), true ) ) {
 			return;
 		}
+		delete_transient( 'semrs_smp_has_videos_v2' ); // robots.txt re-checks whether any page has a video.
 		$videos = semrs_smp_find_videos( $post );
 		if ( $videos ) {
 			update_post_meta( $post_id, '_semrs_videos', $videos );
@@ -280,10 +281,22 @@ add_filter(
 		}
 		$s = semrs_smp_settings();
 		// An empty video sitemap is reported as an error in Search Console: list it only when a page has a video.
-		$has_videos = get_transient( 'semrs_smp_has_videos' );
+		$has_videos = get_transient( 'semrs_smp_has_videos_v2' );
 		if ( false === $has_videos ) {
-			$has_videos = get_posts( array( 'post_type' => semrs_smp_types(), 'post_status' => 'publish', 'posts_per_page' => 1, 'fields' => 'ids', 'meta_key' => '_semrs_videos', 'no_found_rows' => true ) ) ? 'yes' : 'no'; // phpcs:ignore WordPress.DB.SlowDBQuery -- one row, cached for 12 hours.
-			set_transient( 'semrs_smp_has_videos', $has_videos, 12 * HOUR_IN_SECONDS );
+			// Same rules as the video sitemap: an indexable page with at least one video that has a thumbnail.
+			$has_videos = 'no';
+			foreach ( get_posts( array( 'post_type' => semrs_smp_types(), 'post_status' => 'publish', 'posts_per_page' => 200, 'fields' => 'ids', 'meta_key' => '_semrs_videos', 'no_found_rows' => true ) ) as $pid ) { // phpcs:ignore WordPress.DB.SlowDBQuery -- cached for 12 hours.
+				if ( function_exists( 'semrs_seo_is_noindex' ) && semrs_seo_is_noindex( $pid ) ) {
+					continue;
+				}
+				foreach ( (array) get_post_meta( $pid, '_semrs_videos', true ) as $v ) {
+					if ( ! empty( $v['thumb'] ) ) {
+						$has_videos = 'yes';
+						break 2;
+					}
+				}
+			}
+			set_transient( 'semrs_smp_has_videos_v2', $has_videos, 12 * HOUR_IN_SECONDS );
 		}
 		foreach ( array( 'images' => 'sitemap-images.xml', 'videos' => 'sitemap-videos.xml', 'news' => 'sitemap-news.xml' ) as $k => $file ) {
 			if ( 'videos' === $k && 'yes' !== $has_videos ) {
