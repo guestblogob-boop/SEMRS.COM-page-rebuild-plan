@@ -72,7 +72,10 @@ add_shortcode( 'semrs_seller', 'semrs_legal_seller_shortcode' );
  * @return string
  */
 function semrs_legal_business_shortcode() {
-	$store = get_post_type_archive_link( 'semrs_product' );
+	$store = function_exists( 'semrs_store_url' ) ? semrs_store_url() : get_post_type_archive_link( 'semrs_product' );
+	if ( $store && is_singular() && untrailingslashit( $store ) === untrailingslashit( (string) get_permalink() ) ) {
+		$store = ''; // No link to the page itself.
+	}
 	$pro   = get_page_by_path( 'semrs-pro' );
 	$quote = get_page_by_path( 'get-a-quote' );
 	$card  = function ( $title, $text, $items, $foot ) {

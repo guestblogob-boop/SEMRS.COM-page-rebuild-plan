@@ -824,6 +824,21 @@ function semrs_store_is_store() {
  * with the first published product. Change the target with the semrs_store_empty_redirect filter
  * ('' = show the empty store).
  */
+/**
+ * Address of the product listing: the store while it has published products, otherwise the
+ * Themes & Plugins page (the closed store redirects there), so links never point at a redirect.
+ *
+ * @return string
+ */
+function semrs_store_url() {
+	$count = wp_count_posts( 'semrs_product' );
+	if ( ! empty( $count->publish ) ) {
+		return (string) get_post_type_archive_link( 'semrs_product' );
+	}
+	$hub = get_page_by_path( 'wordpress-themes-plugins' );
+	return $hub && 'publish' === $hub->post_status ? (string) get_permalink( $hub ) : '';
+}
+
 add_action(
 	'template_redirect',
 	function () {
