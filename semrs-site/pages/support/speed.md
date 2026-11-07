@@ -24,6 +24,7 @@ Most options here are already on. Each one removes a little code your visitors d
 | YouTube click-to-play | On | Loads the video player only when someone clicks |
 | Preload the featured image | On | Shows the main picture sooner |
 | Block styles only for blocks on the page | On | Each page loads only the styles it uses |
+| Host Google Fonts on your own site | On | Fonts your theme or plugins load from Google come from your site instead, and the main ones are preloaded. Faster, and visitors' IP addresses are not sent to Google (GDPR). |
 | Limit revisions | On | Keeps up to 10 old versions of each post |
 | Prefetch pages on hover | Off | Starts loading a page when the mouse points at its link |
 | Inline small stylesheets | Off | Puts tiny style files straight into the page |

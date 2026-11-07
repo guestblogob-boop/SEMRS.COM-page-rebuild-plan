@@ -77,18 +77,44 @@ function semrs_theme_author_box() {
 	if ( ! $author || ! get_the_author_meta( 'display_name', $author ) ) {
 		return;
 	}
-	$reviewer = get_post_meta( $id, 'semrs_reviewed_by', true );
+	// "Reviewed by": the expert chosen in SEMRS SEO (a user, linked) or the older free-text field.
+	$reviewer    = '';
+	$reviewer_id = (int) get_post_meta( $id, '_semrs_reviewed_by', true );
+	if ( $reviewer_id && get_userdata( $reviewer_id ) ) {
+		$reviewer = '<a href="' . esc_url( get_author_posts_url( $reviewer_id ) ) . '">' . esc_html( get_the_author_meta( 'display_name', $reviewer_id ) ) . '</a>';
+	} elseif ( get_post_meta( $id, 'semrs_reviewed_by', true ) ) {
+		$reviewer = esc_html( get_post_meta( $id, 'semrs_reviewed_by', true ) );
+	}
+	$job = (string) get_user_meta( $author, '_semrs_author_job_title', true );
 	printf(
-		'<aside class="sp-author-box" aria-label="%1$s">%2$s<div><p class="sp-author-name">%3$s <a href="%4$s">%5$s</a></p>%6$s%7$s</div></aside>',
+		'<aside class="sp-author-box" aria-label="%1$s">%2$s<div><p class="sp-author-name">%3$s <a href="%4$s">%5$s</a>%6$s</p>%7$s%8$s%9$s</div></aside>',
 		esc_attr__( 'About the author', 'semrs' ),
 		get_avatar( $author, 72, '', '', array( 'loading' => 'lazy' ) ),
 		esc_html__( 'Written by', 'semrs' ),
 		esc_url( get_author_posts_url( $author ) ),
 		esc_html( get_the_author_meta( 'display_name', $author ) ),
+		'' !== $job ? '<span class="sp-author-job">' . esc_html( $job ) . '</span>' : '',
 		wpautop( esc_html( get_the_author_meta( 'description', $author ) ) ),
-		$reviewer ? '<p class="sp-reviewer">' . esc_html__( 'Reviewed by', 'semrs' ) . ' ' . esc_html( $reviewer ) . '</p>' : ''
+		semrs_theme_author_social( $author ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in the function.
+		$reviewer ? '<p class="sp-reviewer">' . esc_html__( 'Reviewed by', 'semrs' ) . ' ' . $reviewer . '</p>' : '' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above.
 	);
 }
+
+/**
+ * Author archive: job title and profile icons under the bio.
+ *
+ * @param string $description Archive description.
+ * @return string
+ */
+function semrs_theme_author_archive_description( $description ) {
+	if ( ! is_author() ) {
+		return $description;
+	}
+	$uid = (int) get_queried_object_id();
+	$job = (string) get_user_meta( $uid, '_semrs_author_job_title', true );
+	return ( '' !== $job ? '<p class="sp-author-job">' . esc_html( $job ) . '</p>' : '' ) . $description . semrs_theme_author_social( $uid );
+}
+add_filter( 'get_the_archive_description', 'semrs_theme_author_archive_description' );
 add_action( 'semrs_after_entry_content', 'semrs_theme_author_box' );
 
 /**

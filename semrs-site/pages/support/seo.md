@@ -1,6 +1,6 @@
 ---
 title: SEMRS Core SEO Manual: Titles, Schema, Sitemaps
-description: SEMRS SEO manual: titles and meta, the SEO score, share previews, redirects, link settings, site audit, schema, sitemaps, llms.txt and switching from another SEO plugin.
+description: SEMRS SEO manual: titles and meta, the SEO score, author profiles, WooCommerce SEO, redirects, link settings, site audit, schema, sitemaps and llms.txt.
 order: 4
 seo_title: SEMRS SEO Manual 2026: Easy Guide to Titles & Schema
 focus: semrs seo
@@ -82,6 +82,30 @@ Open **SEMRS → SEO → Links, URLs & feeds**.
 
 Your **Pages** and **Posts** lists get a **Links** column. It shows the links inside each page and how many other pages link to it. A red **0** means no page links there yet.
 
+## Author profiles (E-E-A-T)
+
+Google wants to know who wrote a page and why they know the subject. Go to **Users → Profile** and fill in **SEO author profile**:
+
+- **Job title**, for example "Digital marketer".
+- **Areas of expertise**, comma separated.
+- **Credentials and certificates** and **Education**, only if you really have them.
+- **Profile links**, one per line: LinkedIn, X, your own site.
+
+SEMRS adds this to the author details Google reads with every post, with the author photo and your business. Author pages are marked as profile pages.
+
+**Reviewed by:** in the SEMRS SEO panel, open **Advanced** and choose the expert who checked the page. Good for health, money and legal topics.
+
+## WooCommerce stores
+
+Running WooCommerce? SEMRS SEO takes care of your products by itself:
+
+- Each product tells Google its price, stock, brand, barcode (GTIN) and real customer ratings.
+- WooCommerce's own copy is switched off, so Google sees each product once.
+- Product pages get breadcrumbs: Home › Shop › Category › Product.
+- Cart, checkout and account pages stay out of your sitemap.
+
+Add the **Brand** and **MPN** on the product's **Inventory** tab. The barcode goes in WooCommerce's **GTIN, UPC, EAN or ISBN** field.
+
 ## Schema, sitemap and llms.txt
 
 These run on their own. You do not need to set them up.
@@ -105,7 +129,7 @@ While another SEO plugin is active, SEMRS waits. You never get the same tags twi
 
 ## Extra SEO in SEMRS Pro
 
-Pro adds automatic internal links and a broken link checker, AI-written titles and descriptions, automatic share images, image, video and news sitemaps, custom schema, local SEO for many locations, automatic alt text and a bulk editor for titles and descriptions. See the [Pro guide](/support/pro-license/).
+Pro adds automatic internal links and a broken link checker, AI-written titles and descriptions, automatic share images, image, video and news sitemaps, custom schema with fill-in forms (events, courses, recipes, products, jobs and apps, no code needed), local SEO for many locations, automatic alt text and a bulk editor for titles and descriptions. See the [Pro guide](/support/pro-license/).
 
 ## SEMRS SEO help and next steps
 

@@ -4,7 +4,7 @@ Theme URI:         https://semrs.com/
 Author:            SEMRS
 Author URI:        https://semrs.com/
 Description:       Lightweight, SEO-first theme for businesses, agencies and blogs. Drag-and-drop header and footer builder with top bar, sticky and transparent header, header search and a mobile menu panel. Seven section patterns, sidebar layouts, blog grid or list, reading progress bar, author box, related posts and per-page header, footer and sidebar options. No jQuery: one stylesheet and one small script.
-Version:           1.3.25
+Version:           1.3.26
 Requires at least: 6.5
 Tested up to:      7.1
 Requires PHP:      7.4
@@ -433,6 +433,9 @@ label { font-weight: 600; color: var(--sp-primary); }
 .sp-author-box p { margin: 0 0 .4rem; }
 .sp-author-name { font-weight: 700; }
 .sp-reviewer { font-size: .875rem; color: var(--sp-muted); }
+.sp-author-job { display: block; font-weight: 500; font-size: .9rem; color: var(--sp-muted); }
+.sp-author-social { --sp-social: 32px; margin: .6rem 0 .5rem; }
+.archive-description + .sp-author-social, .page-header .sp-author-social { margin-top: .75rem; }
 @media (max-width: 544px) { .sp-author-box { flex-direction: column; } }
 .sp-related { margin-top: 3rem; }
 .sp-related .sp-posts { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }

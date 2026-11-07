@@ -49,7 +49,7 @@
 	},
 	"seo": {
 		"title": "SEMRS Core SEO Manual: Titles, Schema, Sitemaps",
-		"description": "SEMRS SEO manual: titles and meta, the SEO score, share previews, redirects, link settings, site audit, schema, sitemaps, llms.txt and switching from another SEO plugin.",
+		"description": "SEMRS SEO manual: titles and meta, the SEO score, author profiles, WooCommerce SEO, redirects, link settings, site audit, schema, sitemaps and llms.txt.",
 		"order": 4,
 		"seo_title": "SEMRS SEO Manual 2026: Easy Guide to Titles & Schema",
 		"focus": "semrs seo",
