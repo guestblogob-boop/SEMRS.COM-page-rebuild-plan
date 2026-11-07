@@ -544,6 +544,9 @@ function semrs_index_sitemap_lines() {
 	foreach ( array( 'sitemap-images.xml', 'sitemap-videos.xml', 'sitemap-news.xml' ) as $f ) {
 		$s = (array) get_option( 'semrs_sitemaps_pro', array( 'images' => true, 'videos' => true ) );
 		$k = str_replace( array( 'sitemap-', '.xml' ), '', $f );
+		if ( 'videos' === $k && function_exists( 'semrs_smp_has_videos' ) && ! semrs_smp_has_videos() ) {
+			continue; // No page has a video yet: an empty video sitemap is an error in Search Console.
+		}
 		if ( function_exists( 'semrs_smp_pro' ) && semrs_smp_pro() && ( $s[ $k ] ?? ( 'news' !== $k ) ) ) {
 			$lines[] = 'Sitemap: ' . home_url( '/' . $f );
 		}

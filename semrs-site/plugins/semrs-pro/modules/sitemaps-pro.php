@@ -57,6 +57,33 @@ function semrs_smp_types() {
  * ------------------------------------------------------------------------- */
 
 /**
+ * Does any indexable page have a video the video sitemap can list (one with a
+ * thumbnail)? Same rules as the sitemap; remembered for 12 hours and cleared
+ * when a page is saved. SEMRS Core uses it for its robots.txt suggestions.
+ *
+ * @return bool
+ */
+function semrs_smp_has_videos() {
+	$has = get_transient( 'semrs_smp_has_videos_v2' );
+	if ( false === $has ) {
+		$has = 'no';
+		foreach ( get_posts( array( 'post_type' => semrs_smp_types(), 'post_status' => 'publish', 'posts_per_page' => 200, 'fields' => 'ids', 'meta_key' => '_semrs_videos', 'no_found_rows' => true ) ) as $pid ) { // phpcs:ignore WordPress.DB.SlowDBQuery -- cached for 12 hours.
+			if ( function_exists( 'semrs_seo_is_noindex' ) && semrs_seo_is_noindex( $pid ) ) {
+				continue;
+			}
+			foreach ( (array) get_post_meta( $pid, '_semrs_videos', true ) as $v ) {
+				if ( ! empty( $v['thumb'] ) ) {
+					$has = 'yes';
+					break 2;
+				}
+			}
+		}
+		set_transient( 'semrs_smp_has_videos_v2', $has, 12 * HOUR_IN_SECONDS );
+	}
+	return 'yes' === $has;
+}
+
+/**
  * Videos in a post's content: YouTube, Vimeo and <video> files.
  *
  * @param WP_Post $post Post.
@@ -280,24 +307,7 @@ add_filter(
 			return $out;
 		}
 		$s = semrs_smp_settings();
-		// An empty video sitemap is reported as an error in Search Console: list it only when a page has a video.
-		$has_videos = get_transient( 'semrs_smp_has_videos_v2' );
-		if ( false === $has_videos ) {
-			// Same rules as the video sitemap: an indexable page with at least one video that has a thumbnail.
-			$has_videos = 'no';
-			foreach ( get_posts( array( 'post_type' => semrs_smp_types(), 'post_status' => 'publish', 'posts_per_page' => 200, 'fields' => 'ids', 'meta_key' => '_semrs_videos', 'no_found_rows' => true ) ) as $pid ) { // phpcs:ignore WordPress.DB.SlowDBQuery -- cached for 12 hours.
-				if ( function_exists( 'semrs_seo_is_noindex' ) && semrs_seo_is_noindex( $pid ) ) {
-					continue;
-				}
-				foreach ( (array) get_post_meta( $pid, '_semrs_videos', true ) as $v ) {
-					if ( ! empty( $v['thumb'] ) ) {
-						$has_videos = 'yes';
-						break 2;
-					}
-				}
-			}
-			set_transient( 'semrs_smp_has_videos_v2', $has_videos, 12 * HOUR_IN_SECONDS );
-		}
+		$has_videos = semrs_smp_has_videos() ? 'yes' : 'no'; // An empty video sitemap is an error in Search Console.
 		foreach ( array( 'images' => 'sitemap-images.xml', 'videos' => 'sitemap-videos.xml', 'news' => 'sitemap-news.xml' ) as $k => $file ) {
 			if ( 'videos' === $k && 'yes' !== $has_videos ) {
 				continue;
