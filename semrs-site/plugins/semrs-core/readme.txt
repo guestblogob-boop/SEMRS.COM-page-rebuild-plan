@@ -4,7 +4,7 @@ Tags: seo, cookie consent, smtp, security, page cache
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.48
+Stable tag: 1.3.50
 License: GPLv2 or later
 
 Free SEO, cookie consent, SMTP email, security, page cache, redirects, WebP images and a policy-safe ads manager in one plugin.
@@ -108,6 +108,14 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt, cookie banner, consent log, security options and all other features run entirely on your own server. Google Consent Mode only passes the visitor's choice to Google tags you already use; it does not load anything itself.
 
 == Changelog ==
+
+= 1.3.50 =
+* Speed → Server: the tab now shows the server rules as On after they are added (WordPress adds its own comment lines inside the block)
+
+= 1.3.49 =
+* Speed → Server (new tab): finds and removes the .htaccess rules and advanced-cache.php left behind by cache plugins that are no longer active (WP Rocket, W3 Total Cache, WP Super Cache, WP Fastest Cache, LiteSpeed Cache, Hummingbird, Breeze, SiteGround Optimizer), with a dated backup
+* Speed → Server: one-click server rules for Apache and LiteSpeed (Brotli and gzip compression, a year of browser caching for versioned files, no ETags, font CORS, AVIF/WebP/WOFF2 types)
+* Speed → Server: early page cache (advanced-cache.php) serves cached pages before plugins and the theme load, for a faster server response; removed automatically when SEMRS Core is deactivated
 
 = 1.3.48 =
 * Index Status: suggested robots.txt sitemap lines leave out the video sitemap until a page has a video (an empty sitemap is reported in Search Console)

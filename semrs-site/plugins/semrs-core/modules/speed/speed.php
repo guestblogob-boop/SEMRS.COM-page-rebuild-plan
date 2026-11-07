@@ -286,3 +286,6 @@ if ( is_admin() ) {
 	require __DIR__ . '/cleanup.php';
 	require __DIR__ . '/check.php';
 }
+if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
+	require __DIR__ . '/server.php';
+}

@@ -54,7 +54,9 @@ function semrs_cache_conflict() {
 	if ( class_exists( 'SiteGround_Optimizer\Loader\Loader' ) ) {
 		return 'SiteGround Optimizer';
 	}
-	if ( defined( 'WP_CACHE' ) && WP_CACHE && file_exists( trailingslashit( WP_CONTENT_DIR ) . 'advanced-cache.php' ) ) {
+	$drop = trailingslashit( WP_CONTENT_DIR ) . 'advanced-cache.php';
+	// Our own early page cache (SEMRS → Speed → Server) is not a conflict.
+	if ( defined( 'WP_CACHE' ) && WP_CACHE && file_exists( $drop ) && false === strpos( (string) file_get_contents( $drop, false, null, 0, 300 ), 'SEMRS early page cache' ) ) { // phpcs:ignore WordPress.WP.AlternativeFunctions
 		return __( 'a page-cache drop-in (advanced-cache.php)', 'semrs-core' );
 	}
 	return '';

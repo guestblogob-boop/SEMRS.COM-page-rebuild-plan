@@ -51,6 +51,7 @@ function semrs_pro_speed_settings() {
 			'ucss_exclude'  => semrs_pro_ucss_default_exclude(),
 			'dims'          => false,
 			'lazy_iframes'  => false,
+			'lazy_render'   => false,
 			'preload'       => false,
 			'cdn'           => '',
 		),
@@ -86,6 +87,7 @@ add_action(
 						'ucss_exclude'  => sanitize_textarea_field( $in['ucss_exclude'] ?? '' ),
 						'dims'          => ! empty( $in['dims'] ),
 						'lazy_iframes'  => ! empty( $in['lazy_iframes'] ),
+						'lazy_render'   => ! empty( $in['lazy_render'] ),
 						'preload'       => ! empty( $in['preload'] ),
 						'cdn'           => untrailingslashit( $cdn ),
 					);
@@ -123,7 +125,9 @@ add_action(
 		<tr><th><?php esc_html_e( 'Files and media', 'semrs-pro' ); ?></th><td>
 			<label><input type="checkbox" name="semrs_speed_pro[minify_css]" value="1" <?php checked( $p['minify_css'] ); ?>> <?php esc_html_e( 'Minify stylesheets (smaller CSS files, cached until the file changes)', 'semrs-pro' ); ?></label><br>
 			<label><input type="checkbox" name="semrs_speed_pro[dims]" value="1" <?php checked( $p['dims'] ); ?>> <?php esc_html_e( 'Add missing width and height to images (stops the page jumping while it loads)', 'semrs-pro' ); ?></label><br>
-			<label><input type="checkbox" name="semrs_speed_pro[lazy_iframes]" value="1" <?php checked( $p['lazy_iframes'] ); ?>> <?php esc_html_e( 'Lazy-load iframes such as maps and embedded videos', 'semrs-pro' ); ?></label>
+			<label><input type="checkbox" name="semrs_speed_pro[lazy_iframes]" value="1" <?php checked( $p['lazy_iframes'] ); ?>> <?php esc_html_e( 'Lazy-load iframes such as maps and embedded videos', 'semrs-pro' ); ?></label><br>
+			<label><input type="checkbox" name="semrs_speed_pro[lazy_render]" value="1" <?php checked( $p['lazy_render'] ); ?>> <?php esc_html_e( 'Lazy rendering: the browser skips drawing sections far below the screen until the visitor scrolls near them', 'semrs-pro' ); ?></label>
+			<p class="description"><?php esc_html_e( 'Faster first paint and less main-thread work on long pages. The first sections of each page and anything the visitor can see are always drawn normally.', 'semrs-pro' ); ?></p>
 		</td></tr>
 		<tr><th><?php esc_html_e( 'Cache preload', 'semrs-pro' ); ?></th><td>
 			<label><input type="checkbox" name="semrs_speed_pro[preload]" value="1" <?php checked( $p['preload'] ); ?>> <?php esc_html_e( 'Rebuild the page cache in the background after it clears', 'semrs-pro' ); ?></label>
@@ -321,7 +325,24 @@ if ( $semrs_pro_speed['unload'] && ! is_admin() ) {
 	add_action( 'wp_print_scripts', 'semrs_pro_speed_unload', 1 );
 	add_action( 'wp_print_footer_scripts', 'semrs_pro_speed_unload', 1 );
 }
+if ( $semrs_pro_speed['lazy_render'] && ! is_admin() ) {
+	add_action( 'wp_head', 'semrs_pro_speed_lazy_render', 8 );
+}
 unset( $semrs_pro_speed );
+
+/**
+ * Lazy rendering: content-visibility:auto on top-level content sections after
+ * the first four and on the footer. The browser remembers each section's real
+ * height once drawn (contain-intrinsic-size: auto), so the scrollbar stays steady.
+ */
+function semrs_pro_speed_lazy_render() {
+	$sel = (string) apply_filters( 'semrs_pro_lazy_render_selectors', '.entry-content>:nth-child(n+5):not(.alignleft):not(.alignright):not(.wp-block-spacer):not(.wp-block-separator),.site-footer' );
+	if ( '' === trim( $sel ) ) {
+		return;
+	}
+	echo '<style id="semrs-lazy-render">@media screen{' . wp_strip_all_tags( $sel ) . '{content-visibility:auto;contain-intrinsic-size:auto 600px}}</style>' . "
+"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static CSS, tags stripped.
+}
 
 /**
  * Content that can hold forms and blocks on this request: the post (with
