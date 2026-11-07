@@ -161,12 +161,19 @@ function semrs_us_check( $req ) {
 	if ( ! $rel ) {
 		return new WP_Error( 'semrs_no_release', 'No release published.', array( 'status' => 404 ) );
 	}
+	// "Tested up to: 7.1" covers every 7.1.x (as on WordPress.org). WordPress compares it with the
+	// full version (7.1.4) and would show "Not tested", so answer with the site's own 7.1.x.
+	$tested  = isset( $rel['tested'] ) ? (string) $rel['tested'] : '';
+	$site_wp = preg_replace( '/[^0-9.]/', '', (string) $req->get_param( 'wp' ) );
+	if ( preg_match( '/^\d+\.\d+$/', $tested ) && preg_match( '/^(\d+\.\d+)\.\d+$/', $site_wp, $wm ) && $wm[1] === $tested ) {
+		$tested = $site_wp;
+	}
 	$out     = array(
 		'slug'         => $slug,
 		'version'      => $rel['version'],
 		'homepage'     => home_url( '/' ),
 		'requires'     => isset( $rel['requires'] ) ? $rel['requires'] : '6.5',
-		'tested'       => isset( $rel['tested'] ) ? $rel['tested'] : '',
+		'tested'       => $tested,
 		'requires_php' => isset( $rel['requires_php'] ) ? $rel['requires_php'] : '7.4',
 		'last_updated' => isset( $rel['date'] ) ? $rel['date'] : '',
 		'changelog'    => isset( $rel['changelog'] ) ? wpautop( wp_kses_post( $rel['changelog'] ) ) : '',
