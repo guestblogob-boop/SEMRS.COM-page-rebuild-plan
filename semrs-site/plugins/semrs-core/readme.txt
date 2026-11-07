@@ -4,7 +4,7 @@ Tags: seo, cookie consent, smtp, security, page cache
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.55
+Stable tag: 1.3.56
 License: GPLv2 or later
 
 Free SEO, cookie consent, SMTP email, security, page cache, redirects, WebP images and a policy-safe ads manager in one plugin.
@@ -108,6 +108,11 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt, cookie banner, consent log, security options and all other features run entirely on your own server. Google Consent Mode only passes the visitor's choice to Google tags you already use; it does not load anything itself.
 
 == Changelog ==
+
+= 1.3.56 =
+* WooCommerce SEO: Product schema (price, stock, brand, GTIN, MPN, real review ratings) in the SEMRS graph instead of WooCommerce's duplicate, product breadcrumbs, cart/checkout/account pages out of the sitemap, Brand and MPN fields
+* Author profiles for E-E-A-T: job title, expertise, credentials, education and profile links in the author schema, ProfilePage on author archives, and Reviewed by (expert) on posts
+* Speed: host Google Fonts on your own site with preload (on by default; faster and GDPR-friendly)
 
 = 1.3.55 =
 * US spelling in labels, help text and readme

@@ -327,6 +327,8 @@ require __DIR__ . '/schema.php';
 require __DIR__ . '/sitemap.php';
 require __DIR__ . '/analysis.php';
 require __DIR__ . '/links.php';
+require __DIR__ . '/woocommerce.php';
+require __DIR__ . '/authors.php';
 require __DIR__ . '/llms.php';
 require __DIR__ . '/index-status.php';
 require __DIR__ . '/calendar.php';

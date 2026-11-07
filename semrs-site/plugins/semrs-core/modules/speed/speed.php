@@ -29,6 +29,7 @@ function semrs_speed_fields() {
 		'youtube'      => array( __( 'YouTube click-to-play (lightweight preview)', 'semrs-core' ), true, __( 'Shows the thumbnail and loads the video player only when clicked. One of the biggest speed wins on pages with videos.', 'semrs-core' ) ),
 		'preload_img'  => array( __( 'Preload the featured image on posts and pages', 'semrs-core' ), true, __( 'Helps Largest Contentful Paint (LCP).', 'semrs-core' ) ),
 		'hints'        => array( __( 'Preconnect to Google ad and analytics servers when used', 'semrs-core' ), true, __( 'Adds preconnect hints only when SEMRS Ads or Google tags are active.', 'semrs-core' ) ),
+		'local_fonts'  => array( __( 'Host Google Fonts on your own site', 'semrs-core' ), true, __( 'Fonts that your theme or plugins load from Google are copied to your site and preloaded: faster, and visitors\' IP addresses are no longer sent to Google (GDPR). If a copy cannot be made, the Google link stays.', 'semrs-core' ) ),
 		'block_css'    => array( __( 'Load block styles only for blocks on the page', 'semrs-core' ), true, __( 'Instead of one big stylesheet for every block, each page gets only the CSS of the blocks it uses.', 'semrs-core' ) ),
 		'inline_css'   => array( __( 'Inline small stylesheets (under 10 KB)', 'semrs-core' ), false, __( 'Puts small CSS files straight into the page, saving render-blocking requests. Best together with the page cache.', 'semrs-core' ) ),
 		'async_css'    => array( __( 'Load chosen stylesheets without blocking the page', 'semrs-core' ), false, __( 'For CSS that is not needed for the top of the page (e.g. a slider or form plugin). List the style handles below.', 'semrs-core' ) ),
@@ -62,6 +63,7 @@ function semrs_speed_settings() {
 			'defer'         => false,
 			'defer_exclude' => "jquery\njquery-core",
 			'block_css'     => true,
+			'local_fonts'   => true,
 			'inline_css'    => false,
 			'async_css'     => false,
 			'async_handles' => '',
@@ -281,6 +283,7 @@ function semrs_speed_defer( $tag, $handle, $src ) {
 
 require __DIR__ . '/css.php';
 require __DIR__ . '/cache.php';
+require __DIR__ . '/fonts.php';
 if ( is_admin() ) {
 	require __DIR__ . '/admin.php';
 	require __DIR__ . '/cleanup.php';

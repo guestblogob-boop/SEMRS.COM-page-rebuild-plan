@@ -175,7 +175,8 @@
 			el(C.PanelBody, { title: __('Canonical URL', 'semrs-core'), initialOpen: true },
 				el(C.TextControl, { __nextHasNoMarginBottom: true, type: 'url', value: get('canonical'), placeholder: props.post.link, help: __('Leave empty to use this page\'s own address.', 'semrs-core'), onChange: function (v) { set('canonical', v); } })),
 			el(C.PanelBody, { title: __('Breadcrumbs', 'semrs-core'), initialOpen: true },
-				el(C.TextControl, { __nextHasNoMarginBottom: true, label: __('Breadcrumb title', 'semrs-core'), value: get('breadcrumb_title'), placeholder: props.post.title, help: __('Shorter name for this page in the breadcrumb trail.', 'semrs-core'), onChange: function (v) { set('breadcrumb_title', v); } })));
+				el(C.TextControl, { __nextHasNoMarginBottom: true, label: __('Breadcrumb title', 'semrs-core'), value: get('breadcrumb_title'), placeholder: props.post.title, help: __('Shorter name for this page in the breadcrumb trail.', 'semrs-core'), onChange: function (v) { set('breadcrumb_title', v); } }),
+				cfg.reviewers && cfg.reviewers.length ? el(C.SelectControl, { __nextHasNoMarginBottom: true, label: __('Reviewed by (expert)', 'semrs-core'), value: String(get('reviewed_by') || '0'), options: [{ label: __('Nobody', 'semrs-core'), value: '0' }].concat(cfg.reviewers.map(function (r) { return { label: r.name, value: String(r.id) }; })), help: __('An expert who checked this page. Shown to Google as reviewedBy, with their author profile.', 'semrs-core'), onChange: function (v) { set('reviewed_by', parseInt(v, 10) || 0); } }) : null));
 	}
 
 	function SchemaTab(props) {

@@ -217,6 +217,7 @@ function semrs_seo_sidebar_assets() {
 			'tpl'         => str_replace( '%site%', '%sitename%', $s['tpl_singular'] ),
 			'category'    => $cats ? $cats[0]->name : '',
 			'ogDefault'   => (string) $s['og_image'],
+			'reviewers'   => array_map( function ( $u ) { return array( 'id' => (int) $u->ID, 'name' => $u->display_name ); }, get_users( array( 'capability' => 'edit_posts', 'fields' => array( 'ID', 'display_name' ), 'number' => 100, 'orderby' => 'display_name' ) ) ),
 			'ogAuto'      => has_post_thumbnail( $post ) ? '' : (string) apply_filters( 'semrs_seo_auto_image', '', $post->ID ), // SEMRS Pro social images.
 			'phTitle'     => '' === (string) get_post_meta( $post->ID, '_semrs_title', true ) ? (string) semrs_seo_meta( $post->ID, 'title' ) : '',
 			'phDesc'      => '' === (string) get_post_meta( $post->ID, '_semrs_description', true ) ? (string) semrs_seo_meta( $post->ID, 'description' ) : '',
