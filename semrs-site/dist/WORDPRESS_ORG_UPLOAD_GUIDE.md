@@ -6,8 +6,8 @@ Last checked: 7 November 2026. All zips below are built and checked. You do ever
 
 | Product | Submit? | File to upload | Order |
 |---|---|---|---|
-| SEMRS theme 1.3.25 | Yes | `dist/wporg/semrs.zip` (299 KB) | 1st (theme queue) |
-| SEMRS Core 1.3.55 | Yes | `dist/wporg/semrs-core.zip` (216 KB) | 1st (plugin queue) |
+| SEMRS theme 1.3.27 | Yes | `dist/wporg/semrs.zip` (301 KB) | 1st (theme queue) |
+| SEMRS Core 1.3.56 | Yes | `dist/wporg/semrs-core.zip` (225 KB) | 1st (plugin queue) |
 | SEMRS Blocks 1.3.19 | Yes | `dist/wporg/semrs-blocks.zip` (6.9 MB) | 2nd |
 | SEMRS Tools 1.4.6 | Yes | `dist/wporg/semrs-tools.zip` (190 KB) | 3rd |
 | SEMRS Shops 1.1.3 | Yes, **after Blocks is approved** | `dist/wporg/semrs-shops.zip` (1.9 MB) | 4th (it requires Blocks) |
@@ -78,7 +78,7 @@ For each approved plugin (example: semrs-core):
 4. **assets** = the plugin page artwork (not part of the plugin). Copy the files from `dist/wporg-assets/semrs-core/` into `assets`:
    `banner-772x250.png`, `banner-1544x500.png`, `icon-128x128.png`, `icon-256x256.png`, `icon.svg`.
    Optional screenshots: add `screenshot-1.png`, `screenshot-2.png`… and a matching `== Screenshots ==` section in readme.txt (ask us to add it).
-5. Right-click `D:\wporg-svn\semrs-core` → **SVN Add** (select all new files) → then **SVN Commit**, message: `Release 1.3.55`.
+5. Right-click `D:\wporg-svn\semrs-core` → **SVN Add** (select all new files) → then **SVN Commit**, message: `Release 1.3.56`.
 6. Within about 15 minutes the plugin is live at **https://wordpress.org/plugins/semrs-core/**. Check the page, the banner and the "Download" button.
 
 Repeat for semrs-blocks (`tags\1.3.19`), semrs-tools (`tags\1.4.6`) and semrs-shops (`tags\1.1.3`), each with its own `dist/wporg-assets/<slug>/` artwork.
