@@ -417,6 +417,21 @@ function semrs_pro_lang_switcher() {
 }
 add_shortcode( 'semrs_languages', 'semrs_pro_lang_switcher' );
 
+/*
+ * Print the switcher styles in <head> when the page will show a switcher, so the header is
+ * drawn with them from the start (styles printed next to the switcher arrive after the top of
+ * the header and make it jump a few pixels: layout shift).
+ */
+add_action(
+	'wp_head',
+	function () {
+		if ( ! is_admin() && count( semrs_pro_lang_items() ) > 1 ) {
+			echo semrs_pro_lang_css(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static CSS.
+		}
+	},
+	8
+);
+
 /**
  * Switcher styles, once.
  *
