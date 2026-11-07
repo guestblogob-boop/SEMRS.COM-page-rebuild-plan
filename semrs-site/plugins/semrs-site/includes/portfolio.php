@@ -51,14 +51,20 @@ function semrs_portfolio_subdomains() {
  * @return array pattern ({sub} = subdomain label), contact URL, live designs.
  */
 function semrs_portfolio_settings() {
-	return wp_parse_args(
+	$s = wp_parse_args(
 		(array) get_option( 'semrs_portfolio', array() ),
 		array(
 			'pattern' => 'https://{sub}.demo.semrs.com/',
-			'contact' => 'https://semrs.com/contact/',
+			'contact' => '',
 			'live'    => array(),
 		)
 	);
+	// The contact page lives at /contact-us/; an empty setting or the old /contact/ address (which redirects) use it.
+	$path = untrailingslashit( (string) wp_parse_url( (string) $s['contact'], PHP_URL_PATH ) );
+	if ( '' === trim( (string) $s['contact'] ) || '/contact' === $path ) {
+		$s['contact'] = home_url( '/contact-us/' );
+	}
+	return $s;
 }
 
 /**

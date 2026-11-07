@@ -279,7 +279,16 @@ add_filter(
 			return $out;
 		}
 		$s = semrs_smp_settings();
+		// An empty video sitemap is reported as an error in Search Console: list it only when a page has a video.
+		$has_videos = get_transient( 'semrs_smp_has_videos' );
+		if ( false === $has_videos ) {
+			$has_videos = get_posts( array( 'post_type' => semrs_smp_types(), 'post_status' => 'publish', 'posts_per_page' => 1, 'fields' => 'ids', 'meta_key' => '_semrs_videos', 'no_found_rows' => true ) ) ? 'yes' : 'no'; // phpcs:ignore WordPress.DB.SlowDBQuery -- one row, cached for 12 hours.
+			set_transient( 'semrs_smp_has_videos', $has_videos, 12 * HOUR_IN_SECONDS );
+		}
 		foreach ( array( 'images' => 'sitemap-images.xml', 'videos' => 'sitemap-videos.xml', 'news' => 'sitemap-news.xml' ) as $k => $file ) {
+			if ( 'videos' === $k && 'yes' !== $has_videos ) {
+				continue;
+			}
 			if ( ! empty( $s[ $k ] ) ) {
 				$out .= "\nSitemap: " . home_url( '/' . $file );
 			}
