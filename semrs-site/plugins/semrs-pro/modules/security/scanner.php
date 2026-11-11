@@ -419,8 +419,9 @@ function semrs_scan_phase_core( $s, $end ) {
 		foreach ( semrs_scan_list() as $rel ) {
 			$in_core = 0 === strpos( $rel, 'wp-admin/' ) || 0 === strpos( $rel, 'wp-includes/' ) || false === strpos( $rel, '/' );
 			if ( $in_core && ! isset( $files[ $rel ] ) && 'php' === semrs_scan_kind( $rel ) && ! in_array( $rel, array( 'wp-config.php', 'wp-config-local.php' ), true ) ) {
-				$root = false === strpos( $rel, '/' );
-				semrs_scan_add( $root ? 'medium' : 'high', 'core', $rel, $root ? __( 'Unknown PHP file in the WordPress folder', 'semrs-pro' ) : __( 'Unknown file inside a WordPress core folder', 'semrs-pro' ), '', array( 'quarantine' => 1 ) );
+				$root  = false === strpos( $rel, '/' );
+				$known = semrs_scan_known_file( $rel );
+				semrs_scan_add( $known ? 'high' : ( $root ? 'medium' : 'high' ), 'core', $rel, $known ? $known : ( $root ? __( 'Unknown PHP file in the WordPress folder', 'semrs-pro' ) : __( 'Unknown file inside a WordPress core folder', 'semrs-pro' ) ), '', array( 'quarantine' => 1 ) );
 			}
 		}
 		$s['phase'] = 'plugins';
@@ -495,6 +496,47 @@ function semrs_scan_phase_plugins( $s, $end ) {
 }
 
 /**
+ * Is this a small guard file that plugins put in folders to stop listing
+ * (empty, "Silence is golden", or only sends a 404/403 and stops)?
+ *
+ * @param string $code File contents.
+ * @return bool
+ */
+function semrs_scan_harmless_stub( $code ) {
+	if ( strlen( $code ) > 1024 ) {
+		return false;
+	}
+	$body = preg_replace( '#/\*.*?\*/|//[^\n]*|\#[^\n]*#s', '', $code );
+	$body = trim( str_replace( array( '<?php', '?>' ), '', (string) $body ) );
+	if ( '' === $body ) {
+		return true;
+	}
+	// Only header(), http_response_code(), exit/die and $_SERVER['SERVER_PROTOCOL'] allowed.
+	$rest = preg_replace( '/\b(?:header|http_response_code)\s*\([^;]*\)\s*;|\b(?:exit|die)\s*(?:\([^)]*\))?\s*;|\$_SERVER\s*\[\s*[\'"]SERVER_PROTOCOL[\'"]\s*\]/i', '', $body );
+	return '' === trim( (string) preg_replace( '/[\s;]+/', '', (string) $rest ) );
+}
+
+/**
+ * Explain well-known leftover files in plain words.
+ *
+ * @param string $rel Relative path.
+ * @return string
+ */
+function semrs_scan_known_file( $rel ) {
+	$b = basename( $rel );
+	if ( preg_match( '/^create_autologin_[a-z0-9]+\.php$/i', $b ) ) {
+		return __( 'Leftover one-time log-in file from your hosting panel (Hostinger “Admin panel” button). If you are not logging in right now, quarantine it: anyone who finds the name could log in.', 'semrs-pro' );
+	}
+	if ( preg_match( '/^(?:adminer|phpmyadmin|pma|dbadmin|sql|mysql|filemanager|wso|shell|cmd|up|upload|x)\d*\.php$/i', $b ) ) {
+		return __( 'Database or file manager tool in the WordPress folder. Attackers look for these; remove it when you are done.', 'semrs-pro' );
+	}
+	if ( preg_match( '/^(?:info|phpinfo|test|i)\.php$/i', $b ) ) {
+		return __( 'Test or PHP info file. It shows server details to attackers; remove it.', 'semrs-pro' );
+	}
+	return '';
+}
+
+/**
  * Malware code in files that could not be verified.
  *
  * @param array $s   State.
@@ -530,7 +572,7 @@ function semrs_scan_phase_files( $s, $end ) {
 		$code  = (string) file_get_contents( $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		$read += $size;
 		// PHP and server rules inside uploads.
-		if ( $in_up && 'php' === $kind && ! preg_match( '/^<\?php\s*(?:\/\/[^\n]*|\/\*.*?\*\/)?\s*(?:\?>)?\s*$/s', $code ) ) {
+		if ( $in_up && 'php' === $kind && ! semrs_scan_harmless_stub( $code ) ) {
 			semrs_scan_add( 'high', 'upload', $rel, __( 'PHP file inside the uploads folder (uploads should only hold media)', 'semrs-pro' ), mb_substr( $code, 0, 160 ), array( 'quarantine' => 1 ) );
 		}
 		if ( $in_up && 'htaccess' === $kind && preg_match( '/(?:AddHandler|SetHandler|AddType)[^\n]*(?:php|x-httpd)|auto_prepend_file|auto_append_file/i', $code, $m ) ) {

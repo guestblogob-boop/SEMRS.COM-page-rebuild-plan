@@ -30,7 +30,7 @@ if ( function_exists( 'semrs_fw_boot' ) ) {
 }
 
 /**
- * Firewall settings (shared with the Security Pro screen).
+ * Firewall settings (shared with the Assets Protector screen).
  *
  * @return array
  */

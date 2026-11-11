@@ -1,6 +1,6 @@
 <?php
 /**
- * SEMRS → Security Pro screen: overview, firewall, malware scan, spam.
+ * SEMRS → Assets Protector screen: overview, firewall, malware scan, spam.
  *
  * @package semrs-pro
  */
@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 add_action(
 	'admin_menu',
 	function () {
-		add_submenu_page( 'semrs', __( 'Security Pro', 'semrs-pro' ), __( 'Security Pro', 'semrs-pro' ), 'manage_options', 'semrs-protect', 'semrs_secpro_page' );
+		add_submenu_page( 'semrs', __( 'SEMRS Assets Protector', 'semrs-pro' ), __( 'Assets Protector', 'semrs-pro' ), 'manage_options', 'semrs-protect', 'semrs_secpro_page' );
 	},
 	33
 );
@@ -234,7 +234,7 @@ function semrs_secpro_page() {
 	};
 	?>
 	<div class="wrap semrs-wrap">
-		<h1><?php esc_html_e( 'Security Pro', 'semrs-pro' ); ?></h1>
+		<h1><?php esc_html_e( 'SEMRS Assets Protector', 'semrs-pro' ); ?></h1>
 		<?php if ( ! empty( $_GET['saved'] ) ) : // phpcs:ignore WordPress.Security.NonceVerification ?>
 			<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Settings saved.', 'semrs-pro' ); ?></p></div>
 		<?php elseif ( $err ) : ?>

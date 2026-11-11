@@ -104,7 +104,7 @@ function semrs_pro_module_labels( $mods ) {
 			'two_factor' => array( __( 'Login security', 'semrs-pro' ), __( 'Two-factor log-in with any authenticator app (Google Authenticator, Microsoft Authenticator, 1Password…) and backup codes, a reminder for administrators, and an optional custom log-in address. Included with every Pro key.', 'semrs-pro' ), 'pro' ),
 			'activity'   => array( __( 'Activity log', 'semrs-pro' ), __( 'Who published, changed or deleted posts and pages, changed settings, plugins, themes or users, and who logged in or failed to. Filter, export to CSV, auto-delete after a set time. Included with every Pro key.', 'semrs-pro' ), 'pro' ),
 			'search_replace' => array( __( 'Search & replace', 'semrs-pro' ), __( 'Find and replace text or links in posts, custom fields and settings (safe for serialized data), with a dry-run preview and one-click undo. Included with every Pro key.', 'semrs-pro' ), 'pro' ),
-			'security_pro' => array( __( 'Security Pro', 'semrs-pro' ), __( 'Firewall that stops attacks before WordPress loads, malware scanner that checks every file against WordPress.org and repairs changed files, daily scans with email alerts, and spam protection for comments, reviews, sign-ups and contact forms without CAPTCHAs or outside services. Works alongside Wordfence and Akismet. Included with every Pro key.', 'semrs-pro' ), 'pro' ),
+			'security_pro' => array( __( 'SEMRS Assets Protector', 'semrs-pro' ), __( 'Firewall that stops attacks before WordPress loads, malware scanner that checks every file against WordPress.org and repairs changed files, daily scans with email alerts, and spam protection for comments, reviews, sign-ups and contact forms without CAPTCHAs or outside services. Works alongside Wordfence and Akismet. Included with every Pro key.', 'semrs-pro' ), 'pro' ),
 			'og_images'  => array( __( 'Social images', 'semrs-pro' ), __( 'Automatic 1200 × 630 share images with the post title and your colors for posts without a featured image, made on your own server.', 'semrs-pro' ), 'pro' ),
 			'tools_pro'  => array( __( 'Free Tools Pro', 'semrs-pro' ), __( 'Pro features for the free SEMRS Tools plugin: bulk checks (up to 25 URLs) in the redirect and on-page checkers, your own expert-help box per category, a tool usage report and higher hourly limits.', 'semrs-pro' ), 'pro' ),
 			'schema_pro' => array( __( 'Custom schema', 'semrs-pro' ), __( 'Add your own JSON-LD (Event, Product, Course, HowTo, Recipe, Video…) to any page from the editor, with starters and a JSON check.', 'semrs-pro' ), 'pro' ),
@@ -158,7 +158,7 @@ function semrs_pro_firewall_off() {
 	}
 }
 
-// Security Pro switched off (Features screen or license): take the firewall down with it.
+// Assets Protector switched off (Features screen or license): take the firewall down with it.
 add_action(
 	'semrs_modules_loaded',
 	function () {

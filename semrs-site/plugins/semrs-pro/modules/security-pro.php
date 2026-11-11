@@ -1,6 +1,6 @@
 <?php
 /**
- * Security Pro: firewall, malware scanner and anti-spam (SEMRS → Security Pro).
+ * SEMRS Assets Protector: firewall, malware scanner and anti-spam (SEMRS → Assets Protector).
  *
  * Works side by side with other security plugins:
  * - Wordfence active: the SEMRS firewall and the daily scan pause (unless you
@@ -36,7 +36,7 @@ function semrs_fw_loader_path() {
  * @return string
  */
 function semrs_fw_loader_code() {
-	return "<?php\n/**\n * Plugin Name: SEMRS Firewall (early loader)\n * Description: Runs the SEMRS Pro firewall before other plugins load. Added and removed automatically by SEMRS Pro (SEMRS → Security Pro). Emergency switch: add define( 'SEMRS_FIREWALL_OFF', true ); to wp-config.php.\n * Version: 1\n * Author: SEMRS\n */\n\ndefined( 'ABSPATH' ) || exit;\n\nif ( ! defined( 'SEMRS_FIREWALL_OFF' ) || ! SEMRS_FIREWALL_OFF ) {\n\t\$semrs_fw_file = WP_PLUGIN_DIR . '/semrs-pro/modules/security/firewall-rules.php';\n\tif ( is_file( \$semrs_fw_file ) && in_array( 'semrs-pro/semrs-pro.php', (array) get_option( 'active_plugins', array() ), true ) ) {\n\t\tdefine( 'SEMRS_FW_EARLY', true );\n\t\trequire_once \$semrs_fw_file;\n\t\tsemrs_fw_boot( 'early' );\n\t}\n\tunset( \$semrs_fw_file );\n}\n";
+	return "<?php\n/**\n * Plugin Name: SEMRS Firewall (early loader)\n * Description: Runs the SEMRS Pro firewall before other plugins load. Added and removed automatically by SEMRS Pro (SEMRS → Assets Protector). Emergency switch: add define( 'SEMRS_FIREWALL_OFF', true ); to wp-config.php.\n * Version: 1\n * Author: SEMRS\n */\n\ndefined( 'ABSPATH' ) || exit;\n\nif ( ! defined( 'SEMRS_FIREWALL_OFF' ) || ! SEMRS_FIREWALL_OFF ) {\n\t\$semrs_fw_file = WP_PLUGIN_DIR . '/semrs-pro/modules/security/firewall-rules.php';\n\tif ( is_file( \$semrs_fw_file ) && in_array( 'semrs-pro/semrs-pro.php', (array) get_option( 'active_plugins', array() ), true ) ) {\n\t\tdefine( 'SEMRS_FW_EARLY', true );\n\t\trequire_once \$semrs_fw_file;\n\t\tsemrs_fw_boot( 'early' );\n\t}\n\tunset( \$semrs_fw_file );\n}\n";
 }
 
 /**
