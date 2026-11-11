@@ -4,7 +4,7 @@ Tags: seo, cookie consent, smtp, security, page cache
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.58
+Stable tag: 1.3.59
 License: GPLv2 or later
 
 Free SEO, cookie consent, SMTP email, security, page cache, redirects, WebP images and a policy-safe ads manager in one plugin.
@@ -65,6 +65,7 @@ SEMRS → Features shows every SEMRS feature, free and Pro, as cards with search
 * Optional: defer scripts (with an exclude list), prefetch pages on hover (Speculation Rules), turn off XML-RPC.
 * Page cache (off by default): static HTML for logged-out visitors served before the theme loads, separate phone copies, automatic clearing on content/menu/widget/Customizer/settings changes, admin-bar Clear cache, exclusions; pauses when another cache plugin is active. Never caches logged-in users, carts, searches, 404s, previews or query strings.
 * Database cleanup: old revisions and auto-drafts, trash, spam, expired transients, orphaned post meta.
+* Cloudflare: connect with an API token (zone found automatically), automatic purging (only the changed post's pages, or everything after site-wide changes), purge and development mode buttons, recommended zone settings in one click with undo, an optional edge page cache rule for logged-out visitors on any plan, and real visitor IP addresses. Steps aside when the Cloudflare plugin or WP Rocket's Cloudflare add-on already purges.
 * Speed check: server response, cache, compression, page weight, render-blocking files, images without sizes, oversized uploads, PHP, object cache, autoload size, with fixes.
 
 = Privacy & consent (SEMRS → Privacy) =
@@ -84,6 +85,7 @@ SEMRS → Features shows every SEMRS feature, free and Pro, as cards with search
 * Limit log-in attempts with an allow list and a lockout log; one generic log-in error.
 * Hide usernames (author scans, REST users list, users sitemap) and the WordPress version.
 * Security headers (nosniff, SAMEORIGIN, Referrer-Policy, Permissions-Policy) and optional HSTS.
+* Log-in limits, hidden usernames and security headers are on by default; log-in limits step aside when another security plugin limits log-ins.
 * Safe SVG uploads for administrators, cleaned of scripts and outside links.
 * Turn off the theme and plugin file editor. Emergency switch: SEMRS_SECURITY_OFF.
 
@@ -103,11 +105,17 @@ SEMRS Core works without any outside service. These connections happen only when
 * **YouTube** (Speed → YouTube click-to-play, on by default for pages that already embed YouTube videos): the video thumbnail is loaded from i.ytimg.com, and the player loads from youtube-nocookie.com only when the visitor clicks Play. [Terms](https://www.youtube.com/t/terms), [Privacy](https://policies.google.com/privacy).
 * **IndexNow** (IndexNow module, only after you switch it on under SEMRS → IndexNow): the addresses of public posts you publish, update or delete, with your site's key, are sent to api.indexnow.org, which shares them with participating search engines. [Terms and privacy](https://www.indexnow.org/terms).
 * **Trustpilot** (Review widgets, only on pages where you add [semrs_reviews] with your business unit ID): the TrustBox script is loaded from widget.trustpilot.com and Trustpilot shows your reviews. [Terms](https://legal.trustpilot.com/for-everyone/end-user-terms-and-conditions), [Privacy](https://legal.trustpilot.com/for-reviewers/end-user-privacy-terms).
+* **Cloudflare** (Speed → Cloudflare, only after you connect your Cloudflare account with an API token): your zone name, page addresses to clear from the cache, development mode, the recommended zone settings you apply and the edge page cache rule are sent to api.cloudflare.com, using your token. No visitor data. [Terms](https://www.cloudflare.com/website-terms/), [Privacy](https://www.cloudflare.com/privacypolicy/).
 * **Google PageSpeed Insights** (Speed → Speed check): an "Open PageSpeed Insights" link opens pagespeed.web.dev with your homepage address when you click it. Nothing is sent automatically. [Terms](https://policies.google.com/terms), [Privacy](https://policies.google.com/privacy).
 
 The speed check, SEO audit, page cache, llms.txt, cookie banner, consent log, security options and all other features run entirely on your own server. Google Consent Mode only passes the visitor's choice to Google tags you already use; it does not load anything itself.
 
 == Changelog ==
+
+= 1.3.59 =
+* New Speed → Cloudflare: connect with an API token (zone found automatically), automatic purging of only the changed post's pages, purge and development mode buttons, recommended zone settings with undo, optional edge page cache for logged-out visitors on any plan, real visitor IP addresses
+* Works alongside the Cloudflare plugin and WP Rocket's Cloudflare add-on
+* Updates: Check again shows new SEMRS releases with one click
 
 = 1.3.58 =
 * Features screen: SEMRS Assets Protector and Backups & migration cards show under Privacy & security with their Settings button and guide link

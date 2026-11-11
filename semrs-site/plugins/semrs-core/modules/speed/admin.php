@@ -66,6 +66,7 @@ function semrs_speed_page() {
 		'cache'    => __( 'Page cache', 'semrs-core' ),
 		'database' => __( 'Database', 'semrs-core' ),
 		'server'   => __( 'Server', 'semrs-core' ),
+		'cloudflare' => __( 'Cloudflare', 'semrs-core' ),
 		'check'    => __( 'Speed check', 'semrs-core' ),
 	);
 	$tab  = isset( $_GET['tab'] ) && isset( $tabs[ sanitize_key( $_GET['tab'] ) ] ) ? sanitize_key( $_GET['tab'] ) : 'optimize'; // phpcs:ignore WordPress.Security.NonceVerification -- navigation.
@@ -94,6 +95,8 @@ function semrs_speed_page() {
 			semrs_speed_server_tab();
 		} elseif ( 'cache' === $tab ) {
 			semrs_speed_cache_tab();
+		} elseif ( 'cloudflare' === $tab ) {
+			semrs_speed_cloudflare_tab();
 		} else {
 			semrs_speed_optimize_tab();
 		}

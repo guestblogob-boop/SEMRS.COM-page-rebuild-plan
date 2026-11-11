@@ -284,6 +284,7 @@ function semrs_speed_defer( $tag, $handle, $src ) {
 require __DIR__ . '/css.php';
 require __DIR__ . '/cache.php';
 require __DIR__ . '/fonts.php';
+require __DIR__ . '/cloudflare.php';
 if ( is_admin() ) {
 	require __DIR__ . '/admin.php';
 	require __DIR__ . '/cleanup.php';

@@ -68,7 +68,25 @@ This tab works on the web server itself. Nothing changes until you click a butto
 
 **Something wrong?** Click **Remove rules** or **Switch off**. In an emergency, add `define( 'SEMRS_CACHE_OFF', true );` to wp-config.php. If you deactivate SEMRS Core, the early cache file is removed for you.
 
-## 5. Speed check
+## 5. Cloudflare
+
+Is your domain on Cloudflare? Open the **Cloudflare** tab and connect it once.
+
+1. In Cloudflare, go to **My Profile → API Tokens → Create Token → Create Custom Token**.
+2. Give it these permissions for your domain: **Zone → Read**, **Zone Settings → Edit**, **Cache Purge → Purge** and **Cache Rules → Edit**.
+3. Paste the token in SEMRS and click **Connect**. Your domain is found by itself.
+
+Then:
+
+- **Automatic clearing:** when you update a post, only its pages are cleared at Cloudflare (the post, home page, its categories, tags and author). Theme, menu and settings changes clear everything.
+- **Clear Cloudflare cache** and **Development mode** buttons, for when you work on the design.
+- **Apply recommended settings:** HTTPS, TLS 1.3, HTTP/3, Early Hints and more in one click. Your old values are saved, and **Put my previous settings back** undoes it.
+- **Edge page cache:** your pages are served from Cloudflare's data centers near each visitor, also on the free plan. Logged-in users, carts, checkout, search and the admin are never cached.
+- **Real visitor addresses:** comments and security see each visitor's own IP address instead of Cloudflare's.
+
+**Using the Cloudflare plugin or WP Rocket's Cloudflare add-on?** SEMRS automatic clearing steps aside, so the cache is never cleared twice.
+
+## 6. Speed check
 
 Click **Run speed check**. SEMRS tests your home page and lists simple fixes. It checks:
 
