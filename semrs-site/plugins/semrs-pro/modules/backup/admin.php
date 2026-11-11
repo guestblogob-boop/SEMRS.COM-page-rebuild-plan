@@ -402,7 +402,7 @@ function semrs_bk_tab_backups() {
 						<?php semrs_bk_form( 'restore' ); ?><input type="hidden" name="id" value="<?php echo esc_attr( $id ); ?>">
 						<p><?php foreach ( (array) $h['parts'] as $p ) : ?><label style="display:block"><input type="checkbox" name="bk[parts][<?php echo esc_attr( $p ); ?>]" value="1" checked> <?php echo esc_html( $labels[ $p ] ?? $p ); ?></label><?php endforeach; ?></p>
 						<?php if ( preg_grep( '/\.enc$/', (array) $h['files'] ) ) : ?>
-							<p><label><?php esc_html_e( 'Encryption password', 'semrs-pro' ); ?> <input type="password" name="bk[pass]" autocomplete="off" placeholder="<?php esc_attr_e( '(the saved one is used if empty)', 'semrs-pro' ); ?>"></label></p>
+							<p><label><?php esc_html_e( 'Encryption password', 'semrs-pro' ); ?> <input type="password" name="bk[pass]" autocomplete="new-password" placeholder="<?php esc_attr_e( '(the saved one is used if empty)', 'semrs-pro' ); ?>"></label></p>
 						<?php endif; ?>
 						<?php if ( ! empty( $h['base'] ) ) : ?>
 							<?php /* translators: %s: backup id */ ?>
@@ -560,7 +560,7 @@ function semrs_bk_dest_form( $d, $fields, $extra = '' ) {
 				<?php if ( 'checkbox' === $x[1] ) : ?>
 					<label><input type="checkbox" name="bk[<?php echo esc_attr( $f ); ?>]" value="1" <?php checked( '1', (string) ( $o[ $f ] ?? '' ) ); ?>> <?php echo esc_html( $x[3] ?? '' ); ?></label>
 				<?php else : ?>
-					<input type="<?php echo esc_attr( $x[1] ); ?>" name="bk[<?php echo esc_attr( $f ); ?>]" value="<?php echo 'password' === $x[1] ? '' : esc_attr( (string) ( $o[ $f ] ?? '' ) ); ?>" placeholder="<?php echo esc_attr( 'password' === $x[1] && ! empty( $o[ $f ] ) ? __( '(saved, leave empty to keep)', 'semrs-pro' ) : ( $x[2] ?? '' ) ); ?>" class="regular-text" autocomplete="off">
+					<input type="<?php echo esc_attr( $x[1] ); ?>" name="bk[<?php echo esc_attr( $f ); ?>]" value="<?php echo 'password' === $x[1] ? '' : esc_attr( (string) ( $o[ $f ] ?? '' ) ); ?>" placeholder="<?php echo esc_attr( 'password' === $x[1] && ! empty( $o[ $f ] ) ? __( '(saved, leave empty to keep)', 'semrs-pro' ) : ( $x[2] ?? '' ) ); ?>" class="regular-text" autocomplete="<?php echo 'password' === $x[1] ? 'new-password' : 'off'; ?>" data-lpignore="true" data-1p-ignore>
 					<?php if ( ! empty( $x[3] ) ) : ?><p class="description"><?php echo esc_html( $x[3] ); ?></p><?php endif; ?>
 				<?php endif; ?>
 				</td></tr>

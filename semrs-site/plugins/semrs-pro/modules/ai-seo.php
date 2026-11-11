@@ -465,7 +465,7 @@ function semrs_ai_page() {
 					<p class="description"><?php foreach ( semrs_ai_providers() as $p ) : ?><a href="<?php echo esc_url( $p[2] ); ?>" target="_blank" rel="noopener"><?php /* translators: %s: provider */ echo esc_html( sprintf( __( 'Get a %s key', 'semrs-pro' ), $p[0] ) ); ?></a> &nbsp; <?php endforeach; ?></p>
 				</td></tr>
 				<tr><th scope="row"><label for="semrs_ai_key"><?php esc_html_e( 'API key', 'semrs-pro' ); ?></label></th><td>
-					<input type="password" class="regular-text" id="semrs_ai_key" name="semrs_ai[key]" value="" autocomplete="off" placeholder="<?php echo esc_attr( '' !== $s['key'] ? '•••••••• ' . substr( $s['key'], -4 ) : '' ); ?>">
+					<input type="password" class="regular-text" id="semrs_ai_key" name="semrs_ai[key]" value="" autocomplete="new-password" data-lpignore="true" data-1p-ignore placeholder="<?php echo esc_attr( '' !== $s['key'] ? '•••••••• ' . substr( $s['key'], -4 ) : '' ); ?>">
 					<p class="description"><?php esc_html_e( 'Stored on your site only. Leave empty to keep the saved key.', 'semrs-pro' ); ?></p>
 					<?php if ( '' !== $s['key'] ) : ?><label><input type="checkbox" name="semrs_ai[forget]" value="1"> <?php esc_html_e( 'Remove the saved key', 'semrs-pro' ); ?></label><?php endif; ?>
 				</td></tr>

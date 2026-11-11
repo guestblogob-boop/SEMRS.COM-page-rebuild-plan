@@ -4,7 +4,7 @@ Tags: seo, cookie consent, smtp, security, page cache
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.59
+Stable tag: 1.3.60
 License: GPLv2 or later
 
 Free SEO, cookie consent, SMTP email, security, page cache, redirects, WebP images and a policy-safe ads manager in one plugin.
@@ -111,6 +111,9 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt, cookie banner, consent log, security options and all other features run entirely on your own server. Google Consent Mode only passes the visitor's choice to Google tags you already use; it does not load anything itself.
 
 == Changelog ==
+
+= 1.3.60 =
+* Cloudflare: browsers no longer fill saved passwords into the token fields, and anything that is not shaped like a Cloudflare token or key is refused before it is sent
 
 = 1.3.59 =
 * New Speed → Cloudflare: connect with an API token (zone found automatically), automatic purging of only the changed post's pages, purge and development mode buttons, recommended zone settings with undo, optional edge page cache for logged-out visitors on any plan, real visitor IP addresses

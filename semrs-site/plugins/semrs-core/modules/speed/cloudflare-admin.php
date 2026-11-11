@@ -48,6 +48,11 @@ add_action(
 				if ( '' === $auth['token'] && ( '' === $auth['email'] || '' === $auth['key'] ) ) {
 					semrs_cf_back( new WP_Error( 'semrs_cf', __( 'Paste an API token (recommended), or your Cloudflare email and Global API key.', 'semrs-core' ) ) );
 				}
+				// Never send anything that is not shaped like a Cloudflare credential (for example a
+				// password the browser filled in by itself): tokens are 40 characters, Global API keys 37 hex.
+				if ( '' !== $auth['token'] ? ! preg_match( '/^[A-Za-z0-9_-]{40}$/', $auth['token'] ) : ! preg_match( '/^[a-f0-9]{37}$/i', $auth['key'] ) ) {
+					semrs_cf_back( new WP_Error( 'semrs_cf', __( 'That does not look like a Cloudflare API token (40 letters, numbers, - and _) or Global API key (37 characters). Nothing was sent. If your browser filled in a saved password, clear the field and paste the token.', 'semrs-core' ) ) );
+				}
 				$zone = semrs_cf_find_zone( $auth );
 				if ( is_wp_error( $zone ) ) {
 					semrs_cf_back( $zone );
@@ -137,10 +142,10 @@ function semrs_speed_cloudflare_tab() {
 				<li><?php esc_html_e( 'Create the token, copy it and paste it below. The zone is found automatically.', 'semrs-core' ); ?></li>
 			</ol>
 			<?php semrs_cf_form( 'connect' ); ?>
-				<p><label><?php esc_html_e( 'API token', 'semrs-core' ); ?><br><input type="password" name="cf[token]" class="regular-text" autocomplete="off"></label></p>
+				<p><label><?php esc_html_e( 'API token', 'semrs-core' ); ?><br><input type="password" name="cf[token]" class="regular-text" autocomplete="new-password" data-lpignore="true" data-1p-ignore></label></p>
 				<details><summary style="cursor:pointer"><?php esc_html_e( 'Use the Global API key instead (not recommended)', 'semrs-core' ); ?></summary>
-					<p><label><?php esc_html_e( 'Cloudflare email', 'semrs-core' ); ?><br><input type="email" name="cf[email]" class="regular-text" autocomplete="off"></label></p>
-					<p><label><?php esc_html_e( 'Global API key', 'semrs-core' ); ?><br><input type="password" name="cf[key]" class="regular-text" autocomplete="off"></label></p>
+					<p><label><?php esc_html_e( 'Cloudflare email', 'semrs-core' ); ?><br><input type="email" name="cf[email]" class="regular-text" autocomplete="off" data-lpignore="true" data-1p-ignore></label></p>
+					<p><label><?php esc_html_e( 'Global API key', 'semrs-core' ); ?><br><input type="password" name="cf[key]" class="regular-text" autocomplete="new-password" data-lpignore="true" data-1p-ignore></label></p>
 				</details>
 				<?php submit_button( __( 'Connect', 'semrs-core' ), 'primary', 'submit', false ); ?>
 			</form>

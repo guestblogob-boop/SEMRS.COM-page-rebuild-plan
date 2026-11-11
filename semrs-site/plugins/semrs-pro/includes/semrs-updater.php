@@ -56,7 +56,7 @@ if ( ! class_exists( 'SEMRS_Updater_1' ) ) {
 			add_filter( 'update_themes_semrs.com', array( __CLASS__, 'theme_update' ), 10, 3 );
 			add_filter( 'plugins_api', array( __CLASS__, 'plugin_info' ), 20, 3 );
 			add_action( 'upgrader_process_complete', array( __CLASS__, 'flush' ) );
-			add_action( 'load-update-core.php', array( __CLASS__, 'maybe_force' ), 1 ); // Before WordPress's own check (priority 10).
+			add_action( 'load-update-core.php', array( __CLASS__, 'maybe_force' ) );
 		}
 
 		/**
