@@ -35,7 +35,7 @@ function semrs_pro_addon_modules() {
  * @return string[]
  */
 function semrs_pro_common_modules() {
-	return array( 'two_factor', 'activity', 'search_replace', 'security_pro' );
+	return array( 'two_factor', 'activity', 'search_replace', 'security_pro', 'backup' );
 }
 
 /**

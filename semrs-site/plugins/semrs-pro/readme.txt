@@ -4,7 +4,7 @@ Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: semrs-core
-Stable tag: 1.5.21
+Stable tag: 1.5.22
 License: GPLv2 or later
 
 Premium add-on for the free SEMRS theme and the free SEMRS Core plugin. Every module can be switched off under SEMRS → Modules.
@@ -146,6 +146,12 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 SEMRS → License: paste your key and click Activate (Deactivate frees the site so you can move the key). Updates come from semrs.com (SEMRS Update Server): with a valid key, WordPress shows "Update available" and installs new versions in one click. Features never switch off when a license expires; the license controls updates and support.
 
 == Changelog ==
+
+= 1.5.22 =
+* Security Pro is now SEMRS Assets Protector
+* SEMRS theme and plugin files are checked against semrs.com fingerprints and repaired automatically
+* New Backups & migration: scheduled full or partial backups to this server, Amazon S3 and S3-compatible storage, Dropbox, Google Drive, FTP/FTPS, SFTP, WebDAV and email; one-click restore; one-click migration with size limits
+* Malware scan: harmless guard files in uploads are no longer reported; hosting log-in files and leftover tools are explained
 
 = 1.5.21 =
 * New Security Pro: firewall that runs before other plugins (SQL injection, XSS, file inclusion, code injection, private files, PHP in uploads, XML-RPC brute force, attack tools, 404 floods, repeat attackers)
