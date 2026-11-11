@@ -67,6 +67,10 @@ function semrs_security_page() {
 			<table class="form-table" role="presentation">
 				<?php foreach ( $rows as $k => $r ) : ?>
 					<tr><th><?php echo esc_html( $r[0] ); ?></th><td><label><input type="checkbox" name="<?php echo esc_attr( $n . '[' . $k . ']' ); ?>" value="1" <?php checked( $s[ $k ], '1' ); ?>> <?php echo esc_html( $r[1] ); ?></label>
+					<?php if ( 'limit' === $k && semrs_security_other_login_guard() ) : ?>
+						<?php /* translators: %s: plugin name, e.g. Wordfence. */ ?>
+						<p class="description"><strong><?php echo esc_html( sprintf( __( 'Paused: %s already limits log-in attempts on this site, so SEMRS steps aside.', 'semrs-core' ), semrs_security_other_login_guard() ) ); ?></strong></p>
+					<?php endif; ?>
 					<?php if ( 'limit' === $k ) : ?>
 						<p><?php esc_html_e( 'Lock after', 'semrs-core' ); ?> <input type="number" min="3" max="20" name="<?php echo esc_attr( $n ); ?>[tries]" value="<?php echo esc_attr( $s['tries'] ); ?>" style="width:70px"> <?php esc_html_e( 'failed tries, for', 'semrs-core' ); ?> <input type="number" min="5" max="1440" name="<?php echo esc_attr( $n ); ?>[minutes]" value="<?php echo esc_attr( $s['minutes'] ); ?>" style="width:80px"> <?php esc_html_e( 'minutes', 'semrs-core' ); ?></p>
 						<p><label><?php esc_html_e( 'Never lock these IP addresses (one per line):', 'semrs-core' ); ?><br><textarea name="<?php echo esc_attr( $n ); ?>[allowlist]" rows="2" class="regular-text code"><?php echo esc_textarea( $s['allowlist'] ); ?></textarea></label><br><span class="description"><?php /* translators: %s: IP address. */ echo esc_html( sprintf( __( 'Your IP address now: %s', 'semrs-core' ), $ip ) ); ?></span></p>
@@ -84,7 +88,7 @@ function semrs_security_page() {
 			<?php endforeach; ?>
 			</tbody></table>
 		<?php endif; ?>
-		<p><?php esc_html_e( 'For two-factor log-in, an activity log and a custom log-in address, see SEMRS Pro → Login security and Activity log.', 'semrs-core' ); ?></p>
+		<p><?php esc_html_e( 'SEMRS Pro adds a firewall, a malware scanner, spam protection for comments and forms, two-factor log-in, a custom log-in address and an activity log.', 'semrs-core' ); ?></p>
 	</div>
 	<?php
 }
