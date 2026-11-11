@@ -4,7 +4,7 @@ Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: semrs-core
-Stable tag: 1.5.22
+Stable tag: 1.5.23
 License: GPLv2 or later
 
 Premium add-on for the free SEMRS theme and the free SEMRS Core plugin. Every module can be switched off under SEMRS → Modules.
@@ -146,6 +146,15 @@ Template photos in templates/photos/ are public domain (CC0 1.0 Universal, https
 SEMRS → License: paste your key and click Activate (Deactivate frees the site so you can move the key). Updates come from semrs.com (SEMRS Update Server): with a valid key, WordPress shows "Update available" and installs new versions in one click. Features never switch off when a license expires; the license controls updates and support.
 
 == Changelog ==
+
+= 1.5.23 =
+* Backups for very large sites: fast paging through big tables, disk-space check, migration size limit (default 10 GB), 16 MB transfer pieces with exact size checks
+* Differential backups (only changed files between full backups), encrypted database backups (AES-256), leave out chosen database tables
+* Rollback copies of plugins and themes before every update, with one-click roll back
+* Import and restore UpdraftPlus backups and All-in-One WP Migration .wpress files
+* Find backups in S3, Dropbox, Google Drive, FTP, SFTP or WebDAV and restore them on a fresh site
+* Check a backup without restoring it
+* WP-CLI: wp semrs backup run, list, restore, rescan, key, pull
 
 = 1.5.22 =
 * Security Pro is now SEMRS Assets Protector

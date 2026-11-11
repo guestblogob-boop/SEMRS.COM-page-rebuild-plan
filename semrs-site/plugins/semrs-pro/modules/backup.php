@@ -15,6 +15,7 @@ defined( 'ABSPATH' ) || exit;
 
 require_once __DIR__ . '/backup/engine.php';
 require_once __DIR__ . '/backup/remote.php';
+require_once __DIR__ . '/backup/pro.php';
 
 /*
  * Migration: the old site hands its package to the new site, file by file,
@@ -102,7 +103,7 @@ function semrs_bk_rest_pkg_file( $req ) {
 	$off  = max( 0, (int) $req->get_param( 'o' ) );
 	nocache_headers();
 	header( 'Content-Type: application/octet-stream' );
-	echo semrs_bk_read( $path, $off, 8 * MB_IN_BYTES ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo semrs_bk_read( $path, $off, 16 * MB_IN_BYTES ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	exit;
 }
 
@@ -178,7 +179,13 @@ function semrs_bk_pull_get( $job, $end ) {
 		$data = (string) wp_remote_retrieve_body( $res );
 		file_put_contents( $job['dir'] . $f, $data, $job['off'] ? FILE_APPEND : 0 ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		$job['off'] += strlen( $data );
-		if ( strlen( $data ) < 8 * MB_IN_BYTES ) {
+		// Done when the known size is reached (the manifest itself: when a short piece arrives).
+		$want = isset( $job['sizes'][ $f ] ) ? (int) $job['sizes'][ $f ] : -1;
+		if ( ( $want >= 0 && $job['off'] >= $want ) || ( $want < 0 && strlen( $data ) < 8 * MB_IN_BYTES ) || '' === $data ) {
+			if ( $want >= 0 && $job['off'] !== $want ) {
+				/* translators: %s: file */
+				throw new Exception( sprintf( __( '%s did not copy completely. Start the migration again.', 'semrs-pro' ), $f ) );
+			}
 			++$job['f'];
 			$job['off'] = 0;
 		}

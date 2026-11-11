@@ -45,6 +45,13 @@ function semrs_bk_settings() {
 			'dests'    => array(),
 			'notify'   => 'fail',
 			'others_plugins' => '',
+			'migrate_max' => 10240,
+			'skip_tables' => array(),
+			'encrypt'  => '',
+			'pass'     => '',
+			'diff'     => '',
+			'full_every' => 7,
+			'preupdate' => '1',
 		)
 	);
 }
@@ -262,7 +269,23 @@ function semrs_bk_start( $by = 'manual', $parts = null ) {
 		),
 		'dests'   => 'migrate' === $by ? array() : array_values( (array) $set['dests'] ),
 		'upload'  => array(),
+		'est'     => 0,
+		'base'    => '',
+		'since'   => 0,
 	);
+	// Differential backups: files changed since the last full backup (the database is always full).
+	if ( '1' === $set['diff'] && 'migrate' !== $by && array_diff( $parts, array( 'db' ) ) ) {
+		foreach ( (array) get_option( 'semrs_bk_history', array() ) as $hid => $h ) {
+			if ( empty( $h['base'] ) && in_array( $h['by'] ?? '', array( 'manual', 'schedule' ), true ) && ! array_diff( $parts, (array) $h['parts'] ) && $h['time'] > time() - max( 1, (int) $set['full_every'] ) * DAY_IN_SECONDS && ( ! $job['base'] || $h['time'] > $job['since'] ) && is_file( $dir . $hid . '-manifest.json' ) ) {
+				$job['base']  = $hid;
+				$job['since'] = (int) $h['time'];
+			}
+		}
+		$job['manifest']['base'] = $job['base'];
+		if ( $job['base'] ) {
+			semrs_bk_log( $job, sprintf( 'Only files changed since the full backup %s are added.', $job['base'] ) );
+		}
+	}
 	semrs_bk_log( $job, sprintf( 'Backup %s started (%s).', $id, implode( ', ', $parts ) ) );
 	semrs_bk_save_job( $job );
 	return true;
@@ -296,6 +319,11 @@ function semrs_bk_step( $budget = 8 ) {
 	} catch ( Throwable $e ) {
 		semrs_bk_log( $job, 'Error: ' . $e->getMessage() );
 		$job['error'] = $e->getMessage();
+		if ( 'backup' === $job['type'] ) {
+			foreach ( (array) glob( $job['dir'] . $job['id'] . '-*' ) as $part ) {
+				@unlink( $part ); // phpcs:ignore WordPress.PHP.NoSilencedErrors,WordPress.WP.AlternativeFunctions -- unfinished backup files.
+			}
+		}
 		$job['phase'] = 'done';
 		semrs_bk_save_job( $job );
 		semrs_bk_finished( $job );
@@ -336,7 +364,8 @@ function semrs_bk_dump_db( $job, $end ) {
 	$c = $job['cur'];
 	if ( empty( $c['tables'] ) && ! isset( $c['t'] ) ) {
 		$tables = $wpdb->get_col( $wpdb->prepare( 'SHOW FULL TABLES WHERE Table_type = %s', 'BASE TABLE' ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
-		$tables = array_values( array_filter( (array) $tables, function ( $t ) use ( $wpdb ) { return 0 === strpos( $t, $wpdb->prefix ); } ) );
+		$skip   = (array) semrs_bk_settings()['skip_tables'];
+		$tables = array_values( array_filter( (array) $tables, function ( $t ) use ( $wpdb, $skip ) { return 0 === strpos( $t, $wpdb->prefix ) && ! in_array( $t, $skip, true ); } ) );
 		$c      = array( 'tables' => $tables, 't' => 0, 'row' => 0, 'file' => $job['dir'] . $job['id'] . '-db.sql' );
 		file_put_contents( $c['file'], "-- SEMRS backup " . $job['id'] . "\nSET NAMES " . $wpdb->charset . ";\nSET foreign_key_checks = 0;\nSET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';\n" ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		semrs_bk_log( $job, sprintf( 'Database: %d tables.', count( $tables ) ) );
@@ -347,8 +376,29 @@ function semrs_bk_dump_db( $job, $end ) {
 		if ( 0 === $c['row'] ) {
 			$create = $wpdb->get_row( 'SHOW CREATE TABLE `' . esc_sql( $t ) . '`', ARRAY_N ); // phpcs:ignore WordPress.DB
 			fwrite( $fh, 'DROP TABLE IF EXISTS `' . $t . "`;\n" . str_replace( array( "\r", "\n" ), ' ', (string) $create[1] ) . ";\n" ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+			// Big tables: page by a numeric primary key (fast at any size) instead of OFFSET.
+			$keys      = $wpdb->get_results( 'SHOW KEYS FROM `' . esc_sql( $t ) . "` WHERE Key_name = 'PRIMARY'" ); // phpcs:ignore WordPress.DB
+			$c['pk']   = '';
+			$c['pki']  = 0;
+			$c['last'] = null;
+			if ( 1 === count( (array) $keys ) ) {
+				$cols = $wpdb->get_results( 'SHOW COLUMNS FROM `' . esc_sql( $t ) . '`' ); // phpcs:ignore WordPress.DB
+				foreach ( (array) $cols as $i => $col ) {
+					if ( $col->Field === $keys[0]->Column_name && preg_match( '/int/i', $col->Type ) ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName
+						$c['pk']  = $col->Field; // phpcs:ignore WordPress.NamingConventions.ValidVariableName
+						$c['pki'] = $i;
+					}
+				}
+			}
 		}
-		$rows = $wpdb->get_results( 'SELECT * FROM `' . esc_sql( $t ) . '` LIMIT 500 OFFSET ' . (int) $c['row'], ARRAY_N ); // phpcs:ignore WordPress.DB
+		if ( '' !== $c['pk'] ) {
+			$rows = $wpdb->get_results( 'SELECT * FROM `' . esc_sql( $t ) . '`' . ( null === $c['last'] ? '' : ' WHERE `' . esc_sql( $c['pk'] ) . '` > ' . (int) $c['last'] ) . ' ORDER BY `' . esc_sql( $c['pk'] ) . '` LIMIT 500', ARRAY_N ); // phpcs:ignore WordPress.DB
+			if ( $rows ) {
+				$c['last'] = (int) $rows[ count( $rows ) - 1 ][ $c['pki'] ];
+			}
+		} else {
+			$rows = $wpdb->get_results( 'SELECT * FROM `' . esc_sql( $t ) . '` LIMIT 500 OFFSET ' . (int) $c['row'], ARRAY_N ); // phpcs:ignore WordPress.DB
+		}
 		if ( $rows ) {
 			// Statements stay under ~1 MB so they fit MySQL's packet limit on any host.
 			$vals = array();
@@ -385,8 +435,15 @@ function semrs_bk_dump_db( $job, $end ) {
 			$zip->close();
 		}
 		@unlink( $c['file'] ); // phpcs:ignore WordPress.PHP.NoSilencedErrors,WordPress.WP.AlternativeFunctions
+		$set = semrs_bk_settings();
+		if ( '1' === $set['encrypt'] && '' !== (string) $set['pass'] && 'migrate' !== $job['by'] ) {
+			semrs_bk_crypt_file( $zipf, $zipf . '.enc', (string) $set['pass'], true );
+			@unlink( $zipf ); // phpcs:ignore WordPress.PHP.NoSilencedErrors,WordPress.WP.AlternativeFunctions
+			$zipf .= '.enc';
+			$job['manifest']['encrypted'] = true;
+		}
 		$job['files'][] = basename( $zipf );
-		semrs_bk_log( $job, sprintf( 'Database done (%s).', size_format( (int) filesize( $zipf ) ) ) );
+		semrs_bk_log( $job, sprintf( 'Database done (%s)%s.', size_format( (int) filesize( $zipf ) ), '.enc' === substr( $zipf, -4 ) ? ', encrypted' : '' ) );
 		array_shift( $job['queue'] );
 		$c = array();
 	}
@@ -431,12 +488,29 @@ function semrs_bk_zip_part( $job, $part, $end ) {
 					++$big;
 					continue;
 				}
+				if ( $job['since'] && $f->getMTime() <= $job['since'] ) {
+					continue; // Unchanged since the full backup.
+				}
 				$size += $f->getSize();
 				fwrite( $fh, ltrim( substr( str_replace( '\\', '/', $f->getPathname() ), strlen( $root ) ), '/' ) . "\n" ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 				++$n;
 			}
 		}
 		fclose( $fh ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+		$job['est'] = (int) ( $job['est'] ?? 0 ) + $size;
+		// Migration size limit (default 10 GB) and free disk space.
+		$cap = max( 100, (int) $set['migrate_max'] ) * MB_IN_BYTES;
+		if ( 'migrate' === $job['by'] && $job['est'] > $cap ) {
+			@unlink( $list ); // phpcs:ignore WordPress.PHP.NoSilencedErrors,WordPress.WP.AlternativeFunctions
+			/* translators: 1: size, 2: limit */
+			throw new Exception( sprintf( __( 'The site is %1$s, over your migration limit of %2$s. Leave out large folders or files (Schedule & contents), or raise the limit.', 'semrs-pro' ), size_format( $job['est'] ), size_format( $cap ) ) );
+		}
+		$free = function_exists( 'disk_free_space' ) ? @disk_free_space( $job['dir'] ) : false; // phpcs:ignore WordPress.PHP.NoSilencedErrors
+		if ( false !== $free && $free < $size * 1.05 + 50 * MB_IN_BYTES ) {
+			@unlink( $list ); // phpcs:ignore WordPress.PHP.NoSilencedErrors,WordPress.WP.AlternativeFunctions
+			/* translators: 1: needed, 2: free */
+			throw new Exception( sprintf( __( 'Not enough disk space: about %1$s needed, %2$s free. Delete old backups, leave out large folders, or ask your host for more space.', 'semrs-pro' ), size_format( $size * 1.05 ), size_format( $free ) ) );
+		}
 		$c = array( 'list' => $list, 'pos' => 0, 'n' => $n, 'num' => 1, 'bytes' => 0 );
 		$job['manifest']['roots'][ $part ] = $root;
 		/* translators: 1: part, 2: files, 3: size */
@@ -574,6 +648,7 @@ function semrs_bk_backup_finish( $job ) {
 		'remote' => $job['upload']['remote'] ?? array(),
 		'local'  => true,
 		'warn'   => $job['warn'] ?? array(),
+		'base'   => $job['base'] ?? '',
 	);
 	// Keep the newest N scheduled/manual backups (migration packages are removed after a day).
 	$keep  = max( 1, (int) $set['keep'] );
@@ -587,6 +662,16 @@ function semrs_bk_backup_finish( $job ) {
 	);
 	usort( $older, function ( $a, $b ) use ( $hist ) { return $hist[ $b ]['time'] <=> $hist[ $a ]['time']; } );
 	foreach ( array_slice( $older, $keep ) as $old ) {
+		// A full backup that newer differential backups still build on is kept.
+		$needed = false;
+		foreach ( $hist as $hh ) {
+			if ( ( $hh['base'] ?? '' ) === $old ) {
+				$needed = true;
+			}
+		}
+		if ( $needed || ! isset( $hist[ $old ] ) ) {
+			continue;
+		}
 		semrs_bk_delete_set( $old, $hist[ $old ] );
 		unset( $hist[ $old ] );
 	}
@@ -649,7 +734,7 @@ function semrs_bk_finished( $job ) {
  * @param bool   $migrate Moving from another site (replace its address with this one).
  * @return true|WP_Error
  */
-function semrs_bk_restore_start( $id, $parts, $migrate = false ) {
+function semrs_bk_restore_start( $id, $parts, $migrate = false, $pass = '' ) {
 	$dir = semrs_bk_dir();
 	$mf  = $dir . $id . '-manifest.json';
 	if ( ! is_file( $mf ) ) {
@@ -667,9 +752,32 @@ function semrs_bk_restore_start( $id, $parts, $migrate = false ) {
 	}
 	global $wpdb;
 	$queue = array();
-	foreach ( (array) $m['files'] as $f => $sz ) {
-		if ( preg_match( '/-(db|plugins|themes|uploads|mu|others)(?:-\d+)?\.zip$/', $f, $mm ) && in_array( $mm[1], $parts, true ) && 'db' !== $mm[1] ) {
-			$queue[] = $f;
+	// A differential backup restores its full backup first, then the changed files.
+	$sets = array( $m );
+	if ( ! empty( $m['base'] ) ) {
+		$bf = $dir . $m['base'] . '-manifest.json';
+		$bm = is_file( $bf ) ? json_decode( (string) file_get_contents( $bf ), true ) : null; // phpcs:ignore WordPress.WP.AlternativeFunctions
+		if ( ! is_array( $bm ) ) {
+			/* translators: %s: backup id */
+			return new WP_Error( 'semrs', sprintf( __( 'This backup only holds changes; its full backup %s is needed on this server too.', 'semrs-pro' ), $m['base'] ) );
+		}
+		array_unshift( $sets, $bm );
+	}
+	foreach ( $sets as $sm ) {
+		foreach ( (array) $sm['files'] as $f => $sz ) {
+			if ( preg_match( '/-(plugins|themes|uploads|mu|others)-\d+\.zip$/', $f, $mm ) && in_array( $mm[1], $parts, true ) ) {
+				if ( ! is_file( $dir . $f ) ) {
+					/* translators: %s: file */
+					return new WP_Error( 'semrs', sprintf( __( 'Part of the backup is missing: %s', 'semrs-pro' ), $f ) );
+				}
+				$queue[] = $f;
+			}
+		}
+	}
+	$dbf = '';
+	foreach ( array_keys( (array) $m['files'] ) as $f ) {
+		if ( preg_match( '/-db\.zip(?:\.enc)?$/', $f ) ) {
+			$dbf = $f;
 		}
 	}
 	$job = array(
@@ -679,7 +787,9 @@ function semrs_bk_restore_start( $id, $parts, $migrate = false ) {
 		'm'        => $m,
 		'parts'    => $parts,
 		'queue'    => $queue,
-		'db'       => in_array( 'db', $parts, true ),
+		'db'       => in_array( 'db', $parts, true ) && '' !== $dbf,
+		'dbf'      => $dbf,
+		'pass'     => $pass,
 		'migrate'  => $migrate,
 		'phase'    => 'files',
 		'cur'      => array(),
@@ -729,8 +839,17 @@ function semrs_bk_restore_files( $job, $end ) {
 		$part  = '';
 		for ( $n = 0; $n < 300 && $c['i'] < $zip->numFiles; $n++ ) {
 			$name = (string) $zip->getNameIndex( $c['i']++ );
+			if ( '/' === substr( $name, -1 ) ) {
+				continue;
+			}
 			$p    = strtok( $name, '/' );
 			$rel  = substr( $name, strlen( $p ) + 1 );
+			if ( isset( $job['map'][ $f ] ) ) {
+				// Zips from other tools: "part|prefix" (entries may or may not start with the prefix).
+				list( $mp, $pre ) = array_pad( explode( '|', $job['map'][ $f ], 2 ), 2, '' );
+				$p   = $mp;
+				$rel = '' !== $pre && 0 === strpos( $name, $pre ) ? substr( $name, strlen( $pre ) ) : $name;
+			}
 			// Never overwrite SEMRS Pro itself while it is running the restore.
 			if ( 'plugins' === $p && 0 === strpos( $rel, $own . '/' ) ) {
 				continue;
@@ -741,17 +860,17 @@ function semrs_bk_restore_files( $job, $end ) {
 			if ( $p !== $part || false !== strpos( $name, '..' ) || ! isset( $roots[ $p ] ) ) {
 				continue;
 			}
-			$batch[] = $name;
+			$batch[ $name ] = $rel;
 		}
 		if ( $batch && $part ) {
 			// Extract to a temp folder, then move into place (zip paths carry the part name).
 			$tmp = $job['dir'] . 'restore-tmp/';
 			wp_mkdir_p( $tmp );
-			$zip->extractTo( $tmp, $batch );
+			$zip->extractTo( $tmp, array_keys( $batch ) );
 			$dest = untrailingslashit( $roots[ $part ][0] );
-			foreach ( $batch as $name ) {
+			foreach ( $batch as $name => $rel ) {
 				$from = $tmp . $name;
-				$to   = $dest . '/' . substr( $name, strlen( $part ) + 1 );
+				$to   = $dest . "/" . $rel;
 				if ( is_file( $from ) ) {
 					wp_mkdir_p( dirname( $to ) );
 					if ( ! @rename( $from, $to ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors,WordPress.WP.AlternativeFunctions
@@ -784,33 +903,67 @@ function semrs_bk_restore_db( $job, $end ) {
 	global $wpdb;
 	$c = $job['cur'];
 	if ( empty( $c['sql'] ) ) {
-		$zip = new ZipArchive();
-		if ( true !== $zip->open( $job['dir'] . $job['id'] . '-db.zip' ) ) {
-			throw new Exception( 'Cannot open the database backup.' );
+		if ( ! empty( $job['sqlfile'] ) ) {
+			$sql = $job['sqlfile']; // Imported from another backup plugin.
+		} else {
+			$dbf = $job['dir'] . ( $job['dbf'] ?? $job['id'] . '-db.zip' );
+			if ( '.enc' === substr( $dbf, -4 ) ) {
+				$pass = '' !== (string) ( $job['pass'] ?? '' ) ? $job['pass'] : (string) semrs_bk_settings()['pass'];
+				if ( ! semrs_bk_crypt_file( $dbf, $job['dir'] . 'database-dec.zip', $pass, false ) ) {
+					throw new Exception( __( 'The database backup is encrypted and the password is wrong or missing (Schedule & contents → Encryption).', 'semrs-pro' ) );
+				}
+				$dbf = $job['dir'] . 'database-dec.zip';
+			}
+			$zip = new ZipArchive();
+			if ( true !== $zip->open( $dbf ) ) {
+				throw new Exception( 'Cannot open the database backup.' );
+			}
+			$zip->extractTo( $job['dir'], array( 'database.sql' ) );
+			$zip->close();
+			if ( false !== strpos( $dbf, 'database-dec.zip' ) ) {
+				@unlink( $dbf ); // phpcs:ignore WordPress.PHP.NoSilencedErrors,WordPress.WP.AlternativeFunctions
+			}
+			$sql = $job['dir'] . 'database.sql';
 		}
-		$zip->extractTo( $job['dir'], array( 'database.sql' ) );
-		$zip->close();
-		$c = array( 'sql' => $job['dir'] . 'database.sql', 'pos' => 0, 'n' => 0 );
+		$c = array( 'sql' => $sql, 'pos' => 0, 'n' => 0, 'buf' => '' );
 		semrs_bk_log( $job, 'Importing the database…' );
 	}
-	$old = (string) $job['m']['prefix'];
-	$new = $wpdb->prefix;
-	$fh  = fopen( $c['sql'], 'rb' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	$old     = (string) $job['m']['prefix'];
+	$new     = $wpdb->prefix;
+	$generic = ! empty( $job['sqlmode'] ); // Dumps from other tools: statements may span lines.
+	$fh      = fopen( $c['sql'], 'rb' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 	fseek( $fh, (int) $c['pos'] );
 	$wpdb->query( 'SET foreign_key_checks = 0' ); // phpcs:ignore WordPress.DB
 	$wpdb->query( "SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO'" ); // phpcs:ignore WordPress.DB
+	$wpdb->query( 'SET NAMES ' . $wpdb->charset ); // phpcs:ignore WordPress.DB
 	while ( microtime( true ) < $end ) {
 		$line = fgets( $fh );
 		if ( false === $line ) {
 			break;
 		}
 		$c['pos'] = ftell( $fh );
-		$line     = rtrim( $line, "\r\n" );
-		if ( '' === $line || 0 === strpos( $line, '--' ) || 0 === strpos( $line, 'SET ' ) ) {
-			continue;
+		if ( $generic ) {
+			if ( '' === $c['buf'] && ( '' === trim( $line ) || preg_match( '/^(?:--|#|\/\*(?!!)|SET |LOCK TABLES|UNLOCK TABLES)/', $line ) ) ) {
+				continue;
+			}
+			$c['buf'] .= $line;
+			$t = rtrim( $c['buf'] );
+			if ( ';' !== substr( $t, -1 ) || ! semrs_bk_sql_complete( $t ) ) {
+				if ( strlen( $c['buf'] ) > 64 * MB_IN_BYTES ) {
+					$c['buf'] = ''; // A broken statement: skip it.
+				}
+				continue;
+			}
+			$line     = $t;
+			$c['buf'] = '';
+		} else {
+			$line = rtrim( $line, "\r\n" );
+			if ( '' === $line || 0 === strpos( $line, '--' ) || 0 === strpos( $line, 'SET ' ) ) {
+				continue;
+			}
 		}
 		if ( $old !== $new ) {
-			$line = preg_replace( '/^(DROP TABLE IF EXISTS `|CREATE TABLE `|INSERT INTO `)' . preg_quote( $old, '/' ) . '/', '$1' . $new, $line );
+			$line = preg_replace( '/^(DROP TABLE IF EXISTS `|CREATE TABLE (?:IF NOT EXISTS )?`|INSERT INTO `|ALTER TABLE `)' . preg_quote( $old, '/' ) . '/', '$1' . $new, $line );
 		}
 		$wpdb->query( $line ); // phpcs:ignore WordPress.DB
 		++$c['n'];
@@ -838,6 +991,86 @@ function semrs_bk_restore_db( $job, $end ) {
 	}
 	$job['cur'] = $c;
 	return $job;
+}
+
+/**
+ * Is a statement complete (not ending inside a quoted string)?
+ *
+ * @param string $s Statement.
+ * @return bool
+ */
+function semrs_bk_sql_complete( $s ) {
+	$q   = '';
+	$len = strlen( $s );
+	for ( $i = 0; $i < $len; $i++ ) {
+		$ch = $s[ $i ];
+		if ( '' !== $q ) {
+			if ( '\\' === $ch ) {
+				++$i;
+			} elseif ( $ch === $q ) {
+				$q = '';
+			}
+		} elseif ( "'" === $ch || '"' === $ch || '`' === $ch ) {
+			$q = $ch;
+		}
+	}
+	return '' === $q;
+}
+
+/**
+ * Encrypt or decrypt a file with AES-256 (chunked, so any size works).
+ * Format: "SEMRSENC1" + 16-byte salt, then blocks of [4-byte length][16-byte IV][data].
+ *
+ * @param string $in      Source.
+ * @param string $out     Target.
+ * @param string $pass    Password.
+ * @param bool   $encrypt Encrypt (true) or decrypt.
+ * @return bool
+ */
+function semrs_bk_crypt_file( $in, $out, $pass, $encrypt ) {
+	if ( ! function_exists( 'openssl_encrypt' ) || '' === $pass ) {
+		return false;
+	}
+	$r = fopen( $in, 'rb' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	$w = fopen( $out, 'wb' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	if ( $encrypt ) {
+		$salt = random_bytes( 16 );
+		$key  = hash_pbkdf2( 'sha256', $pass, $salt, 100000, 32, true );
+		fwrite( $w, 'SEMRSENC1' . $salt ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+		while ( ! feof( $r ) ) {
+			$data = (string) fread( $r, 8 * MB_IN_BYTES ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+			if ( '' === $data ) {
+				break;
+			}
+			$iv  = random_bytes( 16 );
+			$enc = (string) openssl_encrypt( $data, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv );
+			fwrite( $w, pack( 'N', strlen( $enc ) ) . $iv . $enc ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+		}
+		$ok = true;
+	} else {
+		$ok = 'SEMRSENC1' === fread( $r, 9 ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+		$key = $ok ? hash_pbkdf2( 'sha256', $pass, (string) fread( $r, 16 ), 100000, 32, true ) : ''; // phpcs:ignore WordPress.WP.AlternativeFunctions
+		while ( $ok && ! feof( $r ) ) {
+			$len = fread( $r, 4 ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+			if ( false === $len || 4 !== strlen( $len ) ) {
+				break;
+			}
+			$n   = unpack( 'N', $len )[1];
+			$iv  = (string) fread( $r, 16 ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+			$dec = openssl_decrypt( (string) fread( $r, $n ), 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+			if ( false === $dec ) {
+				$ok = false;
+				break;
+			}
+			fwrite( $w, $dec ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+		}
+	}
+	fclose( $r ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	fclose( $w ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	if ( ! $ok ) {
+		@unlink( $out ); // phpcs:ignore WordPress.PHP.NoSilencedErrors,WordPress.WP.AlternativeFunctions
+	}
+	return $ok;
 }
 
 /**

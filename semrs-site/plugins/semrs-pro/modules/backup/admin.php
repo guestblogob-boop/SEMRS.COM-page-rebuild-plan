@@ -84,7 +84,27 @@ add_action(
 				if ( empty( $in['sure'] ) || ! $parts ) {
 					semrs_bk_back( 'backups', new WP_Error( 'semrs', __( 'Choose what to restore and tick the confirmation box.', 'semrs-pro' ) ) );
 				}
-				semrs_bk_back( 'backups', semrs_bk_restore_start( $id, $parts ) );
+				semrs_bk_back( 'backups', semrs_bk_restore_start( $id, $parts, false, (string) ( $in['pass'] ?? '' ) ) );
+				break;
+			case 'verify':
+				$rep = semrs_bk_verify( $id, (string) ( $in['pass'] ?? '' ) );
+				semrs_bk_back( 'backups', is_wp_error( $rep ) ? $rep : implode( ' | ', $rep ) );
+				break;
+			case 'rollback':
+				$file = basename( (string) ( $in['file'] ?? '' ) );
+				$res  = semrs_bk_rollback( $file );
+				semrs_bk_back( 'backups', is_wp_error( $res ) ? $res : __( 'Rolled back. The version you replaced was kept as a copy too.', 'semrs-pro' ) );
+				break;
+			case 'import':
+				if ( empty( $in['sure'] ) ) {
+					semrs_bk_back( 'backups', new WP_Error( 'semrs', __( 'Tick the box to confirm that this site will be replaced.', 'semrs-pro' ) ) );
+				}
+				semrs_bk_back( 'backups', semrs_bk_import_start( (string) ( $in['key'] ?? '' ) ) );
+				break;
+			case 'rescan':
+				$n = semrs_bk_rescan( sanitize_key( $in['dest'] ?? '' ) );
+				/* translators: %d: number */
+				semrs_bk_back( 'backups', is_wp_error( $n ) ? $n : sprintf( _n( '%d backup found in storage.', '%d backups found in storage.', $n, 'semrs-pro' ), $n ) );
 				break;
 			case 'fetch':
 				semrs_bk_back( 'backups', semrs_bk_fetch_start( $id, sanitize_key( $in['dest'] ?? '' ) ) );
@@ -114,6 +134,16 @@ add_action(
 				$s['exclude']        = implode( "\n", array_filter( array_map( 'sanitize_text_field', preg_split( '/[\r\n]+/', (string) ( $in['exclude'] ?? '' ) ) ) ) );
 				$s['notify']         = in_array( $in['notify'] ?? '', array( 'never', 'fail', 'always' ), true ) ? $in['notify'] : 'fail';
 				$s['others_plugins'] = empty( $in['others_plugins'] ) ? '' : '1';
+				$s['migrate_max']    = max( 100, min( 1048576, absint( $in['migrate_max'] ?? 10240 ) ) );
+				$s['diff']           = empty( $in['diff'] ) ? '' : '1';
+				$s['full_every']     = max( 1, min( 90, absint( $in['full_every'] ?? 7 ) ) );
+				$s['preupdate']      = empty( $in['preupdate'] ) ? '' : '1';
+				$s['encrypt']        = empty( $in['encrypt'] ) ? '' : '1';
+				if ( isset( $in['pass'] ) && '' !== $in['pass'] ) {
+					$s['pass'] = (string) $in['pass']; // Kept as typed: it is the encryption key.
+				}
+				global $wpdb;
+				$s['skip_tables'] = array_values( array_filter( array_map( 'sanitize_text_field', array_keys( array_filter( (array) ( $in['skip_tables'] ?? array() ) ) ) ), function ( $t ) use ( $wpdb ) { return 0 === strpos( $t, $wpdb->prefix ) && ! in_array( $t, array( $wpdb->options, $wpdb->users, $wpdb->usermeta ), true ); } ) );
 				update_option( 'semrs_bk', $s );
 				wp_clear_scheduled_hook( 'semrs_bk_scheduled' );
 				semrs_bk_back( 'settings', __( 'Settings saved.', 'semrs-pro' ) );
@@ -181,7 +211,7 @@ add_action(
 		}
 		$f    = basename( (string) wp_unslash( $_GET['f'] ?? '' ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		$path = semrs_bk_dir() . $f;
-		if ( ! preg_match( '/^[0-9a-z-]+\.(?:zip|json)$/', $f ) || ! is_file( $path ) ) {
+		if ( ! preg_match( '/^[0-9a-z][0-9a-z._-]*\.(?:zip|json|enc)$/i', $f ) || ! is_file( $path ) ) {
 			wp_die( esc_html__( 'File not found.', 'semrs-pro' ) );
 		}
 		nocache_headers();
@@ -204,38 +234,19 @@ add_action(
 		}
 		$name = strtolower( basename( (string) wp_unslash( $_POST['name'] ?? '' ) ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		$off  = absint( $_POST['offset'] ?? 0 );
-		if ( ! preg_match( '/^\d{4}-\d{2}-\d{2}-\d{4}-[0-9a-z]{4}-(?:manifest\.json|db\.zip|(?:plugins|themes|uploads|mu|others)-\d+\.zip)$/', $name ) || empty( $_FILES['chunk']['tmp_name'] ) ) {
-			wp_send_json_error( array( 'message' => __( 'Only SEMRS backup files can be uploaded here (their names start with the date).', 'semrs-pro' ) ) );
+		$ok = preg_match( '/^\d{4}-\d{2}-\d{2}-\d{4}-[0-9a-z]{4}-(?:manifest\.json|db\.zip(?:\.enc)?|(?:plugins|themes|uploads|mu|others)-\d+\.zip)$/', $name ) // SEMRS.
+			|| preg_match( '/^[0-9a-z][0-9a-z._ -]*\.wpress$/', $name ) // All-in-One WP Migration.
+			|| preg_match( '/^backup_[0-9-]+_[0-9a-z._-]+-(?:db\d*\.gz|(?:plugins|themes|uploads|others|mu-plugins)\d*\.zip)$/', $name ); // UpdraftPlus.
+		if ( ! $ok || empty( $_FILES['chunk']['tmp_name'] ) ) {
+			wp_send_json_error( array( 'message' => __( 'Only SEMRS, UpdraftPlus and All-in-One WP Migration (.wpress) backup files can be uploaded here.', 'semrs-pro' ) ) );
 		}
+		$name = str_replace( ' ', '-', $name );
 		$path = semrs_bk_dir() . $name;
 		$data = (string) file_get_contents( $_FILES['chunk']['tmp_name'] ); // phpcs:ignore WordPress.WP.AlternativeFunctions,WordPress.Security.ValidatedSanitizedInput
 		file_put_contents( $path, $data, $off ? FILE_APPEND : 0 ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		wp_send_json_success( array( 'size' => filesize( $path ) ) );
 	}
 );
-
-/**
- * Backup sets on this server or in history: id => info.
- *
- * @return array
- */
-function semrs_bk_sets() {
-	$hist = (array) get_option( 'semrs_bk_history', array() );
-	$dir  = semrs_bk_dir();
-	foreach ( (array) glob( $dir . '*-manifest.json' ) as $mf ) {
-		$id = substr( basename( $mf ), 0, -14 );
-		if ( ! isset( $hist[ $id ] ) ) {
-			$m           = json_decode( (string) file_get_contents( $mf ), true ); // phpcs:ignore WordPress.WP.AlternativeFunctions
-			$hist[ $id ] = array( 'time' => (int) ( $m['created'] ?? filemtime( $mf ) ), 'by' => 'uploaded', 'size' => (int) ( $m['size'] ?? 0 ), 'files' => array_merge( array_keys( (array) ( $m['files'] ?? array() ) ), array( basename( $mf ) ) ), 'parts' => (array) ( $m['parts'] ?? array() ), 'dests' => array(), 'home' => $m['home'] ?? '' );
-		}
-	}
-	foreach ( $hist as $id => &$h ) {
-		$h['local'] = is_file( $dir . $id . '-manifest.json' );
-	}
-	unset( $h );
-	uasort( $hist, function ( $a, $b ) { return $b['time'] <=> $a['time']; } );
-	return $hist;
-}
 
 /**
  * Part labels.
@@ -390,6 +401,13 @@ function semrs_bk_tab_backups() {
 					<details><summary class="button button-small"><?php esc_html_e( 'Restore', 'semrs-pro' ); ?></summary>
 						<?php semrs_bk_form( 'restore' ); ?><input type="hidden" name="id" value="<?php echo esc_attr( $id ); ?>">
 						<p><?php foreach ( (array) $h['parts'] as $p ) : ?><label style="display:block"><input type="checkbox" name="bk[parts][<?php echo esc_attr( $p ); ?>]" value="1" checked> <?php echo esc_html( $labels[ $p ] ?? $p ); ?></label><?php endforeach; ?></p>
+						<?php if ( preg_grep( '/\.enc$/', (array) $h['files'] ) ) : ?>
+							<p><label><?php esc_html_e( 'Encryption password', 'semrs-pro' ); ?> <input type="password" name="bk[pass]" autocomplete="off" placeholder="<?php esc_attr_e( '(the saved one is used if empty)', 'semrs-pro' ); ?>"></label></p>
+						<?php endif; ?>
+						<?php if ( ! empty( $h['base'] ) ) : ?>
+							<?php /* translators: %s: backup id */ ?>
+							<p class="description"><?php echo esc_html( sprintf( __( 'Holds only changed files: the full backup %s is restored first.', 'semrs-pro' ), $h['base'] ) ); ?></p>
+						<?php endif; ?>
 						<p><label><input type="checkbox" name="bk[sure]" value="1"> <?php esc_html_e( 'I understand the chosen parts of this site will be replaced with this backup.', 'semrs-pro' ); ?></label></p>
 						<?php submit_button( __( 'Restore', 'semrs-pro' ), 'secondary', 'submit', false ); ?></form>
 					</details>
@@ -407,6 +425,9 @@ function semrs_bk_tab_backups() {
 						<button class="button button-small"><?php echo esc_html( sprintf( __( 'Fetch from %s', 'semrs-pro' ), $dests[ $d ] ?? $d ) ); ?></button></form>
 					<?php endforeach; ?>
 				<?php endif; ?>
+				<?php if ( $h['local'] ) : ?>
+					<?php semrs_bk_form( 'verify' ); ?><input type="hidden" name="id" value="<?php echo esc_attr( $id ); ?>"><button class="button button-small"><?php esc_html_e( 'Check', 'semrs-pro' ); ?></button></form>
+				<?php endif; ?>
 				<?php semrs_bk_form( 'delete' ); ?><input type="hidden" name="id" value="<?php echo esc_attr( $id ); ?>"><button class="button-link" style="color:#b32d2e" onclick="return confirm('<?php echo esc_js( __( 'Delete this backup from this server and from your storage? This cannot be undone.', 'semrs-pro' ) ); ?>')"><?php esc_html_e( 'Delete', 'semrs-pro' ); ?></button></form>
 			</td>
 		</tr>
@@ -414,9 +435,46 @@ function semrs_bk_tab_backups() {
 	</tbody></table>
 	<?php endif; ?>
 
+	<?php
+	$set_d = (array) $set['dests'];
+	if ( $set_d ) :
+		?>
+		<p style="margin-top:10px"><?php esc_html_e( 'Backups made elsewhere (for example before this server was rebuilt)?', 'semrs-pro' ); ?>
+		<?php foreach ( $set_d as $d ) : ?>
+			<?php semrs_bk_form( 'rescan' ); ?><input type="hidden" name="bk[dest]" value="<?php echo esc_attr( $d ); ?>"><?php /* translators: %s: storage */ ?><button class="button button-small" style="margin:2px"><?php echo esc_html( sprintf( __( 'Find backups in %s', 'semrs-pro' ), semrs_bk_dest_label( $d ) ) ); ?></button></form>
+		<?php endforeach; ?>
+		</p>
+	<?php endif; ?>
+
+	<?php $rb = (array) get_option( 'semrs_bk_rollbacks', array() ); ?>
+	<h2 style="margin-top:28px"><?php esc_html_e( 'Roll back a plugin or theme', 'semrs-pro' ); ?></h2>
+	<p><?php esc_html_e( 'Before WordPress updates a plugin or theme, SEMRS keeps a copy of the old version (the newest 3 per plugin or theme). If an update breaks something, roll back in one click.', 'semrs-pro' ); ?></p>
+	<?php if ( ! $rb ) : ?>
+		<p class="description"><?php esc_html_e( 'No copies yet: they appear after the next update.', 'semrs-pro' ); ?></p>
+	<?php else : ?>
+		<?php uasort( $rb, function ( $a, $b ) { return $b['time'] <=> $a['time']; } ); ?>
+		<table class="widefat striped" style="max-width:820px"><thead><tr><th><?php esc_html_e( 'Plugin or theme', 'semrs-pro' ); ?></th><th><?php esc_html_e( 'Version kept', 'semrs-pro' ); ?></th><th><?php esc_html_e( 'Saved', 'semrs-pro' ); ?></th><th></th></tr></thead><tbody>
+		<?php foreach ( array_slice( $rb, 0, 40, true ) as $file => $r ) : ?>
+			<tr><td><?php echo esc_html( $r['slug'] . ' (' . ( 'plugin' === $r['type'] ? __( 'plugin', 'semrs-pro' ) : __( 'theme', 'semrs-pro' ) ) . ')' ); ?></td><td><?php echo esc_html( $r['ver'] ); ?></td><td><?php echo esc_html( wp_date( 'Y-m-d H:i', (int) $r['time'] ) ); ?><?php echo 'before-rollback' === $r['why'] ? ' <span class="description">(' . esc_html__( 'before a rollback', 'semrs-pro' ) . ')</span>' : ''; ?></td>
+			<td><?php semrs_bk_form( 'rollback' ); ?><input type="hidden" name="bk[file]" value="<?php echo esc_attr( $file ); ?>"><?php /* translators: %s: version */ ?><button class="button button-small" onclick="return confirm('<?php echo esc_js( __( 'Replace the current version with this copy?', 'semrs-pro' ) ); ?>')"><?php echo esc_html( sprintf( __( 'Roll back to %s', 'semrs-pro' ), $r['ver'] ) ); ?></button></form></td></tr>
+		<?php endforeach; ?>
+		</tbody></table>
+	<?php endif; ?>
+
+	<?php $imports = semrs_bk_imports(); ?>
+	<?php if ( $imports ) : ?>
+		<h2 style="margin-top:28px"><?php esc_html_e( 'Backups from other plugins', 'semrs-pro' ); ?></h2>
+		<table class="widefat striped" style="max-width:820px"><tbody>
+		<?php foreach ( $imports as $k => $it ) : ?>
+			<tr><td><?php echo esc_html( $it[1] ); ?><br><span class="description"><?php echo esc_html( count( $it[2] ) . ' ' . __( 'files', 'semrs-pro' ) . ', ' . size_format( (int) $it[3] ) ); ?></span></td>
+			<td><?php semrs_bk_form( 'import' ); ?><input type="hidden" name="bk[key]" value="<?php echo esc_attr( $k ); ?>"><label><input type="checkbox" name="bk[sure]" value="1"> <?php esc_html_e( 'Replace this site with it', 'semrs-pro' ); ?></label> <button class="button button-small"><?php esc_html_e( 'Restore', 'semrs-pro' ); ?></button></form></td></tr>
+		<?php endforeach; ?>
+		</tbody></table>
+	<?php endif; ?>
+
 	<h2 style="margin-top:28px"><?php esc_html_e( 'Upload backup files', 'semrs-pro' ); ?></h2>
-	<p><?php esc_html_e( 'Restore a backup you downloaded before (for example on a fresh WordPress): choose all its files, including the one ending in -manifest.json. Any size works; files are sent in small pieces.', 'semrs-pro' ); ?></p>
-	<p><input type="file" id="semrs-bk-files" multiple accept=".zip,.json"> <button type="button" class="button" id="semrs-bk-up"><?php esc_html_e( 'Upload', 'semrs-pro' ); ?></button> <span id="semrs-bk-up-msg"></span></p>
+	<p><?php esc_html_e( 'Restore a backup you downloaded before (for example on a fresh WordPress): choose all its files, including the one ending in -manifest.json. Backups from UpdraftPlus (all files of one backup) and All-in-One WP Migration (.wpress) work too. Any size works; files are sent in small pieces.', 'semrs-pro' ); ?></p>
+	<p><input type="file" id="semrs-bk-files" multiple accept=".zip,.json,.enc,.wpress,.gz"> <button type="button" class="button" id="semrs-bk-up"><?php esc_html_e( 'Upload', 'semrs-pro' ); ?></button> <span id="semrs-bk-up-msg"></span></p>
 	<script>
 	(function(){var b=document.getElementById('semrs-bk-up'),inp=document.getElementById('semrs-bk-files'),m=document.getElementById('semrs-bk-up-msg'),CH=4*1024*1024;
 	b.addEventListener('click',async function(){var fs=[...inp.files];if(!fs.length)return;b.disabled=true;
@@ -453,6 +511,24 @@ function semrs_bk_tab_settings() {
 		<tr><th scope="row"><?php esc_html_e( 'Split into parts of', 'semrs-pro' ); ?></th><td><input type="number" min="10" max="2000" name="bk[split]" value="<?php echo esc_attr( $s['split'] ); ?>" style="width:80px"> MB <p class="description"><?php esc_html_e( 'Smaller parts upload more reliably on shared hosting. For email storage use 20 MB or less.', 'semrs-pro' ); ?></p></td></tr>
 		<tr><th scope="row"><?php esc_html_e( 'Leave out files larger than', 'semrs-pro' ); ?></th><td><input type="number" min="0" max="100000" name="bk[maxfile]" value="<?php echo esc_attr( $s['maxfile'] ); ?>" style="width:90px"> MB <span class="description"><?php esc_html_e( '(0 = keep every file)', 'semrs-pro' ); ?></span></td></tr>
 		<tr><th scope="row"><?php esc_html_e( 'Leave out folders and files', 'semrs-pro' ); ?></th><td><textarea name="bk[exclude]" rows="4" class="large-text code" placeholder="uploads/videos&#10;plugins/huge-plugin&#10;*.log"><?php echo esc_textarea( $s['exclude'] ); ?></textarea><p class="description"><?php esc_html_e( 'One per line, relative to wp-content. Caches and other plugins’ backup folders are always left out.', 'semrs-pro' ); ?></p></td></tr>
+		<tr><th scope="row"><?php esc_html_e( 'Faster backups', 'semrs-pro' ); ?></th><td><label><input type="checkbox" name="bk[diff]" value="1" <?php checked( '1', $s['diff'] ); ?>> <?php esc_html_e( 'Between full backups, save only files that changed (the database is always saved in full)', 'semrs-pro' ); ?></label><br><?php esc_html_e( 'Full backup every', 'semrs-pro' ); ?> <input type="number" min="1" max="90" name="bk[full_every]" value="<?php echo esc_attr( $s['full_every'] ); ?>" style="width:64px"> <?php esc_html_e( 'days', 'semrs-pro' ); ?></td></tr>
+		<tr><th scope="row"><?php esc_html_e( 'Encryption', 'semrs-pro' ); ?></th><td><label><input type="checkbox" name="bk[encrypt]" value="1" <?php checked( '1', $s['encrypt'] ); ?>> <?php esc_html_e( 'Encrypt database backups (AES-256)', 'semrs-pro' ); ?></label><br><input type="password" name="bk[pass]" autocomplete="new-password" class="regular-text" placeholder="<?php echo esc_attr( '' !== (string) $s['pass'] ? __( '(saved, leave empty to keep)', 'semrs-pro' ) : __( 'Encryption password', 'semrs-pro' ) ); ?>"><p class="description"><?php esc_html_e( 'Write the password down somewhere safe: without it an encrypted backup cannot be restored on another site.', 'semrs-pro' ); ?></p></td></tr>
+		<tr><th scope="row"><?php esc_html_e( 'Rollback copies', 'semrs-pro' ); ?></th><td><label><input type="checkbox" name="bk[preupdate]" value="1" <?php checked( '1', $s['preupdate'] ); ?>> <?php esc_html_e( 'Keep a copy of each plugin and theme before WordPress updates it (one-click roll back)', 'semrs-pro' ); ?></label></td></tr>
+		<tr><th scope="row"><?php esc_html_e( 'Largest migration', 'semrs-pro' ); ?></th><td><input type="number" min="100" max="1048576" name="bk[migrate_max]" value="<?php echo esc_attr( $s['migrate_max'] ); ?>" style="width:110px"> MB <span class="description"><?php esc_html_e( '(10240 MB = 10 GB). Bigger sites stop early with a clear message instead of filling the disk.', 'semrs-pro' ); ?></span></td></tr>
+		<tr><th scope="row"><?php esc_html_e( 'Leave out database tables', 'semrs-pro' ); ?></th><td>
+			<details><summary style="cursor:pointer"><?php esc_html_e( 'Choose tables (for example large log or statistics tables)', 'semrs-pro' ); ?></summary>
+			<?php
+			global $wpdb;
+			$tbls = $wpdb->get_results( $wpdb->prepare( 'SELECT table_name AS t, (data_length + index_length) AS s FROM information_schema.tables WHERE table_schema = %s AND table_name LIKE %s ORDER BY s DESC', DB_NAME, $wpdb->esc_like( $wpdb->prefix ) . '%' ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+			foreach ( (array) $tbls as $tb ) {
+				if ( in_array( $tb->t, array( $wpdb->options, $wpdb->users, $wpdb->usermeta ), true ) ) {
+					continue;
+				}
+				printf( '<label style="display:block"><input type="checkbox" name="bk[skip_tables][%1$s]" value="1" %2$s> %1$s <span class="description">%3$s</span></label>', esc_attr( $tb->t ), checked( in_array( $tb->t, (array) $s['skip_tables'], true ), true, false ), esc_html( size_format( (int) $tb->s ) ) );
+			}
+			?>
+			</details>
+		</td></tr>
 		<tr><th scope="row"><?php esc_html_e( 'Email me', 'semrs-pro' ); ?></th><td><select name="bk[notify]"><option value="fail" <?php selected( $s['notify'], 'fail' ); ?>><?php esc_html_e( 'Only when something goes wrong', 'semrs-pro' ); ?></option><option value="always" <?php selected( $s['notify'], 'always' ); ?>><?php esc_html_e( 'After every backup', 'semrs-pro' ); ?></option><option value="never" <?php selected( $s['notify'], 'never' ); ?>><?php esc_html_e( 'Never', 'semrs-pro' ); ?></option></select></td></tr>
 		<?php if ( semrs_bk_other_plugin() ) : ?>
 			<tr><th scope="row"><?php esc_html_e( 'Other backup plugin', 'semrs-pro' ); ?></th><td><label><input type="checkbox" name="bk[others_plugins]" value="1" <?php checked( '1', $s['others_plugins'] ); ?>> <?php /* translators: %s: plugin */ echo esc_html( sprintf( __( 'Run the SEMRS schedule even though %s is active', 'semrs-pro' ), semrs_bk_other_plugin() ) ); ?></label></td></tr>
