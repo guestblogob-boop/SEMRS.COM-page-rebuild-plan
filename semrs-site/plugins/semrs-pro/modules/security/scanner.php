@@ -61,6 +61,7 @@ function semrs_scan_settings() {
 		array(
 			'scan_daily'     => '1',
 			'scan_email'     => '1',
+			'scan_autofix'   => '1',
 			'scan_wordfence' => '',
 		)
 	);
@@ -340,6 +341,9 @@ function semrs_scan_step( $budget = 6 ) {
 			case 'plugins':
 				$s = semrs_scan_phase_plugins( $s, $end );
 				break;
+			case 'semrs':
+				$s = semrs_scan_phase_semrs( $s, $end );
+				break;
 			case 'files':
 				$s = semrs_scan_phase_files( $s, $end );
 				break;
@@ -489,6 +493,144 @@ function semrs_scan_phase_plugins( $s, $end ) {
 		$s['verified'] += count( $ok );
 	}
 	if ( $s['pos'] >= count( $plugins ) ) {
+		$s['phase'] = 'semrs';
+		$s['pos']   = 0;
+	}
+	return $s;
+}
+
+/**
+ * SEMRS products installed from semrs.com (release builds carry the updater).
+ *
+ * @return array[] [slug, version, folder relative to ABSPATH].
+ */
+function semrs_scan_semrs_packages() {
+	if ( ! function_exists( 'get_plugins' ) ) {
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+	}
+	$out = array();
+	$all = get_plugins();
+	foreach ( array( 'semrs-core', 'semrs-pro', 'semrs-tools', 'semrs-blocks', 'semrs-shops' ) as $slug ) {
+		$dir = WP_PLUGIN_DIR . '/' . $slug;
+		if ( isset( $all[ $slug . '/' . $slug . '.php' ] ) && is_file( $dir . '/includes/semrs-updater.php' ) ) {
+			$out[] = array( $slug, (string) $all[ $slug . '/' . $slug . '.php' ]['Version'], trim( str_replace( ABSPATH, '', $dir ), '/' ) . '/' );
+		}
+	}
+	foreach ( array( 'semrs', 'semrs-child-seo' ) as $slug ) {
+		$t = wp_get_theme( $slug );
+		if ( $t->exists() && is_file( $t->get_stylesheet_directory() . '/inc/semrs-updater.php' ) ) {
+			$out[] = array( $slug, (string) $t->get( 'Version' ), trim( str_replace( ABSPATH, '', str_replace( '\\', '/', $t->get_stylesheet_directory() ) ), '/' ) . '/' );
+		}
+	}
+	return $out;
+}
+
+/**
+ * semrs.com update server base URL.
+ *
+ * @return string
+ */
+function semrs_scan_semrs_server() {
+	return function_exists( 'semrs_pro_license_server' ) ? semrs_pro_license_server() : 'https://semrs.com/wp-json/semrs-updates/v1/';
+}
+
+/**
+ * Download one original SEMRS file and put it in place (old copy quarantined).
+ *
+ * @param string $slug    Product.
+ * @param string $version Version.
+ * @param string $inner   Path inside the product folder.
+ * @param string $rel     Path relative to ABSPATH.
+ * @return true|WP_Error
+ */
+function semrs_scan_semrs_repair( $slug, $version, $inner, $rel ) {
+	$url = add_query_arg(
+		array(
+			'slug'    => $slug,
+			'version' => $version,
+			'path'    => $inner,
+			'key'     => (string) get_option( 'semrs_pro_license_key', '' ),
+			'site'    => home_url( '/' ),
+		),
+		semrs_scan_semrs_server() . 'file'
+	);
+	$res = wp_remote_get( $url, array( 'timeout' => 20 ) );
+	if ( is_wp_error( $res ) || 200 !== (int) wp_remote_retrieve_response_code( $res ) ) {
+		return new WP_Error( 'semrs', 403 === (int) wp_remote_retrieve_response_code( $res ) ? __( 'Repairing SEMRS Pro files needs an active license key (SEMRS → License).', 'semrs-pro' ) : __( 'The original file could not be downloaded from semrs.com. Try again later, or update or reinstall the product.', 'semrs-pro' ) );
+	}
+	$path = ABSPATH . $rel;
+	$dir  = semrs_secpro_dir();
+	if ( is_file( $path ) && '' !== $dir ) {
+		wp_mkdir_p( $dir . 'quarantine' );
+		$qid = gmdate( 'Ymd-His' ) . '-' . substr( md5( $rel ), 0, 8 );
+		if ( copy( $path, $dir . 'quarantine/' . $qid . '.bin' ) ) { // phpcs:ignore WordPress.WP.AlternativeFunctions
+			$q         = (array) get_option( 'semrs_scan_quarantine', array() );
+			$q[ $qid ] = array( 'file' => $rel, 'time' => time(), 'msg' => __( 'Changed SEMRS file (copy kept before repair)', 'semrs-pro' ), 'moved' => false );
+			update_option( 'semrs_scan_quarantine', $q, false );
+		}
+	}
+	if ( false === file_put_contents( $path, (string) wp_remote_retrieve_body( $res ) ) ) { // phpcs:ignore WordPress.WP.AlternativeFunctions
+		return new WP_Error( 'semrs', __( 'The file could not be written. Check the folder permissions.', 'semrs-pro' ) );
+	}
+	return true;
+}
+
+/**
+ * SEMRS plugins and themes against semrs.com fingerprints; changed files are
+ * repaired automatically (setting "Repair SEMRS files").
+ *
+ * @param array $s   State.
+ * @param float $end Deadline.
+ * @return array
+ */
+function semrs_scan_phase_semrs( $s, $end ) {
+	$pk   = semrs_scan_semrs_packages();
+	$list = semrs_scan_list();
+	$fix  = '1' === semrs_scan_settings()['scan_autofix'];
+	while ( $s['pos'] < count( $pk ) && microtime( true ) < $end ) {
+		list( $slug, $ver, $prefix ) = $pk[ $s['pos']++ ];
+		$key  = 'semrs_scan_ss_' . md5( $slug . $ver );
+		$sums = get_transient( $key );
+		if ( false === $sums ) {
+			$res  = wp_remote_get( add_query_arg( array( 'slug' => $slug, 'version' => $ver ), semrs_scan_semrs_server() . 'checksums' ), array( 'timeout' => 10 ) );
+			$data = is_wp_error( $res ) || 200 !== (int) wp_remote_retrieve_response_code( $res ) ? null : json_decode( (string) wp_remote_retrieve_body( $res ), true );
+			$sums = is_array( $data['files'] ?? null ) ? $data['files'] : array();
+			set_transient( $key, $sums, $sums ? WEEK_IN_SECONDS : HOUR_IN_SECONDS );
+		}
+		if ( ! $sums ) {
+			continue; // No fingerprints for this version: scanned for malware code instead.
+		}
+		$ok = array();
+		foreach ( $list as $rel ) {
+			if ( 0 !== strpos( $rel, $prefix ) ) {
+				continue;
+			}
+			$inner = substr( $rel, strlen( $prefix ) );
+			if ( ! isset( $sums[ $inner ] ) ) {
+				if ( 'php' === semrs_scan_kind( $rel ) ) {
+					/* translators: %s: product */
+					semrs_scan_add( 'high', 'semrs', $rel, sprintf( __( 'File added to %s (not part of the official release)', 'semrs-pro' ), $slug ), '', array( 'quarantine' => 1 ) );
+				}
+				continue;
+			}
+			if ( md5_file( ABSPATH . $rel ) === $sums[ $inner ] ) {
+				$ok[] = $rel;
+				continue;
+			}
+			$done = $fix ? semrs_scan_semrs_repair( $slug, $ver, $inner, $rel ) : false;
+			if ( true === $done ) {
+				$ok[] = $rel;
+				/* translators: %s: product */
+				semrs_scan_add( 'low', 'semrs', $rel, sprintf( __( '%s file was changed and has been repaired automatically (old copy kept in quarantine)', 'semrs-pro' ), $slug ) );
+			} else {
+				/* translators: %s: product */
+				semrs_scan_add( 'critical', 'semrs', $rel, sprintf( __( '%s file was changed', 'semrs-pro' ), $slug ), is_wp_error( $done ) ? $done->get_error_message() : '', array( 'restore' => 'semrs', 'slug' => $slug, 'ver' => $ver, 'inner' => $inner ) );
+			}
+		}
+		semrs_scan_verified_add( $ok );
+		$s['verified'] += count( $ok );
+	}
+	if ( $s['pos'] >= count( $pk ) ) {
 		$s['phase'] = 'files';
 		$s['pos']   = 0;
 	}
@@ -789,6 +931,13 @@ function semrs_scan_restore( $id ) {
 		return new WP_Error( 'semrs', __( 'This file cannot be restored automatically.', 'semrs-pro' ) );
 	}
 	$rel = (string) $f['file'];
+	if ( 'semrs' === $f['extra']['restore'] ) {
+		$done = semrs_scan_semrs_repair( $f['extra']['slug'], $f['extra']['ver'], $f['extra']['inner'], $rel );
+		if ( true === $done ) {
+			semrs_scan_drop( $id );
+		}
+		return $done;
+	}
 	if ( 'core' === $f['extra']['restore'] ) {
 		$url = 'https://core.svn.wordpress.org/tags/' . rawurlencode( $wp_version ) . '/' . str_replace( '%2F', '/', rawurlencode( $rel ) );
 	} else {

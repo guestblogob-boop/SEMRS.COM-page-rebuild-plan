@@ -59,7 +59,7 @@ add_action(
 		};
 		$boxes = array(
 			'firewall' => array( 'fw_on', 'fw_bots', 'fw_flood', 'fw_repeat', 'fw_wordfence' ),
-			'scan'     => array( 'scan_daily', 'scan_email', 'scan_wordfence' ),
+			'scan'     => array( 'scan_daily', 'scan_email', 'scan_autofix', 'scan_wordfence' ),
 			'spam'     => array( 'spam_on', 'spam_comments', 'spam_forms', 'spam_register', 'spam_script', 'spam_sfs' ),
 		);
 		foreach ( $boxes[ $tab ] ?? array() as $k ) {
@@ -164,6 +164,7 @@ add_action(
 		$labels = array(
 			'core'    => __( 'Checking WordPress core files…', 'semrs-pro' ),
 			'plugins' => __( 'Checking plugins against WordPress.org…', 'semrs-pro' ),
+			'semrs'   => __( 'Checking SEMRS files against semrs.com…', 'semrs-pro' ),
 			'files'   => __( 'Scanning themes, plugins and uploads for malware…', 'semrs-pro' ),
 			'db'      => __( 'Checking the database…', 'semrs-pro' ),
 			'health'  => __( 'Checking updates and settings…', 'semrs-pro' ),
@@ -172,7 +173,7 @@ add_action(
 			array(
 				'status' => $s['status'],
 				'label'  => $labels[ $s['phase'] ] ?? __( 'Finishing…', 'semrs-pro' ),
-				'pct'    => 'files' === $s['phase'] && $s['total'] ? (int) ( 40 + 50 * $s['pos'] / max( 1, $s['total'] ) ) : array_search( $s['phase'], array( '', 'core', 'plugins', 'files', 'db', 'health' ), true ) * 15,
+				'pct'    => 'files' === $s['phase'] && $s['total'] ? (int) ( 40 + 50 * $s['pos'] / max( 1, $s['total'] ) ) : array_search( $s['phase'], array( '', 'core', 'plugins', 'semrs', 'files', 'db', 'health' ), true ) * 13,
 			)
 		);
 	}
@@ -464,6 +465,7 @@ function semrs_secpro_tab_scan( $do ) {
 			<?php semrs_secpro_box( $s, 'scan_daily', __( 'Daily scan', 'semrs-pro' ), __( 'Scan the whole site every night in short background steps.', 'semrs-pro' ) ); ?>
 			<?php /* translators: %s: email */ ?>
 			<?php semrs_secpro_box( $s, 'scan_email', __( 'Email alerts', 'semrs-pro' ), sprintf( __( 'Email %s when a scan finds a new serious problem.', 'semrs-pro' ), get_option( 'admin_email' ) ) ); ?>
+			<?php semrs_secpro_box( $s, 'scan_autofix', __( 'Repair SEMRS files', 'semrs-pro' ), __( 'Changed SEMRS theme and plugin files are put back from semrs.com automatically (the changed copy is kept in quarantine).', 'semrs-pro' ) ); ?>
 			<?php if ( semrs_fw_wordfence() ) : ?>
 				<?php semrs_secpro_box( $s, 'scan_wordfence', __( 'Daily scan with Wordfence', 'semrs-pro' ), __( 'Wordfence is active, so the daily SEMRS scan pauses. Tick to run both.', 'semrs-pro' ) ); ?>
 			<?php endif; ?>

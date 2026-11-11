@@ -115,6 +115,7 @@ register_activation_hook( __FILE__, 'semrs_us_install' );
 
 require SEMRS_US_DIR . 'includes/data.php';
 require SEMRS_US_DIR . 'includes/api.php';
+require SEMRS_US_DIR . 'includes/piracy.php';
 require SEMRS_US_DIR . 'includes/sales.php';
 require SEMRS_US_DIR . 'includes/lemonsqueezy.php';
 require SEMRS_US_DIR . 'includes/paddle.php';

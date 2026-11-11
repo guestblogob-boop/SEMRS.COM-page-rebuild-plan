@@ -86,6 +86,136 @@ function semrs_us_routes() {
 			'callback'            => 'semrs_us_download',
 		)
 	);
+	register_rest_route(
+		'semrs-updates/v1',
+		'/checksums',
+		array(
+			'methods'             => 'GET',
+			'permission_callback' => '__return_true',
+			'callback'            => 'semrs_us_checksums',
+		)
+	);
+	register_rest_route(
+		'semrs-updates/v1',
+		'/file',
+		array(
+			'methods'             => 'GET',
+			'permission_callback' => '__return_true',
+			'callback'            => 'semrs_us_file',
+		)
+	);
+}
+
+/**
+ * Files of a release zip: inner path => md5 (cached per release file).
+ *
+ * @param string $slug    Product.
+ * @param string $version Version.
+ * @return array|null
+ */
+function semrs_us_release_sums( $slug, $version ) {
+	$all  = semrs_us_releases();
+	$file = empty( $all[ $slug ][ $version ]['file'] ) ? '' : semrs_us_dir() . basename( $all[ $slug ][ $version ]['file'] );
+	if ( '' === $file || ! file_exists( $file ) || ! class_exists( 'ZipArchive' ) ) {
+		return null;
+	}
+	$ck   = 'semrs_us_sums_' . md5( $file . filemtime( $file ) );
+	$sums = get_transient( $ck );
+	if ( is_array( $sums ) ) {
+		return $sums;
+	}
+	$zip = new ZipArchive();
+	if ( true !== $zip->open( $file ) ) {
+		return null;
+	}
+	$sums = array();
+	for ( $i = 0; $i < $zip->numFiles; $i++ ) {
+		$name = (string) $zip->getNameIndex( $i );
+		if ( '/' === substr( $name, -1 ) ) {
+			continue;
+		}
+		$inner = preg_replace( '#^' . preg_quote( $slug, '#' ) . '/#', '', str_replace( '\\', '/', $name ) );
+		$data  = $zip->getFromIndex( $i );
+		if ( false !== $data ) {
+			$sums[ $inner ] = md5( $data );
+		}
+	}
+	$zip->close();
+	set_transient( $ck, $sums, 30 * DAY_IN_SECONDS );
+	return $sums;
+}
+
+/**
+ * Official fingerprints of a SEMRS release (for the Assets Protector scan).
+ * Public: fingerprints reveal nothing, and every site can check its own copy.
+ *
+ * @param WP_REST_Request $req Request (slug, version).
+ * @return WP_REST_Response|WP_Error
+ */
+function semrs_us_checksums( $req ) {
+	$slug    = sanitize_key( (string) $req->get_param( 'slug' ) );
+	$version = preg_replace( '/[^0-9A-Za-z.\-]/', '', (string) $req->get_param( 'version' ) );
+	if ( ! isset( semrs_us_products()[ $slug ] ) ) {
+		return new WP_Error( 'semrs_unknown', 'Unknown product.', array( 'status' => 404 ) );
+	}
+	if ( semrs_us_api_limited( 'sums' ) ) {
+		return new WP_Error( 'semrs_slow', 'Too many requests. Try again later.', array( 'status' => 429 ) );
+	}
+	semrs_us_api_limited( 'sums', true );
+	$sums = semrs_us_release_sums( $slug, $version );
+	if ( null === $sums ) {
+		return new WP_Error( 'semrs_missing', 'No fingerprints for this version.', array( 'status' => 404 ) );
+	}
+	$r = rest_ensure_response( array( 'slug' => $slug, 'version' => $version, 'files' => $sums ) );
+	$r->header( 'Cache-Control', 'public, max-age=86400' );
+	return $r;
+}
+
+/**
+ * One original file from a release, to repair a changed copy.
+ * Free products: anyone. SEMRS Pro: a valid or expired key for that site.
+ *
+ * @param WP_REST_Request $req Request (slug, version, path, key, site).
+ * @return WP_Error|void
+ */
+function semrs_us_file( $req ) {
+	$slug     = sanitize_key( (string) $req->get_param( 'slug' ) );
+	$version  = preg_replace( '/[^0-9A-Za-z.\-]/', '', (string) $req->get_param( 'version' ) );
+	$path     = ltrim( str_replace( '\\', '/', (string) $req->get_param( 'path' ) ), '/' );
+	$products = semrs_us_products();
+	if ( ! isset( $products[ $slug ] ) || '' === $path || false !== strpos( $path, '..' ) ) {
+		return new WP_Error( 'semrs_bad', 'Bad request.', array( 'status' => 400 ) );
+	}
+	if ( ! empty( $products[ $slug ][2] ) ) {
+		if ( semrs_us_api_limited( 'badkey' ) ) {
+			return semrs_us_api_slow_down();
+		}
+		$key    = preg_replace( '/[^A-Za-z0-9-]/', '', (string) $req->get_param( 'key' ) );
+		$status = semrs_us_license_status( $key, semrs_us_host( (string) $req->get_param( 'site' ) ) );
+		if ( ! in_array( $status, array( 'valid', 'expired' ), true ) ) {
+			semrs_us_api_limited( 'badkey', true );
+			return new WP_Error( 'semrs_license', 'A valid SEMRS Pro license is needed to repair Pro files.', array( 'status' => 403 ) );
+		}
+	}
+	$all  = semrs_us_releases();
+	$file = empty( $all[ $slug ][ $version ]['file'] ) ? '' : semrs_us_dir() . basename( $all[ $slug ][ $version ]['file'] );
+	if ( '' === $file || ! file_exists( $file ) || ! class_exists( 'ZipArchive' ) ) {
+		return new WP_Error( 'semrs_missing', 'Release not found.', array( 'status' => 404 ) );
+	}
+	$zip = new ZipArchive();
+	if ( true !== $zip->open( $file ) ) {
+		return new WP_Error( 'semrs_missing', 'Release not readable.', array( 'status' => 500 ) );
+	}
+	$data = $zip->getFromName( $slug . '/' . $path );
+	$zip->close();
+	if ( false === $data ) {
+		return new WP_Error( 'semrs_missing', 'File not in this release.', array( 'status' => 404 ) );
+	}
+	nocache_headers();
+	header( 'Content-Type: application/octet-stream' );
+	header( 'Content-Length: ' . strlen( $data ) );
+	echo $data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- raw file for the repair.
+	exit;
 }
 add_action( 'rest_api_init', 'semrs_us_routes' );
 
@@ -139,7 +269,7 @@ add_filter( 'upgrader_pre_download', 'semrs_us_local_package', 10, 2 );
  * @return bool Over the limit.
  */
 function semrs_us_api_limited( $bucket, $add = false ) {
-	$limits = (array) apply_filters( 'semrs_us_api_limits', array( 'badkey' => 30, 'record' => 300 ) );
+	$limits = (array) apply_filters( 'semrs_us_api_limits', array( 'badkey' => 30, 'record' => 300, 'sums' => 600 ) );
 	$ip     = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
 	$name   = 'semrs_us_rl_' . $bucket . '_' . md5( $ip );
 	$hits   = (int) get_transient( $name );
@@ -182,6 +312,9 @@ function semrs_us_check( $req ) {
 		$license = '' !== $key && semrs_us_api_limited( 'badkey' ) ? 'invalid' : semrs_us_license_status( $key, $host );
 		if ( '' !== $key && 'invalid' === $license ) {
 			semrs_us_api_limited( 'badkey', true );
+		}
+		if ( $host && in_array( $license, array( 'invalid', 'limit' ), true ) && '' !== $key ) {
+			semrs_us_piracy_note( $key, $host, $license );
 		}
 	} else {
 		$license = 'free';
@@ -313,6 +446,9 @@ function semrs_us_activate( $req ) {
 	$status = semrs_us_license_status( $key, $host );
 	if ( in_array( $status, array( 'invalid', 'missing' ), true ) ) {
 		semrs_us_api_limited( 'badkey', true );
+	}
+	if ( in_array( $status, array( 'invalid', 'limit' ), true ) && '' !== $key ) {
+		semrs_us_piracy_note( $key, $host, $status );
 	}
 	if ( 'valid' === $status ) {
 		semrs_us_record( 'semrs-pro', $host, $version, '', '', $key );
