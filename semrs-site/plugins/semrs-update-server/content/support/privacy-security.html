@@ -89,12 +89,16 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Go to <strong>SEMRS → Security</strong>. These settings are safe for almost every site:</p>
+<p>Go to <strong>SEMRS → Security</strong>. The safe protections are already on when you install SEMRS Core:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:table -->
-<figure class="wp-block-table"><table><thead><tr><th>Setting</th><th>What it does</th><th>Turn on?</th></tr></thead><tbody><tr><td>Limit log-in attempts</td><td>Locks out an IP after 5 wrong passwords for 15 minutes</td><td>Yes</td></tr><tr><td>Same error for wrong user or password</td><td>Bots cannot learn which usernames exist</td><td>Yes</td></tr><tr><td>Hide the WordPress version</td><td>Removes the version number from the page code</td><td>Yes</td></tr><tr><td>Security headers</td><td>Adds browser protections against clickjacking and file sniffing</td><td>Yes</td></tr><tr><td>Turn off the file editor</td><td>Removes the theme and plugin code editors</td><td>Yes</td></tr><tr><td>Hide usernames</td><td>Blocks author scans and the public users list</td><td>Only if you have no author pages to rank</td></tr><tr><td>HSTS</td><td>Forces HTTPS for a year</td><td>Only when every page and subdomain uses HTTPS</td></tr><tr><td>Safe SVG uploads</td><td>Lets administrators upload cleaned SVG files</td><td>When you need SVG logos or icons</td></tr></tbody></table></figure>
+<figure class="wp-block-table"><table><thead><tr><th>Setting</th><th>What it does</th><th>Default</th></tr></thead><tbody><tr><td>Limit log-in attempts</td><td>Locks out an IP after 5 wrong passwords for 15 minutes</td><td>On</td></tr><tr><td>Same error for wrong user or password</td><td>Bots cannot learn which usernames exist</td><td>On</td></tr><tr><td>Hide the WordPress version</td><td>Removes the version number from the page code</td><td>On</td></tr><tr><td>Security headers</td><td>Adds browser protections against clickjacking and file sniffing</td><td>On</td></tr><tr><td>Hide usernames</td><td>Blocks author scans and the public users list</td><td>On</td></tr><tr><td>Turn off the file editor</td><td>Removes the theme and plugin code editors</td><td>Off: turn on when nobody edits code in WordPress</td></tr><tr><td>HSTS</td><td>Forces HTTPS for a year</td><td>Off: turn on only when every page and subdomain uses HTTPS</td></tr><tr><td>Safe SVG uploads</td><td>Lets administrators upload cleaned SVG files</td><td>Off: turn on when you need SVG logos or icons</td></tr></tbody></table></figure>
 <!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p><strong>Using Wordfence or another security plugin?</strong> The log-in limit steps aside automatically, so a wrong password is never counted twice. Sites behind Cloudflare see each visitor's real address.</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
 <p><strong>Locked out?</strong> Add <code>define( 'SEMRS_SECURITY_OFF', true );</code> to wp-config.php, log in, fix the setting and remove the line.</p>
@@ -196,6 +200,126 @@
 
 <!-- wp:paragraph -->
 <p>If the result is wrong, click <strong>Undo last change</strong>. The site address, plugins, user roles and security keys are never changed.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">SEMRS Assets Protector (Pro)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Included with every SEMRS Pro key. Go to <strong>SEMRS → Assets Protector</strong>. Everything is on with safe settings from the start; the <strong>Overview</strong> tab shows a checklist of what protects your site.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Firewall:</strong> stops SQL injection, cross-site scripting, file inclusion, code injection, requests for private files, PHP in the uploads folder, XML-RPC password guessing and known attack tools before WordPress loads. Scanners that hit many missing pages, and addresses that attack again and again, are blocked for a while. Addresses an administrator logged in from are never blocked automatically.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Malware scan:</strong> every WordPress file and every plugin from WordPress.org is compared with the official copy, and SEMRS theme and plugin files with semrs.com. Changed SEMRS files are repaired automatically. Everything else is checked for malware code. The scan runs every night in short steps and emails you when it finds something serious.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Fixing results:</strong> <strong>Restore original</strong> downloads a clean copy of a changed file. <strong>Quarantine</strong> moves a suspicious file to a protected folder (nothing is deleted, and <strong>Put back</strong> undoes it). <strong>Ignore</strong> hides a result until the file changes.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Spam protection:</strong> stops spam in comments, product reviews, sign-ups and Contact Form 7, WPForms, Gravity Forms and Elementor forms, without a CAPTCHA and without any outside service. Spam comments go to the Spam folder, so nothing is lost.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>Using Wordfence or Akismet?</strong> SEMRS works alongside them. While Wordfence is active, the SEMRS firewall and nightly scan pause so nothing is checked twice (you can choose to run both). With Akismet, SEMRS stops the bots first and Akismet checks the rest.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Firewall blocking something it should not?</strong> Add your address under <strong>Always allow</strong>, or switch the mode to <strong>Log only</strong> while you test. Emergency switch: add <code>define( 'SEMRS_FIREWALL_OFF', true );</code> to wp-config.php.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Backups and migration (Pro)</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Included with every SEMRS Pro key. Go to <strong>SEMRS → Backups</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Click <strong>Whole site</strong>, <strong>Database</strong>, <strong>Plugins</strong>, <strong>Themes</strong> or <strong>Media</strong> to back up now.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Under <strong>Schedule &amp; contents</strong>, choose how often (twice a day, daily, weekly or monthly) and how many backups to keep.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Under <strong>Storage</strong>, add at least one place outside your server: Amazon S3 (or Wasabi, Backblaze B2, DigitalOcean Spaces, Cloudflare R2), Dropbox, Google Drive, FTP or FTPS, SFTP, WebDAV (Nextcloud, ownCloud) or email. Click <strong>Save and test</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>To restore, click <strong>Restore</strong> next to a backup, choose the parts and confirm. Click <strong>Check</strong> first to make sure every file is complete.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>Extra features</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Rollback copies:</strong> before WordPress updates a plugin or theme, the old version is kept. If an update breaks something, click <strong>Roll back</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Faster backups:</strong> between full backups, save only the files that changed.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Encryption:</strong> protect database backups with a password (AES-256). Keep the password safe.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Leave out tables or folders:</strong> skip large log tables, video folders or files above a size you choose.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Restore on a new server:</strong> on a fresh WordPress with SEMRS Pro, click <strong>Find backups in</strong> your storage, then <strong>Fetch</strong> and <strong>Restore</strong>. Or upload the backup files you downloaded.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Backups from other plugins:</strong> upload an UpdraftPlus backup or an All-in-One WP Migration .wpress file, and restore it here.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>WP-CLI:</strong> <code>wp semrs backup run</code>, <code>wp semrs backup list</code> and <code>wp semrs backup restore</code> for developers.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>Move a site to a new address or host</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>On the old site, open <strong>Backups → Migrate</strong> and click <strong>Make a migration package</strong>. Copy the key (it works for 24 hours).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>On the new site, install WordPress, SEMRS Core and SEMRS Pro, open <strong>Backups → Migrate</strong>, paste the key and click <strong>Copy the site here</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Log in with the old site's username and password. Every address, also inside page builder data, now points to the new site.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Sites up to 10 GB move by default; change the limit under <strong>Largest migration</strong>, and leave out large folders if needed.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Using UpdraftPlus too?</strong> While it is active, the SEMRS schedule pauses so two backups never run at once. Manual backups, restore and migration still work.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->

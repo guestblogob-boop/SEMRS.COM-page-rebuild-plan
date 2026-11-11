@@ -3,7 +3,7 @@
  * Plugin Name:       SEMRS Pro
  * Plugin URI:        https://semrs.com/
  * Description:       Premium add-on for the SEMRS theme and SEMRS Core: sticky/transparent header, mega menu, table of contents, author box, related posts, extra section patterns, white label; multi-location local SEO, image SEO, custom schema; image library conversion; speed extras; ads manager; site layouts; case studies, portfolio and testimonials; lead tracking.
- * Version:           1.5.23
+ * Version:           1.5.24
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-pro
@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 // WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
 add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
 
-define( 'SEMRS_PRO_VERSION', '1.5.23' );
+define( 'SEMRS_PRO_VERSION', '1.5.24' );
 define( 'SEMRS_PRO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_PRO_URL', plugin_dir_url( __FILE__ ) );
 
@@ -159,6 +159,17 @@ function semrs_pro_firewall_off() {
 		@unlink( $loader ); // phpcs:ignore WordPress.PHP.NoSilencedErrors,WordPress.WP.AlternativeFunctions
 	}
 }
+
+// Features screen cards for the newer modules (group, icon, Settings link) on any SEMRS Core version.
+add_filter(
+	'semrs_module_meta',
+	function ( $meta ) {
+		return $meta + array(
+			'security_pro' => array( 'privacy', 'shield-alt', admin_url( 'admin.php?page=semrs-protect' ) ),
+			'backup'       => array( 'privacy', 'backup', admin_url( 'admin.php?page=semrs-backups' ) ),
+		);
+	}
+);
 
 // A restore replaces the database while it runs; the restored settings may not list the
 // Backups module, so its step runner always loads while a backup job file exists.

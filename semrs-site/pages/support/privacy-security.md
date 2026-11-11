@@ -40,18 +40,20 @@ The password is saved encrypted. Safer still, add `define( 'SEMRS_SMTP_PASSWORD'
 
 ## Security
 
-Go to **SEMRS → Security**. These settings are safe for almost every site:
+Go to **SEMRS → Security**. The safe protections are already on when you install SEMRS Core:
 
-| Setting | What it does | Turn on? |
+| Setting | What it does | Default |
 |---|---|---|
-| Limit log-in attempts | Locks out an IP after 5 wrong passwords for 15 minutes | Yes |
-| Same error for wrong user or password | Bots cannot learn which usernames exist | Yes |
-| Hide the WordPress version | Removes the version number from the page code | Yes |
-| Security headers | Adds browser protections against clickjacking and file sniffing | Yes |
-| Turn off the file editor | Removes the theme and plugin code editors | Yes |
-| Hide usernames | Blocks author scans and the public users list | Only if you have no author pages to rank |
-| HSTS | Forces HTTPS for a year | Only when every page and subdomain uses HTTPS |
-| Safe SVG uploads | Lets administrators upload cleaned SVG files | When you need SVG logos or icons |
+| Limit log-in attempts | Locks out an IP after 5 wrong passwords for 15 minutes | On |
+| Same error for wrong user or password | Bots cannot learn which usernames exist | On |
+| Hide the WordPress version | Removes the version number from the page code | On |
+| Security headers | Adds browser protections against clickjacking and file sniffing | On |
+| Hide usernames | Blocks author scans and the public users list | On |
+| Turn off the file editor | Removes the theme and plugin code editors | Off: turn on when nobody edits code in WordPress |
+| HSTS | Forces HTTPS for a year | Off: turn on only when every page and subdomain uses HTTPS |
+| Safe SVG uploads | Lets administrators upload cleaned SVG files | Off: turn on when you need SVG logos or icons |
+
+**Using Wordfence or another security plugin?** The log-in limit steps aside automatically, so a wrong password is never counted twice. Sites behind Cloudflare see each visitor's real address.
 
 **Locked out?** Add `define( 'SEMRS_SECURITY_OFF', true );` to wp-config.php, log in, fix the setting and remove the line.
 
@@ -91,6 +93,48 @@ Included with every SEMRS Pro key. Go to **Tools → Search & replace**.
 4. Untick **Dry run** and run it again.
 
 If the result is wrong, click **Undo last change**. The site address, plugins, user roles and security keys are never changed.
+
+## SEMRS Assets Protector (Pro)
+
+Included with every SEMRS Pro key. Go to **SEMRS → Assets Protector**. Everything is on with safe settings from the start; the **Overview** tab shows a checklist of what protects your site.
+
+- **Firewall:** stops SQL injection, cross-site scripting, file inclusion, code injection, requests for private files, PHP in the uploads folder, XML-RPC password guessing and known attack tools before WordPress loads. Scanners that hit many missing pages, and addresses that attack again and again, are blocked for a while. Addresses an administrator logged in from are never blocked automatically.
+- **Malware scan:** every WordPress file and every plugin from WordPress.org is compared with the official copy, and SEMRS theme and plugin files with semrs.com. Changed SEMRS files are repaired automatically. Everything else is checked for malware code. The scan runs every night in short steps and emails you when it finds something serious.
+- **Fixing results:** **Restore original** downloads a clean copy of a changed file. **Quarantine** moves a suspicious file to a protected folder (nothing is deleted, and **Put back** undoes it). **Ignore** hides a result until the file changes.
+- **Spam protection:** stops spam in comments, product reviews, sign-ups and Contact Form 7, WPForms, Gravity Forms and Elementor forms, without a CAPTCHA and without any outside service. Spam comments go to the Spam folder, so nothing is lost.
+
+**Using Wordfence or Akismet?** SEMRS works alongside them. While Wordfence is active, the SEMRS firewall and nightly scan pause so nothing is checked twice (you can choose to run both). With Akismet, SEMRS stops the bots first and Akismet checks the rest.
+
+**Firewall blocking something it should not?** Add your address under **Always allow**, or switch the mode to **Log only** while you test. Emergency switch: add `define( 'SEMRS_FIREWALL_OFF', true );` to wp-config.php.
+
+## Backups and migration (Pro)
+
+Included with every SEMRS Pro key. Go to **SEMRS → Backups**.
+
+1. Click **Whole site**, **Database**, **Plugins**, **Themes** or **Media** to back up now.
+2. Under **Schedule & contents**, choose how often (twice a day, daily, weekly or monthly) and how many backups to keep.
+3. Under **Storage**, add at least one place outside your server: Amazon S3 (or Wasabi, Backblaze B2, DigitalOcean Spaces, Cloudflare R2), Dropbox, Google Drive, FTP or FTPS, SFTP, WebDAV (Nextcloud, ownCloud) or email. Click **Save and test**.
+4. To restore, click **Restore** next to a backup, choose the parts and confirm. Click **Check** first to make sure every file is complete.
+
+**Extra features**
+
+- **Rollback copies:** before WordPress updates a plugin or theme, the old version is kept. If an update breaks something, click **Roll back**.
+- **Faster backups:** between full backups, save only the files that changed.
+- **Encryption:** protect database backups with a password (AES-256). Keep the password safe.
+- **Leave out tables or folders:** skip large log tables, video folders or files above a size you choose.
+- **Restore on a new server:** on a fresh WordPress with SEMRS Pro, click **Find backups in** your storage, then **Fetch** and **Restore**. Or upload the backup files you downloaded.
+- **Backups from other plugins:** upload an UpdraftPlus backup or an All-in-One WP Migration .wpress file, and restore it here.
+- **WP-CLI:** `wp semrs backup run`, `wp semrs backup list` and `wp semrs backup restore` for developers.
+
+**Move a site to a new address or host**
+
+1. On the old site, open **Backups → Migrate** and click **Make a migration package**. Copy the key (it works for 24 hours).
+2. On the new site, install WordPress, SEMRS Core and SEMRS Pro, open **Backups → Migrate**, paste the key and click **Copy the site here**.
+3. Log in with the old site's username and password. Every address, also inside page builder data, now points to the new site.
+
+Sites up to 10 GB move by default; change the limit under **Largest migration**, and leave out large folders if needed.
+
+**Using UpdraftPlus too?** While it is active, the SEMRS schedule pauses so two backups never run at once. Manual backups, restore and migration still work.
 
 ## Social images (Pro)
 

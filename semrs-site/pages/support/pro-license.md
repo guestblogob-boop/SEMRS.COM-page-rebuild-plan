@@ -30,6 +30,8 @@ The status changes to **Active**. The Pro features unlock at once.
 | Ads | More ad places, targeting, A/B tests, click protection |
 | Theme | Dark mode switch, mega menu, white label |
 | Languages | Language switcher and linked translations |
+| Protection (every key) | SEMRS Assets Protector: firewall, malware scan with repair, spam protection; two-factor log-in; activity log |
+| Backups (every key) | Scheduled backups to S3, Dropbox, Google Drive, FTP, SFTP, WebDAV or email; one-click restore, rollback and migration |
 
 ## Add a dark mode switch
 
