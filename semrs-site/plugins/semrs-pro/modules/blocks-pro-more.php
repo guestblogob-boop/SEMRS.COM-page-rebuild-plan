@@ -471,7 +471,7 @@ function semrs_pro_render_switcher( $a, $block = null, $content = '' ) {
 		return $content;
 	}
 	semrs_pro_more_js();
-	$css = semrs_blocks_css_part( 'switcher', '.semrs-sw__bar{display:flex;justify-content:center;margin-bottom:1.25rem}.semrs-sw--left .semrs-sw__bar{justify-content:flex-start}.semrs-sw__bar div{display:inline-flex;padding:4px;border-radius:999px;background:var(--b-surface);border:1px solid var(--b-line)}.semrs-sw__bar button{padding:.55rem 1.25rem;border:0;border-radius:999px;background:none;color:var(--b-text);font:inherit;font-weight:700;cursor:pointer}.semrs-sw__bar button[aria-pressed=true]{background:var(--swa,var(--b-primary));color:#fff}.semrs-sw.is-ready .semrs-swp__title{display:none}' );
+	$css = semrs_blocks_css_part( 'switcher', '.semrs-sw__bar{display:flex;justify-content:center;margin-bottom:1.25rem}.semrs-sw--left .semrs-sw__bar{justify-content:flex-start}.semrs-sw__bar div{display:inline-flex;padding:4px;border-radius:999px;background:var(--b-surface);border:1px solid var(--b-line)}.semrs-sw__bar button{padding:.55rem 1.25rem;border:0;border-radius:999px;background:none;color:var(--b-text);font:inherit;font-weight:700;cursor:pointer}.semrs-sw__bar button[aria-pressed=true]{background:var(--swa,var(--b-primary));color:#fff}.semrs-sw__bar button:hover,.semrs-sw__bar button:focus-visible{background:#f6c343;color:#0b1f3a}.semrs-sw.is-ready .semrs-swp__title{display:none}' );
 	$btns = '';
 	foreach ( array_slice( $kids, 0, 2 ) as $i => $k ) {
 		$btns .= '<button type="button" aria-pressed="' . ( 0 === $i ? 'true' : 'false' ) . '">' . esc_html( $k['attrs']['title'] ?? 'Option' ) . '</button>';
