@@ -118,7 +118,7 @@ Every message is saved under **Leads** in your dashboard. You also get an email.
 | Scroll animations | Blocks that fade or slide in |
 | Display conditions | Show a block only to some visitors or on some dates |
 | Popup / Modal | A popup made from any blocks. It opens with a button or after some seconds. |
-| Pricing Table with Switch | Several plans with a monthly / yearly switch |
+| Pricing Table with Switch | Several plans with a monthly / yearly switch, or yearly / lifetime: set the price note for each side ("month", "year" or "once") |
 | Sticky Bar | A slim bar at the top or bottom of the screen with a message and a button |
 | Before / After | Drag a handle to compare two pictures |
 | Image Hotspots | Points on a picture. Click one to read a short note. |

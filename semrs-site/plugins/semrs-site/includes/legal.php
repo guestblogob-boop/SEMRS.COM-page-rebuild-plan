@@ -91,7 +91,7 @@ function semrs_legal_business_shortcode() {
 			__( 'Digital products you download and install on your own WordPress website.', 'semrs-site' ),
 			array(
 				esc_html__( 'Free: the SEMRS theme, SEMRS Child SEO theme and the SEMRS Core, Blocks and Tools plugins (GPL).', 'semrs-site' ),
-				esc_html__( 'Paid: SEMRS Pro add-ons (SEO Pro, Speed Pro, Ads Pro, Theme Pro or All Pro), sold as yearly or lifetime license keys for 1, 5 or unlimited websites.', 'semrs-site' ),
+				esc_html__( 'Paid: SEMRS Pro add-ons (SEO Pro, Speed Pro, Ads Pro, Theme & Blocks Pro or All Pro, each with SEMRS Assets Protector and Backups & migration), sold as yearly or lifetime license keys for 1, 3, 5 or unlimited websites.', 'semrs-site' ),
 				esc_html__( 'Delivered instantly: download link and license key by email, updates inside WordPress.', 'semrs-site' ),
 			),
 			esc_html__( 'Confirmed by invoice. Your license key and download link arrive by email.', 'semrs-site' )
@@ -241,7 +241,7 @@ function semrs_legal_pages() {
 			. semrs_legal_ul(
 				array(
 					'<strong>Open-source code:</strong> all SEMRS themes and plugins, free and paid, use the <a href="https://www.gnu.org/licenses/gpl-2.0.html" rel="noopener">GNU General Public License</a> (version 2 or later), like WordPress. Nothing in these terms takes away your rights under the GPL.',
-					'<strong>What a paid license gives you:</strong> a key that switches on the Pro add-ons you bought, on 1, 5 or unlimited live websites. It also gives you updates and email support while it is active. Local and staging sites do not use a slot.',
+					'<strong>What a paid license gives you:</strong> a key that switches on the Pro add-ons you bought, on 1, 3, 5 or unlimited live websites. It also gives you updates and email support while it is active. Local and staging sites do not use a slot.',
 					'<strong>When a yearly license ends:</strong> the add-ons keep working. Updates and support stop until you renew.',
 					'<strong>Keep your key private.</strong> Do not publish, share or resell it. We may switch off a key that is shared, used on too many sites or bought with a fake payment.',
 					'<strong>Our name and logo</strong> are not part of the GPL. Do not use them to brand your own products.',
@@ -500,7 +500,7 @@ function semrs_legal_install() {
 				array(
 					'ID'           => $assets->ID,
 					'post_title'   => 'SEMRS WordPress Themes & Plugins',
-					'post_content' => semrs_legal_p( 'SEMRS makes free WordPress themes and plugins for SEO, speed, ads and page building. They are the same tools that run semrs.com. The theme and the Core, Blocks and Tools plugins are free. SEMRS Pro add-ons unlock extra features with one license key for 1, 5 or unlimited websites.' )
+					'post_content' => semrs_legal_p( 'SEMRS makes free WordPress themes and plugins for SEO, speed, security, ads and page building. They are the same tools that run semrs.com. The theme and the Core, Blocks and Tools plugins are free. SEMRS Pro add-ons unlock extra features with one license key for 1, 3, 5 or unlimited websites.' )
 						. semrs_legal_glance( 'SEMRS WordPress themes and plugins at a glance', array( '6 free themes & plugins', 'Pro from $19 a year', 'One key, all add-ons', '30-day refunds' ) )
 						. '<!-- wp:semrs/toc {"levels":"2","collapsed":true} /-->'
 						. semrs_legal_h( 'What SEMRS offers' )
@@ -517,7 +517,7 @@ function semrs_legal_install() {
 		);
 		update_post_meta( $assets->ID, '_semrs_ads_off', true );
 		if ( function_exists( 'semrs_store_set_seo' ) ) {
-			semrs_store_set_seo( $assets->ID, 'WordPress Themes and Plugins: 6 Free Tools + Pro | SEMRS', 'Free SEMRS WordPress themes and plugins for SEO, speed, ads and page building, plus Pro add-ons from $19 a year with 30-day refunds.', 'wordpress themes and plugins' );
+			semrs_store_set_seo( $assets->ID, 'WordPress Themes and Plugins: 6 Free Tools + Pro | SEMRS', 'Free SEMRS WordPress themes and plugins for SEO, speed, security, ads and page building, plus Pro add-ons from $19 a year with 30-day refunds.', 'wordpress themes and plugins' );
 		}
 	}
 
