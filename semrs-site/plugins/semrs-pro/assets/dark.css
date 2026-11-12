@@ -47,9 +47,12 @@ html[data-theme="dark"] .sp-hb-main { background: var(--sp-dark-header, #0b1f3a)
 html[data-theme="dark"] .site-footer,
 html[data-theme="dark"] .semrs-section--navy,
 html[data-theme="dark"] .semrs-cta-band,
-html[data-theme="dark"] .sp-to-top,
 html[data-theme="dark"] .page-numbers.current { background: var(--sp-dark-header, #0b1f3a); border-color: var(--sp-line); }
 html[data-theme="dark"] .semrs-section--navy, html[data-theme="dark"] .semrs-cta-band { box-shadow: inset 0 0 0 1px #1e3a66; }
+/* Blocks with white text on the primary colour stay navy (the primary colour is light in dark mode). */
+html[data-theme="dark"] :is(.semrs-cta:not([style*="--cta-bg"]), .semrs-table thead th, .semrs-team__links a, .semrs-review__head, .semrs-cd__unit, .semrs-show__switch button[aria-pressed="true"], .semrs-share a:hover, .semrs-share button:hover) { background: var(--sp-dark-header, #0b1f3a); color: #fff; }
+html[data-theme="dark"] .semrs-cta:not([style*="--cta-bg"]) { box-shadow: inset 0 0 0 1px #1e3a66; }
+html[data-theme="dark"] .semrs-banners__dot[aria-current="true"]::before { background: var(--sp-accent); }
 html[data-theme="dark"] .semrs-btn:hover { background: var(--sp-btn-hover); border-color: var(--sp-btn-hover); color: var(--sp-btn-hover-text); }
 html[data-theme="dark"] :is(.sp-button, .wp-block-button__link, .wp-element-button, .semrs-btn):hover { box-shadow: 0 10px 24px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.18); }
 

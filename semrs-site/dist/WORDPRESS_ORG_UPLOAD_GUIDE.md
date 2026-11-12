@@ -6,7 +6,7 @@ Last checked: 12 November 2026. All zips below are built and checked. You do eve
 
 | Product | Submit? | File to upload | Order |
 |---|---|---|---|
-| SEMRS theme 1.3.27 | Yes | `dist/wporg/semrs.zip` (301 KB) | 1st (theme queue) |
+| SEMRS theme 1.3.28 | Yes | `dist/wporg/semrs.zip` (301 KB) | 1st (theme queue) |
 | SEMRS Core 1.3.60 | Yes | `dist/wporg/semrs-core.zip` (237 KB) | 1st (plugin queue) |
 | SEMRS Blocks 1.3.19 | Yes | `dist/wporg/semrs-blocks.zip` (6.9 MB) | 2nd |
 | SEMRS Tools 1.4.6 | Yes | `dist/wporg/semrs-tools.zip` (190 KB) | 3rd |
