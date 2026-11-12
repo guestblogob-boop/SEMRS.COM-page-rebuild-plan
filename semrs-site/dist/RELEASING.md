@@ -1,4 +1,4 @@
-# How to release an update and notify every live site
+﻿# How to release an update and notify every live site
 
 ## How sites get notified
 
@@ -55,3 +55,4 @@ add_filter( 'semrs_updater_enabled', '__return_false' );
 - A 1-site key was refused on a second real site ("limit"), kept working on its first site, and was never blocked on staging sites.
 - Live sites listed each site with product, installed and latest version, and WordPress/PHP versions.
 - Not testable in the sandbox: the one-click install itself, because the preview cannot download from its own address. On a real site it uses WordPress's standard updater with the signed link above.
+
