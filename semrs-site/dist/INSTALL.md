@@ -1,4 +1,4 @@
-# SEMRS Assets — Free + Pro (theme 1.1.0 · Core 1.1.0 · Tools 1.2.0 · Pro 1.1.0)
+﻿# SEMRS Assets — Free + Pro (theme 1.1.0 · Core 1.1.0 · Tools 1.2.0 · Pro 1.1.0)
 
 | Package | Tier | File | Install at |
 | --- | --- | --- | --- |
@@ -27,3 +27,4 @@ The theme was renamed (folder `semrs-pro` → `semrs`) so it can be free, with t
 
 ## Switching from Astra + Rank Math + Ad Inserter
 Follow the 10 staging steps from the previous INSTALL guide, with SEMRS Pro activated for redirects (import from Rank Math) and ads. Keep Rank Math active until you have checked your pages: SEMRS SEO pauses itself and reads Rank Math's data in the meantime.
+
