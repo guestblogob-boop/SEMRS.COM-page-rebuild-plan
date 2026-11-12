@@ -18,10 +18,10 @@ SEMRS is a set of free tools for WordPress, plus one paid add-on. Think of it li
 |---|---|---|
 | SEMRS theme | Free | The look of your site: header, footer, colors and layout. |
 | SEMRS Child SEO | Free | Adds a Call and WhatsApp bar on phones. Needs the SEMRS theme. |
-| SEMRS Core | Free | SEO, speed and a safe ads manager. Works with any theme. |
+| SEMRS Core | Free | SEO, speed, security and a safe ads manager, plus Cloudflare if you use it. Works with any theme. |
 | SEMRS Blocks | Free | Extra blocks for your pages, plus ready-made templates. |
 | SEMRS Tools | Free | Free SEO tools your visitors can use on your site. |
-| SEMRS Pro | Paid | Unlocks the Pro features in all of the above. |
+| SEMRS Pro | Paid | Unlocks the Pro features in all of the above, plus SEMRS Assets Protector and Backups & migration. |
 
 ## Set up SEMRS in 4 steps
 
@@ -41,10 +41,10 @@ SEMRS is a set of free tools for WordPress, plus one paid add-on. Think of it li
 - [Templates guide](/support/templates/): import a full website in one click.
 - [SEO guide](/support/seo/): titles, descriptions and the SEO score.
 - [Ads guide](/support/ads/): place ads safely and follow AdSense rules.
-- [Speed guide](/support/speed/): make your pages load fast.
-- [Privacy & Security guide](/support/privacy-security/): cookie banner, email delivery and login safety.
+- [Speed guide](/support/speed/): make your pages load fast, with Cloudflare if you use it.
+- [Privacy & Security guide](/support/privacy-security/): cookie banner, email, login safety, firewall, malware scan, backups and site moves.
 - [Free Tools guide](/support/free-tools/): put 20 free SEO tools on your site.
-- [Pro guide](/support/pro-license/): your license key and updates.
+- [Pro guide](/support/pro-license/): your license key, updates and everything Pro unlocks.
 - [Policies guide](/support/policies/): Google, AdSense, WordPress.org and privacy.
 
 ## Free or Pro: how to tell

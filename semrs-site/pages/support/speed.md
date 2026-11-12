@@ -76,6 +76,8 @@ Is your domain on Cloudflare? Open the **Cloudflare** tab and connect it once.
 2. Give it these permissions for your domain: **Zone → Read**, **Zone Settings → Edit**, **Cache Purge → Purge** and **Cache Rules → Edit**.
 3. Paste the token in SEMRS and click **Connect**. Your domain is found by itself.
 
+**Safe by design:** SEMRS sends nothing unless the text looks like a Cloudflare token or Global API key, and your browser never fills a saved password into this field.
+
 Then:
 
 - **Automatic clearing:** when you update a post, only its pages are cleared at Cloudflare (the post, home page, its categories, tags and author). Theme, menu and settings changes clear everything.

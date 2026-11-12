@@ -63,13 +63,15 @@ Google then shows the right language to each visitor. If a page has no translati
 
 With an active key, WordPress tells you when an update is ready. Update SEMRS Pro in one click, just like any other plugin.
 
+**New version not showing yet?** Go to **Dashboard → Updates** and click **Check again**. SEMRS asks semrs.com right away instead of waiting for the next automatic check.
+
 ## When your license ends
 
 Your Pro features keep working. Renew to keep getting updates, fixes and support.
 
 ## What data is sent
 
-Only your license key, your site address and the plugin version go to semrs.com. No content and no visitor data is sent.
+Only your license key, your site address and the plugin version go to semrs.com. No content and no visitor data is sent. The Assets Protector file check also asks semrs.com for the official file list of each SEMRS theme and plugin; it sends only the product name and version.
 
 ## SEMRS Pro license help and next steps
 

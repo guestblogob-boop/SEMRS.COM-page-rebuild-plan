@@ -49,6 +49,10 @@ The free SEMRS theme and plugins follow the [Plugin Directory guidelines](https:
 | Pro popups, dark mode, click protection | Small settings, such as "popup already shown" | The visitor's own browser only |
 | Page cache | Copies of public pages | Your own server |
 | SEMRS Pro license | Key, site address, plugin version | Sent to semrs.com for updates |
+| Cloudflare (only if you connect it) | Your Cloudflare token, and the page addresses to clear | Your database; addresses go to Cloudflare |
+| Pro firewall | The IP address, page and reason of the last 200 blocked requests | Your database |
+| Pro malware scan | Nothing about visitors. Only file names and versions are checked. | Official file lists from WordPress.org and semrs.com |
+| Pro backups | Copies of your files and database | Your server and the storage you choose |
 
 ## Your part, in one picture
 
