@@ -230,4 +230,42 @@ export const GRAPHICS = {
 		['Customer', 'Who, where, what problem'], ['Advantage', 'One clear sentence'], ['Goals', 'Leads or bookings a month'], ['2–3 channels', 'Where your customers buy'],
 		['Budget', 'Fewer channels, done properly'], ['Content plan', 'Answer customer questions'], ['Measure', 'Track from day one'], ['Update yearly', 'Or when things change'],
 	], 4, 'Source: SEMRS guide · based on the SBA marketing plan outline', true),
+	'keyword-planner-steps': () => steps('Google Keyword Planner in 6 steps', 'Free with a Google Ads account; no ads needed', [
+		['Set up Ads account', 'Add billing details, pause any campaign'], ['Discover keywords', 'Seed words or a page address'], ['Set location', 'The area your customers are in'],
+		['Read the numbers', 'Volume ranges, trends, bids'], ['Group and check', 'Close variants, search intent'], ['Map to pages', 'One main keyword per page'],
+	], 3, 'Source: Google Ads Help · SEMRS guide', true),
+	'website-redesign-steps': () => steps('Website redesign in 9 steps', 'Keep what ranks, redirect what moves, test before launch', [
+		['Set goals', 'Leads you want each month'], ['Audit pages', 'Traffic, rankings, links'], ['Keep or cut', 'Improve, merge or redirect'],
+		['Plan content', 'Write before design'], ['Map URLs', 'Old to new, every page'], ['Build on staging', 'Private copy, mobile first'],
+		['301 redirects', 'Keep at least one year'], ['Test', 'Forms, tracking, speed'], ['Launch, monitor', 'Sitemap, errors, traffic'],
+	], 3, 'Source: Google Search Central site move guide · SEMRS guide', true),
+	'near-me-seo-steps': () => steps('How to show up for near me searches', 'Google ranks by relevance, distance and prominence', [
+		['Profile', 'Category, services, photos'], ['Hours', 'Accurate, incl. holidays'], ['Reviews', 'Ask all, reply to all'], ['Area pages', 'Real places you serve'],
+		['Consistent NAP', 'Same name, address, phone'], ['Fast mobile', 'Call button on top'], ['Local schema', 'Structured details'], ['No stuffing', 'Never "near me" in names'],
+	], 4, 'Source: Google Business Profile Help · SEMRS guide', true),
+	'google-ads-keyword-match-types': () => compare('Google Ads keyword match types', 'Start narrow, widen once conversion tracking has data', ['How to write it', 'When ads can show'], [
+		['Broad match', 'roof repair', 'Related searches'], ['Phrase match', '"roof repair"', 'Includes the meaning'], ['Exact match', '[roof repair]', 'Same meaning or intent'],
+		['Negative keyword', '-jobs', 'Blocks searches with it'], ['Close variants', 'Add them yourself', 'Negatives do not match them'], ['Best start', 'Phrase + exact', 'Plus a negative list'],
+	], 'Source: Google Ads Help (keyword matching options, negative keywords)'),
+	'email-campaign-steps': () => steps('Plan an email campaign in 8 steps', 'One goal, one audience, one clear call to action', [
+		['One goal', 'A number you can count'], ['Audience', 'The right segment'], ['Offer', 'An honest reason to act'], ['Sequence', 'Two to four emails'],
+		['Subject lines', 'Clear and specific'], ['Phone design', 'One column, big button'], ['Test', 'Links, mobile, plain text'], ['Measure', 'Clicks, replies, sales'],
+	], 4, 'Source: SEMRS guide · follow CAN-SPAM and authenticate your domain', true),
+	'chatgpt-marketing-workflow': () => steps('A safe ChatGPT workflow for marketing', 'AI drafts; people check facts and approve', [
+		['Brief by a person', 'Audience, goal, must-have facts'], ['ChatGPT draft', 'Outline or first version'], ['Fact check', 'Every number and claim'],
+		['Add expertise', 'Your examples and voice'], ['Review', 'Links, policy, compliance'], ['Human approval', 'A person publishes'],
+	], 3, 'Source: SEMRS guide · Google: appropriate AI use is not against its guidelines', true),
+	'direct-mail-steps': () => steps('A direct mail campaign, step by step', 'Small area, clear offer, tracked response', [
+		['Choose area', 'Where best customers live'], ['One offer', 'Clear and honest'], ['Glance design', 'Headline, photo, offer'], ['Add tracking', 'Number, QR code, URL'],
+		['Print and send', 'Timed to the season'], ['Repeat', 'Same streets again'], ['Measure', 'Bookings vs total cost'], ['Pair online', 'Profile and landing page'],
+	], 4, 'Source: SEMRS guide · USPS EDDM: $0.26 per retail flat (Nov 2026)', true),
+	'final-expense-vendor-checks': () => steps('Checking a final expense lead vendor', 'Compare vendors by cost per policy, not cost per lead', [
+		['Exclusive?', 'Or shared with other agents'], ['Fresh?', 'Minutes or days old'], ['Consent', 'Form wording and records'],
+		['Returns', 'Wrong numbers and fake details'], ['Test small', 'A small batch first'], ['Track policies', 'Cost per policy sold'],
+	], 3, 'Source: SEMRS guide · follow Do Not Call and consent rules', true),
+	'dental-seo-steps': () => steps('Dental SEO in 8 steps', 'Local first, then helpful treatment pages', [
+		['Profile', 'Dentist category, photos'], ['Treatments', 'One page each'], ['Local words', 'Town names, naturally'], ['Reviews', 'Ask, reply privately'],
+		['Fast mobile', 'Call and book on top'], ['Schema', 'Dentist structured data'], ['Patient guides', 'Reviewed by a dentist'], ['Local links', 'Partners and directories'],
+	], 4, 'Source: SEMRS guide · HIPAA and the FTC review rule apply', true),
+	'advertising-budget-example': () => funnel('Advertising budget: work back from a customer', 'Example numbers only; replace them with your own', [['Customer worth (first year)', '$1,800'], ['Target cost per customer', '$450'], ['Customers wanted per month', '4'], ['Monthly ad budget', '$1,800'], ['Target cost per lead (1 in 4 buys)', '$112']], 'Source: SEMRS guide · worked example, not a benchmark'),
 };

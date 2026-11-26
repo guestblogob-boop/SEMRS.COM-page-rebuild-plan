@@ -754,5 +754,215 @@
    "credit": "Graphic: SEMRS",
    "license": "SEMRS original"
   }
+ },
+ "google-keyword-planner": {
+  "featured": {
+   "file": "google-keyword-planner-featured.webp",
+   "alt": "A person typing on a laptop at a wooden desk",
+   "caption": "Keyword Planner is free to use with a Google Ads account, even if you never run ads.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Working Typing by Bench Accounting, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/working-typing-0E0M5W9O3V",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "keyword-planner-steps.webp",
+   "alt": "Google Keyword Planner in six steps: set up an Ads account, discover keywords, set location, read the numbers, group and check, map to pages",
+   "caption": "Six steps to use Keyword Planner for free.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "website-redesign": {
+  "featured": {
+   "file": "website-redesign-featured.webp",
+   "alt": "Hands on a laptop beside printed floor plans and a notebook",
+   "caption": "Plan the structure and URL map before the design starts.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Office Work by energepic.com, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/office-work-42H3JH8QI5",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "website-redesign-steps.webp",
+   "alt": "Website redesign in nine steps: goals, audit, keep or cut, content, URL map, staging, 301 redirects, testing and launch",
+   "caption": "The nine steps of a redesign that keeps your rankings.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "near-me-seo": {
+  "featured": {
+   "file": "near-me-seo-featured.webp",
+   "alt": "A tradesperson with a tool belt at work on a building site",
+   "caption": "Nearby customers often need help today, so accurate hours and reviews matter.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Construction Worker by Leeroy, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/construction-worker-6B70C91911",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "near-me-seo-steps.webp",
+   "alt": "Near me SEO in eight cards: profile, hours, reviews, area pages, consistent details, fast mobile, local schema and no keyword stuffing",
+   "caption": "Steps that help you show up for nearby searches.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "google-ads-keywords": {
+  "featured": {
+   "file": "google-ads-keywords-featured.webp",
+   "alt": "A laptop showing analytics charts on a desk",
+   "caption": "Check the search terms report every week to cut wasted spend.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Analytics Charts by Negative Space, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/analytics-charts-RCFX768X06",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "google-ads-keyword-match-types.webp",
+   "alt": "Google Ads keywords match types table: broad, phrase and exact match, negative keywords, close variants and the best starting setup",
+   "caption": "How each match type decides when your ads can show.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "email-campaign": {
+  "featured": {
+   "file": "email-campaign-featured.webp",
+   "alt": "A woman reading on a laptop on a sofa with a mug of coffee",
+   "caption": "Most people read email on a phone or laptop at home, so keep each email short and clear.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Woman Laptop by Burst, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/woman-laptop-C7ARZC9TPU",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "email-campaign-steps.webp",
+   "alt": "Plan an email campaign in eight steps: goal, audience, offer, sequence, subject lines, phone design, testing and measuring",
+   "caption": "The eight steps of an email campaign.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "chatgpt-for-marketing": {
+  "featured": {
+   "file": "chatgpt-for-marketing-featured.webp",
+   "alt": "Lines of code on a dark computer screen",
+   "caption": "AI tools draft quickly; people still check every fact before publishing.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Programming Code by One Idea LLC, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/programming-code-1STVFMTBJY",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "chatgpt-marketing-workflow.webp",
+   "alt": "A safe workflow for ChatGPT for marketing: human brief, AI draft, fact check, add expertise, review and human approval",
+   "caption": "Use AI for speed and people for accuracy.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "direct-mail-marketing": {
+  "featured": {
+   "file": "direct-mail-marketing-featured.webp",
+   "alt": "A woman writing by hand at a table with a laptop nearby",
+   "caption": "A clear offer and a tracking code make every mailing measurable.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Woman Working by LinkedIn Sales Navigator, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/woman-working-KFOCL5M9AN",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "direct-mail-steps.webp",
+   "alt": "Direct mail marketing campaign steps: choose area, one offer, design, tracking, print and send, repeat, measure and pair with online",
+   "caption": "How to run a direct mail campaign you can measure.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "final-expense-leads": {
+  "featured": {
+   "file": "final-expense-leads-featured.webp",
+   "alt": "Three women of different ages smiling and talking over coffee",
+   "caption": "Families often plan final expenses together, so treat every lead with patience and respect.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Business Women by Direct Media, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/business-women-BOWOZQBREK",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "final-expense-vendor-checks.webp",
+   "alt": "Six checks for final expense leads vendors: exclusivity, freshness, consent, returns, small test and cost per policy",
+   "caption": "Run these checks before buying leads.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "dental-seo": {
+  "featured": {
+   "file": "dental-seo-featured.webp",
+   "alt": "A dentist examining a patient in a treatment chair",
+   "caption": "Helpful treatment pages answer patients’ questions before they book.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Dentist Orthodontist by Michal Jarmoluk, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/dentist-orthodontist-6HV52GTPO3",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "dental-seo-steps.webp",
+   "alt": "Dental SEO in eight steps: profile, treatment pages, local keywords, reviews, fast mobile site, schema, patient guides and local links",
+   "caption": "The eight steps of dental SEO in this guide.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "advertising-budget": {
+  "featured": {
+   "file": "advertising-budget-featured.webp",
+   "alt": "A man presenting a plan on a whiteboard to colleagues",
+   "caption": "Set the budget from what a customer is worth, then test before you scale.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Business Presenting by Direct Media, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/business-presenting-XDAR6MIG75",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "advertising-budget-example.webp",
+   "alt": "Advertising budget worked example: customer worth $1,800, target cost per customer $450, 4 customers a month, $1,800 budget, $112 per lead",
+   "caption": "An example of working back from customer value to a monthly budget.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
  }
 }
