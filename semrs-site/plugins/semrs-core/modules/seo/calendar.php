@@ -256,6 +256,7 @@ function semrs_calendar_page() {
 		</table>
 
 		<h2><?php esc_html_e( 'Scheduled posts', 'semrs-core' ); ?> (<?php echo count( $upcoming ); ?>)</h2>
+		<?php if ( function_exists( 'semrs_scheduler_status_box' ) ) { semrs_scheduler_status_box(); } ?>
 		<?php if ( $upcoming ) : ?>
 			<p><a class="button" href="<?php echo esc_url( $ics_all ); ?>"><?php esc_html_e( 'Download all to your calendar (.ics)', 'semrs-core' ); ?></a></p>
 			<table class="widefat striped" style="max-width:1200px">

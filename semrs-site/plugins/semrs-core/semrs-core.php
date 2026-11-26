@@ -3,7 +3,7 @@
  * Plugin Name:       SEMRS Core
  * Plugin URI:        https://semrs.com/
  * Description:       Free SEO, speed, images, roles and ads for any WordPress site: titles, meta, schema, sitemaps, SEO score and site audit, llms.txt, redirects and 404 log, IndexNow (reads Rank Math, Yoast and AIOSEO data); WebP/AVIF image optimization, user role editor, review widgets; page cache, CSS and script optimization, prefetch, database cleanup, speed check; AdSense/AdX/ad network code with policy-safe placement and ads.txt. SEMRS Pro adds Pro modules.
- * Version:           1.3.60
+ * Version:           1.3.61
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-core
@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
 // WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
 add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
 
-define( 'SEMRS_CORE_VERSION', '1.3.60' );
+define( 'SEMRS_CORE_VERSION', '1.3.61' );
 define( 'SEMRS_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_CORE_FILE', __FILE__ );
 define( 'SEMRS_CORE_URL', plugin_dir_url( __FILE__ ) );
@@ -112,6 +112,9 @@ if ( did_action( 'plugins_loaded' ) ) {
 if ( is_admin() ) {
 	require SEMRS_CORE_DIR . 'admin/dashboard.php';
 }
+
+// SEMRS Scheduler: publishes scheduled posts on time on cached sites. Always on, independent of the modules.
+require SEMRS_CORE_DIR . 'modules/seo/scheduler.php';
 
 /**
  * Activation: flush rewrites (sitemaps) on the next request.

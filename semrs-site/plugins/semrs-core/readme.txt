@@ -4,7 +4,7 @@ Tags: seo, cookie consent, smtp, security, page cache
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.60
+Stable tag: 1.3.61
 License: GPLv2 or later
 
 Free SEO, cookie consent, SMTP email, security, page cache, redirects, WebP images and a policy-safe ads manager in one plugin.
@@ -111,6 +111,9 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt, cookie banner, consent log, security options and all other features run entirely on your own server. Google Consent Mode only passes the visitor's choice to Google tags you already use; it does not load anything itself.
 
 == Changelog ==
+
+= 1.3.61 =
+* SEMRS Scheduler: scheduled posts publish on time on cached sites (Missed schedule protection), with status and a Publish due posts now button on the Content Calendar
 
 = 1.3.60 =
 * Cloudflare: browsers no longer fill saved passwords into the token fields, and anything that is not shaped like a Cloudflare token or key is refused before it is sent
@@ -254,6 +257,7 @@ The speed check, SEO audit, page cache, llms.txt, cookie banner, consent log, se
 = 1.3.18 =
 * Index Status: live and indexed status with remarks for every page, indexing tasks (Request indexing in Google, IndexNow), auto-indexing switch, robots.txt editor
 * Content Calendar: month calendar with Previous/Today/Next, scheduled posts with Add to Google Calendar and .ics
+* SEMRS Scheduler: scheduled posts publish on time even on cached sites ("Missed schedule" protection). Once a post is due, the next visit or cron run publishes it; status and a "Publish due posts now" button on the Content Calendar.
 * One-click sharing to Facebook, X, LinkedIn, Pinterest, Reddit, WhatsApp, Telegram and email (post lists, calendar, SEO sidebar); auto-post on publish through a webhook (Pro)
 * SEO Audit: recognizes a robots.txt file with your sitemap and Site Kit verification; menu and footer links count as internal links; the posts page and noindex pages don't lower the average
 * Focus keyword in URL check reads the full page address

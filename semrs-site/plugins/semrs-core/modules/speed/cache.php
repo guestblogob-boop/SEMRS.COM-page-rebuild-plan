@@ -131,6 +131,11 @@ function semrs_cache_serve() {
 	if ( ! semrs_cache_enabled() ) {
 		return;
 	}
+	// A scheduled post is due: let this visit load WordPress so the SEMRS Scheduler publishes it.
+	$due = (int) get_option( 'semrs_next_scheduled', 0 );
+	if ( $due && $due <= time() && $due > time() - DAY_IN_SECONDS ) {
+		return;
+	}
 	$file = semrs_cache_request_file();
 	if ( '' === $file || ! file_exists( $file ) ) {
 		return;
