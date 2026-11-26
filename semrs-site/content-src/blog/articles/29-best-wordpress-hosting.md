@@ -17,6 +17,8 @@ The best WordPress hosting for a small business is fast, secure, backed up and e
 
 [glance: Best WordPress hosting at a glance | Meet WordPress specs | Fast and secure | Daily backups | Fair renewal price]
 
+! **Disclosure:** this article contains a referral link to Hostinger, the host semrs.com runs on. If you buy through it, SEMRS may earn a referral reward at no extra cost to you.
+
 ## What WordPress hosting is
 
 WordPress is software. Hosting is the server that runs it and serves your pages to visitors. A good host keeps your site fast, online and secure. A poor one causes slow pages, downtime and security problems, which hurt both visitors and search rankings.
@@ -54,6 +56,12 @@ Older versions may still run WordPress, but they are slower and may stop getting
 6. **Staging:** a copy of your site to test updates safely before they go live.
 7. **Price after the first year:** introductory deals often double or triple on renewal. Compare the renewal price.
 
+## The host we use: Hostinger
+
+semrs.com runs on Hostinger. Measured against the checks above, our site runs PHP 8.3, pages are served through Hostinger's CDN with LiteSpeed caching, and the hPanel control panel includes a staging tool for testing changes. We still keep our own backups as well as the host's.
+
+New customers who sign up through our [Hostinger referral link](https://www.hostinger.com/pk?REFERRALCODE=RXKFALAK2VFJ) get 20% off the first term of a new plan, according to Hostinger's referral page in November 2026. The discount does not apply to renewals, so check the renewal price before you choose a long or short term. It is the host we chose for our own site, but compare it with the checks above for yours.
+
 ## Web hosting and your WordPress domain
 
 Register your domain in your own name, ideally with a registrar separate from your host. If you ever change hosts, you keep full control of the domain. Make sure you have the login details for both accounts, even if a designer set them up.
@@ -72,7 +80,7 @@ Hosting is the base of site speed. Google's [Core Web Vitals guide](https://deve
 
 ## Should you use managed WordPress hosting?
 
-Managed hosting costs more but handles updates, caching, security and expert support. It suits owners who would rather not manage technical tasks. If you prefer cheaper shared hosting, a care plan can cover updates and backups instead. Our guide to [website builders for small business](/website-builders-for-small-business/) compares WordPress with hosted builders that include hosting.
+Managed hosting costs more but handles updates, caching, security and expert support. It suits owners who would rather not manage technical tasks. If you prefer cheaper shared hosting, a care plan can cover updates and backups instead.
 
 ## Frequently asked questions
 

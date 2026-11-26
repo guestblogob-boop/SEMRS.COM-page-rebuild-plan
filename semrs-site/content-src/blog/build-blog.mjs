@@ -13,10 +13,12 @@ import path from 'path';
 const SRC = path.join('content-src', 'blog', 'articles');
 const OUT = path.join('pages', 'blog');
 
+// Referral and affiliate links get rel="sponsored" (Google's rule for paid links); the article must disclose them (WRITING_GUIDE section 6).
+const AFFILIATE = /[?&](REFERRALCODE|ref|aff|affiliate|affid)=/i;
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const inline = (s) => esc(s)
 	.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-	.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, u) => `<a href="${u}"${/^https?:/.test(u) && !/semrs\.com/.test(u) ? ' target="_blank" rel="noopener"' : ''}>${t}</a>`);
+	.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, u) => `<a href="${u}"${/^https?:/.test(u) && !/semrs\.com/.test(u) ? (AFFILIATE.test(u) ? ' target="_blank" rel="sponsored noopener"' : ' target="_blank" rel="noopener"') : ''}>${t}</a>`);
 
 const para = (s, cls = '') => `<!-- wp:paragraph${cls ? ` {"className":"${cls}"}` : ''} -->\n<p${cls ? ` class="${cls}"` : ''}>${inline(s)}</p>\n<!-- /wp:paragraph -->`;
 const head = (s, l) => `<!-- wp:heading${l === 2 ? '' : ` {"level":${l}}`} -->\n<h${l} class="wp-block-heading">${inline(s)}</h${l}>\n<!-- /wp:heading -->`;
