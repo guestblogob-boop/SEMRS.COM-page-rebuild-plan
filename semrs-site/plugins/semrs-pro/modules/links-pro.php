@@ -282,12 +282,23 @@ function semrs_links_check_url( $url ) {
 	);
 	$res  = wp_remote_head( $url, $args );
 	$code = is_wp_error( $res ) ? 0 : (int) wp_remote_retrieve_response_code( $res );
-	if ( is_wp_error( $res ) || in_array( $code, array( 403, 404, 405, 501 ), true ) ) {
+	if ( is_wp_error( $res ) || in_array( $code, array( 400, 403, 404, 405, 501 ), true ) ) {
 		$res  = wp_remote_get( $url, $args + array( 'limit_response_size' => 4096 ) ); // Some servers refuse HEAD.
 		$code = is_wp_error( $res ) ? 0 : (int) wp_remote_retrieve_response_code( $res );
 	}
 	if ( is_wp_error( $res ) && false !== stripos( $res->get_error_message(), 'redirect' ) ) {
 		return array( 300, __( 'Redirect loop: usually a sign-in page that works in a browser.', 'semrs-pro' ) ); // Not counted as broken.
+	}
+	// Some sites (ftc.gov, facebook.com and others) answer every automated request with 400 or 404, even
+	// for their home page. If the home page of another site is refused too, the site is blocking checkers:
+	// the link is not reported as broken (it opens normally in a browser).
+	$host = (string) wp_parse_url( $url, PHP_URL_HOST );
+	if ( in_array( $code, array( 400, 404, 410 ), true ) && $host && $host !== (string) wp_parse_url( home_url(), PHP_URL_HOST ) ) {
+		$home  = wp_remote_get( wp_parse_url( $url, PHP_URL_SCHEME ) . '://' . $host . '/', $args + array( 'limit_response_size' => 4096 ) );
+		$hcode = is_wp_error( $home ) ? 0 : (int) wp_remote_retrieve_response_code( $home );
+		if ( $hcode >= 400 && $hcode < 500 ) {
+			return array( 403, __( 'This site blocks automated link checks (its home page is refused too). The link opens normally in a browser.', 'semrs-pro' ) ); // 403 is not counted as broken.
+		}
 	}
 	return array( $code, is_wp_error( $res ) ? $res->get_error_message() : '' );
 }
