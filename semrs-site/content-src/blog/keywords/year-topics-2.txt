@@ -1,0 +1,206 @@
+# Second half-year topics (two articles a day from late June 2027). Same format as year-topics.txt.
+
+## SEO & AI Search
+wordpress seo | WordPress SEO: The Settings That Matter
+keyword cannibalization | Keyword Cannibalization: How to Find and Fix It
+anchor text | Anchor Text: How to Use It Safely
+backlinks | Backlinks Explained: Quality over Quantity
+disavow links | Disavow Links: When You Need It (Rarely)
+crawl budget | Crawl Budget: Does It Matter for Small Sites?
+pages not indexed | Pages Not Indexed? Common Causes and Fixes
+javascript seo | JavaScript SEO Basics
+rich results test | Testing Structured Data with Google's Rich Results Test
+breadcrumb navigation | Breadcrumb Navigation and SEO
+url structure | SEO-Friendly URL Structure
+alt text | Alt Text: How to Write It Well
+blog seo | Blog SEO: Getting Articles Found
+content refresh | Content Refresh: Updating Old Posts for More Traffic
+zero click searches | Zero-Click Searches and How to Adapt
+google discover | Google Discover: How Articles Appear There
+seo glossary | SEO Glossary: Terms in Plain English
+seo myths | SEO Myths Small Businesses Still Believe
+free seo tools | Free SEO Tools for Small Businesses
+international seo | International SEO Basics
+seo for nonprofits | SEO for Nonprofits
+seo for b2b | SEO for B2B Companies
+
+## Local SEO
+local seo for accountants | Local SEO for Accountants
+local seo for photographers | Local SEO for Photographers
+local seo for florists | Local SEO for Florists
+local seo for bakeries | Local SEO for Bakeries and Cafes
+local seo for car dealers | Local SEO for Car Dealers
+local seo for hotels | Local SEO for Hotels and B&Bs
+local seo for daycares | Local SEO for Daycares
+local seo for spas | Local SEO for Day Spas
+local seo for painters | Local SEO for Painters
+local seo for locksmiths | Local SEO for Locksmiths
+local seo for dog groomers | Local SEO for Dog Groomers
+local seo for tutors | Local SEO for Tutors and Learning Centers
+verify google business profile | How to Verify Your Google Business Profile
+duplicate google listing | Duplicate Google Business Listings: How to Fix Them
+google business profile performance | Google Business Profile Performance Reports
+local seo for franchises | Local SEO for Franchises
+google business profile products | Google Business Profile Products and Services
+review sites | Review Sites Beyond Google
+
+## PPC & Paid Ads
+google ads keywords | Choosing Keywords for Google Ads
+google ads account structure | Google Ads Account Structure for Small Budgets
+demand gen campaigns | Demand Gen Campaigns Explained
+google ads for real estate | Google Ads for Real Estate Agents
+google ads for restaurants | Google Ads for Restaurants
+google ads for hvac | Google Ads for HVAC Companies
+google ads for roofers | Google Ads for Roofers
+facebook ad targeting | Facebook Ad Targeting Options
+meta pixel | Meta Pixel and Conversions API Explained
+facebook ads not delivering | Facebook Ads Not Delivering: Common Fixes
+google ads disapproved | Google Ads Disapproved: Common Policy Reasons
+ppc reporting | PPC Reports: What to Show Each Month
+lookalike audiences | Lookalike Audiences Explained
+google ad grants | Google Ad Grants for Nonprofits
+google ads vs facebook ads | Google Ads vs Facebook Ads
+offline conversion tracking | Offline Conversion Tracking for Lead Businesses
+b2b ppc | PPC for B2B Companies
+
+## Web Design & WordPress
+website speed test | How to Test Your Website Speed
+image compression | Image Compression for Faster Websites
+uptime monitoring | Website Uptime Monitoring
+404 page | Custom 404 Pages That Keep Visitors
+website search | Adding Search to a Small Business Website
+blog design | Blog Page Design That Keeps Readers
+portfolio website | Portfolio Websites for Creatives and Trades
+restaurant website design | Restaurant Website Design
+real estate website design | Real Estate Website Design
+nonprofit website design | Nonprofit Website Design
+pages for small business website | Which Pages Does a Small Business Website Need?
+wordpress updates | WordPress Updates: How to Update Safely
+wordpress spam | Stopping WordPress Comment and Form Spam
+wordpress not sending email | WordPress Not Sending Email: Fixes
+website heatmaps | Website Heatmaps: See How Visitors Behave
+online booking system | Online Booking for Service Businesses
+live chat for website | Live Chat for Small Business Websites
+web design brief | How to Write a Web Design Brief
+
+## Content & Social Media
+email segmentation | Email Segmentation for Small Lists
+re engagement email | Re-Engagement Emails for Quiet Subscribers
+abandoned cart email | Abandoned Cart Emails That Recover Sales
+newsletter ideas | Newsletter Ideas for Small Businesses
+email open rate | Email Open Rates: What Is Good and How to Improve
+b2b content marketing | B2B Content Marketing
+linkedin personal branding | LinkedIn Personal Branding for Owners
+instagram reels | Instagram Reels for Small Business
+facebook groups for business | Facebook Groups for Business
+youtube shorts | YouTube Shorts for Small Business
+social media crisis | Handling Negative Comments and Social Media Crises
+social media policy | Social Media Policy for Employees
+content distribution | Content Distribution: Getting Posts Seen
+storytelling marketing | Storytelling in Marketing
+infographics | Infographics: When They Work and How to Make Them
+faq page | How to Write an FAQ Page
+content pillars | Content Pillars for Social Media
+
+## AI Marketing
+ai keyword research | AI for Keyword Research
+ai website builder | AI Website Builders: Are They Good Enough?
+ai logo generator | AI Logo Generators: Uses and Trademark Limits
+ai voiceover | AI Voiceovers for Marketing Videos
+ai for real estate agents | AI for Real Estate Agents
+ai for law firms | AI for Law Firms: Marketing and Ethics
+ai for accountants | AI for Accountants
+ai for restaurants | AI for Restaurants
+ai data privacy | AI and Customer Data Privacy
+ai bias | AI Bias in Marketing
+ai content repurposing | AI for Content Repurposing
+ai proposal writing | AI for Writing Proposals and Quotes
+ai competitor analysis | AI for Competitor Research
+ai hallucinations | AI Hallucinations: Fact-Checking AI Output
+ai training for employees | Training Your Team to Use AI Safely
+free ai tools for small business | Free AI Tools for Small Business
+
+## Digital Marketing
+growth marketing | Growth Marketing for Small Businesses
+guerrilla marketing | Guerrilla Marketing Ideas
+local marketing ideas | Local Marketing Ideas
+low cost marketing ideas | Low-Cost Marketing Ideas
+customer feedback survey | Customer Feedback Surveys
+net promoter score | Net Promoter Score (NPS) Explained
+marketing calendar | Marketing Calendar for the Year
+product launch marketing | Product Launch Marketing
+partnership marketing | Partnership Marketing with Other Businesses
+direct mail marketing | Direct Mail Marketing
+print marketing | Print Marketing: Flyers, Brochures and Signs
+business networking | Business Networking That Brings Work
+customer onboarding | Customer Onboarding
+upselling and cross selling | Upselling and Cross-Selling Without Being Pushy
+marketing dashboard | Marketing Dashboards for Small Businesses
+marketing mistakes | Marketing Mistakes Small Businesses Make
+
+## Marketing Costs & ROI
+google shopping ads cost | Google Shopping Ads Cost
+microsoft ads cost | Microsoft Ads Cost
+pinterest ads cost | Pinterest Ads Cost
+billboard advertising cost | Billboard Advertising Cost
+radio advertising cost | Radio Advertising Cost
+tv advertising cost | TV Advertising Cost
+newspaper advertising cost | Newspaper Advertising Cost
+direct mail cost | Direct Mail Cost
+flyer printing cost | Flyer Printing Cost
+trade show cost | Trade Show Cost
+landing page cost | Landing Page Cost
+website redesign cost | Website Redesign Cost
+ecommerce marketing cost | Ecommerce Marketing Cost
+marketing automation cost | Marketing Automation Software Cost
+crm cost | CRM Cost for Small Businesses
+
+## Industry Marketing (Finance & Insurance)
+life insurance marketing | Life Insurance Marketing Ideas
+insurance cross selling | Cross-Selling Insurance Policies
+insurance agency social media | Social Media for Insurance Agencies
+insurance video marketing | Video Marketing for Insurance Agents
+insurance agency branding | Insurance Agency Branding
+independent insurance agency marketing | Independent Insurance Agency Marketing
+captive agent marketing | Marketing for Captive Insurance Agents
+insurance lead conversion | Insurance Lead Conversion
+financial advisor niche | Choosing a Niche as a Financial Advisor
+financial advisor email marketing | Email Marketing for Financial Advisors
+financial advisor linkedin | LinkedIn for Financial Advisors
+client appreciation events | Client Appreciation Events for Advisors
+mortgage email marketing | Email Marketing for Mortgage Brokers
+reverse mortgage marketing | Reverse Mortgage Marketing Rules
+hard money lender marketing | Hard Money Lender Marketing
+payroll company marketing | Marketing a Payroll Company
+sec marketing rule | The SEC Marketing Rule for Advisers
+
+## Industry Marketing (Legal & Health)
+employment lawyer marketing | Employment Lawyer Marketing
+dui lawyer marketing | DUI Lawyer Marketing
+workers comp lawyer marketing | Workers' Compensation Lawyer Marketing
+real estate attorney marketing | Real Estate Attorney Marketing
+law firm content marketing | Content Marketing for Law Firms
+law firm reviews | Getting Reviews for a Law Firm
+lawyer directories | Lawyer Directories: Which Are Worth It
+medical practice google ads | Google Ads for Medical Practices
+dental implant marketing | Dental Implant Marketing
+pediatric dentist marketing | Pediatric Dentist Marketing
+hearing aid marketing | Hearing Aid Practice Marketing
+fertility clinic marketing | Fertility Clinic Marketing
+nutritionist marketing | Marketing for Nutritionists and Dietitians
+massage therapist marketing | Massage Therapist Marketing
+luxury real estate marketing | Luxury Real Estate Marketing
+commercial real estate marketing | Commercial Real Estate Marketing
+
+## Business Finance
+sba microloan | SBA Microloans Explained
+business emergency fund | Building a Business Emergency Fund
+profit and loss statement | Profit and Loss Statement: How to Read One
+break even analysis | Break-Even Analysis for Small Businesses
+business plan | How to Write a Business Plan
+llc vs sole proprietorship | LLC vs Sole Proprietorship
+sales tax for online sellers | Sales Tax for Online Sellers
+payroll for small business | Payroll for Small Businesses
+business insurance cost | Business Insurance Cost
+home based business insurance | Home-Based Business Insurance
+inventory financing | Inventory Financing

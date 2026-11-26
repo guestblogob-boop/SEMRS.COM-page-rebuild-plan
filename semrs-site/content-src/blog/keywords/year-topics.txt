@@ -1,0 +1,390 @@
+# 12-month SEMRS content plan: one topic per line, "focus keyword | working title".
+# Lines under "## <Category>" belong to that category (names match semrs-keywords-all.csv).
+# build-year-plan.mjs matches each focus keyword to the keyword pool for volume, CPC and supporting keywords.
+
+## SEO & AI Search
+technical seo | Technical SEO Checklist for Small Business Websites
+on page seo | On-Page SEO: A Checklist for Every Page
+off page seo | Off-Page SEO: What Builds Trust and Authority
+link building | Link Building for Small Businesses: Safe Tactics That Work
+seo audit | How to Run an SEO Audit Step by Step
+google search console | Google Search Console for Beginners
+google analytics 4 | Google Analytics 4 for Small Business: A Plain Guide
+schema markup | Schema Markup Explained for Small Business Websites
+meta description | How to Write Meta Descriptions That Get Clicks
+title tags | Title Tags: How to Write Them for SEO
+internal linking | Internal Linking: A Simple Strategy for Better Rankings
+page speed | Page Speed and SEO: What Slows Your Site Down
+core web vitals | Core Web Vitals Explained Without Jargon
+mobile seo | Mobile SEO: Making Your Site Work on Phones
+image seo | Image SEO: Alt Text, File Names and Compression
+seo copywriting | SEO Copywriting: Writing for People and Search
+content audit | Content Audit: Update, Merge or Delete Old Pages
+duplicate content | Duplicate Content and Canonical Tags Explained
+xml sitemap | XML Sitemaps: What They Are and How to Submit One
+robots txt | Robots.txt: What to Block and What Never to Block
+301 redirect | 301 Redirects: When and How to Use Them
+broken links | How to Find and Fix Broken Links
+ecommerce seo | Ecommerce SEO: Product and Category Pages That Rank
+ai overviews | Google AI Overviews: What They Mean for Your Website
+seo vs ppc | SEO vs PPC: Which Should a Small Business Start With?
+long tail keywords | Long-Tail Keywords: Smaller Searches, Better Customers
+search intent | Search Intent: Matching Pages to What People Want
+featured snippets | Featured Snippets: How to Win the Answer Box
+seo report | SEO Reports: The Numbers That Actually Matter
+rank tracking | Rank Tracking: How to Measure Keyword Positions
+seo competitor analysis | SEO Competitor Analysis in Six Steps
+eeat | E-E-A-T Explained: Experience, Expertise, Authority and Trust
+google algorithm update | Google Algorithm Updates: What to Do When Rankings Drop
+website migration seo | Website Migration Without Losing Your Rankings
+hreflang | Hreflang for Multilingual and Multi-Country Sites
+seo for startups | SEO for Startups: What to Do in the First 90 Days
+youtube seo | YouTube SEO: Getting Videos Found
+voice search optimization | Voice Search Optimization for Local Businesses
+answer engine optimization | Answer Engine Optimization (AEO) Explained
+llms txt | llms.txt Explained: Should Your Site Have One?
+white hat seo | White Hat vs Black Hat SEO: What Is Safe
+seo checklist | SEO Checklist for a New Website
+how long does seo take | How Long Does SEO Take to Work?
+topic clusters | Topic Clusters: Planning Content Around Pillar Pages
+
+## Local SEO
+local citations | Local Citations: Where to List Your Business
+nap consistency | NAP Consistency: Why Your Name, Address and Phone Must Match
+google maps ranking | How to Rank Higher on Google Maps
+google business profile posts | Google Business Profile Posts: What to Share
+google business profile suspended | Google Business Profile Suspended: How to Fix It
+service area business | Service Area Businesses: Local SEO Without a Storefront
+local keywords | Local Keywords: Finding What Nearby Customers Search
+local landing pages | Local Landing Pages That Rank Without Duplicate Content
+multi location seo | Multi-Location SEO for Businesses with Several Branches
+local link building | Local Link Building: Partners, Sponsors and Press
+bing places | Bing Places for Business: Setup Guide
+apple business connect | Apple Business Connect: Get Found in Apple Maps
+local business schema | Local Business Schema: Structured Data for Local SEO
+respond to negative reviews | How to Respond to Negative Reviews
+local pack | The Google Local Pack: How the Map Results Work
+near me seo | "Near Me" Searches: How to Show Up
+local seo for plumbers | Local SEO for Plumbers
+local seo for restaurants | Local SEO for Restaurants
+local seo for contractors | Local SEO for Contractors
+local seo for hvac | Local SEO for HVAC Companies
+local seo for roofers | Local SEO for Roofers
+local seo for salons | Local SEO for Hair and Beauty Salons
+local seo for gyms | Local SEO for Gyms and Fitness Studios
+local seo for auto repair | Local SEO for Auto Repair Shops
+local seo for cleaning companies | Local SEO for Cleaning Companies
+local seo for landscapers | Local SEO for Landscapers
+local seo for electricians | Local SEO for Electricians
+local seo for pest control | Local SEO for Pest Control Companies
+local seo for moving companies | Local SEO for Moving Companies
+local seo checklist | Local SEO Checklist for Small Businesses
+local seo audit | Local SEO Audit: Find What Holds You Back
+google business profile categories | Google Business Profile Categories: How to Choose
+google business profile photos | Google Business Profile Photos That Win Clicks
+online directories | Online Directories: Which Ones Are Worth Your Time
+hyperlocal marketing | Hyperlocal Marketing: Winning Your Neighborhood
+google local services | Google Guaranteed and Google Screened Badges Explained
+
+## PPC & Paid Ads
+quality score | Google Ads Quality Score: How to Improve It
+negative keywords | Negative Keywords: Stop Paying for the Wrong Clicks
+keyword match types | Keyword Match Types in Google Ads
+performance max | Performance Max Campaigns: Pros, Cons and Setup
+google shopping ads | Google Shopping Ads for Small Online Stores
+remarketing ads | Remarketing Ads: Bring Visitors Back
+display ads | Display Ads: When They Work for Small Businesses
+youtube ads | YouTube Ads for Small Business
+microsoft advertising | Microsoft Advertising (Bing Ads) for Small Business
+facebook ads for small business | Facebook Ads for Small Business: A Starter Guide
+instagram ads | Instagram Ads: Formats, Targeting and Budgets
+linkedin ads | LinkedIn Ads for B2B Small Businesses
+tiktok ads | TikTok Ads for Small Business
+ppc landing page | PPC Landing Pages That Convert
+conversion tracking | Conversion Tracking for Google and Meta Ads
+google ads bidding strategies | Google Ads Bidding Strategies Explained
+cost per click | Cost per Click: What Drives It and How to Lower It
+click through rate | Click-Through Rate: What Is a Good CTR?
+return on ad spend | Return on Ad Spend (ROAS): How to Calculate and Improve It
+ad extensions | Google Ads Assets (Extensions) That Lift Clicks
+call ads | Call Ads: Getting Phone Calls from Google
+geo targeting | Geo-Targeting Ads: Reach the Right Area
+ad copy | How to Write Ad Copy That Gets Clicks
+ad testing | A/B Testing Ads: A Simple Method
+click fraud | Click Fraud: How to Spot and Reduce It
+google ads audit | Google Ads Audit: 12 Checks for Wasted Spend
+ppc for plumbers | PPC for Plumbers: Getting Emergency Calls
+ppc for ecommerce | PPC for Ecommerce Stores
+google ads for contractors | Google Ads for Contractors
+facebook lead ads | Facebook Lead Ads: Collect Leads Without a Website
+audience targeting | Audience Targeting in Google and Meta Ads
+ad scheduling | Ad Scheduling: Run Ads When Customers Buy
+smart campaigns | Google Smart Campaigns: Are They Worth It?
+pinterest ads | Pinterest Ads for Small Business
+
+## Web Design & WordPress
+wordpress security | WordPress Security Checklist
+wordpress speed optimization | WordPress Speed Optimization Step by Step
+wordpress backup | WordPress Backups: How Often and Where to Store Them
+wordpress maintenance | WordPress Maintenance: Weekly, Monthly and Yearly Tasks
+wordpress themes | How to Choose a WordPress Theme
+wordpress plugins | Essential WordPress Plugins for Small Business Sites
+page builder | Block Editor vs Page Builders: What to Use in WordPress
+woocommerce | WooCommerce Setup Guide for Small Stores
+landing page design | Landing Page Design: What Converts
+website redesign | Website Redesign: A Step-by-Step Plan
+website navigation | Website Navigation: Menus People Understand
+responsive web design | Responsive Web Design Explained
+homepage design | Homepage Design: What to Put Above the Fold
+about us page | How to Write an About Us Page That Builds Trust
+contact page | Contact Page Design: Make It Easy to Reach You
+website copywriting | Website Copywriting for Small Businesses
+ssl certificate | SSL Certificates: Why Your Site Needs HTTPS
+domain name | How to Choose a Domain Name for Your Business
+move wordpress site | How to Move a WordPress Site to a New Host
+wordpress staging | WordPress Staging Sites: Test Before You Update
+wordpress hacked | WordPress Site Hacked? What to Do Now
+website maintenance checklist | Website Maintenance Checklist
+ecommerce website design | Ecommerce Website Design: Pages Every Store Needs
+one page website | One-Page Websites: When They Work
+website color scheme | Choosing a Website Color Scheme
+website fonts | Website Fonts: Readable Typography for Business Sites
+free stock photos | Free Stock Photos: Where to Find Them and License Rules
+website footer | Website Footer: What to Include
+call to action | Call to Action Buttons That Get Clicked
+website forms | Website Forms: Fewer Fields, More Leads
+cookie consent | Cookie Consent Banners: What Small Businesses Need
+privacy policy | Privacy Policy for a Small Business Website
+wordpress user roles | WordPress User Roles: Who Should Have What Access
+wordpress blocks | WordPress Blocks: Building Pages Without Code
+small business website checklist | Small Business Website Checklist
+web design trends | Web Design Trends Worth Following (and Ones to Skip)
+
+## Content & Social Media
+content calendar | Content Calendar: Plan a Month in an Hour
+blog post ideas | Blog Post Ideas for Small Businesses
+how often should you blog | How Often Should a Small Business Blog?
+how to write a blog post | How to Write a Blog Post That Ranks and Helps
+content repurposing | Content Repurposing: One Idea, Many Formats
+evergreen content | Evergreen Content: Pages That Keep Working
+case study | How to Write a Case Study Customers Read
+email newsletter | Email Newsletters for Small Business
+email subject lines | Email Subject Lines That Get Opened
+welcome email | Welcome Emails: What to Send New Subscribers
+email list building | Email List Building: Grow Your List the Right Way
+email deliverability | Email Deliverability: Stay Out of Spam
+social media calendar | Social Media Calendar Template and Tips
+instagram marketing | Instagram Marketing for Small Business
+facebook business page | Facebook Business Page Setup and Tips
+linkedin company page | LinkedIn Company Page Guide
+tiktok for business | TikTok for Business: Getting Started
+youtube for business | YouTube for Business: A Starter Plan
+pinterest marketing | Pinterest Marketing for Small Business
+social media analytics | Social Media Analytics: Metrics That Matter
+best time to post on social media | Best Times to Post on Social Media
+user generated content | User-Generated Content: Using Customer Posts the Right Way
+influencer marketing | Influencer Marketing for Small Businesses
+hashtags | Hashtag Strategy: How Many and Which Ones
+short form video | Short-Form Video for Small Businesses
+video marketing | Video Marketing on a Small Budget
+podcast marketing | Podcast Marketing: Starting and Promoting a Show
+brand voice | Brand Voice: How to Sound Like Your Business
+copywriting formulas | Copywriting Formulas That Work (AIDA, PAS and More)
+content brief | How to Write a Content Brief
+guest blogging | Guest Blogging: Safe and Useful in 2027?
+press release | How to Write a Press Release Journalists Read
+webinar marketing | Webinar Marketing for Small Business
+online community | Building an Online Community Around Your Business
+
+## AI Marketing
+ai content writing | AI Content Writing: A Safe Workflow
+ai for seo | AI for SEO: What It Can and Cannot Do
+ai image generator | AI Image Generators for Business: Uses and Rights
+ai chatbot for website | AI Chatbots for Small Business Websites
+ai email marketing | AI in Email Marketing
+ai social media tools | AI Social Media Tools: Drafts, Ideas and Scheduling
+ai ad copy | AI Ad Copy: Faster Drafts, Human Checks
+ai video generator | AI Video Tools for Small Business Marketing
+ai customer service | AI Customer Service: Where It Helps and Where It Hurts
+ai lead scoring | AI Lead Scoring for Small Sales Teams
+ai personalization | AI Personalization in Marketing
+ai prompts for marketing | AI Prompts for Marketers: Templates That Work
+ai content detection | AI Content Detectors: How Reliable Are They?
+ai copyright | AI and Copyright: What Businesses Should Know
+ai marketing strategy | AI Marketing Strategy for Small Businesses
+ai analytics | AI Analytics: Finding Insights in Your Data
+ai for small business | AI for Small Business: Practical Uses
+chatgpt for marketing | ChatGPT for Marketing: Uses and Limits
+ai search engines | AI Search Engines and What They Mean for SEO
+ai agents | AI Agents in Marketing: What They Do Today
+ai transcription | AI Transcription for Content Creation
+ai translation | AI Translation for Multilingual Websites
+ai sales assistant | AI Sales Assistants: Follow-Up Without the Busywork
+ai in google ads | AI in Google Ads: Smart Bidding and Automated Assets
+marketing automation workflows | Marketing Automation Workflows to Copy
+ai policy for business | AI Policy for Small Businesses: A Template
+ai phone answering | AI Phone Answering for Small Businesses
+ai product descriptions | AI Product Descriptions for Online Stores
+ai for local business | AI for Local Businesses
+does google penalize ai content | Does Google Penalize AI Content?
+ai market research | AI for Market Research
+ai review responses | AI for Replying to Customer Reviews
+
+## Digital Marketing
+marketing funnel | Marketing Funnel: Stages and Examples
+customer journey | Customer Journey Mapping for Small Business
+buyer persona | Buyer Personas: How to Create One
+unique selling proposition | Unique Selling Proposition: Examples and Template
+marketing plan template | Marketing Plan Template for Small Business
+marketing kpis | Marketing KPIs Small Businesses Should Track
+conversion rate optimization | Conversion Rate Optimization for Small Websites
+lead magnet | Lead Magnets That Grow Your List
+lead nurturing | Lead Nurturing: Turn Enquiries into Customers
+referral program | Customer Referral Programs That Work
+customer retention | Customer Retention Strategies
+brand awareness | Brand Awareness on a Small Budget
+small business branding | Small Business Branding Basics
+marketing for startups | Marketing for Startups: The First Year
+ecommerce marketing | Ecommerce Marketing Strategy
+b2b marketing | B2B Marketing for Small Businesses
+affiliate program | Starting an Affiliate Program for Your Business
+utm parameters | UTM Parameters: Track Every Campaign
+marketing attribution | Marketing Attribution Explained
+ab testing | A/B Testing for Websites and Emails
+customer testimonials | Customer Testimonials: Collecting and Using Them
+loyalty program | Loyalty Programs for Small Businesses
+holiday marketing | Holiday Marketing Calendar and Ideas
+event marketing | Event Marketing for Local Businesses
+sms marketing | SMS Marketing: Rules and Best Practices
+whatsapp business | WhatsApp Business for Customer Service and Sales
+omnichannel marketing | Omnichannel Marketing for Small Businesses
+in house vs agency marketing | In-House Marketing vs an Agency
+how to hire a marketing agency | How to Hire a Marketing Agency
+marketing for service businesses | Marketing for Service Businesses
+word of mouth marketing | Word-of-Mouth Marketing
+competitor analysis | Competitor Analysis for Small Businesses
+
+## Marketing Costs & ROI
+marketing roi | Marketing ROI: How to Measure It
+customer acquisition cost | Customer Acquisition Cost: Formula and Benchmarks
+customer lifetime value | Customer Lifetime Value: How to Calculate It
+cost per lead | Cost per Lead: How to Calculate and Lower It
+social media marketing cost | Social Media Marketing Cost
+facebook ads cost | Facebook Ads Cost: What Small Businesses Pay
+instagram ads cost | Instagram Ads Cost
+linkedin ads cost | LinkedIn Ads Cost
+tiktok ads cost | TikTok Ads Cost
+youtube ads cost | YouTube Ads Cost
+content marketing cost | Content Marketing Cost
+email marketing cost | Email Marketing Cost
+logo design cost | Logo Design Cost
+branding cost | Branding Cost for a Small Business
+copywriting rates | Copywriting Rates: What Writers Charge
+video production cost | Video Production Cost for Business Videos
+marketing retainer | Marketing Agency Retainers: What You Get
+ppc management cost | PPC Management Cost
+website maintenance cost | Website Maintenance Cost
+ecommerce website cost | Ecommerce Website Cost
+wordpress website cost | WordPress Website Cost
+marketing budget percentage | Marketing Budget as a Percentage of Revenue
+seo roi | SEO ROI: How to Estimate Returns
+break even roas | Break-Even ROAS: The Number Your Ads Must Beat
+cost per acquisition | Cost per Acquisition (CPA) Explained
+influencer marketing cost | Influencer Marketing Cost
+google business profile cost | Is Google Business Profile Free? Costs Explained
+web hosting cost | Web Hosting Cost: What You Should Pay
+domain name cost | Domain Name Cost and Renewal Fees
+product photography cost | Product Photography Cost
+
+## Industry Marketing (Finance & Insurance)
+insurance agent website | Insurance Agent Websites That Bring Quotes
+insurance seo | SEO for Insurance Agencies
+financial advisor seo | SEO for Financial Advisors
+financial advisor website | Financial Advisor Website Design
+cpa marketing | Marketing for CPA Firms
+bookkeeping marketing | Marketing a Bookkeeping Business
+tax preparer marketing | Tax Preparer Marketing Ideas
+mortgage broker seo | SEO for Mortgage Brokers
+loan officer social media | Social Media for Loan Officers
+insurance facebook ads | Facebook Ads for Insurance Agents
+final expense leads | Final Expense Leads: Buy or Build?
+medicare marketing | Medicare Marketing Rules for Agents
+health insurance leads | Health Insurance Leads for Agents
+auto insurance marketing | Auto Insurance Marketing Ideas
+commercial insurance marketing | Commercial Insurance Marketing
+insurance referral program | Insurance Referral Programs Within the Rules
+finra social media | FINRA Social Media Rules for Financial Advisors
+wealth management marketing | Wealth Management Marketing
+credit union marketing | Credit Union Marketing
+bank marketing | Community Bank Marketing
+fintech marketing | Fintech Marketing
+credit repair marketing | Credit Repair Marketing Within the Rules
+insurance email marketing | Email Marketing for Insurance Agents
+annuity marketing | Annuity Marketing Rules and Ideas
+financial planner leads | Lead Generation for Financial Planners
+insurance google ads | Google Ads for Insurance Agencies
+financial advisor google ads | Google Ads for Financial Advisors
+insurance blog ideas | Insurance Blog Topics That Bring Leads
+tax season marketing | Tax Season Marketing for Accountants
+accounting firm seo | SEO for Accounting Firms
+retirement seminar marketing | Retirement Seminar Marketing
+insurance agency reviews | Getting Reviews for an Insurance Agency
+mortgage broker social media | Social Media for Mortgage Brokers
+financial advisor content marketing | Content Marketing for Financial Advisors
+
+## Industry Marketing (Legal & Health)
+law firm website design | Law Firm Website Design
+family law marketing | Family Law Marketing
+criminal defense marketing | Criminal Defense Lawyer Marketing
+immigration lawyer marketing | Immigration Lawyer Marketing
+estate planning marketing | Estate Planning Attorney Marketing
+bankruptcy lawyer marketing | Bankruptcy Lawyer Marketing
+law firm google ads | Google Ads for Law Firms
+law firm social media | Social Media for Law Firms
+legal intake | Legal Intake: Turning Calls into Clients
+chiropractic marketing | Chiropractic Marketing
+physical therapy marketing | Physical Therapy Marketing
+orthodontic marketing | Orthodontic Marketing
+dermatology marketing | Dermatology Practice Marketing
+plastic surgery marketing | Plastic Surgery Marketing
+therapist marketing | Marketing for Therapists and Counselors
+veterinary marketing | Veterinary Marketing
+optometry marketing | Optometry Marketing
+pharmacy marketing | Independent Pharmacy Marketing
+home care marketing | Home Care Agency Marketing
+healthcare seo | Healthcare SEO
+medical website design | Medical Practice Website Design
+hipaa compliant marketing | HIPAA-Compliant Marketing
+patient reviews | Patient Reviews: Getting More Within the Rules
+dental seo | Dental SEO
+real estate seo | Real Estate SEO for Agents
+real estate social media | Real Estate Social Media
+property management marketing | Property Management Marketing
+real estate email marketing | Real Estate Email Marketing
+home builder marketing | Home Builder Marketing
+senior living marketing | Senior Living Marketing
+urgent care marketing | Urgent Care Marketing
+addiction treatment marketing | Addiction Treatment Center Marketing Rules
+
+## Business Finance
+business credit score | Business Credit Score: How to Build One
+equipment financing | Equipment Financing for Small Businesses
+invoice factoring | Invoice Factoring Explained
+merchant cash advance | Merchant Cash Advance: Costs and Risks
+business bank account | How to Choose a Business Bank Account
+small business grants | Small Business Grants: Where to Find Real Ones
+startup funding | Startup Funding Options
+business budget | How to Make a Small Business Budget
+cash flow management | Cash Flow Management for Small Businesses
+bookkeeping for small business | Bookkeeping for Small Business
+professional liability insurance | Professional Liability Insurance
+cyber insurance | Cyber Insurance for Small Businesses
+workers compensation insurance | Workers' Compensation Insurance
+business owners policy | Business Owner's Policy (BOP) Explained
+commercial auto insurance | Commercial Auto Insurance
+accounts receivable | Accounts Receivable: Getting Paid Faster
+pricing strategy | Pricing Strategy for Small Businesses
+business loan bad credit | Business Loans with Bad Credit: Options and Risks
+marketing tax deductions | Are Marketing Expenses Tax Deductible?
+crowdfunding | Crowdfunding for Small Businesses
+revenue based financing | Revenue-Based Financing Explained
