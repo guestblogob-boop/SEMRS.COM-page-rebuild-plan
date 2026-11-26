@@ -188,4 +188,46 @@ export const GRAPHICS = {
 		['Welcome series', '3–5 emails over two weeks'], ['Enquiry follow-up', 'Instant reply, team reminder'], ['Review request', 'A day after the job'],
 		['Re-booking reminder', 'When a service is due again'], ['Win-back email', 'For customers who went quiet'], ['Review monthly', 'Opens, bookings, unsubscribes'],
 	], 3, SEMRS + ' · follow CAN-SPAM and get consent for texts', true),
+	'keyword-research-six-steps': () => steps('Keyword research in 6 steps', 'A simple process for beginners, with free tools', [
+		['Seed topics', 'Services, places and customer questions'], ['Expand ideas', 'Search suggestions, Search Console, Keyword Planner'], ['Check intent', 'Learn, compare, buy or local'],
+		['Judge difficulty', 'Who ranks now? Pick specific phrases'], ['Map to pages', 'One main keyword per page'], ['Track and update', 'Search Console every month'],
+	], 3, SEMRS, true),
+	'line-of-credit-vs-term-loan': () => compare('Line of credit vs term loan', 'Two ways to fund a marketing budget', ['Line of credit', 'Term loan'], [
+		['You get', 'Draw as needed', 'One lump sum'], ['Interest on', 'What you draw', 'The full amount'], ['Repayment', 'Flexible, reusable', 'Fixed payments'],
+		['Rate', 'Often variable', 'Often fixed'], ['Best for', 'Seasonal ads, cash flow', 'A website or launch'], ['Watch for', 'Draw and annual fees', 'Origination fees'],
+	], SEMRS + ' · general information, not financial advice'),
+	'med-spa-marketing-plan': () => steps('How to grow a med spa', 'Trust first: real results, reviews and clear treatment pages', [
+		['Profile', 'Treatments, photos, hours'], ['Treatments', 'One page per treatment'], ['Reviews', 'Ask after follow-up visits'], ['Real results', 'Consented, typical photos'],
+		['Targeted ads', 'High-value treatments'], ['Memberships', 'Packages and rebooking'], ['Videos', 'Aftercare and myths'], ['The rules', 'FTC, HIPAA, state boards'],
+	], 4, SEMRS, true),
+	'merchant-services-fee-on-100-sale': () => hbars('Merchant services: fee on a $100 card sale', 'Standard US rates published by two providers, November 2026', [['Square, in person', 2.75], ['Stripe, in person', 2.75], ['Stripe, online', 3.2], ['Square, online', 3.6, true]], 4, (v) => '$' + v.toFixed(2), 'Source: Square and Stripe pricing pages (2.6% + 15¢, 2.7% + 5¢, 2.9% + 30¢, 3.3% + 30¢)'),
+	'wordpress-hosting-checks': () => steps('Checks for choosing WordPress hosting', 'Compare these, not just the first-year price', [
+		['Server specs', 'PHP 8.3+, MySQL 8.4+ or MariaDB 10.11+'], ['Speed', 'Location, SSD, caching'], ['Security', 'SSL, firewall, malware scans'], ['Backups', 'Daily, easy to restore'],
+		['Support', 'WordPress-savvy help'], ['Staging', 'Test updates safely'], ['Renewal price', 'After the first year'], ['Your accounts', 'Domain and hosting in your name'],
+	], 4, 'Source: WordPress.org requirements · SEMRS guide', true),
+	'life-insurance-leads-bought-vs-own': () => compare('Bought leads vs your own leads', 'Why agents build their own life insurance lead sources', ['Bought leads', 'Your own leads'], [
+		['Speed', 'Immediate', 'Weeks to months'], ['Cost per lead', 'Pay for every lead', 'Falls over time'], ['Exclusivity', 'Often shared', 'Yours alone'],
+		['Trust', 'Low at first', 'Higher; they found you'], ['Consent records', 'Depend on the vendor', 'You control them'], ['Best use', 'Volume while you build', 'Steady long-term growth'],
+	], SEMRS + ' · follow Do Not Call and TCPA consent rules'),
+	'local-seo-services-checklist': () => steps('What local SEO services should include', 'Ask for each of these in writing', [
+		['Profile', 'Categories, services, photos, posts'], ['Area pages', 'Real local details, no copies'], ['Reviews', 'Ask every customer, reply to all'], ['Citations', 'Same name, address, phone'],
+		['Local schema', 'Structured business details'], ['Tech basics', 'Fast, mobile, crawlable'], ['Local links', 'Partners, sponsors, news'], ['Lead reports', 'Calls and forms, not only ranks'],
+	], 4, 'Source: SEMRS guide · Google: no way to pay for a better local ranking', true),
+	'google-reviews-process': () => funnel('A simple Google reviews routine', 'Ask every customer the same way, every time', [['Job finished, customer happy', 'same day'], ['Ask in person', 'short script'], ['Send a direct link or QR code', 'text or email'], ['Customer leaves a review', 'no incentives'], ['Reply to every review', 'within days']], SEMRS + ' · Google bans incentives and selective asking'),
+	'social-media-platform-choice': () => steps('Choosing a social media management platform', 'Match the tool to your channels and team', [
+		['List your channels', 'And how often you post'], ['Who posts?', 'Just you, or a team'], ['Try free first', 'A real week of posts'],
+		['Check reports', 'Clicks and leads, not likes'], ['Price the next step', 'One more channel or user'], ['Plan content first', 'Customer questions drive posts'],
+	], 3, SEMRS, true),
+	'real-estate-advertising-ideas': () => steps('8 real estate advertising ideas', 'Own one area and give people a reason to call', [
+		['Profile and reviews', 'Map results for agents'], ['Area guides', 'One page per neighborhood'], ['Valuations', 'Attract future sellers'], ['Video tours', 'Listings and market news'],
+		['Search ads', 'Seller and buyer intent'], ['Social ads', 'Housing ad category'], ['Direct mail', 'Same streets monthly'], ['Partners', 'Lenders, builders, events'],
+	], 4, SEMRS + ' · Fair Housing Act and housing ad targeting limits apply'),
+	'mortgage-marketing-ideas': () => steps('Mortgage marketing ideas', 'Steady referrals and search first, then ads', [
+		['Referrals', 'Agents, builders, planners'], ['Profile', 'Reviews and map results'], ['Buyer guides', 'Real first-time questions'], ['Programs', 'FHA, VA, refinance and more'],
+		['Search ads', 'High-intent phrases'], ['Client emails', 'Refinances and referrals'], ['Short videos', 'One step per video'], ['Compliance', 'APR, RESPA, NMLS ID'],
+	], 4, SEMRS + ' · Regulation Z and RESPA apply', true),
+	'digital-marketing-strategy-steps': () => steps('A digital marketing strategy, step by step', 'Write it down, fund a few channels well, review monthly', [
+		['Customer', 'Who, where, what problem'], ['Advantage', 'One clear sentence'], ['Goals', 'Leads or bookings a month'], ['2–3 channels', 'Where your customers buy'],
+		['Budget', 'Fewer channels, done properly'], ['Content plan', 'Answer customer questions'], ['Measure', 'Track from day one'], ['Update yearly', 'Or when things change'],
+	], 4, 'Source: SEMRS guide · based on the SBA marketing plan outline', true),
 };

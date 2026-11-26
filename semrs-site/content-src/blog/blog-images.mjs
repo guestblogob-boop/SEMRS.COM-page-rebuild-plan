@@ -47,6 +47,18 @@ const PHOTOS = {
 	'website-builders-for-small-business': ['guest-posting-post1.jpg', 'free', 'Overhead view of a person planning in a notebook next to a laptop', 'Plan your pages and goals before you pick a website builder.', 'Man Work', 'Burst', 'https://stocksnap.io/photo/man-work-DZ7DC58DSV'],
 	'google-ads-agency': ['seo-services-about.jpg', 'free', 'Three colleagues discussing results around a laptop', 'A good agency explains its plan and reports cost per lead in plain words.', 'Business People', 'Direct Media', 'https://stocksnap.io/photo/business-people-DUXISHKTT3'],
 	'marketing-automation-software': ['top-ten-post2.jpg', 'free', 'Tablet showing a marketing dashboard next to a cup of coffee', 'Automation reports show which flows bring bookings and sales.', 'Office Work', 'WDnet Studio', 'https://stocksnap.io/photo/office-work-030TCBJQ8C'],
+	'keyword-research': ['digital-marketing-about.jpg', 'free', 'Two people writing notes on paper beside a laptop', 'Start keyword research with your customers’ own words, then use tools to expand them.', 'Writing Papers', 'Helloquence', 'https://stocksnap.io/photo/writing-papers-Y01VDYAX63'],
+	'business-line-of-credit': ['guest-posting-post2.jpg', 'free', 'Two people shaking hands across a desk with a coffee cup', 'Compare the full cost of a credit line before you agree to it.', 'Work Business', 'Kristin Hardwick', 'https://stocksnap.io/photo/work-business-J5LXKNDREC'],
+	'med-spa-marketing': ['clinic-hero.jpg', 'pro', 'A clinician in a white coat holding a tablet', 'Clients choose a med spa on trust: named providers, real results and clear information.', 'Male Doctor', 'Direct Media', 'https://stocksnap.io/photo/male-doctor-KN1OCKC4Y2'],
+	'merchant-services-for-small-business': ['top-ten-about.jpg', 'free', 'A woman checking her phone beside a laptop at a white desk', 'Card fees come out of every sale, so compare your effective rate, not the headline rate.', 'Browsing Smartphone', 'Kristin Hardwick', 'https://stocksnap.io/photo/browsing-smartphone-4FRH6CVQJI'],
+	'best-wordpress-hosting': ['repairs-hero.jpg', 'free', 'A technician working inside an open computer case', 'Good hosting is the base of a fast, secure WordPress site.', 'Computer repair', '', 'https://www.rawpixel.com/image/6045410/free-public-domain-cc0-photo'],
+	'life-insurance-leads': ['local-post3.jpg', 'free', 'The front door of a red brick family home', 'Life events such as a new home or a new baby are when people look for cover.', 'House home', '', 'https://www.rawpixel.com/image/6042788/photo-image-public-domain-house-home'],
+	'local-seo-services': ['local-about.jpg', 'free', 'A roofer in a hard hat working on a roof', 'Local service businesses win most new customers from nearby searches.', 'Roofer at work', '', 'https://www.rawpixel.com/image/11515783/photo-image-person-public-domain-man'],
+	'how-to-get-more-google-reviews': ['seo-services-post1.jpg', 'free', 'A hand holding a smartphone with a business page open', 'Most reviews are written on a phone, so send a direct link the same day.', 'Mobile Phone', 'Expect Best', 'https://stocksnap.io/photo/mobile-phone-QZ5V5ZZ8UI'],
+	'social-media-management-platforms': ['digital-marketing-post1.jpg', 'free', 'Social media app icons on a phone screen', 'A platform helps you post on time; your content decides whether it works.', 'Instagram phone', '', 'https://www.rawpixel.com/image/6111516/photo-image-instagram-phone-public-domain'],
+	'real-estate-advertising': ['cleaning-about.jpg', 'free', 'A bright kitchen with a white bay window', 'Describe the home and the area, never the people you think should live there.', 'Farmhouse Kitchen', 'Matt Bango', 'https://stocksnap.io/photo/farmhouse-kitchen-QSX4WH8BDB'],
+	'mortgage-marketing': ['agency-post3.jpg', 'free', 'Two people reviewing papers and a planner beside a laptop', 'Referral partners and clear guides bring steady mortgage leads.', 'Notebook', '', 'https://www.rawpixel.com/image/5926528/photo-image-background-public-domain-notebook'],
+	'digital-marketing-strategy': ['guest-posting-post3.jpg', 'free', 'A person writing a plan in a ring-bound planner', 'Write the plan down, then review it every month.', 'Writing Hand', 'Kristin Hardwick', 'https://stocksnap.io/photo/writing-hand-2FRRD2PUVA'],
 };
 // slug: [graphic key, alt, caption, { stamp: true } only when a text stamp is needed]
 const CHARTS = {
@@ -74,13 +86,27 @@ const CHARTS = {
 	'website-builders-for-small-business': ['website-builders-wordpress-vs-hosted', 'Comparison of website builders for small business: WordPress vs hosted builders on ownership, upkeep, flexibility, SEO control, monthly cost and moving later', 'WordPress and hosted builders side by side.'],
 	'google-ads-agency': ['google-ads-agency-questions', 'Nine questions to ask a Google Ads agency: account owner, lead tracking, fees, contract length, manager, first 90 days, report, recommendations, examples', 'Ask these nine questions before you hire an agency.'],
 	'marketing-automation-software': ['marketing-automation-first-flows', 'Marketing automation software flows to set up first: welcome series, enquiry follow-up, review request, re-booking reminder, win-back email, monthly review', 'Start with these simple flows before anything complex.'],
+	'keyword-research': ['keyword-research-six-steps', 'Keyword research in six steps: seed topics, expand ideas, check intent, judge difficulty, map to pages, track and update', 'The six steps of keyword research in this guide.'],
+	'business-line-of-credit': ['line-of-credit-vs-term-loan', 'Comparison of a business line of credit and a term loan: how you get money, interest, repayment, rate, best uses and fees', 'A line of credit and a term loan side by side.'],
+	'med-spa-marketing': ['med-spa-marketing-plan', 'Med spa marketing in eight cards: Business Profile, treatment pages, reviews, real results, ads, memberships, videos and following the rules', 'Seven ways to grow a med spa, with the rules that apply to all of them.'],
+	'merchant-services-for-small-business': ['merchant-services-fee-on-100-sale', 'Bar chart of merchant services fees on a $100 card sale: Square in person $2.75, Stripe in person $2.75, Stripe online $3.20, Square online $3.60', 'Online card payments usually cost more than in-person ones.'],
+	'best-wordpress-hosting': ['wordpress-hosting-checks', 'Checks for the best WordPress hosting: server specs, speed, security, backups, support, staging, renewal price and account ownership', 'Run these checks before you choose a host.'],
+	'life-insurance-leads': ['life-insurance-leads-bought-vs-own', 'Comparison of bought life insurance leads and your own leads: speed, cost, exclusivity, trust, consent records and best use', 'Bought leads are fast; your own leads are cheaper and more loyal over time.'],
+	'local-seo-services': ['local-seo-services-checklist', 'What local SEO services should include: Business Profile, service area pages, reviews, citations, schema, technical basics, local links and lead reports', 'Ask a provider to put each of these in writing.'],
+	'how-to-get-more-google-reviews': ['google-reviews-process', 'A Google reviews routine: job finished, ask in person, send a direct link or QR code, customer reviews, reply to every review', 'A simple routine that gets more reviews within the rules.'],
+	'social-media-management-platforms': ['social-media-platform-choice', 'How to choose among social media management platforms: list channels, decide who posts, try free first, check reports, price the next step, plan content', 'Six steps to pick the right platform.'],
+	'real-estate-advertising': ['real-estate-advertising-ideas', 'Eight real estate advertising ideas: profile and reviews, area guides, home valuations, video tours, search ads, social ads, direct mail and partners', 'Eight ways agents can own their area.'],
+	'mortgage-marketing': ['mortgage-marketing-ideas', 'Mortgage marketing ideas: referral partners, Business Profile, buyer guides, program pages, search ads, client emails, short videos and compliance review', 'Seven mortgage marketing ideas, with compliance review for every one.'],
+	'digital-marketing-strategy': ['digital-marketing-strategy-steps', 'A digital marketing strategy in steps: target customer, advantage, goals, channels, budget, content plan, measurement and yearly update', 'The steps of a simple digital marketing strategy.'],
 };
 
 const out = {};
 for (const [slug, [file, set, alt, caption, title, creator, landing]] of Object.entries(PHOTOS)) {
 	const name = `${slug}-featured.webp`;
-	const buf = await sharp(path.join(PH[set], file)).resize(1200, 675, { fit: 'cover', position: 'attention' }).modulate({ saturation: 1.05 })
+	let buf = await sharp(path.join(PH[set], file)).resize(1200, 675, { fit: 'cover', position: 'attention' }).modulate({ saturation: 1.05 })
 		.composite([{ input: STAMP, left: 1200 - SW - 22, top: 675 - SH - 22 }]).webp({ quality: 80 }).toBuffer();
+	// Featured images stay under 100 KB (WRITING_GUIDE section 7): detailed photos get a lower quality.
+	if (buf.length > 85000) buf = await sharp(buf).webp({ quality: 66 }).toBuffer();
 	fs.writeFileSync(path.join(OUT, name), buf);
 	out[slug] = { featured: { file: name, alt, caption, width: 1200, height: 675, credit: `Photo: ${title}${creator ? ' by ' + creator : ''}, CC0 (free for commercial use)`, source: landing, license: 'CC0 1.0' } };
 }
