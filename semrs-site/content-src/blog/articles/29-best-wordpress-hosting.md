@@ -60,7 +60,7 @@ Older versions may still run WordPress, but they are slower and may stop getting
 
 semrs.com runs on Hostinger. Measured against the checks above, our site runs PHP 8.3, pages are served through Hostinger's CDN with LiteSpeed caching, and the hPanel control panel includes a staging tool for testing changes. We still keep our own backups as well as the host's.
 
-New customers who sign up through our [Hostinger referral link](https://www.hostinger.com/pk?REFERRALCODE=RXKFALAK2VFJ) get 20% off the first term of a new plan, according to Hostinger's referral page in November 2026. The discount does not apply to renewals, so check the renewal price before you choose a long or short term. It is the host we chose for our own site, but compare it with the checks above for yours.
+New customers who sign up through our [Hostinger referral link](https://www.hostinger.com/?REFERRALCODE=RXKFALAK2VFJ) get 20% off the first term of a new plan, according to Hostinger's referral page in November 2026. The discount does not apply to renewals, so check the renewal price before you choose a long or short term. It is the host we chose for our own site, but compare it with the checks above for yours.
 
 ## Web hosting and your WordPress domain
 
