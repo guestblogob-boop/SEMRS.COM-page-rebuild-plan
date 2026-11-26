@@ -1,0 +1,5904 @@
+[
+ {
+  "n": 1,
+  "cat": "SEO & AI Search",
+  "kw": "technical seo",
+  "data": {
+   "kw": "technical seo",
+   "vol": 9900,
+   "cpc": 17.192857142857143,
+   "ci": 6,
+   "family": 18780
+  },
+  "score": 221272,
+  "weak": false
+ },
+ {
+  "n": 2,
+  "cat": "Local SEO",
+  "kw": "local citations",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 3,
+  "cat": "Web Design & WordPress",
+  "kw": "wordpress security",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 4,
+  "cat": "PPC & Paid Ads",
+  "kw": "quality score",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 5,
+  "cat": "Content & Social Media",
+  "kw": "content calendar",
+  "data": {
+   "kw": "marketing content calendar",
+   "vol": 480,
+   "cpc": 12.910714285714286,
+   "ci": 41,
+   "family": 790
+  },
+  "score": 6197,
+  "weak": false
+ },
+ {
+  "n": 6,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "insurance agent website",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 7,
+  "cat": "AI Marketing",
+  "kw": "ai content writing",
+  "data": {
+   "kw": "ai content writing",
+   "vol": 2400,
+   "cpc": 23.54642857142857,
+   "ci": 29,
+   "family": 11270
+  },
+  "score": 73465,
+  "weak": false
+ },
+ {
+  "n": 8,
+  "cat": "Digital Marketing",
+  "kw": "marketing funnel",
+  "data": {
+   "kw": "email marketing funnels",
+   "vol": 590,
+   "cpc": 49.18571428571428,
+   "ci": 18,
+   "family": 930
+  },
+  "score": 37725,
+  "weak": false
+ },
+ {
+  "n": 9,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "law firm website design",
+  "data": {
+   "kw": "website design and marketing for small law firms",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 20
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 10,
+  "cat": "Marketing Costs & ROI",
+  "kw": "marketing roi",
+  "data": {
+   "kw": "roi in digital marketing",
+   "vol": 1300,
+   "cpc": 18.84642857142857,
+   "ci": 4,
+   "family": 2150
+  },
+  "score": 31850,
+  "weak": false
+ },
+ {
+  "n": 11,
+  "cat": "Business Finance",
+  "kw": "business credit score",
+  "data": {
+   "kw": "business loans for low credit scores",
+   "vol": 110,
+   "cpc": 42.16428571428571,
+   "ci": 57,
+   "family": 200
+  },
+  "score": 4638,
+  "weak": false
+ },
+ {
+  "n": 12,
+  "cat": "SEO & AI Search",
+  "kw": "on page seo",
+  "data": {
+   "kw": "semrush on page seo checker",
+   "vol": 1000,
+   "cpc": 22.275,
+   "ci": 3,
+   "family": 3420
+  },
+  "score": 28958,
+  "weak": false
+ },
+ {
+  "n": 13,
+  "cat": "Local SEO",
+  "kw": "nap consistency",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 14,
+  "cat": "Web Design & WordPress",
+  "kw": "wordpress speed optimization",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 15,
+  "cat": "PPC & Paid Ads",
+  "kw": "negative keywords",
+  "data": {
+   "kw": "negative keyword tool",
+   "vol": 20,
+   "cpc": 5.725,
+   "ci": 18,
+   "family": 30
+  },
+  "score": 149,
+  "weak": true
+ },
+ {
+  "n": 16,
+  "cat": "Content & Social Media",
+  "kw": "blog post ideas",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 17,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "insurance seo",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 18,
+  "cat": "AI Marketing",
+  "kw": "ai for seo",
+  "data": {
+   "kw": "ai overviews seo",
+   "vol": 320,
+   "cpc": 16.464285714285715,
+   "ci": 15,
+   "family": 380
+  },
+  "score": 6849,
+  "weak": false
+ },
+ {
+  "n": 19,
+  "cat": "Digital Marketing",
+  "kw": "customer journey",
+  "data": {
+   "kw": "customer journey email marketing",
+   "vol": 140,
+   "cpc": 9.692857142857143,
+   "ci": 29,
+   "family": 420
+  },
+  "score": 1764,
+  "weak": false
+ },
+ {
+  "n": 20,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "family law marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 21,
+  "cat": "Marketing Costs & ROI",
+  "kw": "customer acquisition cost",
+  "data": {
+   "kw": "customer acquisition cost in digital marketing",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 30
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 22,
+  "cat": "SEO & AI Search",
+  "kw": "off page seo",
+  "data": {
+   "kw": "on page off page and technical seo",
+   "vol": 140,
+   "cpc": 3.9857142857142858,
+   "ci": 14,
+   "family": 390
+  },
+  "score": 725,
+  "weak": false
+ },
+ {
+  "n": 23,
+  "cat": "Business Finance",
+  "kw": "equipment financing",
+  "data": {
+   "kw": "small business equipment financing",
+   "vol": 1000,
+   "cpc": 79.63571428571429,
+   "ci": 30,
+   "family": 1430
+  },
+  "score": 103526,
+  "weak": false
+ },
+ {
+  "n": 24,
+  "cat": "Local SEO",
+  "kw": "google maps ranking",
+  "data": {
+   "kw": "google maps ranking",
+   "vol": 880,
+   "cpc": 21.72142857142857,
+   "ci": 20,
+   "family": 2130
+  },
+  "score": 24849,
+  "weak": false
+ },
+ {
+  "n": 25,
+  "cat": "Web Design & WordPress",
+  "kw": "wordpress backup",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 26,
+  "cat": "PPC & Paid Ads",
+  "kw": "keyword match types",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 27,
+  "cat": "Content & Social Media",
+  "kw": "how often should you blog",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 28,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "financial advisor seo",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 29,
+  "cat": "AI Marketing",
+  "kw": "ai image generator",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 30,
+  "cat": "Digital Marketing",
+  "kw": "buyer persona",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 31,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "criminal defense marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 32,
+  "cat": "Marketing Costs & ROI",
+  "kw": "customer lifetime value",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 33,
+  "cat": "SEO & AI Search",
+  "kw": "link building",
+  "data": {
+   "kw": "local link building",
+   "vol": 260,
+   "cpc": 17.132142857142856,
+   "ci": 5,
+   "family": 670
+  },
+  "score": 5791,
+  "weak": false
+ },
+ {
+  "n": 34,
+  "cat": "Local SEO",
+  "kw": "google business profile posts",
+  "data": {
+   "kw": "google business profile",
+   "vol": 1830000,
+   "cpc": 49.52142857142857,
+   "ci": 8,
+   "family": 5525940
+  },
+  "score": 117811479,
+  "weak": false
+ },
+ {
+  "n": 35,
+  "cat": "Web Design & WordPress",
+  "kw": "wordpress maintenance",
+  "data": {
+   "kw": "wordpress maintenance",
+   "vol": 1900,
+   "cpc": 40.56428571428572,
+   "ci": 31,
+   "family": 11150
+  },
+  "score": 100194,
+  "weak": false
+ },
+ {
+  "n": 36,
+  "cat": "PPC & Paid Ads",
+  "kw": "performance max",
+  "data": {
+   "kw": "google performance max review",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 37,
+  "cat": "Content & Social Media",
+  "kw": "how to write a blog post",
+  "data": {
+   "kw": "use ai to write blog posts",
+   "vol": 50,
+   "cpc": 10.778571428571428,
+   "ci": 15,
+   "family": 190
+  },
+  "score": 701,
+  "weak": true
+ },
+ {
+  "n": 38,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "financial advisor website",
+  "data": {
+   "kw": "financial advisor website marketing",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 7,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 39,
+  "cat": "SEO & AI Search",
+  "kw": "seo audit",
+  "data": {
+   "kw": "seo audit semrush",
+   "vol": 1300,
+   "cpc": 22.2,
+   "ci": 8,
+   "family": 2700
+  },
+  "score": 37518,
+  "weak": false
+ },
+ {
+  "n": 40,
+  "cat": "AI Marketing",
+  "kw": "ai chatbot for website",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 41,
+  "cat": "Digital Marketing",
+  "kw": "unique selling proposition",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 42,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "immigration lawyer marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 43,
+  "cat": "Business Finance",
+  "kw": "invoice factoring",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 44,
+  "cat": "Marketing Costs & ROI",
+  "kw": "cost per lead",
+  "data": {
+   "kw": "cost per lead in digital marketing",
+   "vol": 40,
+   "cpc": 27.03214285714286,
+   "ci": 7,
+   "family": 380
+  },
+  "score": 1406,
+  "weak": true
+ },
+ {
+  "n": 45,
+  "cat": "Local SEO",
+  "kw": "google business profile suspended",
+  "data": {
+   "kw": "google business profile",
+   "vol": 1830000,
+   "cpc": 49.52142857142857,
+   "ci": 8,
+   "family": 5526100
+  },
+  "score": 117811479,
+  "weak": false
+ },
+ {
+  "n": 46,
+  "cat": "Web Design & WordPress",
+  "kw": "wordpress themes",
+  "data": {
+   "kw": "wordpress website themes",
+   "vol": 5400,
+   "cpc": 40.135714285714286,
+   "ci": 71,
+   "family": 38440
+  },
+  "score": 173386,
+  "weak": false
+ },
+ {
+  "n": 47,
+  "cat": "SEO & AI Search",
+  "kw": "google search console",
+  "data": {
+   "kw": "google search console keyword research",
+   "vol": 170,
+   "cpc": 3.7142857142857144,
+   "ci": 27,
+   "family": 340
+  },
+  "score": 821,
+  "weak": false
+ },
+ {
+  "n": 48,
+  "cat": "PPC & Paid Ads",
+  "kw": "google shopping ads",
+  "data": {
+   "kw": "google shopping ads agency",
+   "vol": 210,
+   "cpc": 153.39285714285714,
+   "ci": 9,
+   "family": 270
+  },
+  "score": 41876,
+  "weak": false
+ },
+ {
+  "n": 49,
+  "cat": "Content & Social Media",
+  "kw": "content repurposing",
+  "data": {
+   "kw": "content repurposing strategy",
+   "vol": 110,
+   "cpc": 0,
+   "ci": 4,
+   "family": 130
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 50,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "cpa marketing",
+  "data": {
+   "kw": "cpa email marketing",
+   "vol": 90,
+   "cpc": 3.0464285714285713,
+   "ci": 27,
+   "family": 90
+  },
+  "score": 356,
+  "weak": true
+ },
+ {
+  "n": 51,
+  "cat": "AI Marketing",
+  "kw": "ai email marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 52,
+  "cat": "Digital Marketing",
+  "kw": "marketing plan template",
+  "data": {
+   "kw": "marketing plan template",
+   "vol": 9900,
+   "cpc": 37.21785714285714,
+   "ci": 19,
+   "family": 55220
+  },
+  "score": 478994,
+  "weak": false
+ },
+ {
+  "n": 53,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "estate planning marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 54,
+  "cat": "Marketing Costs & ROI",
+  "kw": "social media marketing cost",
+  "data": {
+   "kw": "social media marketing costs for small business",
+   "vol": 70,
+   "cpc": 6.564285714285714,
+   "ci": 39,
+   "family": 170
+  },
+  "score": 460,
+  "weak": true
+ },
+ {
+  "n": 55,
+  "cat": "SEO & AI Search",
+  "kw": "google analytics 4",
+  "data": {
+   "kw": "google analytics 4 review",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 56,
+  "cat": "Local SEO",
+  "kw": "service area business",
+  "data": {
+   "kw": "service area business seo",
+   "vol": 70,
+   "cpc": 15.746428571428572,
+   "ci": 18,
+   "family": 140
+  },
+  "score": 1433,
+  "weak": true
+ },
+ {
+  "n": 57,
+  "cat": "Web Design & WordPress",
+  "kw": "wordpress plugins",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 58,
+  "cat": "Business Finance",
+  "kw": "merchant cash advance",
+  "data": {
+   "kw": "merchant cash advance for small business",
+   "vol": 1000,
+   "cpc": 80.00714285714285,
+   "ci": 24,
+   "family": 1010
+  },
+  "score": 104009,
+  "weak": false
+ },
+ {
+  "n": 59,
+  "cat": "PPC & Paid Ads",
+  "kw": "remarketing ads",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 60,
+  "cat": "Content & Social Media",
+  "kw": "evergreen content",
+  "data": {
+   "kw": "evergreen content strategy",
+   "vol": 90,
+   "cpc": 0,
+   "ci": 0,
+   "family": 140
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 61,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "bookkeeping marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 62,
+  "cat": "AI Marketing",
+  "kw": "ai social media tools",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 63,
+  "cat": "Digital Marketing",
+  "kw": "marketing kpis",
+  "data": {
+   "kw": "email marketing kpis",
+   "vol": 390,
+   "cpc": 6.864285714285714,
+   "ci": 22,
+   "family": 400
+  },
+  "score": 3480,
+  "weak": false
+ },
+ {
+  "n": 64,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "bankruptcy lawyer marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 65,
+  "cat": "SEO & AI Search",
+  "kw": "schema markup",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 66,
+  "cat": "Local SEO",
+  "kw": "local keywords",
+  "data": {
+   "kw": "local keywords",
+   "vol": 590,
+   "cpc": 12.164285714285715,
+   "ci": 4,
+   "family": 3170
+  },
+  "score": 9330,
+  "weak": false
+ },
+ {
+  "n": 67,
+  "cat": "Web Design & WordPress",
+  "kw": "page builder",
+  "data": {
+   "kw": "wordpress page builder",
+   "vol": 6600,
+   "cpc": 5.192857142857143,
+   "ci": 19,
+   "family": 6670
+  },
+  "score": 44555,
+  "weak": false
+ },
+ {
+  "n": 68,
+  "cat": "Marketing Costs & ROI",
+  "kw": "facebook ads cost",
+  "data": {
+   "kw": "facebook ads cost",
+   "vol": 3600,
+   "cpc": 35.97142857142857,
+   "ci": 36,
+   "family": 8120
+  },
+  "score": 129497,
+  "weak": false
+ },
+ {
+  "n": 69,
+  "cat": "PPC & Paid Ads",
+  "kw": "display ads",
+  "data": {
+   "kw": "google display ads agency",
+   "vol": 210,
+   "cpc": 49.5,
+   "ci": 5,
+   "family": 490
+  },
+  "score": 13514,
+  "weak": false
+ },
+ {
+  "n": 70,
+  "cat": "Content & Social Media",
+  "kw": "case study",
+  "data": {
+   "kw": "b2b case study writer",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 31,
+   "family": 20
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 71,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "tax preparer marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 72,
+  "cat": "SEO & AI Search",
+  "kw": "meta description",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 73,
+  "cat": "AI Marketing",
+  "kw": "ai ad copy",
+  "data": {
+   "kw": "ad copy ai",
+   "vol": 320,
+   "cpc": 5.035714285714286,
+   "ci": 52,
+   "family": 330
+  },
+  "score": 1611,
+  "weak": false
+ },
+ {
+  "n": 74,
+  "cat": "Digital Marketing",
+  "kw": "conversion rate optimization",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 75,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "law firm google ads",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 76,
+  "cat": "Business Finance",
+  "kw": "business bank account",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 77,
+  "cat": "Local SEO",
+  "kw": "local landing pages",
+  "data": {
+   "kw": "local seo landing pages",
+   "vol": 90,
+   "cpc": 22.275,
+   "ci": 20,
+   "family": 110
+  },
+  "score": 2606,
+  "weak": true
+ },
+ {
+  "n": 78,
+  "cat": "Web Design & WordPress",
+  "kw": "woocommerce",
+  "data": {
+   "kw": "woocommerce hosting",
+   "vol": 2900,
+   "cpc": 38.082142857142856,
+   "ci": 40,
+   "family": 14620
+  },
+  "score": 110438,
+  "weak": false
+ },
+ {
+  "n": 79,
+  "cat": "Marketing Costs & ROI",
+  "kw": "instagram ads cost",
+  "data": {
+   "kw": "cost for instagram ads",
+   "vol": 6600,
+   "cpc": 12.285714285714286,
+   "ci": 21,
+   "family": 20150
+  },
+  "score": 105411,
+  "weak": false
+ },
+ {
+  "n": 80,
+  "cat": "SEO & AI Search",
+  "kw": "title tags",
+  "data": {
+   "kw": "keyword in title tag",
+   "vol": 40,
+   "cpc": 0,
+   "ci": 6,
+   "family": 40
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 81,
+  "cat": "PPC & Paid Ads",
+  "kw": "youtube ads",
+  "data": {
+   "kw": "youtube ads cpc",
+   "vol": 20,
+   "cpc": 0,
+   "ci": 2,
+   "family": 90
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 82,
+  "cat": "Content & Social Media",
+  "kw": "email newsletter",
+  "data": {
+   "kw": "mailchimp email newsletter",
+   "vol": 2900,
+   "cpc": 45.52857142857143,
+   "ci": 27,
+   "family": 4490
+  },
+  "score": 171643,
+  "weak": false
+ },
+ {
+  "n": 83,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "mortgage broker seo",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 84,
+  "cat": "AI Marketing",
+  "kw": "ai video generator",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 85,
+  "cat": "Digital Marketing",
+  "kw": "lead magnet",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 86,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "law firm social media",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 87,
+  "cat": "Local SEO",
+  "kw": "multi location seo",
+  "data": {
+   "kw": "multi location seo",
+   "vol": 390,
+   "cpc": 2.664285714285714,
+   "ci": 9,
+   "family": 800
+  },
+  "score": 1351,
+  "weak": false
+ },
+ {
+  "n": 88,
+  "cat": "Web Design & WordPress",
+  "kw": "landing page design",
+  "data": {
+   "kw": "landing page design price",
+   "vol": 170,
+   "cpc": 4.2214285714285715,
+   "ci": 19,
+   "family": 170
+  },
+  "score": 933,
+  "weak": false
+ },
+ {
+  "n": 89,
+  "cat": "SEO & AI Search",
+  "kw": "internal linking",
+  "data": {
+   "kw": "semrush internal linking",
+   "vol": 70,
+   "cpc": 0,
+   "ci": 1,
+   "family": 100
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 90,
+  "cat": "Marketing Costs & ROI",
+  "kw": "linkedin ads cost",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 91,
+  "cat": "Business Finance",
+  "kw": "small business grants",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 92,
+  "cat": "PPC & Paid Ads",
+  "kw": "microsoft advertising",
+  "data": {
+   "kw": "microsoft advertising budget",
+   "vol": 10,
+   "cpc": 25.37857142857143,
+   "ci": 36,
+   "family": 10
+  },
+  "score": 254,
+  "weak": true
+ },
+ {
+  "n": 93,
+  "cat": "Content & Social Media",
+  "kw": "email subject lines",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 94,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "loan officer social media",
+  "data": {
+   "kw": "social media marketing for mortgage loan officers",
+   "vol": 20,
+   "cpc": 0,
+   "ci": 0,
+   "family": 20
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 95,
+  "cat": "SEO & AI Search",
+  "kw": "page speed",
+  "data": {
+   "kw": "semrush page speed",
+   "vol": 30,
+   "cpc": 0,
+   "ci": 5,
+   "family": 30
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 96,
+  "cat": "Local SEO",
+  "kw": "local link building",
+  "data": {
+   "kw": "local link building",
+   "vol": 260,
+   "cpc": 17.132142857142856,
+   "ci": 5,
+   "family": 630
+  },
+  "score": 5791,
+  "weak": false
+ },
+ {
+  "n": 97,
+  "cat": "Web Design & WordPress",
+  "kw": "website redesign",
+  "data": {
+   "kw": "website redesign",
+   "vol": 22200,
+   "cpc": 35.51428571428571,
+   "ci": 29,
+   "family": 89890
+  },
+  "score": 1024942,
+  "weak": false
+ },
+ {
+  "n": 98,
+  "cat": "AI Marketing",
+  "kw": "ai customer service",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 99,
+  "cat": "Digital Marketing",
+  "kw": "lead nurturing",
+  "data": {
+   "kw": "lead nurturing emails",
+   "vol": 320,
+   "cpc": 3.8785714285714286,
+   "ci": 3,
+   "family": 370
+  },
+  "score": 1613,
+  "weak": false
+ },
+ {
+  "n": 100,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "legal intake",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 101,
+  "cat": "PPC & Paid Ads",
+  "kw": "facebook ads for small business",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 102,
+  "cat": "Content & Social Media",
+  "kw": "welcome email",
+  "data": {
+   "kw": "shopify welcome email",
+   "vol": 170,
+   "cpc": 0,
+   "ci": 2,
+   "family": 360
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 103,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "insurance facebook ads",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 104,
+  "cat": "Marketing Costs & ROI",
+  "kw": "tiktok ads cost",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 105,
+  "cat": "SEO & AI Search",
+  "kw": "core web vitals",
+  "data": {
+   "kw": "elementor core web vitals",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 106,
+  "cat": "Local SEO",
+  "kw": "bing places",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 107,
+  "cat": "Web Design & WordPress",
+  "kw": "website navigation",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 108,
+  "cat": "AI Marketing",
+  "kw": "ai lead scoring",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 109,
+  "cat": "Digital Marketing",
+  "kw": "referral program",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 110,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "chiropractic marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 111,
+  "cat": "Business Finance",
+  "kw": "startup funding",
+  "data": {
+   "kw": "startup business funding",
+   "vol": 2400,
+   "cpc": 14.435714285714285,
+   "ci": 55,
+   "family": 3120
+  },
+  "score": 34646,
+  "weak": false
+ },
+ {
+  "n": 112,
+  "cat": "PPC & Paid Ads",
+  "kw": "instagram ads",
+  "data": {
+   "kw": "cost for instagram ads",
+   "vol": 6600,
+   "cpc": 12.285714285714286,
+   "ci": 21,
+   "family": 20520
+  },
+  "score": 105411,
+  "weak": false
+ },
+ {
+  "n": 113,
+  "cat": "Content & Social Media",
+  "kw": "email list building",
+  "data": {
+   "kw": "email list building",
+   "vol": 590,
+   "cpc": 31.15714285714286,
+   "ci": 19,
+   "family": 630
+  },
+  "score": 23898,
+  "weak": false
+ },
+ {
+  "n": 114,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "final expense leads",
+  "data": {
+   "kw": "final expense leads",
+   "vol": 1600,
+   "cpc": 41.1,
+   "ci": 40,
+   "family": 2500
+  },
+  "score": 65760,
+  "weak": false
+ },
+ {
+  "n": 115,
+  "cat": "SEO & AI Search",
+  "kw": "mobile seo",
+  "data": {
+   "kw": "mobile local seo",
+   "vol": 210,
+   "cpc": 0,
+   "ci": 0,
+   "family": 400
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 116,
+  "cat": "Marketing Costs & ROI",
+  "kw": "youtube ads cost",
+  "data": {
+   "kw": "google ads youtube cost",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 31,
+   "family": 20
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 117,
+  "cat": "Local SEO",
+  "kw": "apple business connect",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 118,
+  "cat": "Web Design & WordPress",
+  "kw": "responsive web design",
+  "data": {
+   "kw": "responsive web design wordpress",
+   "vol": 140,
+   "cpc": 1.5678571428571428,
+   "ci": 7,
+   "family": 150
+  },
+  "score": 285,
+  "weak": false
+ },
+ {
+  "n": 119,
+  "cat": "AI Marketing",
+  "kw": "ai personalization",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 120,
+  "cat": "Digital Marketing",
+  "kw": "customer retention",
+  "data": {
+   "kw": "customer retention emails",
+   "vol": 50,
+   "cpc": 9.075,
+   "ci": 17,
+   "family": 50
+  },
+  "score": 590,
+  "weak": true
+ },
+ {
+  "n": 121,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "physical therapy marketing",
+  "data": {
+   "kw": "physical therapy marketing plan sample",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 122,
+  "cat": "SEO & AI Search",
+  "kw": "image seo",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 123,
+  "cat": "PPC & Paid Ads",
+  "kw": "linkedin ads",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 124,
+  "cat": "Content & Social Media",
+  "kw": "email deliverability",
+  "data": {
+   "kw": "email deliverability",
+   "vol": 3600,
+   "cpc": 54.364285714285714,
+   "ci": 25,
+   "family": 5970
+  },
+  "score": 254425,
+  "weak": false
+ },
+ {
+  "n": 125,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "medicare marketing",
+  "data": {
+   "kw": "medicare marketing agency",
+   "vol": 10,
+   "cpc": 7.860714285714286,
+   "ci": 26,
+   "family": 20
+  },
+  "score": 102,
+  "weak": true
+ },
+ {
+  "n": 126,
+  "cat": "Business Finance",
+  "kw": "business budget",
+  "data": {
+   "kw": "marketing budget for small business",
+   "vol": 210,
+   "cpc": 15.914285714285715,
+   "ci": 19,
+   "family": 340
+  },
+  "score": 4345,
+  "weak": false
+ },
+ {
+  "n": 127,
+  "cat": "Local SEO",
+  "kw": "local business schema",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 128,
+  "cat": "Web Design & WordPress",
+  "kw": "homepage design",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 129,
+  "cat": "Marketing Costs & ROI",
+  "kw": "content marketing cost",
+  "data": {
+   "kw": "content marketing costs",
+   "vol": 40,
+   "cpc": 3.5642857142857145,
+   "ci": 13,
+   "family": 50
+  },
+  "score": 185,
+  "weak": true
+ },
+ {
+  "n": 130,
+  "cat": "SEO & AI Search",
+  "kw": "seo copywriting",
+  "data": {
+   "kw": "seo copywriting",
+   "vol": 6600,
+   "cpc": 14.471428571428572,
+   "ci": 8,
+   "family": 15630
+  },
+  "score": 124165,
+  "weak": false
+ },
+ {
+  "n": 131,
+  "cat": "AI Marketing",
+  "kw": "ai prompts for marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 132,
+  "cat": "Digital Marketing",
+  "kw": "brand awareness",
+  "data": {
+   "kw": "content marketing for brand awareness",
+   "vol": 880,
+   "cpc": 6.239285714285714,
+   "ci": 6,
+   "family": 1940
+  },
+  "score": 7138,
+  "weak": false
+ },
+ {
+  "n": 133,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "orthodontic marketing",
+  "data": {
+   "kw": "orthodontic marketing",
+   "vol": 320,
+   "cpc": 44.94285714285714,
+   "ci": 29,
+   "family": 650
+  },
+  "score": 18696,
+  "weak": false
+ },
+ {
+  "n": 134,
+  "cat": "PPC & Paid Ads",
+  "kw": "tiktok ads",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 135,
+  "cat": "Content & Social Media",
+  "kw": "social media calendar",
+  "data": {
+   "kw": "social media plan calendar",
+   "vol": 480,
+   "cpc": 36.15714285714286,
+   "ci": 80,
+   "family": 820
+  },
+  "score": 13884,
+  "weak": false
+ },
+ {
+  "n": 136,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "health insurance leads",
+  "data": {
+   "kw": "health insurance leads",
+   "vol": 390,
+   "cpc": 79.08928571428571,
+   "ci": 41,
+   "family": 2690
+  },
+  "score": 30845,
+  "weak": false
+ },
+ {
+  "n": 137,
+  "cat": "Local SEO",
+  "kw": "respond to negative reviews",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 138,
+  "cat": "Web Design & WordPress",
+  "kw": "about us page",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 139,
+  "cat": "SEO & AI Search",
+  "kw": "content audit",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 140,
+  "cat": "Marketing Costs & ROI",
+  "kw": "email marketing cost",
+  "data": {
+   "kw": "email marketing cost",
+   "vol": 390,
+   "cpc": 23.560714285714287,
+   "ci": 37,
+   "family": 390
+  },
+  "score": 9189,
+  "weak": false
+ },
+ {
+  "n": 141,
+  "cat": "AI Marketing",
+  "kw": "ai content detection",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 142,
+  "cat": "Digital Marketing",
+  "kw": "small business branding",
+  "data": {
+   "kw": "small business branding",
+   "vol": 880,
+   "cpc": 25.65357142857143,
+   "ci": 52,
+   "family": 1090
+  },
+  "score": 22575,
+  "weak": false
+ },
+ {
+  "n": 143,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "dermatology marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 144,
+  "cat": "Business Finance",
+  "kw": "cash flow management",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 145,
+  "cat": "PPC & Paid Ads",
+  "kw": "ppc landing page",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 146,
+  "cat": "Content & Social Media",
+  "kw": "instagram marketing",
+  "data": {
+   "kw": "small business marketing instagram",
+   "vol": 260,
+   "cpc": 6.539285714285715,
+   "ci": 6,
+   "family": 760
+  },
+  "score": 2210,
+  "weak": false
+ },
+ {
+  "n": 147,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "auto insurance marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 148,
+  "cat": "SEO & AI Search",
+  "kw": "duplicate content",
+  "data": {
+   "kw": "semrush duplicate content checker",
+   "vol": 20,
+   "cpc": 0,
+   "ci": 1,
+   "family": 20
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 149,
+  "cat": "Local SEO",
+  "kw": "local pack",
+  "data": {
+   "kw": "local seo pack",
+   "vol": 1000,
+   "cpc": 56.97857142857143,
+   "ci": 6,
+   "family": 2080
+  },
+  "score": 74072,
+  "weak": false
+ },
+ {
+  "n": 150,
+  "cat": "Web Design & WordPress",
+  "kw": "contact page",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 151,
+  "cat": "Marketing Costs & ROI",
+  "kw": "logo design cost",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 152,
+  "cat": "AI Marketing",
+  "kw": "ai copyright",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 153,
+  "cat": "Digital Marketing",
+  "kw": "marketing for startups",
+  "data": {
+   "kw": "marketing agency for startups",
+   "vol": 1000,
+   "cpc": 21.728571428571428,
+   "ci": 30,
+   "family": 3490
+  },
+  "score": 28247,
+  "weak": false
+ },
+ {
+  "n": 154,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "plastic surgery marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 155,
+  "cat": "SEO & AI Search",
+  "kw": "xml sitemap",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 156,
+  "cat": "PPC & Paid Ads",
+  "kw": "conversion tracking",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 157,
+  "cat": "Content & Social Media",
+  "kw": "facebook business page",
+  "data": {
+   "kw": "manage facebook business page",
+   "vol": 140,
+   "cpc": 5.55,
+   "ci": 7,
+   "family": 280
+  },
+  "score": 1010,
+  "weak": false
+ },
+ {
+  "n": 158,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "commercial insurance marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 159,
+  "cat": "Local SEO",
+  "kw": "near me seo",
+  "data": {
+   "kw": "seo agency near me",
+   "vol": 33100,
+   "cpc": 181.39285714285714,
+   "ci": 2,
+   "family": 225380
+  },
+  "score": 7805335,
+  "weak": false
+ },
+ {
+  "n": 160,
+  "cat": "Web Design & WordPress",
+  "kw": "website copywriting",
+  "data": {
+   "kw": "website copywriting services",
+   "vol": 1300,
+   "cpc": 84.73214285714286,
+   "ci": 4,
+   "family": 2070
+  },
+  "score": 143197,
+  "weak": false
+ },
+ {
+  "n": 161,
+  "cat": "Business Finance",
+  "kw": "bookkeeping for small business",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 162,
+  "cat": "SEO & AI Search",
+  "kw": "robots txt",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 163,
+  "cat": "Marketing Costs & ROI",
+  "kw": "branding cost",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 164,
+  "cat": "AI Marketing",
+  "kw": "ai marketing strategy",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 165,
+  "cat": "Digital Marketing",
+  "kw": "ecommerce marketing",
+  "data": {
+   "kw": "digital ecommerce marketing",
+   "vol": 3600,
+   "cpc": 58.93571428571428,
+   "ci": 28,
+   "family": 11350
+  },
+  "score": 275819,
+  "weak": false
+ },
+ {
+  "n": 166,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "therapist marketing",
+  "data": {
+   "kw": "content marketing for therapists",
+   "vol": 20,
+   "cpc": 0,
+   "ci": 1,
+   "family": 20
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 167,
+  "cat": "PPC & Paid Ads",
+  "kw": "google ads bidding strategies",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 168,
+  "cat": "Content & Social Media",
+  "kw": "linkedin company page",
+  "data": {
+   "kw": "content strategy for linkedin company page",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 59,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 169,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "insurance referral program",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 170,
+  "cat": "Local SEO",
+  "kw": "local seo for plumbers",
+  "data": {
+   "kw": "local seo for plumbers",
+   "vol": 1000,
+   "cpc": 10.910714285714286,
+   "ci": 5,
+   "family": 1490
+  },
+  "score": 14184,
+  "weak": false
+ },
+ {
+  "n": 171,
+  "cat": "Web Design & WordPress",
+  "kw": "ssl certificate",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 172,
+  "cat": "SEO & AI Search",
+  "kw": "301 redirect",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 173,
+  "cat": "Marketing Costs & ROI",
+  "kw": "copywriting rates",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 174,
+  "cat": "AI Marketing",
+  "kw": "ai analytics",
+  "data": {
+   "kw": "ai marketing analytics",
+   "vol": 170,
+   "cpc": 13.835714285714285,
+   "ci": 32,
+   "family": 310
+  },
+  "score": 3058,
+  "weak": false
+ },
+ {
+  "n": 175,
+  "cat": "Digital Marketing",
+  "kw": "b2b marketing",
+  "data": {
+   "kw": "b2b digital marketing",
+   "vol": 1300,
+   "cpc": 74.425,
+   "ci": 26,
+   "family": 11230
+  },
+  "score": 125778,
+  "weak": false
+ },
+ {
+  "n": 176,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "veterinary marketing",
+  "data": {
+   "kw": "veterinary content marketing",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 177,
+  "cat": "Business Finance",
+  "kw": "professional liability insurance",
+  "data": {
+   "kw": "small business professional liability insurance",
+   "vol": 1000,
+   "cpc": 146.64285714285714,
+   "ci": 7,
+   "family": 1080
+  },
+  "score": 190636,
+  "weak": false
+ },
+ {
+  "n": 178,
+  "cat": "PPC & Paid Ads",
+  "kw": "cost per click",
+  "data": {
+   "kw": "google ads cost per click",
+   "vol": 1300,
+   "cpc": 385.99642857142857,
+   "ci": 20,
+   "family": 5070
+  },
+  "score": 652334,
+  "weak": false
+ },
+ {
+  "n": 179,
+  "cat": "Content & Social Media",
+  "kw": "tiktok for business",
+  "data": {
+   "kw": "tiktok advertising for small business",
+   "vol": 110,
+   "cpc": 11.553571428571429,
+   "ci": 20,
+   "family": 180
+  },
+  "score": 1652,
+  "weak": false
+ },
+ {
+  "n": 180,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "finra social media",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 181,
+  "cat": "Local SEO",
+  "kw": "local seo for restaurants",
+  "data": {
+   "kw": "local seo for restaurants",
+   "vol": 880,
+   "cpc": 8.928571428571429,
+   "ci": 3,
+   "family": 2640
+  },
+  "score": 10214,
+  "weak": false
+ },
+ {
+  "n": 182,
+  "cat": "Web Design & WordPress",
+  "kw": "domain name",
+  "data": {
+   "kw": "wordpress domain name cost",
+   "vol": 210,
+   "cpc": 6.371428571428571,
+   "ci": 48,
+   "family": 240
+  },
+  "score": 1338,
+  "weak": false
+ },
+ {
+  "n": 183,
+  "cat": "SEO & AI Search",
+  "kw": "broken links",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 184,
+  "cat": "Local SEO",
+  "kw": "local seo for contractors",
+  "data": {
+   "kw": "local seo for contractors",
+   "vol": 720,
+   "cpc": 39.160714285714285,
+   "ci": 7,
+   "family": 1000
+  },
+  "score": 36654,
+  "weak": false
+ },
+ {
+  "n": 185,
+  "cat": "SEO & AI Search",
+  "kw": "ecommerce seo",
+  "data": {
+   "kw": "ecommerce seo agencies",
+   "vol": 3600,
+   "cpc": 21.65357142857143,
+   "ci": 16,
+   "family": 4990
+  },
+  "score": 101339,
+  "weak": false
+ },
+ {
+  "n": 186,
+  "cat": "Web Design & WordPress",
+  "kw": "move wordpress site",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 187,
+  "cat": "PPC & Paid Ads",
+  "kw": "click through rate",
+  "data": {
+   "kw": "google ads click through rate",
+   "vol": 880,
+   "cpc": 9.382142857142858,
+   "ci": 10,
+   "family": 2220
+  },
+  "score": 10733,
+  "weak": false
+ },
+ {
+  "n": 188,
+  "cat": "Content & Social Media",
+  "kw": "youtube for business",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 189,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "wealth management marketing",
+  "data": {
+   "kw": "wealth management marketing agency",
+   "vol": 20,
+   "cpc": 12.182142857142857,
+   "ci": 42,
+   "family": 40
+  },
+  "score": 244,
+  "weak": true
+ },
+ {
+  "n": 190,
+  "cat": "AI Marketing",
+  "kw": "ai for small business",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 191,
+  "cat": "Digital Marketing",
+  "kw": "affiliate program",
+  "data": {
+   "kw": "semrush affiliate program",
+   "vol": 2400,
+   "cpc": 10.185714285714285,
+   "ci": 9,
+   "family": 2660
+  },
+  "score": 31779,
+  "weak": false
+ },
+ {
+  "n": 192,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "optometry marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 193,
+  "cat": "Marketing Costs & ROI",
+  "kw": "video production cost",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 194,
+  "cat": "Business Finance",
+  "kw": "cyber insurance",
+  "data": {
+   "kw": "cyber insurance for small businesses",
+   "vol": 1900,
+   "cpc": 94.80714285714286,
+   "ci": 9,
+   "family": 1920
+  },
+  "score": 234174,
+  "weak": false
+ },
+ {
+  "n": 195,
+  "cat": "SEO & AI Search",
+  "kw": "ai overviews",
+  "data": {
+   "kw": "ai overviews seo",
+   "vol": 320,
+   "cpc": 16.464285714285715,
+   "ci": 15,
+   "family": 320
+  },
+  "score": 6849,
+  "weak": false
+ },
+ {
+  "n": 196,
+  "cat": "Local SEO",
+  "kw": "local seo for hvac",
+  "data": {
+   "kw": "local seo for hvac",
+   "vol": 260,
+   "cpc": 0,
+   "ci": 4,
+   "family": 870
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 197,
+  "cat": "Web Design & WordPress",
+  "kw": "wordpress staging",
+  "data": {
+   "kw": "staging wordpress",
+   "vol": 2900,
+   "cpc": 3.907142857142857,
+   "ci": 34,
+   "family": 4400
+  },
+  "score": 11331,
+  "weak": false
+ },
+ {
+  "n": 198,
+  "cat": "PPC & Paid Ads",
+  "kw": "return on ad spend",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 199,
+  "cat": "Content & Social Media",
+  "kw": "pinterest marketing",
+  "data": {
+   "kw": "pinterest marketing manager",
+   "vol": 70,
+   "cpc": 0,
+   "ci": 14,
+   "family": 70
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 200,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "credit union marketing",
+  "data": {
+   "kw": "credit union marketing plan example",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 20
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 201,
+  "cat": "AI Marketing",
+  "kw": "chatgpt for marketing",
+  "data": {
+   "kw": "chatgpt for marketing",
+   "vol": 2400,
+   "cpc": 19.09642857142857,
+   "ci": 3,
+   "family": 3750
+  },
+  "score": 59581,
+  "weak": false
+ },
+ {
+  "n": 202,
+  "cat": "Digital Marketing",
+  "kw": "utm parameters",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 203,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "pharmacy marketing",
+  "data": {
+   "kw": "pharmacy marketing plan sample",
+   "vol": 0,
+   "cpc": 0,
+   "ci": 0,
+   "family": 0
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 204,
+  "cat": "Marketing Costs & ROI",
+  "kw": "marketing retainer",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 205,
+  "cat": "SEO & AI Search",
+  "kw": "seo vs ppc",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 206,
+  "cat": "Local SEO",
+  "kw": "local seo for roofers",
+  "data": {
+   "kw": "local seo for roofers",
+   "vol": 260,
+   "cpc": 0,
+   "ci": 11,
+   "family": 260
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 207,
+  "cat": "Web Design & WordPress",
+  "kw": "wordpress hacked",
+  "data": {
+   "kw": "wordpress hacked",
+   "vol": 2400,
+   "cpc": 7.45,
+   "ci": 11,
+   "family": 3060
+  },
+  "score": 23244,
+  "weak": false
+ },
+ {
+  "n": 208,
+  "cat": "PPC & Paid Ads",
+  "kw": "ad extensions",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 209,
+  "cat": "Content & Social Media",
+  "kw": "social media analytics",
+  "data": {
+   "kw": "hootsuite social media analytics",
+   "vol": 880,
+   "cpc": 3.4714285714285715,
+   "ci": 1,
+   "family": 910
+  },
+  "score": 3971,
+  "weak": false
+ },
+ {
+  "n": 210,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "bank marketing",
+  "data": {
+   "kw": "content marketing for banks",
+   "vol": 70,
+   "cpc": 11.835714285714285,
+   "ci": 2,
+   "family": 120
+  },
+  "score": 1077,
+  "weak": true
+ },
+ {
+  "n": 211,
+  "cat": "AI Marketing",
+  "kw": "ai search engines",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 212,
+  "cat": "Digital Marketing",
+  "kw": "marketing attribution",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 213,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "home care marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 214,
+  "cat": "Business Finance",
+  "kw": "workers compensation insurance",
+  "data": {
+   "kw": "workers compensation insurance for small business",
+   "vol": 8100,
+   "cpc": 121.94642857142857,
+   "ci": 13,
+   "family": 8120
+  },
+  "score": 1284096,
+  "weak": false
+ },
+ {
+  "n": 215,
+  "cat": "Marketing Costs & ROI",
+  "kw": "ppc management cost",
+  "data": {
+   "kw": "ppc management cost",
+   "vol": 170,
+   "cpc": 13.235714285714286,
+   "ci": 9,
+   "family": 700
+  },
+  "score": 2925,
+  "weak": false
+ },
+ {
+  "n": 216,
+  "cat": "SEO & AI Search",
+  "kw": "long tail keywords",
+  "data": {
+   "kw": "long tail keywords finder",
+   "vol": 320,
+   "cpc": 9.682142857142857,
+   "ci": 10,
+   "family": 2130
+  },
+  "score": 4028,
+  "weak": false
+ },
+ {
+  "n": 217,
+  "cat": "Local SEO",
+  "kw": "local seo for salons",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 218,
+  "cat": "Web Design & WordPress",
+  "kw": "website maintenance checklist",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 219,
+  "cat": "PPC & Paid Ads",
+  "kw": "call ads",
+  "data": {
+   "kw": "google call ads cost",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 220,
+  "cat": "Content & Social Media",
+  "kw": "best time to post on social media",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 221,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "fintech marketing",
+  "data": {
+   "kw": "fintech digital marketing agency",
+   "vol": 260,
+   "cpc": 19.375,
+   "ci": 8,
+   "family": 490
+  },
+  "score": 6549,
+  "weak": false
+ },
+ {
+  "n": 222,
+  "cat": "SEO & AI Search",
+  "kw": "search intent",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 223,
+  "cat": "AI Marketing",
+  "kw": "ai agents",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 224,
+  "cat": "Digital Marketing",
+  "kw": "ab testing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 225,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "healthcare seo",
+  "data": {
+   "kw": "healthcare seo agency",
+   "vol": 2400,
+   "cpc": 147.05714285714285,
+   "ci": 17,
+   "family": 2610
+  },
+  "score": 458818,
+  "weak": false
+ },
+ {
+  "n": 226,
+  "cat": "Marketing Costs & ROI",
+  "kw": "website maintenance cost",
+  "data": {
+   "kw": "wordpress website maintenance cost",
+   "vol": 70,
+   "cpc": 19.03214285714286,
+   "ci": 18,
+   "family": 240
+  },
+  "score": 1732,
+  "weak": true
+ },
+ {
+  "n": 227,
+  "cat": "Business Finance",
+  "kw": "business owners policy",
+  "data": {
+   "kw": "business owners policies",
+   "vol": 480,
+   "cpc": 132.27142857142857,
+   "ci": 39,
+   "family": 610
+  },
+  "score": 63490,
+  "weak": false
+ },
+ {
+  "n": 228,
+  "cat": "Local SEO",
+  "kw": "local seo for gyms",
+  "data": {
+   "kw": "local gym seo",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 229,
+  "cat": "Web Design & WordPress",
+  "kw": "ecommerce website design",
+  "data": {
+   "kw": "ecommerce website design cost",
+   "vol": 140,
+   "cpc": 26.117857142857144,
+   "ci": 12,
+   "family": 390
+  },
+  "score": 4753,
+  "weak": false
+ },
+ {
+  "n": 230,
+  "cat": "SEO & AI Search",
+  "kw": "featured snippets",
+  "data": {
+   "kw": "semrush featured snippet",
+   "vol": 40,
+   "cpc": 0,
+   "ci": 0,
+   "family": 60
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 231,
+  "cat": "PPC & Paid Ads",
+  "kw": "geo targeting",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 232,
+  "cat": "Content & Social Media",
+  "kw": "user generated content",
+  "data": {
+   "kw": "user generated content marketing",
+   "vol": 14800,
+   "cpc": 7.1571428571428575,
+   "ci": 6,
+   "family": 15020
+  },
+  "score": 137703,
+  "weak": false
+ },
+ {
+  "n": 233,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "credit repair marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 234,
+  "cat": "AI Marketing",
+  "kw": "ai transcription",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 235,
+  "cat": "Digital Marketing",
+  "kw": "customer testimonials",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 236,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "medical website design",
+  "data": {
+   "kw": "medical website design cost",
+   "vol": 50,
+   "cpc": 0,
+   "ci": 39,
+   "family": 50
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 237,
+  "cat": "Marketing Costs & ROI",
+  "kw": "ecommerce website cost",
+  "data": {
+   "kw": "ecommerce website costs",
+   "vol": 1300,
+   "cpc": 6.639285714285714,
+   "ci": 27,
+   "family": 2190
+  },
+  "score": 11220,
+  "weak": false
+ },
+ {
+  "n": 238,
+  "cat": "SEO & AI Search",
+  "kw": "seo report",
+  "data": {
+   "kw": "semrush seo report",
+   "vol": 390,
+   "cpc": 3.0428571428571427,
+   "ci": 7,
+   "family": 730
+  },
+  "score": 1543,
+  "weak": false
+ },
+ {
+  "n": 239,
+  "cat": "Local SEO",
+  "kw": "local seo for auto repair",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 240,
+  "cat": "Web Design & WordPress",
+  "kw": "one page website",
+  "data": {
+   "kw": "one page website",
+   "vol": 5400,
+   "cpc": 18.196428571428573,
+   "ci": 44,
+   "family": 8440
+  },
+  "score": 98261,
+  "weak": false
+ },
+ {
+  "n": 241,
+  "cat": "PPC & Paid Ads",
+  "kw": "ad copy",
+  "data": {
+   "kw": "ad copy ai",
+   "vol": 320,
+   "cpc": 5.035714285714286,
+   "ci": 52,
+   "family": 330
+  },
+  "score": 1611,
+  "weak": false
+ },
+ {
+  "n": 242,
+  "cat": "Content & Social Media",
+  "kw": "influencer marketing",
+  "data": {
+   "kw": "digital influencer marketing",
+   "vol": 260,
+   "cpc": 17.660714285714285,
+   "ci": 15,
+   "family": 1510
+  },
+  "score": 5969,
+  "weak": false
+ },
+ {
+  "n": 243,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "insurance email marketing",
+  "data": {
+   "kw": "email marketing insurance",
+   "vol": 90,
+   "cpc": 10.675,
+   "ci": 10,
+   "family": 140
+  },
+  "score": 1249,
+  "weak": true
+ },
+ {
+  "n": 244,
+  "cat": "AI Marketing",
+  "kw": "ai translation",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 245,
+  "cat": "Digital Marketing",
+  "kw": "loyalty program",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 246,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "hipaa compliant marketing",
+  "data": {
+   "kw": "hipaa compliant email marketing",
+   "vol": 70,
+   "cpc": 65.57142857142857,
+   "ci": 39,
+   "family": 70
+  },
+  "score": 4590,
+  "weak": true
+ },
+ {
+  "n": 247,
+  "cat": "Business Finance",
+  "kw": "commercial auto insurance",
+  "data": {
+   "kw": "commercial auto insurance for small business",
+   "vol": 2400,
+   "cpc": 108.82857142857142,
+   "ci": 34,
+   "family": 2640
+  },
+  "score": 261189,
+  "weak": false
+ },
+ {
+  "n": 248,
+  "cat": "SEO & AI Search",
+  "kw": "rank tracking",
+  "data": {
+   "kw": "best rank tracking tools",
+   "vol": 1600,
+   "cpc": 13.964285714285714,
+   "ci": 1,
+   "family": 3810
+  },
+  "score": 29046,
+  "weak": false
+ },
+ {
+  "n": 249,
+  "cat": "Local SEO",
+  "kw": "local seo for cleaning companies",
+  "data": {
+   "kw": "local seo companies",
+   "vol": 5400,
+   "cpc": 39.792857142857144,
+   "ci": 9,
+   "family": 24880
+  },
+  "score": 279346,
+  "weak": false
+ },
+ {
+  "n": 250,
+  "cat": "Web Design & WordPress",
+  "kw": "website color scheme",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 251,
+  "cat": "Marketing Costs & ROI",
+  "kw": "wordpress website cost",
+  "data": {
+   "kw": "wordpress website cost",
+   "vol": 2400,
+   "cpc": 15.792857142857143,
+   "ci": 43,
+   "family": 4080
+  },
+  "score": 37903,
+  "weak": false
+ },
+ {
+  "n": 252,
+  "cat": "PPC & Paid Ads",
+  "kw": "ad testing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 253,
+  "cat": "Content & Social Media",
+  "kw": "hashtags",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 254,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "annuity marketing",
+  "data": {
+   "kw": "annuity leads marketing",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 255,
+  "cat": "SEO & AI Search",
+  "kw": "seo competitor analysis",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 256,
+  "cat": "AI Marketing",
+  "kw": "ai sales assistant",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 257,
+  "cat": "Digital Marketing",
+  "kw": "holiday marketing",
+  "data": {
+   "kw": "holiday email marketing",
+   "vol": 90,
+   "cpc": 0,
+   "ci": 3,
+   "family": 90
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 258,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "patient reviews",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 259,
+  "cat": "Local SEO",
+  "kw": "local seo for landscapers",
+  "data": {
+   "kw": "local seo for landscapers",
+   "vol": 90,
+   "cpc": 0,
+   "ci": 4,
+   "family": 90
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 260,
+  "cat": "Web Design & WordPress",
+  "kw": "website fonts",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 261,
+  "cat": "Marketing Costs & ROI",
+  "kw": "marketing budget percentage",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 262,
+  "cat": "Business Finance",
+  "kw": "accounts receivable",
+  "data": {
+   "kw": "accounts receivable line of credit",
+   "vol": 40,
+   "cpc": 56.167857142857144,
+   "ci": 51,
+   "family": 40
+  },
+  "score": 2247,
+  "weak": true
+ },
+ {
+  "n": 263,
+  "cat": "SEO & AI Search",
+  "kw": "eeat",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 264,
+  "cat": "PPC & Paid Ads",
+  "kw": "click fraud",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 265,
+  "cat": "Content & Social Media",
+  "kw": "short form video",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 266,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "financial planner leads",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 267,
+  "cat": "AI Marketing",
+  "kw": "ai in google ads",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 268,
+  "cat": "Digital Marketing",
+  "kw": "event marketing",
+  "data": {
+   "kw": "email marketing for events",
+   "vol": 390,
+   "cpc": 24.725,
+   "ci": 14,
+   "family": 1910
+  },
+  "score": 12536,
+  "weak": false
+ },
+ {
+  "n": 269,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "dental seo",
+  "data": {
+   "kw": "dental seo",
+   "vol": 2900,
+   "cpc": 150.79642857142858,
+   "ci": 32,
+   "family": 22090
+  },
+  "score": 568503,
+  "weak": false
+ },
+ {
+  "n": 270,
+  "cat": "Local SEO",
+  "kw": "local seo for electricians",
+  "data": {
+   "kw": "local seo for electricians",
+   "vol": 590,
+   "cpc": 111.02857142857142,
+   "ci": 13,
+   "family": 590
+  },
+  "score": 85159,
+  "weak": false
+ },
+ {
+  "n": 271,
+  "cat": "Web Design & WordPress",
+  "kw": "free stock photos",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 272,
+  "cat": "SEO & AI Search",
+  "kw": "google algorithm update",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 273,
+  "cat": "Marketing Costs & ROI",
+  "kw": "seo roi",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 274,
+  "cat": "PPC & Paid Ads",
+  "kw": "google ads audit",
+  "data": {
+   "kw": "google ads audit cost",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 275,
+  "cat": "Content & Social Media",
+  "kw": "video marketing",
+  "data": {
+   "kw": "video marketing agency",
+   "vol": 1900,
+   "cpc": 120.36071428571428,
+   "ci": 27,
+   "family": 21430
+  },
+  "score": 297291,
+  "weak": false
+ },
+ {
+  "n": 276,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "insurance google ads",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 277,
+  "cat": "SEO & AI Search",
+  "kw": "website migration seo",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 278,
+  "cat": "Local SEO",
+  "kw": "local seo for pest control",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 279,
+  "cat": "Web Design & WordPress",
+  "kw": "website footer",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 280,
+  "cat": "AI Marketing",
+  "kw": "marketing automation workflows",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 281,
+  "cat": "Digital Marketing",
+  "kw": "sms marketing",
+  "data": {
+   "kw": "klaviyo sms marketing",
+   "vol": 1000,
+   "cpc": 101.07142857142857,
+   "ci": 24,
+   "family": 2180
+  },
+  "score": 131393,
+  "weak": false
+ },
+ {
+  "n": 282,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "real estate seo",
+  "data": {
+   "kw": "seo services for real estate",
+   "vol": 1600,
+   "cpc": 21.478571428571428,
+   "ci": 4,
+   "family": 4130
+  },
+  "score": 44675,
+  "weak": false
+ },
+ {
+  "n": 283,
+  "cat": "Business Finance",
+  "kw": "pricing strategy",
+  "data": {
+   "kw": "pricing strategy sample",
+   "vol": 1600,
+   "cpc": 4.975,
+   "ci": 5,
+   "family": 1750
+  },
+  "score": 10348,
+  "weak": false
+ },
+ {
+  "n": 284,
+  "cat": "PPC & Paid Ads",
+  "kw": "ppc for plumbers",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 285,
+  "cat": "Content & Social Media",
+  "kw": "podcast marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 286,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "financial advisor google ads",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 287,
+  "cat": "Marketing Costs & ROI",
+  "kw": "break even roas",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 288,
+  "cat": "SEO & AI Search",
+  "kw": "hreflang",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 289,
+  "cat": "Local SEO",
+  "kw": "local seo for moving companies",
+  "data": {
+   "kw": "local seo companies",
+   "vol": 5400,
+   "cpc": 39.792857142857144,
+   "ci": 9,
+   "family": 24880
+  },
+  "score": 279346,
+  "weak": false
+ },
+ {
+  "n": 290,
+  "cat": "Web Design & WordPress",
+  "kw": "call to action",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 291,
+  "cat": "AI Marketing",
+  "kw": "ai policy for business",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 292,
+  "cat": "Digital Marketing",
+  "kw": "whatsapp business",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 293,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "real estate social media",
+  "data": {
+   "kw": "real estate social media marketing",
+   "vol": 1600,
+   "cpc": 22.396428571428572,
+   "ci": 23,
+   "family": 3270
+  },
+  "score": 46585,
+  "weak": false
+ },
+ {
+  "n": 294,
+  "cat": "PPC & Paid Ads",
+  "kw": "ppc for ecommerce",
+  "data": {
+   "kw": "ecommerce ppc services",
+   "vol": 880,
+   "cpc": 131.5,
+   "ci": 14,
+   "family": 3700
+  },
+  "score": 150436,
+  "weak": false
+ },
+ {
+  "n": 295,
+  "cat": "Content & Social Media",
+  "kw": "brand voice",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 296,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "insurance blog ideas",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 297,
+  "cat": "SEO & AI Search",
+  "kw": "seo for startups",
+  "data": {
+   "kw": "affordable startup seo",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 298,
+  "cat": "Business Finance",
+  "kw": "business loan bad credit",
+  "data": {
+   "kw": "business credit loans",
+   "vol": 480,
+   "cpc": 65.69642857142857,
+   "ci": 40,
+   "family": 2770
+  },
+  "score": 31534,
+  "weak": false
+ },
+ {
+  "n": 299,
+  "cat": "Marketing Costs & ROI",
+  "kw": "cost per acquisition",
+  "data": {
+   "kw": "cost per acquisition google ads",
+   "vol": 880,
+   "cpc": 20.064285714285713,
+   "ci": 7,
+   "family": 1900
+  },
+  "score": 22954,
+  "weak": false
+ },
+ {
+  "n": 300,
+  "cat": "Local SEO",
+  "kw": "local seo checklist",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 301,
+  "cat": "Web Design & WordPress",
+  "kw": "website forms",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 302,
+  "cat": "AI Marketing",
+  "kw": "ai phone answering",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 303,
+  "cat": "Digital Marketing",
+  "kw": "omnichannel marketing",
+  "data": {
+   "kw": "omnichannel marketing automation platform",
+   "vol": 70,
+   "cpc": 28.042857142857144,
+   "ci": 3,
+   "family": 90
+  },
+  "score": 2552,
+  "weak": true
+ },
+ {
+  "n": 304,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "property management marketing",
+  "data": {
+   "kw": "property management marketing plan template",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 20
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 305,
+  "cat": "SEO & AI Search",
+  "kw": "youtube seo",
+  "data": {
+   "kw": "best seo tools for youtube",
+   "vol": 390,
+   "cpc": 11.517857142857142,
+   "ci": 25,
+   "family": 760
+  },
+  "score": 5840,
+  "weak": false
+ },
+ {
+  "n": 306,
+  "cat": "PPC & Paid Ads",
+  "kw": "google ads for contractors",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 307,
+  "cat": "Content & Social Media",
+  "kw": "copywriting formulas",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 308,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "tax season marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 309,
+  "cat": "Local SEO",
+  "kw": "local seo audit",
+  "data": {
+   "kw": "local seo audit",
+   "vol": 720,
+   "cpc": 22.2,
+   "ci": 14,
+   "family": 1060
+  },
+  "score": 20779,
+  "weak": false
+ },
+ {
+  "n": 310,
+  "cat": "Web Design & WordPress",
+  "kw": "cookie consent",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 311,
+  "cat": "Marketing Costs & ROI",
+  "kw": "influencer marketing cost",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 312,
+  "cat": "SEO & AI Search",
+  "kw": "voice search optimization",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 313,
+  "cat": "AI Marketing",
+  "kw": "ai product descriptions",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 314,
+  "cat": "Digital Marketing",
+  "kw": "in house vs agency marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 315,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "real estate email marketing",
+  "data": {
+   "kw": "real estate email marketing",
+   "vol": 5400,
+   "cpc": 55.628571428571426,
+   "ci": 15,
+   "family": 11610
+  },
+  "score": 390513,
+  "weak": false
+ },
+ {
+  "n": 316,
+  "cat": "Business Finance",
+  "kw": "marketing tax deductions",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 317,
+  "cat": "PPC & Paid Ads",
+  "kw": "facebook lead ads",
+  "data": {
+   "kw": "cost per lead facebook ads",
+   "vol": 30,
+   "cpc": 0,
+   "ci": 3,
+   "family": 140
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 318,
+  "cat": "Content & Social Media",
+  "kw": "content brief",
+  "data": {
+   "kw": "seo content brief",
+   "vol": 260,
+   "cpc": 7.228571428571429,
+   "ci": 7,
+   "family": 340
+  },
+  "score": 2443,
+  "weak": false
+ },
+ {
+  "n": 319,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "accounting firm seo",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 320,
+  "cat": "Local SEO",
+  "kw": "google business profile categories",
+  "data": {
+   "kw": "google business profile",
+   "vol": 1830000,
+   "cpc": 49.52142857142857,
+   "ci": 8,
+   "family": 5525940
+  },
+  "score": 117811479,
+  "weak": false
+ },
+ {
+  "n": 321,
+  "cat": "Web Design & WordPress",
+  "kw": "privacy policy",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 322,
+  "cat": "SEO & AI Search",
+  "kw": "answer engine optimization",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 323,
+  "cat": "Marketing Costs & ROI",
+  "kw": "google business profile cost",
+  "data": {
+   "kw": "google business profile cost",
+   "vol": 1830000,
+   "cpc": 49.52142857142857,
+   "ci": 23,
+   "family": 5526080
+  },
+  "score": 117811479,
+  "weak": false
+ },
+ {
+  "n": 324,
+  "cat": "AI Marketing",
+  "kw": "ai for local business",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 325,
+  "cat": "Digital Marketing",
+  "kw": "how to hire a marketing agency",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 326,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "home builder marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 327,
+  "cat": "PPC & Paid Ads",
+  "kw": "audience targeting",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 328,
+  "cat": "Content & Social Media",
+  "kw": "guest blogging",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 329,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "retirement seminar marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 330,
+  "cat": "SEO & AI Search",
+  "kw": "llms txt",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 331,
+  "cat": "Local SEO",
+  "kw": "google business profile photos",
+  "data": {
+   "kw": "google business profile",
+   "vol": 1830000,
+   "cpc": 49.52142857142857,
+   "ci": 8,
+   "family": 5525940
+  },
+  "score": 117811479,
+  "weak": false
+ },
+ {
+  "n": 332,
+  "cat": "Web Design & WordPress",
+  "kw": "wordpress user roles",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 333,
+  "cat": "Business Finance",
+  "kw": "crowdfunding",
+  "data": {
+   "kw": "crowdfunding business loans",
+   "vol": 50,
+   "cpc": 13.435714285714285,
+   "ci": 69,
+   "family": 50
+  },
+  "score": 537,
+  "weak": true
+ },
+ {
+  "n": 334,
+  "cat": "Marketing Costs & ROI",
+  "kw": "web hosting cost",
+  "data": {
+   "kw": "wix web hosting cost",
+   "vol": 880,
+   "cpc": 9.364285714285714,
+   "ci": 26,
+   "family": 1760
+  },
+  "score": 10713,
+  "weak": false
+ },
+ {
+  "n": 335,
+  "cat": "AI Marketing",
+  "kw": "does google penalize ai content",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 336,
+  "cat": "Digital Marketing",
+  "kw": "marketing for service businesses",
+  "data": {
+   "kw": "internet marketing services for small businesses",
+   "vol": 590,
+   "cpc": 10.042857142857143,
+   "ci": 2,
+   "family": 760
+  },
+  "score": 7703,
+  "weak": false
+ },
+ {
+  "n": 337,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "senior living marketing",
+  "data": {
+   "kw": "senior living marketing plan template",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 338,
+  "cat": "SEO & AI Search",
+  "kw": "white hat seo",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 339,
+  "cat": "PPC & Paid Ads",
+  "kw": "ad scheduling",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 340,
+  "cat": "Content & Social Media",
+  "kw": "press release",
+  "data": {
+   "kw": "press release content writing",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 20
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 341,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "insurance agency reviews",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 342,
+  "cat": "Local SEO",
+  "kw": "online directories",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 343,
+  "cat": "Web Design & WordPress",
+  "kw": "wordpress blocks",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 344,
+  "cat": "SEO & AI Search",
+  "kw": "seo checklist",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 345,
+  "cat": "Marketing Costs & ROI",
+  "kw": "domain name cost",
+  "data": {
+   "kw": "wordpress domain name cost",
+   "vol": 210,
+   "cpc": 6.371428571428571,
+   "ci": 48,
+   "family": 210
+  },
+  "score": 1338,
+  "weak": false
+ },
+ {
+  "n": 346,
+  "cat": "AI Marketing",
+  "kw": "ai market research",
+  "data": {
+   "kw": "ai market research tools",
+   "vol": 480,
+   "cpc": 27.65714285714286,
+   "ci": 23,
+   "family": 1130
+  },
+  "score": 17258,
+  "weak": false
+ },
+ {
+  "n": 347,
+  "cat": "Digital Marketing",
+  "kw": "word of mouth marketing",
+  "data": {
+   "kw": "word of mouth marketing for small business",
+   "vol": 20,
+   "cpc": 0,
+   "ci": 0,
+   "family": 20
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 348,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "urgent care marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 349,
+  "cat": "Business Finance",
+  "kw": "revenue based financing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 350,
+  "cat": "PPC & Paid Ads",
+  "kw": "smart campaigns",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 351,
+  "cat": "Content & Social Media",
+  "kw": "webinar marketing",
+  "data": {
+   "kw": "webinar marketing plan template",
+   "vol": 20,
+   "cpc": 0,
+   "ci": 0,
+   "family": 40
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 352,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "mortgage broker social media",
+  "data": {
+   "kw": "social media marketing for mortgage brokers",
+   "vol": 30,
+   "cpc": 5.785714285714286,
+   "ci": 20,
+   "family": 40
+  },
+  "score": 226,
+  "weak": true
+ },
+ {
+  "n": 353,
+  "cat": "Local SEO",
+  "kw": "hyperlocal marketing",
+  "data": {
+   "kw": "hyperlocal digital marketing",
+   "vol": 40,
+   "cpc": 0,
+   "ci": 1,
+   "family": 40
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 354,
+  "cat": "Web Design & WordPress",
+  "kw": "small business website checklist",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 355,
+  "cat": "SEO & AI Search",
+  "kw": "how long does seo take",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 356,
+  "cat": "Marketing Costs & ROI",
+  "kw": "product photography cost",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 357,
+  "cat": "AI Marketing",
+  "kw": "ai review responses",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 358,
+  "cat": "Digital Marketing",
+  "kw": "competitor analysis",
+  "data": {
+   "kw": "semrush competitor analysis",
+   "vol": 2900,
+   "cpc": 32.042857142857144,
+   "ci": 3,
+   "family": 16290
+  },
+  "score": 120802,
+  "weak": false
+ },
+ {
+  "n": 359,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "addiction treatment marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 360,
+  "cat": "PPC & Paid Ads",
+  "kw": "pinterest ads",
+  "data": {
+   "kw": "pinterest ad manager",
+   "vol": 4400,
+   "cpc": 17.34642857142857,
+   "ci": 27,
+   "family": 4420
+  },
+  "score": 99222,
+  "weak": false
+ },
+ {
+  "n": 361,
+  "cat": "Content & Social Media",
+  "kw": "online community",
+  "data": {
+   "kw": "online community marketing",
+   "vol": 30,
+   "cpc": 4.857142857142857,
+   "ci": 30,
+   "family": 30
+  },
+  "score": 189,
+  "weak": true
+ },
+ {
+  "n": 362,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "financial advisor content marketing",
+  "data": {
+   "kw": "financial advisor marketing",
+   "vol": 390,
+   "cpc": 55.05714285714286,
+   "ci": 34,
+   "family": 730
+  },
+  "score": 21472,
+  "weak": false
+ },
+ {
+  "n": 363,
+  "cat": "Local SEO",
+  "kw": "google local services",
+  "data": {
+   "kw": "google local services",
+   "vol": 40500,
+   "cpc": 111.75,
+   "ci": 31,
+   "family": 83750
+  },
+  "score": 5883638,
+  "weak": false
+ },
+ {
+  "n": 364,
+  "cat": "Web Design & WordPress",
+  "kw": "web design trends",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 365,
+  "cat": "SEO & AI Search",
+  "kw": "topic clusters",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 366,
+  "cat": "Business Finance",
+  "kw": "sba microloan",
+  "data": {
+   "kw": "sba microloan",
+   "vol": 1900,
+   "cpc": 40.357142857142854,
+   "ci": 68,
+   "family": 2570
+  },
+  "score": 61343,
+  "weak": false
+ },
+ {
+  "n": 367,
+  "cat": "SEO & AI Search",
+  "kw": "wordpress seo",
+  "data": {
+   "kw": "local seo wordpress",
+   "vol": 170,
+   "cpc": 6.257142857142857,
+   "ci": 10,
+   "family": 350
+  },
+  "score": 1383,
+  "weak": false
+ },
+ {
+  "n": 368,
+  "cat": "Local SEO",
+  "kw": "local seo for accountants",
+  "data": {
+   "kw": "local seo for accountants",
+   "vol": 110,
+   "cpc": 0,
+   "ci": 6,
+   "family": 180
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 369,
+  "cat": "Web Design & WordPress",
+  "kw": "website speed test",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 370,
+  "cat": "PPC & Paid Ads",
+  "kw": "google ads keywords",
+  "data": {
+   "kw": "google ads keyword planner",
+   "vol": 22200,
+   "cpc": 65.425,
+   "ci": 6,
+   "family": 27060
+  },
+  "score": 1888166,
+  "weak": false
+ },
+ {
+  "n": 371,
+  "cat": "Content & Social Media",
+  "kw": "email segmentation",
+  "data": {
+   "kw": "email segmentation",
+   "vol": 480,
+   "cpc": 48.525,
+   "ci": 13,
+   "family": 1070
+  },
+  "score": 30280,
+  "weak": false
+ },
+ {
+  "n": 372,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "life insurance marketing",
+  "data": {
+   "kw": "digital marketing for life insurance agents",
+   "vol": 30,
+   "cpc": 2,
+   "ci": 6,
+   "family": 70
+  },
+  "score": 78,
+  "weak": true
+ },
+ {
+  "n": 373,
+  "cat": "AI Marketing",
+  "kw": "ai keyword research",
+  "data": {
+   "kw": "ai keyword research",
+   "vol": 260,
+   "cpc": 7.0285714285714285,
+   "ci": 22,
+   "family": 260
+  },
+  "score": 2376,
+  "weak": false
+ },
+ {
+  "n": 374,
+  "cat": "Digital Marketing",
+  "kw": "growth marketing",
+  "data": {
+   "kw": "content marketing for business growth",
+   "vol": 390,
+   "cpc": 7.7,
+   "ci": 2,
+   "family": 650
+  },
+  "score": 3904,
+  "weak": false
+ },
+ {
+  "n": 375,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "employment lawyer marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 376,
+  "cat": "Marketing Costs & ROI",
+  "kw": "google shopping ads cost",
+  "data": {
+   "kw": "google shopping ads cost",
+   "vol": 9900,
+   "cpc": 19.314285714285713,
+   "ci": 20,
+   "family": 19900
+  },
+  "score": 248575,
+  "weak": false
+ },
+ {
+  "n": 377,
+  "cat": "SEO & AI Search",
+  "kw": "keyword cannibalization",
+  "data": {
+   "kw": "semrush keyword cannibalization",
+   "vol": 40,
+   "cpc": 0,
+   "ci": 0,
+   "family": 50
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 378,
+  "cat": "Local SEO",
+  "kw": "local seo for photographers",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 379,
+  "cat": "Web Design & WordPress",
+  "kw": "image compression",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 380,
+  "cat": "PPC & Paid Ads",
+  "kw": "google ads account structure",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 381,
+  "cat": "Content & Social Media",
+  "kw": "re engagement email",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 382,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "insurance cross selling",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 383,
+  "cat": "AI Marketing",
+  "kw": "ai website builder",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 384,
+  "cat": "Digital Marketing",
+  "kw": "guerrilla marketing",
+  "data": {
+   "kw": "guerrilla marketing for small business",
+   "vol": 70,
+   "cpc": 0.014285714285714285,
+   "ci": 11,
+   "family": 90
+  },
+  "score": 1,
+  "weak": true
+ },
+ {
+  "n": 385,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "dui lawyer marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 386,
+  "cat": "Business Finance",
+  "kw": "business emergency fund",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 387,
+  "cat": "Marketing Costs & ROI",
+  "kw": "microsoft ads cost",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 388,
+  "cat": "SEO & AI Search",
+  "kw": "anchor text",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 389,
+  "cat": "Local SEO",
+  "kw": "local seo for florists",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 390,
+  "cat": "Web Design & WordPress",
+  "kw": "uptime monitoring",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 391,
+  "cat": "PPC & Paid Ads",
+  "kw": "demand gen campaigns",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 392,
+  "cat": "Content & Social Media",
+  "kw": "abandoned cart email",
+  "data": {
+   "kw": "abandoned cart email mailchimp",
+   "vol": 110,
+   "cpc": 0,
+   "ci": 1,
+   "family": 110
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 393,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "insurance agency social media",
+  "data": {
+   "kw": "social media marketing for insurance agencies",
+   "vol": 30,
+   "cpc": 27.792857142857144,
+   "ci": 17,
+   "family": 30
+  },
+  "score": 1084,
+  "weak": true
+ },
+ {
+  "n": 394,
+  "cat": "AI Marketing",
+  "kw": "ai logo generator",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 395,
+  "cat": "Digital Marketing",
+  "kw": "local marketing ideas",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 396,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "workers comp lawyer marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 397,
+  "cat": "Marketing Costs & ROI",
+  "kw": "pinterest ads cost",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 398,
+  "cat": "SEO & AI Search",
+  "kw": "backlinks",
+  "data": {
+   "kw": "semrush backlink checker",
+   "vol": 3600,
+   "cpc": 23.167857142857144,
+   "ci": 5,
+   "family": 5050
+  },
+  "score": 108426,
+  "weak": false
+ },
+ {
+  "n": 399,
+  "cat": "Business Finance",
+  "kw": "profit and loss statement",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 400,
+  "cat": "Local SEO",
+  "kw": "local seo for bakeries",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 401,
+  "cat": "Web Design & WordPress",
+  "kw": "404 page",
+  "data": {
+   "kw": "divi 404 page",
+   "vol": 40,
+   "cpc": 0,
+   "ci": 2,
+   "family": 50
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 402,
+  "cat": "PPC & Paid Ads",
+  "kw": "google ads for real estate",
+  "data": {
+   "kw": "google local service ads for real estate",
+   "vol": 20,
+   "cpc": 7.732142857142857,
+   "ci": 16,
+   "family": 30
+  },
+  "score": 201,
+  "weak": true
+ },
+ {
+  "n": 403,
+  "cat": "Content & Social Media",
+  "kw": "newsletter ideas",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 404,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "insurance video marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 405,
+  "cat": "SEO & AI Search",
+  "kw": "disavow links",
+  "data": {
+   "kw": "semrush disavow links",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 406,
+  "cat": "AI Marketing",
+  "kw": "ai voiceover",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 407,
+  "cat": "Digital Marketing",
+  "kw": "low cost marketing ideas",
+  "data": {
+   "kw": "low cost marketing ideas",
+   "vol": 50,
+   "cpc": 24.917857142857144,
+   "ci": 33,
+   "family": 70
+  },
+  "score": 1620,
+  "weak": true
+ },
+ {
+  "n": 408,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "real estate attorney marketing",
+  "data": {
+   "kw": "real estate marketing",
+   "vol": 5400,
+   "cpc": 29.482142857142858,
+   "ci": 24,
+   "family": 10940
+  },
+  "score": 206965,
+  "weak": false
+ },
+ {
+  "n": 409,
+  "cat": "Marketing Costs & ROI",
+  "kw": "billboard advertising cost",
+  "data": {
+   "kw": "electronic billboard advertising cost",
+   "vol": 1000,
+   "cpc": 8.3,
+   "ci": 70,
+   "family": 1220
+  },
+  "score": 6640,
+  "weak": false
+ },
+ {
+  "n": 410,
+  "cat": "Local SEO",
+  "kw": "local seo for car dealers",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 411,
+  "cat": "Web Design & WordPress",
+  "kw": "website search",
+  "data": {
+   "kw": "website keyword search",
+   "vol": 1900,
+   "cpc": 11.575,
+   "ci": 10,
+   "family": 2350
+  },
+  "score": 28590,
+  "weak": false
+ },
+ {
+  "n": 412,
+  "cat": "SEO & AI Search",
+  "kw": "crawl budget",
+  "data": {
+   "kw": "crawl budget seo",
+   "vol": 260,
+   "cpc": 0.6964285714285714,
+   "ci": 4,
+   "family": 260
+  },
+  "score": 235,
+  "weak": false
+ },
+ {
+  "n": 413,
+  "cat": "PPC & Paid Ads",
+  "kw": "google ads for restaurants",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 414,
+  "cat": "Content & Social Media",
+  "kw": "email open rate",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 415,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "insurance agency branding",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 416,
+  "cat": "AI Marketing",
+  "kw": "ai for real estate agents",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 417,
+  "cat": "Digital Marketing",
+  "kw": "customer feedback survey",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 418,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "law firm content marketing",
+  "data": {
+   "kw": "content marketing firms",
+   "vol": 320,
+   "cpc": 6.628571428571429,
+   "ci": 5,
+   "family": 580
+  },
+  "score": 2757,
+  "weak": false
+ },
+ {
+  "n": 419,
+  "cat": "Business Finance",
+  "kw": "break even analysis",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 420,
+  "cat": "Marketing Costs & ROI",
+  "kw": "radio advertising cost",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 421,
+  "cat": "SEO & AI Search",
+  "kw": "pages not indexed",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 422,
+  "cat": "Local SEO",
+  "kw": "local seo for hotels",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 423,
+  "cat": "Web Design & WordPress",
+  "kw": "blog design",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 424,
+  "cat": "PPC & Paid Ads",
+  "kw": "google ads for hvac",
+  "data": {
+   "kw": "hvac google ads",
+   "vol": 70,
+   "cpc": 47.56071428571428,
+   "ci": 33,
+   "family": 70
+  },
+  "score": 4328,
+  "weak": true
+ },
+ {
+  "n": 425,
+  "cat": "Content & Social Media",
+  "kw": "b2b content marketing",
+  "data": {
+   "kw": "b2b content marketing agencies",
+   "vol": 590,
+   "cpc": 15.475,
+   "ci": 7,
+   "family": 3590
+  },
+  "score": 11869,
+  "weak": false
+ },
+ {
+  "n": 426,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "independent insurance agency marketing",
+  "data": {
+   "kw": "independent insurance agency marketing",
+   "vol": 140,
+   "cpc": 114.28928571428571,
+   "ci": 33,
+   "family": 360
+  },
+  "score": 20801,
+  "weak": false
+ },
+ {
+  "n": 427,
+  "cat": "AI Marketing",
+  "kw": "ai for law firms",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 428,
+  "cat": "Digital Marketing",
+  "kw": "net promoter score",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 429,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "law firm reviews",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 430,
+  "cat": "SEO & AI Search",
+  "kw": "javascript seo",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 431,
+  "cat": "Local SEO",
+  "kw": "local seo for daycares",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 432,
+  "cat": "Web Design & WordPress",
+  "kw": "portfolio website",
+  "data": {
+   "kw": "portfolio website wordpress theme",
+   "vol": 2900,
+   "cpc": 3.442857142857143,
+   "ci": 47,
+   "family": 3950
+  },
+  "score": 9984,
+  "weak": false
+ },
+ {
+  "n": 433,
+  "cat": "Marketing Costs & ROI",
+  "kw": "tv advertising cost",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 434,
+  "cat": "Business Finance",
+  "kw": "business plan",
+  "data": {
+   "kw": "small business health plans",
+   "vol": 6600,
+   "cpc": 195.81785714285715,
+   "ci": 39,
+   "family": 22340
+  },
+  "score": 1292398,
+  "weak": false
+ },
+ {
+  "n": 435,
+  "cat": "PPC & Paid Ads",
+  "kw": "google ads for roofers",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 436,
+  "cat": "Content & Social Media",
+  "kw": "linkedin personal branding",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 437,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "captive agent marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 438,
+  "cat": "SEO & AI Search",
+  "kw": "rich results test",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 439,
+  "cat": "AI Marketing",
+  "kw": "ai for accountants",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 440,
+  "cat": "Digital Marketing",
+  "kw": "marketing calendar",
+  "data": {
+   "kw": "marketing content calendar",
+   "vol": 480,
+   "cpc": 33.67142857142857,
+   "ci": 41,
+   "family": 1310
+  },
+  "score": 16162,
+  "weak": false
+ },
+ {
+  "n": 441,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "lawyer directories",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 442,
+  "cat": "Local SEO",
+  "kw": "local seo for spas",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 443,
+  "cat": "Web Design & WordPress",
+  "kw": "restaurant website design",
+  "data": {
+   "kw": "restaurant website design cost",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 444,
+  "cat": "Marketing Costs & ROI",
+  "kw": "newspaper advertising cost",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 445,
+  "cat": "SEO & AI Search",
+  "kw": "breadcrumb navigation",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 446,
+  "cat": "PPC & Paid Ads",
+  "kw": "facebook ad targeting",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 447,
+  "cat": "Content & Social Media",
+  "kw": "instagram reels",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 448,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "insurance lead conversion",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 449,
+  "cat": "AI Marketing",
+  "kw": "ai for restaurants",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 450,
+  "cat": "Digital Marketing",
+  "kw": "product launch marketing",
+  "data": {
+   "kw": "marketing plan for a new product launch",
+   "vol": 170,
+   "cpc": 16.839285714285715,
+   "ci": 16,
+   "family": 760
+  },
+  "score": 3721,
+  "weak": false
+ },
+ {
+  "n": 451,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "medical practice google ads",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 452,
+  "cat": "Business Finance",
+  "kw": "llc vs sole proprietorship",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 453,
+  "cat": "Local SEO",
+  "kw": "local seo for painters",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 454,
+  "cat": "Web Design & WordPress",
+  "kw": "real estate website design",
+  "data": {
+   "kw": "real estate website design cost",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 455,
+  "cat": "SEO & AI Search",
+  "kw": "url structure",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 456,
+  "cat": "Marketing Costs & ROI",
+  "kw": "direct mail cost",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 457,
+  "cat": "PPC & Paid Ads",
+  "kw": "meta pixel",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 458,
+  "cat": "Content & Social Media",
+  "kw": "facebook groups for business",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 459,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "financial advisor niche",
+  "data": {
+   "kw": "niche marketing for financial advisors",
+   "vol": 10,
+   "cpc": 9.257142857142858,
+   "ci": 46,
+   "family": 10
+  },
+  "score": 93,
+  "weak": true
+ },
+ {
+  "n": 460,
+  "cat": "SEO & AI Search",
+  "kw": "alt text",
+  "data": {
+   "kw": "hootsuite alt text",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 461,
+  "cat": "Local SEO",
+  "kw": "local seo for locksmiths",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 462,
+  "cat": "Web Design & WordPress",
+  "kw": "nonprofit website design",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 463,
+  "cat": "AI Marketing",
+  "kw": "ai data privacy",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 464,
+  "cat": "Digital Marketing",
+  "kw": "partnership marketing",
+  "data": {
+   "kw": "partnership marketing plan template",
+   "vol": 10,
+   "cpc": 3.6464285714285714,
+   "ci": 29,
+   "family": 20
+  },
+  "score": 47,
+  "weak": true
+ },
+ {
+  "n": 465,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "dental implant marketing",
+  "data": {
+   "kw": "dental implant marketing",
+   "vol": 320,
+   "cpc": 95.28928571428571,
+   "ci": 29,
+   "family": 470
+  },
+  "score": 39640,
+  "weak": false
+ },
+ {
+  "n": 466,
+  "cat": "PPC & Paid Ads",
+  "kw": "facebook ads not delivering",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 467,
+  "cat": "Content & Social Media",
+  "kw": "youtube shorts",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 468,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "financial advisor email marketing",
+  "data": {
+   "kw": "financial advisor marketing",
+   "vol": 390,
+   "cpc": 55.05714285714286,
+   "ci": 34,
+   "family": 530
+  },
+  "score": 21472,
+  "weak": false
+ },
+ {
+  "n": 469,
+  "cat": "Business Finance",
+  "kw": "sales tax for online sellers",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 470,
+  "cat": "Marketing Costs & ROI",
+  "kw": "flyer printing cost",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 471,
+  "cat": "SEO & AI Search",
+  "kw": "blog seo",
+  "data": {
+   "kw": "seo blog writing",
+   "vol": 720,
+   "cpc": 8.696428571428571,
+   "ci": 22,
+   "family": 1430
+  },
+  "score": 8140,
+  "weak": false
+ },
+ {
+  "n": 472,
+  "cat": "Local SEO",
+  "kw": "local seo for dog groomers",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 473,
+  "cat": "Web Design & WordPress",
+  "kw": "pages for small business website",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 474,
+  "cat": "AI Marketing",
+  "kw": "ai bias",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 475,
+  "cat": "Digital Marketing",
+  "kw": "direct mail marketing",
+  "data": {
+   "kw": "direct marketing mail",
+   "vol": 4400,
+   "cpc": 43.82142857142857,
+   "ci": 51,
+   "family": 4740
+  },
+  "score": 192814,
+  "weak": false
+ },
+ {
+  "n": 476,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "pediatric dentist marketing",
+  "data": {
+   "kw": "marketing for pediatric dentist",
+   "vol": 50,
+   "cpc": 0,
+   "ci": 23,
+   "family": 50
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 477,
+  "cat": "PPC & Paid Ads",
+  "kw": "google ads disapproved",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 478,
+  "cat": "Content & Social Media",
+  "kw": "social media crisis",
+  "data": {
+   "kw": "social media crisis",
+   "vol": 320,
+   "cpc": 3.632142857142857,
+   "ci": 2,
+   "family": 850
+  },
+  "score": 1511,
+  "weak": false
+ },
+ {
+  "n": 479,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "financial advisor linkedin",
+  "data": {
+   "kw": "linkedin lead generation for financial advisors",
+   "vol": 10,
+   "cpc": 6.964285714285714,
+   "ci": 12,
+   "family": 10
+  },
+  "score": 91,
+  "weak": true
+ },
+ {
+  "n": 480,
+  "cat": "SEO & AI Search",
+  "kw": "content refresh",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 481,
+  "cat": "Marketing Costs & ROI",
+  "kw": "trade show cost",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 482,
+  "cat": "Local SEO",
+  "kw": "local seo for tutors",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 483,
+  "cat": "Web Design & WordPress",
+  "kw": "wordpress updates",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 484,
+  "cat": "AI Marketing",
+  "kw": "ai content repurposing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 485,
+  "cat": "Digital Marketing",
+  "kw": "print marketing",
+  "data": {
+   "kw": "real estate print marketing",
+   "vol": 720,
+   "cpc": 0,
+   "ci": 43,
+   "family": 730
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 486,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "hearing aid marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 487,
+  "cat": "Business Finance",
+  "kw": "payroll for small business",
+  "data": {
+   "kw": "payroll loans for small business",
+   "vol": 210,
+   "cpc": 167.35,
+   "ci": 50,
+   "family": 210
+  },
+  "score": 35144,
+  "weak": false
+ },
+ {
+  "n": 488,
+  "cat": "SEO & AI Search",
+  "kw": "zero click searches",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 489,
+  "cat": "PPC & Paid Ads",
+  "kw": "ppc reporting",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 490,
+  "cat": "Content & Social Media",
+  "kw": "social media policy",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 491,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "client appreciation events",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 492,
+  "cat": "Local SEO",
+  "kw": "verify google business profile",
+  "data": {
+   "kw": "google business profile",
+   "vol": 1830000,
+   "cpc": 49.52142857142857,
+   "ci": 8,
+   "family": 5525940
+  },
+  "score": 117811479,
+  "weak": false
+ },
+ {
+  "n": 493,
+  "cat": "Web Design & WordPress",
+  "kw": "wordpress spam",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 494,
+  "cat": "Marketing Costs & ROI",
+  "kw": "landing page cost",
+  "data": {
+   "kw": "landing page creation cost",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 23,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 495,
+  "cat": "SEO & AI Search",
+  "kw": "google discover",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 496,
+  "cat": "AI Marketing",
+  "kw": "ai proposal writing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 497,
+  "cat": "Digital Marketing",
+  "kw": "business networking",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 498,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "fertility clinic marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 499,
+  "cat": "PPC & Paid Ads",
+  "kw": "lookalike audiences",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 500,
+  "cat": "Content & Social Media",
+  "kw": "content distribution",
+  "data": {
+   "kw": "content distribution strategy",
+   "vol": 210,
+   "cpc": 8.514285714285714,
+   "ci": 3,
+   "family": 450
+  },
+  "score": 2324,
+  "weak": false
+ },
+ {
+  "n": 501,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "mortgage email marketing",
+  "data": {
+   "kw": "mortgage email marketing",
+   "vol": 20,
+   "cpc": 38.69642857142857,
+   "ci": 23,
+   "family": 60
+  },
+  "score": 1006,
+  "weak": true
+ },
+ {
+  "n": 502,
+  "cat": "Business Finance",
+  "kw": "business insurance cost",
+  "data": {
+   "kw": "small business insurance costs",
+   "vol": 2400,
+   "cpc": 130.68214285714285,
+   "ci": 6,
+   "family": 13890
+  },
+  "score": 407728,
+  "weak": false
+ },
+ {
+  "n": 503,
+  "cat": "Local SEO",
+  "kw": "duplicate google listing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 504,
+  "cat": "Web Design & WordPress",
+  "kw": "wordpress not sending email",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 505,
+  "cat": "SEO & AI Search",
+  "kw": "seo glossary",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 506,
+  "cat": "Marketing Costs & ROI",
+  "kw": "website redesign cost",
+  "data": {
+   "kw": "website redesign cost",
+   "vol": 480,
+   "cpc": 24.035714285714285,
+   "ci": 22,
+   "family": 3300
+  },
+  "score": 14998,
+  "weak": false
+ },
+ {
+  "n": 507,
+  "cat": "AI Marketing",
+  "kw": "ai competitor analysis",
+  "data": {
+   "kw": "ai competitor analysis",
+   "vol": 170,
+   "cpc": 30.039285714285715,
+   "ci": 35,
+   "family": 280
+  },
+  "score": 5107,
+  "weak": false
+ },
+ {
+  "n": 508,
+  "cat": "Digital Marketing",
+  "kw": "customer onboarding",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 509,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "nutritionist marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 510,
+  "cat": "PPC & Paid Ads",
+  "kw": "google ad grants",
+  "data": {
+   "kw": "google ad grant agency",
+   "vol": 90,
+   "cpc": 2.125,
+   "ci": 41,
+   "family": 90
+  },
+  "score": 191,
+  "weak": true
+ },
+ {
+  "n": 511,
+  "cat": "Content & Social Media",
+  "kw": "storytelling marketing",
+  "data": {
+   "kw": "content marketing storytelling",
+   "vol": 210,
+   "cpc": 2.5285714285714285,
+   "ci": 9,
+   "family": 460
+  },
+  "score": 690,
+  "weak": false
+ },
+ {
+  "n": 512,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "reverse mortgage marketing",
+  "data": {
+   "kw": "reverse mortgage marketing",
+   "vol": 30,
+   "cpc": 9.632142857142858,
+   "ci": 19,
+   "family": 50
+  },
+  "score": 376,
+  "weak": true
+ },
+ {
+  "n": 513,
+  "cat": "SEO & AI Search",
+  "kw": "seo myths",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 514,
+  "cat": "Local SEO",
+  "kw": "google business profile performance",
+  "data": {
+   "kw": "google business profile",
+   "vol": 1830000,
+   "cpc": 49.52142857142857,
+   "ci": 8,
+   "family": 5525940
+  },
+  "score": 117811479,
+  "weak": false
+ },
+ {
+  "n": 515,
+  "cat": "Web Design & WordPress",
+  "kw": "website heatmaps",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 516,
+  "cat": "Marketing Costs & ROI",
+  "kw": "ecommerce marketing cost",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 517,
+  "cat": "AI Marketing",
+  "kw": "ai hallucinations",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 518,
+  "cat": "Digital Marketing",
+  "kw": "upselling and cross selling",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 519,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "massage therapist marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 520,
+  "cat": "Business Finance",
+  "kw": "home based business insurance",
+  "data": {
+   "kw": "insurance for home based business",
+   "vol": 2400,
+   "cpc": 46.91428571428571,
+   "ci": 13,
+   "family": 5370
+  },
+  "score": 146373,
+  "weak": false
+ },
+ {
+  "n": 521,
+  "cat": "SEO & AI Search",
+  "kw": "free seo tools",
+  "data": {
+   "kw": "free seo tools for keyword research",
+   "vol": 880,
+   "cpc": 16.65714285714286,
+   "ci": 12,
+   "family": 4690
+  },
+  "score": 19056,
+  "weak": false
+ },
+ {
+  "n": 522,
+  "cat": "PPC & Paid Ads",
+  "kw": "google ads vs facebook ads",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 523,
+  "cat": "Content & Social Media",
+  "kw": "infographics",
+  "data": {
+   "kw": "infographics writing services",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 0,
+   "family": 10
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 524,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "hard money lender marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 525,
+  "cat": "Local SEO",
+  "kw": "local seo for franchises",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 526,
+  "cat": "Web Design & WordPress",
+  "kw": "online booking system",
+  "data": {
+   "kw": "wordpress online booking system",
+   "vol": 70,
+   "cpc": 0,
+   "ci": 8,
+   "family": 70
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 527,
+  "cat": "SEO & AI Search",
+  "kw": "international seo",
+  "data": {
+   "kw": "international seo keyword research",
+   "vol": 90,
+   "cpc": 3.2357142857142858,
+   "ci": 5,
+   "family": 180
+  },
+  "score": 379,
+  "weak": true
+ },
+ {
+  "n": 528,
+  "cat": "Marketing Costs & ROI",
+  "kw": "marketing automation cost",
+  "data": {
+   "kw": "cost of marketing automation software",
+   "vol": 10,
+   "cpc": 0,
+   "ci": 86,
+   "family": 40
+  },
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 529,
+  "cat": "AI Marketing",
+  "kw": "ai training for employees",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 530,
+  "cat": "Digital Marketing",
+  "kw": "marketing dashboard",
+  "data": {
+   "kw": "email marketing dashboard",
+   "vol": 210,
+   "cpc": 16.37857142857143,
+   "ci": 22,
+   "family": 210
+  },
+  "score": 4471,
+  "weak": false
+ },
+ {
+  "n": 531,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "luxury real estate marketing",
+  "data": {
+   "kw": "luxury real estate marketing",
+   "vol": 5400,
+   "cpc": 29.482142857142858,
+   "ci": 17,
+   "family": 11200
+  },
+  "score": 206965,
+  "weak": false
+ },
+ {
+  "n": 532,
+  "cat": "PPC & Paid Ads",
+  "kw": "offline conversion tracking",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 533,
+  "cat": "Content & Social Media",
+  "kw": "faq page",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 534,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "payroll company marketing",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 535,
+  "cat": "Local SEO",
+  "kw": "google business profile products",
+  "data": {
+   "kw": "google business profile",
+   "vol": 1830000,
+   "cpc": 49.52142857142857,
+   "ci": 8,
+   "family": 5525940
+  },
+  "score": 117811479,
+  "weak": false
+ },
+ {
+  "n": 536,
+  "cat": "Web Design & WordPress",
+  "kw": "live chat for website",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 537,
+  "cat": "Business Finance",
+  "kw": "inventory financing",
+  "data": {
+   "kw": "inventory financing for startups",
+   "vol": 50,
+   "cpc": 31.410714285714285,
+   "ci": 37,
+   "family": 50
+  },
+  "score": 1571,
+  "weak": true
+ },
+ {
+  "n": 538,
+  "cat": "SEO & AI Search",
+  "kw": "seo for nonprofits",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 539,
+  "cat": "Marketing Costs & ROI",
+  "kw": "crm cost",
+  "data": {
+   "kw": "best low cost crm",
+   "vol": 40,
+   "cpc": 24.95,
+   "ci": 60,
+   "family": 50
+  },
+  "score": 998,
+  "weak": true
+ },
+ {
+  "n": 540,
+  "cat": "AI Marketing",
+  "kw": "free ai tools for small business",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 541,
+  "cat": "Digital Marketing",
+  "kw": "marketing mistakes",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 542,
+  "cat": "Industry Marketing (Legal & Health)",
+  "kw": "commercial real estate marketing",
+  "data": {
+   "kw": "commercial real estate marketing",
+   "vol": 5400,
+   "cpc": 29.482142857142858,
+   "ci": 13,
+   "family": 11320
+  },
+  "score": 206965,
+  "weak": false
+ },
+ {
+  "n": 543,
+  "cat": "PPC & Paid Ads",
+  "kw": "b2b ppc",
+  "data": {
+   "kw": "b2b ppc",
+   "vol": 390,
+   "cpc": 67.25714285714285,
+   "ci": 12,
+   "family": 930
+  },
+  "score": 34099,
+  "weak": false
+ },
+ {
+  "n": 544,
+  "cat": "Content & Social Media",
+  "kw": "content pillars",
+  "data": {
+   "kw": "content pillar",
+   "vol": 9900,
+   "cpc": 7.560714285714286,
+   "ci": 5,
+   "family": 10300
+  },
+  "score": 97306,
+  "weak": false
+ },
+ {
+  "n": 545,
+  "cat": "Industry Marketing (Finance & Insurance)",
+  "kw": "sec marketing rule",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 546,
+  "cat": "Local SEO",
+  "kw": "review sites",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 547,
+  "cat": "Web Design & WordPress",
+  "kw": "web design brief",
+  "data": null,
+  "score": 0,
+  "weak": true
+ },
+ {
+  "n": 548,
+  "cat": "SEO & AI Search",
+  "kw": "seo for b2b",
+  "data": {
+   "kw": "b2b seo content strategy",
+   "vol": 30,
+   "cpc": 0,
+   "ci": 4,
+   "family": 130
+  },
+  "score": 0,
+  "weak": true
+ }
+]

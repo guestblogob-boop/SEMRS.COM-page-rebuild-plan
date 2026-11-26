@@ -38,7 +38,6 @@ eeat | E-E-A-T Explained: Experience, Expertise, Authority and Trust
 google algorithm update | Google Algorithm Updates: What to Do When Rankings Drop
 website migration seo | Website Migration Without Losing Your Rankings
 hreflang | Hreflang for Multilingual and Multi-Country Sites
-seo for startups | SEO for Startups: What to Do in the First 90 Days
 youtube seo | YouTube SEO: Getting Videos Found
 voice search optimization | Voice Search Optimization for Local Businesses
 answer engine optimization | Answer Engine Optimization (AEO) Explained
@@ -71,7 +70,6 @@ local seo for contractors | Local SEO for Contractors
 local seo for hvac | Local SEO for HVAC Companies
 local seo for roofers | Local SEO for Roofers
 local seo for salons | Local SEO for Hair and Beauty Salons
-local seo for gyms | Local SEO for Gyms and Fitness Studios
 local seo for auto repair | Local SEO for Auto Repair Shops
 local seo for cleaning companies | Local SEO for Cleaning Companies
 local seo for landscapers | Local SEO for Landscapers
@@ -107,12 +105,10 @@ cost per click | Cost per Click: What Drives It and How to Lower It
 click through rate | Click-Through Rate: What Is a Good CTR?
 return on ad spend | Return on Ad Spend (ROAS): How to Calculate and Improve It
 ad extensions | Google Ads Assets (Extensions) That Lift Clicks
-call ads | Call Ads: Getting Phone Calls from Google
 geo targeting | Geo-Targeting Ads: Reach the Right Area
 ad copy | How to Write Ad Copy That Gets Clicks
 ad testing | A/B Testing Ads: A Simple Method
 click fraud | Click Fraud: How to Spot and Reduce It
-google ads audit | Google Ads Audit: 12 Checks for Wasted Spend
 ppc for plumbers | PPC for Plumbers: Getting Emergency Calls
 ppc for ecommerce | PPC for Ecommerce Stores
 google ads for contractors | Google Ads for Contractors
@@ -165,9 +161,6 @@ content calendar | Content Calendar: Plan a Month in an Hour
 blog post ideas | Blog Post Ideas for Small Businesses
 how often should you blog | How Often Should a Small Business Blog?
 how to write a blog post | How to Write a Blog Post That Ranks and Helps
-content repurposing | Content Repurposing: One Idea, Many Formats
-evergreen content | Evergreen Content: Pages That Keep Working
-case study | How to Write a Case Study Customers Read
 email newsletter | Email Newsletters for Small Business
 email subject lines | Email Subject Lines That Get Opened
 welcome email | Welcome Emails: What to Send New Subscribers
@@ -176,10 +169,8 @@ email deliverability | Email Deliverability: Stay Out of Spam
 social media calendar | Social Media Calendar Template and Tips
 instagram marketing | Instagram Marketing for Small Business
 facebook business page | Facebook Business Page Setup and Tips
-linkedin company page | LinkedIn Company Page Guide
 tiktok for business | TikTok for Business: Getting Started
 youtube for business | YouTube for Business: A Starter Plan
-pinterest marketing | Pinterest Marketing for Small Business
 social media analytics | Social Media Analytics: Metrics That Matter
 best time to post on social media | Best Times to Post on Social Media
 user generated content | User-Generated Content: Using Customer Posts the Right Way
@@ -192,9 +183,6 @@ brand voice | Brand Voice: How to Sound Like Your Business
 copywriting formulas | Copywriting Formulas That Work (AIDA, PAS and More)
 content brief | How to Write a Content Brief
 guest blogging | Guest Blogging: Safe and Useful in 2027?
-press release | How to Write a Press Release Journalists Read
-webinar marketing | Webinar Marketing for Small Business
-online community | Building an Online Community Around Your Business
 
 ## AI Marketing
 ai content writing | AI Content Writing: A Safe Workflow
@@ -253,7 +241,6 @@ marketing attribution | Marketing Attribution Explained
 ab testing | A/B Testing for Websites and Emails
 customer testimonials | Customer Testimonials: Collecting and Using Them
 loyalty program | Loyalty Programs for Small Businesses
-holiday marketing | Holiday Marketing Calendar and Ideas
 event marketing | Event Marketing for Local Businesses
 sms marketing | SMS Marketing: Rules and Best Practices
 whatsapp business | WhatsApp Business for Customer Service and Sales
@@ -261,7 +248,6 @@ omnichannel marketing | Omnichannel Marketing for Small Businesses
 in house vs agency marketing | In-House Marketing vs an Agency
 how to hire a marketing agency | How to Hire a Marketing Agency
 marketing for service businesses | Marketing for Service Businesses
-word of mouth marketing | Word-of-Mouth Marketing
 competitor analysis | Competitor Analysis for Small Businesses
 
 ## Marketing Costs & ROI
@@ -274,7 +260,6 @@ facebook ads cost | Facebook Ads Cost: What Small Businesses Pay
 instagram ads cost | Instagram Ads Cost
 linkedin ads cost | LinkedIn Ads Cost
 tiktok ads cost | TikTok Ads Cost
-youtube ads cost | YouTube Ads Cost
 content marketing cost | Content Marketing Cost
 email marketing cost | Email Marketing Cost
 logo design cost | Logo Design Cost
@@ -315,12 +300,10 @@ commercial insurance marketing | Commercial Insurance Marketing
 insurance referral program | Insurance Referral Programs Within the Rules
 finra social media | FINRA Social Media Rules for Financial Advisors
 wealth management marketing | Wealth Management Marketing
-credit union marketing | Credit Union Marketing
 bank marketing | Community Bank Marketing
 fintech marketing | Fintech Marketing
 credit repair marketing | Credit Repair Marketing Within the Rules
 insurance email marketing | Email Marketing for Insurance Agents
-annuity marketing | Annuity Marketing Rules and Ideas
 financial planner leads | Lead Generation for Financial Planners
 insurance google ads | Google Ads for Insurance Agencies
 financial advisor google ads | Google Ads for Financial Advisors
@@ -350,7 +333,6 @@ plastic surgery marketing | Plastic Surgery Marketing
 therapist marketing | Marketing for Therapists and Counselors
 veterinary marketing | Veterinary Marketing
 optometry marketing | Optometry Marketing
-pharmacy marketing | Independent Pharmacy Marketing
 home care marketing | Home Care Agency Marketing
 healthcare seo | Healthcare SEO
 medical website design | Medical Practice Website Design
@@ -359,10 +341,8 @@ patient reviews | Patient Reviews: Getting More Within the Rules
 dental seo | Dental SEO
 real estate seo | Real Estate SEO for Agents
 real estate social media | Real Estate Social Media
-property management marketing | Property Management Marketing
 real estate email marketing | Real Estate Email Marketing
 home builder marketing | Home Builder Marketing
-senior living marketing | Senior Living Marketing
 urgent care marketing | Urgent Care Marketing
 addiction treatment marketing | Addiction Treatment Center Marketing Rules
 
@@ -373,7 +353,7 @@ invoice factoring | Invoice Factoring Explained
 merchant cash advance | Merchant Cash Advance: Costs and Risks
 business bank account | How to Choose a Business Bank Account
 small business grants | Small Business Grants: Where to Find Real Ones
-startup funding | Startup Funding Options
+start up business loans | Startup Business Loans: Options for New Companies
 business budget | How to Make a Small Business Budget
 cash flow management | Cash Flow Management for Small Businesses
 bookkeeping for small business | Bookkeeping for Small Business

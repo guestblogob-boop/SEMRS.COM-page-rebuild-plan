@@ -42,27 +42,33 @@ if (topics.length !== slots) throw new Error(`Need ${slots} topics, have ${topic
 const parse = (l) => { const o = []; let c = '', q = false; for (const ch of l) { if (ch === '"') { q = !q; continue; } if (ch === ',' && !q) { o.push(c); c = ''; continue; } c += ch; } o.push(c); return o; };
 const raw = fs.readFileSync(path.join(DIR, 'semrs-keywords-all.csv'), 'utf8').replace(/^﻿/, '').split(/\r?\n/).filter(Boolean);
 const head = parse(raw[0]); const col = (n) => head.indexOf(n);
-const pool = raw.slice(1).map(parse).map((r) => ({ cat: r[col('Category')], kw: r[col('Keyword')].trim().toLowerCase(), vol: +r[col('Monthly searches')] || 0, comp: r[col('Competition')] + ' ' + r[col('Competition index')], cpc: +r[col('Avg CPC (PKR)')] || 0, fit: r[col('Niche fit')] }));
 const STOP = new Set('a an and the for of to in on with by at or your you is are what how why when which can do does my our'.split(' '));
 const stem = (w) => w.replace(/ies$/, 'y').replace(/([^s])s$/, '$1');
 const toks = (k) => [...new Set(k.split(/[^a-z0-9]+/).filter((w) => w && !STOP.has(w)).map(stem))];
+const pool = raw.slice(1).map(parse).map((r) => { const kw = r[col('Keyword')].trim().toLowerCase(); return { cat: r[col('Category')], kw, t: toks(kw), vol: +r[col('Monthly searches')] || 0, comp: r[col('Competition')] + ' ' + r[col('Competition index')], ci: +r[col('Competition index')] || 0, cpc: +r[col('Avg CPC (PKR)')] || 0, fit: r[col('Niche fit')] }; });
 const jac = (a, b) => { const B = new Set(b); const i = a.filter((x) => B.has(x)).length; return i / (a.length + b.length - i); };
 const BRAND = /\b(semrush|ahrefs|moz|wix|squarespace|shopify|godaddy|hubspot|mailchimp|hootsuite|zoho|bluehost|siteground|accuranker|neil patel)\b/;
 const byKw = new Map(pool.map((p) => [p.kw, p]));
 const focusSet = new Set([...topics.map((t) => t.kw), ...done.map((d) => d.kw)]);
 
+// Data for a topic: the exact keyword, else the closest variant that keeps all its words (at most one
+// extra word, or the same words in another order). No match means the topic is not in the export.
 for (const t of topics) {
 	const tt = toks(t.kw);
 	let m = byKw.get(t.kw);
-	if (!m) { let best = 0; for (const p of pool) { const s = jac(tt, toks(p.kw)) + (p.cat === t.cat ? 0.05 : 0); if (s > best || (s === best && m && p.vol > m.vol)) { best = s; m = p; } } if (best < 0.6) m = null; }
+	if (!m) m = pool.filter((p) => tt.every((x) => p.t.includes(x)) && p.t.length <= tt.length + 1).sort((a, b) => b.vol - a.vol)[0] || null;
 	t.vol = m ? m.vol : ''; t.comp = m ? m.comp : ''; t.cpcPkr = m ? m.cpc : ''; t.matched = m ? m.kw : '';
-	t.supporting = pool.filter((p) => p.fit === 'Yes' && !focusSet.has(p.kw) && !BRAND.test(p.kw) && p.kw !== t.matched && (jac(tt, toks(p.kw)) >= 0.5 || tt.every((x) => toks(p.kw).includes(x))))
+	// Value for ordering: monthly ad value (volume x CPC), lifted for low ad competition so winnable topics come first.
+	t.value = m ? m.vol * m.cpc * (m.ci <= 33 ? 1.3 : m.ci <= 66 ? 1 : 0.8) : 0;
+	t.supporting = pool.filter((p) => p.fit === 'Yes' && !focusSet.has(p.kw) && !BRAND.test(p.kw) && p.kw !== t.matched && (jac(tt, p.t) >= 0.5 || tt.every((x) => p.t.includes(x))))
 		.sort((a, b) => b.vol - a.vol).map((p) => p.kw).filter((k, i, a) => a.indexOf(k) === i).slice(0, 6);
 }
 
 // Spread categories across the year in proportion to their size, never the same category twice in a row.
 const groups = {};
 for (const t of topics) (groups[t.cat] = groups[t.cat] || []).push(t);
+// Within each category: proven high-value topics first, topics without data after (check them in Keyword Planner).
+for (const a of Object.values(groups)) a.sort((x, y) => y.value - x.value);
 const size = Object.fromEntries(Object.entries(groups).map(([c, a]) => [c, a.length]));
 const order = []; let last = '';
 for (let i = 0; i < topics.length; i++) {
@@ -88,5 +94,8 @@ const csv = ['No.,Date,Time (UTC),Category,Working title,URL slug,Focus keyword,
 	.concat(plan.map((p) => [p.n, p.date, p.time, p.cat, p.title, '/' + p.slug + '/', p.kw, p.vol, p.comp, p.cpcPkr, p.cpcUsd, p.supporting.join('; '), p.st].map(q).join(',')));
 fs.writeFileSync(path.join(DIR, 'semrs-12-month-content-plan.csv'), '﻿' + csv.join('\r\n') + '\r\n');
 const months = {}; plan.forEach((p) => { months[p.month] = (months[p.month] || 0) + 1; });
+// Keywords with no data in the export, one per line, to paste into Google Keyword Planner
+// ("Get search volume and forecasts"); add the download to semrs-keywords-all.csv and rebuild.
+fs.writeFileSync(path.join(DIR, 'keywords-to-check.txt'), plan.filter((p) => p.vol === '').map((p) => p.kw).join('\n') + '\n');
 console.log(plan.length, 'articles,', plan[0].date, '→', plan[plan.length - 1].date, '| matched in pool:', plan.filter((p) => p.vol !== '').length);
 console.log(months);

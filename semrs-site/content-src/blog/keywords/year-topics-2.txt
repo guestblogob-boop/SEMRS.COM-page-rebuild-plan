@@ -5,7 +5,6 @@ wordpress seo | WordPress SEO: The Settings That Matter
 keyword cannibalization | Keyword Cannibalization: How to Find and Fix It
 anchor text | Anchor Text: How to Use It Safely
 backlinks | Backlinks Explained: Quality over Quantity
-disavow links | Disavow Links: When You Need It (Rarely)
 crawl budget | Crawl Budget: Does It Matter for Small Sites?
 pages not indexed | Pages Not Indexed? Common Causes and Fixes
 javascript seo | JavaScript SEO Basics
@@ -67,11 +66,9 @@ b2b ppc | PPC for B2B Companies
 website speed test | How to Test Your Website Speed
 image compression | Image Compression for Faster Websites
 uptime monitoring | Website Uptime Monitoring
-404 page | Custom 404 Pages That Keep Visitors
 website search | Adding Search to a Small Business Website
 blog design | Blog Page Design That Keeps Readers
 portfolio website | Portfolio Websites for Creatives and Trades
-restaurant website design | Restaurant Website Design
 real estate website design | Real Estate Website Design
 nonprofit website design | Nonprofit Website Design
 pages for small business website | Which Pages Does a Small Business Website Need?
@@ -98,7 +95,6 @@ social media crisis | Handling Negative Comments and Social Media Crises
 social media policy | Social Media Policy for Employees
 content distribution | Content Distribution: Getting Posts Seen
 storytelling marketing | Storytelling in Marketing
-infographics | Infographics: When They Work and How to Make Them
 faq page | How to Write an FAQ Page
 content pillars | Content Pillars for Social Media
 
@@ -122,14 +118,12 @@ free ai tools for small business | Free AI Tools for Small Business
 
 ## Digital Marketing
 growth marketing | Growth Marketing for Small Businesses
-guerrilla marketing | Guerrilla Marketing Ideas
-local marketing ideas | Local Marketing Ideas
+local advertising | Local Advertising Ideas for Small Businesses
 low cost marketing ideas | Low-Cost Marketing Ideas
 customer feedback survey | Customer Feedback Surveys
 net promoter score | Net Promoter Score (NPS) Explained
 marketing calendar | Marketing Calendar for the Year
 product launch marketing | Product Launch Marketing
-partnership marketing | Partnership Marketing with Other Businesses
 direct mail marketing | Direct Mail Marketing
 print marketing | Print Marketing: Flyers, Brochures and Signs
 business networking | Business Networking That Brings Work
@@ -149,10 +143,8 @@ newspaper advertising cost | Newspaper Advertising Cost
 direct mail cost | Direct Mail Cost
 flyer printing cost | Flyer Printing Cost
 trade show cost | Trade Show Cost
-landing page cost | Landing Page Cost
 website redesign cost | Website Redesign Cost
 ecommerce marketing cost | Ecommerce Marketing Cost
-marketing automation cost | Marketing Automation Software Cost
 crm cost | CRM Cost for Small Businesses
 
 ## Industry Marketing (Finance & Insurance)
@@ -204,3 +196,50 @@ payroll for small business | Payroll for Small Businesses
 business insurance cost | Business Insurance Cost
 home based business insurance | Home-Based Business Insurance
 inventory financing | Inventory Financing
+
+
+# Added 2026-11-26 after the keyword audit: proven high-CPC, high-volume topics that do not overlap existing posts.
+
+## Business Finance
+working capital business loan | Working Capital Loans: How They Work and What They Cost
+short term business loan | Short-Term Business Loans: Costs, Risks and Alternatives
+group health insurance for small business | Group Health Insurance for Small Businesses
+no collateral business loan | Unsecured Business Loans: Borrowing Without Collateral
+quick business funding | Fast Business Funding: Options and Warning Signs
+loans for female business owners | Business Loans and Grants for Women Owners
+business insurance for sole proprietorship | Business Insurance for Sole Proprietors
+
+## Content & Social Media
+email campaign | How to Plan an Email Campaign That Gets Results
+promotional email | Promotional Emails: Examples and Rules
+cold email | Cold Email for B2B: What Works and What the Law Allows
+drip email | Drip Email Campaigns: Set Up Once, Sell Every Week
+personalized email | Personalized Email Beyond the First Name
+email design | Email Design: Layouts That Work on Phones
+content strategy | Content Strategy for Small Businesses
+
+## Web Design & WordPress
+self hosted wordpress | Self-Hosted WordPress: What It Means and Why It Matters
+wordpress blog | How to Start a WordPress Blog for Your Business
+freelance wordpress developer | Hiring a Freelance WordPress Developer
+
+## SEO & AI Search
+google keyword planner | Google Keyword Planner: A Free Guide for SEO
+lsi keywords | LSI Keywords: Myth vs What Actually Helps
+keyword difficulty | Keyword Difficulty: Picking Keywords You Can Rank For
+
+## Industry Marketing (Legal & Health)
+listing marketing | Real Estate Listing Marketing That Sells Homes
+
+## Digital Marketing
+free crm | Free CRM Software for Small Business: What You Get
+ecommerce agency | Ecommerce Agencies: What They Do and How to Choose
+30 60 90 day marketing plan | 30-60-90 Day Marketing Plan Template
+go to market strategy | Go-to-Market Strategy for Small Businesses
+sales plan | How to Write a Sales Plan
+
+## Marketing Costs & ROI
+advertising budget | How to Set an Advertising Budget
+
+## AI Marketing
+sales automation | Sales Automation for Small Teams
