@@ -1174,5 +1174,215 @@
    "credit": "Graphic: SEMRS",
    "license": "SEMRS original"
   }
+ },
+ "ecommerce-seo": {
+  "featured": {
+   "file": "ecommerce-seo-featured.webp",
+   "alt": "A smiling woman shopping on her phone while sitting indoors",
+   "caption": "Most shoppers browse categories on a phone, so keep pages fast and clear.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Woman Phone by Kristin Hardwick, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/woman-phone-IEWKGMKTA2",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "ecommerce-seo-hierarchy.webp",
+   "alt": "Ecommerce SEO site structure: home page, then categories, subcategories and product pages",
+   "caption": "Each level of the store targets a narrower search.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "page-builder": {
+  "featured": {
+   "file": "page-builder-featured.webp",
+   "alt": "Building plans, a drill and screws laid out on a wooden desk",
+   "caption": "Choose your building tools once and use them across the whole site.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Floorplan Workshop by JESHOOTS.com, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/floorplan-workshop-N3BPNPN0FY",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "page-builder-versus.webp",
+   "alt": "Block editor vs page builder comparison: cost, speed, standard blocks and updates against drag-and-drop control, templates, yearly fees and lock-in",
+   "caption": "The main trade-offs between the two ways to build pages.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "local-seo-for-electricians": {
+  "featured": {
+   "file": "local-seo-for-electricians-featured.webp",
+   "alt": "A tradesperson working with a hand tool at a workbench",
+   "caption": "Show real work and your license; both build trust with local customers.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Carpenter Working by Burst, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/carpenter-working-ZMQNOXQMZO",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "electrician-search-mock.webp",
+   "alt": "Example Google results for an electrician search showing a Local Services Ad, map results, a business listing and website results, the targets of local SEO for electricians",
+   "caption": "Each place on the results page is won a different way.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "pinterest-ads": {
+  "featured": {
+   "file": "pinterest-ads-featured.webp",
+   "alt": "A plated breakfast with a fried egg, close up",
+   "caption": "Food, home and style ideas are saved on Pinterest long before people buy.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Restaurant Food by Ash, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/restaurant-food-WASS5H17GM",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "pinterest-ads-board.webp",
+   "alt": "Pinterest ads board: awareness, consideration, leads and sales goals, image, Idea and video formats, targeting and measurement",
+   "caption": "Goals, formats and creative tips for Pinterest.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "content-strategy": {
+  "featured": {
+   "file": "content-strategy-featured.webp",
+   "alt": "A vintage typewriter on a desk next to a plant",
+   "caption": "Plan your content around customer questions, then keep a steady rhythm.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Typewriter Writing by Nirzar Pangarkar, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/typewriter-writing-J8HP1PXSEJ",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "content-strategy-calendar.webp",
+   "alt": "Content strategy calendar for one month with four color-coded pillars: costs, how-to guides, proof and news",
+   "caption": "An example month: four pillars and a steady rhythm.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "ai-market-research": {
+  "featured": {
+   "file": "ai-market-research-featured.webp",
+   "alt": "A person reading a newspaper while sitting outdoors",
+   "caption": "AI can summarize research quickly, but the facts must come from real sources.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: People Man by Roman Kraft, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/people-man-RDHCSMZPFF",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "ai-market-research-pipeline.webp",
+   "alt": "AI market research pipeline: Census and BLS data, reviews, surveys, competitor pages and sales notes go into AI, a person checks the facts, then insights come out",
+   "caption": "Real data in, checked insights out.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "ecommerce-agency": {
+  "featured": {
+   "file": "ecommerce-agency-featured.webp",
+   "alt": "A woman in a blue dress using her phone on a sofa",
+   "caption": "Judge an agency by the sales it brings, not by traffic alone.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Browsing Smartphone by Kristin Hardwick, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/browsing-smartphone-XEAGPIPKRN",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "ecommerce-agency-scorecard.webp",
+   "alt": "Ecommerce agency scorecard with eight questions to compare three agencies",
+   "caption": "Use this scorecard to compare agencies side by side.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "financial-advisor-email-marketing": {
+  "featured": {
+   "file": "financial-advisor-email-marketing-featured.webp",
+   "alt": "A person reading a book outdoors in the sun",
+   "caption": "Short, balanced emails keep clients informed between meetings.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Reading outdoors, CC0 (free for commercial use)",
+   "source": "https://www.rawpixel.com/image/5926283/photo-image-book-public-domain-hands",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "advisor-email-mock.webp",
+   "alt": "Financial advisor email marketing example with principal approved, archived and opt-out stamps, and the FINRA and CAN-SPAM basics",
+   "caption": "An example advisor email with the compliance steps behind it.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "dental-implant-marketing": {
+  "featured": {
+   "file": "dental-implant-marketing-featured.webp",
+   "alt": "A smiling young woman holding a green leaf beside her face",
+   "caption": "Implant patients research for weeks, so give them honest, detailed answers.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: People Girl by Allef Vinicius, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/people-girl-693PZB7YZT",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "dental-implant-journey.webp",
+   "alt": "Dental implant marketing patient journey: research, cost, trust, financing, booking and aftercare, with the question and answer at each stage",
+   "caption": "Meet implant patients at each stage of their decision.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "website-maintenance-cost": {
+  "featured": {
+   "file": "website-maintenance-cost-featured.webp",
+   "alt": "A workshop with machinery and tools on a workbench",
+   "caption": "Regular maintenance prevents the costly repairs.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Workbench Machinery by Lisa Fotios, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/workbench-machinery-RKR8CFTODQ",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "website-maintenance-prices.webp",
+   "alt": "Website maintenance cost example: SEMRS care plans at $39, $119 and $239 a month and what each includes",
+   "caption": "One published example of care plan prices.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
  }
 }

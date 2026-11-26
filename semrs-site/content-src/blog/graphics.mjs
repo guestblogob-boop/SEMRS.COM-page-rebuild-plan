@@ -506,6 +506,175 @@ function houseCallouts(title, sub, labels, source, theme = 'light') {
 	return frameT(th, title, sub, b, source);
 }
 
+
+// ---- Graphic kit 4 (2026-11): hierarchy, versus, search mock-up, pin board, calendar, pipeline, scorecard, email mock-up, journey map, price columns. ----
+// Top-down hierarchy (root, branches: [label, [children]]).
+function hierarchy(title, sub, root, branches, foot, source, theme = 'light') {
+	const th = THEMES[theme];
+	const n = branches.length, colW = (W - 120) / n;
+	let b = `<rect x="${W / 2 - 110}" y="160" width="220" height="56" rx="14" fill="${th.a}"/>${tsp(W / 2, 195, [root], 22, '#fff', 800, 'middle')}`;
+	branches.forEach(([lab, kids], i) => {
+		const cx = 60 + colW * i + colW / 2;
+		b += `<path d="M ${W / 2} 216 V 240 H ${cx} V 262" fill="none" stroke="${th.line}" stroke-width="3"/>`;
+		b += `<rect x="${cx - colW / 2 + 14}" y="262" width="${colW - 28}" height="52" rx="12" fill="${th.card}" stroke="${th.b}" stroke-width="3"/>${tsp(cx, 295, [lab], 19, th.ink, 700, 'middle')}`;
+		kids.forEach((k, j) => {
+			const y = 344 + j * 58;
+			b += `<line x1="${cx}" y1="${y - 30}" x2="${cx}" y2="${y}" stroke="${th.line}" stroke-width="2"/>`;
+			b += `<rect x="${cx - colW / 2 + 28}" y="${y}" width="${colW - 56}" height="40" rx="10" fill="${j === kids.length - 1 ? th.b : th.a}" fill-opacity="${j === kids.length - 1 ? 0.18 : 0.1}"/>${tsp(cx, y + 26, [k], 16, th.ink, 600, 'middle')}`;
+		});
+	});
+	if (foot) b += tsp(W / 2, H - 70, [foot], 18, th.mute, 400, 'middle');
+	return frameT(th, title, sub, b, source);
+}
+
+// Versus split: two columns with a VS medallion (sides: [name, icon, rows[]]).
+function versus(title, sub, left, right, source, theme = 'dark') {
+	const th = THEMES[theme];
+	let b = '';
+	[left, right].forEach(([name, ic, rows], i) => {
+		const x = i ? 640 : 60, w = 500, col = i ? th.b : th.a;
+		b += `<rect x="${x}" y="160" width="${w}" height="415" rx="22" fill="${th.card}" stroke="${col}" stroke-width="3"/>`;
+		b += `<circle cx="${x + 54}" cy="212" r="30" fill="${col}"/>${icon(ic, x + 38, 196, 32, '#fff', 2.2)}${tsp(x + 100, 222, [name], 27, th.ink, 800)}`;
+		rows.forEach((r, k) => { const y = 286 + k * 56; b += `<line x1="${x + 24}" y1="${y - 30}" x2="${x + w - 24}" y2="${y - 30}" stroke="${th.line}" stroke-width="1.5"/>` + icon('check', x + 26, y - 18, 22, col, 3) + tsp(x + 60, y, [r], 19, th.ink); });
+	});
+	b += `<circle cx="600" cy="368" r="40" fill="${th.bg}" stroke="${th.b}" stroke-width="4"/><text x="600" y="378" text-anchor="middle" font-family="${F}" font-size="26" font-weight="900" fill="${th.b}">VS</text>`;
+	return frameT(th, title, sub, b, source);
+}
+
+// Search results mock-up with numbered callouts (query, callouts: [head, desc]).
+function serpMock(title, sub, query, callouts, source, theme = 'light') {
+	const th = THEMES[theme];
+	const x = 60, w = 600;
+	let b = `<rect x="${x}" y="155" width="${w}" height="430" rx="18" fill="${th.card}" stroke="${th.line}" stroke-width="2"/>`;
+	b += `<rect x="${x + 20}" y="172" width="${w - 40}" height="42" rx="21" fill="${th.bg}" stroke="${th.line}" stroke-width="2"/>${icon('search', x + 34, 181, 22, th.mute, 2)}${tsp(x + 66, 199, [query], 18, th.ink)}`;
+	// Ad row with badge.
+	b += `<rect x="${x + 20}" y="228" width="${w - 40}" height="64" rx="10" fill="${th.a}" fill-opacity=".08"/><circle cx="${x + 50}" cy="260" r="16" fill="${C.green}"/>${icon('check', x + 41, 251, 18, '#fff', 3)}${tsp(x + 78, 254, ['Sponsored · Local Services Ad (example)'], 15, th.mute)}${tsp(x + 78, 278, ['Example Electric Co.  ★★★★★'], 18, th.ink, 700)}`;
+	// Map pack.
+	b += `<rect x="${x + 20}" y="304" width="${w - 40}" height="96" rx="10" fill="${th.line}" opacity=".55"/>`;
+	[[150, 340], [330, 322], [470, 362]].forEach(([px, py], i) => { b += `<circle cx="${x + px}" cy="${py}" r="12" fill="${i ? th.a : th.b}"/>`; });
+	[0, 1, 2].forEach((k) => { b += `<rect x="${x + 20}" y="${408 + k * 40}" width="${w - 40}" height="34" rx="8" fill="${th.bg}"/>${tsp(x + 36, 430 + k * 40, [['Your business · Open 24 hours', 'Competitor A', 'Competitor B'][k]], 16, k ? th.mute : th.ink, k ? 400 : 700)}`; });
+	b += `<rect x="${x + 20}" y="532" width="${w - 140}" height="12" rx="6" fill="${th.a}" fill-opacity=".35"/><rect x="${x + 20}" y="552" width="${w - 220}" height="10" rx="5" fill="${th.mute}" fill-opacity=".3"/>`;
+	const marks = [[x + w - 20, 252], [x + w - 20, 352], [x + w - 20, 424], [x + w - 20, 540]];
+	callouts.forEach(([h, d], i) => {
+		const y = 175 + i * 102, [mx, my] = marks[i] || marks[0];
+		b += `<path d="M ${mx} ${my} C ${mx + 40} ${my}, 690 ${y + 30}, 720 ${y + 30}" fill="none" stroke="${th.b}" stroke-width="2" stroke-dasharray="5 5"/><circle cx="${mx}" cy="${my}" r="6" fill="${th.b}"/>`;
+		b += `<rect x="720" y="${y}" width="420" height="84" rx="14" fill="${th.card}" stroke="${th.line}" stroke-width="2"/>${tsp(740, y + 34, [h], 20, th.ink, 700)}${tsp(740, y + 60, wrap(d, 44).slice(0, 1), 16, th.mute)}`;
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Pin board: masonry cards of different heights (cards: [head, desc, icon]).
+function pinBoard(title, sub, cards, source, theme = 'warm') {
+	const th = THEMES[theme];
+	const cols = 4, cw = (W - 120 - 3 * 18) / 4, heights = [150, 200, 120, 180, 170, 130, 200, 140];
+	const yCol = [160, 160, 160, 160];
+	let b = '';
+	cards.forEach(([h, d, ic], i) => {
+		const c = i % cols, x = 60 + c * (cw + 18), y = yCol[c], hh = Math.min(heights[i % heights.length], H - 80 - y - 10);
+		if (hh < 90) return;
+		const col = [th.a, th.b, C.green, th.a][i % 4];
+		b += `<rect x="${x}" y="${y}" width="${cw}" height="${hh}" rx="18" fill="${th.card}" stroke="${th.line}" stroke-width="2"/><rect x="${x}" y="${y}" width="${cw}" height="${Math.min(60, hh / 2)}" rx="18" fill="${col}" fill-opacity=".16"/>`;
+		b += icon(ic, x + 18, y + 16, 28, col, 2.2) + tsp(x + 56, y + 38, [h], 19, th.ink, 700);
+		b += tsp(x + 18, y + 86, wrap(d, Math.floor(cw / 10.5)).slice(0, Math.max(1, Math.floor((hh - 70) / 22))), 16, th.mute);
+		yCol[c] = y + hh + 16;
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Month calendar with colored pillar chips (pillars: [name, color index]); plan: {day: [pillarIndex, label]}.
+function calendarGrid(title, sub, monthLabel, pillars, plan, source, theme = 'light') {
+	const th = THEMES[theme];
+	const cols = [th.a, th.b, C.green, '#7c3aed'];
+	const gx = 60, gy = 190, cw = 112, ch = 64;
+	let b = tsp(gx, 180, [monthLabel], 20, th.ink, 800);
+	['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].forEach((d, i) => { b += tsp(gx + i * cw + cw / 2, gy + 18, [d], 15, th.mute, 700, 'middle'); });
+	for (let d = 1; d <= 28; d++) {
+		const i = d - 1, x = gx + (i % 7) * cw, y = gy + 30 + Math.floor(i / 7) * ch;
+		b += `<rect x="${x + 3}" y="${y + 3}" width="${cw - 6}" height="${ch - 6}" rx="8" fill="${th.card}" stroke="${th.line}" stroke-width="1.5"/>${tsp(x + 12, y + 22, [String(d)], 13, th.mute, 700)}`;
+		if (plan[d]) { const [p, l] = plan[d]; b += `<rect x="${x + 8}" y="${y + 30}" width="${cw - 16}" height="24" rx="12" fill="${cols[p]}"/>${tsp(x + cw / 2, y + 47, [l], 13, '#fff', 700, 'middle')}`; }
+	}
+	pillars.forEach(([name, desc], i) => {
+		const y = 200 + i * 92;
+		b += `<rect x="870" y="${y}" width="270" height="78" rx="14" fill="${th.card}" stroke="${th.line}" stroke-width="2"/><rect x="870" y="${y}" width="10" height="78" rx="5" fill="${cols[i]}"/>${tsp(896, y + 32, [name], 19, th.ink, 700)}${tsp(896, y + 56, [desc], 15, th.mute)}`;
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Pipeline: sources -> processing -> check gate -> outputs.
+function pipeline(title, sub, sources, middle, gate, outputs, source, theme = 'dark') {
+	const th = THEMES[theme];
+	let b = '';
+	sources.forEach((s, i) => { const y = 180 + i * 70; b += `<rect x="60" y="${y}" width="250" height="54" rx="12" fill="${th.card}" stroke="${th.line}" stroke-width="2"/>${icon('doc', 76, y + 15, 24, th.a, 2)}${tsp(110, y + 34, [s], 17, th.ink, 600)}<path d="M 310 ${y + 27} C 360 ${y + 27}, 360 380, 400 380" fill="none" stroke="${th.a}" stroke-width="3" stroke-opacity=".6"/>`; });
+	b += `<rect x="400" y="320" width="200" height="120" rx="22" fill="${th.a}"/>${icon('bolt', 480, 334, 40, '#fff', 2.2)}${tsp(500, 404, wrap(middle, 16).slice(0, 2), 19, '#fff', 800, 'middle')}`;
+	b += `<line x1="600" y1="380" x2="660" y2="380" stroke="${th.b}" stroke-width="4"/><path d="M 660 320 L 740 380 L 660 440 Z" fill="${th.b}"/>${icon('check', 674, 368, 24, '#fff', 3)}${tsp(700, 470, wrap(gate, 18).slice(0, 2), 16, th.ink, 700, 'middle')}`;
+	outputs.forEach((o, i) => { const y = 220 + i * 84; b += `<path d="M 740 380 C 780 380, 780 ${y + 30}, 820 ${y + 30}" fill="none" stroke="${th.b}" stroke-width="3" stroke-opacity=".7"/><rect x="820" y="${y}" width="320" height="60" rx="14" fill="${th.card}" stroke="${th.b}" stroke-width="2"/>${tsp(840, y + 37, [o], 18, th.ink, 700)}`; });
+	return frameT(th, title, sub, b, source);
+}
+
+// Fill-in scorecard (questions vs blank columns).
+function scorecard(title, sub, cols, rows, source, theme = 'light') {
+	const th = THEMES[theme];
+	const x = 60, y = 160, w = W - 120, c0 = 640, cw = (w - c0) / cols.length, rh = (H - 160 - 85) / (rows.length + 1);
+	let b = `<rect x="${x}" y="${y}" width="${w}" height="${rh * (rows.length + 1)}" rx="14" fill="${th.card}" stroke="${th.line}" stroke-width="2"/>`;
+	b += `<rect x="${x}" y="${y}" width="${w}" height="${rh}" rx="14" fill="${th.a}"/><rect x="${x}" y="${y + rh - 14}" width="${w}" height="14" fill="${th.a}"/>${tsp(x + 24, y + rh / 2 + 7, ['Question to ask'], 19, '#fff', 800)}`;
+	cols.forEach((c, i) => { b += tsp(x + c0 + cw * i + cw / 2, y + rh / 2 + 7, [c], 18, '#fff', 800, 'middle'); });
+	rows.forEach((r, k) => {
+		const yy = y + rh * (k + 1);
+		if (k % 2) b += `<rect x="${x + 1}" y="${yy}" width="${w - 2}" height="${rh}" fill="${th.bg}"/>`;
+		b += tsp(x + 24, yy + rh / 2 + 6, [r], 17, th.ink, 600);
+		cols.forEach((_, i) => { const cx = x + c0 + cw * i + cw / 2; b += `<rect x="${cx - 12}" y="${yy + rh / 2 - 12}" width="24" height="24" rx="5" fill="none" stroke="${th.mute}" stroke-width="2"/>`; });
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Email mock-up with stamps and callouts (subject, stamps: [label], notes: [head, desc]).
+function emailMock(title, sub, from, subject, stamps, notes, source, theme = 'warm') {
+	const th = THEMES[theme];
+	const x = 60, y = 160, w = 560, h = 420;
+	let b = `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="16" fill="${th.card}" stroke="${th.line}" stroke-width="2"/>`;
+	b += `<rect x="${x}" y="${y}" width="${w}" height="92" rx="16" fill="${th.a}" fill-opacity=".1"/><circle cx="${x + 40}" cy="${y + 46}" r="20" fill="${th.a}"/>${icon('mail', x + 29, y + 35, 22, '#fff', 2)}`;
+	b += tsp(x + 74, y + 40, [from], 16, th.mute) + tsp(x + 74, y + 68, [subject], 19, th.ink, 800);
+	[0, 1, 2, 3, 4, 5].forEach((k) => { b += `<rect x="${x + 30}" y="${y + 120 + k * 26}" width="${w - 60 - (k % 3) * 70}" height="10" rx="5" fill="${th.mute}" fill-opacity=".28"/>`; });
+	b += `<rect x="${x + 30}" y="${y + 290}" width="200" height="40" rx="20" fill="${th.b}"/>${tsp(x + 130, y + 316, ['Book a review'], 16, '#fff', 700, 'middle')}`;
+	b += tsp(x + 30, y + h - 28, ['Firm name · postal address · Unsubscribe'], 13, th.mute);
+	stamps.forEach((s, i) => { const sx = x + w - 200 + (i % 2) * -10, sy = y + 140 + i * 74; b += `<g transform="rotate(-8 ${sx + 85} ${sy + 22})"><rect x="${sx}" y="${sy}" width="170" height="44" rx="8" fill="none" stroke="${[C.green, th.b, th.a][i % 3]}" stroke-width="3"/>${tsp(sx + 85, sy + 28, [s], 15, [C.green, th.bDk, th.a][i % 3], 800, 'middle')}</g>`; });
+	notes.forEach(([hh, d], i) => { const ny = 175 + i * 132; b += `<rect x="670" y="${ny}" width="470" height="112" rx="16" fill="${th.card}" stroke="${th.line}" stroke-width="2"/><circle cx="700" cy="${ny + 36}" r="16" fill="${[C.green, th.b, th.a][i % 3]}"/><text x="700" y="${ny + 42}" text-anchor="middle" font-family="${F}" font-size="16" font-weight="800" fill="#fff">${i + 1}</text>${tsp(728, ny + 42, [hh], 20, th.ink, 700)}${tsp(700, ny + 74, wrap(d, 48).slice(0, 2), 16, th.mute)}`; });
+	return frameT(th, title, sub, b, source);
+}
+
+// Journey map: stages across with icon, question row and answer row (stages: [icon, stage, question, answer]).
+function journeyMap(title, sub, stages, source, theme = 'light') {
+	const th = THEMES[theme];
+	const n = stages.length, cw = (W - 200) / n, x0 = 180;
+	let b = tsp(60, 300, ['Patient'], 17, th.mute, 800) + tsp(60, 322, ['asks'], 17, th.mute, 800) + tsp(60, 450, ['You'], 17, th.mute, 800) + tsp(60, 472, ['provide'], 17, th.mute, 800);
+	b += `<path d="M ${x0} 232 H ${W - 40}" stroke="${th.line}" stroke-width="10" stroke-linecap="round"/>`;
+	stages.forEach(([ic, st, q, a], i) => {
+		const x = x0 + i * cw, cx = x + cw / 2, hot = i === n - 2;
+		b += `<circle cx="${cx}" cy="232" r="30" fill="${hot ? th.b : th.a}"/>${icon(ic, cx - 14, 218, 28, '#fff', 2.2)}${tsp(cx, 190, [st], 18, th.ink, 800, 'middle')}`;
+		b += `<rect x="${x + 6}" y="276" width="${cw - 12}" height="110" rx="12" fill="${th.a}" fill-opacity=".08"/>${tsp(cx, 306, wrap(q, 16).slice(0, 3), 15, th.ink, 600, 'middle')}`;
+		b += `<rect x="${x + 6}" y="404" width="${cw - 12}" height="140" rx="12" fill="${th.card}" stroke="${hot ? th.b : th.line}" stroke-width="2"/>${tsp(cx, 434, wrap(a, 16).slice(0, 4), 15, th.mute, 400, 'middle')}`;
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Price columns (plans: [name, price, period, features[], featured]).
+function priceColumns(title, sub, plans, note, source, theme = 'dark') {
+	const th = THEMES[theme];
+	const n = plans.length, gap = 28, w = (W - 120 - gap * (n - 1)) / n;
+	let b = '';
+	plans.forEach(([name, price, per, feats, hot], i) => {
+		const x = 60 + i * (w + gap), y = hot ? 160 : 180, h = hot ? 400 : 370;
+		b += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="22" fill="${hot ? th.b : th.card}" stroke="${hot ? th.b : th.line}" stroke-width="2"/>`;
+		if (typeof hot === 'string') b += `<rect x="${x + w / 2 - 70}" y="${y - 16}" width="140" height="32" rx="16" fill="${th.bg}" stroke="${th.b}" stroke-width="2"/>${tsp(x + w / 2, y + 6, [String(hot)], 14, th.bDk, 800, 'middle')}`;
+		const ink = hot ? '#fff' : th.ink, mute = hot ? '#fff' : th.mute;
+		b += tsp(x + w / 2, y + 56, [name], 24, ink, 800, 'middle');
+		b += `<text x="${x + w / 2}" y="${y + 128}" text-anchor="middle" font-family="${F}" font-size="54" font-weight="900" fill="${hot ? '#fff' : th.a}">${esc(price)}</text>${tsp(x + w / 2, y + 156, [per], 16, mute, 600, 'middle')}`;
+		feats.forEach((f, k) => { const fy = y + 200 + k * 36; b += icon('check', x + 26, fy - 16, 20, hot ? '#fff' : C.green, 3) + tsp(x + 56, fy, wrap(f, Math.floor((w - 70) / 9)).slice(0, 1), 16, ink); });
+	});
+	if (note) b += tsp(W / 2, H - 66, [note], 17, th.mute, 400, 'middle');
+	return frameT(th, title, sub, b, source);
+}
+
 const SEMRS = 'Source: SEMRS guide';
 export const GRAPHICS = {
 	'small-business-loan-approval-by-lender': () => hbars('Where small businesses get fully approved', 'Share of loan applicants fully approved, by lender type', [['Small banks', 54, true], ['Large banks', 45], ['Online lenders', 30]], 60, (v) => Math.round(v) + '%', 'Source: Federal Reserve Small Business Credit Survey, 2025 Report on Employer Firms', 'Survey of 7,653 US employer firms, fielded September–November 2024.'),
@@ -686,4 +855,34 @@ export const GRAPHICS = {
 		['Professional photos', 'Good light, honest angles'], ['Floor plan', 'Layout at a glance'], ['Specific description', 'Sizes, updates, nearby'], ['Signs and flyers', 'QR code to the page'],
 		['Video walkthrough', 'Plus short vertical clips'], ['Property web page', 'All details and a form'], ['Social and email', 'Housing ad category'], ['Open house', 'Promote and follow up'],
 	], 'Source: SEMRS guide · fair housing rules apply to every listing ad'),
+	'ecommerce-seo-hierarchy': () => hierarchy('Ecommerce SEO site structure', 'Each level targets a narrower search', 'Home page', [
+		['Running shoes', ['Trail running', 'Road running', 'Product: Model X']], ['Hiking boots', ['Waterproof boots', 'Lightweight boots', 'Product: Model Y']], ['Accessories', ['Socks', 'Insoles', 'Product: Model Z']],
+	], 'Categories rank for broad searches; products rank for specific ones. Keep every product a few clicks from home.', 'Source: Google Search Central (SEO for ecommerce sites) · example store'),
+	'page-builder-versus': () => versus('Block editor vs page builder', 'Pick one approach for the whole site', ['Block editor', 'doc', ['Built into WordPress, free', 'Lighter, faster pages', 'Content stays standard blocks', 'Updated with WordPress', 'Patterns for reusable sections']], ['Page builder', 'gear', ['Drag-and-drop canvas', 'Very detailed design controls', 'Big template libraries', 'Many features paid yearly', 'Harder to switch away later']], 'Source: WordPress.org (Block Editor) · SEMRS guide'),
+	'electrician-search-mock': () => serpMock('Where electricians can show up on Google', 'An example search; each spot is won a different way', 'emergency electrician near me', [
+		['1. Local Services Ad', 'Pay per lead after Google screening'], ['2. Map results', 'Business Profile, reviews and distance'], ['3. Your listing', 'Accurate hours and steady reviews'], ['4. Website results', 'Service and area pages that answer'],
+	], 'Source: Google Business Profile Help · Google Local Services Help · example layout'),
+	'pinterest-ads-board': () => pinBoard('Pinterest ads at a glance', 'Goals, formats and creative that suit plan-ahead buyers', [
+		['Awareness', 'Reach people who do not know you yet', 'megaphone'], ['Consideration', 'Get clicks to the right page', 'link'], ['Leads and sales', 'Sign-ups, enquiries and purchases', 'dollar'], ['Image ads', 'Tall images with the product in use', 'home'],
+		['Idea ads', 'Several steps or looks in one ad', 'bulb'], ['Video', 'Premiere Spotlight and short clips', 'target'], ['Targeting', 'Keywords, interests, audiences', 'search'], ['Measure', 'Pinterest tag and UTM links', 'chart'],
+	], 'Source: Pinterest Business · SEMRS guide'),
+	'content-strategy-calendar': () => calendarGrid('A content strategy month on one page', 'Four pillars, a steady rhythm, one goal', 'Example month (4 weeks)', [['Costs', 'Prices and what affects them'], ['How-to', 'Guides that answer questions'], ['Proof', 'Case studies and reviews'], ['News', 'Seasonal tips and updates']], {
+		2: [1, 'Guide'], 4: [0, 'Social'], 7: [3, 'Email'], 9: [0, 'Cost guide'], 11: [2, 'Social'], 14: [1, 'Video'], 16: [2, 'Case study'], 18: [1, 'Social'], 21: [3, 'Email'], 23: [1, 'Guide'], 25: [0, 'Social'], 28: [2, 'Review'],
+	}, 'Source: SEMRS guide · Google: create people-first content'),
+	'ai-market-research-pipeline': () => pipeline('AI market research pipeline', 'Real data in, AI summaries out, a person checks every fact', ['Census and BLS data', 'Your customer reviews', 'Survey answers', 'Competitor pages', 'Sales call notes'], 'AI summarizes and compares', 'A person checks every fact', ['Customer themes', 'Market size by area', 'Competitor gaps', 'One test to run'], 'Source: SBA market research guide · SEMRS guide'),
+	'ecommerce-agency-scorecard': () => scorecard('Ecommerce agency scorecard', 'Tick each answer you are happy with, then compare', ['Agency A', 'Agency B', 'Agency C'], [
+		'Do we own the store, ads and analytics?', 'Is there a clear 90-day plan?', 'Do reports show revenue and profit?', 'Can we see stores you worked on?', 'Who works on our account?', 'Fees in dollars, with minimum term?', 'How do we leave, and what do we keep?', 'No guaranteed rankings or sales?',
+	], 'Source: SEMRS guide'),
+	'advisor-email-mock': () => emailMock('Financial advisor email marketing, done right', 'Useful content, compliance first', 'Your Advisory Firm <news@example.com>', 'What the rate change means for your savings', ['Principal approved', 'Archived', 'Opt-out included'], [
+		['Approve before use', 'Retail communications to 25+ retail investors in 30 days need principal approval'], ['Keep records', 'Copies, dates of use and the approving principal'], ['CAN-SPAM basics', 'Honest subject, postal address and a working unsubscribe'],
+	], 'Source: FINRA Rule 2210 · FTC CAN-SPAM guide · example email'),
+	'dental-implant-journey': () => journeyMap('Dental implant marketing: the patient journey', 'Meet patients at every stage of a long decision', [
+		['search', 'Research', 'Are implants right for me?', 'Implants vs dentures and bridges guide'], ['dollar', 'Cost', 'How much will it cost?', 'Honest ranges and what changes the price'], ['star', 'Trust', 'Who should I choose?', 'Experience, real cases, implant reviews'],
+		['calendar', 'Financing', 'Can I afford it?', 'Payment plans and financing options'], ['phone', 'Booking', 'How do I start?', 'Easy online consultation request'], ['smile', 'Aftercare', 'What happens next?', 'Recovery guides and follow-up'],
+	], 'Source: SEMRS guide · FTC health claims guidance and HIPAA apply'),
+	'website-maintenance-prices': () => priceColumns('Website maintenance cost: one published example', 'SEMRS care plans, November 2026 (hosting and domain extra)', [
+		['Care Basic', '$39', 'per month', ['Backups', 'Uptime monitoring', 'Security and plugin updates', '30 min of edits a month']],
+		['Care Growth', '$119', 'per month', ['Everything in Basic', '2 hours of edits a month', 'Monthly SEO health report', '1 blog post a month'], true],
+		['Care Pro', '$239', 'per month', ['Everything in Growth', '5 hours of edits a month', 'Conversion suggestions', '4 blog posts a month']],
+	], null, 'Source: SEMRS pricing page, November 2026'),
 };
