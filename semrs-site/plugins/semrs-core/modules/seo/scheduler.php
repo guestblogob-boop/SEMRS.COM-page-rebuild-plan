@@ -74,6 +74,58 @@ add_action(
 	}
 );
 
+/**
+ * Hourly recheck, forever: re-publish any post that missed its time, then make sure the site's own
+ * scheduled tasks (backups, index checks, sitemap resubmits, cleanups and other daily jobs) are not
+ * stuck. Runs from WP-Cron every hour and, as a fallback when WP-Cron is not firing (cached sites),
+ * from the first full page load after an hour has passed.
+ *
+ * @return array Result: time, posts published, overdue tasks found.
+ */
+function semrs_scheduler_hourly() {
+	if ( get_transient( 'semrs_scheduler_hourly_lock' ) ) {
+		return array();
+	}
+	set_transient( 'semrs_scheduler_hourly_lock', 1, 5 * MINUTE_IN_SECONDS );
+	$published = semrs_scheduler_publish_due( true );
+	// Site tasks that should have run more than 15 minutes ago.
+	$overdue = 0;
+	foreach ( (array) _get_cron_array() as $ts => $hooks ) {
+		if ( (int) $ts > time() - 15 * MINUTE_IN_SECONDS ) {
+			break; // The cron array is sorted by time.
+		}
+		$overdue += count( (array) $hooks );
+	}
+	if ( $overdue && ! wp_doing_cron() && function_exists( 'spawn_cron' ) ) {
+		spawn_cron(); // Runs every due task in a background request.
+	}
+	$result = array( 'time' => time(), 'published' => $published, 'overdue' => $overdue );
+	update_option( 'semrs_scheduler_hourly', $result, false );
+	return $result;
+}
+add_action( 'semrs_scheduler_hourly', 'semrs_scheduler_hourly' );
+
+add_action(
+	'init',
+	function () {
+		if ( ! wp_next_scheduled( 'semrs_scheduler_hourly' ) ) {
+			wp_schedule_event( time() + MINUTE_IN_SECONDS, 'hourly', 'semrs_scheduler_hourly' );
+		}
+	}
+);
+
+// Fallback when WP-Cron is not firing: the first full load after an hour runs the recheck.
+add_action(
+	'wp_loaded',
+	function () {
+		$last = (array) get_option( 'semrs_scheduler_hourly', array() );
+		if ( empty( $last['time'] ) || (int) $last['time'] < time() - HOUR_IN_SECONDS ) {
+			semrs_scheduler_hourly();
+		}
+	},
+	20
+);
+
 // "Publish due posts now" button on SEMRS → Content Calendar.
 add_action(
 	'admin_post_semrs_scheduler_run',
@@ -99,7 +151,7 @@ function semrs_scheduler_status_box() {
 	?>
 	<div class="notice notice-info inline" style="max-width:1200px;padding:12px 16px">
 		<p><strong><?php esc_html_e( 'SEMRS Scheduler is on.', 'semrs-core' ); ?></strong>
-		<?php esc_html_e( 'Scheduled posts are published on time even when pages are served from the cache: once a post is due, the next visit publishes it.', 'semrs-core' ); ?></p>
+		<?php esc_html_e( 'Scheduled posts are published on time even when pages are served from the cache: once a post is due, the next visit publishes it. Every hour it also rechecks for posts that missed their time and for overdue site tasks (backups, index checks and other daily jobs), and runs them.', 'semrs-core' ); ?></p>
 		<p>
 			<?php
 			echo esc_html(
@@ -111,6 +163,11 @@ function semrs_scheduler_status_box() {
 			if ( ! empty( $last['time'] ) ) {
 				/* translators: 1: date and time, 2: number of posts */
 				echo ' ' . esc_html( sprintf( __( 'Last check: %1$s (%2$d published).', 'semrs-core' ), wp_date( $fmt, (int) $last['time'] ), (int) ( $last['count'] ?? 0 ) ) );
+			}
+			$hourly = (array) get_option( 'semrs_scheduler_hourly', array() );
+			if ( ! empty( $hourly['time'] ) ) {
+				/* translators: 1: date and time, 2: posts re-published, 3: overdue site tasks */
+				echo ' ' . esc_html( sprintf( __( 'Hourly recheck: %1$s (%2$d missed posts published, %3$d overdue site tasks re-run).', 'semrs-core' ), wp_date( $fmt, (int) $hourly['time'] ), (int) ( $hourly['published'] ?? 0 ), (int) ( $hourly['overdue'] ?? 0 ) ) );
 			}
 			if ( isset( $_GET['semrs_published'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification -- display only.
 				/* translators: %d: number of posts */
