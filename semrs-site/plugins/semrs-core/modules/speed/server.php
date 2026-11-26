@@ -277,6 +277,10 @@ function semrs_server_leftovers() {
 			$out['dropin'] = __( 'an unused page-cache drop-in', 'semrs-core' );
 		}
 	}
+	// Our own early-cache file left in place while WordPress no longer loads it (WP_CACHE off).
+	if ( '' === $out['dropin'] && $dsrc && semrs_server_dropin_is_ours() && ! semrs_server_wp_cache_on() ) {
+		$out['dropin'] = __( 'the switched-off SEMRS early cache', 'semrs-core' );
+	}
 	return $out;
 }
 
@@ -672,6 +676,8 @@ function semrs_speed_server_tab() {
 		if ( $early ) {
 			echo '<span class="dashicons dashicons-yes-alt" style="color:#00813a"></span> ' . esc_html__( 'On.', 'semrs-core' ) . ' ';
 			semrs_server_button( 'early_off', __( 'Switch off', 'semrs-core' ), 'button button-link-delete' );
+		} elseif ( function_exists( 'semrs_litespeed_active' ) && semrs_litespeed_active() ) {
+			echo '<span class="dashicons dashicons-yes-alt" style="color:#00813a"></span> ' . esc_html__( 'Not needed: the LiteSpeed server cache already answers cached pages before PHP starts, which is faster than any early cache.', 'semrs-core' );
 		} elseif ( ! semrs_cache_enabled() ) {
 			esc_html_e( 'Switch on the page cache (Page cache tab) first.', 'semrs-core' );
 		} else {

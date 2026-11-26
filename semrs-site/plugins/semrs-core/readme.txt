@@ -4,7 +4,7 @@ Tags: seo, cookie consent, smtp, security, page cache
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.65
+Stable tag: 1.3.66
 License: GPLv2 or later
 
 Free SEO, cookie consent, SMTP email, security, page cache, redirects, WebP images and a policy-safe ads manager in one plugin.
@@ -112,6 +112,9 @@ SEMRS Core works without any outside service. These connections happen only when
 The speed check, SEO audit, page cache, llms.txt, cookie banner, consent log, security options and all other features run entirely on your own server. Google Consent Mode only passes the visitor's choice to Google tags you already use; it does not load anything itself.
 
 == Changelog ==
+
+= 1.3.66 =
+* Speed → Server → Leftovers also removes a switched-off SEMRS early-cache file; Early page cache shows Not needed when the LiteSpeed server cache is on
 
 = 1.3.65 =
 * New Auto-updates module (SEMRS → Auto-updates): automatic updates for WordPress, plugins, themes and translations in quiet hours, a per-plugin skip list, a health check after each run with automatic rollback (with SEMRS Pro Backups), an update log and one email report. Replaces host-managed auto-update plugins. Speed → Server → Leftovers now finds an unused page-cache drop-in (advanced-cache.php) left by a deleted cache plugin and moves it to backups
