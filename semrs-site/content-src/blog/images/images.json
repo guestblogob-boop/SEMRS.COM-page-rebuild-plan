@@ -313,5 +313,194 @@
    "credit": "Graphic: SEMRS",
    "license": "SEMRS original"
   }
+ },
+ "personal-injury-lawyer-advertising": {
+  "featured": {
+   "file": "personal-injury-lawyer-advertising-featured.webp",
+   "alt": "A man searching on a laptop at a table at home",
+   "caption": "Most injury clients search and call a firm within days, so every ad should lead to a fast, friendly answer.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Man Laptop by Kristin Hardwick, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/man-laptop-HYRSHH13TD",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "personal-injury-lawyer-advertising-plan.webp",
+   "alt": "Six-part personal injury lawyer advertising plan: profile and reviews, call tracking and intake, Local Services Ads, Google search ads, SEO and content, bar rules review",
+   "caption": "A simple advertising plan for a small personal injury firm.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "google-ads-for-small-business": {
+  "featured": {
+   "file": "google-ads-for-small-business-featured.webp",
+   "alt": "Laptop showing a bar and pie chart report next to a tablet on a desk",
+   "caption": "Judge Google Ads by leads and customers, not by clicks.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Business Working by Marc Chouinard, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/business-working-PHE63L27S6",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "google-ads-first-campaign-steps.webp",
+   "alt": "Eight steps to a first Google Ads campaign for small business: track conversions, search campaign, location, keywords, negative keywords, ads, matching page, steady budget",
+   "caption": "The eight setup steps from this guide.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "best-business-credit-cards-for-advertising": {
+  "featured": {
+   "file": "best-business-credit-cards-for-advertising-featured.webp",
+   "alt": "Business owner writing figures on paper beside a laptop",
+   "caption": "Total your monthly ad spend before you compare card rewards and fees.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Laptop Working by Matt Moloney, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/laptop-working-8GETAUWFBE",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "business-credit-card-ad-spend-checks.webp",
+   "alt": "Six checks for choosing among the best business credit cards for ad spend: total spend, pay in full, bonus categories, fee vs rewards, caps, personal guarantee",
+   "caption": "Run these six checks before you apply for a card.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "dental-marketing": {
+  "featured": {
+   "file": "dental-marketing-featured.webp",
+   "alt": "A clean, empty dental treatment room with a blue patient chair",
+   "caption": "Real photos of your rooms and team help new patients choose your practice.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Dental clinic, CC0 (free for commercial use)",
+   "source": "https://www.rawpixel.com/image/6020787/dental-clinic-free-public-domain-cc0-photo",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "dental-marketing-new-patients.webp",
+   "alt": "Dental marketing plan in eight steps: Business Profile, reviews, treatment pages, local SEO, Google Ads, easy booking, recall reminders, team on social media",
+   "caption": "Eight ways dental practices win new patients.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "website-design-cost": {
+  "featured": {
+   "file": "website-design-cost-featured.webp",
+   "alt": "Paper wireframe sketches of web pages with pens on a desk",
+   "caption": "Count your pages and features first; they decide most of the price.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Office Work by Jeffrey Betts, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/office-work-91WZ32J28K",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "website-design-cost-packages.webp",
+   "alt": "Bar chart of website design cost at SEMRS: Starter $399, Business $799, Growth $1,499, E-commerce Starter $1,799",
+   "caption": "Published one-time website prices from one agency, as an example of how packages differ.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "generative-engine-optimization": {
+  "featured": {
+   "file": "generative-engine-optimization-featured.webp",
+   "alt": "Two colleagues reviewing code on a laptop screen",
+   "caption": "Pages that are easy to crawl and quote are the ones AI answers cite.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Developer Discuss by Christina Morillo, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/developer-discuss-OEIJJX36TI",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "generative-engine-optimization-signals.webp",
+   "alt": "Diagram of generative engine optimization: findable, clear and trusted pages overlap where AI answers cite a source",
+   "caption": "Pages that are findable, clear and trusted are the ones AI answers cite.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "website-builders-for-small-business": {
+  "featured": {
+   "file": "website-builders-for-small-business-featured.webp",
+   "alt": "Overhead view of a person planning in a notebook next to a laptop",
+   "caption": "Plan your pages and goals before you pick a website builder.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Man Work by Burst, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/man-work-DZ7DC58DSV",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "website-builders-wordpress-vs-hosted.webp",
+   "alt": "Comparison of website builders for small business: WordPress vs hosted builders on ownership, upkeep, flexibility, SEO control, monthly cost and moving later",
+   "caption": "WordPress and hosted builders side by side.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "google-ads-agency": {
+  "featured": {
+   "file": "google-ads-agency-featured.webp",
+   "alt": "Three colleagues discussing results around a laptop",
+   "caption": "A good agency explains its plan and reports cost per lead in plain words.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Business People by Direct Media, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/business-people-DUXISHKTT3",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "google-ads-agency-questions.webp",
+   "alt": "Nine questions to ask a Google Ads agency: account owner, lead tracking, fees, contract length, manager, first 90 days, report, recommendations, examples",
+   "caption": "Ask these nine questions before you hire an agency.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "marketing-automation-software": {
+  "featured": {
+   "file": "marketing-automation-software-featured.webp",
+   "alt": "Tablet showing a marketing dashboard next to a cup of coffee",
+   "caption": "Automation reports show which flows bring bookings and sales.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Office Work by WDnet Studio, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/office-work-030TCBJQ8C",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "marketing-automation-first-flows.webp",
+   "alt": "Marketing automation software flows to set up first: welcome series, enquiry follow-up, review request, re-booking reminder, win-back email, monthly review",
+   "caption": "Start with these simple flows before anything complex.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
  }
 }

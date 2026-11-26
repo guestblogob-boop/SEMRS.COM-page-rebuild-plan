@@ -157,4 +157,35 @@ export const GRAPHICS = {
 		['Local SEO', 'Profile, reviews, citations'], ['Technical SEO', 'Speed, mobile, sitemap'], ['Helpful content', 'Answer real questions'],
 		['Earn links', 'Partners, press, resources'], ['AI search', 'Clear answers, schema'], ['Measure', 'Leads, not just rankings'],
 	], 3, SEMRS, true),
+	'personal-injury-lawyer-advertising-plan': () => steps('A personal injury lawyer advertising plan', 'Channels closest to the moment of need come first', [
+		['Profile and reviews', 'Business Profile complete, review requests after every case'], ['Call tracking and intake', 'One number per channel, fast friendly answers'], ['Local Services Ads', 'Pay per lead with the Google Screened badge'],
+		['Google search ads', 'One case type per ad group, matching pages'], ['SEO and content', 'Case-type pages and real client questions'], ['Bar rules review', 'No promised results; keep a copy of every ad'],
+	], 3, SEMRS + ' · state bar advertising rules apply (ABA Model Rules 7.1–7.3)', true),
+	'google-ads-first-campaign-steps': () => steps('Your first Google Ads campaign in 8 steps', 'Track leads first, then start small and focused', [
+		['Tracking first', 'Calls, forms, bookings'], ['Search only', 'Display Network off'], ['Set location', 'People in your area'], ['10–20 keywords', 'Clear buying intent'],
+		['Negatives', 'jobs, free, DIY, course'], ['Three ads', 'Service, area, next step'], ['Matching page', 'One service per page'], ['Steady budget', 'At least one month'],
+	], 4, SEMRS),
+	'business-credit-card-ad-spend-checks': () => steps('Choosing a business credit card for ad spend', 'Six checks before you apply', [
+		['Total your ad spend', 'Google, Meta, LinkedIn and others each month'], ['Pay in full?', 'If not, a low rate beats any reward'], ['Bonus categories', 'Do your ad platforms count as advertising?'],
+		['Fee vs rewards', 'At your real spend, not the cap'], ['Yearly caps', 'Bonus rates often stop at a set amount'], ['Personal guarantee', 'You may be liable for the debt'],
+	], 3, SEMRS + ' · general information, not financial advice', true),
+	'dental-marketing-new-patients': () => steps('8 ways dentists win new patients', 'Fix the free basics first, then add paid search', [
+		['Profile', 'Dentist category, hours, insurance'], ['Reviews', 'Ask every happy patient'], ['Treatments', 'One page per treatment'], ['Local SEO', 'Answer real questions'],
+		['Google Ads', 'Implants, aligners, emergencies'], ['Easy booking', 'Phone on top, online booking'], ['Reminders', 'Email and text with consent'], ['Social posts', 'No patient data without consent'],
+	], 4, SEMRS + ' · HIPAA and the FTC review rule apply'),
+	'website-design-cost-packages': () => hbars('Website design cost: one agency’s published prices', 'One-time SEMRS website packages, November 2026', [['Starter, 5 pages', 399], ['Business, 12 pages', 799, true], ['Growth, 25 pages', 1499], ['E-commerce Starter', 1799]], 2000, (v) => '$' + Math.round(v).toLocaleString('en-US'), 'Source: SEMRS pricing page (semrs.com/pricing), November 2026'),
+	'generative-engine-optimization-signals': () => venn('What helps a page get cited in AI answers', 'Generative engine optimization builds on SEO basics', [['Findable', 'Crawlable, indexed, eligible for snippets'], ['Clear', 'Direct answers, specific facts, good headings'], ['Trusted', 'Sources, real authors, reviews, mentions']], 'Cited', SEMRS + ' · Google: no extra requirements for AI Overviews'),
+	'website-builders-wordpress-vs-hosted': () => compare('WordPress vs hosted website builders', 'Wix, Squarespace and Shopify are hosted; WordPress runs on your own hosting', ['WordPress', 'Hosted builders'], [
+		['Ownership', 'You own the files', 'Lives on the platform'], ['Upkeep', 'You or a care plan', 'Included in the plan'], ['Flexibility', 'Very high', 'Medium (stores: high)'],
+		['SEO control', 'Full', 'Basics covered'], ['Monthly cost', 'Hosting, domain, plugins', 'Plan, apps, fees'], ['Moving later', 'Easy', 'Usually a rebuild'],
+	], SEMRS + ' · prices and features change; check each vendor'),
+	'google-ads-agency-questions': () => steps('9 questions to ask a Google Ads agency', 'Ask them before you sign anything', [
+		['Account owner?', 'Yours, with admin access'], ['Lead tracking?', 'Calls, forms, bookings'], ['Fees in dollars?', 'Setup and monthly, in writing'],
+		['Contract length?', 'Monthly terms with notice'], ['Who manages it?', 'Experience and workload'], ['First 90 days?', 'A clear written plan'],
+		['Monthly report?', 'Cost per lead, next steps'], ['Recommendations?', 'Reviewed, not auto-applied'], ['Examples?', 'Real, checkable results'],
+	], 3, SEMRS, true),
+	'marketing-automation-first-flows': () => steps('Marketing automations to set up first', 'Simple flows that stop missed follow-ups', [
+		['Welcome series', '3–5 emails over two weeks'], ['Enquiry follow-up', 'Instant reply, team reminder'], ['Review request', 'A day after the job'],
+		['Re-booking reminder', 'When a service is due again'], ['Win-back email', 'For customers who went quiet'], ['Review monthly', 'Opens, bookings, unsubscribes'],
+	], 3, SEMRS + ' · follow CAN-SPAM and get consent for texts', true),
 };
