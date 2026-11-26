@@ -160,6 +160,7 @@ const ICON = {
 	smile: '<circle cx="12" cy="12" r="9"/><path d="M8 14a5 5 0 0 0 8 0M9 9h.01M15 9h.01"/>',
 	map: '<path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/>',
 	list: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
+	image: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M3 18l6-5 4 3 3-2 5 4"/>',
 };
 const icon = (name, x, y, size, color, sw = 2) => `<g transform="translate(${x},${y}) scale(${size / 24})" fill="none" stroke="${color}" stroke-width="${sw * 24 / size}" stroke-linecap="round" stroke-linejoin="round">${ICON[name] || ICON.check}</g>`;
 
@@ -675,6 +676,213 @@ function priceColumns(title, sub, plans, note, source, theme = 'dark') {
 	return frameT(th, title, sub, b, source);
 }
 
+// ---- Graphic kit 5 (2026-11): page anatomy, stepper, service radius, shopping ad, inbox, dot matrix, SMS chat, donut, temple, equation. ----
+
+// Page anatomy: a page mock-up with numbered markers and a legend (parts: [head, desc], 6 items: title tag, description, H1, intro, subheadings, button).
+function anatomy(title, sub, parts, source, theme = 'light') {
+	const th = THEMES[theme];
+	const x = 60, y = 158, w = 520, h = 430;
+	let b = `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="16" fill="${th.card}" stroke="${th.line}" stroke-width="2"/>`;
+	b += `<rect x="${x}" y="${y}" width="${w}" height="34" rx="16" fill="${th.a}" fill-opacity=".1"/>${[0, 1, 2].map((k) => `<circle cx="${x + 22 + k * 18}" cy="${y + 17}" r="5" fill="${[C.orange, th.a, C.green][k]}"/>`).join('')}`;
+	b += `<rect x="${x + 80}" y="${y + 9}" width="300" height="16" rx="8" fill="${th.bg}" stroke="${th.line}"/>`;
+	// Search snippet (title tag + description).
+	b += `<rect x="${x + 24}" y="${y + 50}" width="${w - 48}" height="70" rx="10" fill="${th.a}" fill-opacity=".06"/>`;
+	b += tsp(x + 40, y + 76, ['Page title: names topic and benefit'], 17, th.a, 700) + `<rect x="${x + 40}" y="${y + 90}" width="${w - 110}" height="8" rx="4" fill="${th.mute}" fill-opacity=".35"/><rect x="${x + 40}" y="${y + 104}" width="${w - 190}" height="8" rx="4" fill="${th.mute}" fill-opacity=".35"/>`;
+	// H1 and intro.
+	b += `<rect x="${x + 24}" y="${y + 140}" width="${w - 120}" height="24" rx="6" fill="${th.ink}"/>`;
+	[0, 1, 2].forEach((k) => { b += `<rect x="${x + 24}" y="${y + 180 + k * 16}" width="${w - 60 - k * 60}" height="8" rx="4" fill="${th.mute}" fill-opacity=".4"/>`; });
+	// Subheadings and body.
+	[0, 1].forEach((s) => { const sy = y + 240 + s * 74; b += `<rect x="${x + 24}" y="${sy}" width="${220 - s * 40}" height="16" rx="5" fill="${th.a}" fill-opacity=".75"/>`; [0, 1].forEach((k) => { b += `<rect x="${x + 24}" y="${sy + 28 + k * 15}" width="${w - 70 - k * 90}" height="8" rx="4" fill="${th.mute}" fill-opacity=".3"/>`; }); });
+	b += `<rect x="${x + 24}" y="${y + 384}" width="170" height="32" rx="16" fill="${th.b}"/>${tsp(x + 109, y + 405, ['Get a quote'], 15, '#fff', 700, 'middle')}`;
+	const marks = [y + 76, y + 104, y + 152, y + 196, y + 248, y + 400];
+	marks.forEach((my, i) => { b += `<line x1="${x + w - 30}" y1="${my}" x2="${x + w + 24}" y2="${my}" stroke="${th.b}" stroke-width="2" stroke-dasharray="4 4"/><circle cx="${x + w - 30}" cy="${my}" r="14" fill="${th.b}"/>${tsp(x + w - 30, my + 5, [String(i + 1)], 14, '#fff', 800, 'middle')}`; });
+	parts.forEach(([hh, d], i) => {
+		const ly = 168 + i * 70;
+		b += `<circle cx="${x + w + 50}" cy="${ly + 18}" r="16" fill="${th.b}"/>${tsp(x + w + 50, ly + 24, [String(i + 1)], 15, '#fff', 800, 'middle')}`;
+		b += tsp(x + w + 80, ly + 16, [hh], 20, th.ink, 700) + tsp(x + w + 80, ly + 42, wrap(d, 46).slice(0, 1), 16, th.mute);
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Stepper: a progress track with numbered nodes (items: [head, desc]); labels alternate above and below; the last node is the finish.
+function stepper(title, sub, items, source, theme = 'dark') {
+	const th = THEMES[theme];
+	const n = items.length, x0 = 110, x1 = W - 110, ty = 372, gap = (x1 - x0) / (n - 1);
+	let b = `<line x1="${x0}" y1="${ty}" x2="${x1}" y2="${ty}" stroke="${th.a}" stroke-width="12" stroke-linecap="round"/>`;
+	items.forEach(([hh, d], i) => {
+		const cx = x0 + i * gap, last = i === n - 1, up = i % 2 === 0;
+		const head = wrap(hh, 14).slice(0, 2), desc = wrap(d, 16).slice(0, 4);
+		b += `<line x1="${cx}" y1="${up ? ty - 60 : ty + 30}" x2="${cx}" y2="${up ? ty - 30 : ty + 60}" stroke="${th.line}" stroke-width="2"/>`;
+		b += `<circle cx="${cx}" cy="${ty}" r="${last ? 32 : 26}" fill="${last ? th.b : th.card}" stroke="${last ? th.b : th.a}" stroke-width="4"/>`;
+		b += last ? icon('check', cx - 14, ty - 14, 28, '#fff', 3) : tsp(cx, ty + 8, [String(i + 1)], 21, th.ink, 800, 'middle');
+		const block = head.length * 20.4 + 10 + desc.length * 18.2;
+		const top = up ? ty - 70 - block : ty + 86;
+		b += tsp(cx, top, head, 17, last ? th.bDk : th.ink, 800, 'middle', 1.2) + tsp(cx, top + head.length * 20.4 + 10, desc, 14, th.mute, 400, 'middle');
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Service radius: concentric rings around a base, town pins, and note cards on the right.
+function radius(title, sub, base, rings, pins, notes, source, theme = 'warm') {
+	const th = THEMES[theme];
+	const cx = 330, cy = 392, R = [78, 150, 218];
+	let b = '';
+	R.slice().reverse().forEach((r, k) => { b += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${th.a}" fill-opacity="${0.06 + k * 0.05}" stroke="${th.a}" stroke-opacity=".5" stroke-width="2" stroke-dasharray="${k === 0 ? '8 6' : '0'}"/>`; });
+	rings.forEach((l, k) => { b += `<rect x="${cx - 70}" y="${cy - R[k] + 6}" width="140" height="24" rx="12" fill="${th.card}" stroke="${th.line}"/>${tsp(cx, cy - R[k] + 23, [l], 14, th.mute, 700, 'middle')}`; });
+	b += `<circle cx="${cx}" cy="${cy}" r="30" fill="${th.b}"/>${icon('home', cx - 14, cy - 14, 28, '#fff', 2.2)}${tsp(cx, cy + 50, base.split('|'), 14, th.ink, 800, 'middle', 1.25)}`;
+	pins.forEach(([name, ang, ring]) => {
+		const r = R[ring] - 24, a = (ang * Math.PI) / 180, px = cx + r * Math.cos(a), py = cy + r * Math.sin(a);
+		b += icon('pin', px - 13, py - 26, 26, th.a, 2.4) + tsp(px, py + 14, [name], 13, th.ink, 700, 'middle');
+	});
+	notes.forEach(([ic, hh, d], i) => {
+		const ny = 168 + i * 140;
+		b += `<rect x="640" y="${ny}" width="500" height="122" rx="16" fill="${th.card}" stroke="${th.line}" stroke-width="2"/><rect x="660" y="${ny + 20}" width="48" height="48" rx="12" fill="${th.a}" fill-opacity=".12"/>${icon(ic, 672, ny + 32, 24, th.a, 2)}`;
+		b += tsp(724, ny + 46, [hh], 20, th.ink, 700) + tsp(660, ny + 92, wrap(d, 56).slice(0, 2), 16, th.mute);
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Shopping ad mock-up: product cards in a results strip, with numbered callouts (cards: [name, price, store]; callouts: [head, desc]).
+function shoppingMock(title, sub, query, cards, callouts, source, theme = 'light') {
+	const th = THEMES[theme];
+	let b = `<rect x="60" y="158" width="560" height="44" rx="22" fill="${th.card}" stroke="${th.line}" stroke-width="2"/>${icon('search', 78, 168, 24, th.mute, 2)}${tsp(112, 187, [query], 18, th.ink)}`;
+	b += tsp(60, 236, ['Sponsored'], 14, th.mute, 700);
+	cards.forEach(([name, price, store], i) => {
+		const x = 60 + i * 190, y = 250, w = 172;
+		b += `<rect x="${x}" y="${y}" width="${w}" height="320" rx="14" fill="${th.card}" stroke="${i === 0 ? th.b : th.line}" stroke-width="${i === 0 ? 3 : 2}"/>`;
+		b += `<rect x="${x + 12}" y="${y + 12}" width="${w - 24}" height="130" rx="10" fill="${th.a}" fill-opacity=".08"/>${icon('image', x + w / 2 - 22, y + 55, 44, th.a, 2)}`;
+		b += tsp(x + 14, y + 170, wrap(name, 19).slice(0, 2), 15, th.ink, 700, 'start', 1.25);
+		b += tsp(x + 14, y + 228, [price], 22, th.ink, 900);
+		b += tsp(x + 14, y + 256, [store], 14, th.mute);
+		b += [0, 1, 2, 3, 4].map((k) => icon('star', x + 14 + k * 18, y + 270, 16, C.orange, 2)).join('');
+	});
+	[327, 412, 472, 502].forEach((my, i) => { b += `<circle cx="38" cy="${my}" r="13" fill="${th.b}"/>${tsp(38, my + 5, [String(i + 1)], 13, '#fff', 800, 'middle')}`; });
+	callouts.forEach(([hh, d], i) => {
+		const ny = 160 + i * 106;
+		b += `<rect x="660" y="${ny}" width="480" height="92" rx="14" fill="${th.card}" stroke="${th.line}" stroke-width="2"/><circle cx="690" cy="${ny + 32}" r="15" fill="${th.b}"/>${tsp(690, ny + 38, [String(i + 1)], 15, '#fff', 800, 'middle')}`;
+		b += tsp(716, ny + 38, [hh], 19, th.ink, 700) + tsp(690, ny + 70, wrap(d, 52).slice(0, 1), 15, th.mute);
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Inbox mock-up: rows of emails with a type label (rows: [sender, subject, preview, type]).
+function inboxMock(title, sub, rows, source, theme = 'light') {
+	const th = THEMES[theme];
+	const x = 60, y = 156, w = W - 120;
+	let b = `<rect x="${x}" y="${y}" width="${w}" height="${rows.length * 78 + 50}" rx="16" fill="${th.card}" stroke="${th.line}" stroke-width="2"/>`;
+	b += `<rect x="${x}" y="${y}" width="${w}" height="46" rx="16" fill="${th.a}" fill-opacity=".08"/>${icon('mail', x + 20, y + 11, 24, th.a, 2)}${tsp(x + 56, y + 30, ['Inbox'], 18, th.ink, 800)}${tsp(x + w - 24, y + 30, ['Type of promotion'], 15, th.mute, 700, 'end')}`;
+	const tints = [th.a, th.b, C.green, '#7c3aed', '#b91c1c'];
+	rows.forEach(([sender, subject, preview, type], i) => {
+		const ry = y + 50 + i * 78, tint = tints[i % tints.length];
+		if (i) b += `<line x1="${x + 16}" y1="${ry}" x2="${x + w - 16}" y2="${ry}" stroke="${th.line}"/>`;
+		b += `<circle cx="${x + 40}" cy="${ry + 39}" r="20" fill="${tint}" fill-opacity=".15"/>${tsp(x + 40, ry + 45, [sender.slice(0, 1)], 17, tint, 800, 'middle')}`;
+		b += tsp(x + 76, ry + 32, [sender], 16, th.ink, 800) + tsp(x + 290, ry + 32, [subject], 17, th.ink, 700) + tsp(x + 290, ry + 58, [preview], 15, th.mute);
+		const pw = 16 + type.length * 8.6;
+		b += `<rect x="${x + w - 24 - pw}" y="${ry + 24}" width="${pw}" height="30" rx="15" fill="${tint}" fill-opacity=".14"/>${tsp(x + w - 24 - pw / 2, ry + 45, [type], 14, tint, 800, 'middle')}`;
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Dot matrix: tasks down the side, two roles across, 0–3 filled dots for how much each role should lead.
+function dotMatrix(title, sub, roles, rows, source, theme = 'dark') {
+	const th = THEMES[theme];
+	const x = 60, y = 158, rh = 64, cw = 260, lw = W - 120 - cw * 2;
+	let b = '';
+	roles.forEach(([ic, r], k) => { const cx = x + lw + k * cw + cw / 2; b += `<circle cx="${cx - 54}" cy="${y + 20}" r="18" fill="${k ? th.b : th.a}"/>${icon(ic, cx - 66, y + 8, 24, '#fff', 2)}${tsp(cx - 26, y + 27, [r], 20, th.ink, 800)}`; });
+	rows.forEach(([task, dots, note], i) => {
+		const ry = y + 50 + i * rh;
+		b += `<rect x="${x}" y="${ry}" width="${W - 120}" height="${rh - 10}" rx="12" fill="${th.card}" stroke="${th.line}" stroke-width="2"/>`;
+		b += tsp(x + 20, ry + 25, [task], 18, th.ink, 700) + tsp(x + 20, ry + 45, [note], 14, th.mute);
+		dots.forEach((v, k) => { const cx = x + lw + k * cw + cw / 2; [0, 1, 2].forEach((d) => { b += `<circle cx="${cx - 40 + d * 40}" cy="${ry + rh / 2 - 5}" r="12" fill="${d < v ? (k ? th.b : th.a) : 'none'}" stroke="${k ? th.b : th.a}" stroke-width="2.5" stroke-opacity="${d < v ? 1 : 0.45}"/>`; }); });
+	});
+	b += tsp(W / 2, H - 66, ['Filled dots show who should lead each task: 3 = leads, 0 = should not do it.'], 15, th.mute, 400, 'middle');
+	return frameT(th, title, sub, b, source);
+}
+
+// SMS chat: a phone with message bubbles (messages: [side 'in'|'out', text]) and rule notes on the right.
+function chatMock(title, sub, contact, messages, notes, source, theme = 'light') {
+	const th = THEMES[theme];
+	const px = 90, py = 150, pw = 330, ph = 456;
+	let b = `<rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="36" fill="${th.ink}"/><rect x="${px + 12}" y="${py + 14}" width="${pw - 24}" height="${ph - 28}" rx="26" fill="#ffffff"/>`;
+	b += `<rect x="${px + 12}" y="${py + 14}" width="${pw - 24}" height="54" rx="26" fill="${th.a}" fill-opacity=".08"/><circle cx="${px + 44}" cy="${py + 41}" r="15" fill="${th.a}"/>${tsp(px + 44, py + 47, [contact.slice(0, 1)], 15, '#fff', 800, 'middle')}${tsp(px + 68, py + 47, [contact], 16, C.ink, 800)}`;
+	let my = py + 92;
+	messages.forEach(([side, text]) => {
+		const lines = wrap(text, 30).slice(0, 5), bh = 18 + lines.length * 20, bw = Math.min(238, 34 + Math.max(...lines.map((l) => l.length)) * 7.6), out = side === 'out';
+		const bx = out ? px + pw - 24 - bw : px + 24;
+		b += `<rect x="${bx}" y="${my}" width="${bw}" height="${bh}" rx="16" fill="${out ? th.a : '#eef0f6'}"/>${tsp(bx + 14, my + 24, lines, 14.5, out ? '#fff' : C.ink, 500, 'start', 1.35)}`;
+		my += bh + 12;
+	});
+	notes.forEach(([ic, hh, d], i) => {
+		const ny = 158 + i * 116;
+		b += `<rect x="480" y="${ny}" width="660" height="100" rx="16" fill="${th.card}" stroke="${th.line}" stroke-width="2"/><rect x="498" y="${ny + 22}" width="52" height="52" rx="14" fill="${i % 2 ? th.b : th.a}" fill-opacity=".12"/>${icon(ic, 511, ny + 35, 26, i % 2 ? th.bDk : th.a, 2)}`;
+		b += tsp(568, ny + 42, [hh], 20, th.ink, 700) + tsp(568, ny + 72, wrap(d, 62).slice(0, 1), 16, th.mute);
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Donut chart with a legend (segments: [label, percent, desc]).
+function donut(title, sub, segments, centre, source, theme = 'warm') {
+	const th = THEMES[theme];
+	const cx = 320, cy = 395, r = 170, sw = 64, circ = 2 * Math.PI * r;
+	const tints = [th.a, th.b, C.green, '#7c3aed'];
+	let b = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${th.line}" stroke-width="${sw}"/>`;
+	let off = 0;
+	segments.forEach(([, p], i) => { const len = (p / 100) * circ; b += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${tints[i % 4]}" stroke-width="${sw}" stroke-dasharray="${len - 4} ${circ - len + 4}" stroke-dashoffset="${-off}" transform="rotate(-90 ${cx} ${cy})"/>`; off += len; });
+	b += tsp(cx, cy - 6, [centre[0]], 26, th.ink, 800, 'middle') + tsp(cx, cy + 24, [centre[1]], 16, th.mute, 600, 'middle');
+	segments.forEach(([l, p, d], i) => {
+		const ly = 176 + i * 104;
+		b += `<rect x="600" y="${ly}" width="540" height="88" rx="16" fill="${th.card}" stroke="${th.line}" stroke-width="2"/><rect x="600" y="${ly}" width="10" height="88" rx="5" fill="${tints[i % 4]}"/>`;
+		b += `<text x="636" y="${ly + 56}" font-family="${F}" font-size="36" font-weight="900" fill="${tints[i % 4]}">${p}%</text>`;
+		b += tsp(740, ly + 38, [l], 20, th.ink, 700) + tsp(740, ly + 66, wrap(d, 44).slice(0, 1), 15, th.mute);
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Temple: a roof, pillars and a base (pillars: [icon, head, desc]).
+function temple(title, sub, roof, pillars, base, source, theme = 'light') {
+	const th = THEMES[theme];
+	const x0 = 150, x1 = W - 150, n = pillars.length;
+	let b = `<path d="M ${x0 - 30} 262 L ${W / 2} 158 L ${x1 + 30} 262 Z" fill="${th.b}"/>`;
+	b += icon('shield', W / 2 - 16, 186, 32, '#fff', 2.4) + tsp(W / 2, 248, [roof], 20, '#fff', 800, 'middle');
+	b += `<rect x="${x0 - 10}" y="268" width="${x1 - x0 + 20}" height="16" rx="4" fill="${th.a}"/>`;
+	const pw = (x1 - x0 - 40 * (n - 1)) / n;
+	pillars.forEach(([ic, hh, d], i) => {
+		const px = x0 + i * (pw + 40);
+		b += `<rect x="${px}" y="292" width="${pw}" height="232" rx="10" fill="${th.card}" stroke="${th.a}" stroke-width="2"/>`;
+		[0.25, 0.5, 0.75].forEach((f) => { b += `<line x1="${px + pw * f}" y1="300" x2="${px + pw * f}" y2="516" stroke="${th.a}" stroke-opacity=".12" stroke-width="2"/>`; });
+		b += `<circle cx="${px + pw / 2}" cy="334" r="26" fill="${th.a}" fill-opacity=".12"/>${icon(ic, px + pw / 2 - 14, 320, 28, th.a, 2.2)}`;
+		b += tsp(px + pw / 2, 390, wrap(hh, 18).slice(0, 2), 20, th.ink, 800, 'middle', 1.2) + tsp(px + pw / 2, 430, wrap(d, 26).slice(0, 4), 15, th.mute, 400, 'middle');
+	});
+	b += `<rect x="${x0 - 30}" y="532" width="${x1 - x0 + 60}" height="52" rx="8" fill="${th.a}"/>${tsp(W / 2, 565, [base], 18, '#fff', 700, 'middle')}`;
+	return frameT(th, title, sub, b, source);
+}
+
+// Equation: rows of value boxes and operators (rows: arrays of [value, label] boxes or operator strings); the last box is highlighted.
+function equation(title, sub, rows, note, source, theme = 'dark') {
+	const th = THEMES[theme];
+	let b = '';
+	const lastRow = rows.length - 1;
+	rows.forEach((row, r) => {
+		const y = 160 + r * 146, boxes = row.filter((t) => Array.isArray(t)).length, ops = row.length - boxes;
+		const bw = 170, ow = 44, total = boxes * bw + ops * ow, startX = (W - total) / 2;
+		let x = startX;
+		row.forEach((t, k) => {
+			if (Array.isArray(t)) {
+				const hot = r === lastRow && k === row.length - 1;
+				b += `<rect x="${x}" y="${y}" width="${bw}" height="118" rx="18" fill="${hot ? th.b : th.card}" stroke="${hot ? th.b : th.line}" stroke-width="2"/>`;
+				b += `<text x="${x + bw / 2}" y="${y + 54}" text-anchor="middle" font-family="${F}" font-size="34" font-weight="900" fill="${hot ? '#fff' : th.ink}">${esc(t[0])}</text>`;
+				b += tsp(x + bw / 2, y + 84, wrap(t[1], 18).slice(0, 2), 15, hot ? '#fff' : th.mute, 600, 'middle');
+				x += bw;
+			} else {
+				b += tsp(x + ow / 2, y + 72, [t], 38, th.b, 800, 'middle');
+				x += ow;
+			}
+		});
+	});
+	if (note) b += tsp(W / 2, H - 70, [note], 16, th.mute, 400, 'middle');
+	return frameT(th, title, sub, b, source);
+}
+
 const SEMRS = 'Source: SEMRS guide';
 export const GRAPHICS = {
 	'small-business-loan-approval-by-lender': () => hbars('Where small businesses get fully approved', 'Share of loan applicants fully approved, by lender type', [['Small banks', 54, true], ['Large banks', 45], ['Online lenders', 30]], 60, (v) => Math.round(v) + '%', 'Source: Federal Reserve Small Business Credit Survey, 2025 Report on Employer Firms', 'Survey of 7,653 US employer firms, fielded September–November 2024.'),
@@ -885,4 +1093,50 @@ export const GRAPHICS = {
 		['Care Growth', '$119', 'per month', ['Everything in Basic', '2 hours of edits a month', 'Monthly SEO health report', '1 blog post a month'], true],
 		['Care Pro', '$239', 'per month', ['Everything in Growth', '5 hours of edits a month', 'Conversion suggestions', '4 blog posts a month']],
 	], null, 'Source: SEMRS pricing page, November 2026'),
+	'seo-copywriting-anatomy': () => anatomy('Anatomy of a page that ranks and converts', 'What each part of an SEO copywriting page should do', [
+		['Title tag', 'Names the topic and benefit up front'], ['Meta description', 'Says what the reader gets from the page'], ['Headline (H1)', 'Promises the answer in plain words'],
+		['First paragraph', 'Answers the search question straight away'], ['Subheadings', 'One idea each, easy to scan'], ['Call to action', 'One clear next step, not five'],
+	], SEMRS + ' · Google Search Central title link guidance'),
+	'woocommerce-setup-stepper': () => stepper('WooCommerce setup in 8 steps', 'From installing the plugin to a safe test order', [
+		['Install plugin', 'Plugins → Add New, then activate WooCommerce'], ['Setup wizard', 'Store address, industry and product types'], ['Add products', 'Titles, prices, stock and real photos'],
+		['Payments', 'Connect a provider and pick payment methods'], ['Shipping zones', 'Regions, rates and free shipping rules'], ['Taxes', 'Turn on tax and set the rates you must collect'],
+		['Pages and policies', 'Cart, checkout, returns, privacy and terms'], ['Test order', 'Buy, check the emails, then refund'],
+	], SEMRS + ' · WooCommerce plugin listing on WordPress.org', 'dark'),
+	'contractor-service-radius': () => radius('Set an honest service area', 'Local SEO for contractors starts with one base and a realistic travel area', 'Your base|(address hidden)', ['Core towns', 'Regular jobs', 'Up to about 2 hours'],
+		[['Oakdale', 20, 0], ['Millbrook', 150, 1], ['Riverton', 0, 1], ['Pine Hill', -120, 2], ['Fairview', 100, 2], ['Westlake', 200, 2]],
+		[['home', 'Hide a home address', 'Show only the service area if customers do not visit you there'], ['map', 'Keep the area realistic', 'Google: no farther than about 2 hours of driving time'], ['user', 'Use your real business name', 'No towns or keywords added to the name']],
+		'Source: Google Business Profile guidelines · town names are examples', 'warm'),
+	'google-shopping-ad-anatomy': () => shoppingMock('What a Google Shopping ad is made of', 'Each part of Google Shopping ads comes from your product feed', 'waterproof hiking boots women', [
+		["Women's Waterproof Hiking Boot", '$89.00', 'Northpeak Outdoors'], ['Lightweight Hiker Boot, Waterproof', '$74.99', 'Summit Supply'], ['Mid Hiking Boot, Women', '$119.00', 'Ridge & Co'],
+	], [['Image link', 'A clear photo of the product, no text over it'], ['Title', 'Says exactly what the item is'], ['Price', 'Must match the price on your product page'], ['Store name', 'Your business name from Merchant Center']],
+	'Source: Google Merchant Center product data specification · example products'),
+	'promotional-email-inbox': () => inboxMock('5 promotional email examples', 'Each promotional email subject line says exactly what is inside', [
+		['Green Valley Auto', 'Spring tune-up: 15% off until April 30', 'Book online in two minutes. Offer ends April 30.', 'Seasonal sale'],
+		['Northpeak Outdoors', 'New: the lightweight hiking pack is here', 'Built for day hikes and easy to pack.', 'New product'],
+		['Corner Bakery', 'Thanks for 2 years with us: a gift inside', 'Show this email for a free coffee and pastry.', 'Loyalty offer'],
+		['Bloom Garden Center', 'Free workshop: plan your garden, May 4', 'Saturday at 10 a.m. Seats are limited, reserve yours.', 'Event invite'],
+		['Northpeak Outdoors', 'Ends tonight: free delivery on all orders', 'Last chance: free delivery ends at midnight.', 'Last chance'],
+	], 'Source: SEMRS guide · example businesses · FTC CAN-SPAM rules apply to every email'),
+	'ai-content-dot-matrix': () => dotMatrix('AI content writing: who does what', 'How much AI tools and people should lead each task', [['bolt', 'AI tool'], ['user', 'Person']], [
+		['Topic ideas and outlines', [2, 2], 'AI suggests; a person picks what matters'], ['First draft', [3, 1], 'Fast drafts from a clear human brief'], ['Facts, prices and laws', [0, 3], 'Checked against real sources'],
+		['Experience and stories', [0, 3], 'Only you have them'], ['Editing for clarity', [2, 2], 'Keep your own voice'], ['Final approval', [0, 3], 'Always a person'],
+	], SEMRS + ' · Google Search guidance on AI-generated content', 'dark'),
+	'sms-marketing-chat': () => chatMock('What a compliant marketing text looks like', 'SMS marketing: consent first, a useful message and an easy way to stop', 'Bright Smile Dental', [
+		['in', "Bright Smile Dental: You're in! Up to 4 texts a month. Msg & data rates may apply. Reply STOP to opt out."],
+		['in', 'Your cleaning is due. Book this week for a free whitening kit: link'], ['out', 'STOP'], ['in', "You're unsubscribed. No more marketing texts."],
+	], [['check', 'Written consent first', 'The customer clearly agrees, never as a condition of buying'], ['clock', 'Text 8 a.m. to 9 p.m.', 'In the customer’s local time'],
+		['bolt', 'Honor STOP quickly', 'Within ten business days at most; sooner is better'], ['list', 'Keep consent records', 'When, where and how each person signed up']],
+	'Source: 47 CFR 64.1200 (eCFR) · example business'),
+	'insurance-social-content-mix': () => donut('A balanced insurance agency social media mix', 'A suggested starting point, not a rule: adjust it to what your audience likes', [
+		['Education', 40, 'Answers, checklists and seasonal tips'], ['Community and team', 30, 'Your people, sponsors and local events'],
+		['Proof and stories', 20, 'Reviews and client stories, with permission'], ['Offers', 10, 'Quote requests and renewal reminders'],
+	], ['4 post types', 'every month'], SEMRS + ' · suggested mix', 'warm'),
+	'healthcare-seo-trust-temple': () => temple('Healthcare SEO is built on trust', 'Google says trust is the most important part of E-E-A-T', 'Trust: accurate, honest and safe', [
+		['user', 'Experience', 'Real cases, photos of your clinic and your team'], ['doc', 'Expertise', 'Written or reviewed by named, qualified clinicians'], ['star', 'Authoritativeness', 'Mentions and links from hospitals, associations and media'],
+	], 'Accurate, sourced and regularly reviewed health content', 'Source: Google Search Central, creating helpful, reliable, people-first content'),
+	'instagram-ads-cost-equation': () => equation('How an Instagram ads budget turns into leads', 'Instagram ads cost, worked through with example numbers (not benchmarks)', [
+		[['$300', 'budget: $10 a day'], '÷', ['$8', 'example CPM'], '×', ['1,000', 'views per CPM'], '=', ['37,500', 'impressions']],
+		[['37,500', 'impressions'], '×', ['1%', 'example click rate'], '=', ['375', 'clicks ($0.80 each)'], '×', ['5%', 'example lead rate'], '=', ['19', 'leads']],
+		[['$300', 'budget'], '÷', ['19', 'leads'], '=', ['$16', 'per lead']],
+	], 'Compare your cost per lead with what a customer is worth to you.', 'Source: SEMRS worked example · Meta ad auction basics', 'dark'),
 };
