@@ -69,7 +69,7 @@ In the box, the owner replaces it with "Disallow: /wp-content/plugins/" and adds
 
 Most small business websites need only a few rules. If your site runs on WordPress, a typical file allows everything except the admin area and lists your sitemap. Test your homepage, your main service page and your contact page with Googlebot after any website change, and make sure your location and service pages are never blocked.
 
-Google explains exactly how it reads the file in [How Google interprets the robots.txt specification](https://developers.google.com/search/docs/crawling-indexing/robots/robots_txt).
+Google explains exactly how it reads the file in [How Google interprets the robots.txt specification](https://developers.google.com/crawling/docs/robots-txt/robots-txt-spec).
 
 ## Robots.txt tester: frequently asked questions
 

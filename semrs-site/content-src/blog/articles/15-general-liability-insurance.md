@@ -45,7 +45,7 @@ Policies also leave out harm you cause on purpose and fines in your contracts. M
 
 ## Who needs general liability cover?
 
-The [SBA's business insurance guide](https://www.sba.gov/business-guide/launch-your-business/get-business-insurance) lists general liability as coverage any business may need. You are especially likely to need it if:
+The [SBA's business insurance guide](https://www.sba.gov/counseling/launch-your-business/#business-insurance) lists general liability as coverage any business may need. You are especially likely to need it if:
 
 - Customers or suppliers visit your premises.
 - You work at clients' homes or sites, as contractors, cleaners and installers do.
@@ -120,4 +120,4 @@ No. SEMRS is a digital marketing agency and does not sell or arrange insurance. 
 
 ! Running a small business? Read more in the [Business Insurance category](/category/business-insurance/) or our guide to [small business loans for marketing](/small-business-loans-for-marketing/).
 
-**Sources:** U.S. Small Business Administration, [Get business insurance](https://www.sba.gov/business-guide/launch-your-business/get-business-insurance); Insureon, [General liability insurance cost](https://www.insureon.com/small-business-insurance/general-liability/cost) (updated March 30, 2026).
+**Sources:** U.S. Small Business Administration, [Get business insurance](https://www.sba.gov/counseling/launch-your-business/#business-insurance); Insureon, [General liability insurance cost](https://www.insureon.com/small-business-insurance/general-liability/cost) (updated March 30, 2026).

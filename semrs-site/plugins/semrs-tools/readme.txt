@@ -4,7 +4,7 @@ Tags: seo tools, serp preview, schema generator, utm builder, image compressor
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.4.6
+Stable tag: 1.4.7
 License: GPLv2 or later
 
 20 free SEO tools for any WordPress site. Each page loads only its own small script (core ~2 KB + tool 2-6 KB gzipped).
@@ -49,6 +49,9 @@ Free Tools Pro (SEMRS Pro, SEO Pro add-on; switch it on under SEMRS → Features
 * Social Share Preview shows the image URL the visitor types in, loaded by their own browser.
 
 == Changelog ==
+
+= 1.4.7 =
+* Links to SBA, Google, Plain Language and EU pages point straight to their current addresses
 
 = 1.4.6 =
 * US spelling in labels, help text and readme

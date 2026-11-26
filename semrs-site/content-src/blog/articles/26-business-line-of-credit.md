@@ -98,4 +98,4 @@ Yes. SEMRS can estimate costs for SEO, content, ads and websites and set up trac
 
 ! Want a marketing plan you can measure? [Request a free review](/get-a-quote/).
 
-**Sources:** U.S. Small Business Administration, [7(a) loans and the 7(a) Working Capital Pilot](https://www.sba.gov/funding-programs/loans/7a-loans).
+**Sources:** U.S. Small Business Administration, [7(a) loans and the 7(a) Working Capital Pilot](https://www.sba.gov/loans/7a-loans/).

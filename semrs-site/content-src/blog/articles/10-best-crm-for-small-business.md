@@ -85,7 +85,7 @@ A CRM becomes much more valuable when it knows where each customer came from. Tr
 - Not training the team or checking adoption.
 - Not tracking lead source, which hides your best marketing channels.
 
-The U.S. Small Business Administration covers the basics of finding and keeping customers in its [marketing and sales guide](https://www.sba.gov/business-guide/manage-your-business/marketing-sales). A CRM is where that work gets tracked.
+The U.S. Small Business Administration covers the basics of finding and keeping customers in its [marketing and sales guide](https://www.sba.gov/counseling/manage-your-business/#marketing-and-sales). A CRM is where that work gets tracked.
 
 ## Frequently asked questions
 

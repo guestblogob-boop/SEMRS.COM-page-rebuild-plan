@@ -41,7 +41,7 @@ Figures for SBA programs are from the U.S. Small Business Administration. Bank a
 
 ### SBA 7(a) loans
 
-The [SBA 7(a) program](https://www.sba.gov/funding-programs/loans/7a-loans) is the SBA's main loan, with a maximum of $5 million. Allowed uses include short- and long-term working capital, so a marketing budget can be part of a wider growth plan. Working capital loans are generally repaid over ten years or less. For variable-rate 7(a) loans, the SBA caps the rate at the base rate plus 3% to 6.5%, depending on loan size: the smaller the loan, the higher the allowed spread.
+The [SBA 7(a) program](https://www.sba.gov/loans/7a-loans/) is the SBA's main loan, with a maximum of $5 million. Allowed uses include short- and long-term working capital, so a marketing budget can be part of a wider growth plan. Working capital loans are generally repaid over ten years or less. For variable-rate 7(a) loans, the SBA caps the rate at the base rate plus 3% to 6.5%, depending on loan size: the smaller the loan, the higher the allowed spread.
 
 ### SBA microloans
 
@@ -115,4 +115,4 @@ Yes. SEMRS can review your website and channels and set out a costed plan with p
 
 ! Planning a marketing budget? See the [Business Finance category](/category/business-finance/) for more guides, or get a costed plan from SEMRS with a [free review](/get-a-quote/).
 
-**Sources:** U.S. Small Business Administration, [7(a) loans](https://www.sba.gov/funding-programs/loans/7a-loans), microloans, 504 loans and 7(a) terms and conditions; Federal Reserve Bank of Cleveland, [Fed survey: small business pandemic recovery](https://www.clevelandfed.org/collections/press-releases/2025/pr-20250327-fed-survey-small-business-pandemic-recovery) (2025 Report on Employer Firms).
+**Sources:** U.S. Small Business Administration, [7(a) loans](https://www.sba.gov/loans/7a-loans/), microloans, 504 loans and 7(a) terms and conditions; Federal Reserve Bank of Cleveland, [Fed survey: small business pandemic recovery](https://www.clevelandfed.org/collections/press-releases/2025/pr-20250327-fed-survey-small-business-pandemic-recovery) (2025 Report on Employer Firms).

@@ -306,7 +306,7 @@ function semrs_legal_pages() {
 			. semrs_legal_p( 'We send the money back by the method you paid with. Banks usually show it within 5 to 10 business days. When a license is refunded, its key is switched off.' )
 			. semrs_legal_h( 'After 30 days', 3 )
 			. semrs_legal_p( 'After 30 days we may still give a refund in fair cases. For example, if a product does not work as described and we cannot fix it, or if you were charged twice. To stop a renewal, just tell us before the renewal date. Your license keeps working until the end of the time you paid for.' )
-			. semrs_legal_p( 'This policy does not take away any refund rights you have under the consumer law of your country. If you live in the EU, the European Commission explains your rights on its <a href="https://europa.eu/youreurope/citizens/consumers/shopping/guarantees-returns/index_en.htm" rel="noopener">guarantees and returns page</a>.' )
+			. semrs_legal_p( 'This policy does not take away any refund rights you have under the consumer law of your country. If you live in the EU, the European Commission explains your rights on its <a href="https://europa.eu/youreurope/citizens/consumers/shopping/guarantees/index_en.htm" rel="noopener">guarantees and returns page</a>.' )
 			. semrs_legal_h( 'Refund policy for digital marketing services' )
 			. semrs_legal_p( 'Services are paid by invoice directly to SEMRS. For services:' )
 			. semrs_legal_ul(

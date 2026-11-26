@@ -62,7 +62,7 @@ The adviser splits the opening into three sentences, starts with the reader's qu
 
 Customers looking for a local service usually want three things fast: what you do, where, and how to get in touch. Lead with those in short sentences, keep prices and opening hours easy to find, and avoid long introductions about your history. A reading ease of 60 or higher is a good target for service pages.
 
-The US government's [plain language guidelines](https://www.plainlanguage.gov/guidelines/) give practical rules for clear writing that work for any business.
+The US government's [plain language guidelines](https://digital.gov/guides/plain-language) give practical rules for clear writing that work for any business.
 
 ## Readability checker: frequently asked questions
 

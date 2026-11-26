@@ -19,7 +19,7 @@ Google offers two main ways for local businesses to pay for leads from search: L
 
 ## What are Google Local Services Ads?
 
-Local Services Ads appear at the top of some searches, often above regular ads, with your business name, star rating, a badge and a "call" or "message" button. Instead of paying for clicks, you pay when a customer contacts you through the ad (see [Google's Local Services Ads page](https://ads.google.com/local-services-ads/)).
+Local Services Ads appear at the top of some searches, often above regular ads, with your business name, star rating, a badge and a "call" or "message" button. Instead of paying for clicks, you pay when a customer contacts you through the ad (see [Google's Local Services Ads page](https://business.google.com/en-all/google-ads/)).
 
 Businesses must pass Google's screening for their category. Home service categories (such as plumbers, electricians and HVAC) typically earn a **Google Guaranteed** badge, while professional services (such as lawyers, financial planners and real estate agents) can earn a **Google Screened** badge. Screening can include background checks, license and insurance verification, depending on category and country. Availability varies by category and location.
 
