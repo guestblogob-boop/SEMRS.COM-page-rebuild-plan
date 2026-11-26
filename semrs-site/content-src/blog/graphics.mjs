@@ -319,6 +319,193 @@ function roadPath(title, sub, items, source, theme = 'light') {
 	return frameT(th, title, sub, b, source);
 }
 
+
+// ---- Graphic kit 3 (2026-11): purpose-built layouts (matrix, layers, wireframe, badges, phones, hub, flowchart, map, form, house). ----
+// Two-axis matrix (items: [label, x 0-1, y 0-1, hot]).
+function quadrant(title, sub, xLab, yLab, items, source, theme = 'light') {
+	const th = THEMES[theme];
+	const x0 = 170, x1 = 1110, y0 = 165, y1 = 560, mx = (x0 + x1) / 2, my = (y0 + y1) / 2;
+	let b = `<rect x="${x0}" y="${y0}" width="${x1 - x0}" height="${y1 - y0}" rx="16" fill="${th.card}" stroke="${th.line}" stroke-width="2"/>`;
+	b += `<rect x="${mx}" y="${y0}" width="${x1 - mx}" height="${my - y0}" rx="0" fill="${th.b}" fill-opacity=".08"/><rect x="${x0}" y="${my}" width="${mx - x0}" height="${y1 - my}" fill="${th.a}" fill-opacity=".07"/>`;
+	b += `<line x1="${mx}" y1="${y0}" x2="${mx}" y2="${y1}" stroke="${th.line}" stroke-width="2" stroke-dasharray="6 6"/><line x1="${x0}" y1="${my}" x2="${x1}" y2="${my}" stroke="${th.line}" stroke-width="2" stroke-dasharray="6 6"/>`;
+	b += `<text x="${(x0 + x1) / 2}" y="${y1 + 36}" text-anchor="middle" font-family="${F}" font-size="19" font-weight="700" fill="${th.mute}">${esc(xLab)} →</text>`;
+	b += `<text transform="translate(${x0 - 34},${(y0 + y1) / 2}) rotate(-90)" text-anchor="middle" font-family="${F}" font-size="19" font-weight="700" fill="${th.mute}">${esc(yLab)} →</text>`;
+	items.forEach(([l, x, y, hot]) => {
+		const px = x0 + 40 + x * (x1 - x0 - 80), py = y1 - 40 - y * (y1 - y0 - 80);
+		const w = l.length * 10.5 + 44;
+		b += `<rect x="${px - w / 2}" y="${py - 22}" width="${w}" height="44" rx="22" fill="${hot ? th.b : th.a}"/><text x="${px}" y="${py + 7}" text-anchor="middle" font-family="${F}" font-size="19" font-weight="700" fill="#fff">${esc(l)}</text>`;
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Stacked layers from bottom (first) to top (last), each narrower (items: [head, desc, icon]).
+function layers(title, sub, items, source, theme = 'light') {
+	const th = THEMES[theme];
+	const n = items.length, bottom = H - 95, lh = 88, gap = 12;
+	let b = '';
+	items.forEach(([h, d, ic], i) => {
+		const w = 980 - i * 120, x = (W - w) / 2, y = bottom - (i + 1) * lh - i * gap, hot = i === n - 1;
+		b += `<rect x="${x}" y="${y}" width="${w}" height="${lh}" rx="16" fill="${hot ? th.b : th.a}" opacity="${hot ? 1 : 0.55 + i * 0.15}"/>`;
+		b += icon(ic || 'check', x + 26, y + lh / 2 - 16, 32, '#fff', 2.2);
+		b += `<text x="${x + 76}" y="${y + 38}" font-family="${F}" font-size="24" font-weight="800" fill="#fff">${i + 1}. ${esc(h)}</text>`;
+		b += `<text x="${x + 76}" y="${y + 66}" font-family="${F}" font-size="18" fill="#fff" fill-opacity=".92">${esc(d)}</text>`;
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Browser-window wireframe with numbered callouts (parts: [label, desc]); 6 parts expected.
+function wireframe(title, sub, parts, source, theme = 'light') {
+	const th = THEMES[theme];
+	const bx = 60, by = 160, bw = 640, bh = 420;
+	let b = `<rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="16" fill="${th.card}" stroke="${th.line}" stroke-width="3"/>`;
+	b += `<rect x="${bx}" y="${by}" width="${bw}" height="40" rx="16" fill="${th.line}"/><rect x="${bx}" y="${by + 24}" width="${bw}" height="16" fill="${th.line}"/>`;
+	b += [0, 1, 2].map((i) => `<circle cx="${bx + 24 + i * 22}" cy="${by + 20}" r="7" fill="${[C.orange, '#f6c343', C.green][i]}"/>`).join('');
+	b += `<rect x="${bx + 90}" y="${by + 10}" width="420" height="20" rx="10" fill="${th.card}"/>`;
+	// Page regions: header, title, image, text, sidebar, CTA.
+	const R = [[bx + 20, by + 58, bw - 40, 34], [bx + 20, by + 108, 400, 30], [bx + 20, by + 152, 400, 140], [bx + 20, by + 306, 400, 86], [bx + 440, by + 108, 180, 200], [bx + 440, by + 324, 180, 68]];
+	R.forEach(([x, y, w, h], i) => {
+		b += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="8" fill="${i === 5 ? th.b : th.a}" fill-opacity="${i === 5 ? 0.9 : 0.12}" stroke="${i === 5 ? th.b : th.a}" stroke-width="2" stroke-dasharray="${i === 5 ? '' : '6 5'}"/>`;
+		if (i === 3) b += [0, 1, 2, 3].map((k) => `<rect x="${x + 14}" y="${y + 14 + k * 18}" width="${w - 28 - (k === 3 ? 120 : 0)}" height="8" rx="4" fill="${th.mute}" fill-opacity=".35"/>`).join('');
+		if (i === 2) b += icon('doc', x + w / 2 - 20, y + h / 2 - 20, 40, th.a, 2);
+		b += `<circle cx="${x + w - 2}" cy="${y + 2}" r="15" fill="${th.b}"/><text x="${x + w - 2}" y="${y + 8}" text-anchor="middle" font-family="${F}" font-size="16" font-weight="800" fill="#fff">${i + 1}</text>`;
+	});
+	parts.forEach(([l, d], i) => {
+		const y = 175 + i * 66;
+		b += `<circle cx="760" cy="${y + 16}" r="17" fill="${th.b}"/><text x="760" y="${y + 23}" text-anchor="middle" font-family="${F}" font-size="17" font-weight="800" fill="#fff">${i + 1}</text>`;
+		b += tsp(790, y + 14, [l], 21, th.ink, 700) + tsp(790, y + 40, [d], 17, th.mute);
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Two badges side by side with points (cards: [name, tag, points[]]).
+function badgePair(title, sub, cards, source, theme = 'dark') {
+	const th = THEMES[theme];
+	let b = '';
+	cards.forEach(([name, tag, pts], i) => {
+		const x = 60 + i * 550, y = 160, w = 530, h = 410, col = i ? th.b : C.green;
+		b += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="22" fill="${th.card}" stroke="${th.line}" stroke-width="2"/>`;
+		b += `<g transform="translate(${x + 40},${y + 34})"><path d="M48 0 L96 18 V54 C96 86 74 108 48 118 C22 108 0 86 0 54 V18 Z" fill="${col}"/>${icon('check', 24, 34, 48, '#fff', 3)}</g>`;
+		b += tsp(x + 160, y + 78, [name], 30, th.ink, 800) + tsp(x + 160, y + 112, [tag], 19, th.mute);
+		pts.forEach((p, k) => { const py = y + 190 + k * 52; b += `<circle cx="${x + 52}" cy="${py - 7}" r="7" fill="${col}"/>` + tsp(x + 74, py, wrap(p, 40).slice(0, 1), 20, th.ink); });
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Phone mock-ups showing ad formats (formats: [name, kind]) kind: photo|video|carousel|story|grid.
+function phones(title, sub, formats, source, theme = 'light') {
+	const th = THEMES[theme];
+	const n = formats.length, pw = 170, ph = 330, gap = (W - 120 - n * pw) / (n - 1), y = 170;
+	let b = '';
+	formats.forEach(([name, kind], i) => {
+		const x = 60 + i * (pw + gap), sx = x + 12, sy = y + 34, sw = pw - 24, sh = ph - 68;
+		b += `<rect x="${x}" y="${y}" width="${pw}" height="${ph}" rx="26" fill="${th.ink}" fill-opacity="${theme === 'dark' ? 0.25 : 0.9}"/><rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="8" fill="${th.card}"/>`;
+		b += `<rect x="${x + pw / 2 - 26}" y="${y + 14}" width="52" height="8" rx="4" fill="${th.bg}"/>`;
+		const ac = i % 2 ? th.b : th.a;
+		if (kind === 'photo') b += `<rect x="${sx + 10}" y="${sy + 30}" width="${sw - 20}" height="${sw - 20}" rx="6" fill="${ac}" fill-opacity=".25"/>${icon('home', sx + sw / 2 - 20, sy + 30 + (sw - 20) / 2 - 20, 40, ac)}`;
+		if (kind === 'video') b += `<rect x="${sx + 10}" y="${sy + 30}" width="${sw - 20}" height="${sw + 20}" rx="6" fill="${ac}" fill-opacity=".25"/><circle cx="${sx + sw / 2}" cy="${sy + 30 + (sw + 20) / 2}" r="26" fill="${ac}"/><path d="M ${sx + sw / 2 - 8} ${sy + 30 + (sw + 20) / 2 - 12} l 20 12 l -20 12 z" fill="#fff"/>`;
+		if (kind === 'carousel') b += [0, 1, 2].map((k) => `<rect x="${sx + 10 + k * 26}" y="${sy + 30 + k * 6}" width="${sw - 72}" height="${sw - 32}" rx="6" fill="${ac}" fill-opacity="${0.18 + k * 0.18}" stroke="${ac}" stroke-width="2"/>`).join('') + [0, 1, 2].map((k) => `<circle cx="${sx + sw / 2 - 14 + k * 14}" cy="${sy + sw + 30}" r="4" fill="${k === 0 ? ac : th.line}"/>`).join('');
+		if (kind === 'story') b += `<rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="8" fill="${ac}" fill-opacity=".85"/><rect x="${sx + 10}" y="${sy + 10}" width="${sw - 20}" height="4" rx="2" fill="#fff"/><rect x="${sx + 20}" y="${sy + sh - 52}" width="${sw - 40}" height="34" rx="17" fill="#fff"/><text x="${sx + sw / 2}" y="${sy + sh - 30}" text-anchor="middle" font-family="${F}" font-size="14" font-weight="700" fill="${ac}">Swipe up</text>`;
+		if (kind === 'grid') b += [0, 1, 2, 3, 4, 5, 6, 7, 8].map((k) => `<rect x="${sx + 8 + (k % 3) * ((sw - 16) / 3)}" y="${sy + 30 + Math.floor(k / 3) * ((sw - 16) / 3)}" width="${(sw - 16) / 3 - 4}" height="${(sw - 16) / 3 - 4}" rx="3" fill="${k === 4 ? th.b : ac}" fill-opacity="${k === 4 ? 0.9 : 0.2}"/>`).join('');
+		if (kind !== 'story') b += `<rect x="${sx + 10}" y="${sy + sh - 44}" width="${sw - 40}" height="8" rx="4" fill="${th.mute}" fill-opacity=".35"/><rect x="${sx + 10}" y="${sy + sh - 28}" width="${sw - 70}" height="8" rx="4" fill="${th.mute}" fill-opacity=".25"/>`;
+		b += tsp(x + pw / 2, y + ph + 40, [name], 21, th.ink, 700, 'middle');
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Hub and spokes (items: [icon, head, desc]).
+function spokes(title, sub, centre, items, source, theme = 'light') {
+	const th = THEMES[theme];
+	const cx = 600, cy = 395, n = items.length, rx = 400, ry = 165;
+	let b = '';
+	items.forEach(([ic, h, d], i) => {
+		const ang = -Math.PI / 2 + i * 2 * Math.PI / n, x = cx + rx * Math.cos(ang), y = cy + ry * Math.sin(ang);
+		b += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${th.line}" stroke-width="3"/>`;
+	});
+	b += `<circle cx="${cx}" cy="${cy}" r="86" fill="${th.a}"/><circle cx="${cx}" cy="${cy}" r="100" fill="none" stroke="${th.a}" stroke-opacity=".3" stroke-width="8"/>${tsp(cx, cy - 4, wrap(centre, 12).slice(0, 2), 22, '#fff', 800, 'middle')}`;
+	items.forEach(([ic, h, d], i) => {
+		const ang = -Math.PI / 2 + i * 2 * Math.PI / n, x = cx + rx * Math.cos(ang), y = cy + ry * Math.sin(ang), w = 250, hh = 84;
+		b += `<rect x="${x - w / 2}" y="${y - hh / 2}" width="${w}" height="${hh}" rx="16" fill="${th.card}" stroke="${i % 2 ? th.b : th.a}" stroke-width="2.5"/>`;
+		b += `<circle cx="${x - w / 2 + 34}" cy="${y}" r="22" fill="${i % 2 ? th.b : th.a}"/>${icon(ic, x - w / 2 + 22, y - 12, 24, '#fff', 2.2)}`;
+		b += tsp(x - w / 2 + 66, y - 6, [h], 19, th.ink, 700) + tsp(x - w / 2 + 66, y + 18, wrap(d, 20).slice(0, 1), 15, th.mute);
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// Flowchart with one yes/no decision (steps before, question, yes path, no path).
+function flowchart(title, sub, before, question, yes, no, source, theme = 'light') {
+	const th = THEMES[theme];
+	const box = (x, y, w, h, t, fill, ink) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="14" fill="${fill}" stroke="${th.line}" stroke-width="2"/>${tsp(x + w / 2, y + h / 2 + (wrap(t, Math.floor(w / 11)).length > 1 ? -4 : 7), wrap(t, Math.floor(w / 11)).slice(0, 2), 18, ink, 700, 'middle')}`;
+	const arrow = (x1, y1, x2, y2) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${th.a}" stroke-width="3"/><circle cx="${x2}" cy="${y2}" r="5" fill="${th.a}"/>`;
+	let b = '', x = 60;
+	const y = 300, w = 190, h = 80;
+	before.forEach((t, i) => { b += box(x, y, w, h, t, th.card, th.ink); b += arrow(x + w, y + h / 2, x + w + 40, y + h / 2); x += w + 40; });
+	const dx = x + 90, dy = y + h / 2;
+	b += `<path d="M ${dx} ${dy - 90} L ${dx + 100} ${dy} L ${dx} ${dy + 90} L ${dx - 100} ${dy} Z" fill="${th.b}"/>${tsp(dx, dy - 4, wrap(question, 14).slice(0, 3), 17, '#fff', 700, 'middle')}`;
+	b += `<line x1="${x}" y1="${dy}" x2="${dx - 100}" y2="${dy}" stroke="${th.a}" stroke-width="3"/>`;
+	const ex = dx + 150;
+	b += arrow(dx, dy - 90, dx, 200) + arrow(dx, 200, ex, 200) + `<text x="${dx + 12}" y="${dy - 100}" font-family="${F}" font-size="18" font-weight="800" fill="${C.green}">Yes</text>`;
+	b += arrow(dx, dy + 90, dx, 500) + arrow(dx, 500, ex, 500) + `<text x="${dx + 12}" y="${dy + 116}" font-family="${F}" font-size="18" font-weight="800" fill="${th.bDk}">No</text>`;
+	yes.forEach((t, i) => { b += box(ex + i * 0, 160 + i * 0, W - 60 - ex, 80, t, th.card, th.ink); });
+	no.forEach((t, i) => { b += box(ex, 460, W - 60 - ex, 80, t, th.b, '#fff'); });
+	return frameT(th, title, sub, b, source);
+}
+
+// Stylized neighborhood map with labelled pins (pins: [label, icon]).
+function mapPins(title, sub, pins, source, theme = 'light') {
+	const th = THEMES[theme];
+	const mx = 60, my = 160, mw = W - 120, mh = 410;
+	let b = `<rect x="${mx}" y="${my}" width="${mw}" height="${mh}" rx="20" fill="${th.card}" stroke="${th.line}" stroke-width="2"/>`;
+	// Streets and blocks.
+	for (let i = 1; i < 6; i++) b += `<rect x="${mx + i * mw / 6 - 7}" y="${my}" width="14" height="${mh}" fill="${th.line}" opacity=".7"/>`;
+	for (let i = 1; i < 3; i++) b += `<rect x="${mx}" y="${my + i * mh / 3 - 7}" width="${mw}" height="14" fill="${th.line}" opacity=".7"/>`;
+	b += `<path d="M ${mx} ${my + mh - 60} C ${mx + 300} ${my + mh - 160}, ${mx + 700} ${my + 60}, ${mx + mw} ${my + 120}" fill="none" stroke="${th.a}" stroke-opacity=".25" stroke-width="22"/>`;
+	const spots = [[0.12, 0.25], [0.36, 0.18], [0.55, 0.3], [0.92, 0.08], [0.2, 0.62], [0.47, 0.72], [0.7, 0.62], [0.9, 0.78], [0.08, 0.88], [0.56, 0.95]];
+	pins.forEach(([l, ic], i) => {
+		const [fx, fy] = spots[i % spots.length], x = mx + 40 + fx * (mw - 80), y = my + 50 + fy * (mh - 110), col = i % 2 ? th.b : th.a;
+		b += `<path d="M ${x} ${y + 34} C ${x - 6} ${y + 20}, ${x - 24} ${y + 6}, ${x - 24} ${y - 12} A 24 24 0 1 1 ${x + 24} ${y - 12} C ${x + 24} ${y + 6}, ${x + 6} ${y + 20}, ${x} ${y + 34} Z" fill="${col}"/>${icon(ic, x - 11, y - 24, 22, '#fff', 2.2)}`;
+		const w = l.length * 9.6 + 22, lx = fx > 0.72 ? x - 30 - w : x + 30;
+		b += `<rect x="${lx}" y="${y - 30}" width="${w}" height="32" rx="16" fill="${th.bg}" stroke="${col}" stroke-width="2"/><text x="${lx + w / 2}" y="${y - 8}" text-anchor="middle" font-family="${F}" font-size="16" font-weight="700" fill="${th.ink}">${esc(l)}</text>`;
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// A paper form mock-up with ticked fields (fields: [label]) and side notes (notes: [head, desc]).
+function formMock(title, sub, formTitle, fields, notes, source, theme = 'light') {
+	const th = THEMES[theme];
+	const fx = 90, fy = 160, fw = 520, fh = 420;
+	let b = `<rect x="${fx + 10}" y="${fy + 10}" width="${fw}" height="${fh}" rx="10" fill="${th.line}"/><rect x="${fx}" y="${fy}" width="${fw}" height="${fh}" rx="10" fill="${th.card}" stroke="${th.line}" stroke-width="2"/>`;
+	b += `<rect x="${fx}" y="${fy}" width="${fw}" height="54" rx="10" fill="${th.a}"/><rect x="${fx}" y="${fy + 40}" width="${fw}" height="14" fill="${th.a}"/>${tsp(fx + 24, fy + 35, [formTitle], 21, '#fff', 800)}`;
+	fields.forEach((f, i) => {
+		const y = fy + 86 + i * 48;
+		b += `<rect x="${fx + 24}" y="${y - 18}" width="26" height="26" rx="5" fill="${th.card}" stroke="${th.a}" stroke-width="2"/>${icon('check', fx + 26, y - 16, 22, th.b, 3)}`;
+		b += tsp(fx + 64, y + 2, [f], 18, th.ink, 600) + `<line x1="${fx + 64}" y1="${y + 14}" x2="${fx + fw - 24}" y2="${y + 14}" stroke="${th.line}" stroke-width="1.5"/>`;
+	});
+	b += `<path d="M ${fx + 300} ${fy + fh - 40} c 20 -30 40 10 60 -10 s 30 -20 50 0" fill="none" stroke="${th.a}" stroke-width="3" stroke-linecap="round"/>${tsp(fx + 24, fy + fh - 30, ['Signature and date'], 16, th.mute)}`;
+	notes.forEach(([h, d], i) => {
+		const y = 185 + i * 128;
+		b += `<rect x="680" y="${y}" width="460" height="108" rx="16" fill="${th.card}" stroke="${th.line}" stroke-width="2"/><rect x="680" y="${y}" width="8" height="108" rx="4" fill="${i % 2 ? th.b : th.a}"/>`;
+		b += tsp(708, y + 38, [h], 21, th.ink, 700) + tsp(708, y + 66, wrap(d, 40).slice(0, 2), 17, th.mute);
+	});
+	return frameT(th, title, sub, b, source);
+}
+
+// House outline with callouts around it (labels: [head, desc]), 8 expected.
+function houseCallouts(title, sub, labels, source, theme = 'light') {
+	const th = THEMES[theme];
+	const cx = 600, base = 520;
+	let b = `<path d="M ${cx - 170} ${base} V ${base - 170} L ${cx} ${base - 290} L ${cx + 170} ${base - 170} V ${base} Z" fill="${th.a}" fill-opacity=".12" stroke="${th.a}" stroke-width="4" stroke-linejoin="round"/>`;
+	b += `<path d="M ${cx - 200} ${base - 150} L ${cx} ${base - 310} L ${cx + 200} ${base - 150}" fill="none" stroke="${th.b}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>`;
+	b += `<rect x="${cx - 40}" y="${base - 110}" width="80" height="110" rx="6" fill="${th.a}"/><rect x="${cx - 140}" y="${base - 140}" width="70" height="60" rx="6" fill="${th.card}" stroke="${th.a}" stroke-width="3"/><rect x="${cx + 70}" y="${base - 140}" width="70" height="60" rx="6" fill="${th.card}" stroke="${th.a}" stroke-width="3"/><line x1="${cx - 260}" y1="${base}" x2="${cx + 260}" y2="${base}" stroke="${th.line}" stroke-width="6" stroke-linecap="round"/>`;
+	const pos = [[80, 175], [80, 290], [80, 405], [80, 520], [860, 175], [860, 290], [860, 405], [860, 520]];
+	const anchors = [[cx - 150, base - 200], [cx - 120, base - 110], [cx - 40, base - 60], [cx - 200, base], [cx + 120, base - 230], [cx + 105, base - 110], [cx + 40, base - 60], [cx + 200, base]];
+	labels.forEach(([h, d], i) => {
+		const [x, y] = pos[i], [ax, ay] = anchors[i], right = i >= 4;
+		b += `<line x1="${right ? x : x + 260}" y1="${y + 26}" x2="${ax}" y2="${ay}" stroke="${th.line}" stroke-width="2" stroke-dasharray="4 5"/><circle cx="${ax}" cy="${ay}" r="6" fill="${th.b}"/>`;
+		b += `<rect x="${x}" y="${y}" width="260" height="72" rx="14" fill="${th.card}" stroke="${th.line}" stroke-width="2"/>` + tsp(x + 16, y + 30, [h], 19, th.ink, 700) + tsp(x + 16, y + 54, wrap(d, 28).slice(0, 1), 15, th.mute);
+	});
+	return frameT(th, title, sub, b, source);
+}
+
 const SEMRS = 'Source: SEMRS guide';
 export const GRAPHICS = {
 	'small-business-loan-approval-by-lender': () => hbars('Where small businesses get fully approved', 'Share of loan applicants fully approved, by lender type', [['Small banks', 54, true], ['Large banks', 45], ['Online lenders', 30]], 60, (v) => Math.round(v) + '%', 'Source: Federal Reserve Small Business Credit Survey, 2025 Report on Employer Firms', 'Survey of 7,653 US employer firms, fielded September–November 2024.'),
@@ -469,4 +656,34 @@ export const GRAPHICS = {
 	'advertising-budget-tiles': () => statTiles('Advertising budget: work back from a customer', 'Example numbers only; replace them with your own', [
 		['$1,800', 'Profit from one customer in year one'], ['$450', 'What you can pay to win one'], ['4', 'New customers wanted each month'], ['$1,800', 'Monthly ad budget'],
 	], 'Source: SEMRS guide · worked example, not a benchmark', 'light', 'If 1 in 4 leads becomes a customer, aim for about $112 per lead.'),
+	'quick-business-funding-matrix': () => quadrant('Quick business funding: speed vs cost', 'A general guide; real terms vary by lender, so compare each offer', 'Faster to receive', 'Higher cost', [
+		['SBA-backed loan', 0.08, 0.12], ['Line of credit (set up early)', 0.82, 0.22], ['Invoice financing', 0.55, 0.5], ['Business credit card', 0.9, 0.52], ['Online term loan', 0.58, 0.76], ['Merchant cash advance', 0.86, 0.94, true],
+	], 'Source: SEMRS guide · general information, not financial advice'),
+	'technical-seo-layers': () => layers('Technical SEO: four layers, bottom up', 'A problem in a lower layer blocks everything above it', [
+		['Crawl', 'Googlebot is not blocked by robots.txt or errors', 'search'], ['Render', 'The page returns HTTP 200 and loads its content', 'doc'], ['Index', 'Indexable content, no stray noindex or wrong canonical', 'list'], ['Rank', 'Fast, secure, mobile-friendly and helpful', 'chart'],
+	], 'Source: Google Search Central (technical requirements) · SEMRS guide', 'dark'),
+	'wordpress-blog-wireframe': () => wireframe('Anatomy of a WordPress blog post', 'What every business blog post page should have', [
+		['Clear menu', 'Services and contact one click away'], ['Question as the title', 'Answer it in the first paragraph'], ['Real photo', 'Your work or team, compressed'], ['Short sections', 'Headings, lists and examples'], ['Related links', 'Matching service and other posts'], ['Next step', 'Quote form or phone number'],
+	], 'Source: SEMRS guide'),
+	'google-guaranteed-badges': () => badgePair('Google Guaranteed vs Google Screened', 'Both badges appear on Local Services Ads after Google screening', [
+		['Google Guaranteed', 'Mostly home services', ['Plumbers, electricians, cleaners', 'Business and license checks', 'Background checks in some categories', 'Backed by Google guarantee program terms']],
+		['Google Screened', 'Professional services', ['Lawyers, financial planners, real estate', 'Owner identity and business checks', 'Lawyers: state bar license checks', 'About 3 to 4 weeks to screen on average']],
+	], 'Source: Google Local Services Help (screening and verification requirements)', 'dark'),
+	'instagram-ads-formats': () => phones('Instagram ads formats at a glance', 'Match the format to the goal', [
+		['Photo ad', 'photo'], ['Video ad', 'video'], ['Carousel', 'carousel'], ['Stories ad', 'story'], ['Explore ad', 'grid'],
+	], 'Source: Meta for Business (Instagram ads)'),
+	'ugc-hub': () => spokes('Using user generated content the right way', 'Every customer post you share should pass these checks', 'Customer post', [
+		['check', 'Ask permission', 'Save the reply'], ['user', 'Credit the creator', 'Name or handle'], ['dollar', 'Disclose incentives', 'Free product or pay'], ['shield', 'Keep it honest', 'No edits to meaning'], ['star', 'Typical results', 'Not only the best'], ['lock', 'Respect privacy', 'Other people, places'],
+	], 'Source: FTC Endorsement Guides FAQ · SEMRS guide', 'warm'),
+	'sales-automation-flow': () => flowchart('Sales automation: the speed-to-lead workflow', 'Automate the reminders; keep the conversation human', ['New lead from form or call', 'Saved in CRM, owner assigned', 'Instant reply sent'], 'Called within one hour?', ['Log call, book next step'], ['Alert owner and manager'], 'Source: SEMRS guide · marketing texts need prior written consent'),
+	'local-advertising-map': () => mapPins('Local advertising ideas around your area', 'Mix online and offline channels where your customers are', [
+		['Business Profile', 'pin'], ['Search ads', 'search'], ['Local Services Ads', 'shield'], ['Social ads', 'megaphone'], ['Directories', 'list'], ['Direct mail', 'mail'], ['Sponsorships', 'star'], ['Van and shop signs', 'home'], ['Community events', 'calendar'], ['Partner referrals', 'link'],
+	], 'Source: SEMRS guide'),
+	'health-insurance-consent-form': () => formMock('Health insurance leads: document consent first', 'What CMS model consent form covers for Marketplace agents', 'Consumer consent', [
+		'Name of consumer or authorized representative', 'Agent or broker name and National Producer Number', 'What the agent may do with the application', 'How personal information is used and protected', 'How long consent lasts and how to revoke it',
+	], [['Before you help', 'Document consent before assisting with enrollment'], ['Before you submit', 'Document that the consumer reviewed the application'], ['Any format', 'Recorded call, text, email, e-signature or paper']], 'Source: CMS Model Consent Form for Marketplace Agents and Brokers', 'warm'),
+	'listing-marketing-house': () => houseCallouts('Listing marketing: everything a listing needs', 'Present the home well and you win the next seller too', [
+		['Professional photos', 'Good light, honest angles'], ['Floor plan', 'Layout at a glance'], ['Specific description', 'Sizes, updates, nearby'], ['Signs and flyers', 'QR code to the page'],
+		['Video walkthrough', 'Plus short vertical clips'], ['Property web page', 'All details and a form'], ['Social and email', 'Housing ad category'], ['Open house', 'Promote and follow up'],
+	], 'Source: SEMRS guide · fair housing rules apply to every listing ad'),
 };

@@ -69,9 +69,16 @@ const groups = {};
 for (const t of topics) (groups[t.cat] = groups[t.cat] || []).push(t);
 // Within each category: proven high-value topics first, topics without data after (check them in Keyword Planner).
 for (const a of Object.values(groups)) a.sort((x, y) => y.value - x.value);
-const size = Object.fromEntries(Object.entries(groups).map(([c, a]) => [c, a.length]));
+// Articles already written (any status other than Planned) keep their slot, so a rebuild never moves them.
+const prevPlan = (() => { try { return JSON.parse(fs.readFileSync(path.join(DIR, 'plan-12-month.json'), 'utf8')); } catch (e) { return []; } })();
+const prev = Object.fromEntries(prevPlan.map((p) => [p.kw, p.st]));
+const pinned = new Map(prevPlan.filter((p) => p.st !== 'Planned' && topics.some((t) => t.kw === p.kw)).map((p) => [p.n - 1, p.kw]));
+const pinnedKw = new Set(pinned.values());
+for (const c of Object.keys(groups)) groups[c] = groups[c].filter((t) => !pinnedKw.has(t.kw));
+const size = Object.fromEntries(Object.entries(groups).map(([c, a]) => [c, a.length || 1]));
 const order = []; let last = '';
 for (let i = 0; i < topics.length; i++) {
+	if (pinned.has(i)) { const t = topics.find((x) => x.kw === pinned.get(i)); order.push(t); last = t.cat; continue; }
 	const live = Object.keys(groups).filter((c) => groups[c].length);
 	const cands = live.filter((c) => c !== last);
 	const pick = (cands.length ? cands : live).sort((a, b) => groups[b].length / size[b] - groups[a].length / size[a] || groups[b].length - groups[a].length)[0];
@@ -79,8 +86,7 @@ for (let i = 0; i < topics.length; i++) {
 }
 
 const slugify = (k) => k.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 70);
-// Keep statuses from the previous build (Written, Published), keyed by focus keyword.
-const prev = (() => { try { return Object.fromEntries(JSON.parse(fs.readFileSync(path.join(DIR, 'plan-12-month.json'), 'utf8')).map((p) => [p.kw, p.st])); } catch (e) { return {}; } })();const plan = []; let n = 0;
+const plan = []; let n = 0;
 for (let d = 0; d < ONE_A_DAY + TWO_A_DAY; d++) {
 	const date = new Date(START + d * 86400000).toISOString().slice(0, 10);
 	for (const time of d < ONE_A_DAY ? TIMES.one : TIMES.two) {

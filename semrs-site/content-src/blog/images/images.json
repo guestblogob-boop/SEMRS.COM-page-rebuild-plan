@@ -964,5 +964,215 @@
    "credit": "Graphic: SEMRS",
    "license": "SEMRS original"
   }
+ },
+ "quick-business-funding": {
+  "featured": {
+   "file": "quick-business-funding-featured.webp",
+   "alt": "City skyline at dusk with office towers by the water",
+   "caption": "Fast money usually costs more, so compare the total cost of every offer.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: City Skyline by Matt Bango, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/city-skyline-HVKT6YLKOJ",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "quick-business-funding-matrix.webp",
+   "alt": "Quick business funding matrix of speed vs cost: SBA loans slow and low cost, lines of credit fast and lower cost, merchant cash advances fast and highest cost",
+   "caption": "A general guide to how fast and how costly each option tends to be.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "technical-seo": {
+  "featured": {
+   "file": "technical-seo-featured.webp",
+   "alt": "Rows of servers glowing blue in a data center",
+   "caption": "Search engines must be able to crawl and index your pages before they can rank them.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Data center, CC0 (free for commercial use)",
+   "source": "https://www.rawpixel.com/image/5906639/photo-image-light-desktop-wallpapers-public-domain",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "technical-seo-layers.webp",
+   "alt": "Technical SEO layers from bottom to top: crawl, render, index and rank",
+   "caption": "Fix the lowest broken layer first; it blocks everything above it.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "wordpress-blog": {
+  "featured": {
+   "file": "wordpress-blog-featured.webp",
+   "alt": "An open notebook with a written plan beside tea and a croissant",
+   "caption": "Plan your first five posts around real customer questions.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Notebook planning, CC0 (free for commercial use)",
+   "source": "https://www.rawpixel.com/image/5928318/photo-image-book-public-domain-hand",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "wordpress-blog-wireframe.webp",
+   "alt": "Wireframe of a WordPress blog post page: menu, question title, real photo, short sections, related links and a next-step box",
+   "caption": "The parts every business blog post page should have.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "google-guaranteed": {
+  "featured": {
+   "file": "google-guaranteed-featured.webp",
+   "alt": "An electrician working on a fuse box full of wires",
+   "caption": "Some trades, such as electricians, go through extra background checks for the badge.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Electrician, CC0 (free for commercial use)",
+   "source": "https://www.rawpixel.com/image/6038401/photo-image-public-domain-hand-person",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "google-guaranteed-badges.webp",
+   "alt": "Google Guaranteed vs Google Screened badges: which businesses get each and the checks involved",
+   "caption": "Both badges appear on Local Services Ads after Google screening.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "instagram-ads": {
+  "featured": {
+   "file": "instagram-ads-featured.webp",
+   "alt": "A hand holding a phone showing an Instagram business profile",
+   "caption": "Choose the ad format by goal: product, attention or a time-limited offer.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Instagram phone, CC0 (free for commercial use)",
+   "source": "https://www.rawpixel.com/image/6113283/photo-image-instagram-phone-public-domain",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "instagram-ads-formats.webp",
+   "alt": "Instagram ads formats shown on phones: photo ad, video ad, carousel, Stories ad and Explore ad",
+   "caption": "Five Instagram ad formats and how each looks on a phone.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "user-generated-content": {
+  "featured": {
+   "file": "user-generated-content-featured.webp",
+   "alt": "A young woman in a red hat taking a photo with a camera",
+   "caption": "Customer photos build trust when you ask permission and credit the creator.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Girl Woman by Benjamin Combs, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/girl-woman-TNK87N7464",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "ugc-hub.webp",
+   "alt": "User generated content checks around a customer post: ask permission, credit the creator, disclose incentives, keep it honest, typical results, respect privacy",
+   "caption": "Six checks before you share any customer post.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "sales-automation": {
+  "featured": {
+   "file": "sales-automation-featured.webp",
+   "alt": "Hands typing on a laptop beside a phone and a coffee mug",
+   "caption": "Automate the reminders so every lead gets a quick, human reply.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Laptop typing, CC0 (free for commercial use)",
+   "source": "https://www.rawpixel.com/image/5952911/free-public-domain-cc0-photo",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "sales-automation-flow.webp",
+   "alt": "Sales automation flowchart: new lead saved in CRM, instant reply, then if not called within one hour the owner and manager get an alert",
+   "caption": "A speed-to-lead workflow that keeps people in the conversation.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "local-advertising": {
+  "featured": {
+   "file": "local-advertising-featured.webp",
+   "alt": "Rooftops of a town with houses and church towers",
+   "caption": "The best customers often live within a few streets of your business.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: City Architecture by Sergei Gussev, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/city-architecture-AFJ2YJAZUK",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "local-advertising-map.webp",
+   "alt": "Map of local advertising ideas: Business Profile, search ads, Local Services Ads, social ads, directories, direct mail, sponsorships, signs, events and referrals",
+   "caption": "Ten local advertising channels, online and offline.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "health-insurance-leads": {
+  "featured": {
+   "file": "health-insurance-leads-featured.webp",
+   "alt": "A stethoscope lying next to a laptop on a white desk",
+   "caption": "Marketplace agents must document consent before helping someone enroll.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Stethoscope Medical by Negative Space, CC0 (free for commercial use)",
+   "source": "https://stocksnap.io/photo/stethoscope-medical-9M1HWW2JFV",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "health-insurance-consent-form.webp",
+   "alt": "Health insurance leads consent form mock-up: consumer, agent and producer number, permitted actions, data use and how long consent lasts",
+   "caption": "What a Marketplace consent record covers, based on the CMS model form.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
+ },
+ "listing-marketing": {
+  "featured": {
+   "file": "listing-marketing-featured.webp",
+   "alt": "A bright, open living room with large windows and wooden floors",
+   "caption": "Good light and honest photos do much of the work in listing marketing.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Photo: Living room, CC0 (free for commercial use)",
+   "source": "https://www.rawpixel.com/image/5922239/photo-image-frame-light-public-domain",
+   "license": "CC0 1.0"
+  },
+  "chart": {
+   "file": "listing-marketing-house.webp",
+   "alt": "Listing marketing house diagram: photos, floor plan, description, signs, video, property page, social and email, open house",
+   "caption": "Everything a well-marketed listing needs.",
+   "width": 1200,
+   "height": 675,
+   "credit": "Graphic: SEMRS",
+   "license": "SEMRS original"
+  }
  }
 }
