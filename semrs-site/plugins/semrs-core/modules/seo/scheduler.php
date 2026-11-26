@@ -10,7 +10,7 @@
  * - every full page load (and every WP-Cron or server cron run) publishes posts that are due,
  *   at most once a minute, oldest first, ten at a time.
  * For exact timing on sites behind a server or CDN cache, add a server cron job that opens
- * wp-cron.php every five minutes (shown on SEMRS → Content Calendar).
+ * wp-cron.php every minute (shown on SEMRS → Content Calendar).
  *
  * @package semrs-core
  */
@@ -209,7 +209,7 @@ function semrs_scheduler_status_box() {
 			<?php submit_button( __( 'Publish due posts now', 'semrs-core' ), 'secondary small', 'submit', false ); ?>
 		</form>
 		<details><summary><?php esc_html_e( 'Exact timing on sites with a server or CDN cache (recommended)', 'semrs-core' ); ?></summary>
-			<p><?php esc_html_e( 'Some hosts answer cached pages without running WordPress at all. Add a cron job in your hosting panel (for example hPanel → Advanced → Cron Jobs) that runs every 5 minutes:', 'semrs-core' ); ?></p>
+			<p><?php esc_html_e( 'Some hosts answer cached pages without running WordPress at all. Add a cron job in your hosting panel (for example hPanel → Advanced → Cron Jobs) that runs every minute (* * * * *), so posts go live on their exact second:', 'semrs-core' ); ?></p>
 			<p><code><?php echo esc_html( $cron ); ?></code></p>
 		</details>
 	</div>
