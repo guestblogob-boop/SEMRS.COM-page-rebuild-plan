@@ -152,6 +152,8 @@ function semrs_speed_cache_tab() {
 	if ( $conflict ) {
 		/* translators: %s: plugin name */
 		$status = array( 'paused', sprintf( __( 'Paused: %s already handles page caching. Use one page cache only.', 'semrs-core' ), $conflict ) );
+	} elseif ( semrs_litespeed_active() ) {
+		$status = array( 'on', __( 'On, using the LiteSpeed server cache: the web server sends cached pages without starting PHP, and SEMRS clears them whenever content changes. The LiteSpeed Cache plugin is not needed.', 'semrs-core' ) );
 	} elseif ( ! $writable ) {
 		$status = array( 'paused', __( 'The folder wp-content/cache/semrs/ cannot be created or written. Ask your host to make wp-content writable.', 'semrs-core' ) );
 	} elseif ( semrs_cache_enabled() ) {
@@ -163,7 +165,7 @@ function semrs_speed_cache_tab() {
 	?>
 	<div class="semrs-cache-status <?php echo esc_attr( $status[0] ); ?>">
 		<strong><?php esc_html_e( 'Page cache:', 'semrs-core' ); ?></strong> <span><?php echo esc_html( $status[1] ); ?></span>
-		<?php if ( $files ) : ?>
+		<?php if ( $files || semrs_litespeed_active() ) : ?>
 			<a class="button" style="margin-left:auto" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=semrs_cache_clear' ), 'semrs_cache_clear' ) ); ?>"><?php esc_html_e( 'Clear cache', 'semrs-core' ); ?></a>
 		<?php endif; ?>
 	</div>

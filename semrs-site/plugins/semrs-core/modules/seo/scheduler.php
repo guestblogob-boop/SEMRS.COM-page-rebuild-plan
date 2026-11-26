@@ -59,6 +59,34 @@ add_action(
 	2
 );
 
+/**
+ * To-the-second publishing on cron runs: when the next post is due within the next 60 seconds, the
+ * cron request waits until that second and publishes it. With a server cron every minute (for
+ * example hPanel → Cron Jobs: wget … wp-cron.php every minute), posts go live on their exact time.
+ */
+add_action(
+	'wp_loaded',
+	function () {
+		if ( ! wp_doing_cron() && ! isset( $_GET['doing_wp_cron'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification -- read-only flag WordPress itself uses.
+			return;
+		}
+		$due  = (int) get_option( 'semrs_next_scheduled', 0 );
+		$wait = $due - time();
+		if ( $due && $wait > 0 && $wait <= 60 && ! get_transient( 'semrs_scheduler_waiting' ) ) {
+			set_transient( 'semrs_scheduler_waiting', 1, 90 ); // One waiting run at a time.
+			ignore_user_abort( true );
+			if ( function_exists( 'set_time_limit' ) ) {
+				@set_time_limit( 120 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors -- not allowed on every host; the wait is short anyway.
+			}
+			sleep( $wait );
+			delete_transient( 'semrs_scheduler_lock' );
+			semrs_scheduler_publish_due( true );
+			delete_transient( 'semrs_scheduler_waiting' );
+		}
+	},
+	5
+);
+
 // Every full load: publish what is due (cheap check against one autoloaded option).
 add_action(
 	'wp_loaded',

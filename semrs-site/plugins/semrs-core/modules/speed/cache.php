@@ -68,7 +68,8 @@ function semrs_cache_conflict() {
  * @return bool
  */
 function semrs_cache_enabled() {
-	return ! empty( semrs_speed_settings()['cache'] ) && '' === semrs_cache_conflict() && ! ( defined( 'SEMRS_CACHE_OFF' ) && SEMRS_CACHE_OFF );
+	return ! empty( semrs_speed_settings()['cache'] ) && '' === semrs_cache_conflict() && ! ( defined( 'SEMRS_CACHE_OFF' ) && SEMRS_CACHE_OFF )
+		&& ! ( function_exists( 'semrs_litespeed_active' ) && semrs_litespeed_active() ); // The LiteSpeed server cache does the job on LiteSpeed servers.
 }
 
 /**
@@ -295,7 +296,7 @@ add_action(
 	function ( $name ) {
 		if ( in_array( $name, array( 'blogname', 'blogdescription', 'page_on_front', 'show_on_front', 'page_for_posts', 'permalink_structure', 'site_icon', 'sidebars_widgets', 'posts_per_page' ), true )
 			|| 0 === strpos( $name, 'theme_mods_' ) || 0 === strpos( $name, 'widget_' )
-			|| ( 0 === strpos( $name, 'semrs_' ) && ! preg_match( '/audit|imports|cache|check|_score/', $name ) ) ) {
+			|| ( 0 === strpos( $name, 'semrs_' ) && ! preg_match( '/audit|imports|cache|check|_score|schedul|log|stats|hits|history|queue|usage|_db$|index|rank|links_|scan_|lockouts|_live|fw_|spam_|activity|license|_last|_done|_error|_sent|_key$|_dir|fresh|moved|flush|tasks|bk_|backup|roles_created|imglib|ai_meta|_ls_/', $name ) ) ) {
 			semrs_cache_purge_on_change();
 		}
 	}
@@ -331,7 +332,7 @@ add_action(
 add_action(
 	'admin_bar_menu',
 	function ( $bar ) {
-		if ( ! semrs_cache_enabled() || ! current_user_can( 'manage_options' ) ) {
+		if ( ! ( semrs_cache_enabled() || semrs_litespeed_active() ) || ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 		$bar->add_node(

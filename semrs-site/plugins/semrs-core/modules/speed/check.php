@@ -88,7 +88,7 @@ function semrs_speed_run_check() {
 	$r += array(
 		'first'        => $times[0],
 		'second'       => $times[1],
-		'cache'        => (string) wp_remote_retrieve_header( $res, 'x-semrs-cache' ),
+		'cache'        => ( 'hit' === strtolower( (string) wp_remote_retrieve_header( $res, 'x-litespeed-cache' ) ) ) ? 'HIT' : (string) wp_remote_retrieve_header( $res, 'x-semrs-cache' ),
 		'encoding'     => (string) wp_remote_retrieve_header( $res, 'content-encoding' ),
 		'kb'           => (int) round( strlen( $html ) / KB_IN_BYTES ),
 		'css'          => count( $css[0] ),
@@ -119,7 +119,7 @@ function semrs_speed_findings( $r ) {
 	$f[] = $fast <= 600 ? array( 'good', sprintf( __( 'Server response: %d ms', 'semrs-core' ), $fast ), '' ) : array( $fast <= 1500 ? 'warn' : 'bad', sprintf( __( 'Server response: %d ms', 'semrs-core' ), $fast ), __( 'Aim for under 600 ms. Turn on the page cache (or your host\'s cache); if it stays slow, ask your host about PHP 8.2+ and server resources.', 'semrs-core' ) );
 	if ( 'HIT' === $r['cache'] ) {
 		$f[] = array( 'good', __( 'Page cache is working (served from cache)', 'semrs-core' ), '' );
-	} elseif ( semrs_cache_enabled() ) {
+	} elseif ( semrs_cache_enabled() || semrs_litespeed_active() ) {
 		$f[] = array( 'warn', __( 'Page cache is on, but the homepage was not served from it', 'semrs-core' ), __( 'Run the check again. If it still says so, the homepage may be excluded or a plugin sets a cookie for every visitor.', 'semrs-core' ) );
 	} else {
 		$conf = semrs_cache_conflict();
