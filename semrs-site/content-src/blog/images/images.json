@@ -767,9 +767,9 @@
    "license": "CC0 1.0"
   },
   "chart": {
-   "file": "keyword-planner-steps.webp",
-   "alt": "Google Keyword Planner in six steps: set up an Ads account, discover keywords, set location, read the numbers, group and check, map to pages",
-   "caption": "Six steps to use Keyword Planner for free.",
+   "file": "keyword-planner-tree.webp",
+   "alt": "Google Keyword Planner tree diagram: discover new keywords, search volume and forecasts, numbers to read, and using the data for SEO",
+   "caption": "Keyword Planner has two tools; this is what each one gives you.",
    "width": 1200,
    "height": 675,
    "credit": "Graphic: SEMRS",
@@ -788,9 +788,9 @@
    "license": "CC0 1.0"
   },
   "chart": {
-   "file": "website-redesign-steps.webp",
-   "alt": "Website redesign in nine steps: goals, audit, keep or cut, content, URL map, staging, 301 redirects, testing and launch",
-   "caption": "The nine steps of a redesign that keeps your rankings.",
+   "file": "website-redesign-timeline.webp",
+   "alt": "Website redesign timeline from goals and audit to URL map, staging build, 301 redirects, testing and launch",
+   "caption": "An example timeline for a small business website redesign.",
    "width": 1200,
    "height": 675,
    "credit": "Graphic: SEMRS",
@@ -809,9 +809,9 @@
    "license": "CC0 1.0"
   },
   "chart": {
-   "file": "near-me-seo-steps.webp",
-   "alt": "Near me SEO in eight cards: profile, hours, reviews, area pages, consistent details, fast mobile, local schema and no keyword stuffing",
-   "caption": "Steps that help you show up for nearby searches.",
+   "file": "near-me-seo-icons.webp",
+   "alt": "Near me SEO checklist with icons: Business Profile, accurate hours, reviews, area pages, consistent details, fast phones, local schema, no keyword stuffing",
+   "caption": "Eight things that help you show up for nearby searches.",
    "width": 1200,
    "height": 675,
    "credit": "Graphic: SEMRS",
@@ -830,9 +830,9 @@
    "license": "CC0 1.0"
   },
   "chart": {
-   "file": "google-ads-keyword-match-types.webp",
-   "alt": "Google Ads keywords match types table: broad, phrase and exact match, negative keywords, close variants and the best starting setup",
-   "caption": "How each match type decides when your ads can show.",
+   "file": "google-ads-match-type-rings.webp",
+   "alt": "Google Ads keywords match types shown as rings: broad match outside, phrase match inside it, exact match at the center",
+   "caption": "Each match type reaches a narrower set of searches.",
    "width": 1200,
    "height": 675,
    "credit": "Graphic: SEMRS",
@@ -851,9 +851,9 @@
    "license": "CC0 1.0"
   },
   "chart": {
-   "file": "email-campaign-steps.webp",
-   "alt": "Plan an email campaign in eight steps: goal, audience, offer, sequence, subject lines, phone design, testing and measuring",
-   "caption": "The eight steps of an email campaign.",
+   "file": "email-campaign-sequence.webp",
+   "alt": "Email campaign timeline: announcement on day 1, reminder on day 4, last chance on day 8, measure on day 10",
+   "caption": "A simple three-email campaign over about ten days.",
    "width": 1200,
    "height": 675,
    "credit": "Graphic: SEMRS",
@@ -872,9 +872,9 @@
    "license": "CC0 1.0"
   },
   "chart": {
-   "file": "chatgpt-marketing-workflow.webp",
-   "alt": "A safe workflow for ChatGPT for marketing: human brief, AI draft, fact check, add expertise, review and human approval",
-   "caption": "Use AI for speed and people for accuracy.",
+   "file": "chatgpt-marketing-cycle.webp",
+   "alt": "ChatGPT for marketing workflow cycle: brief, AI draft, fact check, add expertise, review and approve, with people deciding at the center",
+   "caption": "AI speeds up drafts; people decide what is accurate and what is published.",
    "width": 1200,
    "height": 675,
    "credit": "Graphic: SEMRS",
@@ -893,9 +893,9 @@
    "license": "CC0 1.0"
   },
   "chart": {
-   "file": "direct-mail-steps.webp",
-   "alt": "Direct mail marketing campaign steps: choose area, one offer, design, tracking, print and send, repeat, measure and pair with online",
-   "caption": "How to run a direct mail campaign you can measure.",
+   "file": "direct-mail-path.webp",
+   "alt": "Direct mail marketing campaign path: pick an area, one offer, design, tracking, send, repeat and measure",
+   "caption": "Seven milestones of a direct mail campaign you can measure.",
    "width": 1200,
    "height": 675,
    "credit": "Graphic: SEMRS",
@@ -914,9 +914,9 @@
    "license": "CC0 1.0"
   },
   "chart": {
-   "file": "final-expense-vendor-checks.webp",
-   "alt": "Six checks for final expense leads vendors: exclusivity, freshness, consent, returns, small test and cost per policy",
-   "caption": "Run these checks before buying leads.",
+   "file": "final-expense-checklist.webp",
+   "alt": "Checklist before buying final expense leads: exclusive or shared, freshness, consent, return policy, small test and cost per policy",
+   "caption": "Run these checks before you buy leads from any vendor.",
    "width": 1200,
    "height": 675,
    "credit": "Graphic: SEMRS",
@@ -935,9 +935,9 @@
    "license": "CC0 1.0"
   },
   "chart": {
-   "file": "dental-seo-steps.webp",
-   "alt": "Dental SEO in eight steps: profile, treatment pages, local keywords, reviews, fast mobile site, schema, patient guides and local links",
-   "caption": "The eight steps of dental SEO in this guide.",
+   "file": "dental-seo-pyramid.webp",
+   "alt": "Dental SEO pyramid: profile and site at the base, then treatment pages, reviews, patient guides and links at the top",
+   "caption": "Build dental SEO from strong foundations up.",
    "width": 1200,
    "height": 675,
    "credit": "Graphic: SEMRS",
@@ -956,9 +956,9 @@
    "license": "CC0 1.0"
   },
   "chart": {
-   "file": "advertising-budget-example.webp",
-   "alt": "Advertising budget worked example: customer worth $1,800, target cost per customer $450, 4 customers a month, $1,800 budget, $112 per lead",
-   "caption": "An example of working back from customer value to a monthly budget.",
+   "file": "advertising-budget-tiles.webp",
+   "alt": "Advertising budget worked example tiles: $1,800 customer profit, $450 to win one, 4 customers a month, $1,800 monthly budget",
+   "caption": "Work back from what a customer is worth to set the budget.",
    "width": 1200,
    "height": 675,
    "credit": "Graphic: SEMRS",

@@ -71,6 +71,7 @@ keyword: <primary keyword from the plan>
 |---|---|
 | Featured image | One photo, 1200 × 675, WebP, under 100 KB (its 768 px phone copy under 30 KB), file name `{slug}-featured.webp`, uploaded to the Media Library (never by URL). It is the page's main image and loads first; see section 13. Own photos or CC0 / commercial-use license; record the credit in the media description. |
 | Data graphic | One per article, in the body, drawn in SEMRS colors (blue #0b2fd1, orange #f7941d) with `content-src/blog/graphics.mjs`. Use only cited figures or the article's own steps. Label examples as examples. |
+| Graphic variety | Pick the layout that fits the article's angle, and never use the same layout on two posts in a row: bars (`hbars`, `gbars`) for cited figures, `compare` for two-way tables, `tree` for options, `timeline` for sequences, `cycle` for repeating workflows, `rings` for nested scopes, `pyramid` for foundations, `checklist` for checks, `iconCards` for feature lists, `statTiles` for worked numbers, `roadPath` for journeys, `funnel` and `venn` where they fit. Rotate the `light`, `warm` and `dark` themes. |
 | Alt text | Describe what the image actually shows; include the topic naturally, never stuff keywords. |
 | Caption | One sentence that adds meaning (what the reader should take from it). |
 | No GIFs | Heavy files hurt Core Web Vitals. Use a still graphic instead. |
