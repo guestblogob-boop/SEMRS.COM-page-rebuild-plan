@@ -268,7 +268,7 @@ function semrs_server_leftovers() {
 	}
 	// A drop-in left by any other plugin (no recognizable signature) is a leftover too when WordPress
 	// is not using it (WP_CACHE off) and no known cache plugin is active.
-	if ( '' === $out['dropin'] && $dsrc && ! semrs_server_dropin_is_ours() && ! ( defined( 'WP_CACHE' ) && WP_CACHE ) ) {
+	if ( '' === $out['dropin'] && file_exists( $drop ) && ! semrs_server_dropin_is_ours() && ! semrs_server_wp_cache_on() ) { // Empty or unreadable files count too.
 		$active = false;
 		foreach ( semrs_server_known_plugins() as $p ) {
 			$active = $active || is_plugin_active( $p[0] );
@@ -278,7 +278,7 @@ function semrs_server_leftovers() {
 		}
 	}
 	// Our own early-cache file left in place while WordPress no longer loads it (WP_CACHE off).
-	if ( '' === $out['dropin'] && $dsrc && semrs_server_dropin_is_ours() && ! semrs_server_wp_cache_on() ) {
+	if ( '' === $out['dropin'] && file_exists( $drop ) && semrs_server_dropin_is_ours() && ! semrs_server_wp_cache_on() ) {
 		$out['dropin'] = __( 'the switched-off SEMRS early cache', 'semrs-core' );
 	}
 	return $out;
