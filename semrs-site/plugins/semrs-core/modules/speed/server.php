@@ -266,6 +266,17 @@ function semrs_server_leftovers() {
 			$out['dropin'] = $name;
 		}
 	}
+	// A drop-in left by any other plugin (no recognizable signature) is a leftover too when WordPress
+	// is not using it (WP_CACHE off) and no known cache plugin is active.
+	if ( '' === $out['dropin'] && $dsrc && ! semrs_server_dropin_is_ours() && ! ( defined( 'WP_CACHE' ) && WP_CACHE ) ) {
+		$active = false;
+		foreach ( semrs_server_known_plugins() as $p ) {
+			$active = $active || is_plugin_active( $p[0] );
+		}
+		if ( ! $active ) {
+			$out['dropin'] = __( 'an unused page-cache drop-in', 'semrs-core' );
+		}
+	}
 	return $out;
 }
 

@@ -3,7 +3,7 @@
  * Plugin Name:       SEMRS Core
  * Plugin URI:        https://semrs.com/
  * Description:       Free SEO, speed, images, roles and ads for any WordPress site: titles, meta, schema, sitemaps, SEO score and site audit, llms.txt, redirects and 404 log, IndexNow (reads Rank Math, Yoast and AIOSEO data); WebP/AVIF image optimization, user role editor, review widgets; page cache, CSS and script optimization, prefetch, database cleanup, speed check; AdSense/AdX/ad network code with policy-safe placement and ads.txt. SEMRS Pro adds Pro modules.
- * Version:           1.3.64
+ * Version:           1.3.65
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://semrs.com/updates/semrs-core
@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
 // WP Consent API: stores only functional data (preferences, saved inputs) and loads no trackers itself.
 add_filter( 'wp_consent_api_registered_' . plugin_basename( __FILE__ ), '__return_true' );
 
-define( 'SEMRS_CORE_VERSION', '1.3.64' );
+define( 'SEMRS_CORE_VERSION', '1.3.65' );
 define( 'SEMRS_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SEMRS_CORE_FILE', __FILE__ );
 define( 'SEMRS_CORE_URL', plugin_dir_url( __FILE__ ) );
@@ -45,6 +45,7 @@ function semrs_core_module_files() {
 			'email'     => SEMRS_CORE_DIR . 'modules/email/email.php',
 			'security'  => SEMRS_CORE_DIR . 'modules/security/security.php',
 			'tools'     => SEMRS_CORE_DIR . 'modules/tools/tools.php',
+			'updates'   => SEMRS_CORE_DIR . 'modules/updates/updates.php',
 		)
 	);
 }
@@ -70,6 +71,7 @@ function semrs_core_modules() {
 			'email'     => array( __( 'Email (SMTP)', 'semrs-core' ), __( 'Send WordPress mail through your email provider so forms and notices arrive, with a test email and a log of recent sends.', 'semrs-core' ), 'free' ),
 			'security'  => array( __( 'Security', 'semrs-core' ), __( 'Limit log-in attempts, security headers, safe SVG uploads, hidden usernames and WordPress version, and no file editor.', 'semrs-core' ), 'free' ),
 			'tools'     => array( __( 'Site tools', 'semrs-core' ), __( 'Maintenance or coming-soon page with the right signal for Google, duplicate posts and pages, and comments off everywhere.', 'semrs-core' ), 'free' ),
+			'updates'   => array( __( 'Auto-updates', 'semrs-core' ), __( 'Safe automatic updates for WordPress, plugins, themes and translations in quiet hours, with a skip list, a health check and rollback after each run, an update log and an email report.', 'semrs-core' ), 'free' ),
 			'reviews'   => array( __( 'Review Widgets', 'semrs-core' ), __( 'Show your real Trustpilot or Google review widget with a shortcode. Its script loads only on pages that use it.', 'semrs-core' ), 'free' ),
 		)
 	);
